@@ -53,10 +53,28 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] Von Lukas auf echtem iPhone und Mac geprüft: alles funktioniert
   - Lokal testen: im Terminal `python3 -m http.server 8000` im Repo-Ordner, dann http://localhost:8000/bausteine.html
 - [ ] Login, lokale Datenbank, Sync, Export
+  Plan (mit Lukas abgestimmt, alles in einer Sitzung, Reihenfolge a → d, nach jedem Teil kurz prüfen):
+  - a) Login: Supabase-Bibliothek per CDN mit fester Version; `src/core/supabase.js` (Verbindung),
+    `src/core/auth.js` (anmelden, abmelden, Sitzung merken). Login mit E-Mail + Passwort
+    (kein Magic Link: der würde Safari statt der Homescreen-App öffnen), gebaut aus den Bausteinen.
+    Nicht angemeldet → Login-Ansicht; angemeldet → „System 0“ + Abmelden-Knopf
+  - b) Lokale Datenbank: `src/core/store.js` mit IndexedDB (lesen, schreiben, weich löschen);
+    `id`, `updated_at`, `deleted` werden automatisch gesetzt (siehe `datenmodell.md`)
+  - c) Sync: erste Tabelle `einstellungen` (Schlüssel/Wert) als Migration `001_basis.sql` mit RLS;
+    `src/core/sync.js`: Warteschlange lädt hoch, sobald Netz da ist; beim Start neue Daten holen;
+    neuester `updated_at` gewinnt. Prüfen: auf dem Mac ändern → erscheint auf dem iPhone, auch nach Offline-Phase
+  - d) Export: Knopf lädt alle Daten als JSON-Datei herunter
+  - Keine Navigation, keine Module; Aussehen nur mit den vorhandenen Bausteinen (Feinschliff später, siehe Design-Runde)
+  - Am Ende neue Dateien in `APP_FILES` von `sw.js` eintragen und `VERSION` hochzählen
 - [ ] Navigation (Tab-Leiste iPhone, Seitenleiste Mac)
 
 ## Phase 1 – Alltag
 - [ ] To-dos (`module/todos.md`)
+- [ ] Design-Runde: Lukas ist mit Design und Anordnung noch nicht zufrieden. Erst überarbeiten,
+  wenn mit Navigation und To-dos echte Ansichten da sind. Dann gemeinsam festlegen, was sich ändern soll
+  (Farben, Abstände, Schrift, Anordnung der Ansichten) und `design.md`, `tokens.css` und die Bausteine anpassen.
+  Lukas' Punkte (sammeln, sobald sie ihm einfallen):
+  - (noch offen)
 - [ ] Kalender persönlich, mit Google-Kalender-Anzeige (`module/kalender.md`)
 - [ ] Heute-Übersicht (`module/heute.md`)
 - [ ] Routinen, ohne Sperre (`module/routinen.md`)
