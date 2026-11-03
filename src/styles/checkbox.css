@@ -1,0 +1,58 @@
+/* Stil der Checkbox aus src/ui/checkbox.js: runder Neon-Haken. */
+
+/* ---------- Checkbox ---------- */
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--tap);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.check__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.check__box {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--text-2);
+  border-radius: 50%;
+  transition: border-color var(--duration) var(--ease), transform var(--duration) var(--ease);
+}
+.check__mark {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset var(--duration) var(--ease);
+}
+.check__input:checked + .check__box {
+  border-color: var(--accent);
+  animation: check-pop var(--duration) var(--ease);
+}
+.check__input:checked + .check__box .check__mark {
+  stroke-dashoffset: 0;
+}
+.check__input:checked ~ .check__label {
+  color: var(--text-2);
+}
+.check__input:focus-visible + .check__box {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.check__label {
+  transition: color var(--duration) var(--ease);
+}
+@keyframes check-pop {
+  50% { transform: scale(1.15); }
+}

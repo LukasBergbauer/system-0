@@ -28,7 +28,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] Service Worker auf echtem Gerät geprüft: offline startet die App
   - [x] Von Lukas auf Mac (Dock) und iPhone (Home-Bildschirm) installiert und offline geöffnet
   - Merke: Bei jeder Änderung an App-Dateien `VERSION` in `sw.js` hochzählen und neue Dateien in `APP_FILES` eintragen
-- [ ] Design-Tokens und UI-Bausteine
+- [x] Design-Tokens und UI-Bausteine
   Plan (mit Lukas abgestimmt):
   - `src/styles/tokens.css` ergänzen: Abstands-Reihe (4–48 px), wenige Schriftgrößen
     (klein, normal, Überschrift, groß), Animationsdauer (200 ms), Mindest-Tippfläche (44 px);
@@ -41,6 +41,17 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
     auf iPhone und Mac prüfen kann
   - Keine Navigation, kein Login, keine echten Daten (spätere Schritte)
   - Am Ende neue Dateien in `APP_FILES` von `sw.js` eintragen und `VERSION` hochzählen
+
+  Stand:
+  - [x] Tokens ergänzt (`--space-1…7`, `--fs-small/normal/title/large`, `--duration`, `--ease`, `--tap`), Tabelle in `design.md`
+  - [x] Bausteine in `src/ui/`: `dom.js` (Hilfe `el()`), `card`, `list` (+ `listItem` für Checkbox-Zeilen),
+        `checkbox`, `button`, `input`, `modal` (nutzt `<dialog>`), `tabs`; Übersicht in `design.md`
+  - [x] Stile auf drei Dateien verteilt (`components.css`, `checkbox.css`, `modal.css`), jeweils unter 200 Zeilen
+  - [x] Musterseite `bausteine.html` (+ `src/bausteine.js`), lokal geprüft in Mac- und iPhone-Größe
+        (Haken-Animation, Tabs, Modal mittig bzw. von unten, Schließen per Knopf/Esc/Tippen daneben)
+  - [x] `sw.js` auf `v2`, neue Dateien in `APP_FILES`
+  - [ ] Lukas prüft `bausteine.html` auf echtem iPhone und Mac
+  - Lokal testen: im Terminal `python3 -m http.server 8000` im Repo-Ordner, dann http://localhost:8000/bausteine.html
 - [ ] Login, lokale Datenbank, Sync, Export
 - [ ] Navigation (Tab-Leiste iPhone, Seitenleiste Mac)
 

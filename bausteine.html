@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Bausteine – System 0</title>
+  <meta name="theme-color" content="#0A0A0B">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="src/styles/tokens.css">
+  <link rel="stylesheet" href="src/styles/base.css">
+  <link rel="stylesheet" href="src/styles/components.css">
+  <link rel="stylesheet" href="src/styles/checkbox.css">
+  <link rel="stylesheet" href="src/styles/modal.css">
+  <!-- Nur für diese Musterseite: Raster für die Beispiele -->
+  <style>
+    .muster { max-width: 1100px; margin: 0 auto; padding: var(--space-5) var(--space-4) var(--space-7); }
+    .muster__title { margin: 0; font-size: var(--fs-large); font-weight: 600; }
+    .muster__intro { margin: var(--space-1) 0 var(--space-5); color: var(--text-2); font-size: var(--fs-small); }
+    .muster__grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); align-items: start; }
+    .muster__row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .muster__stack { display: flex; flex-direction: column; gap: var(--space-4); }
+    .muster__note { margin: 0; color: var(--text-2); font-size: var(--fs-small); }
+  </style>
+  <script type="module" src="src/bausteine.js"></script>
+</head>
+<body>
+  <main id="app" class="muster">
+    <h1 class="muster__title">Bausteine</h1>
+    <p class="muster__intro">Musterseite: alle UI-Bausteine von System 0 im echten Stil.</p>
+    <div id="muster" class="muster__grid"></div>
+  </main>
+</body>
+</html>

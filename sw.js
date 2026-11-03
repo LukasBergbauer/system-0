@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v1';
+const VERSION = 'v2';
 const CACHE = `system0-${VERSION}`;
 
 const APP_FILES = [
@@ -14,6 +14,19 @@ const APP_FILES = [
   './src/core/config.js',
   './src/styles/tokens.css',
   './src/styles/base.css',
+  './src/styles/components.css',
+  './src/styles/checkbox.css',
+  './src/styles/modal.css',
+  './src/ui/dom.js',
+  './src/ui/card.js',
+  './src/ui/list.js',
+  './src/ui/checkbox.js',
+  './src/ui/button.js',
+  './src/ui/input.js',
+  './src/ui/modal.js',
+  './src/ui/tabs.js',
+  './bausteine.html',
+  './src/bausteine.js',
   './assets/icons/icon.svg',
   './assets/icons/icon-180.png',
   './assets/icons/icon-192.png',

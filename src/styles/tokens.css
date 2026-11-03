@@ -1,6 +1,7 @@
 /* Alle Design-Werte an einer Stelle (siehe docs/design.md).
    Farben tauschen = nur diese Datei ändern. */
 :root {
+  /* Farben */
   --bg: #0A0A0B;
   --surface: #141416;
   --surface-2: #1C1C1F;
@@ -10,6 +11,30 @@
   --accent: #3DFFB0;
   --accent-2: #7A5CFF;
   --warn: #FF5C7A;
+
+  /* Form */
   --radius: 14px;
+
+  /* Abstände (4er-Raster) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* Schrift */
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --fs-small: 13px;
+  --fs-normal: 16px; /* 16px verhindert das automatische Zoomen auf dem iPhone */
+  --fs-title: 20px;
+  --fs-large: 28px;
+
+  /* Bewegung */
+  --duration: 200ms;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Bedienung */
+  --tap: 44px; /* Mindestgröße für Tippflächen */
 }
