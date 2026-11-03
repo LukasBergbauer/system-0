@@ -29,6 +29,12 @@ Läuft auf Mac und iPhone als PWA (Web-App auf dem Homescreen), gleiche Daten, s
 - Rückfragen stellen, wenn etwas unklar ist, statt zu raten.
 - Nach jeder abgeschlossenen Aufgabe: den Abschnitt „Stand“ in der Modul-Doku und `docs/roadmap.md` aktualisieren,
   dann einen Git-Commit mit kurzer deutscher Nachricht.
+- **Übergabe an neue Sitzung:** Erst wenn eine Aufgabe komplett abgeschlossen ist (gebaut, geprüft,
+  Doku aktualisiert, committet), Lukas klar sagen: „Aufgabe fertig, bitte neue Sitzung starten.“
+  Dazu einen fertigen Prompt zum Reinkopieren für den nächsten Schritt liefern. Er nennt die nötigen
+  Dateien (immer CLAUDE.md und docs/roadmap.md, dazu nur die passende Fach-Doku) und den konkreten Auftrag.
+  Vorher den abgestimmten Plan für den nächsten Schritt in die Roadmap bzw. Modul-Doku schreiben,
+  damit die neue Sitzung ohne den alten Chat weitermachen kann. Nie mitten in einer Aufgabe wechseln.
 
 ## Wegweiser
 - Aufbau & Ordner: `docs/architektur.md`
