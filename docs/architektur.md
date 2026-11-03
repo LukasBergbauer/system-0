@@ -20,11 +20,16 @@ system-0/
 ├── docs/
 └── src/
     ├── main.js                # Start: Auth prüfen, Router starten
+    ├── app/                   # Ansichten außerhalb der Module: Login, Startansicht, vorläufige Karten
     ├── core/
-    │   ├── supabase.js        # Verbindung
+    │   ├── config.js          # Supabase-URL + Publishable key
+    │   ├── supabase.js        # Verbindung (Bibliothek vom CDN, erst bei Bedarf geladen)
     │   ├── auth.js            # Login/Logout
+    │   ├── db.js              # öffnet IndexedDB
     │   ├── store.js           # Lesen/Schreiben lokal (IndexedDB)
-    │   ├── sync.js            # Abgleich lokal ↔ Supabase
+    │   ├── sync.js            # Abgleich lokal ↔ Supabase (+ sync-local.js, tabellen.js)
+    │   ├── einstellungen.js   # Schlüssel/Wert-Einstellungen
+    │   ├── export.js          # alle Daten als JSON
     │   ├── router.js          # Navigation zwischen Modulen
     │   └── events.js          # Module benachrichtigen sich gegenseitig
     ├── ui/                    # wiederverwendbare Bausteine: Karte, Liste, Checkbox, Modal, Tabs

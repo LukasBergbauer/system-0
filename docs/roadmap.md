@@ -52,7 +52,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] `sw.js` auf `v2`, neue Dateien in `APP_FILES`
   - [x] Von Lukas auf echtem iPhone und Mac geprüft: alles funktioniert
   - Lokal testen: im Terminal `python3 -m http.server 8000` im Repo-Ordner, dann http://localhost:8000/bausteine.html
-- [ ] Login, lokale Datenbank, Sync, Export
+- [x] Login, lokale Datenbank, Sync, Export
   Plan (mit Lukas abgestimmt, alles in einer Sitzung, Reihenfolge a → d, nach jedem Teil kurz prüfen):
   - a) Login: Supabase-Bibliothek per CDN mit fester Version; `src/core/supabase.js` (Verbindung),
     `src/core/auth.js` (anmelden, abmelden, Sitzung merken). Login mit E-Mail + Passwort
@@ -66,6 +66,23 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - d) Export: Knopf lädt alle Daten als JSON-Datei herunter
   - Keine Navigation, keine Module; Aussehen nur mit den vorhandenen Bausteinen (Feinschliff später, siehe Design-Runde)
   - Am Ende neue Dateien in `APP_FILES` von `sw.js` eintragen und `VERSION` hochzählen
+
+  Stand:
+  - [x] a) Login: Supabase 2.117.3 als eine UMD-Datei von jsDelivr, erst bei Bedarf geladen
+        (`src/core/supabase.js`), im Service Worker offline gecacht. `src/core/auth.js`: „angemeldet“ =
+        gespeicherte Sitzung im Gerät (Schlüssel `system0-auth`), dadurch auch offline angemeldet.
+        Ansichten in `src/app/` (`login.js`, `start.js`), Grundlayout in `src/styles/app.css`
+  - [x] b) `src/core/db.js` (IndexedDB: `daten`, `warteschlange`, `meta`), `src/core/store.js`
+        (`getAll`, `get`, `save`, `remove`, `dumpAll`), `src/core/events.js` (Ereignis `daten`)
+  - [x] c) Migration `001_basis.sql` (Trigger `sync_felder`, Tabelle `einstellungen`, RLS) in Supabase ausgeführt;
+        `src/core/sync.js` + `sync-local.js`, Tabellenliste `src/core/tabellen.js`, `src/core/einstellungen.js`;
+        Startansicht mit „Sync-Test“ (Testnotiz) und Abgleich-Status. Von Lukas geprüft: Mac → iPhone, auch nach Flugmodus
+  - [x] d) `src/core/export.js` + Karte „Export“: JSON-Datei (Mac: Download, iPhone: Teilen-Menü → „In Dateien sichern“)
+  - [x] Service Worker `v6`: holt neue Fassungen immer frisch (`cache: 'reload'`), App lädt bei Update einmal selbst neu,
+        auf `localhost` immer zuerst das Netz
+  - Merke: Die Karten „Sync-Test“ und „Export“ sind vorläufig in der Startansicht; Testnotiz fliegt raus,
+    Export wandert in die Einstellungen, sobald es Navigation gibt
+  - Merke: iPhone testet nur die gepushte Fassung (GitHub Pages); `localhost` gibt es nur auf dem Mac
 - [ ] Navigation (Tab-Leiste iPhone, Seitenleiste Mac)
 
 ## Phase 1 – Alltag

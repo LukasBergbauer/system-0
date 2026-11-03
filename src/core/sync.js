@@ -47,6 +47,7 @@ async function pull(supabase, table) {
 async function push(supabase) {
   const pending = await pendingRows();
   for (const [table, rows] of Object.entries(pending)) {
+    if (!TABLES.includes(table)) continue; // Tabelle gibt es (noch) nicht in Supabase
     for (let i = 0; i < rows.length; i += 500) {
       const part = rows.slice(i, i + 500);
       const payload = part.map((row) => {

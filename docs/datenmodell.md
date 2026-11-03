@@ -7,16 +7,40 @@
 | `user_id` | für RLS |
 | `created_at`, `updated_at` | `updated_at` steuert den Sync |
 | `deleted` (bool) | weiches Löschen, damit Löschungen auf alle Geräte kommen |
+| `server_at` | setzt nur der Server (Trigger `sync_felder`): wann die Zeile dort ankam; danach wird abgeholt |
 
 ## Sync-Regel
 - Schreiben: zuerst IndexedDB, dann in eine Warteschlange, die hochgeladen wird, sobald Netz da ist.
-- Lesen: beim Start und regelmäßig alles mit `updated_at` > letzter Abgleich holen.
-- Konflikte: neuester `updated_at` gewinnt (nur ein Nutzer, das reicht).
+- Lesen: beim Start, bei Netz-Rückkehr, beim Öffnen der App und jede Minute alles mit
+  `server_at` > letzter Abgleich holen (Server-Uhr, 1 Minute Überlappung). So kommen auch Änderungen an,
+  die ein Gerät erst nach einer Offline-Phase hochlädt (deren `updated_at` liegt ja in der Vergangenheit).
+- Konflikte: neuester `updated_at` gewinnt (nur ein Nutzer, das reicht). Auf dem Server sorgt der
+  Trigger `sync_felder` dafür, lokal `sync-local.js`.
+- Reihenfolge eines Abgleichs: erst holen, dann hochladen.
+
+## Neue Tabelle anlegen (Muster)
+1. Migration `supabase/migrations/00X_<name>.sql` mit den gemeinsamen Spalten (siehe `001_basis.sql`):
+   `id uuid primary key`, `user_id … default auth.uid()`, `created_at`, `updated_at`, `deleted`, `server_at`,
+   Index auf `(user_id, server_at)`, Trigger `before insert or update … execute function public.sync_felder()`,
+   RLS mit Policy `user_id = (select auth.uid())`, `grant select, insert, update … to authenticated`.
+2. Lukas führt die Migration im Supabase-SQL-Editor aus.
+3. Tabellennamen in `src/core/tabellen.js` eintragen. Erst dann wird sie hochgeladen und abgeholt.
+
+## Lokale Datenbank (IndexedDB `system0`)
+| Speicher | Inhalt |
+|---|---|
+| `daten` | alle Zeilen aller Tabellen als `{ table, id, row }`, Index `table` |
+| `warteschlange` | `{ table, id }` je Zeile, die noch hochgeladen werden muss |
+| `meta` | z. B. `abgleich:<tabelle>` = letzter `server_at` |
+
+Module benutzen nur `src/core/store.js`: `getAll(table)`, `get(table, id)`, `save(table, data)`, `remove(table, id)`.
+Nach jeder Änderung kommt das Ereignis `daten` mit `{ table }` (`src/core/events.js`).
 - Export: Knopf in den Einstellungen, der alle Daten als JSON herunterlädt (Schutz gegen geänderte Gratis-Tarife).
 
 ## Tabellen (Entwurf, wird pro Modul verfeinert)
 | Bereich | Tabellen |
 |---|---|
+| Basis | `einstellungen` (schluessel, wert als JSON) – angelegt in `001_basis.sql` |
 | To-dos | `bereiche`, `todos` (titel, notiz, prio 1–3, faellig_am, bereich_id, erledigt_am) |
 | Routinen | `routinen` (name, art morgen/abend/frei, sperre), `routine_schritte`, `routine_logs` |
 | Kalender | `termine` (titel, start, ende, ort, notiz); Google-Termine werden nur angezeigt, nicht gespeichert |
