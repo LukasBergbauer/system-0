@@ -50,7 +50,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] Musterseite `bausteine.html` (+ `src/bausteine.js`), lokal geprüft in Mac- und iPhone-Größe
         (Haken-Animation, Tabs, Modal mittig bzw. von unten, Schließen per Knopf/Esc/Tippen daneben)
   - [x] `sw.js` auf `v2`, neue Dateien in `APP_FILES`
-  - [ ] Lukas prüft `bausteine.html` auf echtem iPhone und Mac
+  - [x] Von Lukas auf echtem iPhone und Mac geprüft: alles funktioniert
   - Lokal testen: im Terminal `python3 -m http.server 8000` im Repo-Ordner, dann http://localhost:8000/bausteine.html
 - [ ] Login, lokale Datenbank, Sync, Export
 - [ ] Navigation (Tab-Leiste iPhone, Seitenleiste Mac)
