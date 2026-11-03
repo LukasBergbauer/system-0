@@ -29,6 +29,18 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] Von Lukas auf Mac (Dock) und iPhone (Home-Bildschirm) installiert und offline geöffnet
   - Merke: Bei jeder Änderung an App-Dateien `VERSION` in `sw.js` hochzählen und neue Dateien in `APP_FILES` eintragen
 - [ ] Design-Tokens und UI-Bausteine
+  Plan (mit Lukas abgestimmt):
+  - `src/styles/tokens.css` ergänzen: Abstands-Reihe (4–48 px), wenige Schriftgrößen
+    (klein, normal, Überschrift, groß), Animationsdauer (200 ms), Mindest-Tippfläche (44 px);
+    neue Werte auch in die Tabelle in `docs/design.md`
+  - Bausteine in `src/ui/`, je eine kleine JS-Datei, die ein fertiges Element liefert;
+    Stile in `src/styles/components.css`:
+    Karte, Liste (Zeilen mit Trennlinien), Checkbox (runder Neon-Haken mit kurzer Animation),
+    Knopf (normal + ohne Hintergrund), Eingabefeld, Modal (iPhone: von unten, Mac: mittig), Tabs
+  - Musterseite `bausteine.html` zeigt alle Bausteine nebeneinander, damit Lukas den Stil
+    auf iPhone und Mac prüfen kann
+  - Keine Navigation, kein Login, keine echten Daten (spätere Schritte)
+  - Am Ende neue Dateien in `APP_FILES` von `sw.js` eintragen und `VERSION` hochzählen
 - [ ] Login, lokale Datenbank, Sync, Export
 - [ ] Navigation (Tab-Leiste iPhone, Seitenleiste Mac)
 
