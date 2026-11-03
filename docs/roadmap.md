@@ -9,6 +9,17 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] Lukas' Konto in Supabase angelegt, öffentliche Registrierung abgeschaltet
   - [x] GitHub Pages aktiv: https://lukasbergbauer.github.io/system-0/
 - [ ] App-Hülle, Manifest, Icons, installierbar auf Mac und iPhone
+  Plan (mit Lukas abgestimmt):
+  - `index.html` ersetzt den Platzhalter: PWA-Meta-Tags (Vollbild, dunkle Statusleiste,
+    `viewport-fit=cover`), lädt nur `src/main.js`
+  - `manifest.webmanifest`: Name „System 0“, `start_url`/`scope` = `./` (Seite liegt unter `/system-0/`),
+    `display: standalone`, Farben aus `design.md`
+  - `sw.js`: cacht nur die App-Dateien, mit Versionsnummer; Supabase-Anfragen nie cachen
+  - `src/main.js`: Service Worker anmelden, „System 0“ anzeigen (Auth/Router kommen später)
+  - `src/styles/tokens.css` mit den Werten aus `design.md`, `src/styles/base.css` (Hintergrund, Schrift, Safe-Area)
+  - Icon: dünne „0“ als Ring in `--accent` (#3DFFB0) auf `--bg`; SVG-Vorlage + PNGs 180/192/512
+    in `assets/icons/`, erzeugt mit Mac-Bordmitteln
+  - Keine UI-Bausteine (das ist der nächste Punkt)
 - [ ] Design-Tokens und UI-Bausteine
 - [ ] Login, lokale Datenbank, Sync, Export
 - [ ] Navigation (Tab-Leiste iPhone, Seitenleiste Mac)
