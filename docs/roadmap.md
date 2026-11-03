@@ -84,6 +84,21 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
     Export wandert in die Einstellungen, sobald es Navigation gibt
   - Merke: iPhone testet nur die gepushte Fassung (GitHub Pages); `localhost` gibt es nur auf dem Mac
 - [ ] Navigation (Tab-Leiste iPhone, Seitenleiste Mac)
+  Plan (mit Lukas abgestimmt):
+  - `src/core/router.js`: Hash-Adressen (`#/heute`, `#/einstellungen` …), funktioniert auf GitHub Pages
+    ohne Extra-Einrichtung, Zurück-Knopf/-Wischen klappt. Module melden sich an mit
+    `{ id, titel, symbol, ansicht }`; unbekannte Adresse → `#/heute`
+  - `src/app/shell.js` + `src/styles/nav.css`: Rahmen der App.
+    iPhone: Tab-Leiste unten (Abstand zur Home-Leiste), feste Reihenfolge Heute, To-dos, Kalender, Training, „Mehr“;
+    „Mehr“ öffnet eine Liste aller übrigen Bereiche. Mac (ab 768 px): Seitenleiste links mit allen Bereichen.
+    Aktiver Eintrag mit Neon-Akzent (wie Tabs)
+  - Symbole: dünne Linien-SVGs, selbst gezeichnet, keine Bibliothek
+  - Ansichten zum Start: „Heute“ als Platzhalter („kommt bald“), „Einstellungen“ mit Abgleich-Status,
+    Export und Abmelden (aus der bisherigen Startansicht). Testnotiz/Sync-Test entfernen (Sync ist bewiesen).
+    Weitere Bereiche erscheinen erst, wenn ihr Modul gebaut ist (keine leeren Seiten); ist ein Tab-Platz noch frei,
+    rücken vorhandene Einträge nach
+  - Aussehen nur mit vorhandenen Bausteinen und Tokens (Feinschliff in der Design-Runde)
+  - Am Ende neue Dateien in `APP_FILES` von `sw.js` eintragen und `VERSION` hochzählen
 
 ## Phase 1 – Alltag
 - [ ] To-dos (`module/todos.md`)
