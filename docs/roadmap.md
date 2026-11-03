@@ -20,6 +20,14 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - Icon: dünne „0“ als Ring in `--accent` (#3DFFB0) auf `--bg`; SVG-Vorlage + PNGs 180/192/512
     in `assets/icons/`, erzeugt mit Mac-Bordmitteln
   - Keine UI-Bausteine (das ist der nächste Punkt)
+
+  Stand:
+  - [x] Alle Dateien oben gebaut und lokal geprüft (Seite, Manifest, Icons laden; Farben stimmen)
+  - [x] `.gitignore`: Regel `Icon?` hätte auf dem Mac den Ordner `assets/icons` ausgeschlossen,
+        jetzt genau auf die Mac-Datei `Icon\r` beschränkt
+  - [ ] Service Worker auf echtem Gerät prüfen (die eingebaute Browser-Vorschau lässt keine zu)
+  - [ ] Lukas: nach dem Push auf Mac (Dock) und iPhone (Home-Bildschirm) installieren, offline öffnen
+  - Merke: Bei jeder Änderung an App-Dateien `VERSION` in `sw.js` hochzählen und neue Dateien in `APP_FILES` eintragen
 - [ ] Design-Tokens und UI-Bausteine
 - [ ] Login, lokale Datenbank, Sync, Export
 - [ ] Navigation (Tab-Leiste iPhone, Seitenleiste Mac)

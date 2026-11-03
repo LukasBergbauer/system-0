@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Vorlage für alle App-Icons: dünne „0“ als Ring in Akzentfarbe auf Hintergrundfarbe.
+       Ring bleibt im inneren Sicherheitsbereich (für runde/maskierte Icons). -->
+  <rect width="512" height="512" fill="#0A0A0B"/>
+  <ellipse cx="256" cy="256" rx="92" ry="124" fill="none" stroke="#3DFFB0" stroke-width="14"/>
+</svg>

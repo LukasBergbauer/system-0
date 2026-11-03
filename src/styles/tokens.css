@@ -1,0 +1,15 @@
+/* Alle Design-Werte an einer Stelle (siehe docs/design.md).
+   Farben tauschen = nur diese Datei ändern. */
+:root {
+  --bg: #0A0A0B;
+  --surface: #141416;
+  --surface-2: #1C1C1F;
+  --line: rgba(255, 255, 255, 0.08);
+  --text: #F5F5F7;
+  --text-2: #8E8E93;
+  --accent: #3DFFB0;
+  --accent-2: #7A5CFF;
+  --warn: #FF5C7A;
+  --radius: 14px;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+}
