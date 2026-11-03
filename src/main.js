@@ -2,6 +2,7 @@
 import { isLoggedIn, onAuthChange, watchSession } from './core/auth.js';
 import { loginView } from './app/login.js';
 import { startView } from './app/start.js';
+import { startSync } from './core/sync.js';
 
 const app = document.getElementById('app');
 
@@ -23,6 +24,7 @@ function registerServiceWorker() {
 
 function render(loggedIn) {
   app.replaceChildren(loggedIn ? startView() : loginView());
+  if (loggedIn) startSync();
 }
 
 onAuthChange(render);

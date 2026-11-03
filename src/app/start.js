@@ -3,6 +3,7 @@ import { el } from '../ui/dom.js';
 import { card } from '../ui/card.js';
 import { button } from '../ui/button.js';
 import { signOut } from '../core/auth.js';
+import { syncCard, testNoteCard } from './sync-karte.js';
 
 export function startView() {
   const logout = button({
@@ -16,6 +17,8 @@ export function startView() {
 
   return el('div', { class: 'app' }, [
     el('h1', { class: 'app__title', text: 'System 0' }),
+    testNoteCard(),
+    syncCard(),
     card({
       title: 'Konto',
       children: el('div', { class: 'app__stack' }, [
