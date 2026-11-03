@@ -3,11 +3,11 @@
 Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dann wachsen.
 
 ## Phase 0 – Fundament
-- [ ] Repo, Supabase-Projekt, GitHub Pages eingerichtet (`docs/start.md`)
+- [x] Repo, Supabase-Projekt, GitHub Pages eingerichtet (`docs/start.md`)
   - [x] Repo mit Platzhalter-`index.html`, `src/core/config.js`, `supabase/migrations/`
   - [x] Supabase-Projekt angelegt, URL + Publishable key in `config.js`
-  - [ ] Lukas' Konto in Supabase angelegt, öffentliche Registrierung abgeschaltet
-  - [ ] GitHub Pages (oder Cloudflare Pages) aktiv, Platzhalter-Seite erreichbar
+  - [x] Lukas' Konto in Supabase angelegt, öffentliche Registrierung abgeschaltet
+  - [x] GitHub Pages aktiv: https://lukasbergbauer.github.io/system-0/
 - [ ] App-Hülle, Manifest, Icons, installierbar auf Mac und iPhone
 - [ ] Design-Tokens und UI-Bausteine
 - [ ] Login, lokale Datenbank, Sync, Export
