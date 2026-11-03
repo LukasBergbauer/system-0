@@ -5,7 +5,8 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 ## Phase 0 – Fundament
 - [ ] Repo, Supabase-Projekt, GitHub Pages eingerichtet (`docs/start.md`)
   - [x] Repo mit Platzhalter-`index.html`, `src/core/config.js`, `supabase/migrations/`
-  - [ ] Supabase-Projekt angelegt, URL + anon-Key in `config.js`, Registrierung abgeschaltet
+  - [x] Supabase-Projekt angelegt, URL + Publishable key in `config.js`
+  - [ ] Lukas' Konto in Supabase angelegt, öffentliche Registrierung abgeschaltet
   - [ ] GitHub Pages (oder Cloudflare Pages) aktiv, Platzhalter-Seite erreichbar
 - [ ] App-Hülle, Manifest, Icons, installierbar auf Mac und iPhone
 - [ ] Design-Tokens und UI-Bausteine
