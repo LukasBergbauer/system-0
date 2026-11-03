@@ -8,7 +8,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] Supabase-Projekt angelegt, URL + Publishable key in `config.js`
   - [x] Lukas' Konto in Supabase angelegt, öffentliche Registrierung abgeschaltet
   - [x] GitHub Pages aktiv: https://lukasbergbauer.github.io/system-0/
-- [ ] App-Hülle, Manifest, Icons, installierbar auf Mac und iPhone
+- [x] App-Hülle, Manifest, Icons, installierbar auf Mac und iPhone
   Plan (mit Lukas abgestimmt):
   - `index.html` ersetzt den Platzhalter: PWA-Meta-Tags (Vollbild, dunkle Statusleiste,
     `viewport-fit=cover`), lädt nur `src/main.js`
@@ -25,8 +25,8 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] Alle Dateien oben gebaut und lokal geprüft (Seite, Manifest, Icons laden; Farben stimmen)
   - [x] `.gitignore`: Regel `Icon?` hätte auf dem Mac den Ordner `assets/icons` ausgeschlossen,
         jetzt genau auf die Mac-Datei `Icon\r` beschränkt
-  - [ ] Service Worker auf echtem Gerät prüfen (die eingebaute Browser-Vorschau lässt keine zu)
-  - [ ] Lukas: nach dem Push auf Mac (Dock) und iPhone (Home-Bildschirm) installieren, offline öffnen
+  - [x] Service Worker auf echtem Gerät geprüft: offline startet die App
+  - [x] Von Lukas auf Mac (Dock) und iPhone (Home-Bildschirm) installiert und offline geöffnet
   - Merke: Bei jeder Änderung an App-Dateien `VERSION` in `sw.js` hochzählen und neue Dateien in `APP_FILES` eintragen
 - [ ] Design-Tokens und UI-Bausteine
 - [ ] Login, lokale Datenbank, Sync, Export
