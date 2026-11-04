@@ -178,7 +178,10 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         Lichtschein `.shell::before` in `app.css`, Glas für Karte/Leisten/Modal, Haken weiß gefüllt,
         Linie der Seitenleiste in Bereichsfarbe, `theme-color` angepasst; `design.md` aktualisiert; `sw.js` auf `v9`.
         Lokal geprüft (Mac + iPhone-Größe). Noch nicht von Lukas auf dem echten iPhone geprüft
-  - [ ] b) Bausteine
+  - [x] b) Bausteine: Knopf `primary` (weiß), neu `kopfbild.js`, `kachel.js`, `chips.js` (Stile `kopfbild.css`, `kachel.css`);
+        `.symbol`-Stil von `nav.css` nach `components.css` (wird jetzt auch außerhalb der Navigation gebraucht).
+        Musterseite: Chip-Leiste schaltet die Bereichsfarbe um, Beispiele in `src/bausteine-neu.js` (Kopfbild mit Testbild).
+        `sw.js` auf `v10`. Lokal geprüft (Mac + iPhone-Größe)
   - [ ] c) Illustrationen + Sprüche
   - [ ] d) Heute
   - [ ] e) To-dos neu angeordnet

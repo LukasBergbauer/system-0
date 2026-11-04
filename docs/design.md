@@ -44,8 +44,8 @@ Alle Farben stehen in einer einzigen Datei (`tokens.css`) und lassen sich dort t
 Neuer Bereich mit eigener Farbe: Token `--farbe-<id>` ergänzen (id wie beim Router).
 
 ## UI-Bausteine (`src/ui/`)
-Stile: `src/styles/components.css` (Karte, Liste, Knopf, Eingabefeld, Tabs),
-`checkbox.css` und `modal.css` (eigene Dateien, damit keine Datei über 200 Zeilen wächst).
+Stile: `src/styles/components.css` (Karte, Symbol, Liste, Knopf, Eingabefeld, Tabs),
+`checkbox.css`, `modal.css`, `kopfbild.css`, `kachel.css` (Kacheln + Chips) – eigene Dateien, damit keine über 200 Zeilen wächst.
 Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen: `bausteine.html`.
 
 | Datei | Funktion | Kurz |
@@ -54,10 +54,13 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 | `card.js` | `card({ title, children })` | Fläche mit Rahmen, optional Überschrift |
 | `list.js` | `list(rows)`, `listRow({ title, sub, start, end, onClick })`, `listItem(inhalt)` | Zeilen mit Trennlinien; `listItem` für freien Inhalt, z. B. Checkbox mit Text (ganze Zeile antippbar) |
 | `checkbox.js` | `checkbox({ label, checked, onChange })` | runder Haken, erledigt weiß gefüllt, mit Animation |
-| `button.js` | `button({ text, variant, onClick })` | `variant: 'ghost'` = ohne Hintergrund |
+| `button.js` | `button({ text, variant, onClick })` | `variant: 'primary'` = weiß (Hauptaktion), `'ghost'` = ohne Hintergrund |
 | `input.js` | `input({ label, placeholder, value, type, onInput })` | Eingabefeld mit Beschriftung |
 | `modal.js` | `modal({ title, content, actions })` → `{ open, close }` | iPhone: von unten, Mac: mittig |
 | `tabs.js` | `tabs({ items, active, onChange })` | Umschalter, aktiver Tab mit weißer Linie |
+| `kopfbild.js` | `kopfbild({ titel, bild, spruch: { jp, de } })` | Seitenkopf: zarte Illustration rechts oben (weich auslaufend), Titel, Spruch (japanisch in Bereichsfarbe + deutsch) |
+| `kachel.js` | `kacheln([…])`, `kachel({ symbol, titel, wert, text, gross, onClick, children })` | Glas-Kacheln im 2er-Raster; `gross` = ganze Breite; Symbol im runden Feld in Bereichsfarbe |
+| `chips.js` | `chips({ items, active, onChange, aktionen })` | waagrechte Kapsel-Leiste (wischbar); gewählt = weiß; `aktionen` = gestrichelte Chips, die nur etwas auslösen |
 | `symbol.js` | `symbol(name)` | dünnes Linien-Symbol (24 px, Textfarbe), z. B. `heute`, `todos`, `einstellungen`, `mehr` |
 
 Navigation (Tab-Leiste, Seitenleiste): Stile in `src/styles/nav.css`, beide aus Glas. Aktiver Eintrag:

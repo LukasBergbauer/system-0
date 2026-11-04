@@ -8,6 +8,7 @@ import { button } from './ui/button.js';
 import { input } from './ui/input.js';
 import { modal } from './ui/modal.js';
 import { tabs } from './ui/tabs.js';
+import { farbUmschalter, kopfbildDemo, kachelDemo, primaryDemo } from './bausteine-neu.js';
 
 const note = (text) => el('p', { class: 'muster__note', text });
 const chevron = '›';
@@ -91,7 +92,7 @@ function modalDemo() {
     ],
     actions: [
       button({ text: 'Abbrechen', variant: 'ghost', onClick: () => m.close() }),
-      button({ text: 'Speichern', onClick: () => m.close() }),
+      button({ text: 'Speichern', variant: 'primary', onClick: () => m.close() }),
     ],
   });
   return card({
@@ -104,6 +105,10 @@ function modalDemo() {
 }
 
 document.getElementById('muster').append(
+  farbUmschalter(),
+  kopfbildDemo(),
+  kachelDemo(),
+  primaryDemo(),
   cardDemo(),
   listDemo(),
   checkboxDemo(),
