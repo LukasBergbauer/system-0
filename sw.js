@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v7';
+const VERSION = 'v8';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -34,6 +34,16 @@ const APP_FILES = [
   './src/app/einstellungen.js',
   './src/module/heute/index.js',
   './src/module/heute/view.js',
+  './src/module/todos/index.js',
+  './src/module/todos/data.js',
+  './src/module/todos/sortierung.js',
+  './src/module/todos/view.js',
+  './src/module/todos/zeile.js',
+  './src/module/todos/schnelleingabe.js',
+  './src/module/todos/bearbeiten.js',
+  './src/module/todos/erledigt.js',
+  './src/module/todos/nach-bereichen.js',
+  './src/module/todos/bereiche-verwalten.js',
   './src/core/router.js',
   './src/app/sync-karte.js',
   './src/app/export-karte.js',
@@ -44,6 +54,7 @@ const APP_FILES = [
   './src/styles/modal.css',
   './src/styles/app.css',
   './src/styles/nav.css',
+  './src/styles/todos.css',
   './src/ui/dom.js',
   './src/ui/card.js',
   './src/ui/list.js',
@@ -88,7 +99,8 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET' || !(own || url.href === LIB)) return;
 
   if (DEV && own) {
-    event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
+    // no-cache: beim Server nachfragen statt alte Dateien aus dem Browser-Zwischenspeicher zu nehmen.
+    event.respondWith(fetch(event.request, { cache: 'no-cache' }).catch(() => caches.match(event.request)));
     return;
   }
   event.respondWith(

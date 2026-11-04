@@ -2,6 +2,7 @@
 // Neues Modul → hier seine index.js importieren (sie meldet sich dort selbst an).
 import { register } from '../core/router.js';
 import '../module/heute/index.js';
+import '../module/todos/index.js';
 import { einstellungenBereich } from './einstellungen.js';
 import { mehrBereich } from './mehr.js';
 

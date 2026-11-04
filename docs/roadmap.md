@@ -124,6 +124,14 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - b) Bereiche: anlegen/umbenennen/löschen, Umschalter „Nach Priorität“ / „Nach Bereichen“
   - Aussehen nur mit vorhandenen Bausteinen und Tokens (Feinschliff in der Design-Runde)
   - Am Ende neue Dateien in `APP_FILES` von `sw.js` eintragen und `VERSION` hochzählen
+
+  Stand:
+  - [x] a) und b) gebaut und lokal geprüft (Details und Dateien in `module/todos.md`)
+  - [x] `index.html` lädt jetzt auch `checkbox.css`, `modal.css` (bisher nur auf der Musterseite) und `todos.css`
+  - [x] `sw.js` auf `v8`, neue Dateien in `APP_FILES`; auf `localhost` fragt der Service Worker jetzt
+        immer beim Server nach (`cache: 'no-cache'`), sonst lieferte der Browser alte Dateien aus seinem Zwischenspeicher
+  - [ ] Migration `002_todos.sql` von Lukas in Supabase ausgeführt
+  - [ ] Von Lukas auf echtem iPhone (gepushte Fassung) und Mac geprüft, inkl. Abgleich
 - [ ] Design-Runde: Lukas ist mit Design und Anordnung noch nicht zufrieden. Erst überarbeiten,
   wenn mit Navigation und To-dos echte Ansichten da sind. Dann gemeinsam festlegen, was sich ändern soll
   (Farben, Abstände, Schrift, Anordnung der Ansichten) und `design.md`, `tokens.css` und die Bausteine anpassen.

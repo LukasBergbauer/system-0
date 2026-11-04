@@ -1,0 +1,30 @@
+/* Modul „To-dos“ (vorläufig, Feinschliff in der Design-Runde). Nur Werte aus tokens.css. */
+.todo-zeile {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.todo-zeile > .check {
+  flex: none;
+}
+.todo-zeile__warn {
+  color: var(--warn);
+}
+.todo-zeile--erledigt .list__title {
+  color: var(--text-2);
+  text-decoration: line-through;
+}
+.todo-notiz {
+  padding: var(--space-2) var(--space-3);
+  resize: vertical;
+}
+/* Zeile im Modal „Bereiche bearbeiten“: Namensfeld + Löschen */
+.todo-bereich {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+}
+.todo-bereich > .field {
+  flex: 1;
+}

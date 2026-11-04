@@ -41,7 +41,7 @@ Nach jeder Änderung kommt das Ereignis `daten` mit `{ table }` (`src/core/event
 | Bereich | Tabellen |
 |---|---|
 | Basis | `einstellungen` (schluessel, wert als JSON) – angelegt in `001_basis.sql` |
-| To-dos | `bereiche`, `todos` (titel, notiz, prio 1–3, faellig_am, bereich_id, erledigt_am) |
+| To-dos | `todo_bereiche` (name, reihenfolge), `todos` (titel, notiz, prio 1–3, faellig_am, bereich_id, erledigt_am) – angelegt in `002_todos.sql` |
 | Routinen | `routinen` (name, art morgen/abend/frei, sperre), `routine_schritte`, `routine_logs` |
 | Kalender | `termine` (titel, start, ende, ort, notiz); Google-Termine werden nur angezeigt, nicht gespeichert |
 | PhysioZentrum | `regionen`, `muskeln`, `krankheitsbilder`, `techniken`, `uebungen`, `medien`, `verknuepfungen` (beliebige Einträge miteinander verbinden) |

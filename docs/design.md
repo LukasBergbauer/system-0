@@ -45,7 +45,7 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 | `input.js` | `input({ label, placeholder, value, type, onInput })` | Eingabefeld mit Beschriftung |
 | `modal.js` | `modal({ title, content, actions })` → `{ open, close }` | iPhone: von unten, Mac: mittig |
 | `tabs.js` | `tabs({ items, active, onChange })` | Umschalter, aktiver Tab mit Neon-Linie |
-| `symbol.js` | `symbol(name)` | dünnes Linien-Symbol (24 px, Textfarbe), z. B. `heute`, `einstellungen`, `mehr` |
+| `symbol.js` | `symbol(name)` | dünnes Linien-Symbol (24 px, Textfarbe), z. B. `heute`, `todos`, `einstellungen`, `mehr` |
 
 Navigation (Tab-Leiste, Seitenleiste): Stile in `src/styles/nav.css`. Aktiver Eintrag: Symbol in `--accent`,
 Text weiß; in der Seitenleiste zusätzlich eine Neon-Linie links.

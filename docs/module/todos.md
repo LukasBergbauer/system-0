@@ -41,4 +41,31 @@ Eine Sitzung, Teile a → b, nach jedem Teil kurz prüfen.
   darin sortiert nach Priorität und Datum; „Ohne Bereich“ zuletzt). Gewählte Ansicht merken (lokal reicht).
 
 ## Stand
-Noch nicht begonnen. Plan steht oben.
+- [x] Migration `supabase/migrations/002_todos.sql` geschrieben; `todo_bereiche` und `todos` in `src/core/tabellen.js`.
+      `bereich_id` absichtlich ohne Fremdschlüssel (To-do darf vor seinem Bereich beim Server ankommen)
+- [ ] Migration von Lukas im Supabase-SQL-Editor ausgeführt (bis dahin meldet der Abgleich „hat nicht geklappt“,
+      lokal funktioniert alles, die Änderungen warten in der Warteschlange)
+- [x] a) Grundfunktionen, lokal geprüft (Mac + iPhone-Größe)
+- [x] b) Bereiche + Umschalter, lokal geprüft
+- [ ] Von Lukas auf echtem iPhone (gepushte Fassung) und Mac geprüft, inkl. Abgleich zwischen beiden
+
+### Dateien (`src/module/todos/`)
+| Datei | Aufgabe |
+|---|---|
+| `index.js` | meldet das Modul beim Router an |
+| `data.js` | Lesen/Schreiben über `core/store.js` (To-dos und Bereiche) |
+| `sortierung.js` | Sortierung (Priorität → Datum → älteste zuerst), Datums-Texte („Heute“, „Morgen“ …), überfällig |
+| `view.js` | Ansicht: Umschalter, Schnelleingabe, Liste, „Erledigt“; zeichnet bei Ereignis `daten` neu |
+| `zeile.js` | eine Zeile: Checkbox (abhaken) + antippbarer Text (öffnet Bearbeiten) |
+| `schnelleingabe.js` | Feld oben, Enter legt an, Fokus bleibt |
+| `bearbeiten.js` | Modal: Titel, Notiz, Priorität (Tabs), Fälligkeit, Bereich, Löschen |
+| `erledigt.js` | eingeklappter Abschnitt „Erledigt“ |
+| `nach-bereichen.js` | Ansicht „Nach Bereichen“ (Karte je Bereich, „Ohne Bereich“ zuletzt) |
+| `bereiche-verwalten.js` | Modal: Bereiche anlegen, umbenennen (beim Verlassen des Felds), löschen |
+
+Stile: `src/styles/todos.css`. Gewählte Ansicht steht nur im Gerät (`localStorage`, Schlüssel `system0-todos-ansicht`).
+
+Merke:
+- Abhaken wartet 350 ms, damit die Haken-Animation zu sehen ist, dann wandert die Zeile.
+- Bereich löschen setzt `bereich_id` aller seiner To-dos (auch erledigter) auf leer.
+- Erledigte werden nie automatisch aufgeräumt (später überlegen, z. B. nach 30 Tagen ausblenden).
