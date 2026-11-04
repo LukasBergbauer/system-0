@@ -1,5 +1,5 @@
 /* Rahmen der App: Tab-Leiste (iPhone) und Seitenleiste (Mac, ab 768 px).
-   Glas-Leisten; aktiver Eintrag: Text und Symbol weiß, Linie links in der Bereichsfarbe. */
+   Glas-Leisten; aktiver Eintrag: Text und Symbol in Elfenbein, kurzer Strich darunter (Tabs) bzw. links (Seitenleiste). */
 
 .shell {
   min-height: inherit;
@@ -18,10 +18,6 @@
 }
 .nav-tabs__link[aria-current="page"],
 .nav-side__link[aria-current="page"] {
-  color: var(--text);
-}
-.nav-tabs__link[aria-current="page"] .symbol,
-.nav-side__link[aria-current="page"] .symbol {
   color: var(--accent);
 }
 .nav-tabs__link:focus-visible,
@@ -45,6 +41,7 @@
   backdrop-filter: blur(var(--blur));
 }
 .nav-tabs__link {
+  position: relative;
   flex: 1;
   min-width: 0;
   display: flex;
@@ -53,7 +50,7 @@
   justify-content: center;
   gap: var(--space-1);
   min-height: var(--tap);
-  padding: var(--space-2) var(--space-1);
+  padding: var(--space-2) var(--space-1) var(--space-3);
   font-size: var(--fs-small);
 }
 .nav-tabs__link span {
@@ -61,6 +58,22 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+/* kurzer Strich unter dem aktiven Tab */
+.nav-tabs__link::after {
+  content: "";
+  position: absolute;
+  bottom: var(--space-1);
+  left: 50%;
+  width: var(--space-6);
+  height: 1.5px;
+  margin-left: calc(var(--space-6) / -2);
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform var(--duration) var(--ease);
+}
+.nav-tabs__link[aria-current="page"]::after {
+  transform: scaleX(1);
 }
 .nav-tabs__link:active {
   opacity: 0.6;
@@ -98,11 +111,9 @@
   }
 }
 .nav-side__brand {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  margin: 0 0 var(--space-4);
+  margin: 0 0 var(--space-5);
   padding: 0 var(--space-3);
-  font-size: var(--fs-title);
+  font-size: var(--fs-normal);
 }
 .nav-side__ende {
   display: flex;
@@ -124,7 +135,7 @@
   color: var(--text);
   background: var(--surface-2);
 }
-/* Linie links am aktiven Eintrag, in der Farbe des Bereichs */
+/* Linie links am aktiven Eintrag */
 .nav-side__link::before {
   content: "";
   position: absolute;
@@ -133,7 +144,7 @@
   bottom: var(--space-3);
   width: 2px;
   border-radius: 2px;
-  background: var(--bereich);
+  background: var(--accent);
   transform: scaleY(0);
   transition: transform var(--duration) var(--ease);
 }

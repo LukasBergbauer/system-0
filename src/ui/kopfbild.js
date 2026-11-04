@@ -1,6 +1,6 @@
-// Kopfbild: Seitenkopf mit zarter Illustration, Seitentitel und optional einem Spruch.
-// Das Bild hat keinen eigenen Hintergrund und läuft weich in die Seite aus (Maske in kopfbild.css).
-// kopfbild({ titel: 'Heute', bild: 'assets/bilder/heute.svg', spruch: { jp: '一期一会', de: 'Jede Begegnung ist einmalig.' } })
+// Kopfbild: großes Bild oben (vollflächig, läuft unten weich in den Inhalt aus),
+// darauf links der große Seitentitel in Serifenschrift, ein kurzer Strich und ein kursiver Spruch.
+// kopfbild({ titel: 'Heute', bild: 'assets/bilder/heute.svg', spruch: 'Ein Schritt nach dem anderen.' })
 import { el } from './dom.js';
 
 export function kopfbild({ titel, bild, spruch } = {}) {
@@ -11,10 +11,8 @@ export function kopfbild({ titel, bild, spruch } = {}) {
     }),
     el('div', { class: 'kopf__text' }, [
       el('h1', { class: 'kopf__titel', text: titel }),
-      spruch && el('p', { class: 'kopf__spruch' }, [
-        el('span', { class: 'kopf__jp', text: spruch.jp, attrs: { lang: 'ja' } }),
-        el('span', { class: 'kopf__de', text: spruch.de }),
-      ]),
+      el('hr', { class: 'strich' }),
+      spruch && el('p', { class: 'kopf__spruch', text: spruch }),
     ]),
   ]);
 }

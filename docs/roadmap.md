@@ -224,7 +224,11 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         gedämpfte Bereichsfarben, Schimmer 16 %, `--font-serif`, `--fs-display`, `--fs-label`, `--sperrung`;
         `--font-jp` entfernt). Überschriften (Seite, Karte, Modal, Kopfbild, Markenname Seitenleiste) in Serifenschrift.
         `design.md` aktualisiert, `sw.js` auf `v12`. Lokal geprüft (iPhone-Größe)
-  - [ ] h) Bausteine neu
+  - [x] h) Bausteine neu: `schrift.css` (`.marke`, `.label`, `.strich`); Markenzeile in `shell.js` (iPhone) und
+        Seitenleiste (Mac); `kopfbild` neu (Bild vollflächig, großer Serifentitel, Strich, kursiver Spruch als Text);
+        Kacheln (Symbol im abgerundeten Quadrat, Label, Wert in Serifenschrift, groß = Symbol links); Chips in
+        Serifenschrift, gewählt Elfenbein; Navigation aktiv in Elfenbein + Strich; neue Symbole `abgleich`, `export`, `konto`.
+        Musterseite angepasst (Kopf noch ohne Bild). `sw.js` auf `v13`. Lokal geprüft (iPhone-Größe, Mac-Breite)
   - [ ] i) Stein-Bilder + deutsche Sprüche
   - Merke: Zeigt der Browser lokal noch die alte Fassung, Service Worker im Browser abmelden
     bzw. hart neu laden (im Test-Browser kam das einmal vor)

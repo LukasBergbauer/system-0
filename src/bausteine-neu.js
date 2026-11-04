@@ -17,8 +17,8 @@ const FARBEN = [
   { id: 'physio', label: 'Physio' },
 ];
 
-// Physio hat noch kein eigenes Bild (kommt mit dem Modul).
-const BILDER = { heute: 'heute', todos: 'todos', einstellungen: 'einstellungen' };
+// Bilder kommen in Teil i (Stein-Szenen); bis dahin Kopf ohne Bild.
+const BILDER = {};
 const kopfPlatz = el('div');
 
 function setzeFarbe(id) {
@@ -27,7 +27,7 @@ function setzeFarbe(id) {
   kopfPlatz.replaceChildren(kopfbild({
     titel: FARBEN[versatz].label,
     bild: BILDER[id] && `assets/bilder/${BILDER[id]}.svg`,
-    spruch: spruchDesTages(versatz),
+    spruch: spruchDesTages(versatz).de,
   }));
 }
 
@@ -48,19 +48,20 @@ export function farbUmschalter() {
 
 export function kopfbildDemo() {
   return el('div', { class: 'muster__stack' }, [
+    el('p', { class: 'marke', text: 'System 0' }),
     kopfPlatz,
-    note('Kopfbild: zarte Illustration ohne eigenen Hintergrund, Ränder laufen weich aus. Spruch wechselt täglich, je Bereich ein anderer.'),
+    note('Markenzeile, darunter Kopfbild: großer Serifentitel, Strich, kursiver Spruch (wechselt täglich). Bild folgt in Teil i.'),
   ]);
 }
 
 export function kachelDemo() {
   return el('div', { class: 'muster__stack' }, [
     kacheln([
-      kachel({ symbol: 'einstellungen', titel: 'Abgleich', wert: 'Alles synchron', text: 'Zuletzt vor 2 Minuten', gross: true }),
-      kachel({ symbol: 'todos', titel: 'Export', wert: 'JSON', onClick: () => {} }),
-      kachel({ symbol: 'heute', titel: 'Konto', wert: 'Abmelden', onClick: () => {} }),
+      kachel({ symbol: 'abgleich', titel: 'Abgleich', wert: 'Alles synchron', text: 'Zuletzt vor 2 Minuten', gross: true }),
+      kachel({ symbol: 'export', titel: 'Export', wert: 'JSON', onClick: () => {} }),
+      kachel({ symbol: 'konto', titel: 'Konto', wert: 'Abmelden', onClick: () => {} }),
     ]),
-    note('Kacheln: groß (ganze Breite) oder klein (halbe Breite), mit onClick antippbar.'),
+    note('Kacheln: groß (Symbol links) oder klein (Symbol oben), Label in Großbuchstaben, Wert in Serifenschrift.'),
   ]);
 }
 

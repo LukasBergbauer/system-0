@@ -18,7 +18,7 @@ export function renderSide(nav, plan, aktivId) {
   const oben = plan.alle.filter((b) => !b.ende);
   const unten = plan.alle.filter((b) => b.ende);
   nav.replaceChildren(
-    el('p', { class: 'nav-side__brand', text: 'System 0' }),
+    el('p', { class: 'marke nav-side__brand', text: 'System 0' }),
     ...oben.map((b) => link(b, 'nav-side__link', b.id === aktivId)),
     unten.length > 0 && el('div', { class: 'nav-side__ende' },
       unten.map((b) => link(b, 'nav-side__link', b.id === aktivId))),

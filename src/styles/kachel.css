@@ -10,20 +10,25 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-3);
-  min-height: 120px;
-  padding: var(--space-4);
+  gap: var(--space-4);
+  min-height: 140px;
+  padding: var(--space-5) var(--space-4) var(--space-4);
   font: inherit;
   text-align: left;
   color: var(--text);
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: calc(var(--radius) + var(--space-1));
   -webkit-backdrop-filter: blur(var(--blur));
   backdrop-filter: blur(var(--blur));
 }
 .kachel--gross {
   grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-5);
+  min-height: 0;
+  padding: var(--space-5);
 }
 .kachel--tap {
   cursor: pointer;
@@ -40,15 +45,17 @@
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
-/* Symbol im runden Feld, leicht in der Bereichsfarbe */
+/* Symbol im abgerundeten Quadrat, Linien in Elfenbein */
 .kachel__symbol {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  color: var(--bereich);
-  background: color-mix(in srgb, var(--bereich) 16%, transparent);
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius);
+  color: var(--accent);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
 }
 .kachel__text {
   display: flex;
@@ -56,15 +63,19 @@
   gap: var(--space-1);
   margin-top: auto;
 }
-.kachel__titel,
-.kachel__sub {
-  font-size: var(--fs-small);
-  color: var(--text-2);
+.kachel--gross .kachel__text {
+  margin-top: 0;
 }
 .kachel__wert {
-  font-size: var(--fs-title);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-family: var(--font-serif);
+  font-size: var(--fs-large);
+  font-weight: 400;
+  line-height: 1.15;
+}
+.kachel__sub {
+  font-family: var(--font-serif);
+  font-size: var(--fs-normal);
+  color: var(--text-2);
 }
 
 /* ---------- Chips ---------- */
@@ -86,11 +97,11 @@
   position: relative;
   flex: none;
   min-height: var(--tap);
-  padding: 0 var(--space-4);
+  padding: 0 var(--space-5);
   font: inherit;
-  font-size: var(--fs-small);
-  font-weight: 500;
-  color: var(--text-2);
+  font-family: var(--font-serif);
+  font-size: var(--fs-normal);
+  color: var(--text);
   background: none;
   border: 0;
   cursor: pointer;
@@ -100,10 +111,10 @@
 .chip::before {
   content: "";
   position: absolute;
-  inset: 5px 0;
+  inset: 2px 0;
   z-index: -1;
   border-radius: 999px;
-  background: var(--surface-2);
+  background: var(--surface);
   border: 1px solid var(--line);
   transition: background var(--duration) var(--ease);
 }

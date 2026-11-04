@@ -13,9 +13,11 @@ export function shell() {
   const side = el('nav', { class: 'nav-side', attrs: { 'aria-label': 'Bereiche' } });
   const tabs = el('nav', { class: 'nav-tabs', attrs: { 'aria-label': 'Bereiche' } });
   const inhalt = el('div', { class: 'app' });
+  // Markenzeile oben (nur iPhone; auf dem Mac steht sie in der Seitenleiste)
+  const marke = el('p', { class: 'marke shell__marke', text: 'System 0' });
   const element = el('div', { class: 'shell' }, [
     side,
-    el('main', { class: 'shell__main' }, inhalt),
+    el('main', { class: 'shell__main' }, [marke, inhalt]),
     tabs,
   ]);
 

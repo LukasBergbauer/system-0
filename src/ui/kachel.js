@@ -1,4 +1,5 @@
 // Kacheln: Glas-Flächen im Raster (2 Spalten), z. B. für Einstellungen oder Übersichten.
+// Klein: Symbol oben, darunter Label + Wert. Groß (ganze Breite): Symbol links, Text rechts.
 // kacheln([kachel({ symbol: 'heute', titel: 'Abgleich', wert: 'Alles synchron', gross: true }), …])
 // Mit onClick wird die Kachel ein Knopf. children = freier Inhalt unten (z. B. ein Knopf).
 import { el } from './dom.js';
@@ -13,7 +14,7 @@ export function kachel({ symbol, titel, wert, text, gross = false, onClick, chil
   const inhalt = [
     symbol && el('span', { class: 'kachel__symbol' }, zeichen(symbol)),
     el('span', { class: 'kachel__text' }, [
-      titel && el('span', { class: 'kachel__titel', text: titel }),
+      titel && el('span', { class: 'kachel__titel label', text: titel }),
       wert && el('span', { class: 'kachel__wert', text: wert }),
       text && el('span', { class: 'kachel__sub', text }),
     ]),
