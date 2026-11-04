@@ -2,4 +2,14 @@
 import { register } from '../../core/router.js';
 import { heuteAnsicht } from './view.js';
 
-register({ id: 'heute', titel: 'Heute', symbol: 'heute', ansicht: heuteAnsicht });
+// Datum über dem Titel, z. B. „Mittwoch, 4. November“
+const DATUM = new Intl.DateTimeFormat('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
+
+register({
+  id: 'heute',
+  titel: 'Heute',
+  symbol: 'heute',
+  bild: 'assets/bilder/heute.svg',
+  ueber: () => DATUM.format(new Date()),
+  ansicht: heuteAnsicht,
+});

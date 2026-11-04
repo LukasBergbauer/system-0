@@ -220,6 +220,11 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
     (wird zum Stein-Werkzeug umgebaut) und Sprüche ersetzen: `sprueche.js` mit deutschen Sätzen
   - d) Heute, e) To-dos, f) Einstellungen wie oben geplant, aber im neuen Stil
   Stand (neuer Plan):
+  - [x] d) Heute: `shell.js` baut jetzt für jeden Bereich den Kopf (`kopfbild` statt einfachem Titel; Spruch je Bereich
+        verschieden); Router-Optionen `bild` und `ueber`. Heute: Stein-Kugel, Datum über dem Titel, Spruch.
+        Bilder ohne eigenen Hintergrund, Ränder weich (rechts erst ab 560 px). `sw.js` auf `v16`.
+        Lokal geprüft (iPhone-Größe, mittlere Breite, Mac-Breite). To-dos/Einstellungen haben schon den großen Titel,
+        ihr Bild kommt in e) und f)
   - [x] g) Grundlook neu: `tokens.css` (Graphit `#151515`, warmes Weiß/Grau, Akzent Elfenbein `#E9E3D7`,
         gedämpfte Bereichsfarben, Schimmer 16 %, `--font-serif`, `--fs-display`, `--fs-label`, `--sperrung`;
         `--font-jp` entfernt). Überschriften (Seite, Karte, Modal, Kopfbild, Markenname Seitenleiste) in Serifenschrift.

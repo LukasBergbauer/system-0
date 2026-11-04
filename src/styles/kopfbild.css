@@ -1,5 +1,5 @@
 /* Kopfbild aus src/ui/kopfbild.js (Stil „Stein & Licht“):
-   Bild vollflächig hinter dem Kopf, ringsum weich ausgeblendet; darauf großer Serifentitel,
+   Bild vollflächig hinter dem Kopf, an den Rändern weich ausgeblendet; darauf großer Serifentitel,
    kurzer Strich und kursiver Spruch. */
 .kopf {
   position: relative;
@@ -21,16 +21,36 @@
   object-fit: cover;
   object-position: right center;
   pointer-events: none;
-  /* ringsum weich ausblenden: unten in den Inhalt, links hinter den Titel, oben/rechts in die Seite */
-  -webkit-mask-image: radial-gradient(ellipse 72% 68% at 64% 42%, #000 45%, transparent 100%);
-  mask-image: radial-gradient(ellipse 72% 68% at 64% 42%, #000 45%, transparent 100%);
+  /* weich ausblenden: oben in die Seite, unten in den Inhalt, links hinter den Titel */
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 22%, #000 58%, transparent 100%),
+    linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, #000 45%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 22%, #000 58%, transparent 100%),
+    linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, #000 45%);
+  mask-composite: intersect;
   animation: kopf-ein var(--duration-slow) var(--ease);
+}
+/* Breitere Fenster: Bildrand rechts liegt in der Seite, also auch dort ausblenden */
+@media (min-width: 560px) { /* ab hier ist .app schmaler als das Fenster */
+  .kopf__bild {
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 22%, #000 58%, transparent 100%),
+      linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, #000 45%, #000 80%, transparent 100%);
+    mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 22%, #000 58%, transparent 100%),
+      linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, #000 45%, #000 80%, transparent 100%);
+  }
 }
 .kopf__text {
   position: relative; /* über dem Bild */
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+}
+.kopf__ueber {
+  margin: 0 0 calc(var(--space-2) * -1); /* rückt näher an den Titel */
 }
 .kopf__titel {
   margin: 0;

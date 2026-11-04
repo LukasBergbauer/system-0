@@ -48,7 +48,6 @@
   <stop offset="0" stop-color="#7A766F"/><stop offset="1" stop-color="#4A4743"/>
 </linearGradient>
 </defs>
-<rect width="600" height="400" fill="#151515"/>
 <polygon points="660,-60 660,90 230,350 110,330" fill="url(#strahl)" filter="url(#weich)"/>
 <polygon points="0,336.0 600,320.0 600,336.0 0,354.0" fill="url(#kante-oben)" filter="url(#stein)"/>
 <polygon points="0,351.0 600,333.0 600,400 0,400" fill="url(#kante-vorn)" filter="url(#stein)"/>

@@ -6,7 +6,6 @@
 import os, sys
 
 W, H = 600, 400
-BG = '#151515'  # = --bg aus tokens.css, damit das Bild nahtlos in die Seite übergeht
 LICHT = '#EDE6DA'  # warmes Grau-Weiß, kein Gold
 
 DEFS = f'''
@@ -66,7 +65,8 @@ def kante_y(x):
 
 
 def grund():
-    s = f'<rect width="{W}" height="{H}" fill="{BG}"/>\n'
+    # kein eigener Hintergrund: die Seite (mit Schimmer) scheint durch, so gibt es keine Bildkante
+    s = ''
     # Lichtstrahl schräg von rechts oben nach links unten
     s += ('<polygon points="660,-60 660,90 230,350 110,330" fill="url(#strahl)" filter="url(#weich)"/>\n')
     # Steinplatte: Oberseite (hell, im Licht) und Vorderseite (dunkel, rau)

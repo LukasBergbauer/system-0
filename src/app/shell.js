@@ -1,6 +1,8 @@
 // Rahmen der App nach dem Login: Navigation + Inhalt des aktiven Bereichs.
 // const s = shell(); app.append(s.element); … s.destroy() beim Abmelden.
 import { el } from '../ui/dom.js';
+import { kopfbild } from '../ui/kopfbild.js';
+import { spruchDesTages } from '../core/sprueche.js';
 import { on } from '../core/events.js';
 import { alleBereiche, aktuelleRoute } from '../core/router.js';
 import { navPlan } from './nav-plan.js';
@@ -36,8 +38,15 @@ export function shell() {
     document.title = `${bereich.titel} · System 0`;
     // Bereichsfarbe für den Schimmer (Token --farbe-<id>, sonst Standard).
     element.style.setProperty('--bereich', `var(--farbe-${bereich.id}, var(--farbe-standard))`);
+    // Kopf: großer Titel, Strich, Spruch des Tages (je Bereich ein anderer), optional Bild und Zeile darüber
+    const versatz = Math.max(0, alleBereiche().indexOf(bereich));
     inhalt.replaceChildren(
-      el('h1', { class: 'app__title', text: bereich.titel }),
+      kopfbild({
+        titel: bereich.titel,
+        bild: bereich.bild,
+        ueber: bereich.ueber?.(),
+        spruch: spruchDesTages(versatz),
+      }),
       bereich.ansicht({ signal: ansicht.signal }),
     );
     window.scrollTo(0, 0);

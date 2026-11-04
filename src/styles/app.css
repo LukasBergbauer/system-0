@@ -24,6 +24,8 @@
 
 /* Markenzeile über dem Inhalt (iPhone); auf dem Mac in der Seitenleiste */
 .shell__marke {
+  position: relative;
+  z-index: 1; /* über dem Kopfbild */
   max-width: 560px;
   margin: 0 auto;
   padding: var(--space-5) var(--space-4) 0;

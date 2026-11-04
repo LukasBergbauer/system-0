@@ -6,7 +6,8 @@
 //   register({ id, titel, symbol, ansicht })
 //   ansicht({ signal }) → Element. signal endet, sobald die Ansicht verlassen wird
 //   (zum Abmelden von Ereignissen: on('daten', fn, { signal })).
-// Optional: nav: false (nicht in Tab-Leiste/Seitenleiste), ende: true (immer ganz hinten).
+// Optional: nav: false (nicht in Tab-Leiste/Seitenleiste), ende: true (immer ganz hinten),
+//   bild: 'assets/bilder/<id>.svg' (Kopfbild), ueber: () => Text (kleine Zeile über dem Titel, z. B. Datum).
 //
 // Ereignisse: 'bereiche' (neuer Bereich angemeldet), 'route' (anderer Bereich aktiv).
 import { emit } from './events.js';
