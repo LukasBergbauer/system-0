@@ -113,10 +113,17 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] Lokal geprüft: Mac-Seitenleiste, iPhone-Tab-Leiste, Zurück, unbekannte Adresse,
         „Mehr“ mit vorübergehenden Test-Bereichen (nur im Browser, nicht im Code)
   - [x] `sw.js` auf `v7`, neue Dateien in `APP_FILES`
-  - [ ] Von Lukas auf echtem iPhone (gepushte Fassung) und Mac geprüft
+  - [x] Von Lukas auf echtem iPhone (gepushte Fassung) und Mac geprüft
 
 ## Phase 1 – Alltag
 - [ ] To-dos (`module/todos.md`)
+  Plan (mit Lukas abgestimmt, eine Sitzung, Teile a → b, nach jedem Teil kurz prüfen; Details in `module/todos.md`):
+  - a) Grundfunktionen: Migration `002_todos.sql` (Tabellen `todo_bereiche`, `todos`), Modul `src/module/todos/`,
+    Schnelleingabe-Feld oben, Liste nach Priorität und Datum, Abhaken, Bearbeiten/Löschen im Modal,
+    Abschnitt „Erledigt“ (eingeklappt)
+  - b) Bereiche: anlegen/umbenennen/löschen, Umschalter „Nach Priorität“ / „Nach Bereichen“
+  - Aussehen nur mit vorhandenen Bausteinen und Tokens (Feinschliff in der Design-Runde)
+  - Am Ende neue Dateien in `APP_FILES` von `sw.js` eintragen und `VERSION` hochzählen
 - [ ] Design-Runde: Lukas ist mit Design und Anordnung noch nicht zufrieden. Erst überarbeiten,
   wenn mit Navigation und To-dos echte Ansichten da sind. Dann gemeinsam festlegen, was sich ändern soll
   (Farben, Abstände, Schrift, Anordnung der Ansichten) und `design.md`, `tokens.css` und die Bausteine anpassen.
