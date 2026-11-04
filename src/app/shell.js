@@ -2,7 +2,8 @@
 // const s = shell(); app.append(s.element); … s.destroy() beim Abmelden.
 import { el } from '../ui/dom.js';
 import { kopfbild } from '../ui/kopfbild.js';
-import { spruchDesTages, desTages } from '../core/sprueche.js';
+import { spruchDesTages } from '../core/sprueche.js';
+import { heutigesBild, kopfbilderVorladen } from './kopfbilder.js';
 import { on } from '../core/events.js';
 import { alleBereiche, aktuelleRoute } from '../core/router.js';
 import { navPlan } from './nav-plan.js';
@@ -28,6 +29,7 @@ export function shell() {
     const id = aktuelleRoute()?.id;
     renderSide(side, plan, id);
     renderTabs(tabs, plan, id);
+    kopfbilderVorladen(alleBereiche()); // Fotos der anderen Seiten schon bereithalten
   }
 
   function zeigeBereich() {
@@ -43,8 +45,7 @@ export function shell() {
     inhalt.replaceChildren(
       kopfbild({
         titel: bereich.titel,
-        // bild darf eine Liste sein: dann täglich eine andere Variante
-        bild: Array.isArray(bereich.bild) ? desTages(bereich.bild) : bereich.bild,
+        bild: heutigesBild(bereich), // bei einer Liste täglich eine andere Variante
         ueber: bereich.ueber?.(),
         spruch: bereich.spruch ? spruchDesTages(versatz) : null, // nur wo gewünscht (Heute)
       }),

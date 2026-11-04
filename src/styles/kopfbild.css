@@ -40,7 +40,6 @@
     linear-gradient(to bottom, transparent 0%, #000 22%, #000 58%, transparent 100%),
     linear-gradient(to right, transparent 0%, #000 50%);
   mask-composite: intersect;
-  animation: kopf-ein var(--duration-slow) var(--ease);
 }
 /* Breitere Fenster: Bildrand rechts liegt in der Seite, also auch dort ausblenden */
 @media (min-width: 560px) { /* ab hier ist .app schmaler als das Fenster */
@@ -78,9 +77,4 @@
   font-size: var(--fs-title);
   line-height: 1.35;
   color: var(--text);
-}
-@keyframes kopf-ein {
-  from {
-    opacity: 0;
-  }
 }

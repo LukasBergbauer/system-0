@@ -83,7 +83,9 @@ Lichtschein oben: `.shell::before` in `src/styles/app.css`.
 
 ## Kopfbilder und Sprüche
 - Fotos von Lukas (Bild-KI), je Bereich drei Varianten: `assets/bilder/<bereich>-1…3.webp` (1536 × 1024, je ca. 80–125 KB).
-  Der Bereich gibt sie beim Anmelden als Liste an (`bild: [...]`), `shell.js` nimmt täglich eine andere (`desTages`).
+  Der Bereich gibt sie beim Anmelden als Liste an (`bild: [...]`); `src/app/kopfbilder.js` wählt täglich eine andere
+  (`heutigesBild`) und lädt die Fotos aller Bereiche schon beim Start vor (`kopfbilderVorladen`, mit `decode`).
+  Kein Einblenden beim Seitenwechsel: das Bild steht sofort da (vorher sichtbarer „Klick“).
 - Motiv: Stein im schrägen Lichtstrahl von rechts oben, fast schwarzer Hintergrund, nur Grau/Weiß,
   Objekt im rechten Drittel, links Platz für den Titel. Heute: Kugel · To-dos: Steinstapel · Einstellungen: Steinquader.
 - Einbau ohne Bildkante: Das Foto ist Hintergrundbild eines `div` mit `background-color: var(--bg)` und

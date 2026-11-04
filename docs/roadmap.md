@@ -238,6 +238,8 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] Nach Lukas' Prüfung auf dem Mac: Foto verschmolz in seinem Browser nicht (dunkles Rechteck) → Kopfbild jetzt
         `background-blend-mode` statt `mix-blend-mode`, Maske links ganz auf 0. Kacheln filigraner und ruhiger
         (kleinere Symbole, Wert 20 px, weniger Innenabstand). `sw.js` auf `v20`. Lokal geprüft (iPhone-Größe, Mac-Breite)
+  - [x] Sichtbarer „Klick“ beim Seitenwechsel behoben: Fotos aller Bereiche werden beim Start vorgeladen
+        (`src/app/kopfbilder.js`), Einblende-Animation entfernt. `sw.js` auf `v21`
   - [ ] Lukas prüft alles auf echtem iPhone (gepushte Fassung) und Mac. Danach Design-Runde abhaken.
         Kleine Nacharbeiten, die ihm dabei auffallen, direkt in der nächsten Sitzung vor dem PhysioZentrum erledigen
   - [x] g) Grundlook neu: `tokens.css` (Graphit `#151515`, warmes Weiß/Grau, Akzent Elfenbein `#E9E3D7`,
