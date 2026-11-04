@@ -229,7 +229,10 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         Kacheln (Symbol im abgerundeten Quadrat, Label, Wert in Serifenschrift, groß = Symbol links); Chips in
         Serifenschrift, gewählt Elfenbein; Navigation aktiv in Elfenbein + Strich; neue Symbole `abgleich`, `export`, `konto`.
         Musterseite angepasst (Kopf noch ohne Bild). `sw.js` auf `v13`. Lokal geprüft (iPhone-Größe, Mac-Breite)
-  - [ ] i) Stein-Bilder + deutsche Sprüche
+  - [x] i) Stein-Bilder + deutsche Sprüche: `werkzeuge/kopfbilder.py` neu (Stein-Szenen), `assets/bilder/heute.svg`
+        (Kugel), `todos.svg` (Steinstapel), `einstellungen.svg` (Quader), je ca. 3,5 KB; japanische Bilder ersetzt.
+        `sprueche.js` mit 20 deutschen Sätzen (`spruchDesTages` liefert jetzt Text). Kopfbild-Maske ringsum weich.
+        `sw.js` auf `v14`. Lokal geprüft (iPhone-Größe, Musterseite)
   - Merke: Zeigt der Browser lokal noch die alte Fassung, Service Worker im Browser abmelden
     bzw. hart neu laden (im Test-Browser kam das einmal vor)
   Geklärt mit Lukas:

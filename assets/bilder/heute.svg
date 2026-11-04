@@ -1,27 +1,60 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 360 240" fill="none">
-<defs><radialGradient id="sonne" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#FFD9C7" stop-opacity="0.95"/><stop offset="0.6" stop-color="#F2A7BB" stop-opacity="0.55"/><stop offset="1" stop-color="#F2A7BB" stop-opacity="0"/></radialGradient><path id="blatt" d="M0 0C-5-3-7-10-3.2-14.5L0-12.2 3.2-14.5C7-10 5-3 0 0Z"/><g id="bluete"><use href="#blatt" xlink:href="#blatt" transform="rotate(0)"/><use href="#blatt" xlink:href="#blatt" transform="rotate(72)"/><use href="#blatt" xlink:href="#blatt" transform="rotate(144)"/><use href="#blatt" xlink:href="#blatt" transform="rotate(216)"/><use href="#blatt" xlink:href="#blatt" transform="rotate(288)"/><circle r="2.6" fill="#B85C78"/></g><g id="knospe"><ellipse rx="3.4" ry="5" fill="#F2A7BB"/></g></defs>
-<circle cx="232" cy="104" r="92" fill="url(#sonne)"/>
-<path d="M120 150H300" stroke="#F2A7BB" stroke-opacity="0.35" stroke-width="2" stroke-linecap="round"/>
-<path d="M160 162H340" stroke="#F2A7BB" stroke-opacity="0.25" stroke-width="2" stroke-linecap="round"/>
-<path d="M100 174H250" stroke="#F2A7BB" stroke-opacity="0.2" stroke-width="2" stroke-linecap="round"/>
-<path d="M372 18C330 30 300 44 270 70C246 90 222 100 190 104C168 107 150 116 136 132" stroke="#5E474D" stroke-width="5" stroke-linecap="round"/>
-<path d="M270 70C262 52 250 40 232 34M222 98C214 112 210 126 212 140M190 104C178 92 166 88 150 88" stroke="#5E474D" stroke-width="2.6" stroke-linecap="round"/>
-<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(300 46) rotate(10) scale(1.25)"/>
-<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(248 84) rotate(40) scale(1.1)"/>
-<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(232 34) rotate(5) scale(1.0)"/>
-<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(212 140) rotate(22) scale(0.95)"/>
-<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(150 88) rotate(60) scale(1.05)"/>
-<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(196 96) rotate(15) scale(0.8)"/>
-<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(276 60) rotate(50) scale(0.85)"/>
-<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(336 30) rotate(30) scale(0.9)"/>
-<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(136 132) rotate(12) scale(1.0)"/>
-<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(170 112) rotate(70) scale(0.7)"/>
-<use href="#knospe" xlink:href="#knospe" transform="translate(258 50) rotate(-30)"/>
-<use href="#knospe" xlink:href="#knospe" transform="translate(222 120) rotate(20)"/>
-<use href="#knospe" xlink:href="#knospe" transform="translate(162 98) rotate(-60)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#F2A7BB" fill-opacity="0.8" transform="translate(110 160) rotate(30) scale(.8)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#F2A7BB" fill-opacity="0.6" transform="translate(80 120) rotate(-20) scale(.8)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#F2A7BB" fill-opacity="0.7" transform="translate(160 190) rotate(70) scale(.8)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#F2A7BB" fill-opacity="0.45" transform="translate(60 196) rotate(10) scale(.8)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#F2A7BB" fill-opacity="0.5" transform="translate(124 210) rotate(-50) scale(.8)"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+<defs>
+<filter id="stein" x="-5%" y="-5%" width="110%" height="110%">
+  <feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="4" seed="4" result="rau"/>
+  <feDiffuseLighting in="rau" surfaceScale="1.3" diffuseConstant="1.2" lighting-color="#fff" result="licht">
+    <feDistantLight azimuth="315" elevation="60"/>
+  </feDiffuseLighting>
+  <!-- reine Multiplikation (k1): Farbe × Licht, Rand bleibt ohne hellen Saum -->
+  <feComposite in="SourceGraphic" in2="licht" operator="arithmetic" k1="1" k2="0" k3="0" k4="0"/>
+</filter>
+<filter id="weich" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="22"/></filter>
+<filter id="schatten" x="-30%" y="-100%" width="160%" height="300%"><feGaussianBlur stdDeviation="9"/></filter>
+<filter id="korn">
+  <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="9"/>
+  <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.045 0"/>
+</filter>
+<radialGradient id="kugel" cx="0.62" cy="0.36" r="0.75" fx="0.7" fy="0.28">
+  <stop offset="0" stop-color="#C4BFB7"/>
+  <stop offset="0.3" stop-color="#7E7A73"/>
+  <stop offset="0.7" stop-color="#34322F"/>
+  <stop offset="1" stop-color="#121211"/>
+</radialGradient>
+<linearGradient id="strahl" x1="1" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#EDE6DA" stop-opacity="0.55"/>
+  <stop offset="0.55" stop-color="#EDE6DA" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#EDE6DA" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="kante-oben" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#2A2927"/>
+  <stop offset="0.7" stop-color="#55524D"/>
+  <stop offset="1" stop-color="#3B3936"/>
+</linearGradient>
+<linearGradient id="kante-vorn" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#3A3836"/>
+  <stop offset="1" stop-color="#1A1918"/>
+</linearGradient>
+<radialGradient id="pfuetze" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#EDE6DA" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#EDE6DA" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="block-oben" x1="0" y1="1" x2="1" y2="0">
+  <stop offset="0" stop-color="#6E6A64"/><stop offset="1" stop-color="#ABA69E"/>
+</linearGradient>
+<linearGradient id="block-vorn" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#2B2A28"/><stop offset="1" stop-color="#46433F"/>
+</linearGradient>
+<linearGradient id="block-seite" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#7A766F"/><stop offset="1" stop-color="#4A4743"/>
+</linearGradient>
+</defs>
+<rect width="600" height="400" fill="#151515"/>
+<polygon points="660,-60 660,90 230,350 110,330" fill="url(#strahl)" filter="url(#weich)"/>
+<polygon points="0,336.0 600,320.0 600,336.0 0,354.0" fill="url(#kante-oben)" filter="url(#stein)"/>
+<polygon points="0,351.0 600,333.0 600,400 0,400" fill="url(#kante-vorn)" filter="url(#stein)"/>
+<ellipse cx="522" cy="331.3" rx="190" ry="10" fill="url(#pfuetze)"/>
+<ellipse cx="464" cy="329.96666666666664" rx="92.4" ry="9" fill="#000" fill-opacity="0.75" filter="url(#schatten)"/>
+<circle cx="482" cy="242.0" r="88" fill="url(#kugel)" filter="url(#stein)"/>
+<polygon points="660,-60 660,40 300,260 250,240" fill="url(#strahl)" filter="url(#weich)" opacity="0.5"/>
+<rect width="600" height="400" filter="url(#korn)"/>
 </svg>

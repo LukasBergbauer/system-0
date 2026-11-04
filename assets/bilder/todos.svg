@@ -1,63 +1,63 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 360 240" fill="none">
-<defs><linearGradient id="halm" x1="0" x2="1"><stop offset="0" stop-color="#7FAE87"/><stop offset="1" stop-color="#B9D8BC"/></linearGradient><path id="blatt" d="M0 0C10-3 28-3 46 2C28 6 10 5 0 0Z"/></defs>
-<path d="M275 40.5A78 78 0 1 1 209.3 34.7" stroke="#9CC5A1" stroke-opacity="0.22" stroke-width="9" stroke-linecap="round"/>
-<path d="M281.8 44.9A78 78 0 1 1 197 40.5" stroke="#9CC5A1" stroke-opacity="0.35" stroke-width="5" stroke-linecap="round"/>
-<path d="M288.2 50A78 78 0 1 1 185.9 48.2" stroke="#9CC5A1" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
-<path d="M213.8 250L214.9 205.2" stroke="url(#halm)" stroke-width="9" stroke-linecap="round"/>
-<path d="M208.6 202.2H221.2" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M214.9 202.2L216.3 152.5" stroke="url(#halm)" stroke-width="9" stroke-linecap="round"/>
-<path d="M210 149.5H222.6" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M216.3 149.5L217.5 102.6" stroke="url(#halm)" stroke-width="9" stroke-linecap="round"/>
-<path d="M211.2 99.6H223.8" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M217.5 99.6L218.9 48.9" stroke="url(#halm)" stroke-width="9" stroke-linecap="round"/>
-<path d="M212.6 45.9H225.2" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M218.9 45.9L220.2 -5.1" stroke="url(#halm)" stroke-width="9" stroke-linecap="round"/>
-<path d="M213.9 -8.1H226.5" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M220.2 -8.1L220.2 -7" stroke="url(#halm)" stroke-width="9" stroke-linecap="round"/>
-<path d="M213.9 -10H226.6" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M252.2 250L251.4 208.8" stroke="url(#halm)" stroke-width="7" stroke-linecap="round"/>
-<path d="M246.5 205.8H256.3" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M251.4 205.8L250.5 151.4" stroke="url(#halm)" stroke-width="7" stroke-linecap="round"/>
-<path d="M245.6 148.4H255.4" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M250.5 148.4L249.7 103.2" stroke="url(#halm)" stroke-width="7" stroke-linecap="round"/>
-<path d="M244.8 100.2H254.6" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M249.7 100.2L248.9 55.5" stroke="url(#halm)" stroke-width="7" stroke-linecap="round"/>
-<path d="M244 52.5H253.8" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M248.9 52.5L248.3 23" stroke="url(#halm)" stroke-width="7" stroke-linecap="round"/>
-<path d="M243.4 20H253.2" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M287.6 250L289.7 201.5" stroke="url(#halm)" stroke-width="10" stroke-linecap="round"/>
-<path d="M282.7 198.5H296.7" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M289.7 198.5L292.1 144.1" stroke="url(#halm)" stroke-width="10" stroke-linecap="round"/>
-<path d="M285.1 141.1H299.1" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M292.1 141.1L294.3 92.5" stroke="url(#halm)" stroke-width="10" stroke-linecap="round"/>
-<path d="M287.3 89.5H301.3" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M294.3 89.5L296.5 38.2" stroke="url(#halm)" stroke-width="10" stroke-linecap="round"/>
-<path d="M289.5 35.2H303.5" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M296.5 35.2L298.5 -8.2" stroke="url(#halm)" stroke-width="10" stroke-linecap="round"/>
-<path d="M291.5 -11.2H305.5" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M298.5 -11.2L298.8 -17" stroke="url(#halm)" stroke-width="10" stroke-linecap="round"/>
-<path d="M291.8 -20H305.8" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M186.1 250L185.6 195.1" stroke="url(#halm)" stroke-width="5" stroke-linecap="round"/>
-<path d="M182.1 192.1H189.1" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M185.6 192.1L185.2 142.7" stroke="url(#halm)" stroke-width="5" stroke-linecap="round"/>
-<path d="M181.7 139.7H188.7" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M185.2 139.7L184.7 86.9" stroke="url(#halm)" stroke-width="5" stroke-linecap="round"/>
-<path d="M181.2 83.9H188.2" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<path d="M184.7 83.9L184.5 63" stroke="url(#halm)" stroke-width="5" stroke-linecap="round"/>
-<path d="M181 60H188" stroke="#5F8A68" stroke-width="2" stroke-linecap="round"/>
-<use href="#blatt" xlink:href="#blatt" fill="#9CC5A1" fill-opacity="0.8" transform="translate(214 70) rotate(-160) scale(0.8)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#9CC5A1" fill-opacity="0.7" transform="translate(214 70) rotate(-140) scale(1)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#9CC5A1" fill-opacity="0.9" transform="translate(214 70) rotate(-175) scale(0.8)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#9CC5A1" fill-opacity="0.8" transform="translate(288 40) rotate(-20) scale(1)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#9CC5A1" fill-opacity="0.8" transform="translate(288 40) rotate(-5) scale(1.1)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#9CC5A1" fill-opacity="0.7" transform="translate(288 40) rotate(15) scale(1.1)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#9CC5A1" fill-opacity="0.7" transform="translate(288 40) rotate(-35) scale(1.1)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#9CC5A1" fill-opacity="0.9" transform="translate(252 120) rotate(200) scale(1.1)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#9CC5A1" fill-opacity="0.6" transform="translate(252 120) rotate(180) scale(0.8)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#9CC5A1" fill-opacity="0.9" transform="translate(252 120) rotate(220) scale(0.9)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#9CC5A1" fill-opacity="0.8" transform="translate(288 150) rotate(10) scale(1)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#9CC5A1" fill-opacity="0.7" transform="translate(288 150) rotate(30) scale(0.9)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#9CC5A1" fill-opacity="0.7" transform="translate(288 150) rotate(-10) scale(0.9)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#9CC5A1" fill-opacity="0.8" transform="translate(186 130) rotate(190) scale(1)"/>
-<use href="#blatt" xlink:href="#blatt" fill="#9CC5A1" fill-opacity="0.8" transform="translate(186 130) rotate(170) scale(1.1)"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+<defs>
+<filter id="stein" x="-5%" y="-5%" width="110%" height="110%">
+  <feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="4" seed="4" result="rau"/>
+  <feDiffuseLighting in="rau" surfaceScale="1.3" diffuseConstant="1.2" lighting-color="#fff" result="licht">
+    <feDistantLight azimuth="315" elevation="60"/>
+  </feDiffuseLighting>
+  <!-- reine Multiplikation (k1): Farbe × Licht, Rand bleibt ohne hellen Saum -->
+  <feComposite in="SourceGraphic" in2="licht" operator="arithmetic" k1="1" k2="0" k3="0" k4="0"/>
+</filter>
+<filter id="weich" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="22"/></filter>
+<filter id="schatten" x="-30%" y="-100%" width="160%" height="300%"><feGaussianBlur stdDeviation="9"/></filter>
+<filter id="korn">
+  <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="9"/>
+  <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.045 0"/>
+</filter>
+<radialGradient id="kugel" cx="0.62" cy="0.36" r="0.75" fx="0.7" fy="0.28">
+  <stop offset="0" stop-color="#C4BFB7"/>
+  <stop offset="0.3" stop-color="#7E7A73"/>
+  <stop offset="0.7" stop-color="#34322F"/>
+  <stop offset="1" stop-color="#121211"/>
+</radialGradient>
+<linearGradient id="strahl" x1="1" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#EDE6DA" stop-opacity="0.55"/>
+  <stop offset="0.55" stop-color="#EDE6DA" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#EDE6DA" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="kante-oben" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#2A2927"/>
+  <stop offset="0.7" stop-color="#55524D"/>
+  <stop offset="1" stop-color="#3B3936"/>
+</linearGradient>
+<linearGradient id="kante-vorn" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#3A3836"/>
+  <stop offset="1" stop-color="#1A1918"/>
+</linearGradient>
+<radialGradient id="pfuetze" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#EDE6DA" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#EDE6DA" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="block-oben" x1="0" y1="1" x2="1" y2="0">
+  <stop offset="0" stop-color="#6E6A64"/><stop offset="1" stop-color="#ABA69E"/>
+</linearGradient>
+<linearGradient id="block-vorn" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#2B2A28"/><stop offset="1" stop-color="#46433F"/>
+</linearGradient>
+<linearGradient id="block-seite" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#7A766F"/><stop offset="1" stop-color="#4A4743"/>
+</linearGradient>
+</defs>
+<rect width="600" height="400" fill="#151515"/>
+<polygon points="660,-60 660,90 230,350 110,330" fill="url(#strahl)" filter="url(#weich)"/>
+<polygon points="0,336.0 600,320.0 600,336.0 0,354.0" fill="url(#kante-oben)" filter="url(#stein)"/>
+<polygon points="0,351.0 600,333.0 600,400 0,400" fill="url(#kante-vorn)" filter="url(#stein)"/>
+<ellipse cx="515" cy="331.4166666666667" rx="180" ry="10" fill="url(#pfuetze)"/>
+<ellipse cx="464" cy="329.96666666666664" rx="86" ry="9" fill="#000" fill-opacity="0.75" filter="url(#schatten)"/>
+<ellipse cx="482" cy="304.0" rx="78" ry="26" fill="url(#kugel)" filter="url(#stein)"/>
+<ellipse cx="494" cy="260.0" rx="62" ry="22" fill="url(#kugel)" filter="url(#stein)"/>
+<ellipse cx="478" cy="224.0" rx="47" ry="18" fill="url(#kugel)" filter="url(#stein)"/>
+<ellipse cx="490" cy="197.0" rx="31" ry="13" fill="url(#kugel)" filter="url(#stein)"/>
+<polygon points="660,-60 660,40 300,260 250,240" fill="url(#strahl)" filter="url(#weich)" opacity="0.5"/>
+<rect width="600" height="400" filter="url(#korn)"/>
 </svg>

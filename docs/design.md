@@ -78,14 +78,14 @@ Markenzeile „SYSTEM 0“: auf dem iPhone oben über jeder Seite (`shell.js`), 
 Lichtschein oben: `.shell::before` in `src/styles/app.css`.
 
 ## Kopfbilder und Sprüche
-- Bilder in `assets/bilder/<bereich>.svg`, selbst gezeichnet mit `werkzeuge/kopfbilder.py`
-  (Aufruf im Repo-Ordner: `python3 werkzeuge/kopfbilder.py assets/bilder`). Japanisch inspiriert, zart,
-  ohne Hintergrund, in der Bereichsfarbe; Format 360 × 240, Motiv rechts der Mitte.
-- Heute: Kirschblüten vor der Morgensonne · To-dos: Bambus vor einem Ensō (Pinselkreis) ·
-  Einstellungen: Glyzinie im Mondlicht · Physio (kommt mit dem Modul): Ai-Blau, Bewegung/Training
-- Sprüche: `src/core/sprueche.js`, 20 japanische Sprichwörter mit deutscher Übersetzung.
+- Bilder in `assets/bilder/<bereich>.svg` (600 × 400), selbst gebaut mit `werkzeuge/kopfbilder.py`
+  (Aufruf im Repo-Ordner: `python3 werkzeuge/kopfbilder.py assets/bilder`). Szene wie in der Vorlage:
+  dunkler Grund (`--bg`), Steinplatte, ein Objekt aus Stein (raue Oberfläche per SVG-Filter), schräger
+  Lichtstrahl von rechts oben in warmem Grau-Weiß, feine Körnung. Objekt rechts, damit links Platz für den Titel ist.
+- Heute: Kugel · To-dos: Steinstapel · Einstellungen: Steinquader · Physio (kommt mit dem Modul): eigenes Objekt
+- Sprüche: `src/core/sprueche.js`, 20 kurze deutsche Sätze (eigene, keine Zitate).
   `spruchDesTages(versatz)` wechselt um Mitternacht; jeder Bereich nimmt einen eigenen `versatz`,
-  damit nicht überall derselbe Spruch steht.
+  damit nicht überall derselbe Satz steht.
 
 ## Regeln
 - Elfenbein ist der Akzent für Zustände und kleine Details (Haken, Fortschritt, aktiver Tab, Labels, Strich). Bereichsfarben nur als leichter Schimmer, nie als Fläche.

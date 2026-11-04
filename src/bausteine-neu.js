@@ -17,8 +17,8 @@ const FARBEN = [
   { id: 'physio', label: 'Physio' },
 ];
 
-// Bilder kommen in Teil i (Stein-Szenen); bis dahin Kopf ohne Bild.
-const BILDER = {};
+// Stein-Szenen je Bereich (Physio bekommt sein Bild mit dem Modul).
+const BILDER = { heute: 'heute', todos: 'todos', einstellungen: 'einstellungen' };
 const kopfPlatz = el('div');
 
 function setzeFarbe(id) {
@@ -27,7 +27,7 @@ function setzeFarbe(id) {
   kopfPlatz.replaceChildren(kopfbild({
     titel: FARBEN[versatz].label,
     bild: BILDER[id] && `assets/bilder/${BILDER[id]}.svg`,
-    spruch: spruchDesTages(versatz).de,
+    spruch: spruchDesTages(versatz),
   }));
 }
 
@@ -50,7 +50,7 @@ export function kopfbildDemo() {
   return el('div', { class: 'muster__stack' }, [
     el('p', { class: 'marke', text: 'System 0' }),
     kopfPlatz,
-    note('Markenzeile, darunter Kopfbild: großer Serifentitel, Strich, kursiver Spruch (wechselt täglich). Bild folgt in Teil i.'),
+    note('Markenzeile, darunter Kopfbild: großer Serifentitel, Strich, kursiver Spruch (wechselt täglich). Jeder Bereich hat sein eigenes Stein-Motiv.'),
   ]);
 }
 

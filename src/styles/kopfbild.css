@@ -1,5 +1,5 @@
 /* Kopfbild aus src/ui/kopfbild.js (Stil „Stein & Licht“):
-   Bild vollflächig hinter dem Kopf, unten und links weich ausgeblendet; darauf großer Serifentitel,
+   Bild vollflächig hinter dem Kopf, ringsum weich ausgeblendet; darauf großer Serifentitel,
    kurzer Strich und kursiver Spruch. */
 .kopf {
   position: relative;
@@ -21,15 +21,9 @@
   object-fit: cover;
   object-position: right center;
   pointer-events: none;
-  /* unten in den Inhalt auslaufen und links hinter dem Titel etwas zurücknehmen */
-  -webkit-mask-image:
-    linear-gradient(to bottom, #000 55%, transparent 100%),
-    linear-gradient(to right, rgba(0, 0, 0, 0.55) 0%, #000 45%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to bottom, #000 55%, transparent 100%),
-    linear-gradient(to right, rgba(0, 0, 0, 0.55) 0%, #000 45%);
-  mask-composite: intersect;
+  /* ringsum weich ausblenden: unten in den Inhalt, links hinter den Titel, oben/rechts in die Seite */
+  -webkit-mask-image: radial-gradient(ellipse 72% 68% at 64% 42%, #000 45%, transparent 100%);
+  mask-image: radial-gradient(ellipse 72% 68% at 64% 42%, #000 45%, transparent 100%);
   animation: kopf-ein var(--duration-slow) var(--ease);
 }
 .kopf__text {
