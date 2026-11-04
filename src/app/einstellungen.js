@@ -36,6 +36,7 @@ export const einstellungenBereich = {
   id: 'einstellungen',
   titel: 'Einstellungen',
   symbol: 'einstellungen',
+  bild: [1, 2, 3].map((n) => `assets/bilder/einstellungen-${n}.webp`), // Steinquader, drei Varianten
   ende: true,
   ansicht,
 };

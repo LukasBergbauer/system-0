@@ -1,5 +1,5 @@
 /* Kopfbild aus src/ui/kopfbild.js (Stil „Stein & Licht“):
-   Bild vollflächig hinter dem Kopf, an den Rändern weich ausgeblendet; darauf großer Serifentitel,
+   Foto vollflächig hinter dem Kopf, per mix-blend-mode mit der Seite verrechnet und an den Rändern weich ausgeblendet; darauf großer Serifentitel,
    kurzer Strich und kursiver Spruch. */
 .kopf {
   position: relative;
@@ -21,6 +21,8 @@
   object-fit: cover;
   object-position: right center;
   pointer-events: none;
+  /* lighten: dunkle Bildteile verschwinden in der Seite, nur Licht und Stein bleiben – keine Bildkante */
+  mix-blend-mode: lighten;
   /* weich ausblenden: oben in die Seite, unten in den Inhalt, links hinter den Titel */
   -webkit-mask-image:
     linear-gradient(to bottom, transparent 0%, #000 22%, #000 58%, transparent 100%),

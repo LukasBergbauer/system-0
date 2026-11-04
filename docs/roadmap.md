@@ -225,6 +225,11 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         Bilder ohne eigenen Hintergrund, Ränder weich (rechts erst ab 560 px). `sw.js` auf `v16`.
         Lokal geprüft (iPhone-Größe, mittlere Breite, Mac-Breite). To-dos/Einstellungen haben schon den großen Titel,
         ihr Bild kommt in e) und f)
+  - [x] Bilder ersetzt: Lukas fand die selbst gezeichneten SVG-Steine zu künstlich und sah Bildkanten. Jetzt Fotos
+        von Lukas (Bild-KI), je Bereich 3 Varianten (`assets/bilder/<bereich>-1…3.webp`), täglich wechselnd
+        (`desTages` in `sprueche.js`); To-dos und Einstellungen haben ihre Bilder damit schon. Einbau per
+        `mix-blend-mode: lighten` + Maske, keine Kante mehr. `werkzeuge/kopfbilder.py` und die SVGs entfernt.
+        `sw.js` auf `v17`. Lokal geprüft (iPhone-Größe, Mac-Breite)
   - [x] g) Grundlook neu: `tokens.css` (Graphit `#151515`, warmes Weiß/Grau, Akzent Elfenbein `#E9E3D7`,
         gedämpfte Bereichsfarben, Schimmer 16 %, `--font-serif`, `--fs-display`, `--fs-label`, `--sperrung`;
         `--font-jp` entfernt). Überschriften (Seite, Karte, Modal, Kopfbild, Markenname Seitenleiste) in Serifenschrift.

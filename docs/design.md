@@ -81,14 +81,19 @@ Bild-Ränder: oben/unten immer weich, links leicht abgedunkelt hinter dem Titel,
 Lichtschein oben: `.shell::before` in `src/styles/app.css`.
 
 ## Kopfbilder und Sprüche
-- Bilder in `assets/bilder/<bereich>.svg` (600 × 400), selbst gebaut mit `werkzeuge/kopfbilder.py`
-  (Aufruf im Repo-Ordner: `python3 werkzeuge/kopfbilder.py assets/bilder`). Szene wie in der Vorlage:
-  dunkler Grund (`--bg`), Steinplatte, ein Objekt aus Stein (raue Oberfläche per SVG-Filter), schräger
-  Lichtstrahl von rechts oben in warmem Grau-Weiß, feine Körnung. Objekt rechts, damit links Platz für den Titel ist.
-- Heute: Kugel · To-dos: Steinstapel · Einstellungen: Steinquader · Physio (kommt mit dem Modul): eigenes Objekt
+- Fotos von Lukas (Bild-KI), je Bereich drei Varianten: `assets/bilder/<bereich>-1…3.webp` (1536 × 1024, je ca. 80–125 KB).
+  Der Bereich gibt sie beim Anmelden als Liste an (`bild: [...]`), `shell.js` nimmt täglich eine andere (`desTages`).
+- Motiv: Stein im schrägen Lichtstrahl von rechts oben, fast schwarzer Hintergrund, nur Grau/Weiß,
+  Objekt im rechten Drittel, links Platz für den Titel. Heute: Kugel · To-dos: Steinstapel · Einstellungen: Steinquader.
+- Einbau ohne Bildkante: `mix-blend-mode: lighten` (dunkle Bildteile verschwinden in der Seite) plus weiche Maske
+  an den Rändern. Dafür hat `.shell` einen eigenen Hintergrund und `isolation: isolate`, und `.shell__main` hat
+  bewusst **keinen** `z-index` (sonst sähe die Mischung die Seite nicht).
+- Prompt für neue Bilder (nur das Objekt austauschen, Rest gleich lassen):
+  „Minimalist dark still life photograph, [OBJEKT] on a rough dark stone ledge, placed in the right third of the frame,
+  a soft diagonal beam of cool white light from the upper right, deep near-black background, left two thirds empty and dark,
+  monochrome grey and white tones only, no gold, no orange, no text, subtle film grain, cinematic, high-end, 3:2 landscape“
 - Sprüche: `src/core/sprueche.js`, 20 kurze deutsche Sätze (eigene, keine Zitate).
-  `spruchDesTages(versatz)` wechselt um Mitternacht; jeder Bereich nimmt einen eigenen `versatz`,
-  damit nicht überall derselbe Satz steht.
+  `spruchDesTages(versatz)` wechselt um Mitternacht; jeder Bereich nimmt einen eigenen `versatz`.
 
 ## Regeln
 - Elfenbein ist der Akzent für Zustände und kleine Details (Haken, Fortschritt, aktiver Tab, Labels, Strich). Bereichsfarben nur als leichter Schimmer, nie als Fläche.

@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v16';
+const VERSION = 'v17';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -71,9 +71,15 @@ const APP_FILES = [
   './src/ui/kachel.js',
   './src/ui/chips.js',
   './src/core/sprueche.js',
-  './assets/bilder/heute.svg',
-  './assets/bilder/todos.svg',
-  './assets/bilder/einstellungen.svg',
+  './assets/bilder/heute-1.webp',
+  './assets/bilder/heute-2.webp',
+  './assets/bilder/heute-3.webp',
+  './assets/bilder/todos-1.webp',
+  './assets/bilder/todos-2.webp',
+  './assets/bilder/todos-3.webp',
+  './assets/bilder/einstellungen-1.webp',
+  './assets/bilder/einstellungen-2.webp',
+  './assets/bilder/einstellungen-3.webp',
   './bausteine.html',
   './src/bausteine.js',
   './src/bausteine-neu.js',

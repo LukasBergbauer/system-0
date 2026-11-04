@@ -9,7 +9,7 @@ register({
   id: 'heute',
   titel: 'Heute',
   symbol: 'heute',
-  bild: 'assets/bilder/heute.svg',
+  bild: [1, 2, 3].map((n) => `assets/bilder/heute-${n}.webp`), // drei Varianten, täglich wechselnd
   ueber: () => DATUM.format(new Date()),
   ansicht: heuteAnsicht,
 });

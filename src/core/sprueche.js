@@ -1,5 +1,6 @@
 // Kurze deutsche Sätze für die Kopfbilder (eigene Sätze, keine Zitate).
 // spruchDesTages() wechselt um Mitternacht; mit versatz zeigt jeder Bereich am selben Tag einen anderen Satz.
+// desTages(liste) wählt genauso aus einer beliebigen Liste (z. B. Bild-Varianten).
 const SPRUECHE = [
   'Ein Schritt nach dem anderen.',
   'Klein anfangen. Dranbleiben.',
@@ -28,7 +29,12 @@ function tagNummer(datum) {
   return Math.floor(Date.UTC(datum.getFullYear(), datum.getMonth(), datum.getDate()) / 86400000);
 }
 
+// Ein Eintrag aus einer Liste, der täglich um Mitternacht wechselt (z. B. Spruch oder Kopfbild-Variante).
+export function desTages(liste, versatz = 0, datum = new Date()) {
+  const n = liste.length;
+  return n ? liste[(((tagNummer(datum) + versatz) % n) + n) % n] : undefined;
+}
+
 export function spruchDesTages(versatz = 0, datum = new Date()) {
-  const n = SPRUECHE.length;
-  return SPRUECHE[(((tagNummer(datum) + versatz) % n) + n) % n];
+  return desTages(SPRUECHE, versatz, datum);
 }

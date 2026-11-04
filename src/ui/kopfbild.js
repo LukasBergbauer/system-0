@@ -1,6 +1,6 @@
 // Kopfbild: großes Bild oben (vollflächig, läuft unten weich in den Inhalt aus),
 // darauf links der große Seitentitel in Serifenschrift, ein kurzer Strich und ein kursiver Spruch.
-// kopfbild({ titel: 'Heute', bild: 'assets/bilder/heute.svg', ueber: 'Mittwoch, 4. November', spruch: 'Ein Schritt nach dem anderen.' })
+// kopfbild({ titel: 'Heute', bild: 'assets/bilder/heute-1.webp', ueber: 'Mittwoch, 4. November', spruch: 'Ein Schritt nach dem anderen.' })
 // ueber = kleines Label über dem Titel (optional).
 import { el } from './dom.js';
 

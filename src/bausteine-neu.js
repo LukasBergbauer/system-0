@@ -6,7 +6,7 @@ import { button } from './ui/button.js';
 import { kopfbild } from './ui/kopfbild.js';
 import { kachel, kacheln } from './ui/kachel.js';
 import { chips } from './ui/chips.js';
-import { spruchDesTages } from './core/sprueche.js';
+import { spruchDesTages, desTages } from './core/sprueche.js';
 
 const note = (text) => el('p', { class: 'muster__note', text });
 
@@ -26,7 +26,7 @@ function setzeFarbe(id) {
   const versatz = FARBEN.findIndex((f) => f.id === id);
   kopfPlatz.replaceChildren(kopfbild({
     titel: FARBEN[versatz].label,
-    bild: BILDER[id] && `assets/bilder/${BILDER[id]}.svg`,
+    bild: BILDER[id] && desTages([1, 2, 3].map((n) => `assets/bilder/${BILDER[id]}-${n}.webp`)),
     spruch: spruchDesTages(versatz),
   }));
 }

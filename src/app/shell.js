@@ -2,7 +2,7 @@
 // const s = shell(); app.append(s.element); … s.destroy() beim Abmelden.
 import { el } from '../ui/dom.js';
 import { kopfbild } from '../ui/kopfbild.js';
-import { spruchDesTages } from '../core/sprueche.js';
+import { spruchDesTages, desTages } from '../core/sprueche.js';
 import { on } from '../core/events.js';
 import { alleBereiche, aktuelleRoute } from '../core/router.js';
 import { navPlan } from './nav-plan.js';
@@ -43,7 +43,8 @@ export function shell() {
     inhalt.replaceChildren(
       kopfbild({
         titel: bereich.titel,
-        bild: bereich.bild,
+        // bild darf eine Liste sein: dann täglich eine andere Variante
+        bild: Array.isArray(bereich.bild) ? desTages(bereich.bild) : bereich.bild,
         ueber: bereich.ueber?.(),
         spruch: spruchDesTages(versatz),
       }),
