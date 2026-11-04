@@ -1,6 +1,9 @@
 /* Kopfbild aus src/ui/kopfbild.js (Stil „Stein & Licht“):
-   Foto vollflächig hinter dem Kopf, per mix-blend-mode mit der Seite verrechnet und an den Rändern weich ausgeblendet; darauf großer Serifentitel,
-   kurzer Strich und kursiver Spruch. */
+   Foto vollflächig hinter dem Kopf, an den Rändern weich ausgeblendet; darauf großer Serifentitel,
+   kurzer Strich und kursiver Spruch.
+   Das Foto ist ein Hintergrundbild mit background-blend-mode: lighten auf der Seitenfarbe (--bg):
+   sein fast schwarzer Grund wird so genau zur Seitenfarbe, ohne Kante. Das klappt in allen Browsern
+   (mix-blend-mode auf einem <img> klappte in Lukas' Browser nicht). */
 .kopf {
   position: relative;
   display: flex;
@@ -21,19 +24,21 @@
   left: calc(var(--space-4) * -1);
   width: calc(100% + var(--space-4) * 2);
   height: calc(100% + var(--space-7));
-  object-fit: cover;
-  object-position: right center;
+  background-color: var(--bg);
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  /* lighten: dunkle Bildteile werden zur Seitenfarbe, nur Licht und Stein bleiben */
+  background-blend-mode: lighten;
   pointer-events: none;
-  /* lighten: dunkle Bildteile verschwinden in der Seite, nur Licht und Stein bleiben – keine Bildkante */
-  mix-blend-mode: lighten;
   /* weich ausblenden: oben in die Seite, unten in den Inhalt, links hinter den Titel */
   -webkit-mask-image:
     linear-gradient(to bottom, transparent 0%, #000 22%, #000 58%, transparent 100%),
-    linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, #000 45%);
+    linear-gradient(to right, transparent 0%, #000 50%);
   -webkit-mask-composite: source-in;
   mask-image:
     linear-gradient(to bottom, transparent 0%, #000 22%, #000 58%, transparent 100%),
-    linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, #000 45%);
+    linear-gradient(to right, transparent 0%, #000 50%);
   mask-composite: intersect;
   animation: kopf-ein var(--duration-slow) var(--ease);
 }
@@ -42,10 +47,10 @@
   .kopf__bild {
     -webkit-mask-image:
       linear-gradient(to bottom, transparent 0%, #000 22%, #000 58%, transparent 100%),
-      linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, #000 45%, #000 80%, transparent 100%);
+      linear-gradient(to right, transparent 0%, #000 50%, #000 80%, transparent 100%);
     mask-image:
       linear-gradient(to bottom, transparent 0%, #000 22%, #000 58%, transparent 100%),
-      linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, #000 45%, #000 80%, transparent 100%);
+      linear-gradient(to right, transparent 0%, #000 50%, #000 80%, transparent 100%);
   }
 }
 .kopf__text {

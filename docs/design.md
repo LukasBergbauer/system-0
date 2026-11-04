@@ -68,7 +68,7 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 | `modal.js` | `modal({ title, content, actions })` → `{ open, close }` | iPhone: von unten, Mac: mittig |
 | `tabs.js` | `tabs({ items, active, onChange })` | Umschalter, aktiver Tab mit weißer Linie |
 | `kopfbild.js` | `kopfbild({ titel, bild, spruch })` | Seitenkopf: Bild vollflächig dahinter (unten/links weich ausgeblendet), großer Serifentitel, Strich, kursiver Spruch |
-| `kachel.js` | `kacheln([…])`, `kachel({ symbol, titel, wert, text, gross, onClick, children })` | Glas-Kacheln im 2er-Raster; klein = Symbol oben, `gross` = ganze Breite mit Symbol links; Symbol im abgerundeten Quadrat, `titel` als Label, `wert` in Serifenschrift |
+| `kachel.js` | `kacheln([…])`, `kachel({ symbol, titel, wert, text, gross, onClick, children })` | filigrane Glas-Kacheln im 2er-Raster; klein = Symbol oben, `gross` = ganze Breite mit Symbol links; Symbol (18 px) im kleinen abgerundeten Quadrat (34 px), `titel` als Label, `wert` in Serifenschrift (20 px), `text` klein; Zustände `kachel--laeuft` (Symbol dreht), `kachel--warn` |
 | `chips.js` | `chips({ items, active, onChange, aktionen })` | waagrechte Kapsel-Leiste (wischbar, Serifenschrift); gewählt = Elfenbein gefüllt; `aktionen` = gestrichelte Chips, die nur etwas auslösen |
 | `symbol.js` | `symbol(name)` | dünnes Linien-Symbol (24 px, Textfarbe), z. B. `heute`, `todos`, `einstellungen`, `mehr`, `abgleich`, `export`, `konto` |
 
@@ -86,9 +86,10 @@ Lichtschein oben: `.shell::before` in `src/styles/app.css`.
   Der Bereich gibt sie beim Anmelden als Liste an (`bild: [...]`), `shell.js` nimmt täglich eine andere (`desTages`).
 - Motiv: Stein im schrägen Lichtstrahl von rechts oben, fast schwarzer Hintergrund, nur Grau/Weiß,
   Objekt im rechten Drittel, links Platz für den Titel. Heute: Kugel · To-dos: Steinstapel · Einstellungen: Steinquader.
-- Einbau ohne Bildkante: `mix-blend-mode: lighten` (dunkle Bildteile verschwinden in der Seite) plus weiche Maske
-  an den Rändern. Dafür hat `.shell` einen eigenen Hintergrund und `isolation: isolate`, und `.shell__main` hat
-  bewusst **keinen** `z-index` (sonst sähe die Mischung die Seite nicht).
+- Einbau ohne Bildkante: Das Foto ist Hintergrundbild eines `div` mit `background-color: var(--bg)` und
+  `background-blend-mode: lighten` – der fast schwarze Bildgrund wird so genau zur Seitenfarbe. Dazu weiche Maske
+  an allen Rändern (links ganz auf 0). `mix-blend-mode` auf einem `<img>` hat in Lukas' Browser nicht funktioniert
+  (dunkles Rechteck mit Kante), deshalb nicht verwenden.
 - Prompt für neue Bilder (nur das Objekt austauschen, Rest gleich lassen):
   „Minimalist dark still life photograph, [OBJEKT] on a rough dark stone ledge, placed in the right third of the frame,
   a soft diagonal beam of cool white light from the upper right, deep near-black background, left two thirds empty and dark,

@@ -2,7 +2,7 @@
 
 /* Lichtschein oben in der Farbe des aktiven Bereichs (--bereich setzt shell.js). */
 .shell {
-  /* eigener Hintergrund + isolation: Kopfbilder (mix-blend-mode) verrechnen sich mit Seite und Schimmer */
+  /* eigener Hintergrund + isolation: der Schimmer (::before, z-index -1) liegt so über dem Hintergrund, aber unter dem Inhalt */
   background: var(--bg);
   isolation: isolate;
   transition: --bereich var(--duration-slow) var(--ease);
@@ -21,7 +21,7 @@
   );
 }
 .shell__main {
-  position: relative; /* bewusst ohne z-index: sonst eigener Stapel, und die Bild-Mischung sähe die Seite nicht */
+  position: relative;
 }
 
 /* Markenzeile über dem Inhalt (iPhone); auf dem Mac in der Seitenleiste */
