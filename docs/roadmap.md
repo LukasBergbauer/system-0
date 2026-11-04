@@ -116,7 +116,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] Von Lukas auf echtem iPhone (gepushte Fassung) und Mac geprüft
 
 ## Phase 1 – Alltag
-- [ ] To-dos (`module/todos.md`)
+- [x] To-dos (`module/todos.md`)
   Plan (mit Lukas abgestimmt, eine Sitzung, Teile a → b, nach jedem Teil kurz prüfen; Details in `module/todos.md`):
   - a) Grundfunktionen: Migration `002_todos.sql` (Tabellen `todo_bereiche`, `todos`), Modul `src/module/todos/`,
     Schnelleingabe-Feld oben, Liste nach Priorität und Datum, Abhaken, Bearbeiten/Löschen im Modal,
@@ -130,13 +130,24 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] `index.html` lädt jetzt auch `checkbox.css`, `modal.css` (bisher nur auf der Musterseite) und `todos.css`
   - [x] `sw.js` auf `v8`, neue Dateien in `APP_FILES`; auf `localhost` fragt der Service Worker jetzt
         immer beim Server nach (`cache: 'no-cache'`), sonst lieferte der Browser alte Dateien aus seinem Zwischenspeicher
-  - [ ] Migration `002_todos.sql` von Lukas in Supabase ausgeführt
-  - [ ] Von Lukas auf echtem iPhone (gepushte Fassung) und Mac geprüft, inkl. Abgleich
+  - [x] Migration `002_todos.sql` von Lukas in Supabase ausgeführt
+  - [x] Von Lukas auf echtem iPhone (gepushte Fassung) und Mac geprüft, inkl. Abgleich
+  - Merke: Die Funktionen der To-dos sind nicht endgültig. Änderungswünsche sammelt Lukas in
+    `module/todos.md` unter „Wünsche für später“; umgesetzt werden sie als eigener kleiner Schritt
 - [ ] Design-Runde: Lukas ist mit Design und Anordnung noch nicht zufrieden. Erst überarbeiten,
   wenn mit Navigation und To-dos echte Ansichten da sind. Dann gemeinsam festlegen, was sich ändern soll
   (Farben, Abstände, Schrift, Anordnung der Ansichten) und `design.md`, `tokens.css` und die Bausteine anpassen.
   Lukas' Punkte (sammeln, sobald sie ihm einfallen):
   - (noch offen)
+  Plan für den Einstieg (nächste Sitzung):
+  1. Erst nur reden, nichts bauen: Lukas schaut sich Heute, To-dos und Einstellungen auf iPhone und Mac an
+     und nennt, was ihn stört. Claude fragt gezielt nach (Farben, Abstände, Schriftgrößen, Anordnung,
+     Tab-Leiste/Seitenleiste, Karten vs. ganze Fläche, Modal) und schlägt zu jedem Punkt 1–2 Varianten vor.
+  2. Die Punkte oben eintragen und daraus einen kleinen Plan in Teilen (a, b, …) machen, Okay abwarten.
+  3. Erst dann bauen: zuerst `tokens.css` + `design.md`, dann die Bausteine in `src/ui/` und ihre Stile,
+     zuletzt die Ansichten. Musterseite `bausteine.html` zum Vergleichen nutzen.
+  4. Wünsche zu To-do-Funktionen (falls Lukas welche nennt) nicht in der Design-Runde umsetzen,
+     sondern in `module/todos.md` unter „Wünsche für später“ notieren.
 - [ ] Kalender persönlich, mit Google-Kalender-Anzeige (`module/kalender.md`)
 - [ ] Heute-Übersicht (`module/heute.md`)
 - [ ] Routinen, ohne Sperre (`module/routinen.md`)

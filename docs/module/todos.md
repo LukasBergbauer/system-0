@@ -43,11 +43,10 @@ Eine Sitzung, Teile a → b, nach jedem Teil kurz prüfen.
 ## Stand
 - [x] Migration `supabase/migrations/002_todos.sql` geschrieben; `todo_bereiche` und `todos` in `src/core/tabellen.js`.
       `bereich_id` absichtlich ohne Fremdschlüssel (To-do darf vor seinem Bereich beim Server ankommen)
-- [ ] Migration von Lukas im Supabase-SQL-Editor ausgeführt (bis dahin meldet der Abgleich „hat nicht geklappt“,
-      lokal funktioniert alles, die Änderungen warten in der Warteschlange)
+- [x] Migration von Lukas im Supabase-SQL-Editor ausgeführt
 - [x] a) Grundfunktionen, lokal geprüft (Mac + iPhone-Größe)
 - [x] b) Bereiche + Umschalter, lokal geprüft
-- [ ] Von Lukas auf echtem iPhone (gepushte Fassung) und Mac geprüft, inkl. Abgleich zwischen beiden
+- [x] Von Lukas auf echtem iPhone (gepushte Fassung) und Mac geprüft, inkl. Abgleich zwischen beiden
 
 ### Dateien (`src/module/todos/`)
 | Datei | Aufgabe |
@@ -64,6 +63,9 @@ Eine Sitzung, Teile a → b, nach jedem Teil kurz prüfen.
 | `bereiche-verwalten.js` | Modal: Bereiche anlegen, umbenennen (beim Verlassen des Felds), löschen |
 
 Stile: `src/styles/todos.css`. Gewählte Ansicht steht nur im Gerät (`localStorage`, Schlüssel `system0-todos-ansicht`).
+
+Wünsche für später (Funktionen sind nicht festgeschrieben, Lukas ergänzt hier, sobald ihm etwas einfällt):
+- (noch offen)
 
 Merke:
 - Abhaken wartet 350 ms, damit die Haken-Animation zu sehen ist, dann wandert die Zeile.
