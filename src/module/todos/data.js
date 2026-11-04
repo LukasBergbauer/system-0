@@ -22,9 +22,9 @@ export async function ladeBereiche() {
   return rows.sort((a, b) => a.reihenfolge - b.reihenfolge || a.name.localeCompare(b.name, 'de'));
 }
 
-// Schnelleingabe: nur Titel, Priorität mittel, ohne Datum und Bereich.
-export function neuesTodo(titel) {
-  return save(TODOS, { titel, notiz: '', prio: 2, faellig_am: null, bereich_id: null, erledigt_am: null });
+// Schnelleingabe: nur Titel, Priorität mittel, ohne Datum; Bereich = gerade gefilterter Bereich oder keiner.
+export function neuesTodo(titel, bereichId = null) {
+  return save(TODOS, { titel, notiz: '', prio: 2, faellig_am: null, bereich_id: bereichId, erledigt_am: null });
 }
 
 // Ändert nur die übergebenen Felder (id muss dabei sein).

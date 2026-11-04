@@ -47,6 +47,12 @@ Eine Sitzung, Teile a → b, nach jedem Teil kurz prüfen.
 - [x] a) Grundfunktionen, lokal geprüft (Mac + iPhone-Größe)
 - [x] b) Bereiche + Umschalter, lokal geprüft
 - [x] Von Lukas auf echtem iPhone (gepushte Fassung) und Mac geprüft, inkl. Abgleich zwischen beiden
+- [x] Design-Runde (Teil e, 04.11.2026): neu angeordnet. Kopf mit Steinstapel-Foto (kompakt, ohne Spruch),
+      Bereichs-Chips statt Umschalter „Nach Priorität / Nach Bereichen“ (`nach-bereichen.js` entfernt),
+      Gruppen nach Zeit ohne Kästen (Label-Überschrift mit Anzahl, Zeilen mit feinen Linien),
+      Priorität als Punkt (hoch = Elfenbein mit Schimmer, mittel = grau, niedrig = keiner).
+      Neues To-do landet im gerade gefilterten Bereich (sonst wäre es nach Enter unsichtbar).
+      Lokal mit Testdaten geprüft (iPhone-Größe, Mac-Breite), Testdaten danach gelöscht
 
 ### Dateien (`src/module/todos/`)
 | Datei | Aufgabe |
@@ -54,15 +60,16 @@ Eine Sitzung, Teile a → b, nach jedem Teil kurz prüfen.
 | `index.js` | meldet das Modul beim Router an |
 | `data.js` | Lesen/Schreiben über `core/store.js` (To-dos und Bereiche) |
 | `sortierung.js` | Sortierung (Priorität → Datum → älteste zuerst), Datums-Texte („Heute“, „Morgen“ …), überfällig |
-| `view.js` | Ansicht: Umschalter, Schnelleingabe, Liste, „Erledigt“; zeichnet bei Ereignis `daten` neu |
-| `zeile.js` | eine Zeile: Checkbox (abhaken) + antippbarer Text (öffnet Bearbeiten) |
-| `schnelleingabe.js` | Feld oben, Enter legt an, Fokus bleibt |
+| `view.js` | Ansicht: Bereichs-Chips, Schnelleingabe, Gruppen nach Zeit, „Erledigt“; zeichnet bei Ereignis `daten` neu |
+| `zeile.js` | eine Zeile: Checkbox (abhaken) + antippbarer Text (öffnet Bearbeiten) + Prioritäts-Punkt rechts |
+| `gruppen.js` | offene To-dos nach Zeit gruppieren: Überfällig · Heute · Diese Woche (nächste 7 Tage) · Später · Ohne Datum |
+| `filter.js` | Bereichs-Chips „Alle · Bereiche · Ohne Bereich“ + Aktions-Chip „Bereiche bearbeiten“; Filter gemerkt |
+| `schnelleingabe.js` | Feld oben, Enter legt an (im gerade gefilterten Bereich), Fokus bleibt |
 | `bearbeiten.js` | Modal: Titel, Notiz, Priorität (Tabs), Fälligkeit, Bereich, Löschen |
 | `erledigt.js` | eingeklappter Abschnitt „Erledigt“ |
-| `nach-bereichen.js` | Ansicht „Nach Bereichen“ (Karte je Bereich, „Ohne Bereich“ zuletzt) |
 | `bereiche-verwalten.js` | Modal: Bereiche anlegen, umbenennen (beim Verlassen des Felds), löschen |
 
-Stile: `src/styles/todos.css`. Gewählte Ansicht steht nur im Gerät (`localStorage`, Schlüssel `system0-todos-ansicht`).
+Stile: `src/styles/todos.css`. Gewählter Bereichs-Filter steht nur im Gerät (`localStorage`, Schlüssel `system0-todos-filter`).
 
 Wünsche für später (Funktionen sind nicht festgeschrieben, Lukas ergänzt hier, sobald ihm etwas einfällt):
 - Schnell-Knöpfe direkt unter der Schnelleingabe (Datum Heute/Morgen, Priorität, Bereich),

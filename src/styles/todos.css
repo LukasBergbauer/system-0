@@ -1,4 +1,36 @@
-/* Modul „To-dos“ (vorläufig, Feinschliff in der Design-Runde). Nur Werte aus tokens.css. */
+/* Modul „To-dos“ im Stil „Stein & Licht“: Gruppen ohne Kästen, Label als Überschrift,
+   Zeilen mit feinen Linien, Prioritäts-Punkt rechts. Nur Werte aus tokens.css. */
+.todo-liste {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-top: var(--space-2);
+}
+.todo-gruppe__titel {
+  display: block;
+  margin: 0 0 var(--space-1);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--line);
+}
+.todo-gruppe .list__title {
+  font-size: var(--fs-normal);
+}
+/* Priorität als Punkt am Zeilenende */
+.todo-prio {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  margin-left: auto;
+  border-radius: 50%;
+}
+.todo-prio--hoch {
+  background: var(--accent);
+  box-shadow: 0 0 var(--space-2) color-mix(in srgb, var(--accent) 60%, transparent);
+}
+.todo-prio--mittel {
+  background: var(--text-2);
+  opacity: 0.6;
+}
 .todo-zeile {
   display: flex;
   align-items: center;

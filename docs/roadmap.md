@@ -230,6 +230,10 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         (`desTages` in `sprueche.js`); To-dos und Einstellungen haben ihre Bilder damit schon. Einbau per
         `mix-blend-mode: lighten` + Maske, keine Kante mehr. `werkzeuge/kopfbilder.py` und die SVGs entfernt.
         `sw.js` auf `v17`. Lokal geprüft (iPhone-Größe, Mac-Breite)
+  - [x] e) To-dos neu angeordnet (Details in `module/todos.md`): Chips, Gruppen nach Zeit, Prio-Punkt, keine Kästen.
+        Dazu: Spruch nur noch auf Heute (Router-Option `spruch: true`), Kopf ohne Spruch kompakter (`kopf--kompakt`).
+        `sw.js` auf `v18`. Lokal geprüft
+  - [ ] f) Einstellungen als Kacheln
   - [x] g) Grundlook neu: `tokens.css` (Graphit `#151515`, warmes Weiß/Grau, Akzent Elfenbein `#E9E3D7`,
         gedämpfte Bereichsfarben, Schimmer 16 %, `--font-serif`, `--fs-display`, `--fs-label`, `--sperrung`;
         `--font-jp` entfernt). Überschriften (Seite, Karte, Modal, Kopfbild, Markenname Seitenleiste) in Serifenschrift.

@@ -9,6 +9,9 @@
   min-height: 320px;
   padding-bottom: var(--space-5);
 }
+.kopf--kompakt {
+  min-height: 240px;
+}
 .kopf--ohne-bild {
   min-height: 0;
 }

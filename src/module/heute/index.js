@@ -11,5 +11,6 @@ register({
   symbol: 'heute',
   bild: [1, 2, 3].map((n) => `assets/bilder/heute-${n}.webp`), // drei Varianten, täglich wechselnd
   ueber: () => DATUM.format(new Date()),
+  spruch: true, // Spruch des Tages nur auf Heute
   ansicht: heuteAnsicht,
 });

@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v17';
+const VERSION = 'v18';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -42,7 +42,8 @@ const APP_FILES = [
   './src/module/todos/schnelleingabe.js',
   './src/module/todos/bearbeiten.js',
   './src/module/todos/erledigt.js',
-  './src/module/todos/nach-bereichen.js',
+  './src/module/todos/gruppen.js',
+  './src/module/todos/filter.js',
   './src/module/todos/bereiche-verwalten.js',
   './src/core/router.js',
   './src/app/sync-karte.js',

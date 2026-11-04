@@ -38,7 +38,7 @@ export function shell() {
     document.title = `${bereich.titel} · System 0`;
     // Bereichsfarbe für den Schimmer (Token --farbe-<id>, sonst Standard).
     element.style.setProperty('--bereich', `var(--farbe-${bereich.id}, var(--farbe-standard))`);
-    // Kopf: großer Titel, Strich, Spruch des Tages (je Bereich ein anderer), optional Bild und Zeile darüber
+    // Kopf: großer Titel, Strich, optional Bild, Zeile darüber und Spruch des Tages
     const versatz = Math.max(0, alleBereiche().indexOf(bereich));
     inhalt.replaceChildren(
       kopfbild({
@@ -46,7 +46,7 @@ export function shell() {
         // bild darf eine Liste sein: dann täglich eine andere Variante
         bild: Array.isArray(bereich.bild) ? desTages(bereich.bild) : bereich.bild,
         ueber: bereich.ueber?.(),
-        spruch: spruchDesTages(versatz),
+        spruch: bereich.spruch ? spruchDesTages(versatz) : null, // nur wo gewünscht (Heute)
       }),
       bereich.ansicht({ signal: ansicht.signal }),
     );

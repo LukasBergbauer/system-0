@@ -5,7 +5,9 @@
 import { el } from './dom.js';
 
 export function kopfbild({ titel, bild, ueber, spruch } = {}) {
-  return el('header', { class: `kopf${bild ? '' : ' kopf--ohne-bild'}` }, [
+  // Ohne Spruch (alle Seiten außer Heute) ist der Kopf niedriger, damit der Inhalt früher anfängt.
+  const klasse = `kopf${bild ? '' : ' kopf--ohne-bild'}${spruch ? '' : ' kopf--kompakt'}`;
+  return el('header', { class: klasse }, [
     bild && el('img', {
       class: 'kopf__bild',
       attrs: { src: bild, alt: '', 'aria-hidden': 'true', decoding: 'async' },

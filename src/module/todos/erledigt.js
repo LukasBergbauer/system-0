@@ -1,7 +1,6 @@
 // Abschnitt „Erledigt“ unten: eingeklappt, auf Knopfdruck aufklappbar.
 // Haken entfernen = To-do ist wieder offen.
 import { el } from '../../ui/dom.js';
-import { card } from '../../ui/card.js';
 import { list } from '../../ui/list.js';
 import { button } from '../../ui/button.js';
 
@@ -17,6 +16,6 @@ export function erledigtAbschnitt({ zeilen, offen, umschalten }) {
   knopf.setAttribute('aria-expanded', String(offen));
   return el('div', { class: 'app__stack' }, [
     el('div', { class: 'app__row' }, knopf),
-    offen && card({ children: list(zeilen) }),
+    offen && el('section', { class: 'todo-gruppe todo-gruppe--erledigt' }, list(zeilen)),
   ]);
 }

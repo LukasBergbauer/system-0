@@ -1,52 +1,30 @@
-// Ansicht „To-dos“: Umschalter „Nach Priorität“ / „Nach Bereichen“, Schnelleingabe,
-// offene To-dos, darunter „Erledigt“ (eingeklappt).
+// Ansicht „To-dos“: Bereichs-Chips oben, Schnelleingabe, offene To-dos nach Zeit gruppiert
+// (Überfällig · Heute · Diese Woche · Später · Ohne Datum), ganz unten „Erledigt“ (eingeklappt).
+// Keine Kästen: jede Gruppe ist eine kleine Überschrift mit Zeilen darunter.
 // Zeichnet sich neu, sobald sich To-dos oder Bereiche ändern (auch durch das andere Gerät).
 import { el } from '../../ui/dom.js';
-import { card } from '../../ui/card.js';
 import { list } from '../../ui/list.js';
-import { tabs } from '../../ui/tabs.js';
 import { on } from '../../core/events.js';
 import { TODOS, BEREICHE, ladeTodos, ladeBereiche, setzeErledigt } from './data.js';
 import { sortiereOffene, sortiereErledigte } from './sortierung.js';
+import { gruppiereNachZeit } from './gruppen.js';
+import { ALLE, OHNE, gemerkterFilter, gueltigerFilter, passt, filterLeiste } from './filter.js';
 import { todoZeile } from './zeile.js';
 import { schnelleingabe } from './schnelleingabe.js';
 import { oeffneBearbeiten } from './bearbeiten.js';
 import { erledigtAbschnitt } from './erledigt.js';
-import { nachBereichen } from './nach-bereichen.js';
 
-// Gewählte Ansicht nur auf diesem Gerät merken.
-const MERKER = 'system0-todos-ansicht';
-const ANSICHTEN = [
-  { id: 'prio', label: 'Nach Priorität' },
-  { id: 'bereiche', label: 'Nach Bereichen' },
-];
-
-function gemerkteAnsicht() {
-  try {
-    const wert = localStorage.getItem(MERKER);
-    return ANSICHTEN.some((a) => a.id === wert) ? wert : 'prio';
-  } catch {
-    return 'prio';
-  }
-}
-
-function merke(wert) {
-  try {
-    localStorage.setItem(MERKER, wert);
-  } catch {
-    // Speichern nicht möglich (z. B. privater Modus): dann eben Standard beim nächsten Mal.
-  }
-}
-
-function nachPrioritaet(offene, zeile) {
-  return offene.length
-    ? card({ children: list(offene.map(zeile)) })
-    : card({ children: el('p', { class: 'app__note', text: 'Keine offenen To-dos.' }) });
+function gruppe({ titel, todos }, zeile) {
+  return el('section', { class: 'todo-gruppe' }, [
+    el('h2', { class: 'todo-gruppe__titel label', text: `${titel} · ${todos.length}` }),
+    list(todos.map(zeile)),
+  ]);
 }
 
 export function todosAnsicht({ signal }) {
-  const inhalt = el('div', { class: 'app__stack' });
-  let ansicht = gemerkteAnsicht();
+  const leiste = el('div');
+  const inhalt = el('div', { class: 'todo-liste' });
+  let filter = gemerkterFilter();
   let erledigtOffen = false;
   let stand = 0; // nur das Ergebnis des neuesten Zeichnens zählt
 
@@ -55,43 +33,52 @@ export function todosAnsicht({ signal }) {
     const [todos, bereiche] = await Promise.all([ladeTodos(), ladeBereiche()]);
     if (nr !== stand || signal.aborted) return;
 
+    filter = gueltigerFilter(filter, bereiche);
+    const bekannt = new Set(bereiche.map((b) => b.id));
     const namen = new Map(bereiche.map((b) => [b.id, b.name]));
+    const sichtbar = todos.filter((t) => passt(t, filter, bekannt));
+
     const zeile = (todo) =>
       todoZeile(todo, {
-        // In der Bereichs-Ansicht steht der Bereich schon in der Kartenüberschrift.
-        bereichName: ansicht === 'prio' ? namen.get(todo.bereich_id) : null,
+        // Bereichsname nur, wenn „Alle“ gewählt ist; sonst steht er schon im Chip.
+        bereichName: filter === ALLE ? namen.get(todo.bereich_id) : null,
         onToggle: (t, an) => setzeErledigt(t.id, an),
         onOpen: (t) => oeffneBearbeiten(t, bereiche),
       });
 
-    const offene = sortiereOffene(todos);
+    leiste.replaceChildren(filterLeiste({
+      bereiche,
+      aktiv: filter,
+      onChange: (id) => {
+        filter = id;
+        zeichne();
+      },
+    }));
+
+    const gruppen = gruppiereNachZeit(sortiereOffene(sichtbar));
+    const erledigt = erledigtAbschnitt({
+      zeilen: sortiereErledigte(sichtbar).map(zeile),
+      offen: erledigtOffen,
+      umschalten: () => {
+        erledigtOffen = !erledigtOffen;
+        zeichne();
+      },
+    });
     inhalt.replaceChildren(
-      ansicht === 'bereiche' ? nachBereichen({ offene, bereiche, zeile }) : nachPrioritaet(offene, zeile),
-      erledigtAbschnitt({
-        zeilen: sortiereErledigte(todos).map(zeile),
-        offen: erledigtOffen,
-        umschalten: () => {
-          erledigtOffen = !erledigtOffen;
-          zeichne();
-        },
-      }) ?? []
+      ...(gruppen.length
+        ? gruppen.map((g) => gruppe(g, zeile))
+        : [el('p', { class: 'app__note', text: 'Nichts offen. Schön.' })]),
+      ...(erledigt ? [erledigt] : [])
     );
   }
-
-  const umschalter = tabs({
-    items: ANSICHTEN,
-    active: ansicht,
-    onChange: (id) => {
-      ansicht = id;
-      merke(id);
-      zeichne();
-    },
-  });
 
   on('daten', ({ table }) => {
     if (table === TODOS || table === BEREICHE) zeichne();
   }, { signal });
   zeichne();
 
-  return el('div', { class: 'app__stack' }, [umschalter, schnelleingabe(), inhalt]);
+  // Neues To-do landet im gerade gefilterten Bereich (sonst wäre es nach Enter sofort unsichtbar).
+  const zielBereich = () => (filter === ALLE || filter === OHNE ? null : filter);
+
+  return el('div', { class: 'app__stack' }, [leiste, schnelleingabe({ zielBereich }), inhalt]);
 }

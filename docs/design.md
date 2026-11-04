@@ -75,8 +75,9 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 Navigation (Tab-Leiste, Seitenleiste): Stile in `src/styles/nav.css`, beide aus Glas. Aktiver Eintrag:
 Symbol und Text in Elfenbein; Tab-Leiste mit kurzem Strich darunter, Seitenleiste mit Linie links.
 Markenzeile „SYSTEM 0“: auf dem iPhone oben über jeder Seite (`shell.js`), auf dem Mac oben in der Seitenleiste.
-Seitenkopf: `shell.js` baut für jeden Bereich ein `kopfbild` (Titel, Strich, Spruch des Tages). Ein Bereich
-gibt beim Anmelden optional `bild` (Kopfbild) und `ueber` (Funktion → kleine Zeile über dem Titel) mit.
+Seitenkopf: `shell.js` baut für jeden Bereich ein `kopfbild` (Titel, Strich). Ein Bereich gibt beim Anmelden
+optional `bild` (Kopfbild), `ueber` (Funktion → kleine Zeile über dem Titel) und `spruch: true` (nur Heute) mit.
+Ohne Spruch ist der Kopf niedriger (240 statt 320 px), damit der Inhalt früher anfängt.
 Bild-Ränder: oben/unten immer weich, links leicht abgedunkelt hinter dem Titel, rechts erst ab 560 px Breite.
 Lichtschein oben: `.shell::before` in `src/styles/app.css`.
 

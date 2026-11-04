@@ -1,4 +1,5 @@
-// Eine To-do-Zeile: Checkbox links, daneben Titel und darunter Datum/Bereich.
+// Eine To-do-Zeile: Checkbox links, daneben Titel und darunter Datum/Bereich, rechts ein Punkt für die Priorität
+// (hoch = Elfenbein, mittel = grau, niedrig = kein Punkt).
 // Checkbox = abhaken, Rest der Zeile antippen = Bearbeiten öffnen.
 import { el } from '../../ui/dom.js';
 import { listItem } from '../../ui/list.js';
@@ -31,10 +32,16 @@ export function todoZeile(todo, { bereichName, onToggle, onOpen }) {
   const text = el(
     'button',
     { class: 'list__inner list__inner--tap', attrs: { type: 'button' }, on: { click: () => onOpen(todo) } },
-    el('span', { class: 'list__text' }, [
-      el('span', { class: 'list__title', text: todo.titel }),
-      unterzeile(todo, bereichName),
-    ])
+    [
+      el('span', { class: 'list__text' }, [
+        el('span', { class: 'list__title', text: todo.titel }),
+        unterzeile(todo, bereichName),
+      ]),
+      !erledigt && todo.prio !== 3 && el('span', {
+        class: `todo-prio todo-prio--${todo.prio === 1 ? 'hoch' : 'mittel'}`,
+        attrs: { title: todo.prio === 1 ? 'Priorität hoch' : 'Priorität mittel' },
+      }),
+    ]
   );
 
   return listItem(el('div', { class: `todo-zeile${erledigt ? ' todo-zeile--erledigt' : ''}` }, [haken, text]));
