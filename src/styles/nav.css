@@ -98,10 +98,11 @@
   }
 }
 .nav-side__brand {
+  font-family: var(--font-serif);
+  font-weight: 500;
   margin: 0 0 var(--space-4);
   padding: 0 var(--space-3);
   font-size: var(--fs-title);
-  font-weight: 600;
 }
 .nav-side__ende {
   display: flex;

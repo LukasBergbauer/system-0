@@ -219,6 +219,15 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
     Einstellungen flacher Stein / Würfel, Physio später. Japanische Bilder, `werkzeuge/kopfbilder.py`
     (wird zum Stein-Werkzeug umgebaut) und Sprüche ersetzen: `sprueche.js` mit deutschen Sätzen
   - d) Heute, e) To-dos, f) Einstellungen wie oben geplant, aber im neuen Stil
+  Stand (neuer Plan):
+  - [x] g) Grundlook neu: `tokens.css` (Graphit `#151515`, warmes Weiß/Grau, Akzent Elfenbein `#E9E3D7`,
+        gedämpfte Bereichsfarben, Schimmer 16 %, `--font-serif`, `--fs-display`, `--fs-label`, `--sperrung`;
+        `--font-jp` entfernt). Überschriften (Seite, Karte, Modal, Kopfbild, Markenname Seitenleiste) in Serifenschrift.
+        `design.md` aktualisiert, `sw.js` auf `v12`. Lokal geprüft (iPhone-Größe)
+  - [ ] h) Bausteine neu
+  - [ ] i) Stein-Bilder + deutsche Sprüche
+  - Merke: Zeigt der Browser lokal noch die alte Fassung, Service Worker im Browser abmelden
+    bzw. hart neu laden (im Test-Browser kam das einmal vor)
   Geklärt mit Lukas:
   - To-do-Gruppen auf Mac und iPhone untereinander
   - Kopfbilder fest (kein Wechsel nach Tageszeit). Nicht plump: ohne eigenen Hintergrund,

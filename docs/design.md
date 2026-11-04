@@ -1,40 +1,46 @@
 # Design
 
 ## Richtung
-Dunkel (Graphit), clean, premium (Vorbilder: Apple Fitness, Revolut). Glas-Flächen, dünne Linien,
-Weiß als Akzent. Jeder Bereich hat eine eigene, dezente Farbe (japanisch inspiriert), die nur als
-leichter Schimmer auftaucht: Lichtschein oben, Kopfbild, kleine Details. So sieht man immer, wo man ist.
+„Stein & Licht“ (Vorlage: `docs/vorlagen/design-stein-licht.webp`, nur das Design, nicht die Inhalte).
+Dunkel, neutrales Graphit, grau-weißlich, premium und ruhig. Elegante Serifenschrift für Titel und Werte,
+kursive Untertitel, kleine Labels in gesperrten Großbuchstaben, kurzer Strich unter dem Titel.
+Akzent ist ein warmes Elfenbein. Jeder Bereich hat eine gedämpfte eigene Farbe, die nur als ganz leichter
+Schimmer im Hintergrund auftaucht; erkennbar ist der Bereich vor allem am eigenen Bild oben.
+Nicht japanisch, nicht orange/gold.
 
 ## Tokens (Startwerte, alles in `src/styles/tokens.css`)
 | Token | Wert | Verwendung |
 |---|---|---|
-| `--bg` | #16161A | Hintergrund (Graphit) |
+| `--bg` | #151515 | Hintergrund (neutrales Graphit) |
 | `--surface` | rgba(255,255,255,0.05) | Glas-Karten (mit Unschärfe dahinter) |
 | `--surface-2` | rgba(255,255,255,0.09) | Hover, Eingabefelder |
-| `--glass` | rgba(30,30,35,0.72) | dichteres Glas: Tab-Leiste, Seitenleiste, Modal |
+| `--glass` | rgba(28,28,28,0.74) | dichteres Glas: Tab-Leiste, Seitenleiste, Modal |
 | `--line` | rgba(255,255,255,0.10) | 1px-Linien und Rahmen |
-| `--text` | #F5F5F7 | Haupttext |
-| `--text-2` | #98989F | Nebentext |
-| `--accent` | #FFFFFF | Akzent: aktiv, erledigt (Haken weiß gefüllt), Hauptknopf |
-| `--accent-ink` | #16161A | Schrift/Haken auf weißem Grund |
+| `--text` | #F3F1EC | Haupttext (leicht warmes Weiß) |
+| `--text-2` | #9B978F | Nebentext (warmes Grau) |
+| `--accent` | #E9E3D7 | Elfenbein: Labels, Strich, Symbole, aktiv, erledigt (Haken gefüllt), Hauptknopf |
+| `--accent-ink` | #151515 | Schrift/Haken auf Elfenbein |
 | `--accent-2` | #7A5CFF | sparsam: Quiz (noch offen, ob es bleibt) |
 | `--warn` | #FF5C7A | überfällig, Rückfall |
-| `--farbe-standard` | #C9C9CE | Bereich ohne eigene Farbe |
-| `--farbe-heute` | #F2A7BB | Sakura |
-| `--farbe-todos` | #9CC5A1 | Matcha |
-| `--farbe-einstellungen` | #A99BD6 | Glyzinie |
-| `--farbe-physio` | #7FB2E0 | Ai-Blau |
-| `--schimmer` | 32% | Stärke des Lichtscheins oben |
+| `--farbe-standard` | #CFCBC4 | Bereich ohne eigene Farbe |
+| `--farbe-heute` | #E3CDBA | Morgenlicht |
+| `--farbe-todos` | #BCCBBE | Salbei |
+| `--farbe-einstellungen` | #C6C1D8 | Flieder-Grau |
+| `--farbe-physio` | #B5C6D6 | Nebelblau |
+| `--schimmer` | 16% | Stärke des Lichtscheins oben (ganz leicht) |
 | `--bereich` | (automatisch) | Farbe des aktiven Bereichs; `shell.js` setzt `var(--farbe-<id>)`, Wechsel blendet über |
 | `--radius` | 14px | Karten |
 | `--blur` | 24px | Unschärfe hinter Glas-Flächen |
 | `--font` | -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif | Systemschrift, kostenlos |
-| `--font-jp` | "Hiragino Mincho ProN", "Yu Mincho", serif | japanische Sprüche (Mincho = Pinsel-Serifenschrift, auf Apple-Geräten vorhanden) |
+| `--font-serif` | ui-serif, "New York", "Iowan Old Style", Georgia, serif | Titel, Werte, kursive Untertitel (Apple „New York“, schon auf den Geräten) |
 | `--space-1` … `--space-7` | 4 / 8 / 12 / 16 / 24 / 32 / 48 px | Abstände, immer aus dieser Reihe |
 | `--fs-small` | 13px | Nebentext, Beschriftungen |
 | `--fs-normal` | 16px | Fließtext, Eingaben (verhindert Zoom auf dem iPhone) |
 | `--fs-title` | 20px | Überschriften in Karten und Modals |
 | `--fs-large` | 28px | Seitentitel |
+| `--fs-display` | 48px | großer Seitentitel im Kopfbild |
+| `--fs-label` | 11px | kleine Labels in Großbuchstaben |
+| `--sperrung` | 0.18em | Buchstabenabstand für Labels und Markenzeile |
 | `--duration` | 200ms | Dauer aller Animationen |
 | `--duration-slow` | 600ms | Farbwechsel beim Bereichswechsel |
 | `--ease` | cubic-bezier(0.2, 0.8, 0.2, 1) | sanftes Abbremsen am Ende |
@@ -65,7 +71,7 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 | `symbol.js` | `symbol(name)` | dünnes Linien-Symbol (24 px, Textfarbe), z. B. `heute`, `todos`, `einstellungen`, `mehr` |
 
 Navigation (Tab-Leiste, Seitenleiste): Stile in `src/styles/nav.css`, beide aus Glas. Aktiver Eintrag:
-Symbol und Text weiß; in der Seitenleiste zusätzlich eine Linie links in der Bereichsfarbe.
+Symbol und Text hell; in der Seitenleiste zusätzlich eine Linie links (wird in Teil h auf Elfenbein + Strich umgestellt).
 Lichtschein oben: `.shell::before` in `src/styles/app.css`.
 
 ## Kopfbilder und Sprüche
@@ -79,7 +85,8 @@ Lichtschein oben: `.shell::before` in `src/styles/app.css`.
   damit nicht überall derselbe Spruch steht.
 
 ## Regeln
-- Weiß ist der Akzent für Zustände (Haken, Fortschritt, aktiver Tab). Bereichsfarben nur als Schimmer, nie als volle Fläche.
+- Elfenbein ist der Akzent für Zustände und kleine Details (Haken, Fortschritt, aktiver Tab, Labels, Strich). Bereichsfarben nur als leichter Schimmer, nie als Fläche.
+- Serifenschrift für Titel und große Werte, Systemschrift für Text, Listen und Eingaben.
 - Linien statt Schatten. Viel Luft. Wenige Schriftgrößen.
 - Sanfte, kurze Animationen (150–250 ms). Respektiert „Bewegung reduzieren“ des Geräts.
 - iPhone: Tippflächen mindestens 44 px, Rand um die Notch/Home-Leiste beachten.

@@ -11,9 +11,10 @@
   backdrop-filter: blur(var(--blur));
 }
 .card__title {
+  font-family: var(--font-serif);
+  font-weight: 500;
   margin: 0 0 var(--space-3);
   font-size: var(--fs-title);
-  font-weight: 600;
 }
 
 /* ---------- Symbol (src/ui/symbol.js) ---------- */

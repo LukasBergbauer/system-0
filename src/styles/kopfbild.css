@@ -31,9 +31,10 @@
   gap: var(--space-2);
 }
 .kopf__titel {
+  font-family: var(--font-serif);
+  font-weight: 500;
   margin: 0;
   font-size: var(--fs-large);
-  font-weight: 700;
   letter-spacing: -0.02em;
 }
 .kopf__spruch {
@@ -43,7 +44,8 @@
   margin: 0;
 }
 .kopf__jp {
-  font-family: var(--font-jp);
+  font-family: var(--font-serif);
+  font-style: italic;
   font-size: var(--fs-normal);
   letter-spacing: 0.12em;
   color: var(--bereich);

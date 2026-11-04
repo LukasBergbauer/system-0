@@ -38,9 +38,10 @@
   background: var(--line);
 }
 .modal__title {
+  font-family: var(--font-serif);
+  font-weight: 500;
   margin: 0;
   font-size: var(--fs-title);
-  font-weight: 600;
 }
 .modal__body {
   display: flex;

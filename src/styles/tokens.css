@@ -1,26 +1,26 @@
 /* Alle Design-Werte an einer Stelle (siehe docs/design.md).
    Farben tauschen = nur diese Datei ändern. */
 :root {
-  /* Farben: Graphit, Glas, Weiß als Akzent */
-  --bg: #16161A;
+  /* Farben: neutrales Graphit, Glas, Elfenbein als Akzent (Vorlage: docs/vorlagen/design-stein-licht.webp) */
+  --bg: #151515;
   --surface: rgba(255, 255, 255, 0.05); /* Glas-Karte: halbdurchsichtig */
   --surface-2: rgba(255, 255, 255, 0.09); /* Hover, Eingabefelder */
-  --glass: rgba(30, 30, 35, 0.72); /* dichteres Glas für Leisten und Modal */
+  --glass: rgba(28, 28, 28, 0.74); /* dichteres Glas für Leisten und Modal */
   --line: rgba(255, 255, 255, 0.10);
-  --text: #F5F5F7;
-  --text-2: #98989F;
-  --accent: #FFFFFF; /* Akzent ist Weiß: aktiv, erledigt, Hauptknopf */
-  --accent-ink: #16161A; /* Schrift/Haken auf weißem Grund */
+  --text: #F3F1EC; /* leicht warmes Weiß */
+  --text-2: #9B978F; /* warmes Grau */
+  --accent: #E9E3D7; /* Elfenbein: Labels, Strich, Symbole, aktiv, erledigt, Hauptknopf */
+  --accent-ink: #151515; /* Schrift/Haken auf weißem Grund */
   --accent-2: #7A5CFF;
   --warn: #FF5C7A;
 
-  /* Bereichsfarben: nur als leichter Schimmer (Lichtschein, Kopfbild, kleine Details) */
-  --farbe-standard: #C9C9CE;
-  --farbe-heute: #F2A7BB; /* Sakura */
-  --farbe-todos: #9CC5A1; /* Matcha */
-  --farbe-einstellungen: #A99BD6; /* Glyzinie */
-  --farbe-physio: #7FB2E0; /* Ai-Blau */
-  --schimmer: 32%; /* Stärke des Lichtscheins oben */
+  /* Bereichsfarben: gedämpft, nur als ganz leichter Schimmer im Hintergrund */
+  --farbe-standard: #CFCBC4;
+  --farbe-heute: #E3CDBA; /* Morgenlicht */
+  --farbe-todos: #BCCBBE; /* Salbei */
+  --farbe-einstellungen: #C6C1D8; /* Flieder-Grau */
+  --farbe-physio: #B5C6D6; /* Nebelblau */
+  --schimmer: 16%; /* Stärke des Lichtscheins oben */
 
   /* Form */
   --radius: 14px;
@@ -37,11 +37,14 @@
 
   /* Schrift */
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-  --font-jp: "Hiragino Mincho ProN", "Yu Mincho", serif; /* japanische Sprüche, auf Apple-Geräten vorhanden */
+  --font-serif: ui-serif, "New York", "Iowan Old Style", Georgia, serif; /* Apple „New York“, schon auf den Geräten */
+  --fs-label: 11px; /* kleine Labels in Großbuchstaben */
   --fs-small: 13px;
   --fs-normal: 16px; /* 16px verhindert das automatische Zoomen auf dem iPhone */
   --fs-title: 20px;
   --fs-large: 28px;
+  --fs-display: 48px; /* großer Seitentitel im Kopfbild */
+  --sperrung: 0.18em; /* Buchstabenabstand für Labels und Markenzeile */
 
   /* Bewegung */
   --duration: 200ms;
@@ -58,5 +61,5 @@
 @property --bereich {
   syntax: "<color>";
   inherits: true;
-  initial-value: #C9C9CE;
+  initial-value: #CFCBC4;
 }
