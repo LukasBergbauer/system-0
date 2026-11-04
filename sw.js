@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v14';
+const VERSION = 'v15';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -111,7 +111,14 @@ self.addEventListener('fetch', (event) => {
 
   if (DEV && own) {
     // no-cache: beim Server nachfragen statt alte Dateien aus dem Browser-Zwischenspeicher zu nehmen.
-    event.respondWith(fetch(event.request, { cache: 'no-cache' }).catch(() => caches.match(event.request)));
+    // Neue Anfrage nur aus der Adresse bauen: Chrome lehnt fetch(Seitenaufruf, { cache }) ab,
+    // dann käme die Seite nur noch aus dem Cache (alt) oder gar nicht.
+    const frisch = new Request(event.request.url, { cache: 'no-cache', credentials: 'same-origin' });
+    event.respondWith(
+      fetch(frisch)
+        .catch(() => caches.match(event.request))
+        .then((antwort) => antwort || Response.error())
+    );
     return;
   }
   event.respondWith(
