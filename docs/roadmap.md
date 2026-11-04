@@ -186,9 +186,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         `einstellungen.svg` (Glyzinie), erzeugt mit `werkzeuge/kopfbilder.py`; `src/core/sprueche.js`
         (20 Sprüche, `spruchDesTages(versatz)`); Token `--font-jp` (Mincho); Bild-Maske blendet auch oben weich aus.
         Musterseite: Chip wechselt Farbe, Bild und Spruch. `sw.js` auf `v11`. Lokal geprüft (iPhone-Größe)
-  - [ ] d) Heute
-  - [ ] e) To-dos neu angeordnet
-  - [ ] f) Einstellungen als Kacheln
+  - d), e), f): im neuen Stil umgesetzt, siehe „Stand (neuer Plan)“ unten
 
   **Richtungswechsel nach Teil c (04.11.2026):** Lukas hat eine Vorlage gezeigt
   (`docs/vorlagen/design-stein-licht.webp`). Davon nur das **Design** übernehmen, nicht die Inhalte
@@ -233,7 +231,12 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] e) To-dos neu angeordnet (Details in `module/todos.md`): Chips, Gruppen nach Zeit, Prio-Punkt, keine Kästen.
         Dazu: Spruch nur noch auf Heute (Router-Option `spruch: true`), Kopf ohne Spruch kompakter (`kopf--kompakt`).
         `sw.js` auf `v18`. Lokal geprüft
-  - [ ] f) Einstellungen als Kacheln
+  - [x] f) Einstellungen als Kacheln: große Kachel „Abgleich“ (`src/app/abgleich-kachel.js`; Zustand groß, Uhrzeit und
+        wartende Änderungen klein, Antippen = abgleichen, Symbol dreht sich beim Abgleich, Fehler in `--warn`),
+        kleine Kacheln „Export“ und „Konto“ (Abmelden mit kurzer Rückfrage). `sync-karte.js`/`export-karte.js` entfernt.
+        `sw.js` auf `v19`. Lokal geprüft (iPhone-Größe, Mac-Breite, Zustände per Test-Ereignis)
+  - [ ] Lukas prüft alles auf echtem iPhone (gepushte Fassung) und Mac. Danach Design-Runde abhaken.
+        Kleine Nacharbeiten, die ihm dabei auffallen, direkt in der nächsten Sitzung vor dem PhysioZentrum erledigen
   - [x] g) Grundlook neu: `tokens.css` (Graphit `#151515`, warmes Weiß/Grau, Akzent Elfenbein `#E9E3D7`,
         gedämpfte Bereichsfarben, Schimmer 16 %, `--font-serif`, `--fs-display`, `--fs-label`, `--sperrung`;
         `--font-jp` entfernt). Überschriften (Seite, Karte, Modal, Kopfbild, Markenname Seitenleiste) in Serifenschrift.
@@ -259,6 +262,14 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
     (Lichtschein oben, Kopfbild, kleine Details). `--accent` wird Weiß; Haken, aktiver Tab usw. entsprechend
 - [ ] PhysioZentrum: Datenbank und Suche (`module/physio.md`) – vorgezogen aus Phase 2, Lukas' Wunsch:
   schnell Inhalte hinzufügen und bearbeiten können
+  Plan für den Einstieg (nächste Sitzung, Details in `module/physio.md`):
+  1. Erst nur reden, nichts bauen: Was will Lukas als Erstes eintragen (Übungen? Krankheitsbilder? Muskeln?),
+     welche Felder braucht ein Eintrag, wie soll „schnell hinzufügen“ aussehen (wie die To-do-Schnelleingabe?),
+     wie verlinken (Eintrag → Eintrag), Bilder ja/nein im ersten Schritt
+  2. Daraus Datenmodell (Migration `003_physio.sql`, Muster in `datenmodell.md`) und Plan in Teilen (a, b, …) machen,
+     in `module/physio.md` eintragen, Okay abwarten
+  3. Aussehen im neuen Stil „Stein & Licht“ (`design.md`): Kopf mit eigenem Foto (Lukas erzeugt 3 Varianten mit dem
+     Prompt aus `design.md`, Objekt passend zu Physio), Farbe `--farbe-physio`, Kacheln/Chips/Gruppen wie bei To-dos
 - [ ] Kalender persönlich, mit Google-Kalender-Anzeige (`module/kalender.md`)
 - [ ] Heute-Übersicht (`module/heute.md`)
 - [ ] Routinen, ohne Sperre (`module/routinen.md`)

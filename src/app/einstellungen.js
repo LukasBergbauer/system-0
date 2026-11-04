@@ -1,34 +1,49 @@
-// Bereich „Einstellungen“: Abgleich-Status, Export, Abmelden.
+// Bereich „Einstellungen“ als Kacheln: große Kachel „Abgleich“, darunter klein „Export“ und „Konto“.
 import { el } from '../ui/dom.js';
-import { card } from '../ui/card.js';
-import { button } from '../ui/button.js';
+import { kachel, kacheln } from '../ui/kachel.js';
 import { signOut } from '../core/auth.js';
-import { syncCard } from './sync-karte.js';
-import { exportCard } from './export-karte.js';
+import { downloadExport } from '../core/export.js';
+import { abgleichKachel } from './abgleich-kachel.js';
 
-function kontoCard() {
-  const logout = button({
-    text: 'Abmelden',
-    variant: 'ghost',
+function exportKachel(meldung) {
+  return kachel({
+    symbol: 'export',
+    titel: 'Export',
+    wert: 'Sichern',
+    text: 'Alle Daten als JSON-Datei',
     onClick: async () => {
-      logout.disabled = true;
-      await signOut(); // main.js schaltet danach auf die Login-Ansicht
+      meldung.textContent = '';
+      try {
+        await downloadExport();
+      } catch (err) {
+        console.warn(err);
+        meldung.textContent = 'Export hat nicht geklappt. Bitte nochmal versuchen.';
+      }
     },
-  });
-  return card({
-    title: 'Konto',
-    children: el('div', { class: 'app__stack' }, [
-      el('p', { class: 'app__note', text: 'Du bist angemeldet.' }),
-      el('div', { class: 'app__row' }, logout),
-    ]),
   });
 }
 
+function kontoKachel() {
+  const k = kachel({
+    symbol: 'konto',
+    titel: 'Konto',
+    wert: 'Abmelden',
+    text: 'Daten bleiben gespeichert',
+    onClick: async () => {
+      // Kachel ist groß und schnell angetippt, deshalb kurz nachfragen.
+      if (!confirm('Wirklich abmelden?')) return;
+      k.disabled = true;
+      await signOut(); // main.js schaltet danach auf die Login-Ansicht
+    },
+  });
+  return k;
+}
+
 function ansicht({ signal }) {
+  const meldung = el('p', { class: 'app__note app__note--warn', attrs: { role: 'alert' } });
   return el('div', { class: 'app__stack' }, [
-    syncCard({ signal }),
-    exportCard(),
-    kontoCard(),
+    kacheln([abgleichKachel({ signal }), exportKachel(meldung), kontoKachel()]),
+    meldung,
   ]);
 }
 

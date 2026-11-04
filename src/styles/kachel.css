@@ -78,6 +78,23 @@
   color: var(--text-2);
 }
 
+/* Zustände (z. B. Abgleich): Symbol dreht sich, Warnung färbt den Wert */
+.kachel--laeuft .kachel__symbol .symbol {
+  animation: kachel-drehen 1s linear infinite;
+}
+.kachel--warn .kachel__wert {
+  color: var(--warn);
+}
+.kachel:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+@keyframes kachel-drehen {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* ---------- Chips ---------- */
 .chips {
   display: flex;
