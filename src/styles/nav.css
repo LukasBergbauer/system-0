@@ -1,0 +1,148 @@
+/* Rahmen der App: Tab-Leiste (iPhone) und Seitenleiste (Mac, ab 768 px).
+   Aktiver Eintrag: Symbol in Neon, Text weiß. Feinschliff in der Design-Runde. */
+
+.shell {
+  min-height: inherit;
+}
+.shell__main {
+  /* Platz, damit die Tab-Leiste nichts verdeckt */
+  padding-bottom: calc(var(--tap) + var(--space-4));
+}
+
+.symbol {
+  width: var(--space-5);
+  height: var(--space-5);
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: color var(--duration) var(--ease);
+}
+
+.nav-tabs__link,
+.nav-side__link {
+  color: var(--text-2);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--duration) var(--ease), background var(--duration) var(--ease);
+}
+.nav-tabs__link[aria-current="page"],
+.nav-side__link[aria-current="page"] {
+  color: var(--text);
+}
+.nav-tabs__link[aria-current="page"] .symbol,
+.nav-side__link[aria-current="page"] .symbol {
+  color: var(--accent);
+}
+.nav-tabs__link:focus-visible,
+.nav-side__link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* ---------- Tab-Leiste (iPhone) ---------- */
+.nav-tabs {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+.nav-tabs__link {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-height: var(--tap);
+  padding: var(--space-2) var(--space-1);
+  font-size: var(--fs-small);
+}
+.nav-tabs__link span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.nav-tabs__link:active {
+  opacity: 0.6;
+}
+
+/* ---------- Seitenleiste (Mac) ---------- */
+.nav-side {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .shell {
+    display: grid;
+    grid-template-columns: var(--sidebar) 1fr;
+  }
+  .shell__main {
+    padding-bottom: 0;
+  }
+  .nav-tabs {
+    display: none;
+  }
+  .nav-side {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    height: 100dvh;
+    padding: var(--space-6) var(--space-3) var(--space-4);
+    background: var(--surface);
+    border-right: 1px solid var(--line);
+  }
+}
+.nav-side__brand {
+  margin: 0 0 var(--space-4);
+  padding: 0 var(--space-3);
+  font-size: var(--fs-title);
+  font-weight: 600;
+}
+.nav-side__ende {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: auto;
+}
+.nav-side__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--tap);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius);
+}
+.nav-side__link:hover,
+.nav-side__link[aria-current="page"] {
+  color: var(--text);
+  background: var(--surface-2);
+}
+/* Neon-Linie links am aktiven Eintrag, wie bei den Tabs */
+.nav-side__link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: var(--space-3);
+  bottom: var(--space-3);
+  width: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transition: transform var(--duration) var(--ease);
+}
+.nav-side__link[aria-current="page"]::before {
+  transform: scaleY(1);
+}

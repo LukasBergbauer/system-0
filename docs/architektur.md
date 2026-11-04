@@ -19,8 +19,9 @@ system-0/
 ├── supabase/migrations/       # SQL-Dateien, nummeriert: 001_basis.sql, 002_todos.sql …
 ├── docs/
 └── src/
-    ├── main.js                # Start: Auth prüfen, Router starten
-    ├── app/                   # Ansichten außerhalb der Module: Login, Startansicht, vorläufige Karten
+    ├── main.js                # Start: Router starten, je nach Login Login oder Rahmen zeigen
+    ├── app/                   # außerhalb der Module: Login, Rahmen (shell, nav, nav-plan), Mehr,
+    │                          # Einstellungen, bereiche.js (meldet alle Bereiche an)
     ├── core/
     │   ├── config.js          # Supabase-URL + Publishable key
     │   ├── supabase.js        # Verbindung (Bibliothek vom CDN, erst bei Bedarf geladen)
@@ -30,9 +31,9 @@ system-0/
     │   ├── sync.js            # Abgleich lokal ↔ Supabase (+ sync-local.js, tabellen.js)
     │   ├── einstellungen.js   # Schlüssel/Wert-Einstellungen
     │   ├── export.js          # alle Daten als JSON
-    │   ├── router.js          # Navigation zwischen Modulen
+    │   ├── router.js          # Navigation: Hash-Adressen #/<id>, Bereiche melden sich an
     │   └── events.js          # Module benachrichtigen sich gegenseitig
-    ├── ui/                    # wiederverwendbare Bausteine: Karte, Liste, Checkbox, Modal, Tabs
+    ├── ui/                    # wiederverwendbare Bausteine: Karte, Liste, Checkbox, Modal, Tabs, Symbole
     ├── styles/
     │   ├── tokens.css         # alle Farben, Abstände, Radien, Schriften
     │   ├── base.css
@@ -46,11 +47,21 @@ system-0/
 ## Aufbau eines Moduls
 ```
 src/module/<name>/
-├── index.js      # registriert das Modul beim Router
+├── index.js      # registriert das Modul beim Router: register({ id, titel, symbol, ansicht })
 ├── view.js       # baut die Ansicht
 ├── data.js       # Lesen/Schreiben über core/store.js
 └── *.js          # weitere kleine Teile nach Bedarf
 ```
+
+Neues Modul anmelden: `index.js` in `src/app/bereiche.js` importieren, Symbol in `src/ui/symbol.js` ergänzen.
+`ansicht({ signal })` liefert ein Element; Ereignisse mit `on(name, fn, { signal })` abonnieren,
+dann enden sie automatisch beim Verlassen der Ansicht.
+
+## Navigation
+- Adressen: `#/heute`, `#/einstellungen` … (Zurück-Knopf und -Wischen funktionieren). Unbekannt → `#/heute`.
+- iPhone: Tab-Leiste unten. Reihenfolge Heute, To-dos, Kalender, Training, dann der Rest, Einstellungen ganz hinten.
+  Bis 5 Bereiche stehen alle in der Leiste, ab 6 die ersten 4 + „Mehr“ (`#/mehr`, Liste der übrigen).
+- Mac (ab 768 px): Seitenleiste links mit allen Bereichen, Einstellungen unten.
 
 ## Mac vs. iPhone
 Eine Codebasis, responsives Layout:

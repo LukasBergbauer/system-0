@@ -1,5 +1,4 @@
-// Karte „Export“: lädt alle Daten als JSON-Datei herunter.
-// Vorläufig hier, später in der Einstellungen-Ansicht.
+// Karte „Export“ (in den Einstellungen): lädt alle Daten als JSON-Datei herunter.
 import { el } from '../ui/dom.js';
 import { card } from '../ui/card.js';
 import { button } from '../ui/button.js';

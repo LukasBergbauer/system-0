@@ -10,4 +10,4 @@
 Liest nur Daten der anderen Module über `core/`, speichert selbst nichts.
 
 ## Stand
-Noch nicht begonnen.
+Platzhalter: `src/module/heute/` meldet „Heute“ beim Router an und zeigt „Kommt bald“. Das eigentliche Modul folgt in Phase 1.

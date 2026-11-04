@@ -37,4 +37,5 @@
 
   /* Bedienung */
   --tap: 44px; /* Mindestgröße für Tippflächen */
+  --sidebar: 240px; /* Breite der Seitenleiste auf dem Mac */
 }

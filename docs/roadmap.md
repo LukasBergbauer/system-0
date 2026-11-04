@@ -83,7 +83,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - Merke: Die Karten „Sync-Test“ und „Export“ sind vorläufig in der Startansicht; Testnotiz fliegt raus,
     Export wandert in die Einstellungen, sobald es Navigation gibt
   - Merke: iPhone testet nur die gepushte Fassung (GitHub Pages); `localhost` gibt es nur auf dem Mac
-- [ ] Navigation (Tab-Leiste iPhone, Seitenleiste Mac)
+- [x] Navigation (Tab-Leiste iPhone, Seitenleiste Mac)
   Plan (mit Lukas abgestimmt):
   - `src/core/router.js`: Hash-Adressen (`#/heute`, `#/einstellungen` …), funktioniert auf GitHub Pages
     ohne Extra-Einrichtung, Zurück-Knopf/-Wischen klappt. Module melden sich an mit
@@ -99,6 +99,21 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
     rücken vorhandene Einträge nach
   - Aussehen nur mit vorhandenen Bausteinen und Tokens (Feinschliff in der Design-Runde)
   - Am Ende neue Dateien in `APP_FILES` von `sw.js` eintragen und `VERSION` hochzählen
+
+  Stand:
+  - [x] `src/core/router.js`: `register({ id, titel, symbol, ansicht })`, optional `nav: false`, `ende: true`;
+        `ansicht({ signal })` – `signal` endet beim Verlassen (`on(name, fn, { signal })` in `events.js`).
+        Ereignisse `route` und `bereiche`. Unbekannte Adresse → `#/heute` (ohne Verlaufs-Eintrag)
+  - [x] `src/app/shell.js` (Rahmen), `nav.js` (Seitenleiste + Tab-Leiste), `nav-plan.js` (Reihenfolge, Tab-Plätze),
+        `mehr.js` (`#/mehr`), `bereiche.js` (meldet alle Bereiche an), Stile `src/styles/nav.css`, Token `--sidebar`
+  - [x] Symbole `src/ui/symbol.js` (Heute, Einstellungen, Mehr; neues Modul → Symbol dort ergänzen)
+  - [x] „Heute“-Platzhalter in `src/module/heute/`, „Einstellungen“ (`src/app/einstellungen.js`) mit Abgleich, Export, Abmelden;
+        Testnotiz und `start.js` entfernt
+  - [x] „Mehr“ erscheint erst ab 6 Bereichen; jetzt (2 Bereiche) zeigt die Tab-Leiste Heute + Einstellungen
+  - [x] Lokal geprüft: Mac-Seitenleiste, iPhone-Tab-Leiste, Zurück, unbekannte Adresse,
+        „Mehr“ mit vorübergehenden Test-Bereichen (nur im Browser, nicht im Code)
+  - [x] `sw.js` auf `v7`, neue Dateien in `APP_FILES`
+  - [ ] Von Lukas auf echtem iPhone (gepushte Fassung) und Mac geprüft
 
 ## Phase 1 – Alltag
 - [ ] To-dos (`module/todos.md`)

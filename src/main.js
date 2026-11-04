@@ -1,10 +1,14 @@
-// Startpunkt der App: Service Worker anmelden, je nach Login die passende Ansicht zeigen.
+// Startpunkt der App: Service Worker anmelden, Router starten,
+// je nach Login den Login oder den Rahmen der App (Navigation + Bereiche) zeigen.
 import { isLoggedIn, onAuthChange, watchSession } from './core/auth.js';
-import { loginView } from './app/login.js';
-import { startView } from './app/start.js';
+import { startRouter } from './core/router.js';
 import { startSync } from './core/sync.js';
+import { loginView } from './app/login.js';
+import { shell } from './app/shell.js';
+import './app/bereiche.js';
 
 const app = document.getElementById('app');
+let aufraeumen = null;
 
 function registerServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
@@ -23,10 +27,19 @@ function registerServiceWorker() {
 }
 
 function render(loggedIn) {
-  app.replaceChildren(loggedIn ? startView() : loginView());
-  if (loggedIn) startSync();
+  aufraeumen?.();
+  aufraeumen = null;
+  if (!loggedIn) {
+    app.replaceChildren(loginView());
+    return;
+  }
+  const rahmen = shell();
+  aufraeumen = rahmen.destroy;
+  app.replaceChildren(rahmen.element);
+  startSync();
 }
 
+startRouter();
 onAuthChange(render);
 render(isLoggedIn());
 registerServiceWorker();

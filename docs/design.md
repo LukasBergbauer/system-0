@@ -26,6 +26,7 @@ sparsame Neon-Akzente. Alles im selben Stil, nicht bunt.
 | `--duration` | 200ms | Dauer aller Animationen |
 | `--ease` | cubic-bezier(0.2, 0.8, 0.2, 1) | sanftes Abbremsen am Ende |
 | `--tap` | 44px | Mindesthöhe/-breite für Tippflächen |
+| `--sidebar` | 240px | Breite der Seitenleiste auf dem Mac |
 
 Akzentfarben sind Platzhalter: Lukas kann sie später in einer einzigen Datei tauschen.
 
@@ -44,6 +45,10 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 | `input.js` | `input({ label, placeholder, value, type, onInput })` | Eingabefeld mit Beschriftung |
 | `modal.js` | `modal({ title, content, actions })` → `{ open, close }` | iPhone: von unten, Mac: mittig |
 | `tabs.js` | `tabs({ items, active, onChange })` | Umschalter, aktiver Tab mit Neon-Linie |
+| `symbol.js` | `symbol(name)` | dünnes Linien-Symbol (24 px, Textfarbe), z. B. `heute`, `einstellungen`, `mehr` |
+
+Navigation (Tab-Leiste, Seitenleiste): Stile in `src/styles/nav.css`. Aktiver Eintrag: Symbol in `--accent`,
+Text weiß; in der Seitenleiste zusätzlich eine Neon-Linie links.
 
 ## Regeln
 - Neon nur für Zustände und kleine Details (Haken, Fortschrittsring, aktiver Tab), nie für Flächen.

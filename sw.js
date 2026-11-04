@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v6';
+const VERSION = 'v7';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -26,7 +26,15 @@ const APP_FILES = [
   './src/core/einstellungen.js',
   './src/core/export.js',
   './src/app/login.js',
-  './src/app/start.js',
+  './src/app/shell.js',
+  './src/app/nav.js',
+  './src/app/nav-plan.js',
+  './src/app/bereiche.js',
+  './src/app/mehr.js',
+  './src/app/einstellungen.js',
+  './src/module/heute/index.js',
+  './src/module/heute/view.js',
+  './src/core/router.js',
   './src/app/sync-karte.js',
   './src/app/export-karte.js',
   './src/styles/tokens.css',
@@ -35,6 +43,7 @@ const APP_FILES = [
   './src/styles/checkbox.css',
   './src/styles/modal.css',
   './src/styles/app.css',
+  './src/styles/nav.css',
   './src/ui/dom.js',
   './src/ui/card.js',
   './src/ui/list.js',
@@ -43,6 +52,7 @@ const APP_FILES = [
   './src/ui/input.js',
   './src/ui/modal.js',
   './src/ui/tabs.js',
+  './src/ui/symbol.js',
   './bausteine.html',
   './src/bausteine.js',
   './assets/icons/icon.svg',

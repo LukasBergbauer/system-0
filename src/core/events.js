@@ -7,8 +7,9 @@ export function emit(name, detail) {
 }
 
 // Gibt eine Funktion zurück, die das Zuhören wieder beendet.
-export function on(name, handler) {
+// Mit { signal } endet das Zuhören automatisch, z. B. wenn eine Ansicht verlassen wird.
+export function on(name, handler, { signal } = {}) {
   const listener = (e) => handler(e.detail);
-  bus.addEventListener(name, listener);
+  bus.addEventListener(name, listener, { signal });
   return () => bus.removeEventListener(name, listener);
 }
