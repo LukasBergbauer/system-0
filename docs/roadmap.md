@@ -182,7 +182,10 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         `.symbol`-Stil von `nav.css` nach `components.css` (wird jetzt auch außerhalb der Navigation gebraucht).
         Musterseite: Chip-Leiste schaltet die Bereichsfarbe um, Beispiele in `src/bausteine-neu.js` (Kopfbild mit Testbild).
         `sw.js` auf `v10`. Lokal geprüft (Mac + iPhone-Größe)
-  - [ ] c) Illustrationen + Sprüche
+  - [x] c) Illustrationen + Sprüche: `assets/bilder/heute.svg` (Kirschblüten), `todos.svg` (Bambus + Ensō),
+        `einstellungen.svg` (Glyzinie), erzeugt mit `werkzeuge/kopfbilder.py`; `src/core/sprueche.js`
+        (20 Sprüche, `spruchDesTages(versatz)`); Token `--font-jp` (Mincho); Bild-Maske blendet auch oben weich aus.
+        Musterseite: Chip wechselt Farbe, Bild und Spruch. `sw.js` auf `v11`. Lokal geprüft (iPhone-Größe)
   - [ ] d) Heute
   - [ ] e) To-dos neu angeordnet
   - [ ] f) Einstellungen als Kacheln

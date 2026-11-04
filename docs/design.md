@@ -29,6 +29,7 @@ leichter Schimmer auftaucht: Lichtschein oben, Kopfbild, kleine Details. So sieh
 | `--radius` | 14px | Karten |
 | `--blur` | 24px | Unschärfe hinter Glas-Flächen |
 | `--font` | -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif | Systemschrift, kostenlos |
+| `--font-jp` | "Hiragino Mincho ProN", "Yu Mincho", serif | japanische Sprüche (Mincho = Pinsel-Serifenschrift, auf Apple-Geräten vorhanden) |
 | `--space-1` … `--space-7` | 4 / 8 / 12 / 16 / 24 / 32 / 48 px | Abstände, immer aus dieser Reihe |
 | `--fs-small` | 13px | Nebentext, Beschriftungen |
 | `--fs-normal` | 16px | Fließtext, Eingaben (verhindert Zoom auf dem iPhone) |
@@ -66,6 +67,16 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 Navigation (Tab-Leiste, Seitenleiste): Stile in `src/styles/nav.css`, beide aus Glas. Aktiver Eintrag:
 Symbol und Text weiß; in der Seitenleiste zusätzlich eine Linie links in der Bereichsfarbe.
 Lichtschein oben: `.shell::before` in `src/styles/app.css`.
+
+## Kopfbilder und Sprüche
+- Bilder in `assets/bilder/<bereich>.svg`, selbst gezeichnet mit `werkzeuge/kopfbilder.py`
+  (Aufruf im Repo-Ordner: `python3 werkzeuge/kopfbilder.py assets/bilder`). Japanisch inspiriert, zart,
+  ohne Hintergrund, in der Bereichsfarbe; Format 360 × 240, Motiv rechts der Mitte.
+- Heute: Kirschblüten vor der Morgensonne · To-dos: Bambus vor einem Ensō (Pinselkreis) ·
+  Einstellungen: Glyzinie im Mondlicht · Physio (kommt mit dem Modul): Ai-Blau, Bewegung/Training
+- Sprüche: `src/core/sprueche.js`, 20 japanische Sprichwörter mit deutscher Übersetzung.
+  `spruchDesTages(versatz)` wechselt um Mitternacht; jeder Bereich nimmt einen eigenen `versatz`,
+  damit nicht überall derselbe Spruch steht.
 
 ## Regeln
 - Weiß ist der Akzent für Zustände (Haken, Fortschritt, aktiver Tab). Bereichsfarben nur als Schimmer, nie als volle Fläche.

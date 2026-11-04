@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 360 240" fill="none">
+<defs><radialGradient id="mond" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#E6E0FF" stop-opacity="0.5"/><stop offset="1" stop-color="#A99BD6" stop-opacity="0"/></radialGradient><ellipse id="tropfen" rx="4.2" ry="3.2"/></defs>
+<circle cx="250" cy="96" r="86" fill="url(#mond)"/>
+<path d="M120 10C170 22 220 14 260 20C300 26 330 16 372 8" stroke="#5B5068" stroke-width="4" stroke-linecap="round"/>
+<path d="M172 17.714277321058912V116.7" stroke="#5B5068" stroke-opacity=".5" stroke-width="1.2"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(164.4 23.7) rotate(-2.7) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(179 23.7) rotate(-25.2) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(165.4 33.7) rotate(23.4) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(174 33.7) rotate(-32.7) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.9" transform="translate(163 43.7) rotate(-36.6) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.9" transform="translate(182.7 43.7) rotate(12.3) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(165.5 53.7) rotate(-38.8) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(177.7 53.7) rotate(-24.8) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(169.1 63.7) rotate(-2.9) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(176.5 63.7) rotate(1.5) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(166.5 73.7) rotate(13) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(176.2 73.7) rotate(39.8) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.8" transform="translate(179.1 83.7) rotate(16.6) scale(0.8)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.7" transform="translate(169.4 93.7) rotate(-16.9) scale(0.8)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.7" transform="translate(173.3 103.7) rotate(-8) scale(0.7)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.7" transform="translate(168.2 113.7) rotate(36.6) scale(0.7)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.6" transform="translate(175 123.7) rotate(-23.2) scale(0.6)"/>
+<path d="M214 20.461631568625087V155.5" stroke="#5B5068" stroke-opacity=".5" stroke-width="1.2"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(207.5 26.5) rotate(-8.2) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(215.9 26.5) rotate(22.3) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(210 36.5) rotate(-13.4) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(225.7 36.5) rotate(-30.6) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(210.4 46.5) rotate(-35.2) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(223.3 46.5) rotate(4.7) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(208.7 56.5) rotate(18.6) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.9" transform="translate(216.3 56.5) rotate(-30.7) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.9" transform="translate(209.2 66.5) rotate(-18.4) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.9" transform="translate(223.8 66.5) rotate(-15.7) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(205.6 76.5) rotate(-8.5) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(222.1 76.5) rotate(-32) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(205.4 86.5) rotate(-19.3) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(220.9 86.5) rotate(-16.3) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(212.5 96.5) rotate(6.6) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.8" transform="translate(216.7 96.5) rotate(-10.3) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.8" transform="translate(217.8 106.5) rotate(-1.3) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.7" transform="translate(209.8 116.5) rotate(-25.4) scale(0.8)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.7" transform="translate(215.8 126.5) rotate(25.4) scale(0.8)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.7" transform="translate(212 136.5) rotate(19.2) scale(0.7)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.7" transform="translate(218.3 146.5) rotate(36) scale(0.7)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#D9D0F7" fill-opacity="0.6" transform="translate(210.5 156.5) rotate(-6.3) scale(0.7)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.6" transform="translate(215.2 166.5) rotate(37) scale(0.6)"/>
+<path d="M256 16.430443156055897V173.9" stroke="#5B5068" stroke-opacity=".5" stroke-width="1.2"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(246.7 22.4) rotate(25.9) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(264 22.4) rotate(-26) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(246.9 32.7) rotate(-21.7) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.9" transform="translate(263.3 32.7) rotate(9.1) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.9" transform="translate(252 43) rotate(-23.7) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(257.2 43) rotate(-4.3) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(254.4 53.3) rotate(-10.5) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(262.7 53.3) rotate(-11) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.9" transform="translate(246.7 63.6) rotate(12.6) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.9" transform="translate(263.5 63.6) rotate(-28.8) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.8" transform="translate(254.7 73.9) rotate(32.8) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(263.1 73.9) rotate(-38.3) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(249.8 84.2) rotate(18.4) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.8" transform="translate(259.6 84.2) rotate(-34) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(250.9 94.5) rotate(32) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(262.5 94.5) rotate(23.5) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(248.7 104.8) rotate(14.8) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.8" transform="translate(263.2 104.8) rotate(-6.6) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.8" transform="translate(250 115.1) rotate(5.8) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.7" transform="translate(260.6 125.4) rotate(6.6) scale(0.8)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.7" transform="translate(251.9 135.7) rotate(11.2) scale(0.8)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.7" transform="translate(261.4 146) rotate(18.3) scale(0.8)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#D9D0F7" fill-opacity="0.7" transform="translate(253.5 156.3) rotate(6.5) scale(0.7)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#D9D0F7" fill-opacity="0.7" transform="translate(258.4 166.5) rotate(-33.3) scale(0.7)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.6" transform="translate(253 176.8) rotate(8.1) scale(0.7)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#D9D0F7" fill-opacity="0.6" transform="translate(258 187.1) rotate(15.9) scale(0.6)"/>
+<path d="M298 17.983503465948083V135" stroke="#5B5068" stroke-opacity=".5" stroke-width="1.2"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(289.7 24) rotate(-19.5) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(299.1 24) rotate(14.3) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(294.8 34) rotate(32.5) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(306.3 34) rotate(31.3) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.9" transform="translate(293.7 44) rotate(-24.1) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.9" transform="translate(303.4 44) rotate(33.1) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.9" transform="translate(288.7 54) rotate(6.6) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(302 54) rotate(-0.3) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(289.8 64) rotate(16.9) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(307.2 64) rotate(-26.5) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(293.5 74) rotate(-22.9) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(302.2 74) rotate(-0.5) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.8" transform="translate(294.8 84) rotate(38.6) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(302.2 84) rotate(-37.5) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(291.6 94) rotate(16.7) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.7" transform="translate(302.1 104) rotate(23.3) scale(0.8)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.7" transform="translate(296.9 114) rotate(-3.6) scale(0.8)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#D9D0F7" fill-opacity="0.7" transform="translate(299.1 124) rotate(-21) scale(0.7)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.7" transform="translate(296.6 134) rotate(10.3) scale(0.7)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#D9D0F7" fill-opacity="0.6" transform="translate(300 144) rotate(12.4) scale(0.6)"/>
+<path d="M338 19.84430946567728V109.8" stroke="#5B5068" stroke-opacity=".5" stroke-width="1.2"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(325.7 25.8) rotate(-24.1) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(344.6 25.8) rotate(-39.1) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.9" transform="translate(331.9 35.8) rotate(-25.7) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#C9BDF0" fill-opacity="0.9" transform="translate(341.9 35.8) rotate(15.8) scale(1.1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.9" transform="translate(331.9 45.8) rotate(20.5) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.9" transform="translate(342.8 45.8) rotate(32.5) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(336.2 55.8) rotate(17.8) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(340.1 55.8) rotate(10) scale(1)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(330 65.8) rotate(5.5) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#A99BD6" fill-opacity="0.8" transform="translate(345.7 65.8) rotate(35.5) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.8" transform="translate(333.9 75.8) rotate(-23.6) scale(0.9)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.7" transform="translate(343 85.8) rotate(11.3) scale(0.8)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#8E7EC4" fill-opacity="0.7" transform="translate(333.8 95.8) rotate(32) scale(0.8)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#D9D0F7" fill-opacity="0.7" transform="translate(342.4 105.8) rotate(3) scale(0.7)"/>
+<use href="#tropfen" xlink:href="#tropfen" fill="#D9D0F7" fill-opacity="0.6" transform="translate(335.1 115.8) rotate(32.8) scale(0.7)"/>
+<path d="M0 0C6-5 18-6 26 0C18 6 6 5 0 0Z" fill="#8FAF8A" fill-opacity=".7" transform="translate(136 20) rotate(30)"/>
+<path d="M0 0C6-5 18-6 26 0C18 6 6 5 0 0Z" fill="#8FAF8A" fill-opacity=".7" transform="translate(200 22) rotate(150)"/>
+<path d="M0 0C6-5 18-6 26 0C18 6 6 5 0 0Z" fill="#8FAF8A" fill-opacity=".7" transform="translate(238 24) rotate(20)"/>
+<path d="M0 0C6-5 18-6 26 0C18 6 6 5 0 0Z" fill="#8FAF8A" fill-opacity=".7" transform="translate(300 24) rotate(160)"/>
+<path d="M0 0C6-5 18-6 26 0C18 6 6 5 0 0Z" fill="#8FAF8A" fill-opacity=".7" transform="translate(334 20) rotate(40)"/>
+</svg>

@@ -1,22 +1,14 @@
 // Musterseite, zweiter Teil: Bausteine aus der Design-Runde (Kopfbild, Kachel, Chips, Knopf primary).
-// Oben schaltet eine Chip-Leiste die Bereichsfarbe um, damit man den Schimmer je Bereich sieht.
+// Oben schaltet eine Chip-Leiste die Bereichsfarbe um (mit Kopfbild und Spruch des Bereichs).
 import { el } from './ui/dom.js';
 import { card } from './ui/card.js';
 import { button } from './ui/button.js';
 import { kopfbild } from './ui/kopfbild.js';
 import { kachel, kacheln } from './ui/kachel.js';
 import { chips } from './ui/chips.js';
+import { spruchDesTages } from './core/sprueche.js';
 
 const note = (text) => el('p', { class: 'muster__note', text });
-
-// Vorläufiges Testbild (Sonne + Blüten), bis in Teil c die echten Illustrationen kommen.
-const TESTBILD = 'data:image/svg+xml,' + encodeURIComponent(
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200">' +
-  '<circle cx="190" cy="80" r="60" fill="#F2A7BB" opacity="0.35"/>' +
-  '<path d="M40 190 C120 140 170 120 290 40" stroke="#8a6f6a" stroke-width="3" fill="none"/>' +
-  '<g fill="#F2A7BB"><circle cx="150" cy="128" r="9"/><circle cx="210" cy="92" r="11"/><circle cx="255" cy="62" r="8"/></g>' +
-  '</svg>'
-);
 
 const FARBEN = [
   { id: 'heute', label: 'Heute' },
@@ -25,8 +17,18 @@ const FARBEN = [
   { id: 'physio', label: 'Physio' },
 ];
 
+// Physio hat noch kein eigenes Bild (kommt mit dem Modul).
+const BILDER = { heute: 'heute', todos: 'todos', einstellungen: 'einstellungen' };
+const kopfPlatz = el('div');
+
 function setzeFarbe(id) {
   document.documentElement.style.setProperty('--bereich', `var(--farbe-${id})`);
+  const versatz = FARBEN.findIndex((f) => f.id === id);
+  kopfPlatz.replaceChildren(kopfbild({
+    titel: FARBEN[versatz].label,
+    bild: BILDER[id] && `assets/bilder/${BILDER[id]}.svg`,
+    spruch: spruchDesTages(versatz),
+  }));
 }
 
 export function farbUmschalter() {
@@ -46,12 +48,8 @@ export function farbUmschalter() {
 
 export function kopfbildDemo() {
   return el('div', { class: 'muster__stack' }, [
-    kopfbild({
-      titel: 'Heute',
-      bild: TESTBILD,
-      spruch: { jp: '一期一会', de: 'Jede Begegnung ist einmalig.' },
-    }),
-    note('Kopfbild: zarte Illustration ohne eigenen Hintergrund, Ränder laufen weich aus. Testbild, echte Bilder folgen.'),
+    kopfPlatz,
+    note('Kopfbild: zarte Illustration ohne eigenen Hintergrund, Ränder laufen weich aus. Spruch wechselt täglich, je Bereich ein anderer.'),
   ]);
 }
 

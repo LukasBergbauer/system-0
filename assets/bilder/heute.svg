@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 360 240" fill="none">
+<defs><radialGradient id="sonne" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#FFD9C7" stop-opacity="0.95"/><stop offset="0.6" stop-color="#F2A7BB" stop-opacity="0.55"/><stop offset="1" stop-color="#F2A7BB" stop-opacity="0"/></radialGradient><path id="blatt" d="M0 0C-5-3-7-10-3.2-14.5L0-12.2 3.2-14.5C7-10 5-3 0 0Z"/><g id="bluete"><use href="#blatt" xlink:href="#blatt" transform="rotate(0)"/><use href="#blatt" xlink:href="#blatt" transform="rotate(72)"/><use href="#blatt" xlink:href="#blatt" transform="rotate(144)"/><use href="#blatt" xlink:href="#blatt" transform="rotate(216)"/><use href="#blatt" xlink:href="#blatt" transform="rotate(288)"/><circle r="2.6" fill="#B85C78"/></g><g id="knospe"><ellipse rx="3.4" ry="5" fill="#F2A7BB"/></g></defs>
+<circle cx="232" cy="104" r="92" fill="url(#sonne)"/>
+<path d="M120 150H300" stroke="#F2A7BB" stroke-opacity="0.35" stroke-width="2" stroke-linecap="round"/>
+<path d="M160 162H340" stroke="#F2A7BB" stroke-opacity="0.25" stroke-width="2" stroke-linecap="round"/>
+<path d="M100 174H250" stroke="#F2A7BB" stroke-opacity="0.2" stroke-width="2" stroke-linecap="round"/>
+<path d="M372 18C330 30 300 44 270 70C246 90 222 100 190 104C168 107 150 116 136 132" stroke="#5E474D" stroke-width="5" stroke-linecap="round"/>
+<path d="M270 70C262 52 250 40 232 34M222 98C214 112 210 126 212 140M190 104C178 92 166 88 150 88" stroke="#5E474D" stroke-width="2.6" stroke-linecap="round"/>
+<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(300 46) rotate(10) scale(1.25)"/>
+<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(248 84) rotate(40) scale(1.1)"/>
+<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(232 34) rotate(5) scale(1.0)"/>
+<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(212 140) rotate(22) scale(0.95)"/>
+<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(150 88) rotate(60) scale(1.05)"/>
+<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(196 96) rotate(15) scale(0.8)"/>
+<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(276 60) rotate(50) scale(0.85)"/>
+<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(336 30) rotate(30) scale(0.9)"/>
+<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(136 132) rotate(12) scale(1.0)"/>
+<use href="#bluete" xlink:href="#bluete" fill="#F7BFCD" transform="translate(170 112) rotate(70) scale(0.7)"/>
+<use href="#knospe" xlink:href="#knospe" transform="translate(258 50) rotate(-30)"/>
+<use href="#knospe" xlink:href="#knospe" transform="translate(222 120) rotate(20)"/>
+<use href="#knospe" xlink:href="#knospe" transform="translate(162 98) rotate(-60)"/>
+<use href="#blatt" xlink:href="#blatt" fill="#F2A7BB" fill-opacity="0.8" transform="translate(110 160) rotate(30) scale(.8)"/>
+<use href="#blatt" xlink:href="#blatt" fill="#F2A7BB" fill-opacity="0.6" transform="translate(80 120) rotate(-20) scale(.8)"/>
+<use href="#blatt" xlink:href="#blatt" fill="#F2A7BB" fill-opacity="0.7" transform="translate(160 190) rotate(70) scale(.8)"/>
+<use href="#blatt" xlink:href="#blatt" fill="#F2A7BB" fill-opacity="0.45" transform="translate(60 196) rotate(10) scale(.8)"/>
+<use href="#blatt" xlink:href="#blatt" fill="#F2A7BB" fill-opacity="0.5" transform="translate(124 210) rotate(-50) scale(.8)"/>
+</svg>

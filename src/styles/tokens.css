@@ -37,6 +37,7 @@
 
   /* Schrift */
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --font-jp: "Hiragino Mincho ProN", "Yu Mincho", serif; /* japanische Sprüche, auf Apple-Geräten vorhanden */
   --fs-small: 13px;
   --fs-normal: 16px; /* 16px verhindert das automatische Zoomen auf dem iPhone */
   --fs-title: 20px;
