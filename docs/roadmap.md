@@ -134,7 +134,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] Von Lukas auf echtem iPhone (gepushte Fassung) und Mac geprüft, inkl. Abgleich
   - Merke: Die Funktionen der To-dos sind nicht endgültig. Änderungswünsche sammelt Lukas in
     `module/todos.md` unter „Wünsche für später“; umgesetzt werden sie als eigener kleiner Schritt
-- [ ] Design-Runde: Lukas ist mit Design und Anordnung noch nicht zufrieden. Erst überarbeiten,
+- [x] Design-Runde (abgeschlossen 04.11.2026, Stil „Stein & Licht“, siehe `design.md`): Lukas ist mit Design und Anordnung noch nicht zufrieden. Erst überarbeiten,
   wenn mit Navigation und To-dos echte Ansichten da sind. Dann gemeinsam festlegen, was sich ändern soll
   (Farben, Abstände, Schrift, Anordnung der Ansichten) und `design.md`, `tokens.css` und die Bausteine anpassen.
   Lukas' Punkte (Gespräch vom 04.11.2026):
@@ -240,8 +240,9 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         (kleinere Symbole, Wert 20 px, weniger Innenabstand). `sw.js` auf `v20`. Lokal geprüft (iPhone-Größe, Mac-Breite)
   - [x] Sichtbarer „Klick“ beim Seitenwechsel behoben: Fotos aller Bereiche werden beim Start vorgeladen
         (`src/app/kopfbilder.js`), Einblende-Animation entfernt. `sw.js` auf `v21`
-  - [ ] Lukas prüft alles auf echtem iPhone (gepushte Fassung) und Mac. Danach Design-Runde abhaken.
-        Kleine Nacharbeiten, die ihm dabei auffallen, direkt in der nächsten Sitzung vor dem PhysioZentrum erledigen
+  - [x] Von Lukas auf dem Mac geprüft: „passt“. Runde abgeschlossen
+  - Offen/später: iPhone-Test der letzten Fassung (Lukas pusht selbst). Lukas will später in eigenen Sitzungen
+    nochmal ans Design (Feinschliff); dafür reichen `design.md` und diese Notizen
   - [x] g) Grundlook neu: `tokens.css` (Graphit `#151515`, warmes Weiß/Grau, Akzent Elfenbein `#E9E3D7`,
         gedämpfte Bereichsfarben, Schimmer 16 %, `--font-serif`, `--fs-display`, `--fs-label`, `--sperrung`;
         `--font-jp` entfernt). Überschriften (Seite, Karte, Modal, Kopfbild, Markenname Seitenleiste) in Serifenschrift.
