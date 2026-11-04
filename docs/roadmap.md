@@ -233,8 +233,10 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         (Kugel), `todos.svg` (Steinstapel), `einstellungen.svg` (Quader), je ca. 3,5 KB; japanische Bilder ersetzt.
         `sprueche.js` mit 20 deutschen Sätzen (`spruchDesTages` liefert jetzt Text). Kopfbild-Maske ringsum weich.
         `sw.js` auf `v14`. Lokal geprüft (iPhone-Größe, Musterseite)
-  - Merke: Zeigt der Browser lokal noch die alte Fassung, Service Worker im Browser abmelden
-    bzw. hart neu laden (im Test-Browser kam das einmal vor)
+  - [x] Service Worker repariert (`v15`): lokal (localhost) baut er jede Anfrage neu aus der Adresse
+        (`new Request(url, { cache: 'no-cache' })`) und liefert bei Fehlern eine saubere Fehlerantwort.
+        Vorher kam lokal teils die alte Fassung oder eine Seite ohne Stil. Von Lukas auf dem Mac bestätigt
+  - Merke: Zeigt der Browser lokal noch die alte Fassung, hart neu laden (⌘ + ⇧ + R)
   Geklärt mit Lukas:
   - To-do-Gruppen auf Mac und iPhone untereinander
   - Kopfbilder fest (kein Wechsel nach Tageszeit). Nicht plump: ohne eigenen Hintergrund,
