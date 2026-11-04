@@ -1,5 +1,5 @@
 /* Rahmen der App: Tab-Leiste (iPhone) und Seitenleiste (Mac, ab 768 px).
-   Aktiver Eintrag: Symbol in Neon, Text weiß. Feinschliff in der Design-Runde. */
+   Glas-Leisten; aktiver Eintrag: Text und Symbol weiß, Linie links in der Bereichsfarbe. */
 
 .shell {
   min-height: inherit;
@@ -51,8 +51,10 @@
   z-index: 10;
   display: flex;
   padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-  background: var(--surface);
+  background: var(--glass);
   border-top: 1px solid var(--line);
+  -webkit-backdrop-filter: blur(var(--blur));
+  backdrop-filter: blur(var(--blur));
 }
 .nav-tabs__link {
   flex: 1;
@@ -100,8 +102,11 @@
     gap: var(--space-1);
     height: 100dvh;
     padding: var(--space-6) var(--space-3) var(--space-4);
-    background: var(--surface);
+    z-index: 2;
+    background: var(--glass);
     border-right: 1px solid var(--line);
+    -webkit-backdrop-filter: blur(var(--blur));
+    backdrop-filter: blur(var(--blur));
   }
 }
 .nav-side__brand {
@@ -130,7 +135,7 @@
   color: var(--text);
   background: var(--surface-2);
 }
-/* Neon-Linie links am aktiven Eintrag, wie bei den Tabs */
+/* Linie links am aktiven Eintrag, in der Farbe des Bereichs */
 .nav-side__link::before {
   content: "";
   position: absolute;
@@ -139,7 +144,7 @@
   bottom: var(--space-3);
   width: 2px;
   border-radius: 2px;
-  background: var(--accent);
+  background: var(--bereich);
   transform: scaleY(0);
   transition: transform var(--duration) var(--ease);
 }

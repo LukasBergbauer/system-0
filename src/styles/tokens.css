@@ -1,19 +1,30 @@
 /* Alle Design-Werte an einer Stelle (siehe docs/design.md).
    Farben tauschen = nur diese Datei ändern. */
 :root {
-  /* Farben */
-  --bg: #0A0A0B;
-  --surface: #141416;
-  --surface-2: #1C1C1F;
-  --line: rgba(255, 255, 255, 0.08);
+  /* Farben: Graphit, Glas, Weiß als Akzent */
+  --bg: #16161A;
+  --surface: rgba(255, 255, 255, 0.05); /* Glas-Karte: halbdurchsichtig */
+  --surface-2: rgba(255, 255, 255, 0.09); /* Hover, Eingabefelder */
+  --glass: rgba(30, 30, 35, 0.72); /* dichteres Glas für Leisten und Modal */
+  --line: rgba(255, 255, 255, 0.10);
   --text: #F5F5F7;
-  --text-2: #8E8E93;
-  --accent: #3DFFB0;
+  --text-2: #98989F;
+  --accent: #FFFFFF; /* Akzent ist Weiß: aktiv, erledigt, Hauptknopf */
+  --accent-ink: #16161A; /* Schrift/Haken auf weißem Grund */
   --accent-2: #7A5CFF;
   --warn: #FF5C7A;
 
+  /* Bereichsfarben: nur als leichter Schimmer (Lichtschein, Kopfbild, kleine Details) */
+  --farbe-standard: #C9C9CE;
+  --farbe-heute: #F2A7BB; /* Sakura */
+  --farbe-todos: #9CC5A1; /* Matcha */
+  --farbe-einstellungen: #A99BD6; /* Glyzinie */
+  --farbe-physio: #7FB2E0; /* Ai-Blau */
+  --schimmer: 32%; /* Stärke des Lichtscheins oben */
+
   /* Form */
   --radius: 14px;
+  --blur: 24px; /* Unschärfe hinter Glas-Flächen */
 
   /* Abstände (4er-Raster) */
   --space-1: 4px;
@@ -33,9 +44,18 @@
 
   /* Bewegung */
   --duration: 200ms;
+  --duration-slow: 600ms; /* Farbwechsel beim Bereichswechsel */
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
 
   /* Bedienung */
   --tap: 44px; /* Mindestgröße für Tippflächen */
   --sidebar: 240px; /* Breite der Seitenleiste auf dem Mac */
+}
+
+/* Farbe des aktiven Bereichs. Als echte Farbe angemeldet, damit der Wechsel sanft überblendet.
+   Startwert = --farbe-standard (hier muss er wörtlich stehen). */
+@property --bereich {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #C9C9CE;
 }

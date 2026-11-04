@@ -32,6 +32,8 @@ export function shell() {
     ansicht?.abort();
     ansicht = new AbortController();
     document.title = `${bereich.titel} · System 0`;
+    // Bereichsfarbe für den Schimmer (Token --farbe-<id>, sonst Standard).
+    element.style.setProperty('--bereich', `var(--farbe-${bereich.id}, var(--farbe-standard))`);
     inhalt.replaceChildren(
       el('h1', { class: 'app__title', text: bereich.titel }),
       bereich.ansicht({ signal: ansicht.signal }),

@@ -1,4 +1,27 @@
-/* Grundlayout der App-Ansichten (vorläufig, Feinschliff in der Design-Runde). */
+/* Grundlayout der App-Ansichten. */
+
+/* Lichtschein oben in der Farbe des aktiven Bereichs (--bereich setzt shell.js). */
+.shell {
+  transition: --bereich var(--duration-slow) var(--ease);
+}
+.shell::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: 60dvh;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 90% 100% at 50% 0%,
+    color-mix(in srgb, var(--bereich) var(--schimmer), transparent),
+    transparent 70%
+  );
+}
+.shell__main {
+  position: relative;
+  z-index: 1;
+}
+
 .app {
   max-width: 560px;
   margin: 0 auto;

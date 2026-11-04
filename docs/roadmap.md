@@ -137,23 +137,66 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 - [ ] Design-Runde: Lukas ist mit Design und Anordnung noch nicht zufrieden. Erst überarbeiten,
   wenn mit Navigation und To-dos echte Ansichten da sind. Dann gemeinsam festlegen, was sich ändern soll
   (Farben, Abstände, Schrift, Anordnung der Ansichten) und `design.md`, `tokens.css` und die Bausteine anpassen.
-  Lukas' Punkte (sammeln, sobald sie ihm einfallen):
-  - (noch offen)
-  Plan für den Einstieg (nächste Sitzung):
-  1. Erst nur reden, nichts bauen: Lukas schaut sich Heute, To-dos und Einstellungen auf iPhone und Mac an
-     und nennt, was ihn stört. Claude fragt gezielt nach (Farben, Abstände, Schriftgrößen, Anordnung,
-     Tab-Leiste/Seitenleiste, Karten vs. ganze Fläche, Modal) und schlägt zu jedem Punkt 1–2 Varianten vor.
-  2. Die Punkte oben eintragen und daraus einen kleinen Plan in Teilen (a, b, …) machen, Okay abwarten.
-  3. Erst dann bauen: zuerst `tokens.css` + `design.md`, dann die Bausteine in `src/ui/` und ihre Stile,
-     zuletzt die Ansichten. Musterseite `bausteine.html` zum Vergleichen nutzen.
-  4. Wünsche zu To-do-Funktionen (falls Lukas welche nennt) nicht in der Design-Runde umsetzen,
-     sondern in `module/todos.md` unter „Wünsche für später“ notieren.
+  Lukas' Punkte (Gespräch vom 04.11.2026):
+  - Wirkt zu dunkel und zu leer, persönlicher Charakter fehlt. Mehr Premium-Gefühl
+    (Vorbilder: Apple Fitness, Revolut). Weiße Akzente. Luftigkeit ist gut so.
+  - Gewählt: Glas-Look (leicht durchscheinende Karten mit Unschärfe dahinter)
+  - Bei jedem Tippen soll man auch ohne Überschrift sehen, wo man ist: jeder Bereich bekommt
+    ein eigenes Kopfbild und eine eigene dezente Bereichsfarbe
+  - Bilder: Claude zeichnet sie selbst als SVG. Stil: ästhetisch, japanische Blumen in passenden Farben,
+    Training als Motiv; dazu japanische Sprüche
+  - Navigation (Tab-Leiste, Seitenleiste) passt, Modal passt
+  - To-dos: zu viele Kästen, alles nur untereinander, „Bereiche verwalten“ versteckt.
+    Gewählt: Gruppen nach Zeit (Überfällig · Heute · Diese Woche · Später), Priorität als farbiger Punkt,
+    kein Umschalter mehr
+  - Einstellungen wirken plump. Gewählt: Kacheln (große Status-Kachel für den Abgleich, kleinere für den Rest)
+  - „Alles sieht gleich aus“: mehr verschiedene Bausteine (Kopfbild, Kachel, Chips) statt überall dieselbe Karte
+  - PhysioZentrum ist wichtig und kommt direkt nach der Design-Runde (Roadmap entsprechend umgestellt)
+
+  Plan (mit Lukas abgestimmt; eine Sitzung, Teile a → f, nach jedem Teil kurz prüfen):
+  - a) Grundlook: `tokens.css` + `design.md`. Hintergrund heller (Graphit statt fast Schwarz),
+    Glas-Flächen (halbdurchsichtig + `backdrop-filter: blur`), Weiß als Hauptakzent
+    (Hauptknopf weiß mit schwarzer Schrift), kein Neon mehr: Zustände (Haken, Fortschritt) in Weiß.
+    Neue Tokens für Bereichsfarben (`--farbe-heute`, `--farbe-todos`, `--farbe-einstellungen`,
+    später `--farbe-physio`) und für Glas (Fläche, Unschärfe). Feiner Lichtschein oben in der Bereichsfarbe
+  - b) Bausteine: Karte im Glas-Look, Knopf `primary` (weiß); neu: `kopfbild` (Illustration + Seitentitel + Spruch),
+    `kachel` (Fläche mit Symbol, Wert, Text; groß/klein), `chips` (waagrechte Leiste antippbarer Kapseln).
+    Musterseite `bausteine.html` ergänzen
+  - c) Illustrationen: SVG je Bereich in `assets/bilder/` (Heute: z. B. Kirschblüten bei Sonnenaufgang,
+    To-dos: Ahorn/Pinselstrich, Einstellungen: Chrysantheme o. ä., Physio später: Training/Bewegung),
+    zart, ohne eigenen Hintergrund, Ränder weich auslaufend, in der Bereichsfarbe. Sprüche: kleine Liste japanischer Sprichwörter
+    (japanisch + deutsche Übersetzung), wechselt täglich; Datei in `src/app/` oder `src/core/`
+  - d) Heute: Kopfbild + Spruch des Tages; Inhalt bleibt Platzhalter (echte Heute-Übersicht ist ein eigenes Modul)
+  - e) To-dos neu angeordnet: Kopfbild, Schnelleingabe, Gruppen nach Zeit (Überfällig · Heute · Diese Woche ·
+    Später · Ohne Datum) ohne Kästen, nur mit Gruppen-Überschrift; Priorität als Punkt; Bereichs-Chips oben
+    zum Filtern (Alle · Praxis · …) mit sichtbarem Chip „Bereiche bearbeiten“; „Erledigt“ bleibt eingeklappt unten.
+    Auch auf dem Mac untereinander (keine Spalten)
+  - f) Einstellungen als Kacheln: große Abgleich-Kachel mit Status-Ring, kleine Kacheln Export und Abmelden
+  - Am Ende neue Dateien in `APP_FILES` von `sw.js` eintragen und `VERSION` hochzählen
+  Stand:
+  - [x] a) Grundlook: `tokens.css` (Graphit `#16161A`, Glas, Weiß als Akzent, Bereichsfarben, `--bereich` per `@property`),
+        Lichtschein `.shell::before` in `app.css`, Glas für Karte/Leisten/Modal, Haken weiß gefüllt,
+        Linie der Seitenleiste in Bereichsfarbe, `theme-color` angepasst; `design.md` aktualisiert; `sw.js` auf `v9`.
+        Lokal geprüft (Mac + iPhone-Größe). Noch nicht von Lukas auf dem echten iPhone geprüft
+  - [ ] b) Bausteine
+  - [ ] c) Illustrationen + Sprüche
+  - [ ] d) Heute
+  - [ ] e) To-dos neu angeordnet
+  - [ ] f) Einstellungen als Kacheln
+  Geklärt mit Lukas:
+  - To-do-Gruppen auf Mac und iPhone untereinander
+  - Kopfbilder fest (kein Wechsel nach Tageszeit). Nicht plump: ohne eigenen Hintergrund,
+    Ränder weich ins Seiten-Hintergrund auslaufen lassen (Verlauf/Maske), eher zart als flächig
+  - Neon-Grün fällt weg: Akzent ist Weiß, dazu pro Seite ein leichter Farbschimmer in der Bereichsfarbe
+    (Lichtschein oben, Kopfbild, kleine Details). `--accent` wird Weiß; Haken, aktiver Tab usw. entsprechend
+- [ ] PhysioZentrum: Datenbank und Suche (`module/physio.md`) – vorgezogen aus Phase 2, Lukas' Wunsch:
+  schnell Inhalte hinzufügen und bearbeiten können
 - [ ] Kalender persönlich, mit Google-Kalender-Anzeige (`module/kalender.md`)
 - [ ] Heute-Übersicht (`module/heute.md`)
 - [ ] Routinen, ohne Sperre (`module/routinen.md`)
 
 ## Phase 2 – Körper
-- [ ] PhysioZentrum: Datenbank und Suche (`module/physio.md`)
+- (PhysioZentrum: Datenbank und Suche → nach Phase 1 vorgezogen)
 - [ ] Trainings-Notebook mit Übernahme von Übungen aus dem PhysioZentrum (`module/training.md`)
 
 ## Phase 3 – Kopf & Richtung

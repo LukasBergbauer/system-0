@@ -1,5 +1,5 @@
 // Die beiden Navigationen: Seitenleiste (Mac, ab 768 px) und Tab-Leiste (iPhone).
-// Beide sind normale Links auf #/<id>, der aktive Eintrag hat aria-current="page" (Neon-Akzent per CSS).
+// Beide sind normale Links auf #/<id>, der aktive Eintrag hat aria-current="page" (Hervorhebung per CSS).
 import { el } from '../ui/dom.js';
 import { symbol } from '../ui/symbol.js';
 import { MEHR } from './nav-plan.js';

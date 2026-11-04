@@ -65,7 +65,9 @@ Eine Sitzung, Teile a → b, nach jedem Teil kurz prüfen.
 Stile: `src/styles/todos.css`. Gewählte Ansicht steht nur im Gerät (`localStorage`, Schlüssel `system0-todos-ansicht`).
 
 Wünsche für später (Funktionen sind nicht festgeschrieben, Lukas ergänzt hier, sobald ihm etwas einfällt):
-- (noch offen)
+- Schnell-Knöpfe direkt unter der Schnelleingabe (Datum Heute/Morgen, Priorität, Bereich),
+  damit das Bearbeiten-Fenster seltener nötig ist (Idee aus der Design-Runde, 04.11.2026)
+- Wischen zum Abhaken/Löschen (Idee aus der Design-Runde)
 
 Merke:
 - Abhaken wartet 350 ms, damit die Haken-Animation zu sehen ist, dann wandert die Zeile.

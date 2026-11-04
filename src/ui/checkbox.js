@@ -1,4 +1,4 @@
-// Checkbox: runder Kreis, beim Abhaken erscheint ein Neon-Haken mit kurzer Animation.
+// Checkbox: runder Kreis, beim Abhaken füllt sich der Kreis weiß mit Haken (kurze Animation).
 // Darunter steckt eine echte <input type="checkbox"> (Tastatur, VoiceOver).
 import { el } from './dom.js';
 

@@ -1,4 +1,4 @@
-// Tabs: Umschalter zwischen Ansichten. Der aktive Tab bekommt eine Neon-Linie.
+// Tabs: Umschalter zwischen Ansichten. Der aktive Tab bekommt eine weiße Linie.
 // items: [{ id: 'heute', label: 'Heute' }, …]
 import { el } from './dom.js';
 
