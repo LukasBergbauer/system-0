@@ -266,16 +266,12 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
     Ränder weich ins Seiten-Hintergrund auslaufen lassen (Verlauf/Maske), eher zart als flächig
   - Neon-Grün fällt weg: Akzent ist Weiß, dazu pro Seite ein leichter Farbschimmer in der Bereichsfarbe
     (Lichtschein oben, Kopfbild, kleine Details). `--accent` wird Weiß; Haken, aktiver Tab usw. entsprechend
-- [ ] PhysioZentrum: Datenbank und Suche (`module/physio.md`) – vorgezogen aus Phase 2, Lukas' Wunsch:
+- [ ] PhysioZentrum mit Mindmap (`module/physio.md`) – vorgezogen aus Phase 2, Lukas' Wunsch:
   schnell Inhalte hinzufügen und bearbeiten können
-  Plan für den Einstieg (nächste Sitzung, Details in `module/physio.md`):
-  1. Erst nur reden, nichts bauen: Was will Lukas als Erstes eintragen (Übungen? Krankheitsbilder? Muskeln?),
-     welche Felder braucht ein Eintrag, wie soll „schnell hinzufügen“ aussehen (wie die To-do-Schnelleingabe?),
-     wie verlinken (Eintrag → Eintrag), Bilder ja/nein im ersten Schritt
-  2. Daraus Datenmodell (Migration `003_physio.sql`, Muster in `datenmodell.md`) und Plan in Teilen (a, b, …) machen,
-     in `module/physio.md` eintragen, Okay abwarten
-  3. Aussehen im neuen Stil „Stein & Licht“ (`design.md`): Kopf mit eigenem Foto (Lukas erzeugt 3 Varianten mit dem
-     Prompt aus `design.md`, Objekt passend zu Physio), Farbe `--farbe-physio`, Kacheln/Chips/Gruppen wie bei To-dos
+  Gespräch geführt (04.11.2026): Mindmap ist von Anfang an die Hauptansicht (Fokus-Karte im hellen Overlay,
+  Start mit Suche, Hinzufügen und Verknüpfen direkt dort). Datenmodell `003_physio.sql` geschrieben
+  (eine Tabelle `physio_eintraege` für alle Arten + `physio_links`).
+  Plan in Teilen a → f in `module/physio.md`. **Wartet auf Lukas' Okay**, dann Teil a
 - [ ] Kalender persönlich, mit Google-Kalender-Anzeige (`module/kalender.md`)
 - [ ] Heute-Übersicht (`module/heute.md`)
 - [ ] Routinen, ohne Sperre (`module/routinen.md`)
@@ -296,5 +292,5 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 
 ## Phase 5 – Ausbau
 - [ ] Routinen-Sperre
-- [ ] PhysioZentrum als Mindmap mit Lernpfaden
+- [ ] PhysioZentrum: Lernpfade (Mindmap selbst kommt schon mit dem PhysioZentrum), Bilder, Notion
 - [ ] Notion-Anbindung
