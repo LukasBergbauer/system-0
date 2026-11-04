@@ -189,6 +189,36 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [ ] d) Heute
   - [ ] e) To-dos neu angeordnet
   - [ ] f) Einstellungen als Kacheln
+
+  **Richtungswechsel nach Teil c (04.11.2026):** Lukas hat eine Vorlage gezeigt
+  (`docs/vorlagen/design-stein-licht.webp`). Davon nur das **Design** übernehmen, nicht die Inhalte
+  (kein „STILL“, keine Texte daraus). Nicht japanisch, nicht orange/gold, sondern grau-weißlich.
+  Das gilt jetzt statt der japanischen Bilder und Sprüche aus Teil c; a und b bleiben die Grundlage.
+  Entscheidungen:
+  - Bild oben wie in der Vorlage (fotorealistischer Stein im Lichtstrahl), von Claude selbst gebaut
+    (SVG mit Verläufen, Unschärfe und Körnung), so nah wie möglich an der Vorlage, in Grau statt Gold
+  - Untertitel: kursiver deutscher Spruch, wechselt täglich (eigene Sätze, keine Zitate)
+  - Akzent: warmes Grau-Weiß (Elfenbein) für Labels, Strich, Symbole, aktiven Tab;
+    Bereichsfarbe nur noch als ganz leichter Schimmer im Hintergrund
+  - Kopfzeile: dezent „SYSTEM 0“ in gesperrter Serifenschrift oben auf jeder Seite
+  - Navigation bleibt unten (Tab-Leiste iPhone, Seitenleiste Mac); keine Kapsel-Navigation oben
+  Design-Merkmale aus der Vorlage: Serifenschrift (Apple „New York“ über `ui-serif`, kostenlos, schon auf
+  den Geräten) für Titel, Werte und kursive Untertitel; kurzer Strich unter dem Titel; kleine Labels in
+  gesperrten Großbuchstaben; Kacheln mit Symbol im abgerundeten Quadrat; großes Bild, das in den Inhalt übergeht;
+  aktiver Tab mit kurzem Strich darunter.
+
+  Neuer Plan (wartet auf Lukas' Okay; Teile g → i, danach d → f im neuen Stil, nach jedem Teil kurz prüfen):
+  - g) Grundlook neu: `tokens.css` + `design.md`. Akzent Elfenbein (`--accent`), Serifen-Token `--font-serif`,
+    Label-Stil (Großbuchstaben, Sperrung), Schimmer schwächer; `--font-jp` entfernen
+  - h) Bausteine neu: Markenzeile „SYSTEM 0“; Kopfbild neu (großer Serifentitel, Strich, kursiver Spruch,
+    Bild vollflächig, unten weich in den Inhalt auslaufend); Kacheln (Symbol im abgerundeten Quadrat, Label in
+    Großbuchstaben, Wert in Serifenschrift); Tab-Leiste/Seitenleiste: aktiver Eintrag Elfenbein + Strich;
+    Chips im neuen Stil. Neue Symbole für Abgleich, Export, Konto. Musterseite anpassen
+  - i) Bilder + Sprüche: Stein-Szenen als SVG (dunkler Grund, Lichtstrahl schräg von rechts oben, Körnung).
+    Je Bereich ein anderes Objekt, damit man sieht, wo man ist: Heute Kugel, To-dos gestapelte Steine,
+    Einstellungen flacher Stein / Würfel, Physio später. Japanische Bilder, `werkzeuge/kopfbilder.py`
+    (wird zum Stein-Werkzeug umgebaut) und Sprüche ersetzen: `sprueche.js` mit deutschen Sätzen
+  - d) Heute, e) To-dos, f) Einstellungen wie oben geplant, aber im neuen Stil
   Geklärt mit Lukas:
   - To-do-Gruppen auf Mac und iPhone untereinander
   - Kopfbilder fest (kein Wechsel nach Tageszeit). Nicht plump: ohne eigenen Hintergrund,
