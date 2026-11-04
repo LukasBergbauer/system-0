@@ -4,13 +4,14 @@ import { el } from '../ui/dom.js';
 import { symbol } from '../ui/symbol.js';
 import { MEHR } from './nav-plan.js';
 
-function link(bereich, klasse, aktiv) {
+// kurz = true (Tab-Leiste): kurzer Name, falls der Bereich einen hat („Physio“ statt „PhysioZentrum“).
+function link(bereich, klasse, aktiv, kurz = false) {
   return el('a', {
     class: klasse,
     attrs: { href: `#/${bereich.id}`, 'aria-current': aktiv ? 'page' : false },
   }, [
     symbol(bereich.symbol),
-    el('span', { text: bereich.titel }),
+    el('span', { text: (kurz && bereich.kurztitel) || bereich.titel }),
   ]);
 }
 
@@ -27,7 +28,7 @@ export function renderSide(nav, plan, aktivId) {
 
 export function renderTabs(nav, plan, aktivId) {
   const imMehr = aktivId === MEHR.id || plan.mehr.some((b) => b.id === aktivId);
-  const eintraege = plan.tabs.map((b) => link(b, 'nav-tabs__link', b.id === aktivId));
+  const eintraege = plan.tabs.map((b) => link(b, 'nav-tabs__link', b.id === aktivId, true));
   if (plan.mehr.length > 0) eintraege.push(link(MEHR, 'nav-tabs__link', imMehr));
   nav.replaceChildren(...eintraege);
 }

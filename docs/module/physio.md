@@ -16,7 +16,20 @@ Vorgezogen nach Phase 1 (Datenbank + Mindmap), **Phase 5** (Lernpfade, Notion).
   nicht im Browser-Code stehen darf. Vorher klären, ob Notion Quelle oder nur Kopie sein soll.
 
 ## Stand
-Gespräch vom 04.11.2026 abgeschlossen, Datenmodell und Plan stehen (unten). **Wartet auf Lukas' Okay**, dann Teil a.
+Plan von Lukas abgesegnet (04.11.2026). Teil a gebaut; **als Nächstes Teil b** (Overlay + Suche).
+- [x] a) Grundgerüst + Daten:
+  - `src/module/physio/arten.js` (Arten + optionale Felder je Art, `art(id)`),
+    `daten.js` (`ladeEintraege`, `ladeLinks`, `neuerEintrag(art, titel)`, `aendereEintrag`, `loescheEintrag`
+    – löscht seine Verknüpfungen mit, `verknuepfe(a, b)` – keine doppelten, nicht mit sich selbst, `loese(a, b)`,
+    `nachbarn(id, eintraege, links)`, `zaehleLinks`, `suche(eintraege, text)` – Titel, Kurz, Text, Felder;
+    ohne Groß/Klein und Akzente; Titel-Treffer zuerst), `view.js` (Seite), `index.js` (Anmeldung)
+  - Seite: große Kachel „Mindmap“ (noch nicht antippbar, kommt in b), Kacheln mit Anzahl je Art und Verknüpfungen
+  - Symbol `physio` (drei verbundene Punkte); Tab-Leiste zeigt „Physio“ (neue Router-Option `kurztitel`)
+  - Noch ohne Kopfbild: Zeile `bild:` in `index.js` einschalten, sobald `assets/bilder/physio-1…3.webp` da sind
+    (und in `APP_FILES` von `sw.js` eintragen)
+  - Tabellen in `src/core/tabellen.js`; `sw.js` auf `v22`. Lokal geprüft (iPhone-Größe, Mac-Breite,
+    Daten-Funktionen mit Testdaten im Browser, ohne echte Daten anzulegen)
+  - Offen: Lukas führt `003_physio.sql` in Supabase aus (vorher meldet der Abgleich für die zwei Tabellen einen Fehler 404)
 
 ## Entscheidungen (Gespräch 04.11.2026)
 - Zuerst: Übungen, Krankheitsbilder, Muskeln + Regionen. Techniken gibt es als Art schon, Inhalte später.

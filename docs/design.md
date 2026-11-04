@@ -70,13 +70,13 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 | `kopfbild.js` | `kopfbild({ titel, bild, spruch })` | Seitenkopf: Bild vollflächig dahinter (unten/links weich ausgeblendet), großer Serifentitel, Strich, kursiver Spruch |
 | `kachel.js` | `kacheln([…])`, `kachel({ symbol, titel, wert, text, gross, onClick, children })` | filigrane Glas-Kacheln im 2er-Raster; klein = Symbol oben, `gross` = ganze Breite mit Symbol links; Symbol (18 px) im kleinen abgerundeten Quadrat (34 px), `titel` als Label, `wert` in Serifenschrift (20 px), `text` klein; Zustände `kachel--laeuft` (Symbol dreht), `kachel--warn` |
 | `chips.js` | `chips({ items, active, onChange, aktionen })` | waagrechte Kapsel-Leiste (wischbar, Serifenschrift); gewählt = Elfenbein gefüllt; `aktionen` = gestrichelte Chips, die nur etwas auslösen |
-| `symbol.js` | `symbol(name)` | dünnes Linien-Symbol (24 px, Textfarbe), z. B. `heute`, `todos`, `einstellungen`, `mehr`, `abgleich`, `export`, `konto` |
+| `symbol.js` | `symbol(name)` | dünnes Linien-Symbol (24 px, Textfarbe), z. B. `heute`, `todos`, `einstellungen`, `mehr`, `abgleich`, `export`, `konto`, `physio` |
 
 Navigation (Tab-Leiste, Seitenleiste): Stile in `src/styles/nav.css`, beide aus Glas. Aktiver Eintrag:
 Symbol und Text in Elfenbein; Tab-Leiste mit kurzem Strich darunter, Seitenleiste mit Linie links.
 Markenzeile „SYSTEM 0“: auf dem iPhone oben über jeder Seite (`shell.js`), auf dem Mac oben in der Seitenleiste.
 Seitenkopf: `shell.js` baut für jeden Bereich ein `kopfbild` (Titel, Strich). Ein Bereich gibt beim Anmelden
-optional `bild` (Kopfbild), `ueber` (Funktion → kleine Zeile über dem Titel) und `spruch: true` (nur Heute) mit.
+optional `bild` (Kopfbild), `ueber` (Funktion → kleine Zeile über dem Titel) und `spruch: true` (nur Heute) mit; `kurztitel` = kürzerer Name für die Tab-Leiste (z. B. „Physio“).
 Ohne Spruch ist der Kopf niedriger (240 statt 320 px), damit der Inhalt früher anfängt.
 Bild-Ränder: oben/unten immer weich, links leicht abgedunkelt hinter dem Titel, rechts erst ab 560 px Breite.
 Lichtschein oben: `.shell::before` in `src/styles/app.css`.

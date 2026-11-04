@@ -8,7 +8,8 @@
 //   (zum Abmelden von Ereignissen: on('daten', fn, { signal })).
 // Optional: nav: false (nicht in Tab-Leiste/Seitenleiste), ende: true (immer ganz hinten),
 //   bild: Pfad oder Liste von Pfaden (Kopfbild; Liste = täglich eine andere Variante), ueber: () => Text (kleine Zeile über dem Titel, z. B. Datum),
-//   spruch: true (Spruch des Tages unter dem Titel; nur Heute).
+//   spruch: true (Spruch des Tages unter dem Titel; nur Heute),
+//   kurztitel: kürzerer Name für die Tab-Leiste auf dem iPhone (z. B. „Physio“).
 //
 // Ereignisse: 'bereiche' (neuer Bereich angemeldet), 'route' (anderer Bereich aktiv).
 import { emit } from './events.js';
