@@ -1,24 +1,25 @@
 // Ansicht „PhysioZentrum“: große Kachel „Mindmap“ (Einstieg), darunter Kacheln mit der Anzahl je Art.
-// Die Mindmap selbst (Overlay mit Suche) kommt in Teil b; bis dahin ist die Kachel noch nicht antippbar.
+// Antippen der Mindmap-Kachel öffnet das helle Overlay (overlay.js) aus der Kachel heraus.
 // Zeichnet sich neu, sobald sich Einträge oder Verknüpfungen ändern (auch durch das andere Gerät).
 import { el } from '../../ui/dom.js';
 import { kachel, kacheln } from '../../ui/kachel.js';
 import { on } from '../../core/events.js';
 import { ARTEN } from './arten.js';
+import { oeffneMindmap } from './overlay.js';
 import { EINTRAEGE, LINKS, ladeEintraege, ladeLinks, zaehleLinks } from './daten.js';
 
 const zahl = (n, eins, viele) => `${n} ${n === 1 ? eins : viele}`;
 
-function mindmapKachel(anzahl) {
+function mindmapKachel(anzahl, signal) {
   const k = kachel({
     symbol: 'physio',
     titel: 'Mindmap',
     wert: 'Öffnen',
     text: anzahl ? 'Suchen, verknüpfen, hinzufügen' : 'Noch leer – hier legst du den ersten Punkt an',
     gross: true,
-    onClick: () => {}, // Teil b: Overlay öffnen
+    onClick: () => oeffneMindmap({ ausKnopf: k, signal }),
   });
-  k.disabled = true; // bis Teil b gebaut ist
+  k.dataset.mmStart = ''; // Overlay findet die Kachel so auch nach dem Neuzeichnen wieder
   return k;
 }
 
@@ -38,7 +39,7 @@ export function physioAnsicht({ signal }) {
     const n = zaehleLinks(eintraege, links);
     inhalt.replaceChildren(
       kacheln([
-        mindmapKachel(eintraege.length),
+        mindmapKachel(eintraege.length, signal),
         ...proArt,
         kachel({ titel: 'Verknüpfungen', wert: String(n), text: zahl(eintraege.length, 'Punkt', 'Punkte') + ' gesamt' }),
       ]),

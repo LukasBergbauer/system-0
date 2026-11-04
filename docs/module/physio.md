@@ -16,7 +16,7 @@ Vorgezogen nach Phase 1 (Datenbank + Mindmap), **Phase 5** (Lernpfade, Notion).
   nicht im Browser-Code stehen darf. Vorher klären, ob Notion Quelle oder nur Kopie sein soll.
 
 ## Stand
-Plan von Lukas abgesegnet (04.11.2026). Teil a gebaut; **als Nächstes Teil b** (Overlay + Suche).
+Plan von Lukas abgesegnet (04.11.2026). Teile a und b gebaut; **als Nächstes Teil c** (Fokus-Karte).
 - [x] a) Grundgerüst + Daten:
   - `src/module/physio/arten.js` (Arten + optionale Felder je Art, `art(id)`),
     `daten.js` (`ladeEintraege`, `ladeLinks`, `neuerEintrag(art, titel)`, `aendereEintrag`, `loescheEintrag`
@@ -30,6 +30,19 @@ Plan von Lukas abgesegnet (04.11.2026). Teil a gebaut; **als Nächstes Teil b** 
   - Tabellen in `src/core/tabellen.js`; `sw.js` auf `v22`. Lokal geprüft (iPhone-Größe, Mac-Breite,
     Daten-Funktionen mit Testdaten im Browser, ohne echte Daten anzulegen)
   - Offen: Lukas führt `003_physio.sql` in Supabase aus (vorher meldet der Abgleich für die zwei Tabellen einen Fehler 404)
+- [x] b) Overlay + Suche:
+  - `overlay.js`: `oeffneMindmap({ ausKnopf, signal })`, ein `<dialog>` mit Klasse `.hell`. Öffnen: heller Kreis
+    wächst aus der Mindmap-Kachel (`clip-path`), Schließen schrumpft zurück. Schließen per ✕, Esc oder Zurück
+    (eigener Verlaufseintrag mit `pushState`, Adresse bleibt `#/physio`). Leiste: „‹ Suche“ · MINDMAP · ✕.
+    Hört auf das Ereignis `daten` (anderes Gerät). Findet die Kachel über `data-mm-start`, auch wenn die Seite
+    dahinter neu gezeichnet wurde
+  - `suche.js`: Suchfeld oben (Serifenschrift). Leer: „Zuletzt bearbeitet“ (8) + „+ Neuer Punkt“.
+    Mit Text: Treffer (max. 30) mit Art rechts, „+ „…“ anlegen“. Noch gar nichts da: gleich das Anlegen-Formular
+  - `anlegen.js`: Art-Chips + Titel, Enter oder „Anlegen“; letzte Art wird im Gerät gemerkt
+  - `mitte.js`: gewählter Punkt groß in der Mitte (Platzhalter, Teil c macht daraus die Fokus-Karte)
+  - Helle Farben als Token-Satz `.hell` in `tokens.css` (gleiche Namen, helle Werte); Stile `src/styles/physio.css`
+  - `sw.js` auf `v23`. Lokal geprüft (iPhone-Größe, Mac-Breite): Öffnen/Schließen per ✕, Esc, Zurück; Anlegen, Suche.
+    Testpunkt danach wieder gelöscht
 
 ## Entscheidungen (Gespräch 04.11.2026)
 - Zuerst: Übungen, Krankheitsbilder, Muskeln + Regionen. Techniken gibt es als Art schon, Inhalte später.

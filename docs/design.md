@@ -47,6 +47,9 @@ Nicht japanisch, nicht orange/gold.
 | `--tap` | 44px | Mindesthöhe/-breite für Tippflächen |
 | `--sidebar` | 240px | Breite der Seitenleiste auf dem Mac |
 
+Helle Flächen (Mindmap-Overlay im PhysioZentrum): Klasse `.hell` setzt dieselben Tokens auf helle Werte
+(`--bg` #F4F1EB warmes Weiß, `--text` #1B1A18, `--accent` fast Schwarz). Bausteine darin werden so automatisch hell.
+
 Alle Farben stehen in einer einzigen Datei (`tokens.css`) und lassen sich dort tauschen.
 Neuer Bereich mit eigener Farbe: Token `--farbe-<id>` ergänzen (id wie beim Router).
 

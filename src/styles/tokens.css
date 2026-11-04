@@ -56,6 +56,21 @@
   --sidebar: 240px; /* Breite der Seitenleiste auf dem Mac */
 }
 
+/* Helle Fläche (Mindmap-Overlay im PhysioZentrum): gleiche Token-Namen, helle Werte.
+   Alles innerhalb von .hell (Chips, Eingabefelder, Listen) wird so automatisch hell. */
+.hell {
+  --bg: #F4F1EB; /* warmes Weiß */
+  --surface: rgba(27, 26, 24, 0.04);
+  --surface-2: rgba(27, 26, 24, 0.06);
+  --glass: rgba(244, 241, 235, 0.86);
+  --line: rgba(27, 26, 24, 0.12);
+  --text: #1B1A18;
+  --text-2: #77736B;
+  --accent: #1B1A18; /* auf Hell ist der Akzent fast Schwarz */
+  --accent-ink: #F4F1EB;
+  color-scheme: light;
+}
+
 /* Farbe des aktiven Bereichs. Als echte Farbe angemeldet, damit der Wechsel sanft überblendet.
    Startwert = --farbe-standard (hier muss er wörtlich stehen). */
 @property --bereich {

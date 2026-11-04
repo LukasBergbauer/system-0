@@ -272,7 +272,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   Start mit Suche, Hinzufügen und Verknüpfen direkt dort). Datenmodell `003_physio.sql` geschrieben
   (eine Tabelle `physio_eintraege` für alle Arten + `physio_links`).
   Plan in Teilen a → f in `module/physio.md`, von Lukas abgesegnet.
-  Stand: [x] a) Grundgerüst + Daten (`sw.js` `v22`) · als Nächstes b) Overlay + Suche
+  Stand: [x] a) Grundgerüst + Daten · [x] b) Overlay + Suche (`sw.js` `v23`) · als Nächstes c) Fokus-Karte
 - [ ] Kalender persönlich, mit Google-Kalender-Anzeige (`module/kalender.md`)
 - [ ] Heute-Übersicht (`module/heute.md`)
 - [ ] Routinen, ohne Sperre (`module/routinen.md`)
