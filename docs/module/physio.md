@@ -154,7 +154,9 @@ neue Arten brauchen keine neue Tabelle. Medien kommen später als eigene Tabelle
 - f) **Feinschliff:** Bewegungen ruhig, „Bewegung reduzieren“ beachten, iPhone (Wischen, Tippflächen 44 px)
   und Mac prüfen; neue Dateien in `APP_FILES` von `sw.js`, `VERSION` hochzählen.
   Dazu (offen aus d/e, mit Lukas klären): kleine Hinweise, z. B. „Lange drücken zum Lösen“ und dass man die Mitte
-  zum Öffnen antippen kann; Abstand Titel ↔ Kurzbeschreibung im Eintrag etwas enger; Zurück-Wischen auf dem echten iPhone testen
+  zum Öffnen antippen kann; Abstand Titel ↔ Kurzbeschreibung im Eintrag etwas enger; Zurück-Wischen auf dem echten iPhone testen;
+  am Mac bricht die Art-Chip-Reihe im Eintrag nicht um („Technik“ abgeschnitten) – auf breiten Bildschirmen umbrechen lassen;
+  Gleiten noch nicht flüssig (siehe „Offen“ oben)
 - g) **Bilder** (Gespräch 05.11.2026, Plan unten). Kommt vor f, weil sich das Aussehen der Karte dadurch ändert
 - Später: Übungen ins Trainings-Notebook übernehmen, Notion
 
