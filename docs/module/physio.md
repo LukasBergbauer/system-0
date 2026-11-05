@@ -94,7 +94,17 @@ Plan von Lukas abgesegnet (04.11.2026). Teile a bis e gebaut, Teil g (Bilder) l�
   blendet beim Losgleiten aus (120 ms) und nach dem Gleiten wieder ein (Klasse `mm-knoten--wechsel`, `GLEITEN_MS` in
   `fokus.js` = `--mm-gleiten` 650 ms); Kurve `--mm-kurve` (sanft an, sanft aus); Innenabstand gleitet mit; alte Linien
   blenden aus (`mm-karte__linien--alt`), neue ab 60 % ein. `sw.js` auf `v27`. Geprüft über die geplanten Übergänge im
-  Browser (Fenster war ausgeblendet, daher kein Video); **Lukas prüft das Gefühl auf dem iPhone**
+  Browser (Fenster war ausgeblendet, daher kein Video)
+- [x] Lukas (05.11.2026): Animation wirkt weiterhin „off“. Ursache vermutlich: Breite/Höhe/Innenabstand wurden animiert →
+  das iPhone muss jedes Bild neu berechnen (Ruckeln), und der Text blendete erst nach dem Ankommen ein („Einrasten“).
+  Jetzt `gleiten.js` (FLIP): vorher messen, neuen Zustand ohne Übergang setzen, per `translate` + `scale` optisch an den
+  alten Platz zurück, dann nur `transform`/`opacity` animieren (`will-change: transform`). Neue Punkte kommen klein
+  aus der Mitte, Wegfallende blenden aus (vom Zwischenschritt `mm-karte__knoten--still` ausgenommen).
+  Text blendet bei 55 % der Bewegung wieder ein (`TEXT_EIN_MS`). Unterbrechen mitten in einer Bewegung geht weich weiter
+  (Messung nimmt den aktuellen Zwischenstand). `sw.js` auf `v30`. Geprüft über die geplanten Übergänge (Fenster ausgeblendet);
+  **Lukas prüft auf dem iPhone**
+- Speicher (Frage von Lukas): Bilder liegen im Datei-Speicher (1 GB), nicht in der 500-MB-Datenbank (dort nur ~200 Byte je Bild).
+  Je Bild ~240 KB → ~4.000 Bilder. Bei Bedarf große Bilder auf 1200 px (~130 KB, ~7.000 Bilder) in `bild-verkleinern.js`
 
 ## Entscheidungen (Gespräch 04.11.2026)
 - Zuerst: Übungen, Krankheitsbilder, Muskeln + Regionen. Techniken gibt es als Art schon, Inhalte später.

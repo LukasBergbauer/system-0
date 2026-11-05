@@ -69,11 +69,10 @@
   -webkit-user-select: none;
   user-select: none;
   touch-action: manipulation;
+  /* nur Verschieben/Skalieren und Deckkraft animieren (gleiten.js), das läuft flüssig auf der Grafikeinheit */
+  will-change: transform;
   transition:
     transform var(--mm-gleiten) var(--mm-kurve),
-    width var(--mm-gleiten) var(--mm-kurve),
-    height var(--mm-gleiten) var(--mm-kurve),
-    padding var(--mm-gleiten) var(--mm-kurve),
     opacity var(--mm-gleiten) var(--mm-kurve),
     border-color var(--duration) var(--ease), /* kurz, damit Hover am Mac direkt reagiert */
     background-color var(--duration) var(--ease);
@@ -146,10 +145,12 @@
   -webkit-line-clamp: 4;
 }
 
-/* Kommen und Gehen */
+/* Kommen und Gehen. --still: Zwischenschritt in gleiten.js, in dem nichts animiert werden darf */
+.mm-karte__knoten--still .mm-knoten:not(.mm-knoten--weg) {
+  transition: none;
+}
 .mm-knoten--neu {
   opacity: 0;
-  transition: none;
 }
 .mm-knoten--weg {
   opacity: 0;

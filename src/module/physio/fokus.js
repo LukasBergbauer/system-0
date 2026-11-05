@@ -8,13 +8,16 @@ import { el } from '../../ui/dom.js';
 import { nachbarn } from './daten.js';
 import { groessen, positionen } from './fokus-layout.js';
 import { knoten, fuelleKnoten, fuelleMehr } from './knoten.js';
+import { gleite, setzeZiel } from './gleiten.js';
 
 const SVG = 'http://www.w3.org/2000/svg';
 const MEHR = 'mehr';
 const AUSBLENDEN_MS = 400;
-// Dauer des Gleitens, muss zu --mm-gleiten in physio-karte.css passen. So lange ist der Text eines Punkts,
-// der die Rolle wechselt (Nachbar ↔ Mitte), ausgeblendet: Schrift und Größe springen dann unsichtbar um.
+// Dauer des Gleitens, muss zu --mm-gleiten in physio-karte.css passen. Der Text eines Punkts, der die Rolle
+// wechselt (Nachbar ↔ Mitte), ist währenddessen aus (Schrift springt unsichtbar um) und blendet schon kurz
+// vor dem Ankommen wieder ein, damit nichts „einrastet“.
 const GLEITEN_MS = 650;
+const TEXT_EIN_MS = Math.round(GLEITEN_MS * 0.55);
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const paar = (a, b) => (a < b ? `${a}|${b}` : `${b}|${a}`);
@@ -50,10 +53,6 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
     if (mitte && nachbar) loesen(mitte, nachbar);
   }
 
-  function setzePosition(knopf, { x, y }) {
-    knopf.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
-  }
-
   // Rolle wechselt (Nachbar → Mitte oder umgekehrt): Text kurz ausblenden, nach dem Gleiten wieder einblenden.
   function rolle(knopf, istMitte) {
     const neu = istMitte ? 'mitte' : 'nachbar';
@@ -63,7 +62,7 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
     if (!alt || alt === neu || reduceMotion()) return;
     clearTimeout(knopf.wechselTimer);
     knopf.classList.add('mm-knoten--wechsel');
-    knopf.wechselTimer = setTimeout(() => knopf.classList.remove('mm-knoten--wechsel'), GLEITEN_MS);
+    knopf.wechselTimer = setTimeout(() => knopf.classList.remove('mm-knoten--wechsel'), TEXT_EIN_MS);
   }
 
   function entferne(id, knopf) {
@@ -124,26 +123,25 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
     sichtbar.forEach((e, i) => ziele.push({ id: e.id, ...punkte[i], eintrag: e }));
     if (zuViele) ziele.push({ id: MEHR, ...punkte[plaetze - 1], mehr: alle.length - sichtbar.length });
 
+    const neueMitte = mitteId !== alteMitte;
+    // Wegfallende vorher aussortieren: sie blenden mit Übergang aus (nicht im Schritt ohne Übergang)
     const ids = new Set(ziele.map((z) => z.id));
     for (const [id, knopf] of knoepfe) if (!ids.has(id)) entferne(id, knopf);
-
-    const neueMitte = mitteId !== alteMitte;
-    for (const z of ziele) {
-      let knopf = knoepfe.get(z.id);
-      if (!knopf) {
-        knopf = knoten(z.id, tippen, lang);
-        knopf.classList.add('mm-knoten--neu');
-        setzePosition(knopf, { x: 0, y: 0 }); // startet in der Mitte und schwebt nach außen
-        ebene.append(knopf);
-        knoepfe.set(z.id, knopf);
-        void knopf.getBoundingClientRect(); // Startzustand festhalten, sonst gibt es keinen Übergang
-        knopf.classList.remove('mm-knoten--neu');
+    // gleite: misst vorher, setzt den neuen Stand ohne Übergang und lässt dann nur Verschieben/Skalieren laufen
+    gleite(ebene, [...knoepfe.values()], () => {
+      for (const z of ziele) {
+        let knopf = knoepfe.get(z.id);
+        if (!knopf) {
+          knopf = knoten(z.id, tippen, lang);
+          ebene.append(knopf);
+          knoepfe.set(z.id, knopf);
+        }
+        if (z.mehr) fuelleMehr(knopf, z.mehr);
+        else fuelleKnoten(knopf, z.eintrag);
+        rolle(knopf, z.id === mitteId);
+        setzeZiel(knopf, z);
       }
-      if (z.mehr) fuelleMehr(knopf, z.mehr);
-      else fuelleKnoten(knopf, z.eintrag);
-      rolle(knopf, z.id === mitteId);
-      setzePosition(knopf, z);
-    }
+    });
 
     zeichneLinien(w, h, ziele, links, neueMitte);
     const n = alle.length;
