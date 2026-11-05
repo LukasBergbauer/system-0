@@ -21,3 +21,4 @@ Icon[]
 # Lokale Umgebungsdateien (keine Secrets ins Repo)
 .env
 .env.*
+graphify-out/
