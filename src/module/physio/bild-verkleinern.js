@@ -1,10 +1,10 @@
 // Verkleinert ein Foto im Browser, bevor es gespeichert wird.
-//   groß:  lange Seite höchstens 1600 px (für den Eintrag)
+//   groß:  lange Seite höchstens 1200 px (für den Eintrag; Lukas' Wahl, spart Speicher: ~130 KB statt ~240 KB)
 //   klein: Quadrat 320 px, mittig zugeschnitten (für den Ball in der Mindmap)
 // Beides als JPEG. Über <img> geladen, damit die Drehung aus dem Foto (EXIF) überall stimmt, auch in Safari.
 // verkleinere(datei) → { gross: Blob, klein: Blob, breite, hoehe }
 
-const GROSS = 1600;
+const GROSS = 1200;
 const KLEIN = 320;
 
 async function ladeBild(datei) {

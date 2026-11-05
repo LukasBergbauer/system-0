@@ -104,7 +104,8 @@ Plan von Lukas abgesegnet (04.11.2026). Teile a bis e gebaut, Teil g (Bilder) l�
   (Messung nimmt den aktuellen Zwischenstand). `sw.js` auf `v30`. Geprüft über die geplanten Übergänge (Fenster ausgeblendet);
   **Lukas prüft auf dem iPhone**
 - Speicher (Frage von Lukas): Bilder liegen im Datei-Speicher (1 GB), nicht in der 500-MB-Datenbank (dort nur ~200 Byte je Bild).
-  Je Bild ~240 KB → ~4.000 Bilder. Bei Bedarf große Bilder auf 1200 px (~130 KB, ~7.000 Bilder) in `bild-verkleinern.js`
+  Lukas' Wahl: große Bilder 1200 px statt 1600 (`GROSS` in `bild-verkleinern.js`, `sw.js` `v31`).
+  Test mit stark gemustertem Foto 3000 × 2000: groß 1200 × 800 = 150 KB, klein 26 KB → ~176 KB je Bild, ~5.500+ Bilder je GB
 
 ## Entscheidungen (Gespräch 04.11.2026)
 - Zuerst: Übungen, Krankheitsbilder, Muskeln + Regionen. Techniken gibt es als Art schon, Inhalte später.
@@ -168,7 +169,7 @@ Technik:
   Tabellen abgeglichen) und privater Speicher-Ordner `physio-bilder` in Supabase Storage (max. 5 MB je Datei,
   Zugriff nur auf den eigenen Unterordner `<user_id>/…`). Gratis-Tarif: 1 GB, reicht für einige tausend Bilder
 - Jedes Bild wird im Browser verkleinert und zweimal gespeichert: groß (lange Seite 1600 px, JPEG, ca. 200–300 KB)
-  für den Eintrag, klein (quadratisch 320 px, ca. 20–30 KB) für den Ball. iPhone-Fotos (HEIC) wandelt iOS beim Auswählen
+  für den Eintrag – seit 05.11.2026 1200 px, ca. 130–150 KB –, klein (quadratisch 320 px, ca. 20–30 KB) für den Ball. iPhone-Fotos (HEIC) wandelt iOS beim Auswählen
   selbst in JPEG um
 - Local-first wie bei den Daten: Dateien zuerst im Gerät (IndexedDB, neuer Speicher `dateien`, dafür `DB_VERSION` 2
   in `src/core/db.js`), dann Hochladen über eine eigene Warteschlange, sobald Netz da ist. Fehlt ein Bild auf dem
