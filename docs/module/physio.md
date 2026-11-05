@@ -16,7 +16,7 @@ Vorgezogen nach Phase 1 (Datenbank + Mindmap), **Phase 5** (Lernpfade, Notion).
   nicht im Browser-Code stehen darf. Vorher klären, ob Notion Quelle oder nur Kopie sein soll.
 
 ## Stand
-Plan von Lukas abgesegnet (04.11.2026). Teile a bis e gebaut; **als Nächstes Teil f** (Feinschliff, siehe Plan).
+Plan von Lukas abgesegnet (04.11.2026). Teile a bis e gebaut. Neu gewünscht: Bilder in den Bällen → **Teil g geplant, wartet auf Lukas' Okay**; danach Teil f (Feinschliff).
 - [x] a) Grundgerüst + Daten:
   - `src/module/physio/arten.js` (Arten + optionale Felder je Art, `art(id)`),
     `daten.js` (`ladeEintraege`, `ladeLinks`, `neuerEintrag(art, titel)`, `aendereEintrag`, `loescheEintrag`
@@ -142,7 +142,42 @@ neue Arten brauchen keine neue Tabelle. Medien kommen später als eigene Tabelle
   und Mac prüfen; neue Dateien in `APP_FILES` von `sw.js`, `VERSION` hochzählen.
   Dazu (offen aus d/e, mit Lukas klären): kleine Hinweise, z. B. „Lange drücken zum Lösen“ und dass man die Mitte
   zum Öffnen antippen kann; Abstand Titel ↔ Kurzbeschreibung im Eintrag etwas enger; Zurück-Wischen auf dem echten iPhone testen
-- Später: eigene Fotos/Bilder, Übungen ins Trainings-Notebook übernehmen, Notion
+- g) **Bilder** (Gespräch 05.11.2026, Plan unten). Kommt vor f, weil sich das Aussehen der Karte dadurch ändert
+- Später: Übungen ins Trainings-Notebook übernehmen, Notion
+
+## Plan Teil g: Bilder (wartet auf Lukas' Okay)
+Entscheidungen (Gespräch 05.11.2026):
+- **Ganzer Ball = Bild:** Punkte mit Bild werden in der Karte runde Fotos, Titel klein darunter. Die Mitte mit Bild:
+  Foto füllt den großen Kreis, Titel darunter. Punkte ohne Bild bleiben Kapseln wie bisher.
+- **Karte schwarz-weiß, Eintrag farbig** (passt zu „Stein & Licht“, Karte bleibt ruhig).
+- **Mehrere Bilder pro Punkt:** kleine Galerie im Eintrag; das erste ist das Titelbild (das Bild im Ball).
+- Nur eigene Übungsfotos/Skizzen, keine Fotos von Patient:innen.
+
+Technik:
+- Migration `004_physio_bilder.sql`: Tabelle `physio_bilder` (`eintrag_id`, `reihenfolge`, `breite`, `hoehe`; wird wie alle
+  Tabellen abgeglichen) und privater Speicher-Ordner `physio-bilder` in Supabase Storage (max. 5 MB je Datei,
+  Zugriff nur auf den eigenen Unterordner `<user_id>/…`). Gratis-Tarif: 1 GB, reicht für einige tausend Bilder
+- Jedes Bild wird im Browser verkleinert und zweimal gespeichert: groß (lange Seite 1600 px, JPEG, ca. 200–300 KB)
+  für den Eintrag, klein (quadratisch 320 px, ca. 20–30 KB) für den Ball. iPhone-Fotos (HEIC) wandelt iOS beim Auswählen
+  selbst in JPEG um
+- Local-first wie bei den Daten: Dateien zuerst im Gerät (IndexedDB, neuer Speicher `dateien`, dafür `DB_VERSION` 2
+  in `src/core/db.js`), dann Hochladen über eine eigene Warteschlange, sobald Netz da ist. Fehlt ein Bild auf dem
+  anderen Gerät noch, wird es beim ersten Anzeigen geladen und dort ebenfalls gespeichert (danach offline da).
+  Neues Kern-Modul `src/core/dateien.js` (speichern, holen, löschen, hochladen), nutzbar später auch für Bücher-Cover
+- Löschen: Zeile weich gelöscht (kommt auf alle Geräte), Dateien werden im Speicher-Ordner entfernt
+- Export (JSON) enthält die Bilder nicht, nur ihre Liste; ein Bild-Export wäre ein eigener späterer Schritt
+
+Teile (nach jedem Teil kurz prüfen):
+- g1) **Fundament:** Lukas führt `004_physio_bilder.sql` aus; `db.js` Version 2 mit Speicher `dateien`;
+  `src/core/dateien.js` (lokal speichern, Warteschlange, Hochladen/Herunterladen über Supabase Storage, Löschen);
+  `src/module/physio/bild-verkleinern.js` (groß + klein); `bilder.js` im Modul (Bilder eines Punkts, hinzufügen,
+  Titelbild setzen, löschen); Tabelle in `tabellen.js`
+- g2) **Galerie im Eintrag:** oben im Eintrag waagrechte Bildleiste in Farbe, „+ Bild“ (iPhone: Kamera oder Mediathek,
+  mehrere auf einmal). Antippen → Großansicht mit „Als Titelbild“ und „Löschen“ (Rückfrage). Zurück-Wischen schließt die Großansicht
+- g3) **Bilder in der Karte:** Bälle mit Titelbild als runde Fotos in Schwarz-Weiß, Titel darunter; Mitte mit Bild
+  füllt den Kreis. Auf dem iPhone 6 statt 8 Plätze im Ring, sobald Bilder dabei sind (sonst überlappen sie).
+  Kleine Bilder werden beim Öffnen der Mindmap vorgeladen, damit nichts nachblitzt; Gleiten wie bisher
+- Am Ende neue Dateien in `APP_FILES` von `sw.js`, `VERSION` hochzählen
 
 ## Offen / bitte prüfen
 - Das Overlay ist hell (Elfenbein-Weiß mit dunkler Schrift), während die App sonst dunkel ist. So gewünscht;
