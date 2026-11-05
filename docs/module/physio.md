@@ -16,7 +16,7 @@ Vorgezogen nach Phase 1 (Datenbank + Mindmap), **Phase 5** (Lernpfade, Notion).
   nicht im Browser-Code stehen darf. Vorher klären, ob Notion Quelle oder nur Kopie sein soll.
 
 ## Stand
-Plan von Lukas abgesegnet (04.11.2026). Teile a bis e gebaut. Neu gewünscht: Bilder in den Bällen → **Teil g geplant, wartet auf Lukas' Okay**; danach Teil f (Feinschliff).
+Plan von Lukas abgesegnet (04.11.2026). Teile a bis e gebaut, Teil g (Bilder) läuft: g1 fertig, **als Nächstes g2** (Galerie im Eintrag); danach g3, dann f (Feinschliff).
 - [x] a) Grundgerüst + Daten:
   - `src/module/physio/arten.js` (Arten + optionale Felder je Art, `art(id)`),
     `daten.js` (`ladeEintraege`, `ladeLinks`, `neuerEintrag(art, titel)`, `aendereEintrag`, `loescheEintrag`
@@ -145,7 +145,7 @@ neue Arten brauchen keine neue Tabelle. Medien kommen später als eigene Tabelle
 - g) **Bilder** (Gespräch 05.11.2026, Plan unten). Kommt vor f, weil sich das Aussehen der Karte dadurch ändert
 - Später: Übungen ins Trainings-Notebook übernehmen, Notion
 
-## Plan Teil g: Bilder (wartet auf Lukas' Okay)
+## Plan Teil g: Bilder (von Lukas abgesegnet 05.11.2026)
 Entscheidungen (Gespräch 05.11.2026):
 - **Ganzer Ball = Bild:** Punkte mit Bild werden in der Karte runde Fotos, Titel klein darunter. Die Mitte mit Bild:
   Foto füllt den großen Kreis, Titel darunter. Punkte ohne Bild bleiben Kapseln wie bisher.
@@ -178,6 +178,26 @@ Teile (nach jedem Teil kurz prüfen):
   füllt den Kreis. Auf dem iPhone 6 statt 8 Plätze im Ring, sobald Bilder dabei sind (sonst überlappen sie).
   Kleine Bilder werden beim Öffnen der Mindmap vorgeladen, damit nichts nachblitzt; Gleiten wie bisher
 - Am Ende neue Dateien in `APP_FILES` von `sw.js`, `VERSION` hochzählen
+
+Stand Teil g:
+- [x] g1) Fundament:
+  - Migration `004_physio_bilder.sql` von Lukas ausgeführt
+  - `src/core/db.js` Version 2: Speicher `dateien` ({ pfad, blob }) und `datei_warteschlange` ({ pfad, aktion: hoch|weg });
+    Umstellung legt nur Neues an (alte Daten bleiben). Offene ältere Fenster: `onversionchange` lässt los;
+    blockiert ein altes Fenster ohne diese Regel, zeigt `onblocked` einen Hinweis (`.db-hinweis` in `app.css`).
+    Passiert bei Lukas am Mac: Seite blieb leer, bis das alte Fenster geschlossen war
+  - `src/core/dateien.js`: `speichereDatei`, `holeDatei` (lokal, sonst einmal aus Storage laden und behalten),
+    `dateiUrl`, `loescheDatei`, `dateienWartend`, `dateienAbgleichen`. Läuft im normalen Abgleich (`sync.js`) nach
+    den Zeilen mit, wartende Dateien zählen bei „wartende Änderungen“ mit; Ereignis `dateien` stößt Abgleich an
+  - `sync.js`: fehlt eine Tabelle in Supabase (Migration noch nicht ausgeführt, Fehler `PGRST205`), wird nur diese
+    ausgelassen statt den ganzen Abgleich abzubrechen
+  - `bild-verkleinern.js` (über `<img>` + `onload`, nicht `decode()`: das hing im unsichtbaren Fenster):
+    groß lange Seite 1600 px JPEG 0,82, klein 320 × 320 mittig JPEG 0,8. Test: 812 KB → 212 KB + 26 KB, 0,3 s
+  - `bilder.js`: `ladeBilder`, `bilderVon`, `titelbilder`, `bildUrl(bild, 'gross'|'klein')`, `fuegeBilderHinzu`,
+    `setzeTitelbild`, `loescheBild`, `loescheBilderVon`; Pfad `physio-bilder/<user_id>/<id>[-klein].jpg`.
+    `loescheEintrag` löscht die Bilder mit. Tabelle in `tabellen.js`; `sw.js` auf `v29`
+  - Geprüft mit Testpunkt (danach gelöscht): Hochladen (4 Dateien), Zurückholen aus Storage, Titelbild umstellen,
+    Löschen räumt Zeilen und Dateien im Speicher-Ordner auf
 
 ## Offen / bitte prüfen
 - Das Overlay ist hell (Elfenbein-Weiß mit dunkler Schrift), während die App sonst dunkel ist. So gewünscht;

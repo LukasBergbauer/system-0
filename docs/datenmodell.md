@@ -32,6 +32,8 @@
 | `daten` | alle Zeilen aller Tabellen als `{ table, id, row }`, Index `table` |
 | `warteschlange` | `{ table, id }` je Zeile, die noch hochgeladen werden muss |
 | `meta` | z. B. `abgleich:<tabelle>` = letzter `server_at` |
+| `dateien` | Dateien (Bilder) als Blob: `{ pfad, blob }` – seit Version 2, über `src/core/dateien.js` |
+| `datei_warteschlange` | Dateien, die hoch- oder weggeräumt werden müssen: `{ pfad, aktion }` |
 
 Module benutzen nur `src/core/store.js`: `getAll(table)`, `get(table, id)`, `save(table, data)`, `remove(table, id)`.
 Nach jeder Änderung kommt das Ereignis `daten` mit `{ table }` (`src/core/events.js`).
@@ -44,7 +46,7 @@ Nach jeder Änderung kommt das Ereignis `daten` mit `{ table }` (`src/core/event
 | To-dos | `todo_bereiche` (name, reihenfolge), `todos` (titel, notiz, prio 1–3, faellig_am, bereich_id, erledigt_am) – angelegt in `002_todos.sql` |
 | Routinen | `routinen` (name, art morgen/abend/frei, sperre), `routine_schritte`, `routine_logs` |
 | Kalender | `termine` (titel, start, ende, ort, notiz); Google-Termine werden nur angezeigt, nicht gespeichert |
-| PhysioZentrum | `physio_eintraege` (art, titel, kurz, text, felder als JSON, video), `physio_links` (a_id, b_id, in beide Richtungen) – in `003_physio.sql`; `physio_bilder` (eintrag_id, reihenfolge, breite, hoehe) + Storage-Bucket `physio-bilder` – in `004_physio_bilder.sql` (geplant) |
+| PhysioZentrum | `physio_eintraege` (art, titel, kurz, text, felder als JSON, video), `physio_links` (a_id, b_id, in beide Richtungen) – in `003_physio.sql`; `physio_bilder` (eintrag_id, reihenfolge, breite, hoehe) + Storage-Bucket `physio-bilder` – in `004_physio_bilder.sql` |
 | Training | `trainingsplaene`, `plan_einheiten`, `einheiten` (datum, art, gefuehl, belastung), `einheit_uebungen` (verweist auf `uebungen`), `saetze` (wdh, gewicht, zeit, distanz) |
 | Gewohnheiten | `gewohnheiten` (art aufbau/abbau, messart haken/anzahl/zeit, ziel), `gewohnheit_logs`, `ausloeser` |
 | Ziele | `lebensziele`, `visionen` |
