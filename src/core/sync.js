@@ -1,5 +1,5 @@
 // Abgleich lokal ↔ Supabase.
-// Ablauf: erst Neues vom Server holen, dann die Warteschlange hochladen.
+// Ablauf: erst Neues vom Server holen, dann die Warteschlange hochladen, dann Dateien (dateien.js).
 // Wann: beim Start, wenn das Netz zurückkommt, wenn die App wieder sichtbar wird,
 // kurz nach jeder Änderung und jede Minute.
 // Status als Ereignis 'sync': { state: 'neu' | 'läuft' | 'ok' | 'offline' | 'fehler', at, pending }
@@ -8,6 +8,7 @@ import { isLoggedIn } from './auth.js';
 import { emit, on } from './events.js';
 import { TABLES } from './tabellen.js';
 import { pendingRows, markUploaded, mergeFromServer, getMeta, setMeta } from './sync-local.js';
+import { dateienAbgleichen, dateienWartend } from './dateien.js';
 
 const PAGE = 1000;
 const OVERLAP_MS = 60 * 1000; // etwas Überlappung, damit nichts durchrutscht
@@ -44,10 +45,28 @@ async function pull(supabase, table) {
   }
 }
 
+// Tabelle steht in tabellen.js, die Migration wurde in Supabase aber noch nicht ausgeführt.
+// Dann nur diese Tabelle auslassen, statt den ganzen Abgleich abzubrechen.
+const FEHLT = 'PGRST205';
+let fehlende = new Set();
+
+async function pullAlle(supabase) {
+  fehlende = new Set();
+  for (const table of TABLES) {
+    try {
+      await pull(supabase, table);
+    } catch (err) {
+      if (err?.code !== FEHLT) throw err;
+      fehlende.add(table);
+      console.warn(`Tabelle ${table} fehlt in Supabase (Migration noch nicht ausgeführt) – wird ausgelassen`);
+    }
+  }
+}
+
 async function push(supabase) {
   const pending = await pendingRows();
   for (const [table, rows] of Object.entries(pending)) {
-    if (!TABLES.includes(table)) continue; // Tabelle gibt es (noch) nicht in Supabase
+    if (!TABLES.includes(table) || fehlende.has(table)) continue; // Tabelle gibt es (noch) nicht in Supabase
     for (let i = 0; i < rows.length; i += 500) {
       const part = rows.slice(i, i + 500);
       const payload = part.map((row) => {
@@ -64,7 +83,8 @@ async function push(supabase) {
 
 async function countPending() {
   const pending = await pendingRows();
-  return Object.values(pending).reduce((n, rows) => n + rows.length, 0);
+  const zeilen = Object.values(pending).reduce((n, rows) => n + rows.length, 0);
+  return zeilen + (await dateienWartend());
 }
 
 async function run() {
@@ -73,8 +93,9 @@ async function run() {
   status('läuft');
   try {
     const supabase = await getSupabase();
-    for (const table of TABLES) await pull(supabase, table);
+    await pullAlle(supabase);
     await push(supabase);
+    await dateienAbgleichen(supabase); // Fehler einzelner Dateien halten den Abgleich nicht auf
     status('ok', { at: new Date().toISOString(), pending: await countPending() });
   } catch (err) {
     console.warn('Abgleich fehlgeschlagen:', err);
@@ -110,6 +131,10 @@ export function startSync() {
   });
   on('daten', ({ source }) => {
     if (source === 'server') return; // kam gerade vom Server, nichts hochzuladen
+    clearTimeout(timer);
+    timer = setTimeout(syncNow, 1000);
+  });
+  on('dateien', () => {
     clearTimeout(timer);
     timer = setTimeout(syncNow, 1000);
   });

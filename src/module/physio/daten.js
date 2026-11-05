@@ -2,6 +2,7 @@
 // Tabellen: physio_eintraege (art, titel, kurz, text, felder, video)
 //           physio_links (a_id, b_id) – Verknüpfung gilt in beide Richtungen
 import { getAll, save, remove } from '../../core/store.js';
+import { loescheBilderVon } from './bilder.js';
 
 export const EINTRAEGE = 'physio_eintraege';
 export const LINKS = 'physio_links';
@@ -25,8 +26,9 @@ export function aendereEintrag(felder) {
   return save(EINTRAEGE, felder);
 }
 
-// Eintrag weich löschen, seine Verknüpfungen gleich mit.
+// Eintrag weich löschen, seine Verknüpfungen und Bilder gleich mit.
 export async function loescheEintrag(id) {
+  await loescheBilderVon(id);
   for (const l of await ladeLinks()) {
     if (l.a_id === id || l.b_id === id) await remove(LINKS, l.id);
   }

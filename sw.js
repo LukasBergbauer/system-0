@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v27';
+const VERSION = 'v28';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -60,6 +60,9 @@ const APP_FILES = [
   './src/module/physio/verknuepfen.js',
   './src/module/physio/eintrag.js',
   './src/module/physio/textfeld.js',
+  './src/module/physio/bilder.js',
+  './src/module/physio/bild-verkleinern.js',
+  './src/core/dateien.js',
   './src/styles/physio-eintrag.css',
   './src/styles/physio-karte.css',
   './src/styles/physio.css',
