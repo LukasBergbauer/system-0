@@ -16,7 +16,7 @@ Vorgezogen nach Phase 1 (Datenbank + Mindmap), **Phase 5** (Lernpfade, Notion).
   nicht im Browser-Code stehen darf. Vorher klären, ob Notion Quelle oder nur Kopie sein soll.
 
 ## Stand
-Plan von Lukas abgesegnet (04.11.2026). Teile a bis e gebaut, Teil g (Bilder) läuft: g1 und g2 fertig, **als Nächstes g3** (Bilder in der Karte); danach f (Feinschliff).
+Plan von Lukas abgesegnet (04.11.2026). Teile a bis e und g (Bilder) gebaut; **als Nächstes Teil f** (Feinschliff, Punkte gesammelt im Plan unten).
 **Offen:** Gleiten fühlt sich für Lukas trotz Umbau (`gleiten.js`) noch nicht flüssig an (05.11.2026) – in f gezielt angehen,
 vorher von Lukas genau beschreiben lassen, was er sieht (Ruckeln, Springen am Ende, Tempo, Text) und auf welchem Gerät.
 - [x] a) Grundgerüst + Daten:
@@ -230,6 +230,19 @@ Stand Teil g:
     Verlauf nach ✕ sauber
   - Merke: Wird die Seite neu geladen, während die Mindmap offen ist, bleiben deren Verlaufseinträge stehen
     (harmlos, Zurück tut dann einmal nichts)
+- [x] g3) Bilder in der Karte + Mac-Extras (Lukas' Wunsch):
+  - `knoten.js`: Punkt mit Titelbild = Ball (`mm-knoten--ball`): Foto rund in Schwarz-Weiß (`grayscale`), Titel klein
+    darunter (mit schmalem Hintergrund, damit Linien nicht durchlaufen), Art-Label entfällt, Hover-Kurzbeschreibung
+    über dem Ball. Mitte mit Bild: Foto füllt den großen Kreis, Serifentitel darunter. Foto blendet ein, sobald geladen;
+    fehlt es (offline), bleibt ein grauer Ball. Lädt nur neu, wenn sich das Titelbild ändert
+  - `fokus-layout.js`: `groessen().ball` (72 / 84 px); `positionen(…, mitBildern)` → iPhone 6 statt 8 Plätze, mehr Höhe
+    für Ball + Titel. Mac bleibt bei bis zu 16. Gleiten (FLIP) funktioniert auch Ball ↔ Mitte (Foto bleibt sichtbar)
+  - `overlay.js` lädt beim Öffnen die kleinen Ball-Bilder vor; `fokus.zeige(…, bilder)`
+  - Mac: Fotos auf den geöffneten Eintrag ziehen (Bildleiste wird gestrichelt markiert) oder mit ⌘ + V einfügen
+    (`bilderVonAussen` in `eintrag.js`, `galerie.hinzufuegen`). Text-Einfügen in Felder bleibt normal
+  - Stile `src/styles/physio-baelle.css` (+ Ziehen-Hinweis in `physio-bilder.css`); `sw.js` auf `v33`
+  - Lokal geprüft: iPhone-Größe (Bälle, 6 Plätze, „+2“, Ball gleitet in die Mitte), Mac-Breite (gemischter Ring),
+    Ziehen und ⌘ + V mit Testpunkt (danach gelöscht, Speicher-Ordner leer); erfundene Ball-Bilder nur lokal, wieder entfernt
 
 ## Offen / bitte prüfen
 - Das Overlay ist hell (Elfenbein-Weiß mit dunkler Schrift), während die App sonst dunkel ist. So gewünscht;

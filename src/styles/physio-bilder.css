@@ -130,3 +130,14 @@
     animation: none;
   }
 }
+
+/* Mac: Fotos auf den Eintrag ziehen (eintrag.js) – Bildleiste zeigt, wo sie landen */
+.mm-eintrag--ziehen .mm-galerie {
+  outline: 2px dashed var(--text-2);
+  outline-offset: var(--space-1);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.mm-eintrag--ziehen .mm-galerie__plus {
+  border-color: var(--text-2);
+}

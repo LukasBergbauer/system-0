@@ -12,6 +12,36 @@ import { galerie } from './galerie.js';
 
 const WARTEN_MS = 500; // so lange nach dem letzten Tastendruck, dann wird gespeichert
 
+// Mac: Fotos aus dem Finder auf den Eintrag ziehen oder mit ⌘ + V einfügen (z. B. einen Screenshot).
+// Einfügen von Text in die Felder bleibt normal; nur wenn Bilder in der Zwischenablage liegen, kommen sie in die Leiste.
+function bilderVonAussen(element, hinzufuegen) {
+  const mitDateien = (e) => [...(e.dataTransfer?.types ?? [])].includes('Files');
+  element.addEventListener('dragover', (e) => {
+    if (!mitDateien(e)) return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'copy';
+    element.classList.add('mm-eintrag--ziehen');
+  });
+  element.addEventListener('dragleave', (e) => {
+    if (!element.contains(e.relatedTarget)) element.classList.remove('mm-eintrag--ziehen');
+  });
+  element.addEventListener('drop', (e) => {
+    if (!mitDateien(e)) return;
+    e.preventDefault();
+    element.classList.remove('mm-eintrag--ziehen');
+    hinzufuegen(e.dataTransfer.files);
+  });
+  // Einfügen kommt am Dokument an (egal wo der Fokus steht); meldet sich ab, sobald der Eintrag weg ist.
+  const einfuegen = (e) => {
+    if (!element.isConnected) return document.removeEventListener('paste', einfuegen);
+    const bilder = [...(e.clipboardData?.files ?? [])].filter((d) => d.type.startsWith('image/'));
+    if (!bilder.length) return;
+    e.preventDefault();
+    hinzufuegen(bilder);
+  };
+  document.addEventListener('paste', einfuegen);
+}
+
 const istLink = (s) => /^https?:\/\/\S+\.\S+/i.test(s.trim());
 
 export function eintragAnsicht({ eintrag, bilder = [], geloescht, oeffneBild }) {
@@ -111,5 +141,6 @@ export function eintragAnsicht({ eintrag, bilder = [], geloescht, oeffneBild }) 
   element.addEventListener('focusout', speichereGleich);
   element.dataset.eintrag = id;
   element.zeigeBilder = bildleiste.zeige;
+  bilderVonAussen(element, bildleiste.hinzufuegen);
   return element;
 }

@@ -1,7 +1,8 @@
 // Bildleiste oben im Eintrag: Bilder in Farbe, waagrecht wischbar, das erste ist das Titelbild.
 // Am Ende „+ Bild“: iPhone bietet Kamera oder Mediathek an, mehrere auf einmal möglich.
 // Antippen eines Bilds → oeffneBild(bild). Platz je Bild wird über breite/hoehe schon vor dem Laden reserviert.
-// const g = galerie({ eintragId, bilder, oeffneBild }); g.zeige(bilder) bei Änderungen.
+// const g = galerie({ eintragId, bilder, oeffneBild }); g.zeige(bilder) bei Änderungen;
+// g.hinzufuegen(dateien) für Fotos aus anderen Wegen (Mac: Hineinziehen, ⌘ + V – siehe eintrag.js).
 import { el } from '../../ui/dom.js';
 import { bildUrl, fuegeBilderHinzu } from './bilder.js';
 
@@ -21,9 +22,8 @@ export function galerie({ eintragId, bilder: anfang = [], oeffneBild }) {
   const leiste = el('div', { class: 'mm-galerie' });
   const element = el('div', { class: 'mm-galerie__huelle' }, [leiste, auswahl]);
 
-  auswahl.addEventListener('change', async () => {
-    const dateien = [...auswahl.files];
-    auswahl.value = ''; // dieselben Fotos sollen nochmal wählbar sein
+  async function hinzufuegen(liste) {
+    const dateien = [...liste].filter((d) => d.type.startsWith('image/'));
     if (!dateien.length) return;
     wartend += dateien.length;
     zeichne();
@@ -33,6 +33,12 @@ export function galerie({ eintragId, bilder: anfang = [], oeffneBild }) {
       wartend -= dateien.length;
       zeichne();
     }
+  }
+
+  auswahl.addEventListener('change', () => {
+    const dateien = [...auswahl.files];
+    auswahl.value = ''; // dieselben Fotos sollen nochmal wählbar sein
+    hinzufuegen(dateien);
   });
 
   function kachel(bild) {
@@ -74,5 +80,6 @@ export function galerie({ eintragId, bilder: anfang = [], oeffneBild }) {
       bilder = neu;
       zeichne();
     },
+    hinzufuegen,
   };
 }

@@ -2,8 +2,10 @@
 // der Kurzbeschreibung darunter. Dasselbe Element bleibt erhalten, wenn der Punkt
 // vom Nachbarn zur Mitte wird (so kann er sichtbar dorthin gleiten).
 // Lange drücken (iPhone) oder Rechtsklick (Mac) → onLang(id), z. B. Verknüpfung lösen.
+// Mit Titelbild wird der Punkt ein runder Ball (Foto schwarz-weiß, Titel darunter), Klasse mm-knoten--ball.
 import { el } from '../../ui/dom.js';
 import { art } from './arten.js';
+import { bildUrl } from './bilder.js';
 
 const LANG_MS = 550;
 
@@ -41,6 +43,7 @@ export function knoten(id, onClick, onLang) {
     el('span', { class: 'mm-knoten__art label' }),
     el('span', { class: 'mm-knoten__titel' }),
     el('span', { class: 'mm-knoten__kurz', attrs: { 'aria-hidden': 'true' } }),
+    el('span', { class: 'mm-knoten__foto', attrs: { 'aria-hidden': 'true' } }, el('img', { attrs: { alt: '', decoding: 'async' } })),
   ]);
   knopf.dataset.id = id;
   const warLang = langDruecken(knopf, () => onLang?.(id));
@@ -50,8 +53,25 @@ export function knoten(id, onClick, onLang) {
   return knopf;
 }
 
-// Text und Art auf den aktuellen Stand bringen (Titel kann sich auf dem anderen Gerät ändern).
-export function fuelleKnoten(knopf, eintrag) {
+// Foto des Balls setzen (bild = Titelbild oder nichts). Lädt nur neu, wenn sich das Bild geändert hat.
+function setzeFoto(knopf, bild) {
+  const img = knopf.querySelector('.mm-knoten__foto img');
+  const id = bild?.id ?? '';
+  knopf.classList.toggle('mm-knoten--ball', Boolean(bild));
+  if (knopf.dataset.bildId === id && (img.src || !bild)) return;
+  knopf.dataset.bildId = id;
+  img.classList.remove('ist-da');
+  img.removeAttribute('src');
+  if (!bild) return;
+  img.onload = () => img.classList.add('ist-da');
+  bildUrl(bild, 'klein').then((url) => {
+    if (url && knopf.dataset.bildId === id) img.src = url; // fehlt es (offline), bleibt der graue Ball
+  });
+}
+
+// Text, Art und Foto auf den aktuellen Stand bringen (Titel kann sich auf dem anderen Gerät ändern).
+export function fuelleKnoten(knopf, eintrag, bild = null) {
+  setzeFoto(knopf, bild);
   const [label, titel, kurz] = knopf.children;
   const name = art(eintrag.art).name;
   knopf.dataset.art = eintrag.art;
@@ -68,6 +88,7 @@ export function fuelleMehr(knopf, anzahl) {
   const [label, titel, kurz] = knopf.children;
   knopf.dataset.art = 'mehr';
   knopf.classList.remove('mm-knoten--lang');
+  setzeFoto(knopf, null);
   label.textContent = 'Weitere';
   titel.textContent = `+${anzahl}`;
   kurz.textContent = '';

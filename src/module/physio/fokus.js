@@ -3,12 +3,14 @@
 // rutscht zu den Nachbarn, nicht mehr verbundene Punkte blenden aus, neue schweben aus der Mitte ein.
 // Linien: Mitte → jeder Nachbar; fein auch zwischen Nachbarn, die untereinander verknüpft sind.
 // Mitte antippen → oeffnen(). Unten: „+ Verknüpfen“ → verknuepfen(). Nachbar lange drücken/Rechtsklick → loesen(mitte, nachbar).
-// const k = fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen }); k.zeige(eintraege, links, mitteId);
+// Punkte mit Titelbild sind runde Bälle (knoten.js); dann passen auf dem iPhone 6 statt 8 in den Ring.
+// const k = fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }); k.zeige(eintraege, links, mitteId, bilder);
 import { el } from '../../ui/dom.js';
 import { nachbarn } from './daten.js';
 import { groessen, positionen } from './fokus-layout.js';
 import { knoten, fuelleKnoten, fuelleMehr } from './knoten.js';
 import { gleite, setzeZiel } from './gleiten.js';
+import { titelbilder } from './bilder.js';
 
 const SVG = 'http://www.w3.org/2000/svg';
 const MEHR = 'mehr';
@@ -105,6 +107,7 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
     const h = element.clientHeight - fuss.offsetHeight;
     if (!stand || !w || !h) return;
     const { eintraege, links, mitteId } = stand;
+    const titel = titelbilder(stand.bilder);
     const mitte = eintraege.find((e) => e.id === mitteId);
     if (!mitte) return;
 
@@ -112,10 +115,11 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
     element.style.setProperty('--mm-mitte', `${g.mitte}px`);
     element.style.setProperty('--mm-breit', `${g.breit}px`);
     element.style.setProperty('--mm-hoch', `${g.hoch}px`);
+    element.style.setProperty('--mm-ball', `${g.ball}px`);
     ebene.style.height = linien.style.height = `${h}px`;
 
     const alle = nachbarn(mitteId, eintraege, links);
-    const { punkte, plaetze } = positionen(alle.length, w, h);
+    const { punkte, plaetze } = positionen(alle.length, w, h, alle.some((e) => titel.has(e.id)));
     const zuViele = alle.length > plaetze;
     const sichtbar = zuViele ? alle.slice(0, plaetze - 1) : alle;
 
@@ -137,7 +141,7 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
           knoepfe.set(z.id, knopf);
         }
         if (z.mehr) fuelleMehr(knopf, z.mehr);
-        else fuelleKnoten(knopf, z.eintrag);
+        else fuelleKnoten(knopf, z.eintrag, titel.get(z.id));
         rolle(knopf, z.id === mitteId);
         setzeZiel(knopf, z);
       }
@@ -156,8 +160,8 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
   // Größe ändert sich (Drehen, Fenster) → nur neu anordnen
   new ResizeObserver(() => render()).observe(element);
 
-  function zeige(eintraege, links, mitteId) {
-    stand = { eintraege, links, mitteId };
+  function zeige(eintraege, links, mitteId, bilder = []) {
+    stand = { eintraege, links, mitteId, bilder };
     render();
   }
 

@@ -71,7 +71,7 @@ export function mindmapInhalt({ zurueckKnopf, sucheKnopf }) {
 
     if (ansicht === 'karte') {
       if (element.firstChild !== karte.element) element.replaceChildren(karte.element);
-      karte.zeige(stand.eintraege, stand.links, mitte.id);
+      karte.zeige(stand.eintraege, stand.links, mitte.id, stand.bilder);
     } else if (ansicht === 'liste') {
       element.replaceChildren(liste(mitte));
     } else if (ansicht === 'verknuepfen') {
