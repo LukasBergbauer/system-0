@@ -16,7 +16,7 @@ Vorgezogen nach Phase 1 (Datenbank + Mindmap), **Phase 5** (Lernpfade, Notion).
   nicht im Browser-Code stehen darf. Vorher klären, ob Notion Quelle oder nur Kopie sein soll.
 
 ## Stand
-Plan von Lukas abgesegnet (04.11.2026). Teile a und b gebaut; **als Nächstes Teil c** (Fokus-Karte).
+Plan von Lukas abgesegnet (04.11.2026). Teile a, b und c gebaut; **als Nächstes Teil d** (in der Mindmap hinzufügen und verknüpfen).
 - [x] a) Grundgerüst + Daten:
   - `src/module/physio/arten.js` (Arten + optionale Felder je Art, `art(id)`),
     `daten.js` (`ladeEintraege`, `ladeLinks`, `neuerEintrag(art, titel)`, `aendereEintrag`, `loescheEintrag`
@@ -39,10 +39,27 @@ Plan von Lukas abgesegnet (04.11.2026). Teile a und b gebaut; **als Nächstes Te
   - `suche.js`: Suchfeld oben (Serifenschrift). Leer: „Zuletzt bearbeitet“ (8) + „+ Neuer Punkt“.
     Mit Text: Treffer (max. 30) mit Art rechts, „+ „…“ anlegen“. Noch gar nichts da: gleich das Anlegen-Formular
   - `anlegen.js`: Art-Chips + Titel, Enter oder „Anlegen“; letzte Art wird im Gerät gemerkt
-  - `mitte.js`: gewählter Punkt groß in der Mitte (Platzhalter, Teil c macht daraus die Fokus-Karte)
   - Helle Farben als Token-Satz `.hell` in `tokens.css` (gleiche Namen, helle Werte); Stile `src/styles/physio.css`
   - `sw.js` auf `v23`. Lokal geprüft (iPhone-Größe, Mac-Breite): Öffnen/Schließen per ✕, Esc, Zurück; Anlegen, Suche.
     Testpunkt danach wieder gelöscht
+- [x] c) Fokus-Karte:
+  - `mindmap-inhalt.js`: drei Ansichten (Suche · Karte · Liste) und Verlauf. Leiste: links „‹ Suche“ (Karte ohne Verlauf)
+    bzw. „‹ Zurück“ (voriger Punkt, Liste → Karte, Suche → Karte), rechts Lupe (zur Suche) und ✕.
+    Aus der Suche gewählter Punkt landet auch im Verlauf. Gelöschte Punkte fallen aus Mitte und Verlauf raus.
+    Zurück-Wischen auf dem iPhone schließt das ganze Overlay (nicht Punkt für Punkt)
+  - `fokus.js`: Knöpfe bleiben über Wechsel erhalten (Map id → Knopf), dadurch gleitet der angetippte Nachbar
+    in die Mitte und die alte Mitte zu den Nachbarn; Neue schweben aus der Mitte ein, Wegfallende blenden aus.
+    Linien als SVG: Mitte → Nachbar, gestrichelt zwischen Nachbarn, die untereinander verknüpft sind;
+    bei neuer Mitte erst nach dem Gleiten eingeblendet. Fußzeile: Kurzbeschreibung der Mitte + Anzahl.
+    `ResizeObserver` ordnet beim Drehen/Größe ändern neu an. Mitte antippen: noch ohne Funktion (Teil e)
+  - `fokus-layout.js`: Ringe als Ellipsen. Schmal (< 500 px): ein Ring, 8 Plätze; breit: zwei Ringe, 16 Plätze.
+    Mehr Nachbarn → letzter Platz „+N weitere“ → Liste „Verknüpft mit …“. Größen der Punkte (`groessen`)
+  - `knoten.js`: Punkt mit Art-Label, Titel (2 Zeilen, Silbentrennung), Kurzbeschreibung als Hover-Blase (nur Maus).
+    Art dezent an der Form: Krankheitsbild getönt, Region dicker Rand, Technik gestrichelt. Lange Titel (> 14 Zeichen)
+    in der Mitte kleiner
+  - Symbol `suche` (Lupe); Stile `src/styles/physio-karte.css`; `mitte.js` entfernt. `sw.js` auf `v24`
+  - Lokal geprüft mit Testdaten nur im Speicher (nichts gespeichert): iPhone-Größe (1 Ring, „+8“, Liste, Verlauf,
+    Gleiten, Querlinien), Mac-Breite (2 Ringe, Hover-Vorschau), echtes Overlay ohne Fehler
 
 ## Entscheidungen (Gespräch 04.11.2026)
 - Zuerst: Übungen, Krankheitsbilder, Muskeln + Regionen. Techniken gibt es als Art schon, Inhalte später.

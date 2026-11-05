@@ -11,7 +11,7 @@ import { anlegenForm } from './anlegen.js';
 const MAX_TREFFER = 30;
 const ZULETZT = 8;
 
-function zeile(e, waehle) {
+export function trefferZeile(e, waehle) {
   return listRow({
     title: e.titel,
     sub: e.kurz || null,
@@ -64,7 +64,7 @@ export function suchAnsicht({ stand, waehle }) {
       const zuletzt = [...alle].sort((a, b) => b.updated_at.localeCompare(a.updated_at)).slice(0, ZULETZT);
       ergebnis.replaceChildren(
         el('p', { class: 'label', text: 'Zuletzt bearbeitet' }),
-        list(zuletzt.map((e) => zeile(e, waehle))),
+        list(zuletzt.map((e) => trefferZeile(e, waehle))),
         neuKnopf('+ Neuer Punkt'),
       );
       return;
@@ -73,7 +73,7 @@ export function suchAnsicht({ stand, waehle }) {
     const treffer = suche(alle, text);
     ergebnis.replaceChildren(...[
       treffer.length
-        ? list(treffer.slice(0, MAX_TREFFER).map((e) => zeile(e, waehle)))
+        ? list(treffer.slice(0, MAX_TREFFER).map((e) => trefferZeile(e, waehle)))
         : el('p', { class: 'mm-suche__hinweis', text: 'Nichts gefunden.' }),
       treffer.length > MAX_TREFFER &&
         el('p', { class: 'app__note', text: `${treffer.length - MAX_TREFFER} weitere – genauer suchen` }),
@@ -85,7 +85,7 @@ export function suchAnsicht({ stand, waehle }) {
     return el('button', { class: 'chip chip--aktion mm-suche__neu', text, attrs: { type: 'button' }, on: { click: zeigeForm } });
   }
 
-  const element = el('div', { class: 'mm-suche' }, [feld, ergebnis]);
+  const element = el('div', { class: 'mm-suche mm-suche--feld' }, [feld, ergebnis]);
   // Neu zeichnen, wenn sich Daten ändern (z. B. durch das andere Gerät) – außer beim Ausfüllen.
   element.aktualisiere = () => { if (!formOffen) zeichne(); };
   zeichne();

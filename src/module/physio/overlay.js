@@ -1,12 +1,12 @@
 // Mindmap-Overlay: helle Vollbild-Fläche, die sich aus dem angetippten Knopf heraus öffnet
 // (Kreis wächst vom Knopf aus) und beim Schließen wieder dorthin zurückschrumpft.
 // Schließen: ✕, Esc, Zurück-Knopf/-Wischen (eigener Verlaufseintrag, Adresse bleibt gleich).
-// Inhalt: zuerst die Suche; gewählter Punkt kommt in die Mitte (Teil c: Fokus-Karte).
+// Inhalt (Suche, Fokus-Karte, Liste, Verlauf): mindmap-inhalt.js.
 import { el } from '../../ui/dom.js';
+import { symbol } from '../../ui/symbol.js';
 import { on } from '../../core/events.js';
 import { EINTRAEGE, LINKS, ladeEintraege, ladeLinks } from './daten.js';
-import { suchAnsicht } from './suche.js';
-import { mitteAnsicht } from './mitte.js';
+import { mindmapInhalt } from './mindmap-inhalt.js';
 
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MARKE = 'physio-mindmap'; // Kennzeichen unseres Verlaufseintrags
@@ -17,54 +17,27 @@ let offen = null; // höchstens ein Overlay gleichzeitig
 export function oeffneMindmap({ ausKnopf, signal } = {}) {
   if (offen) return;
   const ende = new AbortController(); // endet beim Schließen
-  const stand = { eintraege: [], links: [], mitteId: null, suchtext: '' };
 
-  const zurueck = el('button', {
-    class: 'mm__knopf mm__zurueck', text: 'Suche', attrs: { type: 'button' },
-    on: { click: () => zeigeSuche() },
-  });
-  const zu = el('button', {
-    class: 'mm__knopf mm__zu', text: '✕', attrs: { type: 'button', 'aria-label': 'Mindmap schließen' },
-    on: { click: () => schliessen() },
-  });
-  const inhalt = el('div', { class: 'mm__inhalt' });
+  const leistenKnopf = (klasse, inhalt, label) =>
+    el('button', { class: `mm__knopf ${klasse}`, attrs: { type: 'button', 'aria-label': label } }, inhalt);
+  const zurueckKnopf = leistenKnopf('mm__zurueck', 'Suche');
+  const sucheKnopf = leistenKnopf('mm__suchen', symbol('suche'), 'Suchen');
+  const zu = leistenKnopf('mm__zu', '✕', 'Mindmap schließen');
+  zu.addEventListener('click', () => schliessen());
+  const inhalt = mindmapInhalt({ zurueckKnopf, sucheKnopf });
+
   const dialog = el('dialog', { class: 'mm hell', attrs: { 'aria-label': 'Mindmap' } }, [
-    el('div', { class: 'mm__leiste' }, [zurueck, el('p', { class: 'marke mm__marke', text: 'Mindmap' }), zu]),
-    inhalt,
+    el('div', { class: 'mm__leiste' }, [
+      zurueckKnopf,
+      el('p', { class: 'marke mm__marke', text: 'Mindmap' }),
+      el('div', { class: 'mm__rechts' }, [sucheKnopf, zu]),
+    ]),
+    inhalt.element,
   ]);
-
-  // ---------- Inhalt ----------
-  function zeige() {
-    const mitte = stand.eintraege.find((e) => e.id === stand.mitteId);
-    if (!mitte) stand.mitteId = null; // z. B. auf dem anderen Gerät gelöscht
-    // unsichtbar statt entfernt, damit „Mindmap“ in der Leiste mittig bleibt
-    zurueck.style.visibility = mitte ? '' : 'hidden';
-    if (mitte) {
-      inhalt.replaceChildren(mitteAnsicht({ eintrag: mitte, ...stand, waehle }));
-    } else if (!inhalt.querySelector('.mm-suche')) {
-      inhalt.replaceChildren(suchAnsicht({ stand, waehle }));
-    } else {
-      inhalt.firstChild.aktualisiere?.(); // Suche neu zeichnen, Fokus und Text bleiben
-    }
-  }
-
-  function waehle(id) {
-    stand.mitteId = id;
-    zeige();
-  }
-
-  function zeigeSuche() {
-    stand.mitteId = null;
-    inhalt.replaceChildren();
-    zeige();
-    inhalt.querySelector('input')?.focus();
-  }
 
   async function laden() {
     const [eintraege, links] = await Promise.all([ladeEintraege(), ladeLinks()]);
-    if (ende.signal.aborted) return;
-    Object.assign(stand, { eintraege, links });
-    zeige();
+    if (!ende.signal.aborted) inhalt.daten(eintraege, links);
   }
 
   on('daten', ({ table }) => {

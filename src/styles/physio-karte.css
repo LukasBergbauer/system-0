@@ -1,0 +1,193 @@
+/* Fokus-Karte im Mindmap-Overlay (src/module/physio/fokus.js, knoten.js).
+   Größen der Punkte setzt fokus.js als --mm-mitte, --mm-breit, --mm-hoch (aus fokus-layout.js).
+   Nur Werte aus tokens.css. */
+
+.mm-karte {
+  position: absolute;
+  inset: 0;
+  max-width: none;
+  --mm-gleiten: 560ms;
+}
+.mm-karte__linien,
+.mm-karte__knoten {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.mm-karte__linien {
+  stroke: var(--text);
+  stroke-opacity: 0.28;
+  stroke-width: 1;
+  fill: none;
+}
+.mm-karte__linien .quer {
+  stroke-opacity: 0.12;
+  stroke-dasharray: 3 4;
+}
+/* Neue Mitte: Linien erscheinen erst, wenn die Punkte angekommen sind */
+.mm-karte__linien--ein {
+  animation: mm-linien var(--mm-gleiten) var(--ease) both;
+}
+@keyframes mm-linien {
+  0%, 45% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* ---------- Punkte ---------- */
+.mm-knoten {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--mm-breit);
+  height: var(--mm-hoch);
+  padding: 0 var(--space-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font: inherit;
+  color: var(--text);
+  text-align: center;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform var(--mm-gleiten) var(--ease),
+    width var(--mm-gleiten) var(--ease),
+    height var(--mm-gleiten) var(--ease),
+    opacity var(--mm-gleiten) var(--ease),
+    border-color var(--duration) var(--ease),
+    background-color var(--duration) var(--ease);
+}
+.mm-knoten:hover {
+  border-color: var(--text-2);
+}
+.mm-knoten:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.mm-knoten__art {
+  font-size: 9px;
+  letter-spacing: 0.12em; /* etwas enger als sonst, damit „Krankheitsbild“ in jeden Punkt passt */
+  color: var(--text-2);
+}
+.mm-knoten__titel {
+  max-width: 100%;
+  hyphens: auto; /* lange Fachwörter trennen statt abschneiden (Seite ist lang="de") */
+  overflow-wrap: break-word;
+  font-size: var(--fs-small);
+  line-height: 1.2;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+/* Art an der Form erkennbar (ganz dezent, alles bleibt grau-weiß) */
+.mm-knoten[data-art="krankheitsbild"] {
+  /* getönt, aber deckend, damit keine Linie durchscheint */
+  background: linear-gradient(var(--surface-2), var(--surface-2)) var(--bg);
+}
+.mm-knoten[data-art="region"] {
+  border-width: 2px;
+}
+.mm-knoten[data-art="technik"] {
+  border-style: dashed;
+}
+.mm-knoten[data-art="mehr"] {
+  border-style: dashed;
+  background: none;
+}
+
+/* Mitte: großer Kreis in Serifenschrift */
+.mm-knoten--mitte {
+  z-index: 1;
+  width: var(--mm-mitte);
+  height: var(--mm-mitte);
+  padding: var(--space-3);
+  border-color: var(--text);
+  cursor: default;
+}
+.mm-knoten--mitte .mm-knoten__titel {
+  font-family: var(--font-serif);
+  font-size: var(--fs-title);
+  -webkit-line-clamp: 3;
+}
+.mm-knoten--mitte.mm-knoten--lang .mm-knoten__titel {
+  font-size: var(--fs-normal);
+  -webkit-line-clamp: 4;
+}
+
+/* Kommen und Gehen */
+.mm-knoten--neu {
+  opacity: 0;
+  transition: none;
+}
+.mm-knoten--weg {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Kurzbeschreibung beim Hovern (nur mit Maus, nicht bei der Mitte) */
+.mm-knoten__kurz {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  left: 50%;
+  width: max-content;
+  max-width: 220px;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--fs-small);
+  line-height: 1.35;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -4px);
+  transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease);
+}
+.mm-knoten__kurz:empty {
+  display: none;
+}
+@media (hover: hover) {
+  .mm-knoten:not(.mm-knoten--mitte):hover {
+    z-index: 2;
+  }
+  .mm-knoten:not(.mm-knoten--mitte):hover .mm-knoten__kurz {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* ---------- Fußzeile: Kurzbeschreibung der Mitte, Anzahl ---------- */
+.mm-karte__fuss {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: var(--space-2) var(--space-5) calc(env(safe-area-inset-bottom) + var(--space-4));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  text-align: center;
+}
+.mm-karte__kurz {
+  max-width: 36ch;
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--text-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mm-karte {
+    --mm-gleiten: 0ms;
+  }
+  .mm-karte__linien--ein {
+    animation: none;
+  }
+}

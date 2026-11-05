@@ -73,7 +73,7 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 | `kopfbild.js` | `kopfbild({ titel, bild, spruch })` | Seitenkopf: Bild vollflächig dahinter (unten/links weich ausgeblendet), großer Serifentitel, Strich, kursiver Spruch |
 | `kachel.js` | `kacheln([…])`, `kachel({ symbol, titel, wert, text, gross, onClick, children })` | filigrane Glas-Kacheln im 2er-Raster; klein = Symbol oben, `gross` = ganze Breite mit Symbol links; Symbol (18 px) im kleinen abgerundeten Quadrat (34 px), `titel` als Label, `wert` in Serifenschrift (20 px), `text` klein; Zustände `kachel--laeuft` (Symbol dreht), `kachel--warn` |
 | `chips.js` | `chips({ items, active, onChange, aktionen })` | waagrechte Kapsel-Leiste (wischbar, Serifenschrift); gewählt = Elfenbein gefüllt; `aktionen` = gestrichelte Chips, die nur etwas auslösen |
-| `symbol.js` | `symbol(name)` | dünnes Linien-Symbol (24 px, Textfarbe), z. B. `heute`, `todos`, `einstellungen`, `mehr`, `abgleich`, `export`, `konto`, `physio` |
+| `symbol.js` | `symbol(name)` | dünnes Linien-Symbol (24 px, Textfarbe), z. B. `heute`, `todos`, `einstellungen`, `mehr`, `abgleich`, `export`, `konto`, `physio`, `suche` |
 
 Navigation (Tab-Leiste, Seitenleiste): Stile in `src/styles/nav.css`, beide aus Glas. Aktiver Eintrag:
 Symbol und Text in Elfenbein; Tab-Leiste mit kurzem Strich darunter, Seitenleiste mit Linie links.
