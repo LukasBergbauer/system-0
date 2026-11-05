@@ -73,3 +73,18 @@
 .app__note--warn {
   color: var(--warn);
 }
+
+/* Hinweis, wenn ein anderes Fenster mit älterer Fassung die lokale Datenbank blockiert (src/core/db.js) */
+.db-hinweis {
+  position: fixed;
+  left: var(--space-4);
+  right: var(--space-4);
+  top: calc(env(safe-area-inset-top) + var(--space-4));
+  z-index: 1000;
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: var(--radius);
+  font-size: var(--fs-small);
+}

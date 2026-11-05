@@ -12,6 +12,19 @@ const DB_VERSION = 2;
 
 let dbPromise = null;
 
+// Ein anderes Fenster mit einer älteren App-Fassung hält die Datenbank offen und verhindert die Umstellung.
+// Statt still leer zu bleiben: sichtbarer Hinweis, bis es weitergeht.
+let hinweis = null;
+function zeigeBlockiert() {
+  console.warn('Lokale Datenbank wartet: ein anderes Fenster mit einer älteren Fassung ist noch offen');
+  hinweis ??= Object.assign(document.createElement('p'), {
+    className: 'db-hinweis',
+    textContent: 'Ein anderes Fenster mit System 0 ist noch offen (ältere Fassung). Bitte dort schließen – dann geht es hier von selbst weiter.',
+  });
+  hinweis.setAttribute('role', 'alert');
+  document.body.append(hinweis);
+}
+
 export function openDb() {
   if (!dbPromise) {
     dbPromise = new Promise((resolve, reject) => {
@@ -30,7 +43,9 @@ export function openDb() {
           db.createObjectStore('datei_warteschlange', { keyPath: 'pfad' });
         }
       };
+      req.onblocked = zeigeBlockiert;
       req.onsuccess = () => {
+        hinweis?.remove();
         const db = req.result;
         // Neuere App-Fassung in einem anderen Fenster will die Datenbank erweitern → hier loslassen
         db.onversionchange = () => {
