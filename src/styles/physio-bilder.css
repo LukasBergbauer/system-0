@@ -1,0 +1,132 @@
+/* Bilder im PhysioZentrum: Bildleiste im Eintrag (galerie.js) und Großansicht (bild-gross.js).
+   Im Eintrag in Farbe; in der Mindmap-Karte später schwarz-weiß (Teil g3). Nur Werte aus tokens.css. */
+
+/* ---------- Bildleiste ---------- */
+.mm-galerie {
+  display: flex;
+  gap: var(--space-2);
+  height: 132px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  /* bis an den Rand wischen können (wie die Chips) */
+  margin: 0 calc(var(--space-4) * -1);
+  padding: 0 var(--space-4);
+}
+.mm-galerie::-webkit-scrollbar {
+  display: none;
+}
+/* Noch keine Bilder: nur ein kleiner, unaufdringlicher „+ Bild“-Knopf */
+.mm-galerie--leer {
+  height: auto;
+}
+.mm-galerie__datei {
+  display: none;
+}
+
+.mm-galerie__bild {
+  position: relative;
+  flex: none;
+  height: 100%;
+  aspect-ratio: 4 / 3; /* bis die echten Maße bekannt sind */
+  padding: 0;
+  overflow: hidden;
+  background: var(--surface-2);
+  border: 0;
+  border-radius: var(--radius);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.mm-galerie__bild img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity var(--duration) var(--ease);
+}
+.mm-galerie__bild--laedt img {
+  opacity: 0;
+}
+.mm-galerie__bild--fehlt::after {
+  content: "Lädt, sobald Internet da ist";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--space-2);
+  font-size: var(--fs-small);
+  color: var(--text-2);
+}
+.mm-galerie__bild--neu {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  font-size: var(--fs-small);
+  color: var(--text-2);
+  animation: mm-pulsieren 1.2s ease-in-out infinite alternate;
+}
+@keyframes mm-pulsieren {
+  to { opacity: 0.45; }
+}
+
+/* Label „Titelbild“ nur auf dem ersten Bild */
+.mm-galerie__titel {
+  position: absolute;
+  left: var(--space-2);
+  bottom: var(--space-2);
+  padding: 2px var(--space-2);
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: 999px;
+  display: none;
+}
+.mm-galerie__bild--erstes .mm-galerie__titel {
+  display: block;
+}
+
+.mm-galerie__plus {
+  flex: none;
+  min-width: 96px;
+  min-height: var(--tap);
+  padding: 0 var(--space-4);
+  font: inherit;
+  font-family: var(--font-serif);
+  color: var(--text);
+  background: none;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.mm-galerie__plus:hover {
+  border-color: var(--text-2);
+}
+
+/* ---------- Großansicht ---------- */
+.mm-bildgross {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+.mm-bildgross__bild {
+  display: block;
+  max-width: 100%;
+  max-height: 65dvh;
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+.mm-bildgross .label,
+.mm-bildgross .app__note {
+  margin: 0;
+}
+.mm-bildgross__aktionen {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mm-galerie__bild--neu {
+    animation: none;
+  }
+}

@@ -16,7 +16,9 @@ Vorgezogen nach Phase 1 (Datenbank + Mindmap), **Phase 5** (Lernpfade, Notion).
   nicht im Browser-Code stehen darf. Vorher klären, ob Notion Quelle oder nur Kopie sein soll.
 
 ## Stand
-Plan von Lukas abgesegnet (04.11.2026). Teile a bis e gebaut, Teil g (Bilder) läuft: g1 fertig, **als Nächstes g2** (Galerie im Eintrag); danach g3, dann f (Feinschliff).
+Plan von Lukas abgesegnet (04.11.2026). Teile a bis e gebaut, Teil g (Bilder) läuft: g1 und g2 fertig, **als Nächstes g3** (Bilder in der Karte); danach f (Feinschliff).
+**Offen:** Gleiten fühlt sich für Lukas trotz Umbau (`gleiten.js`) noch nicht flüssig an (05.11.2026) – in f gezielt angehen,
+vorher von Lukas genau beschreiben lassen, was er sieht (Ruckeln, Springen am Ende, Tempo, Text) und auf welchem Gerät.
 - [x] a) Grundgerüst + Daten:
   - `src/module/physio/arten.js` (Arten + optionale Felder je Art, `art(id)`),
     `daten.js` (`ladeEintraege`, `ladeLinks`, `neuerEintrag(art, titel)`, `aendereEintrag`, `loescheEintrag`
@@ -209,6 +211,23 @@ Stand Teil g:
     `loescheEintrag` löscht die Bilder mit. Tabelle in `tabellen.js`; `sw.js` auf `v29`
   - Geprüft mit Testpunkt (danach gelöscht): Hochladen (4 Dateien), Zurückholen aus Storage, Titelbild umstellen,
     Löschen räumt Zeilen und Dateien im Speicher-Ordner auf
+- [x] g2) Galerie im Eintrag:
+  - `galerie.js`: Bildleiste oben im Eintrag (nach den Art-Chips), in Farbe, waagrecht wischbar (bewusst ohne
+    `scroll-snap`: das ließ die Leiste um den Innenabstand verrutschen). Erstes Bild mit Label „Titelbild“.
+    „+ Bild“ öffnet `<input type=file accept=image/* multiple>` (iPhone: Kamera oder Mediathek). Während des Verkleinerns
+    pulsierende Platzhalter „Wird hinzugefügt …“. Platz je Bild über `breite/hoehe` reserviert, Bild blendet ein.
+    Fehlt ein Bild (offline, noch nicht geladen): Hinweis in der Kachel, nächster Versuch beim nächsten Auffrischen.
+    Kacheln bleiben über Auffrischungen erhalten (kein Flackern)
+  - `bild-gross.js`: Ansicht `bild` (eigener Schritt im Verlauf, `schritt.bildId`; Zurück-Wischen schließt): Bild groß in Farbe,
+    „Bild 2 von 3“ bzw. „Titelbild · Bild 1 von 3“, „Als Titelbild“ (nicht beim ersten), „Löschen“ (Rückfrage) → zurück
+  - Overlay lädt jetzt auch `physio_bilder` (und hört auf Änderungen); `mindmap-inhalt.js` reicht die Bilder der Mitte
+    an Eintrag (`zeigeBilder` frischt nur die Leiste auf) und Großansicht weiter
+  - Stile `src/styles/physio-bilder.css`; `sw.js` auf `v32`
+  - Lokal geprüft (iPhone-Größe) mit Testpunkt, danach samt Bildern gelöscht (Speicher-Ordner wieder leer):
+    Hinzufügen von 2 Bildern auf einmal, Titelbild-Markierung, Großansicht, „Als Titelbild“, Zurück, Löschen,
+    Verlauf nach ✕ sauber
+  - Merke: Wird die Seite neu geladen, während die Mindmap offen ist, bleiben deren Verlaufseinträge stehen
+    (harmlos, Zurück tut dann einmal nichts)
 
 ## Offen / bitte prüfen
 - Das Overlay ist hell (Elfenbein-Weiß mit dunkler Schrift), während die App sonst dunkel ist. So gewünscht;

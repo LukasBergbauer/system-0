@@ -1,5 +1,6 @@
 // Eintrag-Ansicht: ein Punkt mit allen Feldern, direkt bearbeitbar, speichert automatisch.
-// Oben Art-Chips, großer Titel, Kurzbeschreibung; dann die Felder der Art (arten.js), Notizen, Video-Link.
+// Oben Art-Chips, Bildleiste (galerie.js), großer Titel, Kurzbeschreibung; dann die Felder der Art (arten.js),
+// Notizen, Video-Link. element.zeigeBilder(bilder) frischt nur die Bildleiste auf.
 // Unten „Punkt löschen“ (mit Rückfrage, Verknüpfungen fallen mit weg) → danach geloescht().
 // Werte anderer Arten bleiben in `felder` erhalten, auch wenn die Art gewechselt wird.
 import { el } from '../../ui/dom.js';
@@ -7,12 +8,13 @@ import { chips } from '../../ui/chips.js';
 import { ARTEN, art as artVon } from './arten.js';
 import { aendereEintrag, loescheEintrag } from './daten.js';
 import { textfeld } from './textfeld.js';
+import { galerie } from './galerie.js';
 
 const WARTEN_MS = 500; // so lange nach dem letzten Tastendruck, dann wird gespeichert
 
 const istLink = (s) => /^https?:\/\/\S+\.\S+/i.test(s.trim());
 
-export function eintragAnsicht({ eintrag, geloescht }) {
+export function eintragAnsicht({ eintrag, bilder = [], geloescht, oeffneBild }) {
   const id = eintrag.id;
   const felder = { ...(eintrag.felder ?? {}) };
   let art = eintrag.art;
@@ -87,12 +89,15 @@ export function eintragAnsicht({ eintrag, geloescht }) {
     },
   });
 
+  const bildleiste = galerie({ eintragId: id, bilder, oeffneBild });
+
   const element = el('div', { class: 'mm-eintrag' }, [
     chips({
       items: ARTEN.map((a) => ({ id: a.id, label: a.name })),
       active: art,
       onChange: (neu) => { art = neu; merke({ art }); zeigeArtFelder(); },
     }),
+    bildleiste.element,
     titelFeld,
     kurzFeld,
     el('hr', { class: 'strich' }),
@@ -105,5 +110,6 @@ export function eintragAnsicht({ eintrag, geloescht }) {
   // Verlassen eines Felds speichert sofort (z. B. vor „‹ Zurück“)
   element.addEventListener('focusout', speichereGleich);
   element.dataset.eintrag = id;
+  element.zeigeBilder = bildleiste.zeige;
   return element;
 }

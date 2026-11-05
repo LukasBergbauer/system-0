@@ -1,31 +1,35 @@
-// Inhalt des Mindmap-Overlays: fünf Ansichten, gesteuert über den Verlauf (mm-verlauf.js).
+// Inhalt des Mindmap-Overlays: sechs Ansichten, gesteuert über den Verlauf (mm-verlauf.js).
 //   suche       – Suchfeld, Treffer, Anlegen (suche.js)
 //   karte       – Fokus-Karte um den gewählten Punkt (fokus.js)
 //   liste       – alle Verknüpfungen der Mitte, wenn nicht alle auf die Karte passen
 //   verknuepfen – vorhandenen Punkt suchen oder neuen anlegen, beides wird mit der Mitte verknüpft (verknuepfen.js)
-//   eintrag     – die Mitte mit allen Feldern, direkt bearbeitbar (eintrag.js)
+//   eintrag     – die Mitte mit allen Feldern und Bildern, direkt bearbeitbar (eintrag.js)
+//   bild        – ein Bild der Mitte groß, mit „Als Titelbild“ und „Löschen“ (bild-gross.js)
 // Jeder Wechsel ist ein Schritt im Verlauf; „‹ Zurück“ und Zurück-Wischen gehen einen Schritt zurück.
-// const m = mindmapInhalt({ zurueckKnopf, sucheKnopf }); m.start(); m.daten(eintraege, links);
+// const m = mindmapInhalt({ zurueckKnopf, sucheKnopf }); m.start(); m.daten(eintraege, links, bilder);
 import { el } from '../../ui/dom.js';
 import { list } from '../../ui/list.js';
 import { nachbarn, loese } from './daten.js';
 import { suchAnsicht, trefferZeile } from './suche.js';
 import { verknuepfenAnsicht } from './verknuepfen.js';
 import { eintragAnsicht } from './eintrag.js';
+import { bildGross } from './bild-gross.js';
+import { bilderVon } from './bilder.js';
 import { fokusKarte } from './fokus.js';
 import { mmVerlauf } from './mm-verlauf.js';
 
-const MIT_MITTE = ['karte', 'liste', 'verknuepfen', 'eintrag'];
+const MIT_MITTE = ['karte', 'liste', 'verknuepfen', 'eintrag', 'bild'];
 
 export function mindmapInhalt({ zurueckKnopf, sucheKnopf }) {
   // stand wird mit suche.js und verknuepfen.js geteilt (eintraege, suchtext)
-  const stand = { eintraege: [], links: [], suchtext: '' };
+  const stand = { eintraege: [], links: [], bilder: [], suchtext: '' };
   let schritt = { ansicht: 'suche', mitteId: null };
   const element = el('div', { class: 'mm__inhalt' });
   const verlauf = mmVerlauf((s) => { schritt = s; zeige(); });
 
-  const geheZu = (ansicht, mitteId = schritt.mitteId) => {
-    schritt = { ansicht, mitteId };
+  // extra: z. B. { bildId } für die Großansicht
+  const geheZu = (ansicht, mitteId = schritt.mitteId, extra = {}) => {
+    schritt = { ansicht, mitteId, ...extra };
     verlauf.weiter(schritt);
     zeige();
   };
@@ -58,7 +62,10 @@ export function mindmapInhalt({ zurueckKnopf, sucheKnopf }) {
   function zeige() {
     const mitte = stand.eintraege.find((e) => e.id === schritt.mitteId);
     // Punkt gibt es nicht mehr (z. B. auf dem anderen Gerät gelöscht) → Suche zeigen
-    const ansicht = MIT_MITTE.includes(schritt.ansicht) && !mitte ? 'suche' : schritt.ansicht;
+    let ansicht = MIT_MITTE.includes(schritt.ansicht) && !mitte ? 'suche' : schritt.ansicht;
+    const bilder = mitte ? bilderVon(mitte.id, stand.bilder) : [];
+    const bild = bilder.find((b) => b.id === schritt.bildId);
+    if (ansicht === 'bild' && !bild) ansicht = 'eintrag'; // Bild inzwischen gelöscht
     leiste();
     element.classList.toggle('mm__inhalt--karte', ansicht === 'karte');
 
@@ -75,8 +82,15 @@ export function mindmapInhalt({ zurueckKnopf, sucheKnopf }) {
     } else if (ansicht === 'eintrag') {
       // nicht neu bauen, solange man schreibt (eigene Änderungen kommen ja auch als Ereignis zurück)
       if (element.firstChild?.dataset.eintrag !== mitte.id) {
-        element.replaceChildren(eintragAnsicht({ eintrag: mitte, geloescht: () => verlauf.zurueck() }));
+        element.replaceChildren(eintragAnsicht({
+          eintrag: mitte, bilder, geloescht: () => verlauf.zurueck(),
+          oeffneBild: (b) => geheZu('bild', mitte.id, { bildId: b.id }),
+        }));
+      } else {
+        element.firstChild.zeigeBilder(bilder); // nur die Bildleiste auffrischen
       }
+    } else if (ansicht === 'bild') {
+      element.replaceChildren(bildGross({ bild, bilder, fertig: () => verlauf.zurueck() }));
     } else if (element.firstChild?.classList.contains('mm-suche--feld')) {
       element.firstChild.aktualisiere(); // Suche neu zeichnen, Fokus und Text bleiben
     } else {
@@ -92,8 +106,8 @@ export function mindmapInhalt({ zurueckKnopf, sucheKnopf }) {
     start: () => verlauf.start(schritt),
     popstate: (state) => verlauf.popstate(state),
     verlassen: () => verlauf.verlassen(),
-    daten(eintraege, links) {
-      Object.assign(stand, { eintraege, links });
+    daten(eintraege, links, bilder) {
+      Object.assign(stand, { eintraege, links, bilder });
       zeige();
     },
   };

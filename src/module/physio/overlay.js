@@ -7,6 +7,7 @@ import { symbol } from '../../ui/symbol.js';
 import { on } from '../../core/events.js';
 import { EINTRAEGE, LINKS, ladeEintraege, ladeLinks } from './daten.js';
 import { mindmapInhalt } from './mindmap-inhalt.js';
+import { BILDER, ladeBilder } from './bilder.js';
 
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -35,12 +36,12 @@ export function oeffneMindmap({ ausKnopf, signal } = {}) {
   ]);
 
   async function laden() {
-    const [eintraege, links] = await Promise.all([ladeEintraege(), ladeLinks()]);
-    if (!ende.signal.aborted) inhalt.daten(eintraege, links);
+    const [eintraege, links, bilder] = await Promise.all([ladeEintraege(), ladeLinks(), ladeBilder()]);
+    if (!ende.signal.aborted) inhalt.daten(eintraege, links, bilder);
   }
 
   on('daten', ({ table }) => {
-    if (table === EINTRAEGE || table === LINKS) laden();
+    if (table === EINTRAEGE || table === LINKS || table === BILDER) laden();
   }, { signal: ende.signal });
 
   // ---------- Öffnen und Schließen ----------
