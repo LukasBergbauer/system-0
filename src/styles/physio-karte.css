@@ -6,7 +6,9 @@
   position: absolute;
   inset: 0;
   max-width: none;
-  --mm-gleiten: 560ms;
+  --mm-gleiten: 650ms; /* gleiche Zahl wie GLEITEN_MS in fokus.js */
+  /* sanft los, flüssig, sanft an (statt schnellem Start mit langem Ausrollen) */
+  --mm-kurve: cubic-bezier(0.65, 0, 0.35, 1);
 }
 .mm-karte__linien,
 .mm-karte__knoten {
@@ -27,10 +29,17 @@
 }
 /* Neue Mitte: Linien erscheinen erst, wenn die Punkte angekommen sind */
 .mm-karte__linien--ein {
-  animation: mm-linien var(--mm-gleiten) var(--ease) both;
+  animation: mm-linien var(--mm-gleiten) var(--mm-kurve) both;
+}
+/* alte Linien beim Wechsel der Mitte */
+.mm-karte__linien--alt {
+  animation: mm-linien-weg 250ms var(--ease) both;
+}
+@keyframes mm-linien-weg {
+  to { opacity: 0; }
 }
 @keyframes mm-linien {
-  0%, 45% { opacity: 0; }
+  0%, 60% { opacity: 0; }
   100% { opacity: 1; }
 }
 
@@ -61,12 +70,23 @@
   user-select: none;
   touch-action: manipulation;
   transition:
-    transform var(--mm-gleiten) var(--ease),
-    width var(--mm-gleiten) var(--ease),
-    height var(--mm-gleiten) var(--ease),
-    opacity var(--mm-gleiten) var(--ease),
-    border-color var(--duration) var(--ease),
+    transform var(--mm-gleiten) var(--mm-kurve),
+    width var(--mm-gleiten) var(--mm-kurve),
+    height var(--mm-gleiten) var(--mm-kurve),
+    padding var(--mm-gleiten) var(--mm-kurve),
+    opacity var(--mm-gleiten) var(--mm-kurve),
+    border-color var(--duration) var(--ease), /* kurz, damit Hover am Mac direkt reagiert */
     background-color var(--duration) var(--ease);
+}
+/* Text eines Punkts, der gerade die Rolle wechselt: aus, während er gleitet; danach sanft ein */
+.mm-knoten__art,
+.mm-knoten__titel {
+  transition: opacity 280ms var(--ease);
+}
+.mm-knoten--wechsel .mm-knoten__art,
+.mm-knoten--wechsel .mm-knoten__titel {
+  opacity: 0;
+  transition-duration: 120ms;
 }
 .mm-knoten:hover {
   border-color: var(--text-2);

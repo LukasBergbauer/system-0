@@ -12,6 +12,10 @@ import { knoten, fuelleKnoten, fuelleMehr } from './knoten.js';
 const SVG = 'http://www.w3.org/2000/svg';
 const MEHR = 'mehr';
 const AUSBLENDEN_MS = 400;
+// Dauer des Gleitens, muss zu --mm-gleiten in physio-karte.css passen. So lange ist der Text eines Punkts,
+// der die Rolle wechselt (Nachbar ↔ Mitte), ausgeblendet: Schrift und Größe springen dann unsichtbar um.
+const GLEITEN_MS = 650;
+const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const paar = (a, b) => (a < b ? `${a}|${b}` : `${b}|${a}`);
 
@@ -50,6 +54,18 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
     knopf.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
   }
 
+  // Rolle wechselt (Nachbar → Mitte oder umgekehrt): Text kurz ausblenden, nach dem Gleiten wieder einblenden.
+  function rolle(knopf, istMitte) {
+    const neu = istMitte ? 'mitte' : 'nachbar';
+    const alt = knopf.dataset.rolle;
+    knopf.dataset.rolle = neu;
+    knopf.classList.toggle('mm-knoten--mitte', istMitte);
+    if (!alt || alt === neu || reduceMotion()) return;
+    clearTimeout(knopf.wechselTimer);
+    knopf.classList.add('mm-knoten--wechsel');
+    knopf.wechselTimer = setTimeout(() => knopf.classList.remove('mm-knoten--wechsel'), GLEITEN_MS);
+  }
+
   function entferne(id, knopf) {
     knoepfe.delete(id);
     knopf.classList.add('mm-knoten--weg');
@@ -67,6 +83,13 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
           striche.push(`<line class="quer" x1="${nb[i].x}" y1="${nb[i].y}" x2="${nb[j].x}" y2="${nb[j].y}"/>`);
         }
       }
+    }
+    if (neueMitte && linien.childElementCount && !reduceMotion()) {
+      // alte Linien nicht schlagartig weg, sondern kurz ausblenden
+      const alt = linien.cloneNode(true);
+      alt.setAttribute('class', 'mm-karte__linien mm-karte__linien--alt');
+      linien.before(alt);
+      setTimeout(() => alt.remove(), AUSBLENDEN_MS);
     }
     linien.setAttribute('viewBox', `${-w / 2} ${-h / 2} ${w} ${h}`);
     linien.innerHTML = striche.join('');
@@ -118,7 +141,7 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
       }
       if (z.mehr) fuelleMehr(knopf, z.mehr);
       else fuelleKnoten(knopf, z.eintrag);
-      knopf.classList.toggle('mm-knoten--mitte', z.id === mitteId);
+      rolle(knopf, z.id === mitteId);
       setzePosition(knopf, z);
     }
 

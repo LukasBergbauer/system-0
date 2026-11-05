@@ -89,6 +89,12 @@ Plan von Lukas abgesegnet (04.11.2026). Teile a bis e gebaut; **als Nächstes Te
   - Lokal geprüft (iPhone-Größe, Mac-Breite) mit Testpunkt, der über „Punkt löschen“ wieder entfernt wurde:
     Speichern von Kurz/Feld/Video, Link erscheint, Art-Wechsel (Felder wechseln, alte Werte bleiben), Zurück zur Karte
     (Fußzeile zeigt neue Kurzbeschreibung), Löschen mit Rückfrage
+- [x] Nach Lukas' Test auf dem iPhone: Wechsel der Mitte wirkte „gesprungen, dann festgesetzt“ (Schrift sprang sofort
+  auf groß/Serif, Kurve mit schnellem Start, alte Linien schlagartig weg). Jetzt: Text des Punkts, der die Rolle wechselt,
+  blendet beim Losgleiten aus (120 ms) und nach dem Gleiten wieder ein (Klasse `mm-knoten--wechsel`, `GLEITEN_MS` in
+  `fokus.js` = `--mm-gleiten` 650 ms); Kurve `--mm-kurve` (sanft an, sanft aus); Innenabstand gleitet mit; alte Linien
+  blenden aus (`mm-karte__linien--alt`), neue ab 60 % ein. `sw.js` auf `v27`. Geprüft über die geplanten Übergänge im
+  Browser (Fenster war ausgeblendet, daher kein Video); **Lukas prüft das Gefühl auf dem iPhone**
 
 ## Entscheidungen (Gespräch 04.11.2026)
 - Zuerst: Übungen, Krankheitsbilder, Muskeln + Regionen. Techniken gibt es als Art schon, Inhalte später.
