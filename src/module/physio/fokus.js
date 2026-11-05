@@ -2,7 +2,7 @@
 // Antippen eines Nachbarn → waehle(id): derselbe Knopf gleitet in die Mitte, die alte Mitte
 // rutscht zu den Nachbarn, nicht mehr verbundene Punkte blenden aus, neue schweben aus der Mitte ein.
 // Linien: Mitte → jeder Nachbar; fein auch zwischen Nachbarn, die untereinander verknüpft sind.
-// Unten: „+ Verknüpfen“ → verknuepfen(). Nachbar lange drücken/Rechtsklick → loesen(mitte, nachbar).
+// Mitte antippen → oeffnen(). Unten: „+ Verknüpfen“ → verknuepfen(). Nachbar lange drücken/Rechtsklick → loesen(mitte, nachbar).
 // const k = fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen }); k.zeige(eintraege, links, mitteId);
 import { el } from '../../ui/dom.js';
 import { nachbarn } from './daten.js';
@@ -15,7 +15,7 @@ const AUSBLENDEN_MS = 400;
 
 const paar = (a, b) => (a < b ? `${a}|${b}` : `${b}|${a}`);
 
-export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen }) {
+export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) {
   const linien = document.createElementNS(SVG, 'svg');
   linien.setAttribute('class', 'mm-karte__linien');
   linien.setAttribute('aria-hidden', 'true');
@@ -32,8 +32,9 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen }) {
   let alteMitte = null;
 
   function tippen(id) {
-    if (!stand || id === stand.mitteId) return; // Mitte antippen: öffnet in Teil e den Eintrag
-    if (id === MEHR) zeigeAlle();
+    if (!stand) return;
+    if (id === stand.mitteId) oeffnen(); // Mitte antippen: Eintrag öffnen
+    else if (id === MEHR) zeigeAlle();
     else waehle(id);
   }
 

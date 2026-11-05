@@ -1,0 +1,98 @@
+/* Eintrag-Ansicht im Mindmap-Overlay (src/module/physio/eintrag.js, textfeld.js).
+   Sieht aus wie ruhiger Text, jedes Feld ist direkt bearbeitbar. Nur Werte aus tokens.css. */
+
+.mm-eintrag {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  isolation: isolate; /* damit die Kapseln der Chips sichtbar bleiben */
+}
+.mm-eintrag .strich {
+  margin: 0;
+}
+
+/* ---------- Textfeld ---------- */
+.mm-textfeld {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.mm-textfeld .label {
+  color: var(--text-2);
+}
+.mm-text {
+  width: 100%;
+  min-height: var(--tap);
+  padding: var(--space-2) 0;
+  font: inherit;
+  font-size: var(--fs-normal);
+  line-height: 1.45;
+  color: var(--text);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  transition: border-color var(--duration) var(--ease);
+}
+.mm-text::placeholder {
+  color: var(--text-2);
+  opacity: 0.6;
+}
+/* Linie nur, solange man schreibt oder darüber fährt */
+.mm-text:hover {
+  border-bottom-color: var(--line);
+}
+.mm-text:focus {
+  border-bottom-color: var(--accent);
+}
+
+/* Titel groß in Serifenschrift, Kurzbeschreibung kursiv */
+.mm-eintrag__titel {
+  font-family: var(--font-serif);
+  font-size: var(--fs-large);
+  line-height: 1.2;
+  hyphens: auto;
+}
+.mm-eintrag__kurz {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--text-2);
+}
+
+.mm-eintrag__felder {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ---------- Video ---------- */
+.mm-eintrag__video-zeile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.mm-eintrag__video {
+  align-self: flex-start;
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  color: var(--text);
+  font-family: var(--font-serif);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.mm-eintrag__video[hidden] {
+  display: none;
+}
+
+/* ---------- Löschen ---------- */
+.mm-eintrag__loeschen {
+  align-self: flex-start;
+  color: var(--warn);
+}
+.mm-eintrag .app__note {
+  margin-top: var(--space-2);
+}

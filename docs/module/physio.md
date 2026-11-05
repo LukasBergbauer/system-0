@@ -16,7 +16,7 @@ Vorgezogen nach Phase 1 (Datenbank + Mindmap), **Phase 5** (Lernpfade, Notion).
   nicht im Browser-Code stehen darf. Vorher klären, ob Notion Quelle oder nur Kopie sein soll.
 
 ## Stand
-Plan von Lukas abgesegnet (04.11.2026). Teile a bis d gebaut; **als Nächstes Teil e** (Punkt öffnen: Felder bearbeiten, löschen, Video-Link).
+Plan von Lukas abgesegnet (04.11.2026). Teile a bis e gebaut; **als Nächstes Teil f** (Feinschliff, siehe Plan).
 - [x] a) Grundgerüst + Daten:
   - `src/module/physio/arten.js` (Arten + optionale Felder je Art, `art(id)`),
     `daten.js` (`ladeEintraege`, `ladeLinks`, `neuerEintrag(art, titel)`, `aendereEintrag`, `loescheEintrag`
@@ -76,6 +76,19 @@ Plan von Lukas abgesegnet (04.11.2026). Teile a bis d gebaut; **als Nächstes Te
   - Lokal geprüft (iPhone-Größe) mit zwei Testpunkten, danach gelöscht: Anlegen + Verknüpfen, kein Doppel bei gleichem
     Titel, Zurück Schritt für Schritt bis Schließen, ✕ räumt Verlauf auf, Lösen per Rechtsklick und langem Drücken,
     kurzes Tippen wechselt normal
+- [x] e) Punkt öffnen:
+  - Mitte antippen → Ansicht `eintrag` (eigener Schritt im Verlauf, Zurück → Karte). `eintrag.js`: Art-Chips, Titel groß
+    (Serifenschrift), Kurzbeschreibung kursiv, Strich, Felder der Art (`arten.js`), Notizen, Video-Link mit
+    „Video öffnen ↗“ (nur bei gültigem http(s)-Link, öffnet neuen Tab bzw. Safari), „Punkt löschen“ (Rückfrage,
+    Verknüpfungen mit) → zurück
+  - Kein Bearbeiten-Modus: jedes Feld direkt bearbeitbar (`textfeld.js`: Textarea, wächst mit, Linie nur bei Hover/Fokus).
+    Speichert 500 ms nach dem letzten Tastendruck (gesammelt in einem `save`) und sofort beim Verlassen eines Felds.
+    Leerer Titel wird nicht gespeichert, beim Verlassen kommt der alte zurück. Art wechseln behält Werte der alten
+    Art in `felder` (tauchen wieder auf, wenn man zurückwechselt). Ansicht wird nicht neu gebaut, solange sie offen ist
+  - Stile `src/styles/physio-eintrag.css`; `sw.js` auf `v26`
+  - Lokal geprüft (iPhone-Größe, Mac-Breite) mit Testpunkt, der über „Punkt löschen“ wieder entfernt wurde:
+    Speichern von Kurz/Feld/Video, Link erscheint, Art-Wechsel (Felder wechseln, alte Werte bleiben), Zurück zur Karte
+    (Fußzeile zeigt neue Kurzbeschreibung), Löschen mit Rückfrage
 
 ## Entscheidungen (Gespräch 04.11.2026)
 - Zuerst: Übungen, Krankheitsbilder, Muskeln + Regionen. Techniken gibt es als Art schon, Inhalte später.
@@ -120,7 +133,9 @@ neue Arten brauchen keine neue Tabelle. Medien kommen später als eigene Tabelle
 - e) **Punkt öffnen:** Antippen der Mitte öffnet die Karte des Eintrags (Basis + Felder je Art), bearbeiten,
   löschen (mit Rückfrage), Video-Link öffnen
 - f) **Feinschliff:** Bewegungen ruhig, „Bewegung reduzieren“ beachten, iPhone (Wischen, Tippflächen 44 px)
-  und Mac prüfen; neue Dateien in `APP_FILES` von `sw.js`, `VERSION` hochzählen
+  und Mac prüfen; neue Dateien in `APP_FILES` von `sw.js`, `VERSION` hochzählen.
+  Dazu (offen aus d/e, mit Lukas klären): kleine Hinweise, z. B. „Lange drücken zum Lösen“ und dass man die Mitte
+  zum Öffnen antippen kann; Abstand Titel ↔ Kurzbeschreibung im Eintrag etwas enger; Zurück-Wischen auf dem echten iPhone testen
 - Später: eigene Fotos/Bilder, Übungen ins Trainings-Notebook übernehmen, Notion
 
 ## Offen / bitte prüfen

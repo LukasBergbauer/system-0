@@ -114,7 +114,7 @@
   height: var(--mm-mitte);
   padding: var(--space-3);
   border-color: var(--text);
-  cursor: default;
+  cursor: pointer; /* antippen öffnet den Eintrag */
 }
 .mm-knoten--mitte .mm-knoten__titel {
   font-family: var(--font-serif);

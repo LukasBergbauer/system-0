@@ -1,8 +1,9 @@
-// Inhalt des Mindmap-Overlays: vier Ansichten, gesteuert über den Verlauf (mm-verlauf.js).
+// Inhalt des Mindmap-Overlays: fünf Ansichten, gesteuert über den Verlauf (mm-verlauf.js).
 //   suche       – Suchfeld, Treffer, Anlegen (suche.js)
 //   karte       – Fokus-Karte um den gewählten Punkt (fokus.js)
 //   liste       – alle Verknüpfungen der Mitte, wenn nicht alle auf die Karte passen
 //   verknuepfen – vorhandenen Punkt suchen oder neuen anlegen, beides wird mit der Mitte verknüpft (verknuepfen.js)
+//   eintrag     – die Mitte mit allen Feldern, direkt bearbeitbar (eintrag.js)
 // Jeder Wechsel ist ein Schritt im Verlauf; „‹ Zurück“ und Zurück-Wischen gehen einen Schritt zurück.
 // const m = mindmapInhalt({ zurueckKnopf, sucheKnopf }); m.start(); m.daten(eintraege, links);
 import { el } from '../../ui/dom.js';
@@ -10,10 +11,11 @@ import { list } from '../../ui/list.js';
 import { nachbarn, loese } from './daten.js';
 import { suchAnsicht, trefferZeile } from './suche.js';
 import { verknuepfenAnsicht } from './verknuepfen.js';
+import { eintragAnsicht } from './eintrag.js';
 import { fokusKarte } from './fokus.js';
 import { mmVerlauf } from './mm-verlauf.js';
 
-const MIT_MITTE = ['karte', 'liste', 'verknuepfen'];
+const MIT_MITTE = ['karte', 'liste', 'verknuepfen', 'eintrag'];
 
 export function mindmapInhalt({ zurueckKnopf, sucheKnopf }) {
   // stand wird mit suche.js und verknuepfen.js geteilt (eintraege, suchtext)
@@ -33,6 +35,7 @@ export function mindmapInhalt({ zurueckKnopf, sucheKnopf }) {
     waehle,
     zeigeAlle: () => geheZu('liste'),
     verknuepfen: () => geheZu('verknuepfen'),
+    oeffnen: () => geheZu('eintrag'),
     loesen: async (mitte, nachbar) => {
       if (confirm(`Verknüpfung lösen?\n\n${mitte.titel} – ${nachbar.titel}`)) await loese(mitte.id, nachbar.id);
     },
@@ -68,6 +71,11 @@ export function mindmapInhalt({ zurueckKnopf, sucheKnopf }) {
       // nicht neu bauen, solange man tippt (Daten können zwischendurch vom anderen Gerät kommen)
       if (element.firstChild?.dataset.mitte !== mitte.id) {
         element.replaceChildren(verknuepfenAnsicht({ stand, mitte, fertig: () => verlauf.zurueck() }));
+      }
+    } else if (ansicht === 'eintrag') {
+      // nicht neu bauen, solange man schreibt (eigene Änderungen kommen ja auch als Ereignis zurück)
+      if (element.firstChild?.dataset.eintrag !== mitte.id) {
+        element.replaceChildren(eintragAnsicht({ eintrag: mitte, geloescht: () => verlauf.zurueck() }));
       }
     } else if (element.firstChild?.classList.contains('mm-suche--feld')) {
       element.firstChild.aktualisiere(); // Suche neu zeichnen, Fokus und Text bleiben
