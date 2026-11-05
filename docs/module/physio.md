@@ -16,9 +16,10 @@ Vorgezogen nach Phase 1 (Datenbank + Mindmap), **Phase 5** (Lernpfade, Notion).
   nicht im Browser-Code stehen darf. Vorher klären, ob Notion Quelle oder nur Kopie sein soll.
 
 ## Stand
-Plan von Lukas abgesegnet (04.11.2026). Teile a bis e und g (Bilder) gebaut; **als Nächstes Teil f** (Feinschliff, Punkte gesammelt im Plan unten).
-**Offen:** Gleiten fühlt sich für Lukas trotz Umbau (`gleiten.js`) noch nicht flüssig an (05.11.2026) – in f gezielt angehen,
-vorher von Lukas genau beschreiben lassen, was er sieht (Ruckeln, Springen am Ende, Tempo, Text) und auf welchem Gerät.
+**Erste Fassung fertig (05.11.2026).** Teile a bis e und g (Bilder) gebaut und von Lukas auf iPhone und Mac geprüft;
+Gleiten fühlt sich nach dem Umbau (`gleiten.js`) „sehr gut“ an. Teil f (Feinschliff) wird nicht mehr als eigener Block
+gebaut: die offenen Punkte stehen unter „Wünsche für später“. Verknüpfungen und weitere Funktionen entwickelt Lukas
+weiter, wenn er die Datenbank wirklich befüllt und merkt, was fehlt oder hakt – dann als eigene kleine Schritte.
 - [x] a) Grundgerüst + Daten:
   - `src/module/physio/arten.js` (Arten + optionale Felder je Art, `art(id)`),
     `daten.js` (`ladeEintraege`, `ladeLinks`, `neuerEintrag(art, titel)`, `aendereEintrag`, `loescheEintrag`
@@ -108,6 +109,18 @@ vorher von Lukas genau beschreiben lassen, was er sieht (Ruckeln, Springen am En
 - Speicher (Frage von Lukas): Bilder liegen im Datei-Speicher (1 GB), nicht in der 500-MB-Datenbank (dort nur ~200 Byte je Bild).
   Lukas' Wahl: große Bilder 1200 px statt 1600 (`GROSS` in `bild-verkleinern.js`, `sw.js` `v31`).
   Test mit stark gemustertem Foto 3000 × 2000: groß 1200 × 800 = 150 KB, klein 26 KB → ~176 KB je Bild, ~5.500+ Bilder je GB
+
+## Wünsche für später
+Lukas sammelt hier, was beim Befüllen auffällt; umgesetzt wird es als eigener kleiner Schritt.
+- Kopfbild: drei Fotos `assets/bilder/physio-1…3.webp` (Lukas erzeugt sie mit dem Prompt aus `design.md`, Vorschlag:
+  „a smooth stone sphere connected to smaller pebbles by thin threads of light“), dann Zeile `bild:` in `index.js`
+  einschalten und Fotos in `APP_FILES` von `sw.js` eintragen
+- Kleine Hinweise: „Lange drücken zum Lösen“, „Mitte antippen zum Öffnen“ (z. B. einmalig oder dezent in der Fußzeile)
+- Eintrag: Abstand Titel ↔ Kurzbeschreibung etwas enger
+- Mac: Art-Chip-Reihe im Eintrag auf breiten Bildschirmen umbrechen lassen („Technik“ wird abgeschnitten)
+- Zurück-Wischen und Kamera/Mediathek auf dem echten iPhone weiter beobachten
+- Verknüpfungen und Funktionen: ergeben sich beim Befüllen (Lukas, 05.11.2026)
+- Später (aus dem ursprünglichen Plan): Übungen ins Trainings-Notebook übernehmen, Lernpfade, Notion, Bild-Export
 
 ## Entscheidungen (Gespräch 04.11.2026)
 - Zuerst: Übungen, Krankheitsbilder, Muskeln + Regionen. Techniken gibt es als Art schon, Inhalte später.
@@ -244,7 +257,7 @@ Stand Teil g:
   - Lokal geprüft: iPhone-Größe (Bälle, 6 Plätze, „+2“, Ball gleitet in die Mitte), Mac-Breite (gemischter Ring),
     Ziehen und ⌘ + V mit Testpunkt (danach gelöscht, Speicher-Ordner leer); erfundene Ball-Bilder nur lokal, wieder entfernt
 
-## Offen / bitte prüfen
+## Offen / bitte prüfen (aus der Planung, erledigt bzw. unter „Wünsche für später“)
 - Das Overlay ist hell (Elfenbein-Weiß mit dunkler Schrift), während die App sonst dunkel ist. So gewünscht;
   falls es zu grell wirkt, später einen Ton dunkler.
 - Foto-Objekt für den Kopf (Prompt in `design.md`), Vorschlag: „a smooth stone sphere connected to smaller pebbles

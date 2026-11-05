@@ -266,15 +266,15 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
     Ränder weich ins Seiten-Hintergrund auslaufen lassen (Verlauf/Maske), eher zart als flächig
   - Neon-Grün fällt weg: Akzent ist Weiß, dazu pro Seite ein leichter Farbschimmer in der Bereichsfarbe
     (Lichtschein oben, Kopfbild, kleine Details). `--accent` wird Weiß; Haken, aktiver Tab usw. entsprechend
-- [ ] PhysioZentrum mit Mindmap (`module/physio.md`) – vorgezogen aus Phase 2, Lukas' Wunsch:
-  schnell Inhalte hinzufügen und bearbeiten können
-  Gespräch geführt (04.11.2026): Mindmap ist von Anfang an die Hauptansicht (Fokus-Karte im hellen Overlay,
-  Start mit Suche, Hinzufügen und Verknüpfen direkt dort). Datenmodell `003_physio.sql` geschrieben
-  (eine Tabelle `physio_eintraege` für alle Arten + `physio_links`).
-  Plan in Teilen a → f in `module/physio.md`, von Lukas abgesegnet.
-  Stand: [x] a) Grundgerüst + Daten · [x] b) Overlay + Suche · [x] c) Fokus-Karte · [x] d) Hinzufügen + Verknüpfen, Zurück-Wischen · [x] e) Punkt öffnen + bearbeiten · Wechsel-Animation geglättet (`sw.js` `v27`) · Gleiten auf Verschieben/Skalieren umgebaut · große Bilder 1200 px (`sw.js` `v31`) · g) Bilder in den Bällen: [x] g1 Fundament · [x] g2 Galerie im Eintrag · [x] g3 Bälle mit Bild in der Karte + Mac: Ziehen/⌘V (`sw.js` `v33`) · als Nächstes f) Feinschliff
-  · offen: Gleiten fühlt sich für Lukas noch nicht flüssig an (in f) · danach f) Feinschliff
-- [ ] Kalender persönlich, mit Google-Kalender-Anzeige (`module/kalender.md`)
+- [x] PhysioZentrum mit Mindmap, erste Fassung (`module/physio.md`) – vorgezogen aus Phase 2, abgeschlossen 05.11.2026
+  Mindmap als Hauptansicht (helles Overlay, Suche, Fokus-Karte mit Gleiten, Verknüpfen/Anlegen direkt dort,
+  Zurück-Wischen Schritt für Schritt), Eintrag mit Feldern je Art und Autospeichern, Bilder (Galerie im Eintrag,
+  Bälle schwarz-weiß in der Karte, Mac: Ziehen/⌘V). Migrationen `003_physio.sql`, `004_physio_bilder.sql`; `sw.js` `v33`.
+  Neu im Kern dabei: `src/core/dateien.js` (Dateien local-first, auch für spätere Module), lokale DB Version 2,
+  Abgleich überspringt fehlende Tabellen. Weiteres sammelt Lukas beim Befüllen unter „Wünsche für später“ in `module/physio.md`
+- [ ] Kalender persönlich, mit Google-Kalender-Anzeige (`module/kalender.md`) – **als Nächstes**
+  Plan für den Einstieg (nächste Sitzung, Details in `module/kalender.md`): erst reden, dann Datenmodell
+  (Migration `005_kalender.sql`) und Plan in Teilen in `module/kalender.md`, Okay abwarten, dann bauen
 - [ ] Heute-Übersicht (`module/heute.md`)
 - [ ] Routinen, ohne Sperre (`module/routinen.md`)
 
