@@ -1,20 +1,52 @@
 // Ein Punkt der Mindmap: Knopf mit Art (kleines Label), Titel und – nur Mac, beim Hovern –
 // der Kurzbeschreibung darunter. Dasselbe Element bleibt erhalten, wenn der Punkt
 // vom Nachbarn zur Mitte wird (so kann er sichtbar dorthin gleiten).
+// Lange drücken (iPhone) oder Rechtsklick (Mac) → onLang(id), z. B. Verknüpfung lösen.
 import { el } from '../../ui/dom.js';
 import { art } from './arten.js';
 
-export function knoten(id, onClick) {
-  const knopf = el('button', {
-    class: 'mm-knoten',
-    attrs: { type: 'button' },
-    on: { click: () => onClick(id) },
-  }, [
+const LANG_MS = 550;
+
+// Langes Drücken erkennen; der Klick danach zählt dann nicht als normales Antippen.
+function langDruecken(knopf, ausloesen) {
+  let timer = null;
+  let start = null;
+  let gerade = false;
+  const stopp = () => { clearTimeout(timer); timer = null; };
+  knopf.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0) return;
+    start = { x: e.clientX, y: e.clientY };
+    stopp();
+    timer = setTimeout(() => { gerade = true; ausloesen(); }, LANG_MS);
+  });
+  knopf.addEventListener('pointermove', (e) => {
+    if (timer && Math.hypot(e.clientX - start.x, e.clientY - start.y) > 10) stopp();
+  });
+  for (const typ of ['pointerup', 'pointercancel', 'pointerleave']) knopf.addEventListener(typ, stopp);
+  knopf.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    stopp();
+    if (!gerade) ausloesen(); // Rechtsklick am Mac (beim langen Drücken ist es schon passiert)
+  });
+  // true = dieser Klick gehört zum langen Drücken und wird geschluckt
+  return () => {
+    const war = gerade;
+    gerade = false;
+    return war;
+  };
+}
+
+export function knoten(id, onClick, onLang) {
+  const knopf = el('button', { class: 'mm-knoten', attrs: { type: 'button' } }, [
     el('span', { class: 'mm-knoten__art label' }),
     el('span', { class: 'mm-knoten__titel' }),
     el('span', { class: 'mm-knoten__kurz', attrs: { 'aria-hidden': 'true' } }),
   ]);
   knopf.dataset.id = id;
+  const warLang = langDruecken(knopf, () => onLang?.(id));
+  knopf.addEventListener('click', () => {
+    if (!warLang()) onClick(id);
+  });
   return knopf;
 }
 

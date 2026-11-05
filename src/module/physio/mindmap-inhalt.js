@@ -1,81 +1,74 @@
-// Inhalt des Mindmap-Overlays: drei Ansichten und der Verlauf.
-//   suche – Suchfeld, Treffer, Anlegen (suche.js)
-//   karte – Fokus-Karte um den gewählten Punkt (fokus.js)
-//   liste – alle Verknüpfungen der Mitte, wenn nicht alle auf die Karte passen
-// Verlauf: jeder Wechsel der Mitte merkt sich den vorigen Punkt; „‹ Zurück“ geht dorthin.
-// const m = mindmapInhalt({ zurueckKnopf, sucheKnopf }); m.daten(eintraege, links);
+// Inhalt des Mindmap-Overlays: vier Ansichten, gesteuert über den Verlauf (mm-verlauf.js).
+//   suche       – Suchfeld, Treffer, Anlegen (suche.js)
+//   karte       – Fokus-Karte um den gewählten Punkt (fokus.js)
+//   liste       – alle Verknüpfungen der Mitte, wenn nicht alle auf die Karte passen
+//   verknuepfen – vorhandenen Punkt suchen oder neuen anlegen, beides wird mit der Mitte verknüpft (verknuepfen.js)
+// Jeder Wechsel ist ein Schritt im Verlauf; „‹ Zurück“ und Zurück-Wischen gehen einen Schritt zurück.
+// const m = mindmapInhalt({ zurueckKnopf, sucheKnopf }); m.start(); m.daten(eintraege, links);
 import { el } from '../../ui/dom.js';
 import { list } from '../../ui/list.js';
-import { nachbarn } from './daten.js';
+import { nachbarn, loese } from './daten.js';
 import { suchAnsicht, trefferZeile } from './suche.js';
+import { verknuepfenAnsicht } from './verknuepfen.js';
 import { fokusKarte } from './fokus.js';
+import { mmVerlauf } from './mm-verlauf.js';
 
-const MAX_VERLAUF = 50;
+const MIT_MITTE = ['karte', 'liste', 'verknuepfen'];
 
 export function mindmapInhalt({ zurueckKnopf, sucheKnopf }) {
-  // stand wird mit suche.js geteilt (eintraege, suchtext)
+  // stand wird mit suche.js und verknuepfen.js geteilt (eintraege, suchtext)
   const stand = { eintraege: [], links: [], suchtext: '' };
-  let mitteId = null;
-  let ansicht = 'suche';
-  let verlauf = [];
+  let schritt = { ansicht: 'suche', mitteId: null };
   const element = el('div', { class: 'mm__inhalt' });
-  const karte = fokusKarte({ waehle, zeigeAlle: () => wechsle('liste') });
+  const verlauf = mmVerlauf((s) => { schritt = s; zeige(); });
 
-  function waehle(id) {
-    if (mitteId && mitteId !== id) verlauf = [...verlauf, mitteId].slice(-MAX_VERLAUF);
-    mitteId = id;
-    wechsle('karte');
-  }
-
-  function wechsle(neu) {
-    ansicht = neu;
+  const geheZu = (ansicht, mitteId = schritt.mitteId) => {
+    schritt = { ansicht, mitteId };
+    verlauf.weiter(schritt);
     zeige();
-  }
+  };
+  const waehle = (id) => geheZu('karte', id);
 
-  function zurueck() {
-    if (ansicht === 'suche' || ansicht === 'liste') return wechsle('karte');
-    if (verlauf.length) {
-      mitteId = verlauf.at(-1);
-      verlauf = verlauf.slice(0, -1);
-      return wechsle('karte');
-    }
-    mitteId = null;
-    wechsle('suche');
-  }
+  const karte = fokusKarte({
+    waehle,
+    zeigeAlle: () => geheZu('liste'),
+    verknuepfen: () => geheZu('verknuepfen'),
+    loesen: async (mitte, nachbar) => {
+      if (confirm(`Verknüpfung lösen?\n\n${mitte.titel} – ${nachbar.titel}`)) await loese(mitte.id, nachbar.id);
+    },
+  });
 
   function leiste() {
     // unsichtbar statt entfernt, damit „Mindmap“ in der Leiste mittig bleibt
-    const zurueckDa = ansicht !== 'suche' || mitteId;
-    zurueckKnopf.style.visibility = zurueckDa ? '' : 'hidden';
-    zurueckKnopf.textContent = ansicht === 'karte' && !verlauf.length ? 'Suche' : 'Zurück';
-    sucheKnopf.style.visibility = ansicht === 'suche' ? 'hidden' : '';
+    zurueckKnopf.style.visibility = verlauf.tiefe() > 0 ? '' : 'hidden';
+    zurueckKnopf.textContent = verlauf.vorher()?.ansicht === 'suche' ? 'Suche' : 'Zurück';
+    sucheKnopf.style.visibility = schritt.ansicht === 'suche' ? 'hidden' : '';
   }
 
-  function liste() {
-    const mitte = stand.eintraege.find((e) => e.id === mitteId);
+  function liste(mitte) {
     return el('div', { class: 'mm-suche' }, [
       el('p', { class: 'label', text: `Verknüpft mit ${mitte.titel}` }),
-      list(nachbarn(mitteId, stand.eintraege, stand.links).map((e) => trefferZeile(e, waehle))),
+      list(nachbarn(mitte.id, stand.eintraege, stand.links).map((e) => trefferZeile(e, waehle))),
     ]);
   }
 
   function zeige() {
-    // Punkte, die es nicht mehr gibt (z. B. auf dem anderen Gerät gelöscht), fallen raus.
-    const da = new Set(stand.eintraege.map((e) => e.id));
-    verlauf = verlauf.filter((id) => da.has(id));
-    if (mitteId && !da.has(mitteId)) {
-      mitteId = verlauf.pop() ?? null;
-      if (!mitteId && ansicht !== 'suche') ansicht = 'suche';
-    }
-    if (!mitteId && ansicht !== 'suche') ansicht = 'suche';
+    const mitte = stand.eintraege.find((e) => e.id === schritt.mitteId);
+    // Punkt gibt es nicht mehr (z. B. auf dem anderen Gerät gelöscht) → Suche zeigen
+    const ansicht = MIT_MITTE.includes(schritt.ansicht) && !mitte ? 'suche' : schritt.ansicht;
     leiste();
     element.classList.toggle('mm__inhalt--karte', ansicht === 'karte');
 
     if (ansicht === 'karte') {
       if (element.firstChild !== karte.element) element.replaceChildren(karte.element);
-      karte.zeige(stand.eintraege, stand.links, mitteId);
+      karte.zeige(stand.eintraege, stand.links, mitte.id);
     } else if (ansicht === 'liste') {
-      element.replaceChildren(liste());
+      element.replaceChildren(liste(mitte));
+    } else if (ansicht === 'verknuepfen') {
+      // nicht neu bauen, solange man tippt (Daten können zwischendurch vom anderen Gerät kommen)
+      if (element.firstChild?.dataset.mitte !== mitte.id) {
+        element.replaceChildren(verknuepfenAnsicht({ stand, mitte, fertig: () => verlauf.zurueck() }));
+      }
     } else if (element.firstChild?.classList.contains('mm-suche--feld')) {
       element.firstChild.aktualisiere(); // Suche neu zeichnen, Fokus und Text bleiben
     } else {
@@ -83,13 +76,17 @@ export function mindmapInhalt({ zurueckKnopf, sucheKnopf }) {
     }
   }
 
-  zurueckKnopf.addEventListener('click', zurueck);
-  sucheKnopf.addEventListener('click', () => wechsle('suche'));
+  zurueckKnopf.addEventListener('click', () => verlauf.zurueck());
+  sucheKnopf.addEventListener('click', () => geheZu('suche'));
 
-  function daten(eintraege, links) {
-    Object.assign(stand, { eintraege, links });
-    zeige();
-  }
-
-  return { element, daten };
+  return {
+    element,
+    start: () => verlauf.start(schritt),
+    popstate: (state) => verlauf.popstate(state),
+    verlassen: () => verlauf.verlassen(),
+    daten(eintraege, links) {
+      Object.assign(stand, { eintraege, links });
+      zeige();
+    },
+  };
 }

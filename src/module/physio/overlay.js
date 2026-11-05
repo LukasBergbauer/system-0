@@ -1,6 +1,6 @@
 // Mindmap-Overlay: helle Vollbild-Fläche, die sich aus dem angetippten Knopf heraus öffnet
 // (Kreis wächst vom Knopf aus) und beim Schließen wieder dorthin zurückschrumpft.
-// Schließen: ✕, Esc, Zurück-Knopf/-Wischen (eigener Verlaufseintrag, Adresse bleibt gleich).
+// Schließen: ✕, Esc, oder Zurück-Wischen/-Taste vor dem ersten Schritt (Verlauf: mm-verlauf.js).
 // Inhalt (Suche, Fokus-Karte, Liste, Verlauf): mindmap-inhalt.js.
 import { el } from '../../ui/dom.js';
 import { symbol } from '../../ui/symbol.js';
@@ -9,7 +9,6 @@ import { EINTRAEGE, LINKS, ladeEintraege, ladeLinks } from './daten.js';
 import { mindmapInhalt } from './mindmap-inhalt.js';
 
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const MARKE = 'physio-mindmap'; // Kennzeichen unseres Verlaufseintrags
 
 let offen = null; // höchstens ein Overlay gleichzeitig
 
@@ -76,8 +75,8 @@ export function oeffneMindmap({ ausKnopf, signal } = {}) {
     if (schliesst) return;
     schliesst = true;
     ende.abort();
-    // Mit ✕/Esc geschlossen: unseren Verlaufseintrag wieder entfernen.
-    if (!ausVerlauf && history.state?.[MARKE] === eintragId) history.back();
+    // Mit ✕/Esc geschlossen: alle eigenen Verlaufseinträge wieder verlassen.
+    if (!ausVerlauf) inhalt.verlassen();
     mittelpunkt(); // Knopf könnte inzwischen woanders stehen
     await animiere('mm--zu');
     dialog.close();
@@ -91,12 +90,14 @@ export function oeffneMindmap({ ausKnopf, signal } = {}) {
     e.preventDefault();
     schliessen();
   });
-  window.addEventListener('popstate', () => schliessen({ ausVerlauf: true }), { signal: ende.signal });
+  // Zurück/Vor: Schritt innerhalb der Mindmap – oder raus, dann schließen.
+  window.addEventListener('popstate', (e) => {
+    if (!inhalt.popstate(e.state)) schliessen({ ausVerlauf: true });
+  }, { signal: ende.signal });
   signal?.addEventListener('abort', () => schliessen(), { signal: ende.signal });
 
   offen = dialog;
-  const eintragId = Date.now(); // eigener Verlaufseintrag; alte (z. B. nach Neuladen) zählen nicht
-  history.pushState({ ...history.state, [MARKE]: eintragId }, '');
+  inhalt.start(); // erster eigener Verlaufseintrag (Suche)
   mittelpunkt();
   document.body.append(dialog);
   document.documentElement.classList.add('mm-offen'); // Seite dahinter nicht mitscrollen

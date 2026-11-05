@@ -78,7 +78,7 @@ export function zaehleLinks(eintraege, links) {
 // ---------- Suche ----------
 
 // Klein, ohne Akzente: „Übung“ findet auch „ubung“.
-const norm = (s) => String(s ?? '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+export const norm = (s) => String(s ?? '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
 // Sucht in Titel, Kurzbeschreibung, Text und Feldern. Alle Wörter müssen vorkommen.
 // Treffer im Titel stehen vorne, Titel-Anfang ganz vorne.

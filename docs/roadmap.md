@@ -272,7 +272,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   Start mit Suche, Hinzufügen und Verknüpfen direkt dort). Datenmodell `003_physio.sql` geschrieben
   (eine Tabelle `physio_eintraege` für alle Arten + `physio_links`).
   Plan in Teilen a → f in `module/physio.md`, von Lukas abgesegnet.
-  Stand: [x] a) Grundgerüst + Daten · [x] b) Overlay + Suche · [x] c) Fokus-Karte (`sw.js` `v24`) · als Nächstes d) Hinzufügen + Verknüpfen in der Mindmap
+  Stand: [x] a) Grundgerüst + Daten · [x] b) Overlay + Suche · [x] c) Fokus-Karte · [x] d) Hinzufügen + Verknüpfen, Zurück-Wischen (`sw.js` `v25`) · als Nächstes e) Punkt öffnen
 - [ ] Kalender persönlich, mit Google-Kalender-Anzeige (`module/kalender.md`)
 - [ ] Heute-Übersicht (`module/heute.md`)
 - [ ] Routinen, ohne Sperre (`module/routinen.md`)

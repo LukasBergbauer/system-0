@@ -16,7 +16,7 @@ Vorgezogen nach Phase 1 (Datenbank + Mindmap), **Phase 5** (Lernpfade, Notion).
   nicht im Browser-Code stehen darf. Vorher klären, ob Notion Quelle oder nur Kopie sein soll.
 
 ## Stand
-Plan von Lukas abgesegnet (04.11.2026). Teile a, b und c gebaut; **als Nächstes Teil d** (in der Mindmap hinzufügen und verknüpfen).
+Plan von Lukas abgesegnet (04.11.2026). Teile a bis d gebaut; **als Nächstes Teil e** (Punkt öffnen: Felder bearbeiten, löschen, Video-Link).
 - [x] a) Grundgerüst + Daten:
   - `src/module/physio/arten.js` (Arten + optionale Felder je Art, `art(id)`),
     `daten.js` (`ladeEintraege`, `ladeLinks`, `neuerEintrag(art, titel)`, `aendereEintrag`, `loescheEintrag`
@@ -46,7 +46,7 @@ Plan von Lukas abgesegnet (04.11.2026). Teile a, b und c gebaut; **als Nächstes
   - `mindmap-inhalt.js`: drei Ansichten (Suche · Karte · Liste) und Verlauf. Leiste: links „‹ Suche“ (Karte ohne Verlauf)
     bzw. „‹ Zurück“ (voriger Punkt, Liste → Karte, Suche → Karte), rechts Lupe (zur Suche) und ✕.
     Aus der Suche gewählter Punkt landet auch im Verlauf. Gelöschte Punkte fallen aus Mitte und Verlauf raus.
-    Zurück-Wischen auf dem iPhone schließt das ganze Overlay (nicht Punkt für Punkt)
+    (Zurück-Wischen: seit Teil d Schritt für Schritt, siehe unten)
   - `fokus.js`: Knöpfe bleiben über Wechsel erhalten (Map id → Knopf), dadurch gleitet der angetippte Nachbar
     in die Mitte und die alte Mitte zu den Nachbarn; Neue schweben aus der Mitte ein, Wegfallende blenden aus.
     Linien als SVG: Mitte → Nachbar, gestrichelt zwischen Nachbarn, die untereinander verknüpft sind;
@@ -60,6 +60,22 @@ Plan von Lukas abgesegnet (04.11.2026). Teile a, b und c gebaut; **als Nächstes
   - Symbol `suche` (Lupe); Stile `src/styles/physio-karte.css`; `mitte.js` entfernt. `sw.js` auf `v24`
   - Lokal geprüft mit Testdaten nur im Speicher (nichts gespeichert): iPhone-Größe (1 Ring, „+8“, Liste, Verlauf,
     Gleiten, Querlinien), Mac-Breite (2 Ringe, Hover-Vorschau), echtes Overlay ohne Fehler
+- [x] d) Hinzufügen + Verknüpfen in der Mindmap, dazu Zurück-Wischen Schritt für Schritt (Lukas' Wunsch):
+  - `mm-verlauf.js`: jeder Schritt (Punkt, Suche, Liste, Verknüpfen) ist ein eigener Eintrag im Browser-Verlauf
+    (`pushState`, Adresse bleibt `#/physio`). Zurück-Wischen, Zurück-Taste und „‹ Zurück“ gehen einen Schritt zurück;
+    vor dem ersten Schritt schließt Zurück das Overlay. ✕/Esc verlassen alle eigenen Einträge auf einmal (`history.go`).
+    Eigene Kennung je Overlay, alte Einträge nach Neuladen zählen nicht. `mindmap-inhalt.js` nutzt das statt eigener Liste
+  - Unter der Mitte Knopf „+ Verknüpfen“ → `verknuepfen.js`: Art-Chips, Feld „Titel oder suchen …“, passende vorhandene
+    Punkte (antippen = verknüpfen, „schon verknüpft“ markiert), Enter/„„…“ anlegen“ = neuer Punkt + Verknüpfung.
+    Gibt es den Titel schon (ohne Groß/Klein, Akzente), wird der vorhandene verknüpft statt doppelt angelegt.
+    Danach zurück zur Karte, der Punkt schwebt ein. „Neu“ und „Verknüpfen“ bewusst ein einziger Schritt
+  - Lösen: Nachbar lange drücken (550 ms, iPhone) oder Rechtsklick (Mac) → Rückfrage → `loese`. Der Klick nach
+    langem Drücken zählt nicht als Antippen; kein Kopiermenü auf dem iPhone (`-webkit-touch-callout: none`)
+  - `daten.js` exportiert `norm`, `anlegen.js` exportiert `letzteArt`/`merkeArt`. Fußzeilen-Stile nach `physio.css`
+    (Dateien unter 200 Zeilen). `sw.js` auf `v25`
+  - Lokal geprüft (iPhone-Größe) mit zwei Testpunkten, danach gelöscht: Anlegen + Verknüpfen, kein Doppel bei gleichem
+    Titel, Zurück Schritt für Schritt bis Schließen, ✕ räumt Verlauf auf, Lösen per Rechtsklick und langem Drücken,
+    kurzes Tippen wechselt normal
 
 ## Entscheidungen (Gespräch 04.11.2026)
 - Zuerst: Übungen, Krankheitsbilder, Muskeln + Regionen. Techniken gibt es als Art schon, Inhalte später.

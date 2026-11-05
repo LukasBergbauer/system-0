@@ -2,7 +2,8 @@
 // Antippen eines Nachbarn → waehle(id): derselbe Knopf gleitet in die Mitte, die alte Mitte
 // rutscht zu den Nachbarn, nicht mehr verbundene Punkte blenden aus, neue schweben aus der Mitte ein.
 // Linien: Mitte → jeder Nachbar; fein auch zwischen Nachbarn, die untereinander verknüpft sind.
-// const k = fokusKarte({ waehle, zeigeAlle }); k.zeige(eintraege, links, mitteId);
+// Unten: „+ Verknüpfen“ → verknuepfen(). Nachbar lange drücken/Rechtsklick → loesen(mitte, nachbar).
+// const k = fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen }); k.zeige(eintraege, links, mitteId);
 import { el } from '../../ui/dom.js';
 import { nachbarn } from './daten.js';
 import { groessen, positionen } from './fokus-layout.js';
@@ -14,12 +15,16 @@ const AUSBLENDEN_MS = 400;
 
 const paar = (a, b) => (a < b ? `${a}|${b}` : `${b}|${a}`);
 
-export function fokusKarte({ waehle, zeigeAlle }) {
+export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen }) {
   const linien = document.createElementNS(SVG, 'svg');
   linien.setAttribute('class', 'mm-karte__linien');
   linien.setAttribute('aria-hidden', 'true');
   const ebene = el('div', { class: 'mm-karte__knoten' });
-  const fuss = el('p', { class: 'mm-karte__fuss' });
+  const fuss = el('div', { class: 'mm-karte__fuss' });
+  const plus = el('button', {
+    class: 'chip chip--aktion mm-karte__plus', text: '+ Verknüpfen',
+    attrs: { type: 'button' }, on: { click: () => verknuepfen() },
+  });
   const element = el('div', { class: 'mm-karte' }, [linien, ebene, fuss]);
 
   const knoepfe = new Map(); // id → Knopf (bleibt über Wechsel hinweg erhalten)
@@ -30,6 +35,14 @@ export function fokusKarte({ waehle, zeigeAlle }) {
     if (!stand || id === stand.mitteId) return; // Mitte antippen: öffnet in Teil e den Eintrag
     if (id === MEHR) zeigeAlle();
     else waehle(id);
+  }
+
+  function lang(id) {
+    if (!stand || id === stand.mitteId || id === MEHR) return;
+    const finde = (x) => stand.eintraege.find((e) => e.id === x);
+    const mitte = finde(stand.mitteId);
+    const nachbar = finde(id);
+    if (mitte && nachbar) loesen(mitte, nachbar);
   }
 
   function setzePosition(knopf, { x, y }) {
@@ -94,7 +107,7 @@ export function fokusKarte({ waehle, zeigeAlle }) {
     for (const z of ziele) {
       let knopf = knoepfe.get(z.id);
       if (!knopf) {
-        knopf = knoten(z.id, tippen);
+        knopf = knoten(z.id, tippen, lang);
         knopf.classList.add('mm-knoten--neu');
         setzePosition(knopf, { x: 0, y: 0 }); // startet in der Mitte und schwebt nach außen
         ebene.append(knopf);
@@ -113,6 +126,7 @@ export function fokusKarte({ waehle, zeigeAlle }) {
     fuss.replaceChildren(
       mitte.kurz && el('span', { class: 'mm-karte__kurz', text: mitte.kurz }),
       el('span', { class: 'app__note', text: n ? (n === 1 ? '1 Verknüpfung' : `${n} Verknüpfungen`) : 'Noch keine Verknüpfungen' }),
+      plus,
     );
     alteMitte = mitteId;
   }

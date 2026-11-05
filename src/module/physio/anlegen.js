@@ -10,7 +10,7 @@ import { neuerEintrag } from './daten.js';
 
 const SCHLUESSEL = 'physio:letzte-art';
 
-function letzteArt() {
+export function letzteArt() {
   try {
     const id = localStorage.getItem(SCHLUESSEL);
     return ARTEN.some((a) => a.id === id) ? id : ARTEN[0].id;
@@ -19,7 +19,7 @@ function letzteArt() {
   }
 }
 
-function merkeArt(id) {
+export function merkeArt(id) {
   try {
     localStorage.setItem(SCHLUESSEL, id);
   } catch { /* privates Fenster o. ä.: dann eben nicht merken */ }
