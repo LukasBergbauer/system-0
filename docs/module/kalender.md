@@ -53,5 +53,18 @@ Bild-Objekt (Vorschlag): **steinerne Sonnenuhr**. Prompt aus `design.md`, `[OBJE
 - Sollen später auch Termine aus System 0 in Google eingetragen werden?
 - Später: Monatsansicht, Wiederholungen, To-dos im Kalender (über Heute-Übersicht).
 
+## Dateien (`src/module/kalender/`)
+| Datei | Aufgabe |
+|---|---|
+| `index.js` | meldet den Bereich beim Router an |
+| `daten.js` | Lesen/Schreiben der Tabelle `termine` über `core/store.js` |
+| `zeit.js` | Datum/Uhrzeit umrechnen, Gruppen der Liste, Texte („Heute“, „Do., 13. Nov.“) |
+| `view.js` | Knopf „+ Termin“, Liste „Nächste Termine“ in Gruppen; zeichnet bei Ereignis `daten` neu |
+| `bearbeiten.js` | Modal: neu/bearbeiten/löschen, ganztägig blendet Uhrzeiten aus |
+Stile: `src/styles/kalender.css`.
+
 ## Stand
-Gespräch geführt, Datenmodell und Plan stehen (08.11.2026). Wartet auf Lukas' Okay, dann Teil a.
+- [x] a) Grundgerüst + Liste gebaut und lokal geprüft (08.11.2026): anlegen, ganztägig über mehrere Tage,
+      bearbeiten, löschen; Mac und iPhone-Größe. `sw.js` auf `v34`. Kopfbild fehlt noch (Teil e).
+- [ ] Lukas: Migration `005_kalender.sql` ausführen, dann Abgleich Mac ↔ iPhone prüfen (gepushte Fassung)
+- [ ] b) Schnelleingabe · c) Woche · d) Google · e) Kopfbild + Abschluss

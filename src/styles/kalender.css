@@ -1,0 +1,41 @@
+/* Modul „Kalender“ im Stil „Stein & Licht“: Gruppen wie bei den To-dos, links die Uhrzeit
+   in Serifenschrift. Nur Werte aus tokens.css. */
+.termin-kopf {
+  display: flex;
+  justify-content: flex-end;
+}
+.termin-liste {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-top: var(--space-2);
+}
+.termin-gruppe__titel {
+  display: block;
+  margin: 0 0 var(--space-1);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--line);
+}
+.termin-gruppe .list__title {
+  font-size: var(--fs-normal);
+}
+/* Uhrzeit links, feste Breite, damit die Titel bündig stehen */
+.termin-zeit {
+  display: inline-block;
+  min-width: 64px;
+  font-family: var(--font-serif);
+  font-size: var(--fs-normal);
+  color: var(--accent);
+}
+/* Beginn/Ende: Tag und Uhrzeit nebeneinander */
+.termin-zeitpunkt {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--space-3);
+}
+.termin-zeitpunkt > [hidden] {
+  display: none;
+}
+.termin-zeitpunkt:has(> [hidden]) {
+  grid-template-columns: 1fr;
+}

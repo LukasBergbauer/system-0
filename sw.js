@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v33';
+const VERSION = 'v34';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -45,6 +45,11 @@ const APP_FILES = [
   './src/module/todos/gruppen.js',
   './src/module/todos/filter.js',
   './src/module/todos/bereiche-verwalten.js',
+  './src/module/kalender/index.js',
+  './src/module/kalender/daten.js',
+  './src/module/kalender/zeit.js',
+  './src/module/kalender/view.js',
+  './src/module/kalender/bearbeiten.js',
   './src/module/physio/index.js',
   './src/module/physio/view.js',
   './src/module/physio/daten.js',
@@ -82,6 +87,7 @@ const APP_FILES = [
   './src/styles/app.css',
   './src/styles/nav.css',
   './src/styles/todos.css',
+  './src/styles/kalender.css',
   './src/styles/kopfbild.css',
   './src/styles/kachel.css',
   './src/styles/schrift.css',
