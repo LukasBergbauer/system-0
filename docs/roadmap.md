@@ -289,7 +289,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   Akzentfarbe: `src/core/akzent.js` + Kachel in den Einstellungen (synchronisiert). Funktionen unverändert. `sw.js` `v39`.
   Offen/klein: `bausteine.html` zeigt noch den alten Abschnitt „Bereichsfarbe“ und ein Kopfbild; auf dem iPhone
   prüfen, ob die Statusleiste oben gut lesbar ist.
-- [ ] Heute-Übersicht (`module/heute.md`) – **als Nächstes**, als Dashboard nach `muster/glas.html`
+- [ ] Heute-Übersicht (`module/heute.md`) – **als Nächstes**, als Glas-Dashboard; Plan a)–e) steht in `module/heute.md`
 - [ ] Routinen, ohne Sperre (`module/routinen.md`)
 
 ## Phase 2 – Körper
