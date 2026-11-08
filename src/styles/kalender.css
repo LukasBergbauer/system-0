@@ -62,3 +62,32 @@
 .termin-zeitpunkt:has(> [hidden]) {
   grid-template-columns: 1fr;
 }
+/* Wochenansicht */
+.woche {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.woche__kopf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.woche__pfeil {
+  min-width: var(--tap);
+  min-height: var(--tap);
+  font-size: var(--fs-title);
+}
+.woche__zeitraum {
+  min-height: var(--tap);
+  font-family: var(--font-serif);
+  font-size: var(--fs-normal);
+}
+.woche__tag--heute .termin-gruppe__titel {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.woche__leer {
+  margin: var(--space-2) 0 0;
+  color: var(--text-2);
+}

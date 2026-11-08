@@ -62,6 +62,7 @@ Bild-Objekt (Vorschlag): **steinerne Sonnenuhr**. Prompt aus `design.md`, `[OBJE
 | `view.js` | Knopf „+ Termin“, Liste „Nächste Termine“ in Gruppen; zeichnet bei Ereignis `daten` neu |
 | `bearbeiten.js` | Modal: neu/bearbeiten/löschen, ganztägig blendet Uhrzeiten aus |
 | `erkennen.js` | Schnelleingabe verstehen: Text → Titel, Start, Ende, ganztägig (reine Funktion) |
+| `woche.js` | Wochenansicht Mo–So mit Pfeilen ‹ ›, Zeitraum antippen = diese Woche |
 | `schnelleingabe.js` | Feld oben + Vorschau-Zeile („Fr., 13. Nov. · 19:00–22:00 · Kino“), Enter legt an |
 Stile: `src/styles/kalender.css`.
 
@@ -72,4 +73,9 @@ Stile: `src/styles/kalender.css`.
 - [x] b) Schnelleingabe gebaut und lokal geprüft (08.11.2026): 19 Beispielsätze richtig erkannt
       (Wochentag, heute/morgen/übermorgen, Datum mit/ohne Jahr, Uhrzeit, Spanne, über Mitternacht).
       „ganztägig“ in der Liste klein und kursiv, damit die Titel bündig bleiben. `sw.js` auf `v35`.
-- [ ] c) Woche · d) Google · e) Kopfbild + Abschluss
+- [x] c) Woche gebaut und lokal geprüft (08.11.2026): Chips „Liste · Woche“, Pfeile, mehrtägige Termine an jedem Tag,
+      heutiger Tag in Elfenbein. Gewählte Ansicht wird pro Gerät gemerkt (localStorage, wie der Filter der To-dos)
+      statt in `einstellungen`. Wischen weggelassen (Pfeile reichen). `sw.js` auf `v36`.
+- [ ] d) Google · e) Kopfbild + Abschluss
+- Aus dem Review von b (offen, Lukas entscheidet): Liste zeichnet sich nicht von selbst neu (um Mitternacht oder
+  wenn ein Termin endet); Beispielsätze der Erkennung als kleine Testseite behalten; „31.11.“ wird still zum 1. Dez.
