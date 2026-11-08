@@ -276,7 +276,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   Plan (mit Lukas abgestimmt, 08.11.2026, Details in `module/kalender.md`): Liste „Nächste Termine“ + Woche,
   Felder schlank, Schnelleingabe mit Erkennung, Google nur lesen über iCal-Adresse + Supabase-Funktion,
   To-dos vorerst getrennt. Teile a) Grundgerüst + Liste · b) Schnelleingabe · c) Woche · d) Google · e) Kopfbild + Abschluss.
-  Migration `005_kalender.sql` geschrieben. Stand: a) gebaut und lokal geprüft, als Nächstes b) Schnelleingabe
+  Migration `005_kalender.sql` geschrieben. Stand: a) und b) gebaut und lokal geprüft, als Nächstes c) Woche
 - [ ] Design-Runde 2: Dashboard-Ansicht (Wunsch von Lukas, 08.11.2026, später angehen)
   Lukas möchte die App doch eher als helles Dashboard wie in den Vorlagen
   `vorlagen/dashboard-1-uebersicht.webp`, `dashboard-2-profil.webp`, `dashboard-3-gemerkt.webp`:

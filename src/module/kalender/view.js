@@ -1,4 +1,4 @@
-// Ansicht „Kalender“: Knopf „+ Termin“, darunter „Nächste Termine“ in Gruppen
+// Ansicht „Kalender“: Schnelleingabe und Knopf „+ Termin“, darunter „Nächste Termine“ in Gruppen
 // (Heute · Morgen · Diese Woche · Später). Vergangene Termine sind ausgeblendet.
 // Zeichnet sich neu, sobald sich Termine ändern (auch durch das andere Gerät).
 import { el } from '../../ui/dom.js';
@@ -8,6 +8,7 @@ import { on } from '../../core/events.js';
 import { TERMINE, ladeTermine } from './daten.js';
 import { gruppiere, tagText, zeitHM, letzterTag } from './zeit.js';
 import { oeffneTermin } from './bearbeiten.js';
+import { schnelleingabe } from './schnelleingabe.js';
 
 // Unterzeile: Datum (nicht bei Heute/Morgen), Ende, Ort
 function unterText(t, gruppe) {
@@ -26,7 +27,7 @@ function zeile(t, gruppe) {
   return listRow({
     title: t.titel,
     sub: unterText(t, gruppe),
-    start: el('span', { class: 'termin-zeit', text: t.ganztaegig ? 'ganztägig' : zeitHM(new Date(t.start)) }),
+    start: el('span', { class: `termin-zeit${t.ganztaegig ? ' termin-zeit--ganz' : ''}`, text: t.ganztaegig ? 'ganztägig' : zeitHM(new Date(t.start)) }),
     onClick: () => oeffneTermin(t),
   });
 }
@@ -56,7 +57,10 @@ export function kalenderAnsicht({ signal }) {
   zeichne();
 
   return el('div', { class: 'app__stack' }, [
-    el('div', { class: 'termin-kopf' }, button({ text: '+ Termin', variant: 'primary', onClick: () => oeffneTermin() })),
+    el('div', { class: 'termin-kopf' }, [
+      schnelleingabe(),
+      button({ text: '+ Termin', variant: 'primary', onClick: () => oeffneTermin() }),
+    ]),
     inhalt,
   ]);
 }

@@ -61,10 +61,15 @@ Bild-Objekt (Vorschlag): **steinerne Sonnenuhr**. Prompt aus `design.md`, `[OBJE
 | `zeit.js` | Datum/Uhrzeit umrechnen, Gruppen der Liste, Texte („Heute“, „Do., 13. Nov.“) |
 | `view.js` | Knopf „+ Termin“, Liste „Nächste Termine“ in Gruppen; zeichnet bei Ereignis `daten` neu |
 | `bearbeiten.js` | Modal: neu/bearbeiten/löschen, ganztägig blendet Uhrzeiten aus |
+| `erkennen.js` | Schnelleingabe verstehen: Text → Titel, Start, Ende, ganztägig (reine Funktion) |
+| `schnelleingabe.js` | Feld oben + Vorschau-Zeile („Fr., 13. Nov. · 19:00–22:00 · Kino“), Enter legt an |
 Stile: `src/styles/kalender.css`.
 
 ## Stand
 - [x] a) Grundgerüst + Liste gebaut und lokal geprüft (08.11.2026): anlegen, ganztägig über mehrere Tage,
       bearbeiten, löschen; Mac und iPhone-Größe. `sw.js` auf `v34`. Kopfbild fehlt noch (Teil e).
 - [ ] Lukas: Migration `005_kalender.sql` ausführen, dann Abgleich Mac ↔ iPhone prüfen (gepushte Fassung)
-- [ ] b) Schnelleingabe · c) Woche · d) Google · e) Kopfbild + Abschluss
+- [x] b) Schnelleingabe gebaut und lokal geprüft (08.11.2026): 19 Beispielsätze richtig erkannt
+      (Wochentag, heute/morgen/übermorgen, Datum mit/ohne Jahr, Uhrzeit, Spanne, über Mitternacht).
+      „ganztägig“ in der Liste klein und kursiv, damit die Titel bündig bleiben. `sw.js` auf `v35`.
+- [ ] c) Woche · d) Google · e) Kopfbild + Abschluss

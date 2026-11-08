@@ -2,7 +2,25 @@
    in Serifenschrift. Nur Werte aus tokens.css. */
 .termin-kopf {
   display: flex;
-  justify-content: flex-end;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+.termin-schnell {
+  flex: 1;
+  min-width: 0;
+}
+.termin-kopf > .btn {
+  flex: none;
+  min-height: var(--tap);
+}
+/* Was die Schnelleingabe erkannt hat */
+.termin-vorschau {
+  margin: var(--space-2) 0 0;
+  min-height: 1.4em;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--fs-small);
+  color: var(--text-2);
 }
 .termin-liste {
   display: flex;
@@ -26,6 +44,11 @@
   font-family: var(--font-serif);
   font-size: var(--fs-normal);
   color: var(--accent);
+}
+.termin-zeit--ganz {
+  font-style: italic;
+  font-size: var(--fs-small);
+  color: var(--text-2);
 }
 /* Beginn/Ende: Tag und Uhrzeit nebeneinander */
 .termin-zeitpunkt {
