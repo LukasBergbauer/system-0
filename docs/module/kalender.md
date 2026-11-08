@@ -63,6 +63,10 @@ Bild-Objekt (Vorschlag): **steinerne Sonnenuhr**. Prompt aus `design.md`, `[OBJE
 | `bearbeiten.js` | Modal: neu/bearbeiten/löschen, ganztägig blendet Uhrzeiten aus |
 | `erkennen.js` | Schnelleingabe verstehen: Text → Titel, Start, Ende, ganztägig (reine Funktion) |
 | `woche.js` | Wochenansicht Mo–So mit Pfeilen ‹ ›, Zeitraum antippen = diese Woche |
+| `google.js` | Google-Abruf über die Supabase-Funktion, Zwischenspeicher im Gerät (IndexedDB `meta`, `kalender:google`), höchstens alle 15 Min. |
+| `google-adresse.js` | Modal (Chip „Google“): geheime iCal-Adresse eintragen/entfernen, Stand des letzten Abrufs |
+| `ical.js` | .ics lesen: Titel, Beginn, Ende, Ort, ausgelassene/verschobene/abgesagte Termine |
+| `wiederholung.js` | Wiederholungen (RRULE) ausrechnen: täglich/wöchentlich (auch Mo+Do)/monatlich/jährlich, Anzahl, Enddatum |
 | `schnelleingabe.js` | Feld oben + Vorschau-Zeile („Fr., 13. Nov. · 19:00–22:00 · Kino“), Enter legt an |
 Stile: `src/styles/kalender.css`.
 
@@ -76,7 +80,14 @@ Stile: `src/styles/kalender.css`.
 - [x] c) Woche gebaut und lokal geprüft (08.11.2026): Chips „Liste · Woche“, Pfeile, mehrtägige Termine an jedem Tag,
       heutiger Tag in Elfenbein. Gewählte Ansicht wird pro Gerät gemerkt (localStorage, wie der Filter der To-dos)
       statt in `einstellungen`. Wischen weggelassen (Pfeile reichen). `sw.js` auf `v36`.
-- [ ] d) Google · e) Kopfbild + Abschluss
+- [x] d) Google gebaut und lokal geprüft (08.11.2026): Leser mit Testseite `tests/kalender-ical.html` (10 Fälle) und
+      einer echten Google-Datei (Feiertage, 462 Termine, 8 ms); Anzeige gedämpft, nicht antippbar. `sw.js` auf `v38`.
+      Supabase-Funktion: `supabase/functions/google-kalender/index.ts`; die App schickt die Adresse mit, die Funktion
+      lässt nur `https://calendar.google.com/calendar/ical/…` zu und nur mit Login (JWT-Prüfung an lassen).
+      Termine von 90 Tagen zurück bis 1 Jahr voraus. Grenzen (bewusst): Zeitzone von Google-Terminen wird als
+      Gerätezeit genommen; seltene Wiederholungen („2. Dienstag im Monat“) zeigen nur den ersten Termin.
+- [ ] Lukas: Funktion im Supabase-Dashboard anlegen, Adresse über den Chip „Google“ eintragen, auf Mac und iPhone prüfen
+- [ ] e) Kopfbild + Abschluss
 - [x] Review von b umgesetzt: Ansicht zeichnet sich jede Minute und beim Zurückkehren in die App neu
       (Mitternacht, vorbei gegangene Termine); ungültige Daten wie „31.11.“ werden nicht mehr erkannt;
       kleine Aufräumarbeiten. `sw.js` auf `v37`.

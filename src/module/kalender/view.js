@@ -12,6 +12,8 @@ import { oeffneTermin } from './bearbeiten.js';
 import { schnelleingabe } from './schnelleingabe.js';
 import { wocheAnsicht, montag } from './woche.js';
 import { chips } from '../../ui/chips.js';
+import { GOOGLE, googleTermine, holeGoogle } from './google.js';
+import { oeffneGoogleAdresse } from './google-adresse.js';
 
 // Unterzeile: Datum (nicht bei Heute/Morgen), Ende, Ort
 function unterText(t, gruppe) {
@@ -26,13 +28,16 @@ function unterText(t, gruppe) {
   return teile.join(' · ');
 }
 
+// Google-Termine: gedämpft und nicht antippbar (nur lesen)
 function zeile(t, gruppe) {
-  return listRow({
+  const z = listRow({
     title: t.titel,
     sub: unterText(t, gruppe),
     start: el('span', { class: `termin-zeit${t.ganztaegig ? ' termin-zeit--ganz' : ''}`, text: t.ganztaegig ? 'ganztägig' : zeitHM(new Date(t.start)) }),
-    onClick: () => oeffneTermin(t),
+    onClick: t.google ? null : () => oeffneTermin(t),
   });
+  if (t.google) z.classList.add('termin--google');
+  return z;
 }
 
 const MERKER = 'system0-kalender-ansicht'; // nur auf diesem Gerät gemerkt, wie bei den To-dos
@@ -70,7 +75,7 @@ export function kalenderAnsicht({ signal }) {
 
   async function zeichne() {
     const nr = ++stand;
-    const termine = await ladeTermine();
+    const termine = (await Promise.all([ladeTermine(), googleTermine()])).flat();
     if (nr !== stand || signal.aborted) return;
     inhalt.replaceChildren(...(ansicht === 'liste'
       ? liste(termine)
@@ -83,18 +88,20 @@ export function kalenderAnsicht({ signal }) {
   }
 
   on('daten', ({ table }) => {
-    if (table === TERMINE) zeichne();
+    if (table === TERMINE || table === GOOGLE) zeichne();
   }, { signal });
   // Auch ohne neue Daten: wenn die App wieder sichtbar wird und jede Minute (Mitternacht, Termin vorbei)
-  document.addEventListener('visibilitychange', () => document.hidden || zeichne(), { signal });
-  const takt = setInterval(zeichne, 60 * 1000);
+  const auffrischen = () => { zeichne(); holeGoogle(); }; // Google höchstens alle 15 Min. (google.js)
+  document.addEventListener('visibilitychange', () => document.hidden || auffrischen(), { signal });
+  const takt = setInterval(auffrischen, 60 * 1000);
   signal.addEventListener('abort', () => clearInterval(takt));
-  zeichne();
+  auffrischen();
 
   const umschalter = chips({
     items: [{ id: 'liste', label: 'Liste' }, { id: 'woche', label: 'Woche' }],
     active: ansicht,
     onChange: (id) => { ansicht = id; merke(id); zeichne(); },
+    aktionen: [{ label: 'Google', onClick: oeffneGoogleAdresse }],
   });
 
   return el('div', { class: 'app__stack' }, [

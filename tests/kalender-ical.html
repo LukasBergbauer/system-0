@@ -1,0 +1,84 @@
+<!doctype html>
+<!-- Test des iCal-Lesers (src/module/kalender/ical.js + wiederholung.js) mit einer kleinen Beispiel-Datei.
+     Öffnen: http://localhost:8000/tests/kalender-ical.html → jede Zeile ✓ oder ✗.
+     Zeitraum fest: 1.11.2026 bis 1.12.2026. Nach Änderungen an ical.js oder wiederholung.js hier prüfen. -->
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Test: iCal-Leser</title>
+  <style>
+    body { font: 14px/1.5 -apple-system, sans-serif; margin: 24px; background: #151515; color: #F3F1EC; }
+    .ok { color: #BCCBBE; } .fehler { color: #FF5C7A; } td { padding: 2px 12px 2px 0; vertical-align: top; }
+  </style>
+</head>
+<body>
+  <h1 id="ergebnis">…</h1>
+  <table id="tabelle"></table>
+  <script type="module">
+    import { leseIcal } from '../src/module/kalender/ical.js';
+
+    const ICS = [
+      'BEGIN:VCALENDAR',
+      'BEGIN:VTIMEZONE', 'TZID:Europe/Berlin', 'BEGIN:STANDARD', 'DTSTART:19701025T030000', 'END:STANDARD', 'END:VTIMEZONE',
+      // einfacher Termin in UTC, mit Erinnerung (deren SUMMARY darf den Titel nicht überschreiben)
+      'BEGIN:VEVENT', 'UID:a', 'DTSTART:20261110T170000Z', 'DTEND:20261110T180000Z', 'SUMMARY:Zahnarzt',
+      'LOCATION:Praxis Dr. Huber\\, Linz', 'BEGIN:VALARM', 'SUMMARY:Erinnerung', 'END:VALARM', 'END:VEVENT',
+      // ganztägig über zwei Tage
+      'BEGIN:VEVENT', 'UID:b', 'DTSTART;VALUE=DATE:20261120', 'DTEND;VALUE=DATE:20261122', 'SUMMARY:Wochenende weg', 'END:VEVENT',
+      // jeden Mo + Do 18 Uhr ab 2.11., 5 Mal, 5.11. ausgelassen, 9.11. auf 19 Uhr verschoben
+      'BEGIN:VEVENT', 'UID:c', 'DTSTART;TZID=Europe/Berlin:20261102T180000', 'DTEND;TZID=Europe/Berlin:20261102T190000',
+      'RRULE:FREQ=WEEKLY;BYDAY=MO,TH;COUNT=5', 'EXDATE;TZID=Europe/Berlin:20261105T180000', 'SUMMARY:Training', 'END:VEVENT',
+      'BEGIN:VEVENT', 'UID:c', 'RECURRENCE-ID;TZID=Europe/Berlin:20261109T180000',
+      'DTSTART;TZID=Europe/Berlin:20261109T190000', 'DTEND;TZID=Europe/Berlin:20261109T200000', 'SUMMARY:Training spät', 'END:VEVENT',
+      // abgesagt
+      'BEGIN:VEVENT', 'UID:d', 'DTSTART:20261115T100000Z', 'STATUS:CANCELLED', 'SUMMARY:Fällt aus', 'END:VEVENT',
+      // täglich seit 2020 ohne Ende (darf nicht abbrechen, bevor der Zeitraum erreicht ist)
+      'BEGIN:VEVENT', 'UID:e', 'DTSTART;VALUE=DATE:20200101', 'RRULE:FREQ=DAILY;INTERVAL=10', 'SUMMARY:Alle 10 Tage', 'END:VEVENT',
+      // monatlich am 31. → im November gibt es keinen 31.
+      'BEGIN:VEVENT', 'UID:f', 'DTSTART;VALUE=DATE:20260131', 'RRULE:FREQ=MONTHLY', 'SUMMARY:Am 31.', 'END:VEVENT',
+      // seltene Regel → nur erster Termin (liegt vor dem Zeitraum, erscheint also nicht)
+      'BEGIN:VEVENT', 'UID:g', 'DTSTART:20260101T100000Z', 'RRULE:FREQ=MONTHLY;BYDAY=2TU', 'SUMMARY:2. Dienstag', 'END:VEVENT',
+      // langer Titel über zwei Zeilen (gefaltet)
+      'BEGIN:VEVENT', 'UID:h', 'DTSTART:20261125T080000Z', 'SUMMARY:Sehr langer', '  Titel', 'END:VEVENT',
+      'END:VCALENDAR',
+    ].join('\r\n');
+
+    const zwei = (n) => String(n).padStart(2, '0');
+    const f = (iso) => { const d = new Date(iso); return `${zwei(d.getDate())}.${zwei(d.getMonth() + 1)}. ${zwei(d.getHours())}:${zwei(d.getMinutes())}`; };
+    const termine = leseIcal(ICS, new Date(2026, 10, 1), new Date(2026, 11, 1))
+      .sort((a, b) => Date.parse(a.start) - Date.parse(b.start))
+      .map((t) => `${t.titel} · ${f(t.start)}–${f(t.ende)}${t.ganztaegig ? ' · ganztägig' : ''}${t.ort ? ` · ${t.ort}` : ''}`);
+
+    // Zahnarzt: 17 Uhr UTC = 18 Uhr in Deutschland (Winterzeit).
+    // Alle 10 Tage: 1.1.2020 + 2500 Tage = 5.11.2026.
+    const ERWARTET = [
+      'Training · 02.11. 18:00–02.11. 19:00',
+      'Alle 10 Tage · 05.11. 00:00–06.11. 00:00 · ganztägig',
+      'Training spät · 09.11. 19:00–09.11. 20:00',
+      'Zahnarzt · 10.11. 18:00–10.11. 19:00 · Praxis Dr. Huber, Linz',
+      'Training · 12.11. 18:00–12.11. 19:00',
+      'Alle 10 Tage · 15.11. 00:00–16.11. 00:00 · ganztägig',
+      'Training · 16.11. 18:00–16.11. 19:00',
+      'Wochenende weg · 20.11. 00:00–22.11. 00:00 · ganztägig',
+      'Alle 10 Tage · 25.11. 00:00–26.11. 00:00 · ganztägig',
+      'Sehr langer Titel · 25.11. 09:00–25.11. 09:00',
+    ];
+
+    let fehler = 0;
+    const laenge = Math.max(termine.length, ERWARTET.length);
+    for (let i = 0; i < laenge; i++) {
+      const ok = termine[i] === ERWARTET[i];
+      if (!ok) fehler++;
+      const zeile = document.createElement('tr');
+      zeile.className = ok ? 'ok' : 'fehler';
+      for (const wert of [ok ? '✓' : '✗', termine[i] ?? '(fehlt)', ok ? '' : `erwartet: ${ERWARTET[i] ?? '(nichts)'}`]) {
+        zeile.insertCell().textContent = wert;
+      }
+      document.getElementById('tabelle').append(zeile);
+    }
+    const ergebnis = document.getElementById('ergebnis');
+    ergebnis.textContent = fehler ? `✗ ${fehler} von ${laenge} falsch` : `✓ Alle ${laenge} richtig`;
+    ergebnis.className = fehler ? 'fehler' : 'ok';
+  </script>
+</body>
+</html>
