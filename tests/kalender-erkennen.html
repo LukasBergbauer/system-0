@@ -1,0 +1,66 @@
+<!doctype html>
+<!-- Test der Kalender-Schnelleingabe (src/module/kalender/erkennen.js).
+     Öffnen: http://localhost:8000/tests/kalender-erkennen.html → jede Zeile ✓ oder ✗.
+     Fester „Jetzt“-Zeitpunkt: So, 8.11.2026, 15:00 Uhr. Nach Änderungen an erkennen.js hier prüfen. -->
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Test: Kalender-Erkennung</title>
+  <style>
+    body { font: 14px/1.5 -apple-system, sans-serif; margin: 24px; background: #151515; color: #F3F1EC; }
+    .ok { color: #BCCBBE; } .fehler { color: #FF5C7A; } td { padding: 2px 12px 2px 0; }
+  </style>
+</head>
+<body>
+  <h1 id="ergebnis">…</h1>
+  <table id="tabelle"></table>
+  <script type="module">
+    import { erkenne } from '../src/module/kalender/erkennen.js';
+
+    const jetzt = new Date(2026, 10, 8, 15, 0);
+    // Eingabe → [Titel, Beginn, Ende] (TT.MM.JJ HH:MM); ganztägig = Beginn/Ende 00:00
+    const FAELLE = [
+      ['Mo 18 Uhr Training', 'Training', '09.11.26 18:00', '09.11.26 19:00'],
+      ['morgen 9:30 Zahnarzt', 'Zahnarzt', '09.11.26 09:30', '09.11.26 10:30'],
+      ['12.11. Geburtstag Oma', 'Geburtstag Oma', '12.11.26 00:00', '13.11.26 00:00'],
+      ['heute 14-15 Uhr Meeting', 'Meeting', '08.11.26 14:00', '08.11.26 15:00'],
+      ['Training 18:00-19:30 Fr', 'Training', '13.11.26 18:00', '13.11.26 19:30'],
+      ['Dienstag Physio 7 Uhr', 'Physio', '10.11.26 07:00', '10.11.26 08:00'],
+      ['20 Uhr Kino', 'Kino', '08.11.26 20:00', '08.11.26 21:00'],
+      ['10 Uhr Brunch', 'Brunch', '09.11.26 10:00', '09.11.26 11:00'],
+      ['So 14 Uhr Spaziergang', 'Spaziergang', '15.11.26 14:00', '15.11.26 15:00'],
+      ['So 16 Uhr Kaffee', 'Kaffee', '08.11.26 16:00', '08.11.26 17:00'],
+      ['3.1. Neujahrsessen', 'Neujahrsessen', '03.01.27 00:00', '04.01.27 00:00'],
+      ['24.12.2027 Weihnachten', 'Weihnachten', '24.12.27 00:00', '25.12.27 00:00'],
+      ['übermorgen Urlaub', 'Urlaub', '10.11.26 00:00', '11.11.26 00:00'],
+      ['Einkaufen', 'Einkaufen', '08.11.26 00:00', '09.11.26 00:00'],
+      ['Party 22-1 Uhr Sa', 'Party', '14.11.26 22:00', '15.11.26 01:00'],
+      ['Mittwoch, 18.30 Uhr Chor', 'Chor', '11.11.26 18:30', '11.11.26 19:30'],
+      ['Morgenlauf 6 Uhr', 'Morgenlauf', '09.11.26 06:00', '09.11.26 07:00'],
+      ['Termin 25 Uhr', 'Termin 25 Uhr', '08.11.26 00:00', '09.11.26 00:00'],
+      ['Sonntag Familie', 'Familie', '08.11.26 00:00', '09.11.26 00:00'],
+      ['31.11. Party', '31.11. Party', '08.11.26 00:00', '09.11.26 00:00'], // kein echtes Datum
+    ];
+
+    const zwei = (n) => String(n).padStart(2, '0');
+    const f = (d) => `${zwei(d.getDate())}.${zwei(d.getMonth() + 1)}.${String(d.getFullYear()).slice(2)} ${zwei(d.getHours())}:${zwei(d.getMinutes())}`;
+
+    let fehler = 0;
+    for (const [text, ...erwartet] of FAELLE) {
+      const r = erkenne(text, jetzt);
+      const ist = [r.titel, f(r.start), f(r.ende)];
+      const ok = ist.join('|') === erwartet.join('|');
+      if (!ok) fehler++;
+      const zeile = document.createElement('tr');
+      zeile.className = ok ? 'ok' : 'fehler';
+      for (const wert of [ok ? '✓' : '✗', text, ist.join(' · '), ok ? '' : `erwartet: ${erwartet.join(' · ')}`]) {
+        zeile.insertCell().textContent = wert;
+      }
+      document.getElementById('tabelle').append(zeile);
+    }
+    const ergebnis = document.getElementById('ergebnis');
+    ergebnis.textContent = fehler ? `✗ ${fehler} von ${FAELLE.length} falsch` : `✓ Alle ${FAELLE.length} richtig`;
+    ergebnis.className = fehler ? 'fehler' : 'ok';
+  </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 // Schnelleingabe verstehen: „Mo 18 Uhr Training“ → { titel: 'Training', start, ende, ganztaegig: false }.
 // Reine Funktion (kein Speichern), damit sie sich leicht prüfen lässt. Erkannte Wörter: siehe docs/module/kalender.md.
 // Nur Uhrzeit → heute (morgen, wenn schon vorbei). Nur Tag → ganztägig. Nichts erkannt → heute, ganztägig.
-import { plusTage } from './zeit.js';
+import { plusTage, mitternacht } from './zeit.js';
 
 const RAND = '(^|\\s)'; // Wortanfang (\b kennt keine Umlaute)
 const ENDE = '(?=[\\s,.]|$)';
@@ -17,7 +17,6 @@ const MUSTER = {
   zeit: new RegExp(`${RAND}(?:(\\d{1,2})(?:[:.](\\d{2}))?\\s*uhr|(\\d{1,2}):(\\d{2}))${ENDE}`, 'i'),
 };
 
-const mitternacht = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
 const gueltig = (h, m) => h <= 23 && m <= 59;
 
 // Sucht ein Muster, schneidet den Treffer aus dem Text und gibt die Gruppen zurück.
@@ -29,8 +28,10 @@ function nimm(rest, muster) {
 }
 
 function findeTag(rest, heute) {
-  const d = nimm(rest, MUSTER.datum);
-  if (d) {
+  const d = rest.text.match(MUSTER.datum);
+  // Nur echte Daten: „31.11.“ würde sonst still zum 1. Dez.
+  if (d && new Date(2000, +d[3] - 1, +d[2]).getMonth() === +d[3] - 1) {
+    rest.text = rest.text.replace(d[0], ' ');
     let tag = new Date(d[4] ? +d[4] : heute.getFullYear(), +d[3] - 1, +d[2]);
     if (!d[4] && tag < heute) tag = new Date(tag.getFullYear() + 1, tag.getMonth(), tag.getDate());
     return { tag };

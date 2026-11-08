@@ -8,8 +8,7 @@ import { tagText, zeitHM, letzterTag } from './zeit.js';
 
 // „Mo., 9. Nov. · 18:00–19:00 · Training“
 function vorschauText(r) {
-  const termin = { ...r, ende: r.ende.toISOString() };
-  const bis = letzterTag(termin);
+  const bis = letzterTag(r);
   const mehrtaegig = tagText(r.start) !== tagText(bis);
   let wann = tagText(r.start);
   if (r.ganztaegig) wann += ' · ganztägig';

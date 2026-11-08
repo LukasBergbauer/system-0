@@ -85,6 +85,10 @@ export function kalenderAnsicht({ signal }) {
   on('daten', ({ table }) => {
     if (table === TERMINE) zeichne();
   }, { signal });
+  // Auch ohne neue Daten: wenn die App wieder sichtbar wird und jede Minute (Mitternacht, Termin vorbei)
+  document.addEventListener('visibilitychange', () => document.hidden || zeichne(), { signal });
+  const takt = setInterval(zeichne, 60 * 1000);
+  signal.addEventListener('abort', () => clearInterval(takt));
   zeichne();
 
   const umschalter = chips({

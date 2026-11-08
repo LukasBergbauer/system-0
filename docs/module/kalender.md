@@ -77,5 +77,8 @@ Stile: `src/styles/kalender.css`.
       heutiger Tag in Elfenbein. Gewählte Ansicht wird pro Gerät gemerkt (localStorage, wie der Filter der To-dos)
       statt in `einstellungen`. Wischen weggelassen (Pfeile reichen). `sw.js` auf `v36`.
 - [ ] d) Google · e) Kopfbild + Abschluss
-- Aus dem Review von b (offen, Lukas entscheidet): Liste zeichnet sich nicht von selbst neu (um Mitternacht oder
-  wenn ein Termin endet); Beispielsätze der Erkennung als kleine Testseite behalten; „31.11.“ wird still zum 1. Dez.
+- [x] Review von b umgesetzt: Ansicht zeichnet sich jede Minute und beim Zurückkehren in die App neu
+      (Mitternacht, vorbei gegangene Termine); ungültige Daten wie „31.11.“ werden nicht mehr erkannt;
+      kleine Aufräumarbeiten. `sw.js` auf `v37`.
+- Test der Erkennung: `tests/kalender-erkennen.html` (20 Sätze, fester Zeitpunkt). Nach Änderungen an `erkennen.js`
+  öffnen: http://localhost:8000/tests/kalender-erkennen.html → muss „✓ Alle 20 richtig“ zeigen.

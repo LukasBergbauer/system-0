@@ -26,7 +26,7 @@ export function plusTage(d, n) {
   return x;
 }
 
-const mitternacht = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+export const mitternacht = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
 
 // Date → 'Heute', 'Morgen' oder 'Do., 13. Nov.' (Jahr nur, wenn nicht dieses Jahr)
 export function tagText(d) {
