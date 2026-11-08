@@ -273,8 +273,10 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   Neu im Kern dabei: `src/core/dateien.js` (Dateien local-first, auch für spätere Module), lokale DB Version 2,
   Abgleich überspringt fehlende Tabellen. Weiteres sammelt Lukas beim Befüllen unter „Wünsche für später“ in `module/physio.md`
 - [ ] Kalender persönlich, mit Google-Kalender-Anzeige (`module/kalender.md`) – **als Nächstes**
-  Plan für den Einstieg (nächste Sitzung, Details in `module/kalender.md`): erst reden, dann Datenmodell
-  (Migration `005_kalender.sql`) und Plan in Teilen in `module/kalender.md`, Okay abwarten, dann bauen
+  Plan (mit Lukas abgestimmt, 08.11.2026, Details in `module/kalender.md`): Liste „Nächste Termine“ + Woche,
+  Felder schlank, Schnelleingabe mit Erkennung, Google nur lesen über iCal-Adresse + Supabase-Funktion,
+  To-dos vorerst getrennt. Teile a) Grundgerüst + Liste · b) Schnelleingabe · c) Woche · d) Google · e) Kopfbild + Abschluss.
+  Migration `005_kalender.sql` geschrieben. Stand: wartet auf Okay, dann Teil a
 - [ ] Design-Runde 2: Dashboard-Ansicht (Wunsch von Lukas, 08.11.2026, später angehen)
   Lukas möchte die App doch eher als helles Dashboard wie in den Vorlagen
   `vorlagen/dashboard-1-uebersicht.webp`, `dashboard-2-profil.webp`, `dashboard-3-gemerkt.webp`:
