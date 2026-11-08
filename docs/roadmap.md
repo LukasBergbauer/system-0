@@ -275,6 +275,17 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 - [ ] Kalender persönlich, mit Google-Kalender-Anzeige (`module/kalender.md`) – **als Nächstes**
   Plan für den Einstieg (nächste Sitzung, Details in `module/kalender.md`): erst reden, dann Datenmodell
   (Migration `005_kalender.sql`) und Plan in Teilen in `module/kalender.md`, Okay abwarten, dann bauen
+- [ ] Design-Runde 2: Dashboard-Ansicht (Wunsch von Lukas, 08.11.2026, später angehen)
+  Lukas möchte die App doch eher als helles Dashboard wie in den Vorlagen
+  `vorlagen/dashboard-1-uebersicht.webp`, `dashboard-2-profil.webp`, `dashboard-3-gemerkt.webp`:
+  - Heller, weicher Hintergrund mit leichtem Verlauf, weiße Karten mit großen Rundungen und sanftem Schatten
+  - Kachel-Raster (Kacheln verschieden groß), große Zahlen, kleine Balken- und Fortschrittsanzeigen
+  - Schmale dunkle Seitenleiste nur mit Symbolen (Mac), aktiver Punkt farbig hervorgehoben
+  - Farben ähnlich (dunkles Grün, Mint, warmes Orange), aber **nicht allzu bunt**: wenige Akzente, viel Weiß/Grau
+  - Passt gut zur Heute-Übersicht (Startseite als Dashboard) – deshalb vor oder zusammen mit ihr angehen
+  Plan für den Einstieg: erst reden (was bleibt von „Stein & Licht“, hell immer oder nur tagsüber, wie sieht es
+  auf dem iPhone aus, wo ist die Seitenleiste), 1–2 Varianten je Punkt, dann Musterseite, erst nach Okay
+  `tokens.css`, `design.md` und Bausteine umstellen. Das PhysioZentrum-Overlay ist schon hell (`.hell`) und kann Vorbild sein
 - [ ] Heute-Übersicht (`module/heute.md`)
 - [ ] Routinen, ohne Sperre (`module/routinen.md`)
 
