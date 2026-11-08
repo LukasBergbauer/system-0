@@ -1,0 +1,124 @@
+/* Musterseite: Inhalte der Karten (Pillen, Hero, Kacheln, Kalender, Diagramme, Farbwahl) */
+
+/* Pillen-Knöpfe */
+.pille { height: 38px; padding: 0 16px; border-radius: 999px; display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600;
+  white-space: nowrap; transition: transform 300ms var(--feder), background 250ms, box-shadow 300ms; }
+.pille svg { width: 15px; height: 15px; transition: transform 300ms var(--feder); }
+.pille:hover svg.pfeil { transform: translate(2px, -2px); }
+.pille:hover svg.plus { transform: rotate(90deg); }
+.pille:active { transform: scale(.95); transition-duration: 100ms; }
+.pille--weiss { background: #fff; color: var(--ink); box-shadow: 0 6px 16px -8px rgba(60,20,10,.4); }
+.pille--rand { color: #fff; border: 1px solid rgba(255,255,255,.6); background: rgba(255,255,255,.12); }
+.pille--rand:hover { background: rgba(255,255,255,.22); }
+.pille--dunkel { background: #21170F; color: #fff; box-shadow: 0 8px 18px -8px rgba(30,10,5,.6); }
+.pille--glas { background: rgba(255,255,255,.5); border: 1px solid var(--glas-rand); }
+.punkt { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(255,255,255,.7); }
+
+/* Hero */
+.hero { color: #fff; overflow: hidden; min-height: 268px; display: flex; gap: 24px; align-items: center; padding: 26px 28px;
+  background: linear-gradient(135deg, var(--akzent-hell) 0%, var(--accent) 48%, var(--akzent-tief) 130%); border-color: rgba(255,255,255,.35); }
+.hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(60% 70% at 0% 0%, rgba(255,255,255,.35), transparent 60%), radial-gradient(40% 50% at 100% 100%, rgba(40,10,0,.2), transparent 70%); }
+.hero > * { position: relative; }
+.hero-text { flex: 1; min-width: 0; }
+.status { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 11px; font-weight: 600; background: rgba(255,255,255,.2); }
+.status i { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: puls 2s ease-in-out infinite; }
+@keyframes puls { 50% { opacity: .35; transform: scale(.7); } }
+.hero h2 { font-size: 30px; line-height: 1.12; font-weight: 600; letter-spacing: -.02em; margin: 16px 0 8px; max-width: 15ch; }
+.hero h2 em { font-family: ui-serif, "New York", Georgia, serif; font-weight: 400; }
+.hero p { opacity: .82; font-size: 13px; max-width: 42ch; }
+.werte { display: flex; gap: 22px; margin: 18px 0 20px; }
+.werte div { padding-left: 12px; border-left: 1px solid rgba(255,255,255,.35); }
+.werte b { display: block; font-size: 22px; font-weight: 600; letter-spacing: -.02em; }
+.werte small { font-size: 11px; opacity: .75; }
+.knoepfe { display: flex; gap: 8px; flex-wrap: wrap; }
+.ring { width: 168px; height: 168px; flex: none; position: relative; display: grid; place-items: center; }
+.ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 10; stroke-linecap: round; }
+.ring .bahn { stroke: rgba(255,255,255,.22); }
+.ring .wert { stroke: #fff; stroke-dasharray: 440; stroke-dashoffset: 440; transition: stroke-dashoffset 1400ms var(--ease) 300ms; filter: drop-shadow(0 0 6px rgba(255,255,255,.5)); }
+.ring b { font-size: 34px; font-weight: 600; letter-spacing: -.03em; display: block; text-align: center; }
+.ring small { font-size: 11px; opacity: .8; display: block; text-align: center; }
+
+/* Kalender-Karte */
+.datum { display: flex; align-items: center; gap: 12px; }
+.datum b { font-size: 44px; font-weight: 600; letter-spacing: -.04em; color: var(--accent); line-height: 1; }
+.datum small { display: block; color: var(--ink-2); font-size: 12px; }
+.woche { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin: 16px 0 14px; text-align: center; }
+.tag { padding: 6px 0; border-radius: 12px; font-size: 13px; font-weight: 600; transition: background 250ms, transform 300ms var(--feder); }
+.tag small { display: block; font-size: 10px; color: var(--ink-3); font-weight: 500; }
+.tag:hover { background: rgba(255,255,255,.5); transform: translateY(-2px); }
+.tag.heute { background: var(--accent); color: #fff; box-shadow: 0 8px 16px -8px var(--accent); }
+.tag.heute small { color: rgba(255,255,255,.8); }
+.termin { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 14px; background: rgba(255,255,255,.55); margin-top: 8px;
+  transition: transform 300ms var(--feder), background 250ms; }
+.termin:hover { transform: translateX(3px); background: rgba(255,255,255,.75); }
+.termin time { font-size: 12px; font-weight: 600; color: var(--ink-2); width: 38px; }
+.termin span { width: 3px; align-self: stretch; border-radius: 2px; background: var(--accent); }
+.termin b { font-size: 13px; display: block; } .termin small { font-size: 11px; color: var(--ink-2); }
+.termin em { margin-left: auto; font-style: normal; font-size: 10px; font-weight: 600; color: var(--accent); background: color-mix(in oklch, var(--accent) 14%, white); padding: 3px 8px; border-radius: 999px; }
+
+/* Kennzahl-Kacheln */
+.kz { min-height: 158px; display: flex; flex-direction: column; }
+.kz-kopf { display: flex; justify-content: space-between; align-items: center; margin-bottom: auto; }
+.symbol { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.75); }
+.trend { font-size: 11px; font-weight: 600; color: var(--gut); background: rgba(255,255,255,.65); padding: 3px 8px; border-radius: 999px; }
+.kz b { font-size: 36px; font-weight: 600; letter-spacing: -.035em; line-height: 1; margin-top: 18px; }
+.kz .titel { font-size: 13px; font-weight: 600; margin-top: 8px; } .kz small { color: var(--ink-2); font-size: 11px; }
+.kz .spur { position: absolute; right: 18px; bottom: 20px; width: 64px; height: 24px; }
+.kz--akzent { background: linear-gradient(150deg, var(--akzent-hell), var(--accent) 60%, var(--akzent-tief)); color: #fff; border-color: rgba(255,255,255,.35); }
+.kz--akzent small, .kz--akzent .titel { color: rgba(255,255,255,.85); }
+.kz--akzent .symbol { background: rgba(255,255,255,.22); } .kz--akzent .trend { color: #fff; background: rgba(255,255,255,.22); }
+.spur path, .linie { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1;
+  animation: zeichnen 1300ms var(--ease) 500ms forwards; }
+.kz--akzent .spur path { stroke: #fff; }
+@keyframes zeichnen { to { stroke-dashoffset: 0; } }
+
+/* Schnellaktionen */
+.schnell { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: var(--r); font-weight: 600; font-size: 13px; text-align: left; }
+.schnell .symbol { width: 32px; height: 32px; } .schnell small { display: block; font-weight: 400; color: var(--ink-2); font-size: 11px; }
+
+/* Diagramme */
+.karte-kopf { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+.karte-kopf h3 { font-size: 16px; font-weight: 600; } .karte-kopf small { color: var(--ink-2); font-size: 12px; }
+.segment { position: relative; display: flex; padding: 3px; border-radius: 999px; background: rgba(255,255,255,.45); }
+.segment button { position: relative; z-index: 1; height: 30px; padding: 0 14px; font-size: 12px; font-weight: 600; color: var(--ink-2); transition: color 250ms; }
+.segment button.an { color: #fff; }
+.segment .zeiger { background: #21170F; border-radius: 999px; }
+.legende { display: flex; gap: 14px; font-size: 11px; color: var(--ink-2); margin: 4px 0 6px; }
+.legende i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; background: var(--accent); }
+.verlauf { width: 100%; height: 210px; display: block; overflow: visible; }
+.verlauf .gitter { stroke: var(--ink-3); stroke-dasharray: 2 5; opacity: .5; }
+.verlauf text { font-size: 11px; fill: var(--ink-3); }
+.verlauf .flaeche { fill: url(#fl); opacity: 0; animation: blende 900ms var(--ease) 700ms forwards; }
+.verlauf .geplant { fill: none; stroke: var(--ink-3); stroke-width: 1.5; stroke-dasharray: 4 5; }
+@keyframes blende { to { opacity: 1; } }
+.donut { position: relative; width: 170px; height: 170px; margin: 10px auto 14px; display: grid; place-items: center; text-align: center; }
+.donut svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.donut circle { fill: none; stroke-width: 16; transition: stroke-dasharray 1200ms var(--ease); }
+.donut b { font-size: 26px; font-weight: 600; letter-spacing: -.03em; display: block; } .donut small { font-size: 11px; color: var(--ink-2); }
+.anteile { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 14px; font-size: 12px; }
+.anteile span { display: flex; align-items: center; gap: 6px; } .anteile b { margin-left: auto; font-weight: 600; }
+.anteile i { width: 8px; height: 8px; border-radius: 50%; }
+
+/* Farbwahl */
+.farbwahl { position: absolute; right: 0; top: 46px; z-index: 10; padding: 14px; border-radius: 20px; width: 236px;
+  transform-origin: top right; transform: scale(.92) translateY(-6px); opacity: 0; pointer-events: none;
+  transition: transform 350ms var(--feder), opacity 200ms; background: rgba(255,255,255,.72); }
+.farbwahl.offen { transform: none; opacity: 1; pointer-events: auto; }
+.farbwahl p { font-size: 11px; font-weight: 600; color: var(--ink-2); margin-bottom: 10px; }
+.farben { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.farben button { aspect-ratio: 1; border-radius: 50%; background: var(--f); box-shadow: inset 0 0 0 2px rgba(255,255,255,.6); transition: transform 300ms var(--feder); }
+.farben button:hover { transform: scale(1.12); }
+.farben button.an { box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--f); }
+.farben label { aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; cursor: pointer; overflow: hidden;
+  background: conic-gradient(red, yellow, lime, cyan, blue, magenta, red); }
+.farben input { opacity: 0; width: 100%; height: 100%; cursor: pointer; }
+
+@media (max-width: 760px) {
+  .hero { flex-direction: column-reverse; align-items: flex-start; padding: 22px; }
+  .ring { width: 128px; height: 128px; align-self: center; } .ring b { font-size: 28px; }
+  .hero h2 { font-size: 26px; } .werte { gap: 14px; }
+  .kz { min-height: 140px; padding: 16px; } .kz b { font-size: 30px; } .kz .spur { display: none; }
+  .farbwahl { left: 0; right: auto; transform-origin: top left; }
+}

@@ -1,0 +1,103 @@
+/* Musterseite Glas-Dashboard (Design-Runde 2). Nur zum Ansehen, wird nach dem Okay in tokens.css & Co. übernommen.
+   Alles hängt an EINER Farbe: --accent. Hintergrund, Karten-Schatten, Hero, Diagramme werden daraus gemischt. */
+@property --accent { syntax: "<color>"; inherits: true; initial-value: #E8664F; }
+
+:root {
+  --accent: #E8664F;
+  --akzent-hell: color-mix(in oklch, var(--accent) 68%, white);
+  --akzent-tief: color-mix(in oklch, var(--accent) 72%, #2a0f08);
+  --ink: #2B1E19;
+  --ink-2: rgba(43, 30, 25, 0.56);
+  --ink-3: rgba(43, 30, 25, 0.34);
+  --gut: #3E9B6E;
+  --glas: linear-gradient(180deg, rgba(255,255,255,.58), rgba(255,255,255,.30));
+  --glas-rand: rgba(255, 255, 255, 0.62);
+  --schatten: inset 0 1px 0 rgba(255,255,255,.7), 0 12px 32px -14px color-mix(in oklch, var(--accent) 50%, rgba(70,25,10,.55));
+  --schatten-hoch: inset 0 1px 0 rgba(255,255,255,.8), 0 22px 44px -16px color-mix(in oklch, var(--accent) 55%, rgba(70,25,10,.6));
+  --r-gross: 26px; --r: 18px; --r-klein: 12px;
+  --blur: blur(22px) saturate(160%);
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --feder: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --leiste: 236px;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
+  transition: --accent 700ms var(--ease);
+  color-scheme: light;
+}
+* { box-sizing: border-box; margin: 0; }
+body { font: 14px/1.4 var(--font); color: var(--ink); background: #F6E9E2; -webkit-font-smoothing: antialiased; min-height: 100dvh; }
+button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* Hintergrund: weiche Farbwolken aus dem Akzent + feines Korn */
+.hg { position: fixed; inset: 0; z-index: -1;
+  background:
+    radial-gradient(55% 45% at 12% -5%, color-mix(in oklch, var(--accent) 55%, #3b1a10) 0%, transparent 70%),
+    radial-gradient(45% 55% at 100% 0%, color-mix(in oklch, var(--accent) 50%, white) 0%, transparent 70%),
+    radial-gradient(60% 55% at 70% 105%, color-mix(in oklch, var(--accent) 60%, white) 0%, transparent 70%),
+    radial-gradient(45% 50% at -5% 85%, color-mix(in oklch, var(--accent) 40%, #f3e2d8) 0%, transparent 70%),
+    color-mix(in oklch, var(--accent) 16%, #FBF4EF); }
+.hg::after { content: ""; position: absolute; inset: 0; opacity: .07; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+/* Glas */
+.glas { background: var(--glas); border: 1px solid var(--glas-rand); border-radius: var(--r-gross);
+  -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); box-shadow: var(--schatten); }
+.karte { padding: 20px; position: relative; transition: transform 380ms var(--feder), box-shadow 380ms var(--ease); }
+@media (hover: hover) { .karte:hover { transform: translateY(-3px); box-shadow: var(--schatten-hoch); } }
+.karte:active { transform: scale(.985); transition-duration: 120ms; }
+
+/* Einblenden: gestaffelt, nur transform/opacity (flüssig auf dem iPhone) */
+.rein { animation: rein 700ms var(--ease) backwards; animation-delay: calc(var(--i, 0) * 55ms + 80ms); }
+@keyframes rein { from { opacity: 0; transform: translateY(14px) scale(.985); } }
+
+/* Seitenleiste (Mac) */
+.leiste { position: fixed; top: 16px; left: 16px; bottom: 16px; width: var(--leiste); padding: 14px; display: flex;
+  flex-direction: column; gap: 2px; border-radius: 28px; transition: width 450ms var(--ease); z-index: 5; }
+.app.zu { --leiste: 72px; }
+.marke { display: flex; align-items: center; gap: 10px; padding: 4px 0 14px; white-space: nowrap; }
+.logo { width: 44px; height: 44px; border-radius: 14px; flex: none; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 18px;
+  background: linear-gradient(140deg, var(--akzent-hell), var(--accent) 55%, var(--akzent-tief)); box-shadow: 0 6px 16px -6px var(--accent); }
+.marke b { display: block; font-size: 14px; } .marke small { color: var(--ink-2); font-size: 11px; }
+.einklappen { position: absolute; top: 26px; right: -12px; width: 26px; height: 26px; border-radius: 50%; background: #fff;
+  display: grid; place-items: center; box-shadow: 0 4px 12px -4px rgba(60,20,10,.35); transition: transform 450ms var(--feder); }
+.einklappen svg { width: 14px; height: 14px; }
+.app.zu .einklappen { transform: rotate(180deg); }
+.abschnitt { font-size: 10px; font-weight: 600; letter-spacing: .12em; color: var(--ink-3); padding: 14px 12px 6px; white-space: nowrap; }
+.nav { position: relative; display: flex; flex-direction: column; gap: 2px; }
+.nav-punkt { position: relative; z-index: 1; height: 42px; padding: 0 13px; display: flex; align-items: center; gap: 12px; border-radius: 13px;
+  white-space: nowrap; font-weight: 500; color: var(--ink-2); transition: color 250ms; }
+.nav-punkt:hover, .nav-punkt.aktiv { color: var(--ink); }
+.nav-punkt .zahl { margin-left: auto; min-width: 20px; height: 20px; border-radius: 10px; background: var(--accent); color: #fff; font-size: 11px; font-weight: 600; display: grid; place-items: center; }
+.text, .abschnitt, .marke div, .nav-punkt .zahl, .profil div { transition: opacity 250ms var(--ease); }
+.app.zu :is(.text, .abschnitt, .marke div, .nav-punkt .zahl, .profil div) { opacity: 0; pointer-events: none; }
+.zeiger { position: absolute; z-index: 0; left: 0; top: 0; border-radius: 13px; background: #fff;
+  box-shadow: 0 6px 18px -8px rgba(70,25,10,.35); transition: transform 500ms var(--feder), width 450ms var(--ease), height 450ms var(--ease); }
+.profil { margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 8px 2px 0; white-space: nowrap; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; flex: none; background: linear-gradient(140deg, #fff, var(--akzent-hell)); display: grid; place-items: center; font-weight: 600; }
+
+/* Kapsel (iPhone) */
+.kapsel { display: none; }
+
+/* Inhalt */
+main { margin-left: calc(var(--leiste) + 32px); padding: 26px 28px 40px 0; transition: margin-left 450ms var(--ease); max-width: 1480px; }
+.kopf { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+h1 { font-size: 34px; font-weight: 600; letter-spacing: -.025em; line-height: 1.1; }
+.unter { color: var(--ink-2); margin-top: 6px; }
+.aktionen { display: flex; gap: 8px; position: relative; }
+.raster { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+.s8 { grid-column: span 8; } .s4 { grid-column: span 4; } .s3 { grid-column: span 3; }
+
+@media (max-width: 1100px) { .app:not(.offen) { --leiste: 72px; } .app:not(.offen) :is(.text, .abschnitt, .marke div, .nav-punkt .zahl, .profil div) { opacity: 0; } }
+@media (max-width: 760px) {
+  .leiste { display: none; }
+  main { margin: 0; padding: calc(18px + env(safe-area-inset-top)) 16px calc(110px + env(safe-area-inset-bottom)); }
+  .kopf { flex-direction: column; align-items: flex-start; } h1 { font-size: 28px; }
+  .raster { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .s8, .s4 { grid-column: span 2; } .s3 { grid-column: span 1; }
+  .kapsel { display: flex; position: fixed; z-index: 5; left: 50%; transform: translateX(-50%); bottom: calc(14px + env(safe-area-inset-bottom));
+    padding: 6px; gap: 2px; border-radius: 999px; }
+  .kapsel .nav-punkt { width: 56px; height: 48px; padding: 0; justify-content: center; border-radius: 999px; }
+  .kapsel .nav-punkt svg { width: 22px; height: 22px; }
+  .kapsel .zeiger { border-radius: 999px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }

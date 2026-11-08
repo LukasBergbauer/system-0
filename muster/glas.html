@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F1D4C6">
+  <title>Muster Glas-Dashboard</title>
+  <link rel="stylesheet" href="glas.css">
+  <link rel="stylesheet" href="glas-teile.css">
+</head>
+<body>
+<div class="hg"></div>
+<div class="app" id="app">
+  <aside class="leiste glas">
+    <div class="marke"><span class="logo">0</span><div><b>System 0</b><small>Lukas</small></div></div>
+    <button class="einklappen" id="einklappen" aria-label="Seitenleiste ein-/ausklappen"><svg class="i" data-i="zurueck"></svg></button>
+    <button class="pille pille--glas" style="margin-bottom:4px"><svg class="i" data-i="suche"></svg><span class="text">Suchen …</span></button>
+    <nav class="nav" data-nav>
+      <span class="zeiger"></span>
+      <div class="abschnitt">ALLTAG</div>
+      <button class="nav-punkt aktiv"><svg class="i" data-i="heute"></svg><span class="text">Heute</span></button>
+      <button class="nav-punkt"><svg class="i" data-i="kalender"></svg><span class="text">Kalender</span></button>
+      <button class="nav-punkt"><svg class="i" data-i="todos"></svg><span class="text">To-dos</span><span class="zahl">3</span></button>
+      <div class="abschnitt">KÖRPER &amp; KOPF</div>
+      <button class="nav-punkt"><svg class="i" data-i="physio"></svg><span class="text">PhysioZentrum</span></button>
+      <button class="nav-punkt"><svg class="i" data-i="training"></svg><span class="text">Training</span></button>
+      <button class="nav-punkt"><svg class="i" data-i="ziele"></svg><span class="text">Ziele</span></button>
+      <div class="abschnitt">SYSTEM</div>
+      <button class="nav-punkt"><svg class="i" data-i="einstellungen"></svg><span class="text">Einstellungen</span></button>
+    </nav>
+    <div class="profil"><span class="avatar">L</span><div><b>Lukas</b><br><small style="color:var(--ink-2)">synchronisiert</small></div></div>
+  </aside>
+
+  <nav class="kapsel glas" data-nav>
+    <span class="zeiger"></span>
+    <button class="nav-punkt aktiv" aria-label="Heute"><svg class="i" data-i="heute"></svg></button>
+    <button class="nav-punkt" aria-label="Kalender"><svg class="i" data-i="kalender"></svg></button>
+    <button class="nav-punkt" aria-label="To-dos"><svg class="i" data-i="todos"></svg></button>
+    <button class="nav-punkt" aria-label="Physio"><svg class="i" data-i="physio"></svg></button>
+    <button class="nav-punkt" aria-label="Mehr"><svg class="i" data-i="einstellungen"></svg></button>
+  </nav>
+
+  <main>
+    <header class="kopf rein">
+      <div><h1 id="gruss">Guten Tag, Lukas</h1><p class="unter" id="datumzeile"></p></div>
+      <div class="aktionen">
+        <button class="pille pille--glas" id="farbknopf"><span class="punkt"></span>Akzent</button>
+        <button class="pille pille--dunkel"><svg class="i plus" data-i="plus"></svg>Neu</button>
+        <div class="farbwahl glas" id="farbwahl"><p>AKZENTFARBE</p><div class="farben" id="farben"></div></div>
+      </div>
+    </header>
+
+    <section class="raster">
+      <article class="glas karte hero s8 rein" style="--i:1">
+        <div class="hero-text">
+          <span class="status"><i></i>Woche 45 · 4 Routinen aktiv</span>
+          <h2>Deine Woche läuft <em>richtig</em> gut</h2>
+          <p>72 % deiner Vorhaben sind erledigt, drei Trainings stehen noch an.</p>
+          <div class="werte">
+            <div><b data-zahl="18">0</b><small>To-dos erledigt</small></div>
+            <div><b data-zahl="5">0</b><small>heute fällig</small></div>
+            <div><b data-zahl="86" data-nach="%">0</b><small>Routinen</small></div>
+          </div>
+          <div class="knoepfe">
+            <button class="pille pille--weiss">Woche ansehen<svg class="i pfeil" data-i="pfeil"></svg></button>
+            <button class="pille pille--rand"><svg class="i plus" data-i="plus"></svg>To-do</button>
+          </div>
+        </div>
+        <div class="ring"><svg viewBox="0 0 168 168"><circle class="bahn" cx="84" cy="84" r="70"/><circle class="wert" cx="84" cy="84" r="70" data-ring="0.72"/></svg>
+          <div><b data-zahl="72" data-nach="%">0</b><small>erledigt</small></div></div>
+      </article>
+
+      <article class="glas karte s4 rein" style="--i:2">
+        <div class="datum"><b id="tagzahl">08</b><div><strong id="wochentag">Sonntag</strong><small id="monat">November 2026 · 2 Termine</small></div></div>
+        <div class="woche" id="woche"></div>
+        <div class="termin"><time>09:30</time><span></span><div><b>Physio-Fortbildung</b><small>Online</small></div><em>Als Nächstes</em></div>
+        <div class="termin"><time>18:00</time><span></span><div><b>Krafttraining</b><small>Oberkörper</small></div></div>
+      </article>
+
+      <article class="glas karte kz s3 rein" style="--i:3"><div class="kz-kopf"><span class="symbol"><svg class="i" data-i="todos"></svg></span><span class="trend">↗ 12 %</span></div>
+        <b data-zahl="12">0</b><span class="titel">Offene To-dos</span><small>3 davon heute</small><svg class="spur" viewBox="0 0 64 24"><path pathLength="1" d="M2 18 12 14 20 17 30 9 40 12 50 5 62 8"/></svg></article>
+      <article class="glas karte kz s3 rein" style="--i:4"><div class="kz-kopf"><span class="symbol"><svg class="i" data-i="kalender"></svg></span><span class="trend">↗ 2</span></div>
+        <b data-zahl="9">0</b><span class="titel">Termine</span><small>diese Woche</small><svg class="spur" viewBox="0 0 64 24"><path pathLength="1" d="M2 16 12 18 22 10 32 13 42 7 52 9 62 4"/></svg></article>
+      <article class="glas karte kz kz--akzent s3 rein" style="--i:5"><div class="kz-kopf"><span class="symbol"><svg class="i" data-i="flamme"></svg></span><span class="trend">Rekord</span></div>
+        <b data-zahl="18" data-nach=" Tage">0</b><span class="titel">Gewohnheits-Serie</span><small>Morgenroutine</small><svg class="spur" viewBox="0 0 64 24"><path pathLength="1" d="M2 20 12 17 22 15 32 12 42 9 52 6 62 3"/></svg></article>
+      <article class="glas karte kz s3 rein" style="--i:6"><div class="kz-kopf"><span class="symbol"><svg class="i" data-i="physio"></svg></span><span class="trend">↗ 4 %</span></div>
+        <b data-zahl="64" data-nach="%">0</b><span class="titel">Physio gelernt</span><small>142 von 220 Karten</small><svg class="spur" viewBox="0 0 64 24"><path pathLength="1" d="M2 19 12 16 22 17 32 11 42 10 52 7 62 6"/></svg></article>
+
+      <button class="glas karte schnell s3 rein" style="--i:7"><span class="symbol"><svg class="i" data-i="plus"></svg></span><span>Neues To-do<small>Schnell eintragen</small></span></button>
+      <button class="glas karte schnell s3 rein" style="--i:8"><span class="symbol"><svg class="i" data-i="kalender"></svg></span><span>Termin<small>Heute 2 offen</small></span></button>
+      <button class="glas karte schnell s3 rein" style="--i:9"><span class="symbol"><svg class="i" data-i="training"></svg></span><span>Training starten<small>Oberkörper</small></span></button>
+      <button class="glas karte schnell s3 rein" style="--i:10"><span class="symbol"><svg class="i" data-i="physio"></svg></span><span>Karten lernen<small>8 fällig</small></span></button>
+
+      <article class="glas karte s8 rein" style="--i:11">
+        <div class="karte-kopf"><div><h3>Erledigt</h3><small id="verlaufzeile">58 Aufgaben in den letzten 7 Tagen</small></div>
+          <div class="segment" data-nav><span class="zeiger"></span><button class="nav-punkt aktiv an" data-zeit="woche">Woche</button><button class="nav-punkt" data-zeit="monat">Monat</button></div></div>
+        <div class="legende"><span><i></i>erledigt</span><span><i style="background:var(--ink-3)"></i>geplant</span></div>
+        <svg class="verlauf" id="verlauf" viewBox="0 0 600 210" preserveAspectRatio="none"></svg>
+      </article>
+
+      <article class="glas karte s4 rein" style="--i:12">
+        <div class="karte-kopf"><div><h3>Zeit nach Bereich</h3><small>Diese Woche</small></div></div>
+        <div class="donut"><svg viewBox="0 0 170 170" id="donut"></svg><div><b>14,5 h</b><small>gesamt</small></div></div>
+        <div class="anteile" id="anteile"></div>
+      </article>
+    </section>
+  </main>
+</div>
+<script type="module" src="glas.js"></script>
+</body>
+</html>
