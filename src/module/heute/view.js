@@ -9,12 +9,17 @@ import { rechne } from './rechnen.js';
 import { kopf } from './kopf.js';
 import { hero } from './hero.js';
 import { kacheln } from './kacheln.js';
+import { kalenderKarte } from './kalender-karte.js';
+import { verlauf } from './verlauf.js';
+import { donut } from './donut.js';
 
 const GOOGLE = 'kalender:google'; // Zwischenspeicher des Kalenders: { termine: [...] }
 
 async function laden() {
-  const [todos, termine, google] = await Promise.all([getAll('todos'), getAll('termine'), getMeta(GOOGLE)]);
-  return { todos, termine: [...termine, ...(google?.termine || [])] };
+  const [todos, termine, bereiche, google] = await Promise.all([
+    getAll('todos'), getAll('termine'), getAll('todo_bereiche'), getMeta(GOOGLE),
+  ]);
+  return { todos, bereiche, termine: [...termine, ...(google?.termine || [])] };
 }
 
 export function heuteAnsicht({ signal }) {
@@ -22,12 +27,20 @@ export function heuteAnsicht({ signal }) {
   let erstesMal = true;
 
   async function zeichne() {
-    const z = rechne(await laden());
+    const d = await laden();
+    const z = rechne(d);
     const animiert = erstesMal;
     erstesMal = false;
+    box.classList.toggle('heute--ruhig', !animiert); // beim Neuzeichnen nicht noch einmal einblenden
     box.replaceChildren(
       kopf(z.dinge),
-      el('section', { class: 'heute-raster' }, [hero(z.woche, animiert), ...kacheln(z, animiert)]),
+      el('section', { class: 'heute-raster' }, [
+        hero(z.woche, animiert),
+        kalenderKarte(d.termine),
+        ...kacheln(z, animiert),
+        verlauf(d.todos, animiert),
+        donut(d.todos, d.bereiche, animiert),
+      ]),
     );
   }
 

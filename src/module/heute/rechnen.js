@@ -2,11 +2,11 @@
 // rechne({ todos, termine, jetzt }) → { dinge, woche, kacheln … }. termine = eigene + Google, mit start/ende als ISO-Text.
 const zwei = (n) => String(n).padStart(2, '0');
 export const tagISO = (d) => `${d.getFullYear()}-${zwei(d.getMonth() + 1)}-${zwei(d.getDate())}`;
-const plusTage = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+export const plusTage = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
 const zaehle = (liste, test) => liste.filter(test).length;
 
 // liegt der Termin (auch teilweise) am Tag, der um 0:00 Uhr „tag“ beginnt?
-function amTag(t, tag) {
+export function amTag(t, tag) {
   const s = new Date(t.start);
   const e = Math.max(+new Date(t.ende || t.start), +s + 1);
   return s < plusTage(tag, 1) && e > tag;

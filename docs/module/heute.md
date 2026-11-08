@@ -21,8 +21,15 @@ Wird als Glas-Dashboard gebaut (Plan unten, Schritte a–e).
       Termine = Mo–So dieser Woche (passt zur Zahl). Trend: Offene To-dos/Termine im Vergleich zu vor 7 Tagen bzw. Vorwoche;
       Serie zeigt „Rekord“, wenn sie die längste bisher ist. „Woche ansehen“ → `#/kalender/woche` (Kalender liest den Zusatz
       noch nicht, öffnet seine gemerkte Ansicht), „+ To-do“ → To-dos (Schnelleingabe dort oben) – richtig mit d).
-      Lokal geprüft (Mac + iPhone-Größe). Bis b) rutscht die erste Kachel neben den Hero (Platz der Kalender-Karte).
-- [ ] b) Kalender-Karte, Verlauf, Donut – **als Nächstes**
+      Lokal geprüft (Mac + iPhone-Größe).
+- [x] b) Kalender-Karte, Verlauf, Donut (08.11.2026). `kalender-karte.js` (Tag antippen zeigt dessen Termine, max. 3 +
+      „+ N weitere“, ganztägige zuerst; „Als Nächstes“ = nächster nicht-ganztägiger Termin heute, der noch nicht vorbei ist),
+      `verlauf.js` (erledigt je Tag als Fläche, fällig je Tag gestrichelt; Woche = letzte 7 Tage, Monat = letzte 30 Tage;
+      Umschalter = `ui/tabs.js`), `donut.js` (offene To-dos je Bereich, „Ohne Bereich“ zählt als eigener Teil, ab 6 Teilen
+      werden die kleinsten zu „Sonst“; Antippen → To-dos). Stil `src/styles/heute-karten.css`. Beim Neuzeichnen (`daten`)
+      blendet nichts erneut ein (`.heute--ruhig`). `sw.js` `v41`. Lokal geprüft (Mac + iPhone-Größe, Termine mit Testdaten).
+      Offen: Schnellaktionen (Plan Punkt 5) sind keinem Schritt zugeordnet → mit d) zusammen bauen.
+- [ ] c) Seitenleiste mit Abschnitten + Platzhalter-Bereiche – **als Nächstes**
 - [x] Design-Runde (Teil d): Kopf mit Stein-Kugel (`bild: 'assets/bilder/heute.svg'`), Datum über dem Titel
       (`ueber`, z. B. „MITTWOCH, 4. NOVEMBER“) und Spruch des Tages. Den Kopf baut `src/app/shell.js` für jeden Bereich.
 
