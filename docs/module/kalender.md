@@ -51,7 +51,6 @@ Bild-Objekt (Vorschlag): **steinerne Sonnenuhr**. Prompt aus `design.md`, `[OBJE
 
 ## Offene Fragen
 - Sollen später auch Termine aus System 0 in Google eingetragen werden?
-- Später: Monatsansicht, Wiederholungen, To-dos im Kalender (über Heute-Übersicht).
 
 ## Dateien (`src/module/kalender/`)
 | Datei | Aufgabe |
@@ -86,8 +85,19 @@ Stile: `src/styles/kalender.css`.
       lässt nur `https://calendar.google.com/calendar/ical/…` zu und nur mit Login (JWT-Prüfung an lassen).
       Termine von 90 Tagen zurück bis 1 Jahr voraus. Grenzen (bewusst): Zeitzone von Google-Terminen wird als
       Gerätezeit genommen; seltene Wiederholungen („2. Dienstag im Monat“) zeigen nur den ersten Termin.
-- [ ] Lukas: Funktion im Supabase-Dashboard anlegen, Adresse über den Chip „Google“ eintragen, auf Mac und iPhone prüfen
-- [ ] e) Kopfbild + Abschluss
+- [x] Supabase-Funktion `google-kalender` von Lukas angelegt, Abruf funktioniert (08.11.2026)
+- [x] e) Abschluss: Kopfbild-Zeile in `index.js` vorbereitet (auskommentiert, wie beim PhysioZentrum).
+      Sobald die 3 Fotos (steinerne Sonnenuhr) als `assets/bilder/kalender-1…3.webp` da sind: Zeile einschalten,
+      Fotos in `APP_FILES` von `sw.js`, `VERSION` hochzählen. Evtl. erst nach Design-Runde 2 (helles Dashboard).
+
+**Erste Fassung abgeschlossen (08.11.2026).**
+
+## Wünsche für später
+- Monatsansicht
+- Wiederholungen bei eigenen Terminen
+- Fällige To-dos im Kalender (über die Heute-Übersicht)
+- Termine aus System 0 auch in Google eintragen (offene Frage oben)
+- Google-Zeitzonen richtig umrechnen und seltene Wiederholungen („2. Dienstag im Monat“), falls es stört
 - [x] Review von b umgesetzt: Ansicht zeichnet sich jede Minute und beim Zurückkehren in die App neu
       (Mitternacht, vorbei gegangene Termine); ungültige Daten wie „31.11.“ werden nicht mehr erkannt;
       kleine Aufräumarbeiten. `sw.js` auf `v37`.
