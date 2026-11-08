@@ -1,63 +1,53 @@
 # Design
 
 ## Richtung
-„Stein & Licht“ (Vorlage: `docs/vorlagen/design-stein-licht.webp`, nur das Design, nicht die Inhalte).
-Dunkel, neutrales Graphit, grau-weißlich, premium und ruhig. Elegante Serifenschrift für Titel und Werte,
-kursive Untertitel, kleine Labels in gesperrten Großbuchstaben, kurzer Strich unter dem Titel.
-Akzent ist ein warmes Elfenbein. Jeder Bereich hat eine gedämpfte eigene Farbe, die nur als ganz leichter
-Schimmer im Hintergrund auftaucht; erkennbar ist der Bereich vor allem am eigenen Bild oben.
-Nicht japanisch, nicht orange/gold.
+„Glas-Dashboard“ (seit 08.11.2026, Vorlage: Reel „Glassy Dashboard“ von Lukas; Musterseite `muster/glas.html`).
+Immer hell. Warmer Hintergrund aus weichen Farbwolken mit feinem Korn, darauf Milchglas-Karten mit weißem Rand,
+großen Rundungen und weichem, farbig getöntem Schatten. Große Zahlen, Systemschrift, Pillen-Knöpfe.
+Alles hängt an **einer** Akzentfarbe (Standard Koralle `#E8664F`), wählbar in Einstellungen → Akzentfarbe.
+Hintergrund, Hero-Flächen, Haken, Fortschritt und Schatten werden per `color-mix` daraus gemischt.
+„Stein & Licht“ (Kopfbilder, Serifenschrift, Elfenbein) ist pausiert; die Fotos liegen noch in `assets/bilder/`.
 
-## Tokens (Startwerte, alles in `src/styles/tokens.css`)
+## Tokens (alles in `src/styles/tokens.css`)
 | Token | Wert | Verwendung |
 |---|---|---|
-| `--bg` | #151515 | Hintergrund (neutrales Graphit) |
-| `--surface` | rgba(255,255,255,0.05) | Glas-Karten (mit Unschärfe dahinter) |
-| `--surface-2` | rgba(255,255,255,0.09) | Hover, Eingabefelder |
-| `--glass` | rgba(28,28,28,0.74) | dichteres Glas: Tab-Leiste, Seitenleiste, Modal |
-| `--line` | rgba(255,255,255,0.10) | 1px-Linien und Rahmen |
-| `--text` | #F3F1EC | Haupttext (leicht warmes Weiß) |
-| `--text-2` | #9B978F | Nebentext (warmes Grau) |
-| `--accent` | #E9E3D7 | Elfenbein: Labels, Strich, Symbole, aktiv, erledigt (Haken gefüllt), Hauptknopf |
-| `--accent-ink` | #151515 | Schrift/Haken auf Elfenbein |
-| `--accent-2` | #7A5CFF | sparsam: Quiz (noch offen, ob es bleibt) |
-| `--warn` | #FF5C7A | überfällig, Rückfall |
-| `--farbe-standard` | #CFCBC4 | Bereich ohne eigene Farbe |
-| `--farbe-heute` | #E3CDBA | Morgenlicht |
-| `--farbe-todos` | #BCCBBE | Salbei |
-| `--farbe-einstellungen` | #C6C1D8 | Flieder-Grau |
-| `--farbe-physio` | #B5C6D6 | Nebelblau |
-| `--schimmer` | 16% | Stärke des Lichtscheins oben (ganz leicht) |
-| `--bereich` | (automatisch) | Farbe des aktiven Bereichs; `shell.js` setzt `var(--farbe-<id>)`, Wechsel blendet über |
-| `--radius` | 14px | Karten |
-| `--blur` | 24px | Unschärfe hinter Glas-Flächen |
-| `--font` | -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif | Systemschrift, kostenlos |
-| `--font-serif` | ui-serif, "New York", "Iowan Old Style", Georgia, serif | Titel, Werte, kursive Untertitel (Apple „New York“, schon auf den Geräten) |
-| `--space-1` … `--space-7` | 4 / 8 / 12 / 16 / 24 / 32 / 48 px | Abstände, immer aus dieser Reihe |
-| `--fs-small` | 13px | Nebentext, Beschriftungen |
-| `--fs-normal` | 16px | Fließtext, Eingaben (verhindert Zoom auf dem iPhone) |
-| `--fs-title` | 20px | Überschriften in Karten und Modals |
-| `--fs-large` | 28px | Seitentitel |
-| `--fs-display` | 48px | großer Seitentitel im Kopfbild |
-| `--fs-label` | 11px | kleine Labels in Großbuchstaben |
-| `--sperrung` | 0.18em | Buchstabenabstand für Labels und Markenzeile |
-| `--duration` | 200ms | Dauer aller Animationen |
-| `--duration-slow` | 600ms | Farbwechsel beim Bereichswechsel |
-| `--ease` | cubic-bezier(0.2, 0.8, 0.2, 1) | sanftes Abbremsen am Ende |
-| `--tap` | 44px | Mindesthöhe/-breite für Tippflächen |
-| `--sidebar` | 240px | Breite der Seitenleiste auf dem Mac |
+| `--accent` | #E8664F (wählbar) | Akzent: aktiv, Haken, gewählter Chip, Hero-Flächen, Logo. Als `@property` angemeldet → Wechsel blendet 700 ms über |
+| `--akzent-hell` / `--akzent-tief` | aus `--accent` gemischt | Verläufe (Hero, Logo) |
+| `--accent-ink` | #FFFFFF | Schrift/Haken auf Akzent |
+| `--bg` | Akzent 16 % + #FBF4EF | Grundton hinter den Farbwolken (`body::before` in `base.css`) |
+| `--text` / `--text-2` / `--text-3` | #2B1E19 / 56 % / 34 % | Text, Nebentext, ganz leise |
+| `--dunkel` | #21170F | dunkle Pille: Hauptknopf, gewählter Tab |
+| `--surface` / `--surface-2` | Weiß 42 % / 66 % | Glas-Flächen / Hover, Eingabefelder |
+| `--glass` | Weiß 50 % | Leisten |
+| `--glas-verlauf` | Weiß 58 % → 30 % | Hintergrund von Karte, Kachel, Leisten, Listen-Gruppen |
+| `--glas-rand` | Weiß 62 % | 1px-Rand an Glas |
+| `--line` | Text 9 % | Trennlinien in Listen |
+| `--schatten` / `--schatten-hoch` | innen weiße Kante + außen weich, Akzent-getönt | Glas in Ruhe / beim Anheben |
+| `--blur` | 22px | Unschärfe hinter Glas (mit `saturate(160%)`) |
+| `--radius` / `--radius-gross` / `--radius-klein` | 18 / 26 / 12 px | Rundungen |
+| `--warn` / `--gut` | #D9364F / #3E9B6E | überfällig / Trend nach oben |
+| `--font` | System (SF Pro) | einzige Schrift |
+| `--space-1` … `--space-7` | 4 / 8 / 12 / 16 / 24 / 32 / 48 px | Abstände |
+| `--fs-label` … `--fs-display` | 11 / 13 / 16 / 18 / 26 / 34 px | Schriftgrößen |
+| `--sperrung` | 0.12em | kleine Labels in Großbuchstaben |
+| `--duration` / `--duration-slow` | 200 / 700 ms | Animationen / Akzent-Wechsel |
+| `--ease` / `--feder` | Abbremsen / leichtes Nachfedern | Bewegung |
+| `--tap` | 44px | Tippflächen |
+| `--sidebar` / `--sidebar-zu` | 236 / 72 px | Seitenleiste aus- / eingeklappt |
 
-Helle Flächen (Mindmap-Overlay im PhysioZentrum): Klasse `.hell` setzt dieselben Tokens auf helle Werte
-(`--bg` #F4F1EB warmes Weiß, `--text` #1B1A18, `--accent` fast Schwarz). Bausteine darin werden so automatisch hell.
+`.hell` (Mindmap-Overlay): deckendes Warmweiß statt Glas, gleiche Token-Namen.
 
-Alle Farben stehen in einer einzigen Datei (`tokens.css`) und lassen sich dort tauschen.
-Neuer Bereich mit eigener Farbe: Token `--farbe-<id>` ergänzen (id wie beim Router).
+## Akzentfarbe
+`src/core/akzent.js`: `akzentSetzen(farbe)` speichert als Einstellung `akzent` (synchronisiert) und lokal;
+`akzentLaden()` beim Start (erst lokal = kein Farbsprung, dann die synchronisierte). 7 Vorgaben in `AKZENT_FARBEN`
+plus freier Farbwähler (Kachel `src/app/akzent-kachel.js`, Stil `farbkreise.css`).
 
 ## UI-Bausteine (`src/ui/`)
 Stile: `src/styles/components.css` (Karte, Symbol, Liste, Knopf, Eingabefeld, Tabs),
 `checkbox.css`, `modal.css`, `kopfbild.css`, `kachel.css` (Kacheln + Chips), `schrift.css`
 (Klassen `.marke` = „SYSTEM 0“-Zeile, `.label` = kleines Label in Großbuchstaben, `.strich` = kurzer Strich) –
 eigene Dateien, damit keine über 200 Zeilen wächst.
+Glas-Fläche für `.card` und `.kachel` steht gemeinsam in `components.css`.
 Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen: `bausteine.html`.
 
 | Datei | Funktion | Kurz |
@@ -65,26 +55,25 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 | `dom.js` | `el(tag, props, kinder)` | Hilfsfunktion zum Bauen von Elementen |
 | `card.js` | `card({ title, children })` | Fläche mit Rahmen, optional Überschrift |
 | `list.js` | `list(rows)`, `listRow({ title, sub, start, end, onClick })`, `listItem(inhalt)` | Zeilen mit Trennlinien; `listItem` für freien Inhalt, z. B. Checkbox mit Text (ganze Zeile antippbar) |
-| `checkbox.js` | `checkbox({ label, checked, onChange })` | runder Haken, erledigt weiß gefüllt, mit Animation |
-| `button.js` | `button({ text, variant, onClick })` | `variant: 'primary'` = weiß (Hauptaktion), `'ghost'` = ohne Hintergrund |
+| `checkbox.js` | `checkbox({ label, checked, onChange })` | runder Haken, erledigt im Akzent gefüllt, mit Animation |
+| `button.js` | `button({ text, variant, onClick })` | Pille; `variant: 'primary'` = dunkle Pille (Hauptaktion), `'ghost'` = ohne Hintergrund |
 | `input.js` | `input({ label, placeholder, value, type, onInput })` | Eingabefeld mit Beschriftung |
 | `modal.js` | `modal({ title, content, actions })` → `{ open, close }` | iPhone: von unten, Mac: mittig |
-| `tabs.js` | `tabs({ items, active, onChange })` | Umschalter, aktiver Tab mit weißer Linie |
-| `kopfbild.js` | `kopfbild({ titel, bild, spruch })` | Seitenkopf: Bild vollflächig dahinter (unten/links weich ausgeblendet), großer Serifentitel, Strich, kursiver Spruch |
-| `kachel.js` | `kacheln([…])`, `kachel({ symbol, titel, wert, text, gross, onClick, children })` | filigrane Glas-Kacheln im 2er-Raster; klein = Symbol oben, `gross` = ganze Breite mit Symbol links; Symbol (18 px) im kleinen abgerundeten Quadrat (34 px), `titel` als Label, `wert` in Serifenschrift (20 px), `text` klein; Zustände `kachel--laeuft` (Symbol dreht), `kachel--warn` |
-| `chips.js` | `chips({ items, active, onChange, aktionen })` | waagrechte Kapsel-Leiste (wischbar, Serifenschrift); gewählt = Elfenbein gefüllt; `aktionen` = gestrichelte Chips, die nur etwas auslösen |
+| `tabs.js` | `tabs({ items, active, onChange })` | Pillen-Umschalter, aktiver Tab = dunkle Pille |
+| `kopfbild.js` | `kopfbild({ titel, bild, spruch })` | Seitenkopf: großer Titel, darunter Zeile und Spruch (Bild zurzeit pausiert) |
+| `kachel.js` | `kacheln([…])`, `kachel({ symbol, titel, wert, text, gross, onClick, children })` | Glas-Kacheln im 2er-Raster; klein = Symbol oben, `gross` = ganze Breite mit Symbol links; Symbol im weißen Kreis (38 px), `titel` als Label, `wert` groß (26 px, 600), `text` klein; antippbar = hebt sich beim Drüberfahren; Zustände `kachel--laeuft` (Symbol dreht), `kachel--warn` |
+| `chips.js` | `chips({ items, active, onChange, aktionen })` | waagrechte Kapsel-Leiste (wischbar); gewählt = Akzent gefüllt; `aktionen` = gestrichelte Chips, die nur etwas auslösen |
 | `symbol.js` | `symbol(name)` | dünnes Linien-Symbol (24 px, Textfarbe), z. B. `heute`, `todos`, `einstellungen`, `mehr`, `abgleich`, `export`, `konto`, `physio`, `suche` |
 
-Navigation (Tab-Leiste, Seitenleiste): Stile in `src/styles/nav.css`, beide aus Glas. Aktiver Eintrag:
-Symbol und Text in Elfenbein; Tab-Leiste mit kurzem Strich darunter, Seitenleiste mit Linie links.
-Markenzeile „SYSTEM 0“: auf dem iPhone oben über jeder Seite (`shell.js`), auf dem Mac oben in der Seitenleiste.
-Seitenkopf: `shell.js` baut für jeden Bereich ein `kopfbild` (Titel, Strich). Ein Bereich gibt beim Anmelden
-optional `bild` (Kopfbild), `ueber` (Funktion → kleine Zeile über dem Titel) und `spruch: true` (nur Heute) mit; `kurztitel` = kürzerer Name für die Tab-Leiste (z. B. „Physio“).
-Ohne Spruch ist der Kopf niedriger (240 statt 320 px), damit der Inhalt früher anfängt.
-Bild-Ränder: oben/unten immer weich, links leicht abgedunkelt hinter dem Titel, rechts erst ab 560 px Breite.
-Lichtschein oben: `.shell::before` in `src/styles/app.css`.
+Navigation (`src/app/nav.js`, Stil `nav.css`): iPhone = schwebende Glas-Kapsel unten, nur Symbole.
+Mac = schwebende Glas-Seitenleiste links mit Logo „0“ (Akzent-Verlauf) und „System 0“; runder Knopf am Rand klappt
+sie auf 72 px ein (pro Gerät in `localStorage` „leiste“ gemerkt), unter 1100 px Fensterbreite immer eingeklappt.
+Aktiver Eintrag: weiße Pille (`.nav__zeiger`), die mit Nachfedern zum neuen Eintrag gleitet.
+Seitenkopf (`kopfbild`): großer Titel (34 px, 600), darunter `ueber` (z. B. Datum) und Spruch in Nebentext.
+Ein `bild` wird zurzeit nicht übergeben (`shell.js`), die Bereiche behalten ihre Bildlisten für später.
+Listen-Gruppen in To-dos und Kalender (`.todo-gruppe`, `.termin-gruppe`) sind Glaskarten.
 
-## Kopfbilder und Sprüche
+## Kopfbilder und Sprüche (pausiert)
 - Fotos von Lukas (Bild-KI), je Bereich drei Varianten: `assets/bilder/<bereich>-1…3.webp` (1536 × 1024, je ca. 80–125 KB).
   Der Bereich gibt sie beim Anmelden als Liste an (`bild: [...]`); `src/app/kopfbilder.js` wählt täglich eine andere
   (`heutigesBild`) und lädt die Fotos aller Bereiche schon beim Start vor (`kopfbilderVorladen`, mit `decode`).
@@ -103,8 +92,10 @@ Lichtschein oben: `.shell::before` in `src/styles/app.css`.
   `spruchDesTages(versatz)` wechselt um Mitternacht; jeder Bereich nimmt einen eigenen `versatz`.
 
 ## Regeln
-- Elfenbein ist der Akzent für Zustände und kleine Details (Haken, Fortschritt, aktiver Tab, Labels, Strich). Bereichsfarben nur als leichter Schimmer, nie als Fläche.
-- Serifenschrift für Titel und große Werte, Systemschrift für Text, Listen und Eingaben.
-- Linien statt Schatten. Viel Luft. Wenige Schriftgrößen.
-- Sanfte, kurze Animationen (150–250 ms). Respektiert „Bewegung reduzieren“ des Geräts.
-- iPhone: Tippflächen mindestens 44 px, Rand um die Notch/Home-Leiste beachten.
+- Eine Akzentfarbe, sonst Weiß-Glas, warmes Fast-Schwarz und die Farbwolken. Keine weiteren bunten Farben.
+- Systemschrift überall; große Zahlen und Titel mit Gewicht 600 und leicht engem Buchstabenabstand.
+- Glas = `--glas-verlauf` + `--glas-rand` + `--schatten` + Unschärfe. Trennlinien nur in Listen.
+- Kleine Animationen nur über `transform`/`opacity` (flüssig auf dem iPhone): Seiteninhalt blendet gestaffelt ein,
+  antippbare Kacheln heben sich beim Drüberfahren (`--feder`), alles Antippbare gibt beim Drücken kurz nach.
+- Respektiert „Bewegung reduzieren“ des Geräts (`base.css`).
+- iPhone: Tippflächen mindestens 44 px, Rand um Notch/Home-Leiste beachten; oben ein dunklerer Streifen, damit die weiße Statusleiste lesbar bleibt.

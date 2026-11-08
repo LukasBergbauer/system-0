@@ -136,7 +136,6 @@
   cursor: pointer; /* antippen öffnet den Eintrag */
 }
 .mm-knoten--mitte .mm-knoten__titel {
-  font-family: var(--font-serif);
   font-size: var(--fs-title);
   -webkit-line-clamp: 3;
 }

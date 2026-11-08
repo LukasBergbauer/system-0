@@ -6,6 +6,16 @@
   gap: var(--space-6);
   margin-top: var(--space-2);
 }
+/* Gruppe als Glaskarte */
+.todo-gruppe {
+  padding: var(--space-4) var(--space-5) var(--space-2);
+  background: var(--glas-verlauf);
+  border: 1px solid var(--glas-rand);
+  border-radius: var(--radius-gross);
+  box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  backdrop-filter: blur(var(--blur)) saturate(160%);
+}
 .todo-gruppe__titel {
   display: block;
   margin: 0 0 var(--space-1);

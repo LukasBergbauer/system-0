@@ -4,6 +4,7 @@ import { kachel, kacheln } from '../ui/kachel.js';
 import { signOut } from '../core/auth.js';
 import { downloadExport } from '../core/export.js';
 import { abgleichKachel } from './abgleich-kachel.js';
+import { akzentKachel } from './akzent-kachel.js';
 
 function exportKachel(meldung) {
   return kachel({
@@ -42,7 +43,7 @@ function kontoKachel() {
 function ansicht({ signal }) {
   const meldung = el('p', { class: 'app__note app__note--warn', attrs: { role: 'alert' } });
   return el('div', { class: 'app__stack' }, [
-    kacheln([abgleichKachel({ signal }), exportKachel(meldung), kontoKachel()]),
+    kacheln([abgleichKachel({ signal }), akzentKachel(), exportKachel(meldung), kontoKachel()]),
     meldung,
   ]);
 }

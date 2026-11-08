@@ -3,7 +3,6 @@
 import { el } from '../ui/dom.js';
 import { kopfbild } from '../ui/kopfbild.js';
 import { spruchDesTages } from '../core/sprueche.js';
-import { heutigesBild, kopfbilderVorladen } from './kopfbilder.js';
 import { on } from '../core/events.js';
 import { alleBereiche, aktuelleRoute } from '../core/router.js';
 import { navPlan } from './nav-plan.js';
@@ -16,20 +15,19 @@ export function shell() {
   const side = el('nav', { class: 'nav-side', attrs: { 'aria-label': 'Bereiche' } });
   const tabs = el('nav', { class: 'nav-tabs', attrs: { 'aria-label': 'Bereiche' } });
   const inhalt = el('div', { class: 'app' });
-  // Markenzeile oben (nur iPhone; auf dem Mac steht sie in der Seitenleiste)
-  const marke = el('p', { class: 'marke shell__marke', text: 'System 0' });
   const element = el('div', { class: 'shell' }, [
     side,
-    el('main', { class: 'shell__main' }, [marke, inhalt]),
+    el('main', { class: 'shell__main' }, [inhalt]),
     tabs,
   ]);
+  // Seitenleiste eingeklappt? (pro Gerät gemerkt, Knopf in nav.js)
+  try { if (localStorage.getItem('leiste') === 'zu') element.classList.add('shell--schmal'); } catch {}
 
   function zeigeNav() {
     const plan = navPlan(alleBereiche());
     const id = aktuelleRoute()?.id;
     renderSide(side, plan, id);
     renderTabs(tabs, plan, id);
-    kopfbilderVorladen(alleBereiche()); // Fotos der anderen Seiten schon bereithalten
   }
 
   function zeigeBereich() {
@@ -38,14 +36,11 @@ export function shell() {
     ansicht?.abort();
     ansicht = new AbortController();
     document.title = `${bereich.titel} · System 0`;
-    // Bereichsfarbe für den Schimmer (Token --farbe-<id>, sonst Standard).
-    element.style.setProperty('--bereich', `var(--farbe-${bereich.id}, var(--farbe-standard))`);
-    // Kopf: großer Titel, Strich, optional Bild, Zeile darüber und Spruch des Tages
+    // Kopf: großer Titel, Zeile darüber und Spruch des Tages. Kopfbilder (Steine) sind pausiert.
     const versatz = Math.max(0, alleBereiche().indexOf(bereich));
     inhalt.replaceChildren(
       kopfbild({
         titel: bereich.titel,
-        bild: heutigesBild(bereich), // bei einer Liste täglich eine andere Variante
         ueber: bereich.ueber?.(),
         spruch: bereich.spruch ? spruchDesTages(versatz) : null, // nur wo gewünscht (Heute)
       }),

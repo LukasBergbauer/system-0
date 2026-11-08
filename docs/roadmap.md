@@ -277,18 +277,19 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   Google nur lesen über geheime iCal-Adresse + Supabase-Funktion `google-kalender` (Termine nur im Gerät zwischengespeichert).
   Migration `005_kalender.sql`; `sw.js` `v38`. Testseiten `tests/kalender-erkennen.html`, `tests/kalender-ical.html`.
   Kopfbild vorbereitet, Fotos fehlen noch. Weiteres unter „Wünsche für später“ in `module/kalender.md`
-- [ ] Design-Runde 2: Dashboard-Ansicht (Wunsch von Lukas, 08.11.2026) – **als Nächstes**
-  Lukas möchte die App doch eher als helles Dashboard wie in den Vorlagen
-  `vorlagen/dashboard-1-uebersicht.webp`, `dashboard-2-profil.webp`, `dashboard-3-gemerkt.webp`:
-  - Heller, weicher Hintergrund mit leichtem Verlauf, weiße Karten mit großen Rundungen und sanftem Schatten
-  - Kachel-Raster (Kacheln verschieden groß), große Zahlen, kleine Balken- und Fortschrittsanzeigen
-  - Schmale dunkle Seitenleiste nur mit Symbolen (Mac), aktiver Punkt farbig hervorgehoben
-  - Farben ähnlich (dunkles Grün, Mint, warmes Orange), aber **nicht allzu bunt**: wenige Akzente, viel Weiß/Grau
-  - Passt gut zur Heute-Übersicht (Startseite als Dashboard) – deshalb vor oder zusammen mit ihr angehen
-  Plan für den Einstieg: erst reden (was bleibt von „Stein & Licht“, hell immer oder nur tagsüber, wie sieht es
-  auf dem iPhone aus, wo ist die Seitenleiste), 1–2 Varianten je Punkt, dann Musterseite, erst nach Okay
-  `tokens.css`, `design.md` und Bausteine umstellen. Das PhysioZentrum-Overlay ist schon hell (`.hell`) und kann Vorbild sein
-- [ ] Heute-Übersicht (`module/heute.md`)
+- [x] Design-Runde 2: Glas-Dashboard (08.11.2026)
+  Entschieden mit Lukas: Look exakt wie sein Reel „Glassy Dashboard“ (statt der älteren Dashboard-Vorlagen),
+  immer hell, eine wählbare Akzentfarbe färbt die ganze Stimmung, iPhone = schwebende Glas-Kapsel unten,
+  Mac = Glas-Seitenleiste links, einklappbar. „Stein & Licht“ pausiert (Kopfbilder werden nicht mehr gezeigt).
+  Stand: Musterseite `muster/glas.html` (+ `glas.css`, `glas-teile.css`, `glas.js`) bleibt als Vorlage für die
+  Heute-Übersicht (Hero-Karte mit Ring, Kennzahl-Kacheln, Schnellaktionen, Verlauf- und Donut-Diagramm).
+  App umgestellt: `tokens.css` (alles aus `--accent` gemischt), Farbwolken-Hintergrund in `base.css`, `nav.css`/`nav.js`
+  (Kapsel + Seitenleiste mit gleitender Pille), Karten/Kacheln/Knöpfe/Tabs/Modal/Chips als Glas bzw. Pillen,
+  Seitenkopf ohne Bild, To-do- und Termin-Gruppen als Glaskarten, Serifenschrift entfernt.
+  Akzentfarbe: `src/core/akzent.js` + Kachel in den Einstellungen (synchronisiert). Funktionen unverändert. `sw.js` `v39`.
+  Offen/klein: `bausteine.html` zeigt noch den alten Abschnitt „Bereichsfarbe“ und ein Kopfbild; auf dem iPhone
+  prüfen, ob die Statusleiste oben gut lesbar ist.
+- [ ] Heute-Übersicht (`module/heute.md`) – **als Nächstes**, als Dashboard nach `muster/glas.html`
 - [ ] Routinen, ohne Sperre (`module/routinen.md`)
 
 ## Phase 2 – Körper

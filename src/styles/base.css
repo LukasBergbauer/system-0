@@ -5,11 +5,13 @@
   box-sizing: border-box;
 }
 
+html {
+  background: var(--bg); /* nur hier: am body würde er die Farbwolken (body::before) verdecken */
+}
 html,
 body {
   margin: 0;
   min-height: 100%;
-  background: var(--bg);
   color: var(--text);
   font-family: var(--font);
   -webkit-font-smoothing: antialiased;
@@ -27,6 +29,36 @@ body {
 
 #app {
   min-height: inherit;
+}
+
+/* Hintergrund: weiche Farbwolken aus dem Akzent + feines Korn (fest, scrollt nicht mit) */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+body::before {
+  background:
+    /* iPhone: dunklerer Streifen unter der Statusleiste, damit Uhrzeit/Akku (weiß) lesbar sind; am Mac 0 px hoch */
+    linear-gradient(180deg, color-mix(in oklch, var(--accent) 45%, #3b1a10) 0, transparent calc(env(safe-area-inset-top) * 2.5)),
+    radial-gradient(55% 45% at 12% -5%, color-mix(in oklch, var(--accent) 55%, #3b1a10) 0%, transparent 70%),
+    radial-gradient(45% 55% at 100% 0%, color-mix(in oklch, var(--accent) 50%, white) 0%, transparent 70%),
+    radial-gradient(60% 55% at 70% 105%, color-mix(in oklch, var(--accent) 60%, white) 0%, transparent 70%),
+    radial-gradient(45% 50% at -5% 85%, color-mix(in oklch, var(--accent) 40%, #f3e2d8) 0%, transparent 70%),
+    var(--bg);
+}
+body::after {
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Inhalte blenden beim Seitenwechsel gestaffelt ein (nur transform/opacity, flüssig auf dem iPhone) */
+@keyframes rein {
+  from { opacity: 0; transform: translateY(14px) scale(0.985); }
 }
 
 @media (prefers-reduced-motion: reduce) {

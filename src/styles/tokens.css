@@ -1,31 +1,38 @@
-/* Alle Design-Werte an einer Stelle (siehe docs/design.md).
-   Farben tauschen = nur diese Datei ändern. */
-:root {
-  /* Farben: neutrales Graphit, Glas, Elfenbein als Akzent (Vorlage: docs/vorlagen/design-stein-licht.webp) */
-  --bg: #151515;
-  --surface: rgba(255, 255, 255, 0.05); /* Glas-Karte: halbdurchsichtig */
-  --surface-2: rgba(255, 255, 255, 0.09); /* Hover, Eingabefelder */
-  --glass: rgba(28, 28, 28, 0.74); /* dichteres Glas für Leisten und Modal */
-  --line: rgba(255, 255, 255, 0.10);
-  --text: #F3F1EC; /* leicht warmes Weiß */
-  --text-2: #9B978F; /* warmes Grau */
-  --accent: #E9E3D7; /* Elfenbein: Labels, Strich, Symbole, aktiv, erledigt, Hauptknopf */
-  --accent-ink: #151515; /* Schrift/Haken auf weißem Grund */
-  --accent-2: #7A5CFF;
-  --warn: #FF5C7A;
+/* Alle Design-Werte an einer Stelle (siehe docs/design.md). Stil: helles Glas-Dashboard.
+   Alles hängt an EINER Farbe: --accent. Hintergrund, Hero-Flächen, Schatten werden daraus gemischt.
+   Die Akzentfarbe setzt src/core/akzent.js (wählbar in den Einstellungen); hier steht nur der Startwert. */
+@property --accent { syntax: "<color>"; inherits: true; initial-value: #E8664F; }
 
-  /* Bereichsfarben: gedämpft, nur als ganz leichter Schimmer im Hintergrund */
-  --farbe-standard: #CFCBC4;
-  --farbe-heute: #E3CDBA; /* Morgenlicht */
-  --farbe-todos: #BCCBBE; /* Salbei */
-  --farbe-einstellungen: #C6C1D8; /* Flieder-Grau */
-  --farbe-physio: #B5C6D6; /* Nebelblau */
-  --farbe-kalender: #CBC6BC; /* Sandstein */
-  --schimmer: 16%; /* Stärke des Lichtscheins oben */
+:root {
+  --accent: #E8664F; /* Koralle */
+  --akzent-hell: color-mix(in oklch, var(--accent) 68%, white);
+  --akzent-tief: color-mix(in oklch, var(--accent) 72%, #2a0f08);
+  --accent-ink: #FFFFFF; /* Schrift/Haken auf Akzent */
+  --accent-2: #7A5CFF;
+  --warn: #D9364F;
+  --gut: #3E9B6E;
+
+  --bg: color-mix(in oklch, var(--accent) 16%, #FBF4EF); /* Grundton hinter den Farbwolken */
+  --text: #2B1E19; /* warmes Fast-Schwarz */
+  --text-2: rgba(43, 30, 25, 0.56);
+  --text-3: rgba(43, 30, 25, 0.34);
+  --dunkel: #21170F; /* dunkle Pille: Hauptknopf, gewählter Umschalter */
+
+  /* Glas */
+  --surface: rgba(255, 255, 255, 0.42); /* Karten, Kacheln */
+  --surface-2: rgba(255, 255, 255, 0.66); /* Hover, Eingabefelder, Zeilen in Karten */
+  --glass: rgba(255, 255, 255, 0.5); /* Leisten, Modal */
+  --glas-verlauf: linear-gradient(180deg, rgba(255,255,255,.58), rgba(255,255,255,.30));
+  --glas-rand: rgba(255, 255, 255, 0.62);
+  --line: rgba(43, 30, 25, 0.09); /* Trennlinien */
+  --schatten: inset 0 1px 0 rgba(255,255,255,.7), 0 12px 32px -14px color-mix(in oklch, var(--accent) 50%, rgba(70,25,10,.55));
+  --schatten-hoch: inset 0 1px 0 rgba(255,255,255,.8), 0 22px 44px -16px color-mix(in oklch, var(--accent) 55%, rgba(70,25,10,.6));
+  --blur: 22px;
 
   /* Form */
-  --radius: 14px;
-  --blur: 24px; /* Unschärfe hinter Glas-Flächen */
+  --radius: 18px;
+  --radius-gross: 26px;
+  --radius-klein: 12px;
 
   /* Abstände (4er-Raster) */
   --space-1: 4px;
@@ -36,46 +43,36 @@
   --space-6: 32px;
   --space-7: 48px;
 
-  /* Schrift */
-  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-  --font-serif: ui-serif, "New York", "Iowan Old Style", Georgia, serif; /* Apple „New York“, schon auf den Geräten */
-  --fs-label: 11px; /* kleine Labels in Großbuchstaben */
+  /* Schrift: nur Systemschrift */
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  --fs-label: 11px;
   --fs-small: 13px;
   --fs-normal: 16px; /* 16px verhindert das automatische Zoomen auf dem iPhone */
-  --fs-title: 20px;
-  --fs-large: 28px;
-  --fs-display: 48px; /* großer Seitentitel im Kopfbild */
-  --sperrung: 0.18em; /* Buchstabenabstand für Labels und Markenzeile */
+  --fs-title: 18px;
+  --fs-large: 26px;
+  --fs-display: 34px; /* Seitentitel */
+  --sperrung: 0.12em; /* Buchstabenabstand für kleine Labels */
 
   /* Bewegung */
   --duration: 200ms;
-  --duration-slow: 600ms; /* Farbwechsel beim Bereichswechsel */
+  --duration-slow: 700ms; /* Farbwechsel beim Akzent */
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --feder: cubic-bezier(0.34, 1.56, 0.64, 1); /* leichtes Nachfedern */
 
   /* Bedienung */
-  --tap: 44px; /* Mindestgröße für Tippflächen */
-  --sidebar: 240px; /* Breite der Seitenleiste auf dem Mac */
-}
+  --tap: 44px;
+  --sidebar: 236px; /* Seitenleiste Mac, ausgeklappt */
+  --sidebar-zu: 72px; /* eingeklappt */
 
-/* Helle Fläche (Mindmap-Overlay im PhysioZentrum): gleiche Token-Namen, helle Werte.
-   Alles innerhalb von .hell (Chips, Eingabefelder, Listen) wird so automatisch hell. */
-.hell {
-  --bg: #F4F1EB; /* warmes Weiß */
-  --surface: rgba(27, 26, 24, 0.04);
-  --surface-2: rgba(27, 26, 24, 0.06);
-  --glass: rgba(244, 241, 235, 0.86);
-  --line: rgba(27, 26, 24, 0.12);
-  --text: #1B1A18;
-  --text-2: #77736B;
-  --accent: #1B1A18; /* auf Hell ist der Akzent fast Schwarz */
-  --accent-ink: #F4F1EB;
+  transition: --accent var(--duration-slow) var(--ease);
   color-scheme: light;
 }
 
-/* Farbe des aktiven Bereichs. Als echte Farbe angemeldet, damit der Wechsel sanft überblendet.
-   Startwert = --farbe-standard (hier muss er wörtlich stehen). */
-@property --bereich {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: #CFCBC4;
+/* Helle Fläche (Mindmap-Overlay im PhysioZentrum): eigenes, deckendes Weiß. */
+.hell {
+  --bg: #FBF7F4;
+  --surface: rgba(43, 30, 25, 0.04);
+  --surface-2: rgba(43, 30, 25, 0.06);
+  --glass: rgba(251, 247, 244, 0.88);
+  --line: rgba(43, 30, 25, 0.12);
 }

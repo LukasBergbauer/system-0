@@ -51,13 +51,11 @@
 
 /* Titel groß in Serifenschrift, Kurzbeschreibung kursiv */
 .mm-eintrag__titel {
-  font-family: var(--font-serif);
   font-size: var(--fs-large);
   line-height: 1.2;
   hyphens: auto;
 }
 .mm-eintrag__kurz {
-  font-family: var(--font-serif);
   font-style: italic;
   color: var(--text-2);
 }
@@ -80,7 +78,6 @@
   display: inline-flex;
   align-items: center;
   color: var(--text);
-  font-family: var(--font-serif);
   text-decoration: underline;
   text-underline-offset: 3px;
 }

@@ -1,0 +1,43 @@
+/* Farbkreise der Kachel „Akzentfarbe“ in den Einstellungen (src/app/akzent-kachel.js). */
+.kachel--gross:has(.farbkreise) {
+  flex-wrap: wrap;
+}
+.farbkreise {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  flex-basis: 100%;
+}
+.farbkreis {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--f);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: transform 300ms var(--feder), box-shadow var(--duration) var(--ease);
+}
+@media (hover: hover) {
+  .farbkreis:hover {
+    transform: scale(1.12);
+  }
+}
+.farbkreis:active {
+  transform: scale(0.92);
+}
+.farbkreis[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--f);
+}
+.farbkreis--eigen {
+  overflow: hidden;
+  background: conic-gradient(#f44, #fd4, #4d6, #4cf, #46f, #c4f, #f44);
+}
+.farbkreis__eingabe {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}

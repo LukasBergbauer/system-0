@@ -1,80 +1,46 @@
-/* Kopfbild aus src/ui/kopfbild.js (Stil „Stein & Licht“):
-   Foto vollflächig hinter dem Kopf, an den Rändern weich ausgeblendet; darauf großer Serifentitel,
-   kurzer Strich und kursiver Spruch.
-   Das Foto ist ein Hintergrundbild mit background-blend-mode: lighten auf der Seitenfarbe (--bg):
-   sein fast schwarzer Grund wird so genau zur Seitenfarbe, ohne Kante. Das klappt in allen Browsern
-   (mix-blend-mode auf einem <img> klappte in Lukas' Browser nicht). */
+/* Seitenkopf aus src/ui/kopfbild.js: Zeile darüber (z. B. Datum), großer Titel, Spruch als Unterzeile.
+   Kopfbilder (Steine) sind pausiert; ein übergebenes Bild wird einfach weich hinter den Kopf gelegt. */
 .kopf {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  min-height: 320px;
-  padding-bottom: var(--space-5);
-}
-.kopf--kompakt {
-  min-height: 240px;
-}
-.kopf--ohne-bild {
-  min-height: 0;
+  padding: var(--space-3) 0 var(--space-2);
 }
 .kopf__bild {
   position: absolute;
-  top: calc(var(--space-7) * -1);
-  left: calc(var(--space-4) * -1);
-  width: calc(100% + var(--space-4) * 2);
-  height: calc(100% + var(--space-7));
-  background-color: var(--bg);
+  inset: 0;
   background-size: cover;
   background-position: right center;
-  background-repeat: no-repeat;
-  /* lighten: dunkle Bildteile werden zur Seitenfarbe, nur Licht und Stein bleiben */
-  background-blend-mode: lighten;
+  border-radius: var(--radius-gross);
+  opacity: 0.5;
   pointer-events: none;
-  /* weich ausblenden: oben in die Seite, unten in den Inhalt, links hinter den Titel */
-  -webkit-mask-image:
-    linear-gradient(to bottom, transparent 0%, #000 22%, #000 58%, transparent 100%),
-    linear-gradient(to right, transparent 0%, #000 50%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to bottom, transparent 0%, #000 22%, #000 58%, transparent 100%),
-    linear-gradient(to right, transparent 0%, #000 50%);
-  mask-composite: intersect;
-}
-/* Breitere Fenster: Bildrand rechts liegt in der Seite, also auch dort ausblenden */
-@media (min-width: 560px) { /* ab hier ist .app schmaler als das Fenster */
-  .kopf__bild {
-    -webkit-mask-image:
-      linear-gradient(to bottom, transparent 0%, #000 22%, #000 58%, transparent 100%),
-      linear-gradient(to right, transparent 0%, #000 50%, #000 80%, transparent 100%);
-    mask-image:
-      linear-gradient(to bottom, transparent 0%, #000 22%, #000 58%, transparent 100%),
-      linear-gradient(to right, transparent 0%, #000 50%, #000 80%, transparent 100%);
-  }
 }
 .kopf__text {
-  position: relative; /* über dem Bild */
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-2);
 }
 .kopf__ueber {
-  margin: 0 0 calc(var(--space-2) * -1); /* rückt näher an den Titel */
+  margin: 0;
+  order: 2; /* steht unter dem Titel, wie in der Vorlage */
+  font-size: var(--fs-small);
+  color: var(--text-2);
 }
 .kopf__titel {
   margin: 0;
-  font-family: var(--font-serif);
   font-size: var(--fs-display);
-  font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
 }
 .kopf__spruch {
-  max-width: 16em;
+  order: 3;
+  max-width: 32em;
   margin: 0;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: var(--fs-title);
-  line-height: 1.35;
-  color: var(--text);
+  font-size: var(--fs-normal);
+  color: var(--text-2);
+}
+@media (max-width: 767px) {
+  .kopf__titel {
+    font-size: 30px;
+  }
 }

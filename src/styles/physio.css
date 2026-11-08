@@ -113,13 +113,11 @@
 }
 .mm-suche__feld {
   min-height: 52px;
-  font-family: var(--font-serif);
   font-size: var(--fs-title);
   background: var(--surface);
 }
 .mm-suche__hinweis {
   margin: 0;
-  font-family: var(--font-serif);
   font-style: italic;
   color: var(--text-2);
 }
@@ -162,7 +160,6 @@
 }
 .mm-karte__kurz {
   max-width: 36ch;
-  font-family: var(--font-serif);
   font-style: italic;
   color: var(--text-2);
 }

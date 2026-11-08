@@ -4,7 +4,6 @@
 /* „SYSTEM 0“ oben auf jeder Seite (iPhone) bzw. oben in der Seitenleiste (Mac) */
 .marke {
   margin: 0;
-  font-family: var(--font-serif);
   font-size: var(--fs-title);
   font-weight: 400;
   letter-spacing: var(--sperrung);
@@ -24,10 +23,10 @@
 /* Kleines Label in Großbuchstaben, z. B. „ABGLEICH“ */
 .label {
   font-size: var(--fs-label);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: var(--sperrung);
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--text-2);
 }
 
 /* Kurzer Strich unter großen Titeln */

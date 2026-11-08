@@ -17,7 +17,6 @@
 .termin-vorschau {
   margin: var(--space-2) 0 0;
   min-height: 1.4em;
-  font-family: var(--font-serif);
   font-style: italic;
   font-size: var(--fs-small);
   color: var(--text-2);
@@ -27,6 +26,16 @@
   flex-direction: column;
   gap: var(--space-6);
   margin-top: var(--space-2);
+}
+/* Gruppe als Glaskarte */
+.termin-gruppe {
+  padding: var(--space-4) var(--space-5) var(--space-2);
+  background: var(--glas-verlauf);
+  border: 1px solid var(--glas-rand);
+  border-radius: var(--radius-gross);
+  box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  backdrop-filter: blur(var(--blur)) saturate(160%);
 }
 .termin-gruppe__titel {
   display: block;
@@ -41,7 +50,6 @@
 .termin-zeit {
   display: inline-block;
   min-width: 64px;
-  font-family: var(--font-serif);
   font-size: var(--fs-normal);
   color: var(--accent);
 }
@@ -80,7 +88,6 @@
 }
 .woche__zeitraum {
   min-height: var(--tap);
-  font-family: var(--font-serif);
   font-size: var(--fs-normal);
 }
 .woche__tag--heute .termin-gruppe__titel {

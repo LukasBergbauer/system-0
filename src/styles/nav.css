@@ -1,153 +1,221 @@
-/* Rahmen der App: Tab-Leiste (iPhone) und Seitenleiste (Mac, ab 768 px).
-   Glas-Leisten; aktiver Eintrag: Text und Symbol in Elfenbein, kurzer Strich darunter (Tabs) bzw. links (Seitenleiste). */
+/* Rahmen der App: schwebende Glas-Kapsel unten (iPhone) und schwebende Glas-Seitenleiste links (Mac, ab 768 px).
+   Aktiver Eintrag: weiße Pille (.nav__zeiger), die per transform von Eintrag zu Eintrag gleitet (nav.js). */
 
 .shell {
   min-height: inherit;
 }
 .shell__main {
-  /* Platz, damit die Tab-Leiste nichts verdeckt */
-  padding-bottom: calc(var(--tap) + var(--space-4));
+  /* Platz, damit die Kapsel nichts verdeckt */
+  padding-bottom: calc(80px + env(safe-area-inset-bottom));
 }
 
+.nav-tabs,
+.nav-side {
+  background: var(--glas-verlauf);
+  border: 1px solid var(--glas-rand);
+  box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  backdrop-filter: blur(var(--blur)) saturate(160%);
+}
+.nav__zeiger {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 6px 18px -8px rgba(70, 25, 10, 0.35);
+  transition: transform 500ms var(--feder), width 450ms var(--ease), height 450ms var(--ease), opacity var(--duration);
+}
 .nav-tabs__link,
 .nav-side__link {
+  position: relative;
+  z-index: 1;
   color: var(--text-2);
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
-  transition: color var(--duration) var(--ease), background var(--duration) var(--ease);
+  transition: color 250ms var(--ease), transform 300ms var(--feder);
 }
+.nav-tabs__link:hover,
+.nav-side__link:hover,
 .nav-tabs__link[aria-current="page"],
 .nav-side__link[aria-current="page"] {
-  color: var(--accent);
+  color: var(--text);
+}
+.nav-tabs__link:active,
+.nav-side__link:active {
+  transform: scale(0.94);
 }
 .nav-tabs__link:focus-visible,
 .nav-side__link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: -2px;
+  border-radius: 13px;
 }
 
-/* ---------- Tab-Leiste (iPhone) ---------- */
+/* ---------- Kapsel (iPhone) ---------- */
 .nav-tabs {
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
   z-index: 10;
+  left: 50%;
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  padding: 6px;
+  border-radius: 999px;
+}
+.nav-tabs .nav__inhalt {
   display: flex;
-  padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-  background: var(--glass);
-  border-top: 1px solid var(--line);
-  -webkit-backdrop-filter: blur(var(--blur));
-  backdrop-filter: blur(var(--blur));
+  gap: 2px;
+}
+.nav-tabs .nav__zeiger {
+  border-radius: 999px;
 }
 .nav-tabs__link {
-  position: relative;
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-1);
-  min-height: var(--tap);
-  padding: var(--space-2) var(--space-1) var(--space-3);
-  font-size: var(--fs-small);
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 48px;
 }
-.nav-tabs__link span {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.nav-tabs__link .symbol {
+  width: 22px;
+  height: 22px;
 }
-/* kurzer Strich unter dem aktiven Tab */
-.nav-tabs__link::after {
-  content: "";
+/* Nur Symbole sichtbar, Name bleibt für Screenreader */
+.nav-tabs .nav__text {
   position: absolute;
-  bottom: var(--space-1);
-  left: 50%;
-  width: var(--space-6);
-  height: 1.5px;
-  margin-left: calc(var(--space-6) / -2);
-  background: var(--accent);
-  transform: scaleX(0);
-  transition: transform var(--duration) var(--ease);
-}
-.nav-tabs__link[aria-current="page"]::after {
-  transform: scaleX(1);
-}
-.nav-tabs__link:active {
-  opacity: 0.6;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
 }
 
 /* ---------- Seitenleiste (Mac) ---------- */
 .nav-side {
   display: none;
 }
-
 @media (min-width: 768px) {
   .shell {
-    display: grid;
-    grid-template-columns: var(--sidebar) 1fr;
+    --leiste: var(--sidebar);
+  }
+  .shell--schmal {
+    --leiste: var(--sidebar-zu);
   }
   .shell__main {
     padding-bottom: 0;
+    margin-left: calc(var(--leiste) + var(--space-4));
+    transition: margin-left 450ms var(--ease);
   }
   .nav-tabs {
     display: none;
   }
   .nav-side {
-    position: sticky;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-    height: 100dvh;
-    padding: var(--space-6) var(--space-3) var(--space-4);
-    z-index: 2;
-    background: var(--glass);
-    border-right: 1px solid var(--line);
-    -webkit-backdrop-filter: blur(var(--blur));
-    backdrop-filter: blur(var(--blur));
+    position: fixed;
+    z-index: 10;
+    top: var(--space-4);
+    left: var(--space-4);
+    bottom: var(--space-4);
+    display: block;
+    width: var(--leiste);
+    padding: 14px;
+    border-radius: 28px;
+    transition: width 450ms var(--ease);
   }
 }
-.nav-side__brand {
-  margin: 0 0 var(--space-5);
-  padding: 0 var(--space-3);
-  font-size: var(--fs-normal);
+/* Schmale Fenster: immer eingeklappt */
+@media (min-width: 768px) and (max-width: 1099px) {
+  .shell {
+    --leiste: var(--sidebar-zu);
+  }
+  .nav-side__klappe {
+    display: none;
+  }
+}
+.nav-side .nav__inhalt {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  height: 100%;
+}
+.nav-side__marke {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-bottom: var(--space-4);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.nav-side__logo {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(140deg, var(--akzent-hell), var(--accent) 55%, var(--akzent-tief));
+  box-shadow: 0 6px 16px -6px var(--accent);
+}
+.nav-side__klappe {
+  position: absolute;
+  top: 26px;
+  right: -12px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  color: var(--text);
+  background: #fff;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px -4px rgba(60, 20, 10, 0.35);
+  cursor: pointer;
+  transition: transform 450ms var(--feder);
+}
+.nav-side__klappe .symbol {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2;
+}
+.shell--schmal .nav-side__klappe {
+  transform: rotate(180deg);
+}
+.nav-side__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: 42px;
+  padding: 0 13px;
+  border-radius: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.nav-side__link .symbol {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.8;
 }
 .nav-side__ende {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: 2px;
   margin-top: auto;
 }
-.nav-side__link {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  min-height: var(--tap);
-  padding: 0 var(--space-3);
-  border-radius: var(--radius);
+/* Eingeklappt: Namen ausblenden (Symbole bleiben genau an ihrer Stelle) */
+.nav-side .nav__text {
+  overflow: hidden;
+  transition: opacity 250ms var(--ease);
 }
-.nav-side__link:hover,
-.nav-side__link[aria-current="page"] {
-  color: var(--text);
-  background: var(--surface-2);
+@media (min-width: 768px) {
+  .shell--schmal .nav-side .nav__text {
+    opacity: 0;
+  }
 }
-/* Linie links am aktiven Eintrag */
-.nav-side__link::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: var(--space-3);
-  bottom: var(--space-3);
-  width: 2px;
-  border-radius: 2px;
-  background: var(--accent);
-  transform: scaleY(0);
-  transition: transform var(--duration) var(--ease);
-}
-.nav-side__link[aria-current="page"]::before {
-  transform: scaleY(1);
+@media (min-width: 768px) and (max-width: 1099px) {
+  .nav-side .nav__text {
+    opacity: 0;
+  }
 }

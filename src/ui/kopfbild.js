@@ -1,5 +1,5 @@
 // Kopfbild: großes Foto oben (vollflächig, läuft an den Rändern weich in die Seite aus),
-// darauf links der große Seitentitel in Serifenschrift, ein kurzer Strich und ein kursiver Spruch.
+// darauf der große Seitentitel, darunter Datum/Zeile und Spruch.
 // kopfbild({ titel: 'Heute', bild: 'assets/bilder/heute-1.webp', ueber: 'Mittwoch, 4. November', spruch: 'Ein Schritt nach dem anderen.' })
 // ueber = kleines Label über dem Titel (optional).
 import { el } from './dom.js';
@@ -17,9 +17,8 @@ export function kopfbild({ titel, bild, ueber, spruch } = {}) {
   return el('header', { class: klasse }, [
     bild && hintergrund(bild),
     el('div', { class: 'kopf__text' }, [
-      ueber && el('p', { class: 'kopf__ueber label', text: ueber }),
+      ueber && el('p', { class: 'kopf__ueber', text: ueber }),
       el('h1', { class: 'kopf__titel', text: titel }),
-      el('hr', { class: 'strich' }),
       spruch && el('p', { class: 'kopf__spruch', text: spruch }),
     ]),
   ]);
