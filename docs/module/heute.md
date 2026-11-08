@@ -10,7 +10,19 @@
 Liest nur Daten der anderen Module über `core/`, speichert selbst nichts.
 
 ## Stand
-Platzhalter: `src/module/heute/` meldet „Heute“ beim Router an und zeigt „Kommt bald“. Das eigentliche Modul folgt in Phase 1.
+Wird als Glas-Dashboard gebaut (Plan unten, Schritte a–e).
+- [x] a) Daten-Rechnungen + Kopf, Hero mit Ring, 4 Kacheln (08.11.2026). Dateien in `src/module/heute/`:
+      `rechnen.js` (alle Zahlen), `bewegung.js` (Zahl zählt hoch, Ring, Mini-Kurve), `kopf.js`, `hero.js`, `kacheln.js`,
+      `view.js` (lädt über `core/store.js` + Google-Zwischenspeicher `getMeta('kalender:google')`, zeichnet bei `daten` neu,
+      dann ohne Bewegung). Stil `src/styles/heute.css`. Router-Option `dashboard: true` → `shell.js` lässt den Standard-Kopf
+      weg und gibt die breite Fläche `.app--breit`. Symbole `flamme`, `training` in `ui/symbol.js`. `sw.js` `v40`.
+      Entscheidungen: „erledigt diese Woche“ = To-dos mit Erledigt-Datum Mo–So (egal wann fällig); Ring = nur To-dos mit
+      Fälligkeit Mo–So (ohne solche: „–“ und Satz „Deine Woche ist frei“). Kurven: Offene To-dos + Serie = letzte 7 Tage,
+      Termine = Mo–So dieser Woche (passt zur Zahl). Trend: Offene To-dos/Termine im Vergleich zu vor 7 Tagen bzw. Vorwoche;
+      Serie zeigt „Rekord“, wenn sie die längste bisher ist. „Woche ansehen“ → `#/kalender/woche` (Kalender liest den Zusatz
+      noch nicht, öffnet seine gemerkte Ansicht), „+ To-do“ → To-dos (Schnelleingabe dort oben) – richtig mit d).
+      Lokal geprüft (Mac + iPhone-Größe). Bis b) rutscht die erste Kachel neben den Hero (Platz der Kalender-Karte).
+- [ ] b) Kalender-Karte, Verlauf, Donut – **als Nächstes**
 - [x] Design-Runde (Teil d): Kopf mit Stein-Kugel (`bild: 'assets/bilder/heute.svg'`), Datum über dem Titel
       (`ueber`, z. B. „MITTWOCH, 4. NOVEMBER“) und Spruch des Tages. Den Kopf baut `src/app/shell.js` für jeden Bereich.
 

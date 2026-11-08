@@ -37,15 +37,15 @@ export function shell() {
     ansicht = new AbortController();
     document.title = `${bereich.titel} · System 0`;
     // Kopf: großer Titel, Zeile darüber und Spruch des Tages. Kopfbilder (Steine) sind pausiert.
+    // dashboard: true (Heute) = eigener Kopf und breite Fläche statt der schmalen Spalte
     const versatz = Math.max(0, alleBereiche().indexOf(bereich));
-    inhalt.replaceChildren(
-      kopfbild({
-        titel: bereich.titel,
-        ueber: bereich.ueber?.(),
-        spruch: bereich.spruch ? spruchDesTages(versatz) : null, // nur wo gewünscht (Heute)
-      }),
-      bereich.ansicht({ signal: ansicht.signal }),
-    );
+    inhalt.classList.toggle('app--breit', Boolean(bereich.dashboard));
+    const kopf = bereich.dashboard ? [] : [kopfbild({
+      titel: bereich.titel,
+      ueber: bereich.ueber?.(),
+      spruch: bereich.spruch ? spruchDesTages(versatz) : null, // nur wo gewünscht
+    })];
+    inhalt.replaceChildren(...kopf, bereich.ansicht({ signal: ansicht.signal }));
     window.scrollTo(0, 0);
     zeigeNav();
   }

@@ -12,6 +12,10 @@
   flex-direction: column;
   gap: var(--space-4);
 }
+/* Dashboard (Heute): breite Fläche statt schmaler Spalte */
+.app--breit {
+  max-width: 1480px;
+}
 /* Seitenwechsel: Kopf und Inhalt blenden nacheinander ein */
 .app > * {
   animation: rein 600ms var(--ease) backwards;

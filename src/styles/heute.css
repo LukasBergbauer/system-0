@@ -1,0 +1,102 @@
+/* Heute: Glas-Dashboard (Vorlage muster/glas.html). Breite Fläche über .app--breit (app.css). */
+.heute { display: flex; flex-direction: column; gap: var(--space-5); }
+
+/* Kopf: Gruß + Datumszeile */
+.heute-kopf { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); }
+.heute-kopf h1 { margin: 0; font-size: var(--fs-display); font-weight: 600; letter-spacing: -0.025em; line-height: 1.1; }
+.heute-kopf p { margin: 6px 0 0; color: var(--text-2); font-size: var(--fs-small); }
+
+/* Raster: 12 Spalten (Mac), 2 Spalten (iPhone) */
+.heute-raster { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--space-4); }
+.heute-s8 { grid-column: span 8; }
+.heute-s3 { grid-column: span 3; }
+.heute-raster > * { animation: rein 700ms var(--ease) backwards; }
+.heute-raster > :nth-child(2) { animation-delay: 140ms; }
+.heute-raster > :nth-child(3) { animation-delay: 195ms; }
+.heute-raster > :nth-child(4) { animation-delay: 250ms; }
+.heute-raster > :nth-child(5) { animation-delay: 305ms; }
+
+/* Pillen-Knöpfe im Hero */
+.heute-pille { height: 38px; padding: 0 var(--space-4); border-radius: 999px; font: inherit; font-size: var(--fs-small); font-weight: 600;
+  cursor: pointer; transition: transform 300ms var(--feder), background var(--duration); }
+.heute-pille:active { transform: scale(.95); }
+.heute-pille--weiss { background: #fff; color: var(--text); border: 0; box-shadow: 0 6px 16px -8px rgba(60,20,10,.4); }
+.heute-pille--rand { color: var(--accent-ink); border: 1px solid rgba(255,255,255,.6); background: rgba(255,255,255,.12); }
+.heute-pille--rand:hover { background: rgba(255,255,255,.22); }
+
+/* Hero (Akzent-Karte) */
+.heute-hero { position: relative; overflow: hidden; min-height: 268px; display: flex; gap: var(--space-5); align-items: center;
+  padding: 26px 28px; border-radius: var(--radius-gross); color: var(--accent-ink); border: 1px solid rgba(255,255,255,.35); box-shadow: var(--schatten);
+  background: linear-gradient(135deg, var(--akzent-hell) 0%, var(--accent) 48%, var(--akzent-tief) 130%); }
+.heute-hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(60% 70% at 0% 0%, rgba(255,255,255,.35), transparent 60%), radial-gradient(40% 50% at 100% 100%, rgba(40,10,0,.2), transparent 70%); }
+.heute-hero > * { position: relative; }
+.heute-hero__text { flex: 1; min-width: 0; }
+.heute-status { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px;
+  font-size: var(--fs-label); font-weight: 600; background: rgba(255,255,255,.2); }
+.heute-status i { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: heute-puls 2s ease-in-out infinite; }
+@keyframes heute-puls { 50% { opacity: .35; transform: scale(.7); } }
+.heute-hero h2 { font-size: 30px; line-height: 1.12; font-weight: 600; letter-spacing: -.02em; margin: var(--space-4) 0 var(--space-2); max-width: 16ch; }
+.heute-hero h2 em { font-family: ui-serif, "New York", Georgia, serif; font-weight: 400; }
+.heute-hero p { margin: 0; opacity: .82; font-size: var(--fs-small); max-width: 42ch; }
+.heute-werte { display: flex; gap: 22px; margin: 18px 0 20px; }
+.heute-werte div { padding-left: var(--space-3); border-left: 1px solid rgba(255,255,255,.35); }
+.heute-werte b { display: block; font-size: 22px; font-weight: 600; letter-spacing: -.02em; }
+.heute-werte small { font-size: var(--fs-label); opacity: .75; }
+.heute-knoepfe { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+
+/* Ring */
+.heute-ring { position: relative; width: 168px; height: 168px; flex: none; display: grid; place-items: center; text-align: center; }
+.heute-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.heute-ring circle { fill: none; stroke-width: 10; stroke-linecap: round; }
+.heute-ring .bahn { stroke: rgba(255,255,255,.22); }
+.heute-ring .wert { stroke: #fff; stroke-dasharray: 440; stroke-dashoffset: 440; transition: stroke-dashoffset 1400ms var(--ease) 300ms;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,.5)); }
+.heute-ring b { display: block; font-size: var(--fs-display); font-weight: 600; letter-spacing: -.03em; }
+.heute-ring small { display: block; font-size: var(--fs-label); opacity: .8; }
+
+/* Kennzahl-Kacheln */
+.heute-kz { position: relative; min-height: 158px; display: flex; flex-direction: column; align-items: flex-start; text-align: left;
+  padding: 20px; font: inherit; color: var(--text); cursor: pointer; border-radius: var(--radius-gross);
+  background: var(--glas-verlauf); border: 1px solid var(--glas-rand); box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%);
+  transition: transform 380ms var(--feder), box-shadow 380ms var(--ease); }
+@media (hover: hover) { .heute-kz:not(:disabled):hover { transform: translateY(-3px); box-shadow: var(--schatten-hoch); } }
+.heute-kz:not(:disabled):active { transform: scale(.985); }
+.heute-kz:disabled { cursor: default; }
+.heute-kz__kopf { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: auto; }
+.heute-kz__symbol { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.75); }
+.heute-kz__symbol .symbol { width: 18px; height: 18px; }
+.heute-trend { font-size: var(--fs-label); font-weight: 600; color: var(--text-2); background: rgba(255,255,255,.65); padding: 3px 8px; border-radius: 999px; }
+.heute-trend--gut { color: var(--gut); }
+.heute-kz > b { font-size: 36px; font-weight: 600; letter-spacing: -.035em; line-height: 1; margin-top: 18px; }
+.heute-kz__titel { font-size: var(--fs-small); font-weight: 600; margin-top: var(--space-2); }
+.heute-kz small { color: var(--text-2); font-size: var(--fs-label); }
+.heute-kz--akzent { color: var(--accent-ink); border-color: rgba(255,255,255,.35);
+  background: linear-gradient(150deg, var(--akzent-hell), var(--accent) 60%, var(--akzent-tief)); }
+.heute-kz--akzent small, .heute-kz--akzent .heute-kz__titel { color: rgba(255,255,255,.85); }
+.heute-kz--akzent .heute-kz__symbol, .heute-kz--akzent .heute-trend { background: rgba(255,255,255,.22); color: #fff; }
+
+/* Mini-Kurve: zeichnet sich beim Erscheinen */
+.heute-spur { position: absolute; right: 18px; bottom: 20px; width: 64px; height: 24px; }
+.heute-spur svg { width: 100%; height: 100%; display: block; }
+.heute-spur path { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 1; stroke-dashoffset: 1; animation: heute-zeichnen 1300ms var(--ease) 500ms forwards; }
+.heute-spur--fertig path { animation: none; stroke-dashoffset: 0; }
+.heute-kz--akzent .heute-spur path { stroke: #fff; }
+@keyframes heute-zeichnen { to { stroke-dashoffset: 0; } }
+
+@media (max-width: 760px) {
+  .heute-kopf h1 { font-size: 28px; }
+  .heute-raster { grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .heute-s8 { grid-column: span 2; }
+  .heute-s3 { grid-column: span 1; }
+  .heute-hero { flex-direction: column-reverse; align-items: flex-start; padding: 22px; }
+  .heute-ring { width: 128px; height: 128px; align-self: center; }
+  .heute-ring b { font-size: 28px; }
+  .heute-hero h2 { font-size: var(--fs-large); }
+  .heute-werte { gap: 14px; }
+  .heute-kz { min-height: 140px; padding: var(--space-4); }
+  .heute-kz > b { font-size: 30px; }
+  .heute-spur { display: none; }
+}

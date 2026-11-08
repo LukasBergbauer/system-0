@@ -1,16 +1,11 @@
-// Modul „Heute“: meldet sich beim Router an.
+// Modul „Heute“: meldet sich beim Router an. Eigener Kopf (Gruß) und breites Dashboard-Layout.
 import { register } from '../../core/router.js';
 import { heuteAnsicht } from './view.js';
-
-// Datum über dem Titel, z. B. „Mittwoch, 4. November“
-const DATUM = new Intl.DateTimeFormat('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
 
 register({
   id: 'heute',
   titel: 'Heute',
   symbol: 'heute',
-  bild: [1, 2, 3].map((n) => `assets/bilder/heute-${n}.webp`), // drei Varianten, täglich wechselnd
-  ueber: () => DATUM.format(new Date()),
-  spruch: true, // Spruch des Tages nur auf Heute
+  dashboard: true, // shell.js: kein Standard-Kopf, breite Fläche
   ansicht: heuteAnsicht,
 });
