@@ -1,5 +1,5 @@
 // Ansicht „Heute“: Glas-Dashboard (Plan in docs/module/heute.md).
-// Liest nur über core/ (To-dos, Routinen, Training, Ziele, Affirmationen, eigene Termine, Google-Termine aus dem Zwischenspeicher), speichert nichts.
+// Liest nur über core/ (To-dos, Routinen, Training, Ziele, Affirmationen, Gewohnheiten, eigene Termine, Google-Termine aus dem Zwischenspeicher), speichert nur das Abhaken von Gewohnheiten (gewohnheiten-leiste.js).
 // Bei jedem Ereignis 'daten' neu zeichnen – dann ohne Hochzähl-Bewegung, damit nichts zappelt.
 import { el } from '../../ui/dom.js';
 import { getAll } from '../../core/store.js';
@@ -16,17 +16,20 @@ import { routinenLeiste } from './routinen-leiste.js';
 import { rechneTraining, trainingLeiste } from './training.js';
 import { zieleLeiste } from './ziele-leiste.js';
 import { affirmationKarte } from './affirmation.js';
+import { gewohnheitenLeiste } from './gewohnheiten-leiste.js';
 
 const GOOGLE = 'kalender:google'; // Zwischenspeicher des Kalenders: { termine: [...] }
 
 async function laden() {
-  const [todos, termine, bereiche, google, routinen, schritte, logs, einheiten, plaene, planEinheiten, ziele, zielSchritte, affirmationen] = await Promise.all([
+  const [todos, termine, bereiche, google, routinen, schritte, logs, einheiten, plaene, planEinheiten, ziele, zielSchritte, affirmationen, gewohnheiten, gewLogs, rueckfaelle] = await Promise.all([
     getAll('todos'), getAll('termine'), getAll('todo_bereiche'), getMeta(GOOGLE),
     getAll('routinen'), getAll('routine_schritte'), getAll('routine_logs'),
     getAll('einheiten'), getAll('trainingsplaene'), getAll('plan_einheiten'), getAll('lebensziele'), getAll('ziel_schritte'), getAll('affirmationen'),
+    getAll('gewohnheiten'), getAll('gewohnheit_logs'), getAll('rueckfaelle'),
   ]);
   return { todos, bereiche, termine: [...termine, ...(google?.termine || [])], routinen: { routinen, schritte, logs },
-    training: rechneTraining({ einheiten, plaene, planEinheiten }), ziele: { ziele, schritte: zielSchritte }, affirmationen: { affirmationen, ziele } };
+    training: rechneTraining({ einheiten, plaene, planEinheiten }), ziele: { ziele, schritte: zielSchritte }, affirmationen: { affirmationen, ziele },
+    gewohnheiten: { gewohnheiten, logs: gewLogs, rueckfaelle } };
 }
 
 export function heuteAnsicht({ signal }) {
@@ -47,6 +50,7 @@ export function heuteAnsicht({ signal }) {
         ...kacheln(z, animiert),
         affirmationKarte(d.affirmationen),
         routinenLeiste(d.routinen),
+        gewohnheitenLeiste(d.gewohnheiten),
         trainingLeiste(d.training),
         zieleLeiste(d.ziele),
         verlauf(d.todos, animiert),

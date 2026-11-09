@@ -1,0 +1,20 @@
+/* Modul „Gewohnheiten“: nutzt die Karten aus routinen.css, hier nur das Eigene. Nur Werte aus tokens.css. */
+.gewohnheiten__abschnitt { display: flex; flex-direction: column; gap: var(--space-3); width: 100%; }
+.gewohnheiten__abschnitt > .label { margin: 0; }
+.gewohnheit__zaehler { display: flex; align-items: center; gap: var(--space-2); margin-left: auto; font-weight: 600; font-size: var(--fs-small); }
+.gewohnheit__zaehler .btn { margin: 0; min-width: var(--tap); }
+.gewohnheit__ohne { display: flex; align-items: baseline; gap: var(--space-2); }
+.gewohnheit__ohne strong { font-size: var(--fs-display); font-weight: 600; letter-spacing: -.02em; line-height: 1; color: var(--accent); }
+.gewohnheit__ohne span { color: var(--text-2); font-size: var(--fs-small); }
+.gewohnheit__rueckfall { margin-left: auto; padding: var(--space-1) var(--space-3); min-height: 32px; font: inherit; font-size: var(--fs-label);
+  color: var(--text-2); background: none; border: 1px solid var(--glas-rand); border-radius: 999px; cursor: pointer; }
+.gewohnheit__ausloeser summary { cursor: pointer; color: var(--text-2); font-size: var(--fs-label); }
+.gewohnheit__ausloeser ul { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-1); }
+.gewohnheit__ausloeser li { display: flex; justify-content: space-between; font-size: var(--fs-small); }
+.chips--umbruch { flex-wrap: wrap; overflow: visible; margin: 0; padding: 0; }
+.modal .field[hidden], .gewohnheit__notiz[hidden] { display: none; }
+.gewohnheit__notiz { margin-top: var(--space-3); }
+
+/* Heute: Leiste */
+.heute-gewohnheiten { grid-column: 1 / -1; }
+.heute-gewohnheit strong { color: var(--accent); }

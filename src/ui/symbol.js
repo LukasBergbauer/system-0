@@ -35,6 +35,8 @@ const FORMEN = {
   ziele: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 12h.01"/>',
   // Kreislauf mit Haken (Routinen)
   routinen: '<path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4.5v3.5h-3.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+  // Keimling (Gewohnheiten)
+  gewohnheiten: '<path d="M12 21v-9"/><path d="M12 12c0-4 3-6.5 7-6.5 0 4-3 6.5-7 6.5zM12 14.5c0-3-2.5-5-6-5 0 3 2.5 5 6 5z"/>',
   // Funkeln (Affirmationen)
   affirmation: '<path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9-1.9 5.1-1.9-5.1L5 10.5l5.1-1.9z"/><path d="M18.5 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/>',
   // Pfeil nach links (Seitenleiste einklappen)

@@ -41,7 +41,7 @@ system-0/
     └── module/
         ├── heute/  todos/  routinen/  kalender/
         ├── physio/  training/  gewohnheiten/
-        ├── ziele/  affirmationen/  wissen/  buecher/  insta/
+        ├── ziele/  affirmationen/  gewohnheiten/  wissen/  buecher/  insta/
 ```
 
 ## Aufbau eines Moduls

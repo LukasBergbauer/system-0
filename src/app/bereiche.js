@@ -9,6 +9,7 @@ import '../module/physio/index.js';
 import '../module/training/index.js';
 import '../module/ziele/index.js';
 import '../module/affirmationen/index.js';
+import '../module/gewohnheiten/index.js';
 import { einstellungenBereich } from './einstellungen.js';
 import { mehrBereich } from './mehr.js';
 

@@ -324,6 +324,8 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         Ziele heißen in der App jetzt „Visionen“ (Ziel → Schritt, Schritt → Teilschritt), `sw.js` `v55`.
   - [x] Migration 012 ausgeführt, Affirmationen, Visionen und Heute auf Geräten geprüft (09.11.2026)
 - [ ] Gewohnheiten aufbauen und abbauen (`module/gewohnheiten.md`)
+  - [x] Erste Fassung (09.11.2026): Aufbauen (abhaken/Anzahl/Zeit), Abbauen (Tage ohne, Rückfall mit Auslöser-Chips),
+        Leiste auf Heute. Migration `013_gewohnheiten.sql`; `sw.js` `v58`. Offen: Migration ausführen, auf Geräten prüfen
 
 ## Phase 4 – Wissen & Kreativ
 - [ ] Wissen-Quiz (`module/wissen.md`)

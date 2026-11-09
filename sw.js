@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v57';
+const VERSION = 'v58';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -46,6 +46,7 @@ const APP_FILES = [
   './src/module/heute/kacheln.js',
   './src/module/heute/kalender-karte.js',
   './src/module/heute/routinen-leiste.js',
+  './src/module/heute/gewohnheiten-leiste.js',
   './src/module/heute/ziele-leiste.js',
   './src/module/heute/affirmation.js',
   './src/module/heute/verlauf.js',
@@ -89,6 +90,13 @@ const APP_FILES = [
   './src/module/affirmationen/data.js',
   './src/module/affirmationen/view.js',
   './src/module/affirmationen/bearbeiten.js',
+  './src/module/gewohnheiten/index.js',
+  './src/module/gewohnheiten/data.js',
+  './src/module/gewohnheiten/view.js',
+  './src/module/gewohnheiten/karte-auf.js',
+  './src/module/gewohnheiten/karte-ab.js',
+  './src/module/gewohnheiten/bearbeiten.js',
+  './src/module/gewohnheiten/rueckfall.js',
   './src/module/training/index.js',
   './src/module/training/daten.js',
   './src/module/training/rechnen.js',
@@ -147,6 +155,7 @@ const APP_FILES = [
   './src/styles/todos.css',
   './src/styles/kalender.css',
   './src/styles/routinen.css',
+  './src/styles/gewohnheiten.css',
   './src/styles/kopfbild.css',
   './src/styles/kachel.css',
   './src/styles/farbkreise.css',
