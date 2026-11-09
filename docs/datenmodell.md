@@ -49,7 +49,7 @@ Nach jeder Änderung kommt das Ereignis `daten` mit `{ table }` (`src/core/event
 | PhysioZentrum | `physio_eintraege` (art, titel, kurz, text, felder als JSON, video), `physio_links` (a_id, b_id, in beide Richtungen) – in `003_physio.sql`; `physio_bilder` (eintrag_id, reihenfolge, breite, hoehe) + Storage-Bucket `physio-bilder` – in `004_physio_bilder.sql` |
 | Training | `training_uebungen` (name, physio_id = Verweis auf `physio_eintraege`, notiz, messung als JSON), `einheiten` (datum, titel, art, gefuehl 1–5, belastung 1–10, dauer, notiz), `saetze` (einheit_id, uebung_id, reihenfolge, wdh, gewicht, zeit in s, distanz in m) – in `008_training.sql`; später `trainingsplaene`, `plan_einheiten` |
 | Gewohnheiten | `gewohnheiten` (art aufbau/abbau, messart haken/anzahl/zeit, ziel), `gewohnheit_logs`, `ausloeser` |
-| Ziele | `lebensziele`, `visionen` |
+| Ziele | `ziel_bereiche` (name, vision), `lebensziele` (bereich_id, titel, warum, zieldatum, status), `ziel_schritte` (ziel_id, text, erledigt_am) – in `011_ziele.sql` |
 | Affirmationen | `affirmationen` (text, lebensziel_id) |
 | Wissen | `quiz_fragen`, `quiz_ergebnisse` |
 | Bücher | `buecher` (titel, autor, status, cover, zusammenfassung als Markdown) |

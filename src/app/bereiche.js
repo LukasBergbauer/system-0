@@ -7,10 +7,11 @@ import '../module/kalender/index.js';
 import '../module/routinen/index.js';
 import '../module/physio/index.js';
 import '../module/training/index.js';
+import '../module/ziele/index.js';
 import { einstellungenBereich } from './einstellungen.js';
 import { mehrBereich } from './mehr.js';
 
-import './bald.js'; // Ziele als „Kommt bald“ (nach den echten Modulen laden)
+import './bald.js'; // „Kommt bald“-Platzhalter (nach den echten Modulen laden)
 
 register(einstellungenBereich);
 register(mehrBereich);

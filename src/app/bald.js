@@ -5,9 +5,7 @@ import { el } from '../ui/dom.js';
 import { card } from '../ui/card.js';
 import { register, alleBereiche } from '../core/router.js';
 
-const BALD = [
-  { id: 'ziele', titel: 'Ziele', symbol: 'ziele' },
-];
+const BALD = []; // z. B. { id: 'affirmationen', titel: 'Affirmationen', symbol: 'ziele' }
 
 const ansicht = () => card({
   children: [el('p', { class: 'app__note', text: 'Kommt bald. Dieser Bereich wird gerade gebaut.' })],

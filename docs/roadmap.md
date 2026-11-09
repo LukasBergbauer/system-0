@@ -316,6 +316,8 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 
 ## Phase 3 – Kopf & Richtung
 - [ ] Lebensziele und Visionen (`module/ziele.md`)
+  - [x] Erste Fassung (09.11.2026): Bereiche mit Vision, Ziele (Warum, Zieldatum, Status), Schritte, „Nächster Schritt“ auf Heute,
+        Suche. Migration `011_ziele.sql`; `sw.js` `v53`. Offen: Migration ausführen, auf Geräten prüfen
 - [ ] Affirmationen täglich, passend zu den Zielen (`module/affirmationen.md`)
 - [ ] Gewohnheiten aufbauen und abbauen (`module/gewohnheiten.md`)
 
@@ -328,3 +330,5 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 - [ ] Routinen-Sperre
 - [ ] PhysioZentrum: Lernpfade (Mindmap selbst kommt schon mit dem PhysioZentrum), Bilder, Notion
 - [ ] Notion-Anbindung
+- [ ] Idee KI-Auswertung (Wochenrückblick über alle Module): kostet je nach Anbieter Geld bzw. Datenschutz klären;
+      kostenlos jetzt schon: Export-JSON in einen Claude-Chat geben

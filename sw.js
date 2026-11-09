@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v52';
+const VERSION = 'v53';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -47,6 +47,7 @@ const APP_FILES = [
   './src/module/heute/kacheln.js',
   './src/module/heute/kalender-karte.js',
   './src/module/heute/routinen-leiste.js',
+  './src/module/heute/ziele-leiste.js',
   './src/module/heute/verlauf.js',
   './src/module/heute/donut.js',
   './src/module/todos/index.js',
@@ -78,6 +79,12 @@ const APP_FILES = [
   './src/module/routinen/karte.js',
   './src/module/routinen/bearbeiten.js',
   './src/module/routinen/durchlauf.js',
+  './src/module/ziele/index.js',
+  './src/module/ziele/data.js',
+  './src/module/ziele/view.js',
+  './src/module/ziele/karte.js',
+  './src/module/ziele/bereich.js',
+  './src/module/ziele/ziel.js',
   './src/module/training/index.js',
   './src/module/training/daten.js',
   './src/module/training/rechnen.js',
@@ -94,6 +101,7 @@ const APP_FILES = [
   './src/module/training/durchlauf.js',
   './src/module/heute/training.js',
   './src/styles/training.css',
+  './src/styles/ziele.css',
   './src/module/physio/index.js',
   './src/module/physio/view.js',
   './src/module/physio/daten.js',

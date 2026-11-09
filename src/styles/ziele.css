@@ -1,0 +1,21 @@
+/* Modul „Ziele“: Bereichs-Karten (Glas wie .routine), Ziel-Zeilen, Schritte im Modal. Nur Werte aus tokens.css. */
+.ziele { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+.ziele__raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-4); width: 100%; }
+.ziel-bereich { display: flex; flex-direction: column; align-items: stretch; gap: var(--space-3); padding: var(--space-5); border-radius: var(--radius-gross);
+  background: var(--glas-verlauf); border: 1px solid var(--glas-rand); box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%); }
+.ziel-bereich > .btn { align-self: flex-start; }
+.ziel-bereich__vision { margin: var(--space-1) 0 0; color: var(--text-2); font-style: italic; white-space: pre-line; }
+.ziel-bereich__liste { display: flex; flex-direction: column; gap: var(--space-2); }
+.ziel-bereich__erreicht summary { cursor: pointer; color: var(--text-2); font-size: var(--fs-small); }
+.ziel-bereich__erreicht .ziel-bereich__liste { margin-top: var(--space-2); }
+.ziel-zeile { display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-3); font: inherit; color: inherit; text-align: left;
+  border: 0; border-radius: var(--radius); background: var(--surface-2); cursor: pointer; }
+.ziel-zeile__titel { font-weight: 600; }
+.ziel-zeile small { color: var(--text-2); font-size: var(--fs-label); }
+.ziel-zeile--pausiert, .ziel-zeile--erreicht { opacity: .6; }
+.ziele-text { resize: vertical; min-height: 80px; }
+.ziel-schritte { display: flex; flex-direction: column; }
+.ziel-schritt { display: flex; align-items: center; gap: var(--space-2); }
+.ziel-schritt .check { flex: 1; }
+.ziel-schritt__weg { width: var(--tap); height: var(--tap); flex: none; font-size: 20px; color: var(--text-3); background: none; border: 0; cursor: pointer; }

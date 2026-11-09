@@ -1,4 +1,4 @@
-// Suche über To-dos, Termine, Physio-Punkte, Trainings-Übungen und -Pläne: Suchfeld oben in der Seitenleiste oder ⌘K / Strg+K.
+// Suche über To-dos, Termine, Physio-Punkte, Trainings-Übungen und -Pläne, Ziele: Suchfeld oben in der Seitenleiste oder ⌘K / Strg+K.
 // Liest nur über core/ (store, Google-Zwischenspeicher). Ein Treffer öffnet seinen Bereich über den
 // Router-Zusatz #/<bereich>/<id>; der Bereich liest ihn mit zusatzNehmen() und öffnet den Eintrag.
 // Enter öffnet den ersten Treffer, Esc schließt.
@@ -16,9 +16,9 @@ const naehe = (iso) => Math.abs(new Date(iso) - Date.now()); // Termine: zuerst 
 
 // Alle durchsuchbaren Einträge, schon in der Reihenfolge, in der sie erscheinen sollen.
 async function laden() {
-  const [todos, termine, google, physio, uebungen, plaene, planEinheiten] = await Promise.all([
+  const [todos, termine, google, physio, uebungen, plaene, planEinheiten, zielBereiche, ziele] = await Promise.all([
     getAll('todos'), getAll('termine'), getMeta('kalender:google'), getAll('physio_eintraege'),
-    getAll('training_uebungen'), getAll('trainingsplaene'), getAll('plan_einheiten'),
+    getAll('training_uebungen'), getAll('trainingsplaene'), getAll('plan_einheiten'), getAll('ziel_bereiche'), getAll('lebensziele'),
   ]);
   const physioName = new Map(physio.map((p) => [p.id, p.titel]));
   const uebungName = (u) => (u.physio_id && physioName.get(u.physio_id)) || u.name || 'Übung';
@@ -55,6 +55,13 @@ async function laden() {
         const titel = planEinheiten.filter((pe) => pe.plan_id === p.id).map((pe) => pe.titel).filter(Boolean).join(', ');
         return { id: `plaene:${p.id}`, titel: p.name || 'Plan', text: titel, sub: [p.aktiv && 'aktiv', titel].filter(Boolean).join(' · ') };
       }),
+    },
+    {
+      titel: 'Ziele', bereich: 'ziele',
+      eintraege: [
+        ...ziele.map((z) => ({ id: z.id, titel: z.titel || 'Ziel', text: z.warum, sub: zielBereiche.find((b) => b.id === z.bereich_id)?.name })),
+        ...zielBereiche.map((b) => ({ id: b.id, titel: b.name, text: b.vision, sub: 'Bereich' })),
+      ],
     },
   ];
 }
