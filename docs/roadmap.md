@@ -354,8 +354,10 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         017 ausgeführt, von Lukas auf Geräten geprüft
 - [ ] PhysioZentrum: Kosmos-Startseite mit Bubbles (`module/physio.md` → „Plan Kosmos“)
   - [x] Gebaut (09.11.2026): heller Glas-Kosmos, Bubbles je Pfad, Hover = eindringen, Klick = Innenansicht; Art Trainingsform.
-        Migration `018_physio_trainingsform.sql`; `sw.js` `v72`. Offen: 018 ausführen, auf Geräten prüfen
-  - [ ] Danach: Mindmap-Overlay im Kosmos-Stil, Lernpfade, Notion
+        Migration `018_physio_trainingsform.sql`; `sw.js` `v72`. 018 ausgeführt, von Lukas auf Geräten geprüft
+  - [x] Mindmap im Glas-Kosmos-Stil (09.11.2026): Glas-Bubbles statt Pillen, Lichtfäden, Schweben unregelmäßig (Kosmos + Mindmap),
+        Bubble antippen = schwebt in die Mitte, Rest blendet aus; Knopf „Text“ öffnet den Eintrag (Glas-Karten). `sw.js` `v73`. Offen: auf Geräten prüfen
+  - [ ] Danach: Lernpfade, Notion
 - [ ] Notion-Anbindung
 - [ ] Idee KI-Auswertung (Wochenrückblick über alle Module): kostet je nach Anbieter Geld bzw. Datenschutz klären;
       kostenlos jetzt schon: Export-JSON in einen Claude-Chat geben

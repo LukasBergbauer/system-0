@@ -6,15 +6,16 @@ import { el } from '../../ui/dom.js';
 import { art } from './arten.js';
 import { oeffneTiefe } from './tiefe.js';
 import { oeffneMindmap } from './overlay.js';
+import { schwebeTakt } from './schweben.js';
 
-// x/y in % der Bühne: breit (Mac) und schmal (iPhone hochkant)
+// x/y in % der Bühne: breit (Mac) und schmal (iPhone hochkant); bewusst etwas schief. g = Größe
 const PFADE = [
-  { art: 'krankheitsbild', x: 30, y: 24, xs: 25, ys: 30 },
-  { art: 'trainingsform', x: 70, y: 24, xs: 75, ys: 30 },
-  { art: 'muskel', x: 30, y: 76, xs: 25, ys: 70 },
-  { art: 'uebung', x: 70, y: 76, xs: 75, ys: 70 },
-  { art: 'region', x: 10, y: 50, xs: 50, ys: 10, klein: true },
-  { art: 'technik', x: 90, y: 50, xs: 50, ys: 90, klein: true },
+  { art: 'krankheitsbild', x: 28, y: 22, xs: 26, ys: 27, g: 1.08 },
+  { art: 'trainingsform', x: 73, y: 29, xs: 77, ys: 33, g: 0.94 },
+  { art: 'muskel', x: 33, y: 79, xs: 24, ys: 67, g: 1 },
+  { art: 'uebung', x: 67, y: 72, xs: 72, ys: 75, g: 1.12 },
+  { art: 'region', x: 11, y: 45, xs: 46, ys: 10, klein: true, g: 1.06 },
+  { art: 'technik', x: 89, y: 58, xs: 56, ys: 91, klein: true, g: 0.92 },
 ];
 const kannHover = () => matchMedia('(hover: hover)').matches;
 
@@ -46,8 +47,8 @@ export function kosmos({ signal }) {
     const st = b.style;
     st.setProperty('--x', `${p.x}%`); st.setProperty('--y', `${p.y}%`);
     st.setProperty('--xs', `${p.xs}%`); st.setProperty('--ys', `${p.ys}%`);
-    st.setProperty('--takt', `${7 + (i * 1.7) % 5}s`); // jede schwebt in eigenem Takt
-    st.setProperty('--verz', `${-i * 1.3}s`);
+    st.setProperty('--g', p.g);
+    schwebeTakt(st, i);
     st.setProperty('--tiefe', p.klein ? 0.5 : 1);
     b.pfad = p; b.zahl = zahl; b.liste = liste;
 

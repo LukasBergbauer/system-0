@@ -72,7 +72,7 @@
 
 /* ---------- Bubbles ---------- */
 .kos__bubble {
-  --groesse: 124px;
+  --groesse: calc(124px * var(--g, 1));
   position: absolute;
   left: var(--x);
   top: var(--y);
@@ -91,15 +91,25 @@
   transition: transform .9s var(--kosmos-kurve), opacity .6s;
   -webkit-tap-highlight-color: transparent;
 }
-.kos__bubble--klein { --groesse: 92px; }
+.kos__bubble--klein { --groesse: calc(92px * var(--g, 1)); }
+/* Schweben: x, y und Drehen als getrennte Eigenschaften mit eigenem Takt (Takte setzt kosmos.js)
+   → weiche, nie gleich wiederkehrende Bahn. Die Haut wabbelt wie eine Seifenblase. */
 .kos__schwebe {
   position: absolute;
   inset: 0;
-  animation: kos-schweben var(--takt) ease-in-out var(--verz) infinite;
+  animation:
+    kos-x var(--tx) ease-in-out var(--verz) infinite alternate,
+    kos-y var(--ty) ease-in-out var(--verz) infinite alternate,
+    kos-dreh var(--tr) ease-in-out var(--verz) infinite alternate;
 }
-@keyframes kos-schweben {
-  33% { transform: translate(6px, -10px) rotate(2deg); }
-  66% { transform: translate(-7px, 5px) rotate(-1.5deg); }
+.kos__haut { animation: kos-wabbeln var(--tw) ease-in-out var(--verz) infinite alternate; }
+@keyframes kos-x { from { translate: calc(var(--amp) * -9px) 0; } to { translate: calc(var(--amp) * 10px) 0; } }
+@keyframes kos-y { from { transform: translateY(calc(var(--amp) * 11px)); } to { transform: translateY(calc(var(--amp) * -13px)); } }
+@keyframes kos-dreh { from { rotate: -2.5deg; } to { rotate: 3deg; } }
+@keyframes kos-wabbeln {
+  0% { scale: 1.03 .97; }
+  50% { scale: .98 1.025; }
+  100% { scale: 1.015 .99; }
 }
 
 /* Seifenblasen-Glas mit schimmerndem Rand */
@@ -160,15 +170,16 @@
 .kos__bubble--drin .kos__haut { opacity: .75; }
 .kos__bubble--drin .kos__aussen { opacity: 0; transform: scale(.6); }
 .kos__bubble--drin .kos__innen { opacity: 1; transform: none; }
-.kos__bubble--drin .kos__schwebe { animation-play-state: paused; }
+.kos__bubble--drin .kos__schwebe,
+.kos__bubble--drin .kos__haut { animation-play-state: paused; }
 
 .kos__zeile { text-align: center; color: var(--text-3); font-size: var(--fs-small); margin: 0; }
 
 /* iPhone hochkant: andere Anordnung, kleinere Bubbles */
 @media (max-width: 600px) {
   .kos { height: 580px; }
-  .kos__bubble { left: var(--xs); top: var(--ys); --groesse: 104px; }
-  .kos__bubble--klein { --groesse: 80px; }
+  .kos__bubble { left: var(--xs); top: var(--ys); --groesse: calc(104px * var(--g, 1)); }
+  .kos__bubble--klein { --groesse: calc(80px * var(--g, 1)); }
   .kos__kern { width: 112px; height: 112px; }
   .kos--fokus .kos__bubble.kos__bubble--drin { --zoom: 1.6; }
   .kos__name { font-size: 9px; letter-spacing: .02em; }

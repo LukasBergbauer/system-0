@@ -5,7 +5,8 @@
 // 4. Übergang einschalten und nur dieses Verschieben/Skalieren auf null laufen lassen.
 // So muss das Gerät pro Bild nichts neu berechnen (keine Breite/Höhe), das übernimmt die Grafikeinheit.
 //
-// gleite(ebene, knoepfe, aendern): aendern() setzt Klassen und Ziel-Positionen (über setzeZiel).
+// gleite(ebene, knoepfe, aendern, spaeter): aendern() setzt Klassen und Ziel-Positionen (über setzeZiel).
+// spaeter = ms, um die neue Punkte erst nach den anderen losschweben.
 
 // Ziel eines Punkts (Abstand zur Mitte der Karte in px). Merkt sich die Grund-Verschiebung.
 export function setzeZiel(knopf, { x, y }) {
@@ -16,7 +17,7 @@ export function setzeZiel(knopf, { x, y }) {
 
 const mitteVon = (r) => ({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
 
-export function gleite(ebene, knoepfe, aendern) {
+export function gleite(ebene, knoepfe, aendern, spaeter = 0) {
   // 1. vorher messen (nur Punkte, die schon da sind)
   const vorher = new Map();
   for (const knopf of knoepfe) vorher.set(knopf, knopf.getBoundingClientRect());
@@ -33,6 +34,10 @@ export function gleite(ebene, knoepfe, aendern) {
       const { x, y } = knopf.ziel ?? { x: 0, y: 0 };
       knopf.style.transform = `${knopf.basis} translate(${-x}px, ${-y}px) scale(0.5)`;
       knopf.classList.add('mm-knoten--neu');
+      if (spaeter) {
+        knopf.style.transitionDelay = `${spaeter}ms`;
+        setTimeout(() => knopf.style.removeProperty('transition-delay'), spaeter + 50);
+      }
       continue;
     }
     const neu = knopf.getBoundingClientRect();

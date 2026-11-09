@@ -274,8 +274,15 @@ Vision: Physio in der Mitte, drumherum je Pfad eine Bubble, schwebend wie im Wel
 Stand (09.11.2026, `sw.js` `v72`): gebaut. `kosmos.js` (Bühne, Bubbles, Eindringen, Parallaxe), `tiefe.js` (Innenansicht mit
 eigenem Verlaufsschritt; Eintrag → Mindmap, Zurück-Kette Mindmap → Bubble → Kosmos geht), `view.js` ohne Kacheln,
 Stile `physio-kosmos.css`, `physio-tiefe.css`. Art `trainingsform` in `arten.js`. Lokal geprüft (Mac-Breite, iPhone-Größe).
-Offen: Lukas führt `018_physio_trainingsform.sql` aus (vorher keine Trainingsform anlegen, sonst stockt der Abgleich), prüft auf Geräten.
-Nächster Schritt: Mindmap-Overlay im Glas-Kosmos-Stil (statt Elfenbein), dann Lernpfade.
+018 ausgeführt, von Lukas auf Geräten geprüft.
+
+Stand Glas-Mindmap (09.11.2026, `sw.js` `v73`): Overlay ohne `.hell`, Hintergrund = App-Farbwolken.
+- Schweben (`schweben.js`, Keyframes in `physio-kosmos.css`): x, y, Drehen, Wabbeln je eigener krummer Takt; Kosmos schief angeordnet, Größen gemischt (`g`)
+- `knoten.js`: Knopf (gleitet) > `.mm-knoten__blase` (Glas, schwebt); Größe je Punkt `--v` aus der id. `fokus-layout.js`: runde Bubbles, Plätze leicht verschoben
+- `fokus.js`: Bubble antippen → schwebt in die Mitte, alle anderen blenden aus, neue Nachbarn danach (`gleite(…, spaeter)`); Mitte antippen tut nichts,
+  Knopf „Text“ öffnet den Eintrag. Linien = gebogene Akzent-Fäden von Rand zu Rand (Verlauf `mm-faden`)
+- Eintrag: jedes Feld eine Glas-Karte (`physio-eintrag.css`). Lokal geprüft (Mac-Breite, iPhone-Größe). Offen: Lukas prüft auf Geräten.
+Nächster Schritt: Lernpfade.
 
 ## Offen / bitte prüfen (aus der Planung, erledigt bzw. unter „Wünsche für später“)
 - Das Overlay ist hell (Elfenbein-Weiß mit dunkler Schrift), während die App sonst dunkel ist. So gewünscht;

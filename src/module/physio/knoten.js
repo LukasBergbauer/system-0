@@ -3,9 +3,15 @@
 // vom Nachbarn zur Mitte wird (so kann er sichtbar dorthin gleiten).
 // Lange drücken (iPhone) oder Rechtsklick (Mac) → onLang(id), z. B. Verknüpfung lösen.
 // Mit Titelbild wird der Punkt ein runder Ball (Foto schwarz-weiß, Titel darunter), Klasse mm-knoten--ball.
+// Aufbau: Knopf (Platz, gleitet) > Blase (Glas, schwebt eigenständig) > Inhalt. Größe je Punkt leicht anders (--v).
 import { el } from '../../ui/dom.js';
 import { art } from './arten.js';
 import { bildUrl } from './bilder.js';
+import { schwebeTakt } from './schweben.js';
+
+// fester Zahlenwert je id (gleicher Punkt = gleicher Takt und gleiche Größe)
+const zahl = (id) => [...id].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
+const teile = (knopf) => knopf.firstChild.children;
 
 const LANG_MS = 550;
 
@@ -39,13 +45,16 @@ function langDruecken(knopf, ausloesen) {
 }
 
 export function knoten(id, onClick, onLang) {
-  const knopf = el('button', { class: 'mm-knoten', attrs: { type: 'button' } }, [
+  const knopf = el('button', { class: 'mm-knoten', attrs: { type: 'button' } }, el('span', { class: 'mm-knoten__blase' }, [
     el('span', { class: 'mm-knoten__art label' }),
     el('span', { class: 'mm-knoten__titel' }),
     el('span', { class: 'mm-knoten__kurz', attrs: { 'aria-hidden': 'true' } }),
     el('span', { class: 'mm-knoten__foto', attrs: { 'aria-hidden': 'true' } }, el('img', { attrs: { alt: '', decoding: 'async' } })),
-  ]);
+  ]));
   knopf.dataset.id = id;
+  const n = zahl(id);
+  schwebeTakt(knopf.style, n % 97);
+  knopf.style.setProperty('--v', (0.88 + (n % 23) / 100).toFixed(2));
   const warLang = langDruecken(knopf, () => onLang?.(id));
   knopf.addEventListener('click', () => {
     if (!warLang()) onClick(id);
@@ -72,7 +81,7 @@ function setzeFoto(knopf, bild) {
 // Text, Art und Foto auf den aktuellen Stand bringen (Titel kann sich auf dem anderen Gerät ändern).
 export function fuelleKnoten(knopf, eintrag, bild = null) {
   setzeFoto(knopf, bild);
-  const [label, titel, kurz] = knopf.children;
+  const [label, titel, kurz] = teile(knopf);
   const name = art(eintrag.art).name;
   knopf.dataset.art = eintrag.art;
   // lange Titel bekommen in der Mitte eine kleinere Schrift (sonst nur Silbenreste)
@@ -85,7 +94,7 @@ export function fuelleKnoten(knopf, eintrag, bild = null) {
 
 // Platzhalter „+N weitere“, wenn nicht alle Nachbarn auf die Karte passen.
 export function fuelleMehr(knopf, anzahl) {
-  const [label, titel, kurz] = knopf.children;
+  const [label, titel, kurz] = teile(knopf);
   knopf.dataset.art = 'mehr';
   knopf.classList.remove('mm-knoten--lang');
   setzeFoto(knopf, null);

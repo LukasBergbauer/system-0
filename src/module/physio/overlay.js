@@ -1,4 +1,4 @@
-// Mindmap-Overlay: helle Vollbild-Fläche, die sich aus dem angetippten Knopf heraus öffnet
+// Mindmap-Overlay: Vollbild-Fläche im Glas-Look, die sich aus dem angetippten Knopf heraus öffnet
 // (Kreis wächst vom Knopf aus) und beim Schließen wieder dorthin zurückschrumpft.
 // Schließen: ✕, Esc, oder Zurück-Wischen/-Taste vor dem ersten Schritt (Verlauf: mm-verlauf.js).
 // Inhalt (Suche, Fokus-Karte, Liste, Verlauf): mindmap-inhalt.js.
@@ -27,7 +27,7 @@ export function oeffneMindmap({ ausKnopf, signal, mitteId } = {}) {
   zu.addEventListener('click', () => schliessen());
   const inhalt = mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId });
 
-  const dialog = el('dialog', { class: 'mm hell', attrs: { 'aria-label': 'Mindmap' } }, [
+  const dialog = el('dialog', { class: 'mm', attrs: { 'aria-label': 'Mindmap' } }, [
     el('div', { class: 'mm__leiste' }, [
       zurueckKnopf,
       el('p', { class: 'marke mm__marke', text: 'Mindmap' }),

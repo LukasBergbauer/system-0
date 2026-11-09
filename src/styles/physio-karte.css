@@ -6,9 +6,9 @@
   position: absolute;
   inset: 0;
   max-width: none;
-  --mm-gleiten: 650ms; /* gleiche Zahl wie GLEITEN_MS in fokus.js */
-  /* sanft los, flüssig, sanft an (statt schnellem Start mit langem Ausrollen) */
-  --mm-kurve: cubic-bezier(0.65, 0, 0.35, 1);
+  --mm-gleiten: 900ms; /* gleiche Zahl wie GLEITEN_MS in fokus.js */
+  /* weich los, schwebt an und federt ganz leicht nach wie eine Blase */
+  --mm-kurve: cubic-bezier(0.34, 1.22, 0.5, 1);
 }
 .mm-karte__linien,
 .mm-karte__knoten {
@@ -17,21 +17,26 @@
   left: 0;
   width: 100%;
 }
+/* Lichtfäden: Akzent, zur Bubble hin heller (Verlauf mm-faden in fokus.js), leicht leuchtend */
 .mm-karte__linien {
-  stroke: var(--text);
-  stroke-opacity: 0.28;
-  stroke-width: 1;
+  stroke: url(#mm-faden);
+  stroke-width: 1.6;
+  stroke-linecap: round;
   fill: none;
+  filter: drop-shadow(0 0 3px color-mix(in oklch, var(--accent) 55%, transparent));
+}
+.mm-karte__linien stop {
+  stop-color: var(--accent);
 }
 .mm-karte__linien .quer {
-  stroke-opacity: 0.12;
-  stroke-dasharray: 3 4;
+  stroke-width: 1;
+  stroke-opacity: 0.5;
+  stroke-dasharray: 2 5;
 }
-/* Neue Mitte: Linien erscheinen erst, wenn die Punkte angekommen sind */
+/* Neue Mitte: Fäden erscheinen erst, wenn die neuen Bubbles angekommen sind */
 .mm-karte__linien--ein {
-  animation: mm-linien var(--mm-gleiten) var(--mm-kurve) both;
+  animation: mm-linien calc(var(--mm-gleiten) + 400ms) var(--ease) both;
 }
-/* alte Linien beim Wechsel der Mitte */
 .mm-karte__linien--alt {
   animation: mm-linien-weg 250ms var(--ease) both;
 }
@@ -39,29 +44,23 @@
   to { opacity: 0; }
 }
 @keyframes mm-linien {
-  0%, 60% { opacity: 0; }
+  0%, 65% { opacity: 0; }
   100% { opacity: 1; }
 }
 
-/* ---------- Punkte ---------- */
+/* ---------- Punkte: Knopf = Platz (gleitet), Blase = Glas (schwebt, Takte aus schweben.js) ---------- */
 .mm-knoten {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: var(--mm-breit);
-  height: var(--mm-hoch);
-  padding: 0 var(--space-2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
+  width: calc(var(--mm-breit) * var(--v, 1));
+  height: calc(var(--mm-hoch) * var(--v, 1));
+  padding: 0;
   font: inherit;
   color: var(--text);
   text-align: center;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  background: none;
+  border: 0;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   /* langes Drücken (Verknüpfung lösen) soll auf dem iPhone kein Text-/Kopiermenü öffnen */
@@ -73,9 +72,40 @@
   will-change: transform;
   transition:
     transform var(--mm-gleiten) var(--mm-kurve),
-    opacity var(--mm-gleiten) var(--mm-kurve),
-    border-color var(--duration) var(--ease), /* kurz, damit Hover am Mac direkt reagiert */
-    background-color var(--duration) var(--ease);
+    opacity calc(var(--mm-gleiten) * 0.6) var(--ease);
+}
+.mm-knoten__blase {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 0 14%;
+  border-radius: 50%;
+  isolation: isolate;
+  animation:
+    kos-x var(--tx) ease-in-out var(--verz) infinite alternate,
+    kos-y var(--ty) ease-in-out var(--verz) infinite alternate;
+}
+/* Seifenblasen-Glas wie im Kosmos (ohne Unschärfe dahinter, damit viele Bubbles flüssig bleiben) */
+.mm-knoten__blase::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 50%;
+  border: 1px solid var(--glas-rand);
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255,255,255,.95) 0 6%, rgba(255,255,255,.4) 24%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.55) 50%, color-mix(in oklch, var(--accent) 24%, rgba(255,255,255,.5)) 100%);
+  box-shadow:
+    inset -8px -10px 22px color-mix(in oklch, var(--accent) 28%, transparent),
+    inset 6px 8px 16px color-mix(in oklch, var(--accent-2) 14%, transparent),
+    var(--schatten);
+  animation: kos-wabbeln var(--tw) ease-in-out var(--verz) infinite alternate;
+  transition: box-shadow var(--duration) var(--ease);
 }
 /* Text eines Punkts, der gerade die Rolle wechselt: aus, während er gleitet; danach sanft ein */
 .mm-knoten__art,
@@ -87,17 +117,26 @@
   opacity: 0;
   transition-duration: 120ms;
 }
-.mm-knoten:hover {
-  border-color: var(--text-2);
+@media (hover: hover) {
+  .mm-knoten:not(.mm-knoten--mitte):hover .mm-knoten__blase::before {
+    box-shadow:
+      inset -8px -10px 22px color-mix(in oklch, var(--accent) 40%, transparent),
+      0 0 0 1px color-mix(in oklch, var(--accent) 45%, transparent),
+      var(--schatten-hoch);
+  }
 }
 .mm-knoten:focus-visible {
+  outline: none;
+}
+.mm-knoten:focus-visible .mm-knoten__blase {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 .mm-knoten__art {
-  font-size: 9px;
-  letter-spacing: 0.12em; /* etwas enger als sonst, damit „Krankheitsbild“ in jeden Punkt passt */
-  color: var(--text-2);
+  font-size: 8px;
+  letter-spacing: 0.08em; /* eng, damit „Krankheitsbild“ in jede Bubble passt */
+  color: var(--accent);
+  font-weight: 600;
 }
 .mm-knoten__titel {
   max-width: 100%;
@@ -107,36 +146,49 @@
   line-height: 1.2;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-/* Art an der Form erkennbar (ganz dezent, alles bleibt grau-weiß) */
-.mm-knoten[data-art="krankheitsbild"] {
-  /* getönt, aber deckend, damit keine Linie durchscheint */
-  background: linear-gradient(var(--surface-2), var(--surface-2)) var(--bg);
+/* Art dezent an der Haut erkennbar */
+.mm-knoten[data-art="krankheitsbild"] .mm-knoten__blase::before {
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255,255,255,.95) 0 6%, rgba(255,255,255,.4) 24%, transparent 50%),
+    radial-gradient(circle at 50% 50%, color-mix(in oklch, var(--accent) 12%, rgba(255,255,255,.6)) 50%, color-mix(in oklch, var(--accent) 34%, rgba(255,255,255,.4)) 100%);
 }
-.mm-knoten[data-art="region"] {
+.mm-knoten[data-art="region"] .mm-knoten__blase::before {
   border-width: 2px;
 }
-.mm-knoten[data-art="technik"] {
-  border-style: dashed;
+.mm-knoten[data-art="technik"] .mm-knoten__blase::before,
+.mm-knoten[data-art="mehr"] .mm-knoten__blase::before {
+  border: 1px dashed color-mix(in oklch, var(--accent) 50%, transparent);
 }
-.mm-knoten[data-art="mehr"] {
-  border-style: dashed;
-  background: none;
+.mm-knoten[data-art="mehr"] .mm-knoten__blase::before {
+  background: rgba(255,255,255,.25);
+  box-shadow: none;
 }
 
-/* Mitte: großer Kreis in Serifenschrift */
+/* Mitte: große Bubble, leuchtet im Akzent, schwebt kaum */
 .mm-knoten--mitte {
   z-index: 1;
   width: var(--mm-mitte);
   height: var(--mm-mitte);
-  padding: var(--space-3);
-  border-color: var(--text);
-  cursor: pointer; /* antippen öffnet den Eintrag */
+  cursor: default;
+}
+.mm-knoten--mitte .mm-knoten__blase {
+  padding: 0 16%;
+  --amp: 0.35;
+}
+.mm-knoten--mitte .mm-knoten__blase::before {
+  border-color: color-mix(in oklch, var(--accent) 40%, white);
+  box-shadow:
+    inset -12px -14px 30px color-mix(in oklch, var(--accent) 34%, transparent),
+    inset 8px 10px 20px color-mix(in oklch, var(--accent-2) 16%, transparent),
+    var(--schatten-hoch),
+    0 0 50px 4px color-mix(in oklch, var(--accent) 30%, transparent);
 }
 .mm-knoten--mitte .mm-knoten__titel {
   font-size: var(--fs-title);
+  font-weight: 600;
   -webkit-line-clamp: 3;
 }
 .mm-knoten--mitte.mm-knoten--lang .mm-knoten__titel {
@@ -166,9 +218,13 @@
   padding: var(--space-2) var(--space-3);
   font-size: var(--fs-small);
   line-height: 1.35;
-  color: var(--accent-ink);
-  background: var(--accent);
-  border-radius: 10px;
+  color: var(--text);
+  background: var(--glas-verlauf);
+  border: 1px solid var(--glas-rand);
+  box-shadow: var(--schatten);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  border-radius: var(--radius-klein);
   opacity: 0;
   pointer-events: none;
   transform: translate(-50%, -4px);
@@ -191,7 +247,9 @@
   .mm-karte {
     --mm-gleiten: 0ms;
   }
-  .mm-karte__linien--ein {
+  .mm-karte__linien--ein,
+  .mm-knoten__blase,
+  .mm-knoten__blase::before {
     animation: none;
   }
 }

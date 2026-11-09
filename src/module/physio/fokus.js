@@ -1,8 +1,8 @@
-// Fokus-Karte: ein Punkt in der Mitte, seine Verknüpfungen schweben ringsum.
-// Antippen eines Nachbarn → waehle(id): derselbe Knopf gleitet in die Mitte, die alte Mitte
-// rutscht zu den Nachbarn, nicht mehr verbundene Punkte blenden aus, neue schweben aus der Mitte ein.
-// Linien: Mitte → jeder Nachbar; fein auch zwischen Nachbarn, die untereinander verknüpft sind.
-// Mitte antippen → oeffnen(). Unten: „+ Verknüpfen“ → verknuepfen(). Nachbar lange drücken/Rechtsklick → loesen(mitte, nachbar).
+// Fokus-Karte: ein Punkt in der Mitte, seine Verknüpfungen schweben als Glas-Bubbles ringsum.
+// Antippen eines Nachbarn → waehle(id): diese Bubble schwebt in die Mitte, alle anderen blenden aus,
+// danach perlen die neuen Nachbarn aus der Mitte heraus.
+// Linien: gebogene Lichtfäden Mitte → Nachbar (enden am Rand der Bubble); fein auch zwischen verknüpften Nachbarn.
+// Unten: „Text“ → oeffnen() (Eintrag), „+ Verknüpfen“ → verknuepfen(). Nachbar lange drücken/Rechtsklick → loesen(mitte, nachbar).
 // Punkte mit Titelbild sind runde Bälle (knoten.js); dann passen auf dem iPhone 6 statt 8 in den Ring.
 // const k = fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }); k.zeige(eintraege, links, mitteId, bilder);
 import { el } from '../../ui/dom.js';
@@ -15,10 +15,11 @@ import { titelbilder } from './bilder.js';
 const SVG = 'http://www.w3.org/2000/svg';
 const MEHR = 'mehr';
 const AUSBLENDEN_MS = 400;
+const NEUE_SPAETER_MS = 320; // neue Nachbarn erst, wenn die alten weg sind
 // Dauer des Gleitens, muss zu --mm-gleiten in physio-karte.css passen. Der Text eines Punkts, der die Rolle
 // wechselt (Nachbar ↔ Mitte), ist währenddessen aus (Schrift springt unsichtbar um) und blendet schon kurz
 // vor dem Ankommen wieder ein, damit nichts „einrastet“.
-const GLEITEN_MS = 650;
+const GLEITEN_MS = 900;
 const TEXT_EIN_MS = Math.round(GLEITEN_MS * 0.55);
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -30,6 +31,9 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
   linien.setAttribute('aria-hidden', 'true');
   const ebene = el('div', { class: 'mm-karte__knoten' });
   const fuss = el('div', { class: 'mm-karte__fuss' });
+  const text = el('button', {
+    class: 'mm-karte__text', text: 'Text', attrs: { type: 'button' }, on: { click: () => oeffnen() },
+  });
   const plus = el('button', {
     class: 'chip chip--aktion mm-karte__plus', text: '+ Verknüpfen',
     attrs: { type: 'button' }, on: { click: () => verknuepfen() },
@@ -42,8 +46,8 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
 
   function tippen(id) {
     if (!stand) return;
-    if (id === stand.mitteId) oeffnen(); // Mitte antippen: Eintrag öffnen
-    else if (id === MEHR) zeigeAlle();
+    if (id === stand.mitteId) return; // Text öffnet der eigene Knopf unten
+    if (id === MEHR) zeigeAlle();
     else waehle(id);
   }
 
@@ -74,14 +78,32 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
     setTimeout(() => knopf.remove(), AUSBLENDEN_MS);
   }
 
+  // Gebogener Faden von Rand zu Rand (Bubbles sind Glas, die Linie soll nicht hindurchscheinen)
+  function faden(a, b, ra, rb, i, klasse = '') {
+    const dx = b.x - a.x; const dy = b.y - a.y; const l = Math.hypot(dx, dy) || 1;
+    const ux = dx / l; const uy = dy / l;
+    if (l <= ra + rb + 4) return '';
+    const s = { x: a.x + ux * ra, y: a.y + uy * ra };
+    const e = { x: b.x - ux * rb, y: b.y - uy * rb };
+    const bogen = (i % 2 ? 1 : -1) * l * (0.08 + (i % 3) * 0.03);
+    const c = { x: (s.x + e.x) / 2 - uy * bogen, y: (s.y + e.y) / 2 + ux * bogen };
+    const r = (v) => Math.round(v);
+    return `<path${klasse} d="M${r(s.x)} ${r(s.y)} Q${r(c.x)} ${r(c.y)} ${r(e.x)} ${r(e.y)}"/>`;
+  }
+
   function zeichneLinien(w, h, ziele, links, neueMitte) {
     const verbunden = new Set(links.map((l) => paar(l.a_id, l.b_id)));
+    const radius = (id) => (knoepfe.get(id)?.offsetWidth ?? 0) / 2;
     const nb = ziele.filter((z) => z.id !== MEHR && z.id !== stand.mitteId);
-    const striche = nb.map((z) => `<line x1="0" y1="0" x2="${z.x}" y2="${z.y}"/>`);
+    const rm = radius(stand.mitteId);
+    const weit = Math.max(1, ...nb.map((z) => Math.hypot(z.x, z.y)));
+    const striche = [`<defs><radialGradient id="mm-faden" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="${Math.round(weit)}">`
+      + '<stop offset="0" stop-opacity=".75"/><stop offset="1" stop-opacity=".18"/></radialGradient></defs>'];
+    nb.forEach((z, i) => striche.push(faden({ x: 0, y: 0 }, z, rm, radius(z.id), i)));
     for (let i = 0; i < nb.length; i++) {
       for (let j = i + 1; j < nb.length; j++) {
         if (verbunden.has(paar(nb[i].id, nb[j].id))) {
-          striche.push(`<line class="quer" x1="${nb[i].x}" y1="${nb[i].y}" x2="${nb[j].x}" y2="${nb[j].y}"/>`);
+          striche.push(faden(nb[i], nb[j], radius(nb[i].id), radius(nb[j].id), i + j, ' class="quer"'));
         }
       }
     }
@@ -128,8 +150,10 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
     if (zuViele) ziele.push({ id: MEHR, ...punkte[plaetze - 1], mehr: alle.length - sichtbar.length });
 
     const neueMitte = mitteId !== alteMitte;
-    // Wegfallende vorher aussortieren: sie blenden mit Übergang aus (nicht im Schritt ohne Übergang)
-    const ids = new Set(ziele.map((z) => z.id));
+    const wechsel = neueMitte && alteMitte !== null && !reduceMotion();
+    // Wegfallende vorher aussortieren: sie blenden mit Übergang aus (nicht im Schritt ohne Übergang).
+    // Neue Mitte: alle außer der angetippten Bubble gehen, die neuen Nachbarn kommen danach.
+    const ids = new Set(wechsel ? [mitteId] : ziele.map((z) => z.id));
     for (const [id, knopf] of knoepfe) if (!ids.has(id)) entferne(id, knopf);
     // gleite: misst vorher, setzt den neuen Stand ohne Übergang und lässt dann nur Verschieben/Skalieren laufen
     gleite(ebene, [...knoepfe.values()], () => {
@@ -145,14 +169,14 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
         rolle(knopf, z.id === mitteId);
         setzeZiel(knopf, z);
       }
-    });
+    }, wechsel ? NEUE_SPAETER_MS : 0);
 
     zeichneLinien(w, h, ziele, links, neueMitte);
     const n = alle.length;
     fuss.replaceChildren(
       mitte.kurz && el('span', { class: 'mm-karte__kurz', text: mitte.kurz }),
       el('span', { class: 'app__note', text: n ? (n === 1 ? '1 Verknüpfung' : `${n} Verknüpfungen`) : 'Noch keine Verknüpfungen' }),
-      plus,
+      el('div', { class: 'mm-karte__knoepfe' }, [text, plus]),
     );
     alteMitte = mitteId;
   }

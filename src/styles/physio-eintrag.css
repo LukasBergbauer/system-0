@@ -11,11 +11,24 @@
   margin: 0;
 }
 
-/* ---------- Textfeld ---------- */
-.mm-textfeld {
+/* ---------- Textfeld: jede Gruppe eine Glas-Karte ---------- */
+.mm-textfeld,
+.mm-eintrag__video-zeile {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--glas-rand);
+  border-radius: var(--radius);
+  background: var(--glas-verlauf);
+  box-shadow: var(--schatten);
+  backdrop-filter: blur(var(--blur)) saturate(150%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(150%);
+  transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease);
+}
+.mm-textfeld:focus-within {
+  border-color: color-mix(in oklch, var(--accent) 45%, white);
+  box-shadow: var(--schatten-hoch);
 }
 .mm-textfeld .label {
   color: var(--text-2);
@@ -67,11 +80,7 @@
 }
 
 /* ---------- Video ---------- */
-.mm-eintrag__video-zeile {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
+
 .mm-eintrag__video {
   align-self: flex-start;
   min-height: var(--tap);

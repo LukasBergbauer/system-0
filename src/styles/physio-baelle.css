@@ -7,16 +7,14 @@
   display: none;
 }
 .mm-knoten--ball {
-  width: var(--mm-ball);
-  height: var(--mm-ball);
-  padding: 0;
-  border-radius: 50%;
-  background: var(--surface-2);
+  width: calc(var(--mm-ball) * var(--v, 1));
+  height: calc(var(--mm-ball) * var(--v, 1));
 }
+/* Foto liegt in der Glas-Bubble, ein schmaler Glasrand bleibt sichtbar */
 .mm-knoten--ball .mm-knoten__foto {
   display: block;
   position: absolute;
-  inset: 0;
+  inset: 4px;
   overflow: hidden;
   border-radius: 50%;
 }
@@ -45,9 +43,10 @@
   max-width: var(--mm-breit);
   transform: translateX(-50%);
   text-align: center;
-  /* schmaler Hintergrund in Seitenfarbe, damit Linien nicht durch den Titel laufen */
+  /* schmale Glas-Kapsel, damit Fäden nicht durch den Titel laufen */
   padding: 1px var(--space-2);
-  background: var(--bg);
+  background: var(--glas-verlauf);
+  border: 1px solid var(--glas-rand);
   border-radius: 999px;
 }
 

@@ -1,6 +1,6 @@
 /* PhysioZentrum: Mindmap-Overlay (src/module/physio/overlay.js, suche.js, anlegen.js).
    Fokus-Karte: physio-karte.css.
-   Hell durch die Klasse .hell (Tokens in tokens.css). Nur Werte aus tokens.css. */
+   Glas-Look wie der Kosmos, Hintergrund wie die App (Farbwolken). Nur Werte aus tokens.css. */
 
 /* Seite dahinter nicht mitscrollen, solange das Overlay offen ist */
 .mm-offen,
@@ -20,7 +20,12 @@
   padding: 0;
   border: 0;
   color: var(--text);
-  background: var(--bg);
+  background:
+    radial-gradient(55% 45% at 12% -5%, color-mix(in oklch, var(--accent) 45%, white) 0%, transparent 70%),
+    radial-gradient(45% 55% at 100% 0%, color-mix(in oklch, var(--accent) 50%, white) 0%, transparent 70%),
+    radial-gradient(60% 55% at 70% 105%, color-mix(in oklch, var(--accent) 60%, white) 0%, transparent 70%),
+    radial-gradient(45% 50% at -5% 85%, color-mix(in oklch, var(--accent) 40%, #f3e2d8) 0%, transparent 70%),
+    var(--bg);
   display: flex;
   flex-direction: column;
   overscroll-behavior: contain;
@@ -155,8 +160,34 @@
   text-align: center;
   isolation: isolate; /* damit die Kapsel des Knopfs sichtbar bleibt */
 }
-.mm-karte__plus {
+.mm-karte__knoepfe {
   margin-top: var(--space-2);
+  display: flex;
+  gap: var(--space-2);
+}
+/* „Text“: Glas-Kapsel, öffnet die Textzentrale der Mitte */
+.mm-karte__text {
+  min-height: var(--tap);
+  padding: 0 var(--space-5);
+  font: inherit;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--text);
+  border: 1px solid var(--glas-rand);
+  border-radius: 999px;
+  background: var(--glas-verlauf);
+  box-shadow: var(--schatten);
+  backdrop-filter: blur(var(--blur)) saturate(150%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(150%);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.mm-karte__text::before {
+  content: "✎ ";
+  color: var(--accent);
+}
+.mm-karte__text:active {
+  transform: scale(0.96);
 }
 .mm-karte__kurz {
   max-width: 36ch;
