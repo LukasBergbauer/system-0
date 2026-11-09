@@ -1,5 +1,5 @@
 # Modul: Physio
-Vorgezogen nach Phase 1 (Datenbank + Mindmap), **Phase 5** (Lernpfade, Notion).
+Vorgezogen nach Phase 1 (Datenbank + Mindmap), **Phase 5** (Lernpfade). Notion gestrichen (09.11.2026).
 
 ## Inhalte
 Übungen, Krankheitsbilder, Muskeln, Körperregionen, Techniken, Vorgehen. Nur allgemeines Fachwissen, keine Patientendaten.
@@ -12,8 +12,7 @@ Vorgezogen nach Phase 1 (Datenbank + Mindmap), **Phase 5** (Lernpfade, Notion).
 
 ## Später
 - **Lernpfade:** in der Mindmap Schritt für Schritt von der Körperregion bis zur passenden Übung
-- **Notion:** Abgleich braucht einen kleinen Server-Teil (Supabase Edge Function, gratis), weil der Notion-Schlüssel
-  nicht im Browser-Code stehen darf. Vorher klären, ob Notion Quelle oder nur Kopie sein soll.
+- ~~Notion~~: gestrichen (Lukas, 09.11.2026), nicht mehr vorschlagen.
 
 ## Stand
 **Erste Fassung fertig (05.11.2026).** Teile a bis e und g (Bilder) gebaut und von Lukas auf iPhone und Mac geprüft;
