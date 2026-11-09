@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v76';
+const VERSION = 'v77';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -241,8 +241,14 @@ const APP_FILES = [
 self.addEventListener('install', (event) => {
   // cache: 'reload' = immer frisch vom Server holen, nie aus dem Browser-Zwischenspeicher
   // (GitHub Pages erlaubt dort 10 Minuten, sonst landen alte Dateien im neuen Cache).
-  const requests = APP_FILES.map((url) => new Request(url, { cache: 'reload' }));
-  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(requests)));
+  // Eigene Dateien zusätzlich mit ?v=VERSION holen: sonst liefert der GitHub-Zwischenspeicher (CDN) kurz nach
+  // dem Push teils noch alte Dateien, die dann bis zur nächsten Version im Cache bleiben (alt + neu gemischt).
+  event.waitUntil(caches.open(CACHE).then((cache) => Promise.all(APP_FILES.map(async (url) => {
+    const frisch = url === LIB ? url : `${url}${url.includes('?') ? '&' : '?'}v=${VERSION}`;
+    const antwort = await fetch(new Request(frisch, { cache: 'reload' }));
+    if (!antwort.ok) throw new Error(`${url}: ${antwort.status}`);
+    await cache.put(url, antwort);
+  }))));
   self.skipWaiting();
 });
 
