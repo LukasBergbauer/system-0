@@ -29,7 +29,7 @@ export function planSeite(id, { daten, zurueck, oeffne, starte }) {
             el('span', { class: 'list__title', text: pe.titel || 'Einheit' }),
             el('span', { class: 'list__sub', text: namenText(pe, daten.uebungen) || 'keine Übungen' }),
           ]),
-          button({ text: '▶ Start', variant: 'primary', disabled: i + 1 !== wochentag(), onClick: () => starte(pe) }),
+          button({ text: 'Start', variant: 'primary', disabled: i + 1 !== wochentag(), onClick: () => starte(pe) }),
         ]))))
         : el('p', { class: 'training__zuletzt', text: 'Ruhetag' }),
     ]);

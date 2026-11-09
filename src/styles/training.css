@@ -62,3 +62,8 @@
 .tdl__feld .chips { justify-content: center; }
 .tdl__feld .chip { min-width: calc(var(--tap) + var(--space-3)); min-height: calc(var(--tap) + var(--space-2)); font-size: var(--fs-title); }
 .training__kopf .chips { flex-wrap: wrap; overflow: visible; }
+.training__woche { display: flex; flex-direction: column; gap: var(--space-2); }
+.training__woche-kopf { display: flex; justify-content: space-between; align-items: baseline; }
+.training__woche-kopf .label { margin: 0; }
+.training__balken { height: var(--space-2); border-radius: 999px; background: var(--line); overflow: hidden; }
+.training__balken i { display: block; height: 100%; border-radius: inherit; background: var(--accent); transition: width var(--duration) var(--ease); }

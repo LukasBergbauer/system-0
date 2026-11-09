@@ -3,7 +3,7 @@ import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
 import { list, listRow } from '../../ui/list.js';
 import { satzText } from './rechnen.js';
-import { TAGE, neuerPlan, planFuerTag, gestartet } from './plan-daten.js';
+import { TAGE, neuerPlan, planFuerTag } from './plan-daten.js';
 
 // „3 × 10 × 20 kg“ – Ziel einer Übung im Plan.
 export const zielText = (z) => `${z.saetze || 1} × ${satzText(z)}`;
@@ -32,11 +32,10 @@ export function heutePlan({ daten, starte }) {
     el('h3', { class: 'label', text: 'Heute' }),
     !heute.length && el('p', { class: 'training__titel', text: 'Ruhetag' }),
     ...heute.map((pe) => {
-      const da = gestartet(pe, daten.einheiten);
       return el('div', { class: 'training__heute' }, [
         el('h2', { class: 'training__titel', text: pe.titel || 'Einheit' }),
         el('p', { class: 'training__zuletzt', text: namenText(pe, daten.uebungen) || 'keine Übungen' }),
-        el('button', { class: 'btn btn--primary training__start', text: da ? '▶ Weiter' : '▶ Start', attrs: { type: 'button' }, on: { click: () => starte(pe) } }),
+        el('button', { class: 'btn btn--primary training__start', text: 'Start', attrs: { type: 'button' }, on: { click: () => starte(pe) } }),
       ]);
     }),
   ]);

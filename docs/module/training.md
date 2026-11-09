@@ -34,7 +34,8 @@
 - Lokal geprüft (Mac + iPhone-Größe, Testdaten gelöscht). Offen: Lukas führt `009_training_plaene.sql` aus, prüft auf Geräten.
 
 **v2 nach Rückmeldung (09.11.2026).** Migration `010_training_rir.sql` (saetze.rir 1–4); `sw.js` `v49`.
-- Liste: „Heute“-Karte oben mit großem Start/Weiter, eine Zeile Wochen-Zahlen, „+ Freies Training“. Kacheln weg.
+- Liste: ganz oben Wochen-Leiste „Diese Woche x / Ziel“ mit Balken (Ziel = Einheiten im aktiven Plan, sonst 3; Lukas will sie
+  evtl. später überarbeiten), darunter „Heute“ mit großem „Start“, „+ Freies Training“. Alle Start-Knöpfe heißen „Start“.
 - Einheit: Kopf nur Titel + Datum, „▶ Durchlauf starten“, Sätze mit RIR-Spalte (nur bei Wdh), Karte „Wie war's?“
   (Gefühl, Dauer, Notiz). Art und RPE nicht mehr in der Oberfläche (Spalten bleiben).
 - `durchlauf.js`: Vollbild (Klassen aus routinen.css), ein Satz je Schritt, −/+ (Wdh 1, kg 2,5, m 50, Zeit 5 s), RIR-Chips,

@@ -1,4 +1,4 @@
-// Startseite Training: „Heute“ mit großem Start, eine Zeile Wochen-Zahlen, „+ Freies Training“, Tabs Einheiten | Pläne | Übungen.
+// Startseite Training: Wochen-Leiste (Einheiten / Ziel als Balken), „Heute“ mit großem Start, „+ Freies Training“, Tabs Einheiten | Pläne | Übungen.
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
 import { tabs } from '../../ui/tabs.js';
@@ -7,9 +7,26 @@ import { ARTEN, gruppen } from './daten.js';
 import { dieseWoche, wochenSerie, verlauf, bestwert, zuletztText, datumText } from './rechnen.js';
 import { waehleUebung } from './wahl.js';
 import { plaeneListe, heutePlan } from './plaene.js';
+import { planFuerTag } from './plan-daten.js';
 
 const artLabel = (id) => ARTEN.find((a) => a.id === id)?.label ?? 'Training';
 const mehrzahl = (n, eins, viele) => `${n} ${n === 1 ? eins : viele}`;
+
+// Ziel = Einheiten im aktiven Plan pro Woche, sonst 3.
+function wochenLeiste(daten) {
+  const woche = dieseWoche(daten.einheiten);
+  const ziel = [1, 2, 3, 4, 5, 6, 7].reduce((n, t) => n + planFuerTag(daten, t).length, 0) || 3;
+  const serie = wochenSerie(daten.einheiten);
+  return el('section', { class: 'card training__woche' }, [
+    el('div', { class: 'training__woche-kopf' }, [
+      el('span', { class: 'label', text: 'Diese Woche' }),
+      el('b', { text: `${woche} / ${ziel}` }),
+    ]),
+    el('div', { class: 'training__balken', attrs: { role: 'progressbar', 'aria-valuemin': 0, 'aria-valuemax': ziel, 'aria-valuenow': woche } },
+      el('i', { attrs: { style: `width:${Math.min(100, (woche / ziel) * 100)}%` } })),
+    serie > 1 && el('p', { class: 'training__zahlen', text: `${mehrzahl(serie, 'Woche', 'Wochen')} in Folge` }),
+  ]);
+}
 
 function einheitenListe({ daten, oeffne }) {
   if (!daten.einheiten.length) return el('p', { class: 'app__note', text: 'Noch keine Einheit eingetragen.' });
@@ -45,12 +62,10 @@ export function listeSeite(hilfen) {
   const LISTEN = { einheiten: einheitenListe, plaene: plaeneListe, uebungen: uebungenListe };
   const zeige = () => inhalt.replaceChildren(...[LISTEN[merk.tab](hilfen)].flat());
   zeige();
-  const woche = dieseWoche(daten.einheiten);
-  const serie = wochenSerie(daten.einheiten);
 
   return el('div', { class: 'training__seite' }, [
+    wochenLeiste(daten),
     heutePlan(hilfen),
-    el('p', { class: 'training__zahlen', text: `Diese Woche ${mehrzahl(woche, 'Einheit', 'Einheiten')} · ${mehrzahl(serie, 'Woche', 'Wochen')} in Folge` }),
     button({ text: '+ Freies Training', variant: 'normal', onClick: neu }),
     tabs({
       items: [{ id: 'einheiten', label: 'Einheiten' }, { id: 'plaene', label: 'Pläne' }, { id: 'uebungen', label: 'Übungen' }],

@@ -75,7 +75,7 @@ export function einheitSeite(id, { daten, zurueck, oeffne, signal, durchlauf, ne
       textFeld('Titel', 'titel', { placeholder: 'z. B. Oberkörper' }),
       textFeld('Datum', 'datum', { type: 'date', lesen: (v) => v || e.datum }),
     ]),
-    e.saetze.length > 0 && el('button', { class: 'btn btn--primary training__start', text: '▶ Durchlauf starten', attrs: { type: 'button' }, on: { click: los } }),
+    e.saetze.length > 0 && el('button', { class: 'btn btn--primary training__start', text: 'Start', attrs: { type: 'button' }, on: { click: los } }),
     uebungenBox,
     button({ text: '+ Übung', variant: 'normal', onClick: plusUebung }),
     el('section', { class: 'card training__kopf' }, [
