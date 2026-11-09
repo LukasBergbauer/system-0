@@ -1,7 +1,7 @@
-// Karte einer Routine: Name, Art, Stand heute, letzte 7 Tage als Punkte, Serie, Starten/Weiter.
+// Karte einer Routine: Name, Art, Stand heute, Woche Mo–So als Punkte, Serie, Starten/Weiter.
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
-import { ARTEN, logAm, letzteTage, serie } from './data.js';
+import { ARTEN, logAm, wocheTage, serie } from './data.js';
 
 const TAG = new Intl.DateTimeFormat('de-DE', { weekday: 'narrow' });
 
@@ -29,8 +29,8 @@ export function routineKarte(r, { onStart, onEdit }) {
       el('i', { attrs: { style: `width:${(geschafft / n) * 100}%` } }),
     ]),
     el('div', { class: 'routine__fuss' }, [
-      el('div', { class: 'routine__tage', attrs: { 'aria-label': 'Letzte 7 Tage' } }, letzteTage(r).map((t) =>
-        el('span', { class: t.fertig ? 'an' : '', attrs: { title: t.tag } }, [TAG.format(new Date(`${t.tag}T12:00`))]))),
+      el('div', { class: 'routine__tage', attrs: { 'aria-label': 'Diese Woche' } }, wocheTage(r).map((t) =>
+        el('span', { class: t.fertig ? 'an' : t.zukunft ? 'zukunft' : '', attrs: { title: t.tag } }, [TAG.format(new Date(`${t.tag}T12:00`))]))),
       s > 1 && el('small', { class: 'routine__serie', text: `${s} Tage in Folge` }),
       knopf,
     ]),

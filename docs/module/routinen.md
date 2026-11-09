@@ -15,7 +15,7 @@ Für das ganze iPhone wäre die iOS-Funktion „Bildschirmzeit“ zuständig.
 - Migration `006_routinen.sql`: `routinen` (name, art morgen/abend/frei, sperre, reihenfolge),
   `routine_schritte` (routine_id, text, reihenfolge), `routine_logs` (routine_id, tag, geschafft, fertig_am).
   Ohne Fremdschlüssel (Geräte laden in beliebiger Reihenfolge hoch). Gilt täglich, keine Wochentage
-- Ansicht: Karte je Routine (Morgen, Abend, dann freie) mit Stand heute, letzten 7 Tagen als Punkte, Serie;
+- Ansicht: Karte je Routine (Morgen, Abend, dann freie) mit Stand heute, Woche Mo–So als Punkte, Serie;
   „Starten“/„Weiter“. Leer: Knopf „Morgen- und Abendroutine anlegen“. „Neue Routine“ unten
 - Bearbeiten im Modal: Name, Art, Schritte als Textfeld (eine Zeile = ein Schritt), Löschen
 - Durchlauf als Vollbild: ein Schritt groß, Fortschritt oben, „Erledigt“ → nächster, „Zurück“; Stand wird nach
@@ -30,6 +30,9 @@ Für das ganze iPhone wäre die iOS-Funktion „Bildschirmzeit“ zuständig.
       Einmal fertig bleibt der Tag fertig, auch bei „Nochmal“. `sw.js` `v45`.
       Lokal geprüft (Ansicht ohne Login eingehängt, Mac + iPhone-Größe): Anlegen, Schritte, Durchlauf, Weiter, Geschafft
 - [x] Migration `006_routinen.sql` in Supabase ausgeführt
-- [ ] Mit Login auf Mac und iPhone prüfen (Abgleich)
+- [x] Fehler behoben: `reihenfolge` = `Date.now()` passte nicht in `integer` → Upload abgelehnt, ganzer Abgleich stand.
+      Migration `007_routinen_reihenfolge.sql` (Spalte `bigint`). Punkte zeigen jetzt die Woche Mo–So
+      (kommende Tage blass). `sw.js` `v46`
+- [ ] Migration 007 in Supabase ausführen, dann Abgleich Mac ↔ iPhone erneut prüfen
 
 ## Wünsche für später

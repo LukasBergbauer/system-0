@@ -295,6 +295,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   `src/app/suche.js`, öffnet Treffer über `#/<bereich>/<id>`). Offen/klein: Such-Einstieg auf dem iPhone.
 - [x] Routinen, ohne Sperre (`module/routinen.md`) – gebaut 09.11.2026: Karten je Routine mit 7-Tage-Verlauf und Serie,
   Bearbeiten (Schritte als Zeilen), Durchlauf als Vollbild, Leiste auf Heute. Migration `006_routinen.sql`; `sw.js` `v45`.
+  Fix 09.11.: Abgleich (Migration `007`, `reihenfolge` → `bigint`), Punkte = Woche Mo–So; `sw.js` `v46`.
   Migration ausgeführt. Offen: mit Login auf Mac und iPhone prüfen
 
 ## Phase 2 – Körper

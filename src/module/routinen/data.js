@@ -72,13 +72,14 @@ export function speichereStand(routine, geschafft, alt) {
   });
 }
 
-// Letzte n Tage (ältester zuerst): [{ tag, fertig }]
-export function letzteTage(routine, n = 7) {
+// Diese Woche Mo–So: [{ tag, fertig, zukunft }]
+export function wocheTage(routine) {
   const fertig = new Set(routine.logs.filter((l) => l.fertig_am).map((l) => l.tag));
-  const heute = new Date();
-  return Array.from({ length: n }, (_, i) => {
-    const tag = tagISO(new Date(heute.getFullYear(), heute.getMonth(), heute.getDate() - (n - 1 - i)));
-    return { tag, fertig: fertig.has(tag) };
+  const h = new Date();
+  const mo = h.getDate() - ((h.getDay() + 6) % 7);
+  return Array.from({ length: 7 }, (_, i) => {
+    const tag = tagISO(new Date(h.getFullYear(), h.getMonth(), mo + i));
+    return { tag, fertig: fertig.has(tag), zukunft: tag > tagISO(h) };
   });
 }
 
