@@ -257,6 +257,20 @@ Stand Teil g:
   - Lokal geprüft: iPhone-Größe (Bälle, 6 Plätze, „+2“, Ball gleitet in die Mitte), Mac-Breite (gemischter Ring),
     Ziehen und ⌘ + V mit Testpunkt (danach gelöscht, Speicher-Ordner leer); erfundene Ball-Bilder nur lokal, wieder entfernt
 
+## Plan Kosmos (Entwurf 09.11.2026, wartet auf Lukas' OK)
+Vision: Physio in der Mitte, drumherum je Pfad eine Bubble, schwebend wie im Weltall, futuristisch statt Kachel-Raster.
+- **Bühne** (`kosmos.js`, `physio-kosmos.css`): ersetzt die Kacheln. Tiefer Raum mit feinem Sternenstaub und Akzent-Nebel,
+  Mitte Kern „Physio“ (Glas-Kugel, leuchtet im Akzent, öffnet die Suche/Mindmap)
+- **Bubbles** (`bubble.js`): Seifenblasen-Glas mit irisierendem Rand im Akzent, Anzahl + Name. Innen: Krankheitsbilder,
+  Trainingsformen, Muskeln, Übungen; außen kleiner: Regionen, Techniken. Schweben langsam, jede eigener Takt, leichte Tiefe (Parallaxe zur Maus)
+- **Hover = eindringen:** Bubble kommt nach vorn und wächst, Membran dehnt sich und „reißt“ weich auf, Innenraum
+  (Anzahl, letzte 3 Einträge) blendet ein, die anderen weichen zurück und werden unscharf. Rausgehen: genau umgekehrt.
+  iPhone: Tippen = eindringen, nochmal Tippen = öffnen, daneben tippen = raus
+- **Klick = ganz hinein:** Bubble füllt den Bildschirm → Innenansicht der Art: Suchfeld, Liste, „+ Neu“;
+  Eintrag antippen → bestehende Mindmap mit diesem Punkt in der Mitte. Zurück = Bubble schrumpft, man ist wieder draußen
+- **Neue Art „Trainingsform“** (Felder: Ziel, Belastung/Dosierung, Prinzipien): Migration `018_physio_trainingsform.sql` (Check erweitern)
+- Nur `transform`/`opacity`, „Bewegung reduzieren“ = kein Schweben. Danach: Mindmap-Overlay optisch angleichen, Lernpfade
+
 ## Offen / bitte prüfen (aus der Planung, erledigt bzw. unter „Wünsche für später“)
 - Das Overlay ist hell (Elfenbein-Weiß mit dunkler Schrift), während die App sonst dunkel ist. So gewünscht;
   falls es zu grell wirkt, später einen Ton dunkler.

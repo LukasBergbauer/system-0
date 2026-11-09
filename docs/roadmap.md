@@ -291,7 +291,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   Seitenkopf ohne Bild, To-do- und Termin-Gruppen als Glaskarten, Serifenschrift entfernt.
   Akzentfarbe: `src/core/akzent.js` + Kachel in den Einstellungen (synchronisiert). Funktionen unverändert. `sw.js` `v39`.
   Erledigt (09.11.2026, `sw.js` `v69`): `bausteine.html` ohne „Bereichsfarbe“/Kopfbild (jetzt Chips-Muster). Statusleiste: dunkler Streifen hinter Uhrzeit/Akku
-  ist schon da (`base.css`), Lukas prüft auf dem iPhone.
+  ist schon da (`base.css`). Von Lukas auf dem iPhone geprüft.
 - [x] Heute-Übersicht (`module/heute.md`) – als Glas-Dashboard, Plan a)–e) fertig (09.11.2026):
   a) Rechnungen, Kopf, Hero, 4 Kacheln, b) Kalender-Karte, Verlauf, Donut, c) Seitenleiste mit Abschnitten,
   d) Akzent-Knopf, Neu-Menü, Schnellaktionen (Router-Zusatz `#/todos/neu`), e) Suche (Seitenleisten-Feld + ⌘K,
@@ -343,16 +343,17 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 - [x] Bücher (`module/buecher.md`)
   - [x] Erste Fassung (09.11.2026): Liste nach Status, Cover (Foto oder Open Library), Markdown-Editor, Leseansicht, Suche.
         Migration `015_buecher.sql`; `sw.js` `v67`. 015 ausgeführt, von Lukas auf Geräten geprüft
-- [ ] Insta-Organizer (`module/insta.md`)
+- [x] Insta-Organizer (`module/insta.md`)
   - [x] Erste Fassung (09.11.2026): Skript-Import aus Claude (JSON, Schlüssel = Update), Kurzfassung je Post, Planer/Monat, Hashtag-Sets,
         Zahlen von Hand bzw. per Import, Export für eigenen Agenten, Erkenntnisse, Heute-Leiste, Suche. Migration `016_insta.sql`; `sw.js` `v68`.
-        Offen: Migration 016 ausführen, auf Geräten prüfen
+        016 ausgeführt, von Lukas auf Geräten geprüft
 
 ## Phase 5 – Ausbau
-- [ ] Routinen-Sperre (`module/routinen.md`)
+- [x] Routinen-Sperre (`module/routinen.md`)
   - [x] Gebaut (09.11.2026): Schalter + Startzeit je Routine, Vollbild-Sperre, „Heute aussetzen“. Migration `017_routinen_sperre.sql`; `sw.js` `v70`.
-        Offen: Migration 017 ausführen, auf Geräten prüfen
-- [ ] PhysioZentrum: Lernpfade (Mindmap selbst kommt schon mit dem PhysioZentrum), Bilder, Notion
+        017 ausgeführt, von Lukas auf Geräten geprüft
+- [ ] PhysioZentrum: Kosmos-Startseite mit Bubbles (Plan in `module/physio.md` → „Plan Kosmos“, wartet auf Lukas' OK),
+      danach Lernpfade, Notion
 - [ ] Notion-Anbindung
 - [ ] Idee KI-Auswertung (Wochenrückblick über alle Module): kostet je nach Anbieter Geld bzw. Datenschutz klären;
       kostenlos jetzt schon: Export-JSON in einen Claude-Chat geben
