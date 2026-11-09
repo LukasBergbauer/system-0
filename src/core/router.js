@@ -13,7 +13,7 @@
 //   dashboard: true (eigener Kopf statt Titel, breite Fläche; nur Heute).
 //
 // Zusatz: '#/todos/neu' öffnet To-dos und sagt „gleich ein neues anlegen“. Der Bereich liest ihn beim Öffnen
-//   mit zusatzNehmen() (siehe dort). Bekannt: todos/neu, kalender/neu, kalender/woche, physio/neu, physio/mindmap,
+//   mit zusatzNehmen() (siehe dort). Bekannt: todos/neu, kalender/neu, kalender/woche, physio/neu, physio/mindmap, quiz/daily,
 //   und <bereich>/<id> aus der Suche (todos/<id>, kalender/<id>, physio/<id>, training/uebung:<id>, training/plaene:<id>, ziele/<id>):
 //   öffnet genau diesen Eintrag.
 //   Ids mit Sonderzeichen mit encodeURIComponent anhängen; zusatzNehmen() dekodiert.

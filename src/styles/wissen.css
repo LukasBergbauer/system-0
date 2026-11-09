@@ -1,0 +1,32 @@
+/* Modul „Wissen-Quiz“: Karten aus routinen.css, Rahmen der Runde aus dem Durchlauf. Nur Werte aus tokens.css. */
+.quiz-karte { gap: var(--space-3); }
+.quiz-karte > .btn { align-self: flex-start; }
+.quiz-raster { display: flex; gap: var(--space-1); }
+.quiz-raster i { width: 26px; height: 26px; border-radius: var(--radius-klein); background: var(--warn); }
+.quiz-raster i.ok { background: var(--gut); }
+.quiz-stat { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.quiz-stat li { display: grid; grid-template-columns: 1fr auto; gap: var(--space-1) var(--space-3); font-size: var(--fs-small); }
+.quiz-stat small { color: var(--text-2); }
+.quiz-stat .routine__balken { grid-column: 1 / -1; height: 4px; }
+.quiz-import { resize: vertical; min-height: 140px; font-size: var(--fs-small); }
+
+/* Runde */
+.durchlauf__punkte i.falsch { background: var(--warn); }
+.quiz-mitte { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: var(--space-4); overflow-y: auto; }
+.quiz-frage { margin: 0; font-size: var(--fs-large); font-weight: 600; line-height: 1.25; letter-spacing: -.01em; }
+.quiz-antworten { display: flex; flex-direction: column; gap: var(--space-2); }
+.quiz-antwort { min-height: 52px; padding: var(--space-3) var(--space-4); font: inherit; text-align: left; color: var(--text);
+  background: var(--surface-2); border: 1px solid var(--glas-rand); border-radius: var(--radius); cursor: pointer;
+  transition: background var(--duration) var(--ease), transform var(--duration) var(--ease); }
+.quiz-antwort:not(:disabled):hover { background: var(--glass); }
+.quiz-antwort:not(:disabled):active { transform: scale(.98); }
+.quiz-antwort:disabled { cursor: default; opacity: .6; }
+.quiz-antwort.ok { opacity: 1; color: var(--accent-ink); background: var(--gut); border-color: transparent; }
+.quiz-antwort.nein { opacity: 1; color: var(--accent-ink); background: var(--warn); border-color: transparent; }
+.quiz-erklaerung { margin: 0; color: var(--text-2); font-size: var(--fs-small); line-height: 1.45; }
+.quiz-erklaerung[hidden] { display: none; }
+
+/* Heute */
+.heute-quiz { cursor: pointer; text-align: left; }
+.heute-quiz .quiz-raster i { width: 20px; height: 20px; }
+.heute-quiz p { margin: var(--space-2) 0 0; color: var(--text-2); font-size: var(--fs-small); }

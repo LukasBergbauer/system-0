@@ -51,7 +51,7 @@ Nach jeder Änderung kommt das Ereignis `daten` mit `{ table }` (`src/core/event
 | Gewohnheiten | `gewohnheiten` (art aufbau/abbau, messart haken/anzahl/zeit, ziel), `gewohnheit_logs`, `ausloeser` |
 | Ziele | `ziel_bereiche` (name, vision), `lebensziele` (bereich_id, titel, warum, zieldatum, status), `ziel_schritte` (ziel_id, text, erledigt_am) – in `011_ziele.sql` |
 | Affirmationen | `affirmationen` (text, lebensziel_id) |
-| Wissen | `quiz_fragen`, `quiz_ergebnisse` |
+| Wissen | `quiz_fragen` (thema, frage, antworten jsonb – erste richtig, erklaerung; nur importierte, Grundstock als JSON im Repo), `quiz_ergebnisse` (tag, modus daily/endlos, richtig, gesamt, antworten jsonb [{ id, ok }]) – in `014_wissen.sql` |
 | Bücher | `buecher` (titel, autor, status, cover, zusammenfassung als Markdown) |
 | Insta | `insta_ideen`, `insta_posts` (datum, caption, hashtags, status) |
 

@@ -6,10 +6,7 @@
 - **Endlos:** jederzeit weitere Runden
 - Fragen kommen aus einer eigenen Fragen-Datenbank (deutsch), die schrittweise erweitert wird – kostenlos, ohne externe Dienste
 
-## Offene Fragen
-- Welche Themen? (Allgemeinbildung, Geschichte, Geografie, Naturwissenschaft, Anatomie …)
-
-## Plan (Entwurf, noch abzustimmen)
+## Plan (mit Lukas abgestimmt, 09.11.2026)
 - Ziel: auf Dauer ca. 10.000 Fragen. Jede Frage hat eine feste ID (z. B. `ana-0001`), damit „schon gesehen“ zählbar ist.
 - Grundstock im Repo: `src/module/wissen/fragen/<thema>.json` (Frage, 4 Antworten, kurze Erklärung), je Thema eine Datei,
   vom Service Worker gecacht (offline). Claude erzeugt und erweitert sie. 10.000 Fragen ≈ 3 MB, geht ohne Umbau.
@@ -23,4 +20,13 @@
 - Statistik: Trefferquote je Thema, Anzahl gesehen / gesamt. Heute: Karte „Daily-Quiz“ (offen bzw. Ergebnis + Serie).
 
 ## Stand
-Noch nicht begonnen.
+- [x] Gebaut (09.11.2026). Migration `014_wissen.sql`; `sw.js` `v59`. Router-id `quiz` (Tab „Quiz“), Ordner `src/module/wissen/`:
+      `data.js` (Laden, Daily/Endlos-Auswahl, Serie, Statistik, Import), `runde.js` (Vollbild-Runde), `view.js`, `import.js`;
+      Stil `wissen.css`; Symbol `quiz`; Heute: `heute/quiz-karte.js` (offen → `#/quiz/daily` startet direkt).
+      Grundstock 150 Fragen: `fragen/{allgemein,geschichte,geografie,natur,anatomie,physio}.json`, je 25,
+      Format `{ id, f, a: [richtig, 3× falsch], e }`, IDs `<kürzel>-0001` fortlaufend. Neue Datei/Thema → `THEMEN` in `data.js` und `sw.js`.
+      Daily nur vollständig gespeichert; Endlos auch abgebrochen (ab 1 Antwort). Import: Prompt-Knopf im Modal, doppelte Fragen werden übersprungen.
+      Lokal geprüft (Mac + iPhone-Breite, Testrunde ohne Speichern). Offen: Lukas führt `014` aus, prüft auf Geräten.
+
+## Nächster Schritt (Plan)
+- Fragen ausbauen (Ziel ca. 10.000): je Sitzung z. B. 50–100 je Thema anhängen, IDs fortlaufend.

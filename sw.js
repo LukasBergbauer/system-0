@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v58';
+const VERSION = 'v59';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -49,6 +49,7 @@ const APP_FILES = [
   './src/module/heute/gewohnheiten-leiste.js',
   './src/module/heute/ziele-leiste.js',
   './src/module/heute/affirmation.js',
+  './src/module/heute/quiz-karte.js',
   './src/module/heute/verlauf.js',
   './src/module/heute/donut.js',
   './src/module/todos/index.js',
@@ -97,6 +98,17 @@ const APP_FILES = [
   './src/module/gewohnheiten/karte-ab.js',
   './src/module/gewohnheiten/bearbeiten.js',
   './src/module/gewohnheiten/rueckfall.js',
+  './src/module/wissen/index.js',
+  './src/module/wissen/data.js',
+  './src/module/wissen/view.js',
+  './src/module/wissen/runde.js',
+  './src/module/wissen/import.js',
+  './src/module/wissen/fragen/allgemein.json',
+  './src/module/wissen/fragen/geschichte.json',
+  './src/module/wissen/fragen/geografie.json',
+  './src/module/wissen/fragen/natur.json',
+  './src/module/wissen/fragen/anatomie.json',
+  './src/module/wissen/fragen/physio.json',
   './src/module/training/index.js',
   './src/module/training/daten.js',
   './src/module/training/rechnen.js',
@@ -156,6 +168,7 @@ const APP_FILES = [
   './src/styles/kalender.css',
   './src/styles/routinen.css',
   './src/styles/gewohnheiten.css',
+  './src/styles/wissen.css',
   './src/styles/kopfbild.css',
   './src/styles/kachel.css',
   './src/styles/farbkreise.css',
