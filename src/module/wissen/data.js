@@ -8,7 +8,7 @@ export const DAILY_ANZAHL = 5;
 export const RUNDE_ANZAHL = 10;
 export const THEMEN = [
   { id: 'allgemein', name: 'Allgemeinbildung' }, { id: 'geschichte', name: 'Geschichte' }, { id: 'geografie', name: 'Geografie' },
-  { id: 'natur', name: 'Naturwissenschaft' }, { id: 'anatomie', name: 'Anatomie' }, { id: 'physio', name: 'Physio' },
+  { id: 'natur', name: 'Naturwissenschaft' }, { id: 'anatomie', name: 'Anatomie' }, { id: 'muskeln', name: 'Muskeln' }, { id: 'physio', name: 'Physio' },
 ];
 
 const zwei = (n) => String(n).padStart(2, '0');
@@ -58,13 +58,16 @@ export function gesehen(ergebnisse, vorTag) {
   return m;
 }
 
-// Daily: nie gesehene Fragen, aus dem Datum fest gemischt; reichen sie nicht, die am längsten nicht gesehenen.
+// Daily: nie gesehene Fragen, aus dem Datum fest gemischt, je Thema höchstens eine (große Themen wie Muskeln
+// sollen nicht alles füllen); reichen sie nicht, auffüllen, zuletzt mit den am längsten nicht gesehenen.
 export function dailyFragen(fragen, ergebnisse, tag = tagISO()) {
   const g = gesehen(ergebnisse, tag);
+  const rnd = zufall(tag);
   const nachId = [...fragen].sort((a, b) => a.id.localeCompare(b.id));
-  const neu = mische(nachId.filter((q) => !g.has(q.id)), zufall(tag));
+  const neu = mische(nachId.filter((q) => !g.has(q.id)), rnd);
   const alt = nachId.filter((q) => g.has(q.id)).sort((a, b) => g.get(a.id).tag.localeCompare(g.get(b.id).tag));
-  return [...neu, ...alt].slice(0, DAILY_ANZAHL);
+  const jeThema = mische(themenVon(nachId).sort(), rnd).map((t) => neu.find((q) => q.thema === t)).filter(Boolean);
+  return [...new Set([...jeThema, ...neu, ...alt])].slice(0, DAILY_ANZAHL);
 }
 
 // Endlos: erst neue, dann falsch beantwortete, dann der Rest (am längsten her zuerst).

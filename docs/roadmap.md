@@ -332,7 +332,8 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 ## Phase 4 – Wissen & Kreativ
 - [ ] Wissen-Quiz (`module/wissen.md`)
   - [x] Erste Fassung (09.11.2026): Daily (5 neue Fragen/Tag, Serie), Endlos (Themen, neue zuerst), Statistik, Import aus Claude-Chat,
-        Karte auf Heute, 150 Fragen in 6 Themen. Migration `014_wissen.sql`; `sw.js` `v60` (Fragen überarbeitet: verständlicher, Anatomie/Physio schwieriger). Offen: Migration ausführen, auf Geräten prüfen
+        Karte auf Heute, 150 Fragen in 6 Themen. Migration `014_wissen.sql`; `sw.js` `v60` (Fragen überarbeitet: verständlicher, Anatomie/Physio schwieriger).
+  - [x] Thema Muskeln, Teil 1 (Arm + Bein, 368 Fragen, Generator `tools/quiz/`), `sw.js` `v61`. Nächstes: Muskeln Rumpf/Hals/Kopf, dann Bänder Offen: Migration ausführen, auf Geräten prüfen
 - [ ] Bücher (`module/buecher.md`)
 - [ ] Insta-Organizer (`module/insta.md`)
 

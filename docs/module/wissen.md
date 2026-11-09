@@ -26,9 +26,16 @@
       Grundstock 150 Fragen: `fragen/{allgemein,geschichte,geografie,natur,anatomie,physio}.json`, je 25,
       Format `{ id, f, a: [richtig, 3× falsch], e }`, IDs `<kürzel>-0001` fortlaufend.
       Runde 2 (09.11.2026): Fragen verständlicher; Anatomie/Physio schwieriger mit „Was/Warum“-Erklärung, neu als `ana-/phy-0026–0050`
-      (alte 0001–0025 entfernt, nie wiederverwenden). Import-Prompt entsprechend. `sw.js` `v60`. Neue Datei/Thema → `THEMEN` in `data.js` und `sw.js`.
+      (alte 0001–0025 entfernt, nie wiederverwenden). Import-Prompt entsprechend. `sw.js` `v60`.
+- [x] Thema „Muskeln“ (09.11.2026): je Muskel 4 Einzelfragen (Ursprung, Ansatz, Funktion, Innervation), Erklärung = ganzes Profil + „Merke“.
+      Quelle `tools/quiz/muskeln.txt` (eine Zeile pro Muskel), erzeugt mit `python3 tools/quiz/muskeln.py` → `fragen/muskeln.json`
+      (IDs `mus-<name>-u/a/f/i`, stabil). Falsche Antworten: Ursprung/Ansatz aus derselben Gruppe, Funktion aus anderen Gruppen,
+      Nerven aus derselben Region; Teil-Treffer werden ausgeschlossen. Stand: 92 Muskeln Arm + Bein = 368 Fragen.
+      Daily nimmt jetzt je Thema höchstens eine Frage (Themen fest gemischt). `sw.js` `v61`. Neue Datei/Thema → `THEMEN` in `data.js` und `sw.js`.
       Daily nur vollständig gespeichert; Endlos auch abgebrochen (ab 1 Antwort). Import: Prompt-Knopf im Modal, doppelte Fragen werden übersprungen.
       Lokal geprüft (Mac + iPhone-Breite, Testrunde ohne Speichern). Offen: Lukas führt `014` aus, prüft auf Geräten.
 
 ## Nächster Schritt (Plan)
+- Muskeln Teil 2: Rumpf (Rücken, Bauch), Hals, Kopf (Kau-/Augenmuskeln), Atmung, Beckenboden in `muskeln.txt` ergänzen.
+- Bänder: eigene Tabelle `tools/quiz/baender.txt` (Verlauf von–bis, Funktion/hemmt, typische Verletzung, Test) mit gleichem Generator-Muster.
 - Fragen ausbauen (Ziel ca. 10.000): je Sitzung z. B. 50–100 je Thema anhängen, IDs fortlaufend.
