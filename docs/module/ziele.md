@@ -14,7 +14,8 @@
   erreichte eingeklappt. „+ Ziel“, „+ Bereich“. Bereich-Modal (`bereich.js`): Name, Vision, Löschen.
 - Ziel-Modal (`ziel.js`): Titel, Warum, Zieldatum, Status, Schritte (abhaken, ×, neu per Enter); speichert sofort,
   leeres neues Ziel wird beim Schließen gelöscht. Schritte in Reihenfolge des Anlegens (kein Umsortieren).
-- Heute (`heute/ziele-leiste.js`): Karte „Nächster Schritt“, je aktivem Ziel erster offener Schritt, max. 3, früheste Zieldaten zuerst.
+- Heute (`heute/ziele-leiste.js`): Karte „Visionen“, je aktivem Schritt ein Balken (auch ohne Teilschritte), darin nächster
+  offener Teilschritt + Stand (x / n), max. 3, frühestes „Bis wann“ zuerst. `sw.js` `v56`.
 - Suche (⌘K): Gruppe „Ziele“ (Ziele + Bereiche) → `#/ziele/<id>`.
 - Lokal geprüft (Mac + iPhone-Breite, Testdaten gelöscht). 011 ausgeführt, von Lukas auf Geräten geprüft.
 
