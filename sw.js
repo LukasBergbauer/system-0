@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v46';
+const VERSION = 'v47';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -78,6 +78,16 @@ const APP_FILES = [
   './src/module/routinen/karte.js',
   './src/module/routinen/bearbeiten.js',
   './src/module/routinen/durchlauf.js',
+  './src/module/training/index.js',
+  './src/module/training/daten.js',
+  './src/module/training/rechnen.js',
+  './src/module/training/view.js',
+  './src/module/training/liste.js',
+  './src/module/training/einheit.js',
+  './src/module/training/saetze.js',
+  './src/module/training/wahl.js',
+  './src/module/training/uebung.js',
+  './src/styles/training.css',
   './src/module/physio/index.js',
   './src/module/physio/view.js',
   './src/module/physio/daten.js',

@@ -47,7 +47,7 @@ Nach jeder Änderung kommt das Ereignis `daten` mit `{ table }` (`src/core/event
 | Routinen | `routinen` (name, art morgen/abend/frei, sperre, reihenfolge), `routine_schritte` (routine_id, text, reihenfolge), `routine_logs` (routine_id, tag, geschafft, fertig_am) – in `006_routinen.sql` |
 | Kalender | `termine` (titel, start, ende, ganztaegig, ort, notiz) – in `005_kalender.sql`; Google-Termine werden nur angezeigt, nicht gespeichert (Adresse in `einstellungen`) |
 | PhysioZentrum | `physio_eintraege` (art, titel, kurz, text, felder als JSON, video), `physio_links` (a_id, b_id, in beide Richtungen) – in `003_physio.sql`; `physio_bilder` (eintrag_id, reihenfolge, breite, hoehe) + Storage-Bucket `physio-bilder` – in `004_physio_bilder.sql` |
-| Training | `trainingsplaene`, `plan_einheiten`, `einheiten` (datum, art, gefuehl, belastung), `einheit_uebungen` (verweist auf `uebungen`), `saetze` (wdh, gewicht, zeit, distanz) |
+| Training | `training_uebungen` (name, physio_id = Verweis auf `physio_eintraege`, notiz, messung als JSON), `einheiten` (datum, titel, art, gefuehl 1–5, belastung 1–10, dauer, notiz), `saetze` (einheit_id, uebung_id, reihenfolge, wdh, gewicht, zeit in s, distanz in m) – in `008_training.sql`; später `trainingsplaene`, `plan_einheiten` |
 | Gewohnheiten | `gewohnheiten` (art aufbau/abbau, messart haken/anzahl/zeit, ziel), `gewohnheit_logs`, `ausloeser` |
 | Ziele | `lebensziele`, `visionen` |
 | Affirmationen | `affirmationen` (text, lebensziel_id) |

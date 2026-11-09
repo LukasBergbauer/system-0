@@ -6,7 +6,6 @@ import { card } from '../ui/card.js';
 import { register, alleBereiche } from '../core/router.js';
 
 const BALD = [
-  { id: 'training', titel: 'Training', symbol: 'training' },
   { id: 'ziele', titel: 'Ziele', symbol: 'ziele' },
 ];
 

@@ -1,0 +1,36 @@
+/* Modul „Training“: Liste, Einheit mit Sätzen, Übung mit Verlauf. Nur Werte aus tokens.css. */
+.training__seite { display: flex; flex-direction: column; align-items: stretch; gap: var(--space-4); max-width: 720px; }
+.training__seite > .btn { align-self: flex-start; }
+.training__liste { padding-top: var(--space-2); padding-bottom: var(--space-2); }
+.training__kopf { display: flex; flex-direction: column; gap: var(--space-3); }
+.training__zeile { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+.training__zeile > * { min-width: 0; }
+.training__zeile .field__input { width: 100%; min-width: 0; }
+.training__titel { margin: 0; font-size: var(--fs-title); font-weight: 600; }
+.training__notiz { resize: vertical; min-height: 72px; width: 100%; }
+.training__uebungen { display: flex; flex-direction: column; gap: var(--space-4); }
+.training__uebungen:empty { display: none; }
+
+.training__block { display: flex; flex-direction: column; gap: var(--space-2); }
+.training__block > .btn { align-self: flex-start; }
+.training__block-kopf { display: flex; align-items: center; gap: var(--space-2); padding: 0; min-height: var(--tap); font: inherit;
+  color: inherit; text-align: left; background: none; border: 0; cursor: pointer; }
+.training__block-name { flex: 1; font-size: var(--fs-title); font-weight: 600; }
+.training__pfeil { color: var(--text-3); font-size: var(--fs-title); }
+.training__zuletzt { margin: 0; color: var(--text-2); font-size: var(--fs-small); }
+
+.saetze { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+.satz { display: flex; align-items: center; gap: var(--space-2); }
+.satz__nr { width: var(--space-5); flex: none; color: var(--text-3); font-size: var(--fs-small); font-weight: 600; text-align: center; }
+.satz__feld { flex: 1; width: 0; min-width: 0; text-align: center; font-variant-numeric: tabular-nums; }
+.satz--kopf .satz__feld { color: var(--text-3); }
+.satz__weg { width: var(--tap); height: var(--tap); flex: none; font-size: var(--fs-title); color: var(--text-3); background: none; border: 0; cursor: pointer; }
+.satz--kopf .satz__weg { visibility: hidden; height: auto; }
+
+.training-wahl { display: flex; flex-direction: column; gap: var(--space-1); }
+.training-wahl__titel { margin: var(--space-3) 0 0; }
+
+.training__linie { display: block; width: 100%; height: 96px; overflow: visible; }
+.training__linie polyline { fill: none; stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke;
+  stroke-linejoin: round; stroke-linecap: round; }
+.training__linie circle { fill: var(--accent); }

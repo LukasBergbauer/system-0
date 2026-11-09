@@ -301,6 +301,9 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 ## Phase 2 – Körper
 - (PhysioZentrum: Datenbank und Suche → nach Phase 1 vorgezogen)
 - [ ] Trainings-Notebook mit Übernahme von Übungen aus dem PhysioZentrum (`module/training.md`)
+  - [x] Erste Fassung (09.11.2026): Einheiten, Sätze, Übungen (eigene + Verweis ins PhysioZentrum, Hyrox-Vorlagen),
+        Verlauf/Bestwert je Übung. Migration `008_training.sql`; `sw.js` `v47`. Offen: Migration ausführen, auf Geräten prüfen
+  - [ ] Wochenpläne + Training auf Heute (Plan in `module/training.md`)
 
 ## Phase 3 – Kopf & Richtung
 - [ ] Lebensziele und Visionen (`module/ziele.md`)

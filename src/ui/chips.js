@@ -4,7 +4,7 @@
 import { el } from './dom.js';
 
 export function chips({ items = [], active, onChange, aktionen = [] } = {}) {
-  let current = active ?? items[0]?.id;
+  let current = active === null ? null : active ?? items[0]?.id; // null = noch nichts gewählt
   const leiste = el('div', { class: 'chips', attrs: { role: 'group' } });
 
   const knoepfe = items.map((item) =>
