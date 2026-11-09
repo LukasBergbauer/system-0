@@ -27,8 +27,13 @@ function mindmapKachel(anzahl, signal) {
 export function physioAnsicht({ signal }) {
   const inhalt = el('div', { class: 'app__stack' });
   let stand = 0; // nur das Ergebnis des neuesten Zeichnens zählt
-  // Zusatz von außen (z. B. Heute): 'mindmap' oder 'neu' öffnet die Mindmap (dort „+ Neuer Punkt“)
-  if (['mindmap', 'neu'].includes(zusatzNehmen())) requestAnimationFrame(() => oeffneMindmap({ signal }));
+  // Zusatz von außen (z. B. Heute): 'mindmap' oder 'neu' öffnet die Mindmap (dort „+ Neuer Punkt“),
+  // sonst die id eines Punkts (Suche): Mindmap gleich mit seiner Fokus-Karte
+  const zusatz = zusatzNehmen();
+  if (zusatz) {
+    const mitteId = ['mindmap', 'neu'].includes(zusatz) ? null : zusatz;
+    requestAnimationFrame(() => oeffneMindmap({ signal, mitteId }));
+  }
 
   async function zeichne() {
     const nr = ++stand;

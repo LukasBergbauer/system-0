@@ -13,7 +13,9 @@
 //   dashboard: true (eigener Kopf statt Titel, breite Fläche; nur Heute).
 //
 // Zusatz: '#/todos/neu' öffnet To-dos und sagt „gleich ein neues anlegen“. Der Bereich liest ihn beim Öffnen
-//   mit zusatzNehmen() (siehe dort). Bekannt: todos/neu, kalender/neu, kalender/woche, physio/neu, physio/mindmap.
+//   mit zusatzNehmen() (siehe dort). Bekannt: todos/neu, kalender/neu, kalender/woche, physio/neu, physio/mindmap,
+//   und <bereich>/<id> aus der Suche (todos/<id>, kalender/<id>, physio/<id>): öffnet genau diesen Eintrag.
+//   Ids mit Sonderzeichen mit encodeURIComponent anhängen; zusatzNehmen() dekodiert.
 //
 // Ereignisse: 'bereiche' (neuer Bereich angemeldet), 'route' (anderer Bereich aktiv).
 import { emit } from './events.js';
@@ -52,7 +54,7 @@ export function zusatzNehmen() {
   const [id, ...rest] = teile();
   if (!rest.length) return null;
   history.replaceState(history.state, '', `#/${id}`);
-  return rest.join('/');
+  return decodeURIComponent(rest.join('/'));
 }
 
 function startId() {
@@ -68,7 +70,8 @@ function aufloesen() {
     if (ziel) location.replace(`#/${ziel}`);
     return;
   }
-  if (id === aktuell) return;
+  // Gleicher Bereich ohne Zusatz: nichts tun. Mit Zusatz (z. B. Suche, während To-dos offen ist): neu öffnen.
+  if (id === aktuell && teile().length < 2) return;
   aktuell = id;
   emit('route', bereiche.get(id));
 }

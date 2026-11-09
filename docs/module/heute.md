@@ -10,7 +10,7 @@
 Liest nur Daten der anderen Module über `core/`, speichert selbst nichts.
 
 ## Stand
-Wird als Glas-Dashboard gebaut (Plan unten, Schritte a–e).
+Als Glas-Dashboard gebaut (Plan unten, Schritte a–e alle fertig, 09.11.2026).
 - [x] a) Daten-Rechnungen + Kopf, Hero mit Ring, 4 Kacheln (08.11.2026). Dateien in `src/module/heute/`:
       `rechnen.js` (alle Zahlen), `bewegung.js` (Zahl zählt hoch, Ring, Mini-Kurve), `kopf.js`, `hero.js`, `kacheln.js`,
       `view.js` (lädt über `core/store.js` + Google-Zwischenspeicher `getMeta('kalender:google')`, zeichnet bei `daten` neu,
@@ -44,7 +44,14 @@ Wird als Glas-Dashboard gebaut (Plan unten, Schritte a–e).
       „Woche ansehen“), `physio/neu` und `physio/mindmap` (öffnen die Mindmap; neuer Punkt dort über „+ Neuer Punkt“).
       Hero „+ To-do“ → `todos/neu`. Heute zeichnet bei Änderungen an `einstellungen` nicht neu (sonst schlösse sich
       die Farbwahl). Symbol `plus`. `sw.js` `v43`.
-- [ ] e) Suche (Feld + ⌘K) – **als Nächstes**
+- [x] e) Suche (09.11.2026). `src/app/suche.js`: Suchfeld oben in der Seitenleiste (mit Hinweis „⌘K“) und ⌘K/Strg+K
+      öffnen ein Modal; sucht in To-dos (Titel, Notiz; offene zuerst), Terminen (eigene + Google-Zwischenspeicher;
+      zeitlich nächste zuerst) und Physio-Punkten (Titel, Kurz, Text). Alle Wörter müssen vorkommen, max. 6 je Gruppe,
+      Enter = erster Treffer. Liest nur über `core/`. Treffer öffnet über den Router-Zusatz `#/<bereich>/<id>`:
+      `todos/<id>` → Bearbeiten-Fenster, `kalender/<id>` → Termin-Fenster (Google-Termin: Wochenansicht seiner Woche),
+      `physio/<id>` → Mindmap gleich mit der Fokus-Karte (`oeffneMindmap({ mitteId })`). Router: Zusatz wird dekodiert
+      und wirkt auch, wenn der Bereich schon offen ist. `sw.js` `v44`. Lokal geprüft (Mac, alle drei Bereiche).
+      Offen/klein: auf dem iPhone gibt es keinen Einstieg (keine Seitenleiste, keine Tastatur).
 - [x] Design-Runde (Teil d): Kopf mit Stein-Kugel (`bild: 'assets/bilder/heute.svg'`), Datum über dem Titel
       (`ueber`, z. B. „MITTWOCH, 4. NOVEMBER“) und Spruch des Tages. Den Kopf baut `src/app/shell.js` für jeden Bereich.
 

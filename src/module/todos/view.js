@@ -28,6 +28,8 @@ export function todosAnsicht({ signal }) {
   let filter = gemerkterFilter();
   let erledigtOffen = false;
   let stand = 0; // nur das Ergebnis des neuesten Zeichnens zählt
+  // Zusatz von außen: 'neu' = Fokus in die Schnelleingabe, sonst die id eines To-dos (Suche) = gleich bearbeiten
+  let zusatz = zusatzNehmen();
 
   async function zeichne() {
     const nr = ++stand;
@@ -38,6 +40,11 @@ export function todosAnsicht({ signal }) {
     const bekannt = new Set(bereiche.map((b) => b.id));
     const namen = new Map(bereiche.map((b) => [b.id, b.name]));
     const sichtbar = todos.filter((t) => passt(t, filter, bekannt));
+    if (zusatz && zusatz !== 'neu') {
+      const gesucht = todos.find((t) => t.id === zusatz);
+      zusatz = null;
+      if (gesucht) oeffneBearbeiten(gesucht, bereiche);
+    }
 
     const zeile = (todo) =>
       todoZeile(todo, {
@@ -83,7 +90,7 @@ export function todosAnsicht({ signal }) {
 
   const eingabe = schnelleingabe({ zielBereich });
   // „Neu → To-do“ (z. B. von Heute): gleich ins Eingabefeld
-  if (zusatzNehmen() === 'neu') requestAnimationFrame(() => eingabe.querySelector('input').focus());
+  if (zusatz === 'neu') requestAnimationFrame(() => eingabe.querySelector('input').focus());
 
   return el('div', { class: 'app__stack' }, [leiste, eingabe, inhalt]);
 }

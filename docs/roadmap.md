@@ -289,10 +289,10 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   Akzentfarbe: `src/core/akzent.js` + Kachel in den Einstellungen (synchronisiert). Funktionen unverändert. `sw.js` `v39`.
   Offen/klein: `bausteine.html` zeigt noch den alten Abschnitt „Bereichsfarbe“ und ein Kopfbild; auf dem iPhone
   prüfen, ob die Statusleiste oben gut lesbar ist.
-- [ ] Heute-Übersicht (`module/heute.md`) – **in Arbeit**, als Glas-Dashboard; Plan a)–e) steht in `module/heute.md`.
-  Stand: a) Rechnungen, Kopf, Hero, 4 Kacheln und b) Kalender-Karte, Verlauf, Donut, c) Seitenleiste mit Abschnitten,
-  d) Akzent-Knopf, Neu-Menü, Schnellaktionen (Router-Zusatz `#/todos/neu` über `core/router.js`) fertig;
-  als Nächstes e) Suche (Feld + ⌘K)
+- [x] Heute-Übersicht (`module/heute.md`) – als Glas-Dashboard, Plan a)–e) fertig (09.11.2026):
+  a) Rechnungen, Kopf, Hero, 4 Kacheln, b) Kalender-Karte, Verlauf, Donut, c) Seitenleiste mit Abschnitten,
+  d) Akzent-Knopf, Neu-Menü, Schnellaktionen (Router-Zusatz `#/todos/neu`), e) Suche (Seitenleisten-Feld + ⌘K,
+  `src/app/suche.js`, öffnet Treffer über `#/<bereich>/<id>`). Offen/klein: Such-Einstieg auf dem iPhone.
 - [ ] Routinen, ohne Sperre (`module/routinen.md`)
 
 ## Phase 2 – Körper

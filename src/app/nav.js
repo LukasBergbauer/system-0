@@ -5,6 +5,7 @@
 import { el } from '../ui/dom.js';
 import { symbol } from '../ui/symbol.js';
 import { MEHR } from './nav-plan.js';
+import { oeffneSuche } from './suche.js';
 
 // kurz = true (Kapsel): kurzer Name, falls der Bereich einen hat („Physio“ statt „PhysioZentrum“).
 // zahl: kleine Zahl rechts am Eintrag (nur Seitenleiste, z. B. offene To-dos), 0 = keine.
@@ -21,11 +22,12 @@ function link(bereich, klasse, aktiv, kurz = false, zahl = 0) {
 
 const SYNC_TEXT = { neu: 'noch nicht abgeglichen', läuft: 'gleicht ab …', ok: 'synchronisiert', fehler: 'Abgleich fehlgeschlagen' };
 
-// Suchfeld: zurzeit nur Optik (die Suche kommt in Schritt e)
+// Suchfeld: öffnet die Suche (suche.js), ⌘K als Hinweis rechts
 function suche() {
-  return el('button', { class: 'nav-side__suche', attrs: { type: 'button', 'aria-label': 'Suchen' } }, [
+  return el('button', { class: 'nav-side__suche', attrs: { type: 'button', 'aria-label': 'Suchen' }, on: { click: oeffneSuche } }, [
     symbol('suche'),
     el('span', { class: 'nav__text', text: 'Suchen …' }),
+    el('kbd', { class: 'nav__text nav-side__taste', text: '⌘K' }),
   ]);
 }
 

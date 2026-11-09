@@ -207,7 +207,7 @@
   font-size: 11px;
   font-weight: 400;
 }
-/* Suchfeld (zurzeit nur Optik) */
+/* Suchfeld: öffnet die Suche (src/app/suche.js) */
 .nav-side__suche {
   display: flex;
   align-items: center;
@@ -229,6 +229,12 @@
   flex: none;
   width: 16px;
   height: 16px;
+}
+.nav-side__taste {
+  margin-left: auto;
+  color: var(--text-3);
+  font: inherit;
+  font-size: 11px;
 }
 .nav-side__abschnitt {
   padding: 14px 13px 6px;

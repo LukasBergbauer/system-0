@@ -71,10 +71,12 @@ function liste(termine) {
 export function kalenderAnsicht({ signal }) {
   const inhalt = el('div', { class: 'termin-liste' });
   let ansicht = gemerkt();
-  // Zusatz von außen (z. B. Heute): 'woche' = Wochenansicht zeigen, 'neu' = gleich einen Termin anlegen
-  const zusatz = zusatzNehmen();
+  // Zusatz von außen (z. B. Heute): 'woche' = Wochenansicht zeigen, 'neu' = gleich einen Termin anlegen,
+  // sonst die id eines Termins (Suche): eigener Termin → bearbeiten, Google-Termin → seine Woche zeigen
+  let zusatz = zusatzNehmen();
   if (zusatz === 'woche') ansicht = 'woche';
   if (zusatz === 'neu') requestAnimationFrame(() => oeffneTermin());
+  if (zusatz === 'woche' || zusatz === 'neu') zusatz = null;
   let wochenStart = montag(new Date());
   let stand = 0; // nur das Ergebnis des neuesten Zeichnens zählt
 
@@ -82,6 +84,10 @@ export function kalenderAnsicht({ signal }) {
     const nr = ++stand;
     const termine = (await Promise.all([ladeTermine(), googleTermine()])).flat();
     if (nr !== stand || signal.aborted) return;
+    const gesucht = zusatz && termine.find((t) => t.id === zusatz);
+    zusatz = null;
+    if (gesucht?.google) { ansicht = 'woche'; wochenStart = montag(new Date(gesucht.start)); }
+    else if (gesucht) oeffneTermin(gesucht);
     inhalt.replaceChildren(...(ansicht === 'liste'
       ? liste(termine)
       : [wocheAnsicht({

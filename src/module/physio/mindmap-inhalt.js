@@ -6,7 +6,8 @@
 //   eintrag     – die Mitte mit allen Feldern und Bildern, direkt bearbeitbar (eintrag.js)
 //   bild        – ein Bild der Mitte groß, mit „Als Titelbild“ und „Löschen“ (bild-gross.js)
 // Jeder Wechsel ist ein Schritt im Verlauf; „‹ Zurück“ und Zurück-Wischen gehen einen Schritt zurück.
-// const m = mindmapInhalt({ zurueckKnopf, sucheKnopf }); m.start(); m.daten(eintraege, links, bilder);
+// const m = mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId }); m.start(); m.daten(eintraege, links, bilder);
+// mitteId (optional) = mit der Fokus-Karte dieses Punkts starten.
 import { el } from '../../ui/dom.js';
 import { list } from '../../ui/list.js';
 import { nachbarn, loese } from './daten.js';
@@ -20,10 +21,10 @@ import { mmVerlauf } from './mm-verlauf.js';
 
 const MIT_MITTE = ['karte', 'liste', 'verknuepfen', 'eintrag', 'bild'];
 
-export function mindmapInhalt({ zurueckKnopf, sucheKnopf }) {
+export function mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId = null }) {
   // stand wird mit suche.js und verknuepfen.js geteilt (eintraege, suchtext)
   const stand = { eintraege: [], links: [], bilder: [], suchtext: '' };
-  let schritt = { ansicht: 'suche', mitteId: null };
+  let schritt = mitteId ? { ansicht: 'karte', mitteId } : { ansicht: 'suche', mitteId: null };
   const element = el('div', { class: 'mm__inhalt' });
   const verlauf = mmVerlauf((s) => { schritt = s; zeige(); });
 
