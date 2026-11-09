@@ -36,7 +36,7 @@
       Quelle `tools/quiz/baender.txt`, erzeugt mit `python3 tools/quiz/baender.py` → `fragen/baender.json` (IDs `ban-<name>-v/f/k`).
       42 Bänder (Schulter, Ellenbogen, Hand, Becken/Hüfte, Knie, Fuß, Wirbelsäule) = 117 Fragen. `sw.js` `v64`. Neue Datei/Thema → `THEMEN` in `data.js` und `sw.js`.
       Daily nur vollständig gespeichert; Endlos auch abgebrochen (ab 1 Antwort). Import: Prompt-Knopf im Modal, doppelte Fragen werden übersprungen.
-      Lokal geprüft (Mac + iPhone-Breite, Testrunde ohne Speichern). Offen: Lukas führt `014` aus, prüft auf Geräten.
+      Lokal geprüft (Mac + iPhone-Breite, Testrunde ohne Speichern). `014` ausgeführt, von Lukas auf Geräten geprüft.
 
 ## Nächster Schritt (Plan)
 - Muskeln Teil 2 erledigt (09.11.2026, `sw.js` `v63`). Optional später: Mimik, Zungenbein-, Augenmuskeln.
