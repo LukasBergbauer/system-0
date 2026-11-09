@@ -62,8 +62,19 @@
 .tdl__feld .chips { justify-content: center; }
 .tdl__feld .chip { min-width: calc(var(--tap) + var(--space-3)); min-height: calc(var(--tap) + var(--space-2)); font-size: var(--fs-title); }
 .training__kopf .chips { flex-wrap: wrap; overflow: visible; }
-.training__woche { display: flex; flex-direction: column; gap: var(--space-2); }
-.training__woche-kopf { display: flex; justify-content: space-between; align-items: baseline; }
-.training__woche-kopf .label { margin: 0; }
-.training__balken { height: var(--space-2); border-radius: 999px; background: var(--line); overflow: hidden; }
-.training__balken i { display: block; height: 100%; border-radius: inherit; background: var(--accent); transition: width var(--duration) var(--ease); }
+/* Wochen-Leiste: Akzent-Karte wie der Hero auf Heute */
+.training__woche { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: var(--space-2);
+  padding: var(--space-5); border-radius: var(--radius-gross); color: var(--accent-ink); border: 1px solid var(--glas-rand); box-shadow: var(--schatten);
+  background: linear-gradient(135deg, var(--akzent-hell) 0%, var(--accent) 48%, var(--akzent-tief) 130%); }
+.training__woche::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(60% 70% at 0% 0%, rgba(255,255,255,.35), transparent 60%); }
+.training__woche > * { position: relative; }
+.training__woche-label { font-size: var(--fs-label); font-weight: 600; letter-spacing: var(--sperrung); text-transform: uppercase; opacity: .85; }
+.training__woche-kopf { display: flex; align-items: baseline; gap: var(--space-2); }
+.training__woche-kopf b { font-size: var(--fs-display); font-weight: 600; letter-spacing: -.03em; line-height: 1; }
+.training__woche small { font-size: var(--fs-small); opacity: .82; }
+.training__balken { height: 10px; border-radius: 999px; background: rgba(255,255,255,.22); overflow: hidden; }
+.training__balken i { display: block; height: 100%; border-radius: inherit; background: var(--accent-ink);
+  box-shadow: 0 0 8px rgba(255,255,255,.6); animation: training-fuell 1200ms var(--ease) 200ms backwards; }
+@keyframes training-fuell { from { width: 0; } }
+@media (prefers-reduced-motion: reduce) { .training__balken i { animation: none; } }

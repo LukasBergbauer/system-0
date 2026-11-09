@@ -18,13 +18,14 @@ function wochenLeiste(daten) {
   const ziel = [1, 2, 3, 4, 5, 6, 7].reduce((n, t) => n + planFuerTag(daten, t).length, 0) || 3;
   const serie = wochenSerie(daten.einheiten);
   return el('section', { class: 'card training__woche' }, [
+    el('span', { class: 'training__woche-label', text: 'Diese Woche' }),
     el('div', { class: 'training__woche-kopf' }, [
-      el('span', { class: 'label', text: 'Diese Woche' }),
-      el('b', { text: `${woche} / ${ziel}` }),
+      el('b', { text: String(woche) }),
+      el('small', { text: `von ${ziel} ${ziel === 1 ? 'Einheit' : 'Einheiten'}` }),
     ]),
     el('div', { class: 'training__balken', attrs: { role: 'progressbar', 'aria-valuemin': 0, 'aria-valuemax': ziel, 'aria-valuenow': woche } },
       el('i', { attrs: { style: `width:${Math.min(100, (woche / ziel) * 100)}%` } })),
-    serie > 1 && el('p', { class: 'training__zahlen', text: `${mehrzahl(serie, 'Woche', 'Wochen')} in Folge` }),
+    serie > 1 && el('small', { text: `${mehrzahl(serie, 'Woche', 'Wochen')} in Folge` }),
   ]);
 }
 
