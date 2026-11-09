@@ -27,6 +27,8 @@ const FORMEN = {
   farbe: '<path d="M12 3.5a8.5 8.5 0 1 0 0 17c1.2 0 1.8-.8 1.8-1.7 0-1.3-1.2-1.6-1.2-2.8 0-1 .8-1.7 1.8-1.7h2.1a4 4 0 0 0 4-4C20.5 6.6 16.7 3.5 12 3.5z"/><circle cx="7.5" cy="11.5" r="1"/><circle cx="10" cy="7.5" r="1"/><circle cx="15" cy="7.5" r="1"/>',
   // Flamme (Serie)
   flamme: '<path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/>',
+  // Plus (Neu)
+  plus: '<path d="M12 5v14M5 12h14"/>',
   // Hantel (Training)
   training: '<path d="M6 6v12M18 6v12M3 9v6M21 9v6M6 12h12"/>',
   // Zielscheibe (Ziele)

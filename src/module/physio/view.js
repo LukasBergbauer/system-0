@@ -4,6 +4,7 @@
 import { el } from '../../ui/dom.js';
 import { kachel, kacheln } from '../../ui/kachel.js';
 import { on } from '../../core/events.js';
+import { zusatzNehmen } from '../../core/router.js';
 import { ARTEN } from './arten.js';
 import { oeffneMindmap } from './overlay.js';
 import { EINTRAEGE, LINKS, ladeEintraege, ladeLinks, zaehleLinks } from './daten.js';
@@ -26,6 +27,8 @@ function mindmapKachel(anzahl, signal) {
 export function physioAnsicht({ signal }) {
   const inhalt = el('div', { class: 'app__stack' });
   let stand = 0; // nur das Ergebnis des neuesten Zeichnens zählt
+  // Zusatz von außen (z. B. Heute): 'mindmap' oder 'neu' öffnet die Mindmap (dort „+ Neuer Punkt“)
+  if (['mindmap', 'neu'].includes(zusatzNehmen())) requestAnimationFrame(() => oeffneMindmap({ signal }));
 
   async function zeichne() {
     const nr = ++stand;

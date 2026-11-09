@@ -1,6 +1,7 @@
 // Heute: Kopf mit Gruß je nach Tageszeit, darunter Datum · „N Dinge brauchen dich“.
-// Rechts kommen in Schritt d) die Knöpfe „Akzent“ und „Neu“ dazu.
+// Rechts die Knöpfe „Akzent“ und „Neu“ (kopf-knoepfe.js).
 import { el } from '../../ui/dom.js';
+import { kopfKnoepfe } from './kopf-knoepfe.js';
 
 const DATUM = new Intl.DateTimeFormat('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
 
@@ -21,5 +22,6 @@ export function kopf(dinge, jetzt = new Date()) {
       el('h1', { text: `${gruss(jetzt.getHours())}, Lukas` }),
       el('p', { text: `${DATUM.format(jetzt)} · ${dingeText(dinge)}` }),
     ]),
+    kopfKnoepfe(),
   ]);
 }

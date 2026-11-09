@@ -12,6 +12,9 @@
 //   kurztitel: kürzerer Name für die Tab-Leiste auf dem iPhone (z. B. „Physio“),
 //   dashboard: true (eigener Kopf statt Titel, breite Fläche; nur Heute).
 //
+// Zusatz: '#/todos/neu' öffnet To-dos und sagt „gleich ein neues anlegen“. Der Bereich liest ihn beim Öffnen
+//   mit zusatzNehmen() (siehe dort). Bekannt: todos/neu, kalender/neu, kalender/woche, physio/neu, physio/mindmap.
+//
 // Ereignisse: 'bereiche' (neuer Bereich angemeldet), 'route' (anderer Bereich aktiv).
 import { emit } from './events.js';
 
@@ -36,9 +39,20 @@ export function go(id) {
   location.hash = `#/${id}`;
 }
 
-// '#/todos/123' → 'todos' (Teile dahinter sind für spätere Detail-Ansichten frei)
+const teile = () => location.hash.replace(/^#\/?/, '').split('/');
+
+// '#/todos/neu' → 'todos'
 function idAusHash() {
-  return location.hash.replace(/^#\/?/, '').split('/')[0];
+  return teile()[0];
+}
+
+// '#/todos/neu' → 'neu' (sonst null). Entfernt den Zusatz aus der Adresse (ohne neuen Verlaufseintrag),
+// damit Neuladen oder Zurück ihn nicht noch einmal auslöst.
+export function zusatzNehmen() {
+  const [id, ...rest] = teile();
+  if (!rest.length) return null;
+  history.replaceState(history.state, '', `#/${id}`);
+  return rest.join('/');
 }
 
 function startId() {

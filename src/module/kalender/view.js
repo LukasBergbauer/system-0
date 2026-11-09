@@ -6,6 +6,7 @@ import { el } from '../../ui/dom.js';
 import { list, listRow } from '../../ui/list.js';
 import { button } from '../../ui/button.js';
 import { on } from '../../core/events.js';
+import { zusatzNehmen } from '../../core/router.js';
 import { TERMINE, ladeTermine } from './daten.js';
 import { gruppiere, tagText, zeitHM, letzterTag } from './zeit.js';
 import { oeffneTermin } from './bearbeiten.js';
@@ -70,6 +71,10 @@ function liste(termine) {
 export function kalenderAnsicht({ signal }) {
   const inhalt = el('div', { class: 'termin-liste' });
   let ansicht = gemerkt();
+  // Zusatz von außen (z. B. Heute): 'woche' = Wochenansicht zeigen, 'neu' = gleich einen Termin anlegen
+  const zusatz = zusatzNehmen();
+  if (zusatz === 'woche') ansicht = 'woche';
+  if (zusatz === 'neu') requestAnimationFrame(() => oeffneTermin());
   let wochenStart = montag(new Date());
   let stand = 0; // nur das Ergebnis des neuesten Zeichnens zählt
 

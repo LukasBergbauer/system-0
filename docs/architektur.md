@@ -31,7 +31,7 @@ system-0/
     │   ├── sync.js            # Abgleich lokal ↔ Supabase (+ sync-local.js, tabellen.js)
     │   ├── einstellungen.js   # Schlüssel/Wert-Einstellungen
     │   ├── export.js          # alle Daten als JSON
-    │   ├── router.js          # Navigation: Hash-Adressen #/<id>, Bereiche melden sich an
+    │   ├── router.js          # Navigation: Hash-Adressen #/<id>[/zusatz], Bereiche melden sich an
     │   └── events.js          # Module benachrichtigen sich gegenseitig
     ├── ui/                    # wiederverwendbare Bausteine: Karte, Liste, Checkbox, Modal, Tabs, Symbole
     ├── styles/

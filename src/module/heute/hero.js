@@ -47,7 +47,7 @@ export function hero(w, animiert) {
       ]),
       el('div', { class: 'heute-knoepfe' }, [
         el('button', { class: 'heute-pille heute-pille--weiss', text: 'Woche ansehen ↗', on: { click: () => go('kalender/woche') } }),
-        el('button', { class: 'heute-pille heute-pille--rand', text: '+ To-do', on: { click: () => go('todos') } }),
+        el('button', { class: 'heute-pille heute-pille--rand', text: '+ To-do', on: { click: () => go('todos/neu') } }),
       ]),
     ]),
     ring(w.quote, mitte, animiert),

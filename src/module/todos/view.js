@@ -5,6 +5,7 @@
 import { el } from '../../ui/dom.js';
 import { list } from '../../ui/list.js';
 import { on } from '../../core/events.js';
+import { zusatzNehmen } from '../../core/router.js';
 import { TODOS, BEREICHE, ladeTodos, ladeBereiche, setzeErledigt } from './data.js';
 import { sortiereOffene, sortiereErledigte } from './sortierung.js';
 import { gruppiereNachZeit } from './gruppen.js';
@@ -80,5 +81,9 @@ export function todosAnsicht({ signal }) {
   // Neues To-do landet im gerade gefilterten Bereich (sonst wäre es nach Enter sofort unsichtbar).
   const zielBereich = () => (filter === ALLE || filter === OHNE ? null : filter);
 
-  return el('div', { class: 'app__stack' }, [leiste, schnelleingabe({ zielBereich }), inhalt]);
+  const eingabe = schnelleingabe({ zielBereich });
+  // „Neu → To-do“ (z. B. von Heute): gleich ins Eingabefeld
+  if (zusatzNehmen() === 'neu') requestAnimationFrame(() => eingabe.querySelector('input').focus());
+
+  return el('div', { class: 'app__stack' }, [leiste, eingabe, inhalt]);
 }

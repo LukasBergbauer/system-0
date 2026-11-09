@@ -12,6 +12,7 @@ import { kacheln } from './kacheln.js';
 import { kalenderKarte } from './kalender-karte.js';
 import { verlauf } from './verlauf.js';
 import { donut } from './donut.js';
+import { schnellaktionen } from './schnell.js';
 
 const GOOGLE = 'kalender:google'; // Zwischenspeicher des Kalenders: { termine: [...] }
 
@@ -38,6 +39,7 @@ export function heuteAnsicht({ signal }) {
         hero(z.woche, animiert),
         kalenderKarte(d.termine),
         ...kacheln(z, animiert),
+        ...schnellaktionen(z.woche),
         verlauf(d.todos, animiert),
         donut(d.todos, d.bereiche, animiert),
       ]),
@@ -45,6 +47,7 @@ export function heuteAnsicht({ signal }) {
   }
 
   zeichne();
-  on('daten', zeichne, { signal });
+  // Einstellungen (z. B. Akzentfarbe) ändern hier nichts – sonst schlösse sich die Farbwahl bei jedem Tipp
+  on('daten', ({ table }) => table !== 'einstellungen' && zeichne(), { signal });
   return box;
 }

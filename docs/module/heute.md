@@ -35,7 +35,16 @@ Wird als Glas-Dashboard gebaut (Plan unten, Schritte a–e).
       (Ereignis `sync`, Punkt am Kreis grün/Akzent/Warnfarbe). `src/app/bald.js` meldet Training und Ziele mit `bald: true`
       an (Seite „Kommt bald“); ein echtes Modul mit gleicher id ersetzt sie. „Bald“-Bereiche nicht in der iPhone-Tab-Leiste.
       Symbol `ziele`. `sw.js` `v42`. Lokal geprüft (Mac auf/eingeklappt, iPhone-Größe).
-- [ ] d) Neu-Menü + Akzent-Knopf (+ Schnellaktionen) – **als Nächstes**
+- [x] d) Akzent-Knopf, Neu-Menü, Schnellaktionen (09.11.2026). `kopf-knoepfe.js`: „Akzent“ (Glas-Pille mit Farbpunkt,
+      Popover mit den 7 Farben + eigener Farbe über `core/akzent.js`) und „Neu“ (dunkle Pille, Menü To-do · Termin ·
+      Physio-Punkt). Beide als HTML-Popover (Tipp daneben/Esc schließt). `schnell.js`: Neues To-do · Termin (Heute N Termine)
+      · Training starten (kommt bald, ausgegraut) · Mindmap öffnen. Weg über `core/`: Router-Zusatz `#/<bereich>/<zusatz>`,
+      der Bereich liest ihn beim Öffnen mit `zusatzNehmen()` (entfernt ihn aus der Adresse). Bekannt: `todos/neu`
+      (Fokus in die Schnelleingabe), `kalender/neu` (Termin-Fenster), `kalender/woche` (Wochenansicht, jetzt auch für
+      „Woche ansehen“), `physio/neu` und `physio/mindmap` (öffnen die Mindmap; neuer Punkt dort über „+ Neuer Punkt“).
+      Hero „+ To-do“ → `todos/neu`. Heute zeichnet bei Änderungen an `einstellungen` nicht neu (sonst schlösse sich
+      die Farbwahl). Symbol `plus`. `sw.js` `v43`.
+- [ ] e) Suche (Feld + ⌘K) – **als Nächstes**
 - [x] Design-Runde (Teil d): Kopf mit Stein-Kugel (`bild: 'assets/bilder/heute.svg'`), Datum über dem Titel
       (`ueber`, z. B. „MITTWOCH, 4. NOVEMBER“) und Spruch des Tages. Den Kopf baut `src/app/shell.js` für jeden Bereich.
 
