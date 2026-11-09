@@ -6,19 +6,18 @@ import { card } from '../ui/card.js';
 import { symbol } from '../ui/symbol.js';
 import { alleBereiche, go } from '../core/router.js';
 import { navPlan, MEHR } from './nav-plan.js';
+import { oeffneSuche } from './suche.js';
 
 function ansicht() {
   const { mehr } = navPlan(alleBereiche());
-  if (mehr.length === 0) {
-    return el('p', { class: 'app__note', text: 'Alle Bereiche stehen schon in der Leiste.' });
-  }
+  const suchen = listRow({ title: 'Suchen …', start: symbol('suche'), onClick: oeffneSuche });
   return card({
-    children: list(mehr.map((b) => listRow({
+    children: list([suchen, ...mehr.map((b) => listRow({
       title: b.titel,
       start: symbol(b.symbol),
       end: '›',
       onClick: () => go(b.id),
-    }))),
+    }))]),
   });
 }
 

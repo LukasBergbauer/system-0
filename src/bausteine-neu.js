@@ -1,57 +1,23 @@
-// Musterseite, zweiter Teil: Bausteine aus der Design-Runde (Kopfbild, Kachel, Chips, Knopf primary).
-// Oben schaltet eine Chip-Leiste die Bereichsfarbe um (mit Kopfbild und Spruch des Bereichs).
+// Musterseite, zweiter Teil: Bausteine aus der Design-Runde (Chips, Kachel, Knopf primary).
 import { el } from './ui/dom.js';
 import { card } from './ui/card.js';
 import { button } from './ui/button.js';
-import { kopfbild } from './ui/kopfbild.js';
 import { kachel, kacheln } from './ui/kachel.js';
 import { chips } from './ui/chips.js';
-import { spruchDesTages, desTages } from './core/sprueche.js';
 
 const note = (text) => el('p', { class: 'muster__note', text });
 
-const FARBEN = [
-  { id: 'heute', label: 'Heute' },
-  { id: 'todos', label: 'To-dos' },
-  { id: 'einstellungen', label: 'Einstellungen' },
-  { id: 'physio', label: 'Physio' },
-];
-
-// Stein-Szenen je Bereich (Physio bekommt sein Bild mit dem Modul).
-const BILDER = { heute: 'heute', todos: 'todos', einstellungen: 'einstellungen' };
-const kopfPlatz = el('div');
-
-function setzeFarbe(id) {
-  document.documentElement.style.setProperty('--bereich', `var(--farbe-${id})`);
-  const versatz = FARBEN.findIndex((f) => f.id === id);
-  kopfPlatz.replaceChildren(kopfbild({
-    titel: FARBEN[versatz].label,
-    bild: BILDER[id] && desTages([1, 2, 3].map((n) => `assets/bilder/${BILDER[id]}-${n}.webp`)),
-    spruch: spruchDesTages(versatz),
-  }));
-}
-
-export function farbUmschalter() {
-  setzeFarbe(FARBEN[0].id);
+export function chipsDemo() {
   return card({
-    title: 'Bereichsfarbe',
+    title: 'Chips',
     children: [
-      note('Chips: gewählter Chip weiß, umrandeter Chip = Aktion. Wechselt hier die Farbe der Muster.'),
+      note('Gewählter Chip weiß, umrandeter Chip = Aktion.'),
       chips({
-        items: FARBEN,
-        onChange: setzeFarbe,
+        items: [{ id: 'alle', label: 'Alle' }, { id: 'arbeit', label: 'Arbeit' }, { id: 'privat', label: 'Privat' }],
         aktionen: [{ label: '+ Bereich', onClick: () => {} }],
       }),
     ],
   });
-}
-
-export function kopfbildDemo() {
-  return el('div', { class: 'muster__stack' }, [
-    el('p', { class: 'marke', text: 'System 0' }),
-    kopfPlatz,
-    note('Markenzeile, darunter Kopfbild: großer Serifentitel, Strich, kursiver Spruch (wechselt täglich). Jeder Bereich hat sein eigenes Stein-Motiv.'),
-  ]);
 }
 
 export function kachelDemo() {

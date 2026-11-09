@@ -290,12 +290,12 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   (Kapsel + Seitenleiste mit gleitender Pille), Karten/Kacheln/Knöpfe/Tabs/Modal/Chips als Glas bzw. Pillen,
   Seitenkopf ohne Bild, To-do- und Termin-Gruppen als Glaskarten, Serifenschrift entfernt.
   Akzentfarbe: `src/core/akzent.js` + Kachel in den Einstellungen (synchronisiert). Funktionen unverändert. `sw.js` `v39`.
-  Offen/klein: `bausteine.html` zeigt noch den alten Abschnitt „Bereichsfarbe“ und ein Kopfbild; auf dem iPhone
-  prüfen, ob die Statusleiste oben gut lesbar ist.
+  Erledigt (09.11.2026, `sw.js` `v69`): `bausteine.html` ohne „Bereichsfarbe“/Kopfbild (jetzt Chips-Muster). Statusleiste: dunkler Streifen hinter Uhrzeit/Akku
+  ist schon da (`base.css`), Lukas prüft auf dem iPhone.
 - [x] Heute-Übersicht (`module/heute.md`) – als Glas-Dashboard, Plan a)–e) fertig (09.11.2026):
   a) Rechnungen, Kopf, Hero, 4 Kacheln, b) Kalender-Karte, Verlauf, Donut, c) Seitenleiste mit Abschnitten,
   d) Akzent-Knopf, Neu-Menü, Schnellaktionen (Router-Zusatz `#/todos/neu`), e) Suche (Seitenleisten-Feld + ⌘K,
-  `src/app/suche.js`, öffnet Treffer über `#/<bereich>/<id>`). Offen/klein: Such-Einstieg auf dem iPhone.
+  `src/app/suche.js`, öffnet Treffer über `#/<bereich>/<id>`). Such-Einstieg iPhone (09.11.2026, `v69`): Lupe im Heute-Kopf (nur < 768 px, `emit('suche')` → Hülle öffnet Suche) und „Suchen …“ oben in „Mehr“.
 - [x] Routinen, ohne Sperre (`module/routinen.md`) – gebaut 09.11.2026: Karten je Routine mit 7-Tage-Verlauf und Serie,
   Bearbeiten (Schritte als Zeilen), Durchlauf als Vollbild, Leiste auf Heute. Migration `006_routinen.sql`; `sw.js` `v45`.
   Fix 09.11.: Abgleich (Migration `007`, `reihenfolge` → `bigint`), Punkte = Woche Mo–So; `sw.js` `v46`.

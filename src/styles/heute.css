@@ -31,6 +31,9 @@
 .heute-pille .symbol { width: 15px; height: 15px; transition: transform 300ms var(--feder); }
 .heute-pille:hover .symbol { transform: rotate(90deg); }
 .heute-pille--glas { background: var(--glass); color: var(--text); border: 1px solid var(--glas-rand); }
+.heute-pille--suche { width: 38px; padding: 0; justify-content: center; }
+.heute-pille--suche:hover .symbol { transform: none; }
+@media (min-width: 768px) { .heute-pille--suche { display: none; } }
 .heute-pille--dunkel { background: var(--text); color: #fff; border: 0; box-shadow: 0 8px 18px -8px rgba(30,10,5,.6); }
 .heute-punkt { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(255,255,255,.7); }
 

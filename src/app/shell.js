@@ -9,7 +9,7 @@ import { syncStatus } from '../core/sync.js';
 import { alleBereiche, aktuelleRoute } from '../core/router.js';
 import { navPlan } from './nav-plan.js';
 import { renderSide, renderTabs } from './nav.js';
-import { sucheTaste } from './suche.js';
+import { sucheTaste, oeffneSuche } from './suche.js';
 
 export function shell() {
   const rahmen = new AbortController(); // endet, wenn der Rahmen verschwindet
@@ -63,6 +63,7 @@ export function shell() {
 
   on('route', zeigeBereich, { signal: rahmen.signal });
   sucheTaste(rahmen.signal);
+  on('suche', oeffneSuche, { signal: rahmen.signal }); // z. B. Lupe auf Heute (iPhone)
   on('bereiche', zeigeNav, { signal: rahmen.signal });
   on('sync', zeigeNav, { signal: rahmen.signal });
   on('daten', zaehlen, { signal: rahmen.signal });

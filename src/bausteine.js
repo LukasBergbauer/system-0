@@ -8,7 +8,7 @@ import { button } from './ui/button.js';
 import { input } from './ui/input.js';
 import { modal } from './ui/modal.js';
 import { tabs } from './ui/tabs.js';
-import { farbUmschalter, kopfbildDemo, kachelDemo, primaryDemo } from './bausteine-neu.js';
+import { chipsDemo, kachelDemo, primaryDemo } from './bausteine-neu.js';
 
 const note = (text) => el('p', { class: 'muster__note', text });
 const chevron = '›';
@@ -105,8 +105,7 @@ function modalDemo() {
 }
 
 document.getElementById('muster').append(
-  farbUmschalter(),
-  kopfbildDemo(),
+  chipsDemo(),
   kachelDemo(),
   primaryDemo(),
   cardDemo(),

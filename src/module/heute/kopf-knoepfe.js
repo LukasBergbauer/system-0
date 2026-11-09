@@ -1,9 +1,11 @@
 // Heute: Knöpfe rechts im Kopf – „Akzent“ (Farbwahl) und „Neu“ (Menü: To-do, Termin, Physio-Punkt).
 // Beide Fenster sind HTML-Popover: Tipp daneben oder Esc schließt sie von selbst.
+// Lupe (nur iPhone, am Mac gibt es das Suchfeld in der Seitenleiste) meldet emit('suche'); die App-Hülle öffnet die Suche.
 // „Neu“ geht über den Router-Zusatz (#/todos/neu …); der Zielbereich öffnet dann sein Anlegen.
 import { el } from '../../ui/dom.js';
 import { symbol } from '../../ui/symbol.js';
 import { go } from '../../core/router.js';
+import { emit } from '../../core/events.js';
 import { AKZENT_FARBEN, akzentSetzen, aktuellerAkzent } from '../../core/akzent.js';
 
 const NEU = [['todos', 'To-do'], ['kalender', 'Termin'], ['physio', 'Physio-Punkt']];
@@ -57,5 +59,6 @@ export function kopfKnoepfe() {
   const akzent = el('button', { class: 'heute-pille heute-pille--glas', attrs: { type: 'button' } },
     [el('span', { class: 'heute-punkt' }), 'Akzent']);
   const neu = el('button', { class: 'heute-pille heute-pille--dunkel', attrs: { type: 'button' } }, [symbol('plus'), 'Neu']);
-  return el('div', { class: 'heute-kopf__knoepfe' }, [akzent, neu, farbwahl(akzent), neuMenue(neu)]);
+  const suche = el('button', { class: 'heute-pille heute-pille--glas heute-pille--suche', attrs: { type: 'button', 'aria-label': 'Suchen' }, on: { click: () => emit('suche') } }, [symbol('suche')]);
+  return el('div', { class: 'heute-kopf__knoepfe' }, [suche, akzent, neu, farbwahl(akzent), neuMenue(neu)]);
 }

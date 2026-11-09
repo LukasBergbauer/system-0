@@ -1,5 +1,6 @@
 // Module benachrichtigen sich gegenseitig, ohne sich zu kennen.
 // emit('daten', { table: 'todos' });  on('daten', (detail) => …)
+// Bekannt u. a.: 'daten', 'route', 'bereiche', 'sync', 'dateien', 'suche' (Suche öffnen, z. B. Lupe auf Heute).
 const bus = new EventTarget();
 
 export function emit(name, detail) {
