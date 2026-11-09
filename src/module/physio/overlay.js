@@ -15,7 +15,7 @@ let offen = null; // höchstens ein Overlay gleichzeitig
 
 // ausKnopf = Element, aus dem sich das Overlay öffnet (Mittelpunkt der Animation).
 // mitteId = gleich mit der Fokus-Karte dieses Punkts starten (statt mit der Suche); lernpfad = von dort als Lernpfad.
-export function oeffneMindmap({ ausKnopf, signal, mitteId, lernpfad } = {}) {
+export function oeffneMindmap({ ausKnopf, signal, mitteId, lernpfad, ansicht } = {}) {
   if (offen) return;
   const ende = new AbortController(); // endet beim Schließen
 
@@ -25,7 +25,7 @@ export function oeffneMindmap({ ausKnopf, signal, mitteId, lernpfad } = {}) {
   const sucheKnopf = leistenKnopf('mm__suchen', symbol('suche'), 'Suchen');
   const zu = leistenKnopf('mm__zu', '✕', 'Mindmap schließen');
   zu.addEventListener('click', () => schliessen());
-  const inhalt = mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId, lernpfad });
+  const inhalt = mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId, lernpfad, ansicht });
 
   const dialog = el('dialog', { class: 'mm', attrs: { 'aria-label': 'Mindmap' } }, [
     el('div', { class: 'mm__leiste' }, [

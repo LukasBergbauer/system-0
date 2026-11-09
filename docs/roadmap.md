@@ -361,6 +361,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         Kosmos-Bubble gleitet beim Klick in die Mitte; Name „Physio“. `sw.js` `v74`. Offen: auf Geräten prüfen
   - [x] Lernpfade (09.11.2026, `module/physio.md` → „Plan Lernpfade“): Region → Krankheitsbild → Muskel/Trainingsform → Übung,
         Pfad-Leiste oben. `sw.js` `v75`. Offen: auf Geräten mit echten Regionen prüfen
+  - [x] 3D-Kugeln + Weiterhangeln im Kosmos (09.11.2026): Kosmos nutzt die Fokus-Karte, Mitte antippen = anderes Interface. `sw.js` `v76`. Offen: auf Geräten prüfen
   - [ ] Danach: Lernpfade, Notion
 - [ ] Notion-Anbindung
 - [ ] Idee KI-Auswertung (Wochenrückblick über alle Module): kostet je nach Anbieter Geld bzw. Datenschutz klären;

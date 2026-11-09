@@ -27,6 +27,7 @@ export function gleite(ebene, knoepfe, aendern, spaeter = 0) {
   aendern();
 
   // 3. optisch zurück an den alten Platz
+  let neue = 0;
   for (const knopf of ebene.querySelectorAll('.mm-knoten:not(.mm-knoten--weg)')) {
     const alt = vorher.get(knopf);
     if (!alt) {
@@ -34,9 +35,11 @@ export function gleite(ebene, knoepfe, aendern, spaeter = 0) {
       const { x, y } = knopf.ziel ?? { x: 0, y: 0 };
       knopf.style.transform = `${knopf.basis} translate(${-x}px, ${-y}px) scale(0.5)`;
       knopf.classList.add('mm-knoten--neu');
-      if (spaeter) {
-        knopf.style.transitionDelay = `${spaeter}ms`;
-        setTimeout(() => knopf.style.removeProperty('transition-delay'), spaeter + 50);
+      // nacheinander auftauchen
+      const verz = spaeter + neue++ * 45;
+      if (verz) {
+        knopf.style.transitionDelay = `${verz}ms`;
+        setTimeout(() => knopf.style.removeProperty('transition-delay'), verz + 50);
       }
       continue;
     }

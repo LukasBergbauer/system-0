@@ -3,12 +3,12 @@
 // vom Nachbarn zur Mitte wird (so kann er sichtbar dorthin gleiten).
 // Lange drücken (iPhone) oder Rechtsklick (Mac) → onLang(id), z. B. Verknüpfung lösen.
 // Mit Titelbild wird der Punkt ein runder Ball (Foto schwarz-weiß, Titel darunter), Klasse mm-knoten--ball.
-// Aufbau: Knopf (Platz, gleitet) > Blase (Hover: etwas größer) > Inhalt + Wolken-Haut (wolke.js, wabbelt beim Hovern).
-// Größe und Form je Punkt leicht anders (--v, --wolke).
+// Aufbau: Knopf (Platz, gleitet) > Blase (Hover: etwas größer) > Inhalt + Haut (3D-Glaskugel, wabbelt beim Hovern, wabbeln.js).
+// Größe je Punkt leicht anders (--v).
 import { el } from '../../ui/dom.js';
 import { art } from './arten.js';
 import { bildUrl } from './bilder.js';
-import { wolke, wabbeln } from './wolke.js';
+import { wabbeln } from './wabbeln.js';
 
 // fester Zahlenwert je id (gleicher Punkt = gleicher Takt und gleiche Größe)
 const zahl = (id) => [...id].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
@@ -55,7 +55,6 @@ export function knoten(id, onClick, onLang) {
   ]));
   knopf.dataset.id = id;
   const n = zahl(id);
-  wolke(knopf.style, n % 997);
   knopf.addEventListener('mouseenter', () => wabbeln(knopf.querySelector('.mm-knoten__haut'), n));
   knopf.style.setProperty('--v', (0.88 + (n % 23) / 100).toFixed(2));
   const warLang = langDruecken(knopf, () => onLang?.(id));
@@ -85,7 +84,7 @@ function setzeFoto(knopf, bild) {
 export function fuelleKnoten(knopf, eintrag, bild = null) {
   setzeFoto(knopf, bild);
   const [label, titel, kurz] = teile(knopf);
-  const name = art(eintrag.art).name;
+  const name = eintrag.label ?? art(eintrag.art).name;
   knopf.dataset.art = eintrag.art;
   // lange Titel bekommen in der Mitte eine kleinere Schrift (sonst nur Silbenreste)
   knopf.classList.toggle('mm-knoten--lang', eintrag.titel.length > 14);

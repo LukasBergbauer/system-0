@@ -1,4 +1,4 @@
-// Ansicht „Physio“: Kosmos mit Kern „Physio“ und schwebenden Bubbles je Pfad (kosmos.js),
+// Ansicht „Physio“: Kosmos mit Kern „Physio“, Bällen je Art und Weiterhangeln (kosmos.js),
 // darunter eine leise Zeile mit Punkten und Verknüpfungen. Zeichnet Zahlen neu, sobald sich Daten ändern.
 import { el } from '../../ui/dom.js';
 import { on } from '../../core/events.js';
@@ -6,6 +6,7 @@ import { zusatzNehmen } from '../../core/router.js';
 import { kosmos } from './kosmos.js';
 import { oeffneMindmap } from './overlay.js';
 import { EINTRAEGE, LINKS, ladeEintraege, ladeLinks, zaehleLinks } from './daten.js';
+import { BILDER, ladeBilder } from './bilder.js';
 
 const zahl = (n, eins, viele) => `${n} ${n === 1 ? eins : viele}`;
 
@@ -24,16 +25,16 @@ export function physioAnsicht({ signal }) {
 
   async function zeichne() {
     const nr = ++stand;
-    const [eintraege, links] = await Promise.all([ladeEintraege(), ladeLinks()]);
+    const [eintraege, links, bilder] = await Promise.all([ladeEintraege(), ladeLinks(), ladeBilder()]);
     if (nr !== stand || signal.aborted) return;
 
-    k.daten(eintraege);
+    k.daten(eintraege, links, bilder);
     const n = zaehleLinks(eintraege, links);
     zeile.textContent = `${zahl(eintraege.length, 'Punkt', 'Punkte')} · ${zahl(n, 'Verknüpfung', 'Verknüpfungen')}`;
   }
 
   on('daten', ({ table }) => {
-    if (table === EINTRAEGE || table === LINKS) zeichne();
+    if (table === EINTRAEGE || table === LINKS || table === BILDER) zeichne();
   }, { signal });
   zeichne();
   return inhalt;

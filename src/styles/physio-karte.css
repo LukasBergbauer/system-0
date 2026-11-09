@@ -17,21 +17,20 @@
   left: 0;
   width: 100%;
 }
-/* Lichtfäden: Akzent, zur Bubble hin heller (Verlauf mm-faden in fokus.js), leicht leuchtend */
+/* Lichtfäden: fein und ruhig, zur Kugel hin heller (Verlauf mm-faden in fokus.js) */
 .mm-karte__linien {
   stroke: url(#mm-faden);
-  stroke-width: 1.6;
+  stroke-width: 1;
   stroke-linecap: round;
   fill: none;
-  filter: drop-shadow(0 0 3px color-mix(in oklch, var(--accent) 55%, transparent));
 }
 .mm-karte__linien stop {
   stop-color: var(--accent);
 }
 .mm-karte__linien .quer {
-  stroke-width: 1;
-  stroke-opacity: 0.5;
-  stroke-dasharray: 2 5;
+  stroke-width: 0.75;
+  stroke-opacity: 0.45;
+  stroke-dasharray: 1 4;
 }
 /* Neue Mitte: Fäden kommen gleich mit den neuen Bubbles */
 .mm-karte__linien--ein {
@@ -48,7 +47,7 @@
   100% { opacity: 1; }
 }
 
-/* ---------- Punkte: Knopf = Platz (gleitet), Blase = Inhalt + Wolken-Haut (steht still, Stil der Haut in physio-kosmos.css) ---------- */
+/* ---------- Punkte: Knopf = Platz (gleitet), Blase = Inhalt + Haut (3D-Glaskugel, Stil in physio-kosmos.css) ---------- */
 .mm-knoten {
   position: absolute;
   top: 50%;
@@ -86,9 +85,6 @@
   border-radius: 50%;
   isolation: isolate;
   transition: scale 350ms var(--ease);
-}
-.mm-knoten__haut {
-  z-index: -1;
 }
 /* Text eines Punkts, der gerade die Rolle wechselt: aus, während er gleitet; danach sanft ein */
 .mm-knoten__art,
@@ -129,29 +125,20 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-/* Art dezent an der Haut erkennbar */
-.mm-knoten[data-art="krankheitsbild"] .mm-knoten__haut::before {
-  background:
-    radial-gradient(circle at 30% 24%, rgba(255,255,255,.95) 0 6%, rgba(255,255,255,.4) 24%, transparent 50%),
-    radial-gradient(circle at 50% 50%, color-mix(in oklch, var(--accent) 12%, rgba(255,255,255,.6)) 50%, color-mix(in oklch, var(--accent) 34%, rgba(255,255,255,.4)) 100%);
-}
+/* Art dezent erkennbar */
 .mm-knoten[data-art="technik"] .mm-knoten__haut,
 .mm-knoten[data-art="mehr"] .mm-knoten__haut {
   opacity: .7;
 }
 
-/* Mitte: große Bubble, leuchtet im Akzent */
+/* Mitte: große Kugel; antippen öffnet ein anderes Interface (Text, Liste, Suche) */
 .mm-knoten--mitte {
   z-index: 1;
   width: var(--mm-mitte);
   height: var(--mm-mitte);
-  cursor: default;
 }
 .mm-knoten--mitte .mm-knoten__blase {
   padding: 0 16%;
-}
-.mm-knoten--mitte .mm-knoten__haut {
-  filter: drop-shadow(0 0 22px color-mix(in oklch, var(--accent) 45%, transparent));
 }
 .mm-knoten--mitte .mm-knoten__titel {
   font-size: var(--fs-title);

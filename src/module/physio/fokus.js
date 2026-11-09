@@ -2,6 +2,7 @@
 // Antippen eines Nachbarn → waehle(id): diese Bubble schwebt in die Mitte, alle anderen blenden aus,
 // danach perlen die neuen Nachbarn aus der Mitte heraus.
 // Linien: gebogene Lichtfäden Mitte → Nachbar (enden am Rand der Bubble); fein auch zwischen verknüpften Nachbarn.
+// Mitte antippen → mitteTippen(id, knopf) (anderes Interface, z. B. Text). Neue Nachbarn tauchen nacheinander auf.
 // Unten: „Text“ → oeffnen() (Eintrag), „+ Verknüpfen“ → verknuepfen(). Nachbar lange drücken/Rechtsklick → loesen(mitte, nachbar).
 // Punkte mit Titelbild sind runde Bälle (knoten.js); dann passen auf dem iPhone 6 statt 8 in den Ring.
 // const k = fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }); k.zeige(eintraege, links, mitteId, bilder, nur);
@@ -26,7 +27,7 @@ const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)')
 
 const paar = (a, b) => (a < b ? `${a}|${b}` : `${b}|${a}`);
 
-export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) {
+export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen, mitteTippen }) {
   const linien = document.createElementNS(SVG, 'svg');
   linien.setAttribute('class', 'mm-karte__linien');
   linien.setAttribute('aria-hidden', 'true');
@@ -47,7 +48,7 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
 
   function tippen(id) {
     if (!stand) return;
-    if (id === stand.mitteId) return; // Text öffnet der eigene Knopf unten
+    if (id === stand.mitteId) return mitteTippen?.(id, knoepfe.get(id));
     if (id === MEHR) zeigeAlle();
     else waehle(id);
   }
@@ -99,7 +100,7 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
     const rm = radius(stand.mitteId);
     const weit = Math.max(1, ...nb.map((z) => Math.hypot(z.x, z.y)));
     const striche = [`<defs><radialGradient id="mm-faden" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="${Math.round(weit)}">`
-      + '<stop offset="0" stop-opacity=".75"/><stop offset="1" stop-opacity=".18"/></radialGradient></defs>'];
+      + '<stop offset="0" stop-opacity=".6"/><stop offset="1" stop-opacity=".14"/></radialGradient></defs>'];
     nb.forEach((z, i) => striche.push(faden({ x: 0, y: 0 }, z, rm, radius(z.id), i)));
     for (let i = 0; i < nb.length; i++) {
       for (let j = i + 1; j < nb.length; j++) {

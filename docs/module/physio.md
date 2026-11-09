@@ -292,6 +292,17 @@ läuft immer zu Ende → kein Ruckeln); Hover = Blase `scale 1.05`. Keine Unsch�
 - Mindmap: Wolken-Haut `.mm-knoten__haut` (Stil gemeinsam in `physio-kosmos.css`), Fotos in Wolken-Form, Fäden blenden mit den neuen Bubbles ein
 - Name überall „Physio“ (statt PhysioZentrum). Lokal geprüft (Mac-Breite, iPhone-Größe). Offen: Lukas prüft auf Geräten.
 
+Lukas (09.11.): Wolken wirken nicht nonchalant → Kreise mit 3D-Look, edlere Linien, Mitte ruhiger; Bälle sollen weiterführen.
+
+Stand Kugeln + Weiterhangeln (09.11.2026, `sw.js` `v76`): `wolke.js` → `wabbeln.js` (nur noch Hover-Wabbeln).
+- **Kosmos = Fokus-Karte:** `kosmos.js` baut gedachte Punkte (Kern `physio` ↔ `art:<id>` je Art ↔ Einträge) + echte Links
+  und zeigt sie mit `fokusKarte`. Ball außen antippen → schwebt in die Mitte, Verknüpfungen tauchen nacheinander auf (`gleiten.js`).
+- **Mitte antippen = anderes Interface** (`mitteTippen` in `fokus.js`): Kern → Mindmap-Suche, Art → Innenansicht (`tiefe.js`),
+  Eintrag → Mindmap-Overlay gleich im Text (`oeffneMindmap({ ansicht: 'eintrag' })`); in der Mindmap selbst → Text.
+- **Look:** 3D-Glaskugeln (`.mm-knoten__haut` in `physio-kosmos.css`), Mitte gleiche Kugel mit langsam drehenden Meridianen
+  und wanderndem Lichtschimmer; Fäden 1 px ohne Glühen; Ring gleichmäßig (`fokus-layout.js` ohne Zufall). `knoten.js`: `label` überschreibt die Art.
+- Lokal geprüft (Mac-Breite, iPhone-Größe). Offen: Lukas prüft auf Geräten.
+
 ## Plan Lernpfade (von Lukas freigegeben 09.11.2026)
 - Start im Kosmos: Bubble „Regionen“ → Region wählen → Mindmap zeigt nur den nächsten Schritt als Bubbles:
   Region → Krankheitsbilder → Muskeln/Trainingsformen → Übungen (Reihenfolge fest in `lernpfad.js`)

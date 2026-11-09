@@ -7,7 +7,7 @@
 //   bild        – ein Bild der Mitte groß, mit „Als Titelbild“ und „Löschen“ (bild-gross.js)
 // Jeder Wechsel ist ein Schritt im Verlauf; „‹ Zurück“ und Zurück-Wischen gehen einen Schritt zurück.
 // const m = mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId }); m.start(); m.daten(eintraege, links, bilder);
-// mitteId (optional) = mit der Fokus-Karte dieses Punkts starten; lernpfad = dabei als Lernpfad (lernpfad.js).
+// mitteId (optional) = mit der Fokus-Karte dieses Punkts starten (oder gleich mit ansicht, z. B. 'eintrag'); lernpfad = dabei als Lernpfad (lernpfad.js).
 // Im Lernpfad trägt jeder Schritt pfad (ids bis zur Mitte); Antippen hängt den Punkt an, Suche beendet ihn.
 import { el } from '../../ui/dom.js';
 import { list } from '../../ui/list.js';
@@ -23,10 +23,10 @@ import { naechste, pfadLeiste } from './lernpfad.js';
 
 const MIT_MITTE = ['karte', 'liste', 'verknuepfen', 'eintrag', 'bild'];
 
-export function mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId = null, lernpfad = false }) {
+export function mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId = null, lernpfad = false, ansicht = 'karte' }) {
   // stand wird mit suche.js und verknuepfen.js geteilt (eintraege, suchtext)
   const stand = { eintraege: [], links: [], bilder: [], suchtext: '' };
-  let schritt = mitteId ? { ansicht: 'karte', mitteId, pfad: lernpfad ? [mitteId] : null } : { ansicht: 'suche', mitteId: null };
+  let schritt = mitteId ? { ansicht, mitteId, pfad: lernpfad ? [mitteId] : null } : { ansicht: 'suche', mitteId: null };
   const element = el('div', { class: 'mm__inhalt' });
   const verlauf = mmVerlauf((s) => { schritt = s; zeige(); });
 
@@ -43,6 +43,7 @@ export function mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId = null, lernpf
     zeigeAlle: () => geheZu('liste'),
     verknuepfen: () => geheZu('verknuepfen'),
     oeffnen: () => geheZu('eintrag'),
+    mitteTippen: () => geheZu('eintrag'),
     loesen: async (mitte, nachbar) => {
       if (confirm(`Verknüpfung lösen?\n\n${mitte.titel} – ${nachbar.titel}`)) await loese(mitte.id, nachbar.id);
     },
