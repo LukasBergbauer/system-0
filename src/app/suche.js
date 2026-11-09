@@ -16,9 +16,9 @@ const naehe = (iso) => Math.abs(new Date(iso) - Date.now()); // Termine: zuerst 
 
 // Alle durchsuchbaren Einträge, schon in der Reihenfolge, in der sie erscheinen sollen.
 async function laden() {
-  const [todos, termine, google, physio, uebungen, plaene, planEinheiten, zielBereiche, ziele, affs] = await Promise.all([
+  const [todos, termine, google, physio, uebungen, plaene, planEinheiten, zielBereiche, ziele, affs, buecher] = await Promise.all([
     getAll('todos'), getAll('termine'), getMeta('kalender:google'), getAll('physio_eintraege'),
-    getAll('training_uebungen'), getAll('trainingsplaene'), getAll('plan_einheiten'), getAll('ziel_bereiche'), getAll('lebensziele'), getAll('affirmationen'),
+    getAll('training_uebungen'), getAll('trainingsplaene'), getAll('plan_einheiten'), getAll('ziel_bereiche'), getAll('lebensziele'), getAll('affirmationen'), getAll('buecher'),
   ]);
   const physioName = new Map(physio.map((p) => [p.id, p.titel]));
   const uebungName = (u) => (u.physio_id && physioName.get(u.physio_id)) || u.name || 'Übung';
@@ -66,6 +66,11 @@ async function laden() {
     {
       titel: 'Affirmationen', bereich: 'affirmationen',
       eintraege: affs.map((a) => ({ id: a.id, titel: a.text, sub: ziele.find((z) => z.id === a.lebensziel_id)?.titel })),
+    },
+    {
+      titel: 'Bücher', bereich: 'buecher',
+      eintraege: buecher.filter((b) => b.titel).sort((a, b) => a.titel.localeCompare(b.titel, 'de'))
+        .map((b) => ({ id: b.id, titel: b.titel, text: `${b.autor || ''} ${b.zusammenfassung || ''}`, sub: b.autor })),
     },
   ];
 }

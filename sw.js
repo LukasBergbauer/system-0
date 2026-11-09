@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v66';
+const VERSION = 'v67';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -98,6 +98,15 @@ const APP_FILES = [
   './src/module/gewohnheiten/karte-ab.js',
   './src/module/gewohnheiten/bearbeiten.js',
   './src/module/gewohnheiten/rueckfall.js',
+  './src/module/buecher/index.js',
+  './src/module/buecher/data.js',
+  './src/module/buecher/cover.js',
+  './src/module/buecher/markdown.js',
+  './src/module/buecher/editor.js',
+  './src/module/buecher/cover-wahl.js',
+  './src/module/buecher/bearbeiten.js',
+  './src/module/buecher/buch.js',
+  './src/module/buecher/view.js',
   './src/module/wissen/index.js',
   './src/module/wissen/data.js',
   './src/module/wissen/view.js',
@@ -171,6 +180,7 @@ const APP_FILES = [
   './src/styles/routinen.css',
   './src/styles/gewohnheiten.css',
   './src/styles/wissen.css',
+  './src/styles/buecher.css',
   './src/styles/kopfbild.css',
   './src/styles/kachel.css',
   './src/styles/farbkreise.css',

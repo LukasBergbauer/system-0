@@ -1,0 +1,79 @@
+/* Modul „Bücher“: Cover-Raster, Vollbild (Leseansicht + Bearbeiten), Editor. Nur Werte aus tokens.css. */
+.buecher { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-5); }
+.buecher__liste { width: 100%; }
+.buecher__raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: var(--space-5) var(--space-4); }
+.buch-kachel { display: flex; flex-direction: column; gap: var(--space-1); padding: 0; font: inherit; color: inherit; text-align: left;
+  background: none; border: 0; cursor: pointer; }
+.buch-kachel .buch-cover { width: 100%; margin-bottom: var(--space-2); transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease); }
+.buch-kachel:hover .buch-cover { transform: translateY(-3px); box-shadow: var(--schatten-hoch); }
+.buch-kachel__titel { font-weight: 600; line-height: 1.25; }
+.buch-kachel small { color: var(--text-2); font-size: var(--fs-small); }
+
+/* Cover: Buchformat 2:3, leicht gerundet; ohne Bild ein ruhiges Glasfeld mit Titel */
+.buch-cover { display: block; aspect-ratio: 2 / 3; object-fit: cover; border-radius: var(--radius-klein); box-shadow: var(--schatten); background: var(--surface-2); }
+.buch-cover--leer { display: flex; align-items: flex-end; padding: var(--space-3); border: 1px solid var(--glas-rand); background: var(--glas-verlauf);
+  font-size: var(--fs-small); font-weight: 600; line-height: 1.25; color: var(--text-2); overflow: hidden; }
+
+/* Vollbild */
+.buch .buch__box { gap: var(--space-4); max-width: 720px; }
+.buch__mitte { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: var(--space-6); padding-bottom: var(--space-5); }
+.buch .durchlauf__fuss { justify-content: flex-end; }
+.buch .durchlauf__fuss .btn { flex: 0 1 220px; }
+
+.buch-kopf { display: flex; gap: var(--space-5); align-items: flex-end; }
+.buch-kopf .buch-cover { width: 128px; flex: none; }
+.buch-kopf__text { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
+.buch-kopf__titel { margin: 0; font-size: var(--fs-large); font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
+.buch-kopf__autor { margin: 0; color: var(--text-2); }
+.buch-kopf__sterne { margin: 0; color: var(--accent); letter-spacing: .1em; }
+.buch-kopf small { color: var(--text-2); font-size: var(--fs-small); }
+
+/* Leseansicht: schmale Spalte, viel Luft */
+.buch-text { max-width: 62ch; font-size: 17px; line-height: 1.7; }
+.buch-text > * { margin: 0 0 var(--space-4); }
+.buch-text h2, .buch-text h3, .buch-text h4 { margin-top: var(--space-6); line-height: 1.25; letter-spacing: -.01em; }
+.buch-text h2 { font-size: var(--fs-large); }
+.buch-text h3 { font-size: var(--fs-title); }
+.buch-text h4 { font-size: var(--fs-small); text-transform: uppercase; letter-spacing: var(--sperrung); color: var(--text-2); }
+.buch-text > :first-child { margin-top: 0; }
+.buch-text blockquote { margin: var(--space-5) 0; padding: var(--space-1) 0 var(--space-1) var(--space-5); border-left: 2px solid var(--accent);
+  font-size: var(--fs-title); font-style: italic; line-height: 1.55; color: var(--text); }
+.buch-text blockquote p { margin: 0; }
+.buch-text ul, .buch-text ol { padding-left: var(--space-5); }
+.buch-text li + li { margin-top: var(--space-1); }
+.buch-text li::marker { color: var(--accent); }
+.buch-text hr { border: 0; height: 1px; background: var(--line); margin: var(--space-6) 0; }
+
+/* Bearbeiten */
+.buch-form { display: flex; flex-direction: column; gap: var(--space-5); }
+.buch-form__felder { display: flex; flex-direction: column; gap: var(--space-4); }
+.buch-form__daten { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+.buch-sterne { display: flex; gap: var(--space-1); }
+.buch-sterne__stern { width: var(--tap); height: var(--tap); font-size: 24px; line-height: 1; color: var(--text-3); background: none; border: 0; cursor: pointer;
+  transition: color var(--duration) var(--ease), transform var(--duration) var(--feder); }
+.buch-sterne__stern.an { color: var(--accent); }
+.buch-sterne__stern:active { transform: scale(.9); }
+
+.buch-wahl__zeile { display: flex; gap: var(--space-4); align-items: flex-end; }
+.buch-wahl__vorschau .buch-cover { width: 88px; }
+.buch-wahl__knoepfe { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-1); }
+.buch-wahl__meldung { margin: 0; color: var(--text-2); font-size: var(--fs-small); }
+.buch-wahl__meldung:empty { display: none; }
+.buch-wahl__treffer { display: flex; gap: var(--space-3); overflow-x: auto; padding-bottom: var(--space-2); }
+.buch-wahl__treffer:empty { display: none; }
+.buch-wahl__treffer-knopf { flex: none; width: 76px; padding: 0; border: 0; background: none; cursor: pointer; }
+.buch-wahl__treffer-knopf img { display: block; width: 100%; aspect-ratio: 2 / 3; object-fit: cover; border-radius: var(--radius-klein); box-shadow: var(--schatten); }
+
+.buch-editor { display: flex; flex-direction: column; border-radius: var(--radius); background: var(--surface-2); border: 1px solid var(--line); overflow: hidden; }
+.buch-editor__leiste { display: flex; gap: var(--space-1); padding: var(--space-1); border-bottom: 1px solid var(--line); }
+.buch-editor__knopf { min-width: 40px; height: 36px; font: inherit; font-weight: 600; color: var(--text-2); background: none; border: 0;
+  border-radius: var(--radius-klein); cursor: pointer; }
+.buch-editor__knopf:hover { background: var(--surface); color: var(--text); }
+.buch-editor__knopf--kursiv { font-style: italic; font-weight: 400; }
+.buch-editor__feld { min-height: 50vh; padding: var(--space-4); font: inherit; font-size: var(--fs-normal); line-height: 1.65; color: var(--text);
+  background: none; border: 0; resize: none; overflow: hidden; outline: none; }
+
+@media (max-width: 600px) {
+  .buecher__raster { grid-template-columns: repeat(2, 1fr); }
+  .buch-kopf .buch-cover { width: 104px; }
+}

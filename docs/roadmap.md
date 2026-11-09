@@ -341,6 +341,8 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] Thema Muskeln, Teil 1 (Arm + Bein, 368 Fragen, Generator `tools/quiz/`), `sw.js` `v61`. Teil 2 Rumpf/Atmung/Beckenboden/Hals/Nacken/Kau (124 Muskeln, 496 Fragen), `sw.js` `v63`.
   - [x] Thema Bänder (42 Bänder, 117 Fragen), `sw.js` `v64`. 014 ausgeführt, von Lukas auf Geräten geprüft (inkl. Zähler bei 0)
 - [ ] Bücher (`module/buecher.md`)
+  - [x] Erste Fassung (09.11.2026): Liste nach Status, Cover (Foto oder Open Library), Markdown-Editor, Leseansicht, Suche.
+        Migration `015_buecher.sql`; `sw.js` `v67`. Offen: Migration 015 ausführen, auf Geräten prüfen
 - [ ] Insta-Organizer (`module/insta.md`)
 
 ## Phase 5 – Ausbau

@@ -7,4 +7,12 @@
 - Ästhetische, übersichtliche Leseansicht
 
 ## Stand
-Noch nicht begonnen.
+- [x] Erste Fassung (09.11.2026). Migration `015_buecher.sql` (Tabelle `buecher`, Bucket `buch-cover`); `sw.js` `v67`. Router-id `buecher`, Ordner `src/module/buecher/`:
+      `data.js` (Laden/Speichern, Cover-Datei `buch-cover/<user>/<id>-<zeit>.jpg`), `cover.js` (verkleinern 600 px, Open-Library-Suche ohne Key),
+      `cover-wahl.js`, `markdown.js` (#, >, -, 1., ---, **fett**, *kursiv*, ohne innerHTML), `editor.js` (Textfeld + Leiste, Listen fortsetzen, wächst mit),
+      `bearbeiten.js`, `buch.js` (Vollbild: Leseansicht ↔ Bearbeiten), `view.js` (Umschalter Lese gerade/Will lesen/Gelesen, Cover-Raster). Stil `buecher.css`, Symbol `buecher`.
+      Status wechseln trägt Begonnen/Beendet ein. Leeres neues Buch wird beim Schließen gelöscht. Suche (⌘K): Gruppe „Bücher“ → `#/buecher/<id>`.
+      Lokal geprüft (Mac + iPhone-Breite). Offen: Lukas führt `015` aus, prüft auf Geräten.
+
+## Nächster Schritt (Plan)
+- Nach Rückmeldung: evtl. Karte „Lese gerade“ auf Heute, Reihenfolge per Ziehen.
