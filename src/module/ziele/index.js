@@ -2,4 +2,4 @@
 import { register } from '../../core/router.js';
 import { zieleAnsicht } from './view.js';
 
-register({ id: 'ziele', titel: 'Ziele', symbol: 'ziele', ansicht: zieleAnsicht });
+register({ id: 'ziele', titel: 'Visionen', symbol: 'ziele', ansicht: zieleAnsicht });

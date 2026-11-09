@@ -38,8 +38,8 @@ export function affirmationenAnsicht({ signal }) {
     box.replaceChildren(...(ziele.length
       ? [el('div', { class: 'ziele__raster' }, ziele.map(karte))]
       : [
-        el('p', { class: 'app__note', text: 'Noch keine Ziele. Affirmationen gehören zu einem Lebensziel – lege zuerst eins an.' }),
-        button({ text: 'Zu den Zielen', variant: 'primary', onClick: () => go('ziele') }),
+        el('p', { class: 'app__note', text: 'Noch keine Schritte. Affirmationen gehören zu einem Schritt deiner Visionen – lege zuerst einen an.' }),
+        button({ text: 'Zu den Visionen', variant: 'primary', onClick: () => go('ziele') }),
       ]));
   }
 

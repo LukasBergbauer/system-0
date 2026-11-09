@@ -25,7 +25,7 @@ export const loesche = (a) => remove(TABELLE, a.id);
 
 // Vorlage aus Ziel und Warum, ohne KI; Lukas passt sie an.
 export function vorschlag(z) {
-  const titel = (z.titel || 'mein Ziel').trim();
+  const titel = (z.titel || 'mein Schritt').trim();
   const warum = (z.warum || '').trim().replace(/[.!]+$/, '');
   if (!warum) return `Ich gehe jeden Tag einen Schritt auf „${titel}“ zu.`;
   return `Ich gehe jeden Tag einen Schritt auf „${titel}“ zu, weil ${warum.charAt(0).toLocaleLowerCase('de') + warum.slice(1)}.`;

@@ -13,7 +13,7 @@ export function oeffneBereich(bereich) {
 
   const m = modal({
     title: bereich ? 'Bereich bearbeiten' : 'Neuer Bereich',
-    content: [nameFeld, el('div', { class: 'field' }, [el('label', { class: 'field__label', text: 'Vision', attrs: { for: 'ziel-vision' } }), vision])],
+    content: [nameFeld, el('div', { class: 'field' }, [el('label', { class: 'field__label', text: 'Wie soll es sein?', attrs: { for: 'ziel-vision' } }), vision])],
     actions: [
       bereich && button({ text: 'Löschen', variant: 'ghost', onClick: loeschen }),
       button({ text: 'Abbrechen', variant: 'ghost', onClick: () => m.close() }),
@@ -30,7 +30,7 @@ export function oeffneBereich(bereich) {
 
   async function loeschen() {
     const n = bereich.ziele.length;
-    if (!confirm(`„${bereich.name}“${n ? ` mit ${n} Ziel${n > 1 ? 'en' : ''}` : ''} löschen?`)) return;
+    if (!confirm(`„${bereich.name}“${n ? ` mit ${n} Schritt${n > 1 ? 'en' : ''}` : ''} löschen?`)) return;
     await loescheBereich(bereich);
     m.close();
   }

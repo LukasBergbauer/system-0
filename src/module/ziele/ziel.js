@@ -15,7 +15,7 @@ export async function oeffneZiel(id, { neu = false } = {}) {
   if (!ziel) return;
   const setze = (felder) => speichereZiel({ id, ...felder });
 
-  const titelFeld = input({ label: 'Ziel', value: ziel.titel, placeholder: 'z. B. Halbmarathon unter 1:45' });
+  const titelFeld = input({ label: 'Schritt', value: ziel.titel, placeholder: 'z. B. Halbmarathon unter 1:45' });
   const titel = titelFeld.querySelector('input');
   titel.addEventListener('change', () => setze({ titel: titel.value.trim() }));
 
@@ -23,13 +23,13 @@ export async function oeffneZiel(id, { neu = false } = {}) {
   warum.value = ziel.warum || '';
   warum.addEventListener('change', () => setze({ warum: warum.value.trim() || null }));
 
-  const datumFeld = input({ label: 'Zieldatum', type: 'date', value: ziel.zieldatum || '' });
+  const datumFeld = input({ label: 'Bis wann', type: 'date', value: ziel.zieldatum || '' });
   datumFeld.querySelector('input').addEventListener('change', (e) => setze({ zieldatum: e.target.value || null }));
 
   const status = tabs({ items: STATUS, active: ziel.status, onChange: (s) => setze({ status: s }) });
 
   const liste = el('div', { class: 'ziel-schritte' });
-  const neuFeld = el('input', { class: 'field__input', attrs: { type: 'text', placeholder: '+ Schritt, Enter', 'aria-label': 'Neuer Schritt', enterkeyhint: 'done' } });
+  const neuFeld = el('input', { class: 'field__input', attrs: { type: 'text', placeholder: '+ Teilschritt, Enter', 'aria-label': 'Neuer Teilschritt', enterkeyhint: 'done' } });
   neuFeld.addEventListener('keydown', async (e) => {
     const text = neuFeld.value.trim();
     if (e.key !== 'Enter' || !text) return;
@@ -48,13 +48,13 @@ export async function oeffneZiel(id, { neu = false } = {}) {
   }
 
   const m = modal({
-    title: neu ? 'Neues Ziel' : 'Ziel',
+    title: neu ? 'Neuer Schritt' : 'Schritt',
     content: [
       titelFeld,
       el('div', { class: 'field' }, [el('label', { class: 'field__label', text: 'Warum', attrs: { for: 'ziel-warum' } }), warum]),
       datumFeld,
       el('div', { class: 'field', attrs: { role: 'group', 'aria-label': 'Status' } }, [el('span', { class: 'field__label', text: 'Status' }), status]),
-      el('div', { class: 'field' }, [el('span', { class: 'field__label', text: 'Schritte' }), liste, neuFeld]),
+      el('div', { class: 'field' }, [el('span', { class: 'field__label', text: 'Teilschritte' }), liste, neuFeld]),
     ],
     actions: [
       button({ text: 'Löschen', variant: 'ghost', onClick: loeschen }),

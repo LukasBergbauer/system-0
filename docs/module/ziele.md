@@ -18,6 +18,9 @@
 - Suche (⌘K): Gruppe „Ziele“ (Ziele + Bereiche) → `#/ziele/<id>`.
 - Lokal geprüft (Mac + iPhone-Breite, Testdaten gelöscht). 011 ausgeführt, von Lukas auf Geräten geprüft.
 
+**Umbenannt (09.11.2026, nur Texte, Daten/ids gleich):** Seite „Visionen“; Bereichs-Feld „Vision“ → „Wie soll es sein?“;
+Ziel → „Schritt“ (Zieldatum → „Bis wann“); Schritte darin → „Teilschritte“. Idee: Vision in kleine Schritte aufteilen. `sw.js` `v55`.
+
 ## Nächster Schritt (Plan)
 - Affirmationen (`module/affirmationen.md`), nutzen „Warum“ und Vision.
 

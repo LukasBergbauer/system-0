@@ -10,7 +10,7 @@ function zeile(z, onZiel) {
   const sub = [
     z.status === 'pausiert' && 'Pausiert',
     z.zieldatum && `bis ${DATUM.format(new Date(`${z.zieldatum}T12:00`))}`,
-    z.schritte.length ? `${erledigt} / ${z.schritte.length} Schritte` : 'noch keine Schritte',
+    z.schritte.length ? `${erledigt} / ${z.schritte.length} Teilschritte` : 'noch keine Teilschritte',
   ].filter(Boolean).join(' · ');
   return el('button', { class: `ziel-zeile ziel-zeile--${z.status}`, attrs: { type: 'button' }, on: { click: () => onZiel(z) } }, [
     el('span', { class: 'ziel-zeile__titel', text: z.titel || 'Ohne Titel' }),
@@ -34,6 +34,6 @@ export function bereichKarte(b, { onBereich, onZiel, onNeu }) {
       el('summary', { text: `Erreicht (${erreicht.length})` }),
       el('div', { class: 'ziel-bereich__liste' }, erreicht.map((z) => zeile(z, onZiel))),
     ]),
-    button({ text: '+ Ziel', variant: 'ghost', onClick: () => onNeu(b) }),
+    button({ text: '+ Schritt', variant: 'ghost', onClick: () => onNeu(b) }),
   ]);
 }

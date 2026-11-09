@@ -57,9 +57,9 @@ async function laden() {
       }),
     },
     {
-      titel: 'Ziele', bereich: 'ziele',
+      titel: 'Visionen', bereich: 'ziele',
       eintraege: [
-        ...ziele.map((z) => ({ id: z.id, titel: z.titel || 'Ziel', text: z.warum, sub: zielBereiche.find((b) => b.id === z.bereich_id)?.name })),
+        ...ziele.map((z) => ({ id: z.id, titel: z.titel || 'Schritt', text: z.warum, sub: zielBereiche.find((b) => b.id === z.bereich_id)?.name })),
         ...zielBereiche.map((b) => ({ id: b.id, titel: b.name, text: b.vision, sub: 'Bereich' })),
       ],
     },

@@ -13,13 +13,13 @@ export function oeffneAffirmation(z, a) {
 
   const hilfe = [
     z.warum && el('p', { class: 'aff-hilfe', text: `Warum: ${z.warum}` }),
-    z.bereich?.vision && el('p', { class: 'aff-hilfe', text: `Vision: „${z.bereich.vision}“` }),
+    z.bereich?.vision && el('p', { class: 'aff-hilfe', text: `Wie soll es sein: „${z.bereich.vision}“` }),
   ].filter(Boolean);
 
   const m = modal({
     title: a ? 'Affirmation' : 'Neue Affirmation',
     content: [
-      el('p', { class: 'aff-ziel', text: z.titel || 'Ziel' }),
+      el('p', { class: 'aff-ziel', text: z.titel || 'Schritt' }),
       ...hilfe,
       el('div', { class: 'field' }, [el('label', { class: 'field__label', text: 'Text', attrs: { for: 'aff-text' } }), text]),
       button({ text: 'Vorschlag aus dem Warum', variant: 'ghost', onClick: () => { text.value = vorschlag(z); text.focus(); } }),

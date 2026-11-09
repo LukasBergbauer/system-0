@@ -13,7 +13,7 @@ export function zieleLeiste({ ziele, schritte }) {
   if (!reihe.length) return null;
 
   return el('article', { class: 'heute-karte heute-routinen' }, [
-    el('div', { class: 'heute-karte__kopf' }, [el('div', {}, [el('h3', { text: 'Nächster Schritt' }), el('small', { text: 'zu deinen Zielen' })])]),
+    el('div', { class: 'heute-karte__kopf' }, [el('div', {}, [el('h3', { text: 'Nächster Schritt' }), el('small', { text: 'zu deinen Visionen' })])]),
     el('div', { class: 'heute-routinen__liste' }, reihe.map(({ z, s }) => el('button', {
       class: 'heute-routine', attrs: { type: 'button' }, on: { click: () => go(`ziele/${z.id}`) },
     }, [

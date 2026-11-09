@@ -320,7 +320,8 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         Suche. Migration `011_ziele.sql`; `sw.js` `v53`. 011 ausgeführt, von Lukas auf Geräten geprüft
 - [ ] Affirmationen täglich, passend zu den Zielen (`module/affirmationen.md`)
   - [x] Erste Fassung (09.11.2026): Seite je Ziel, Vorschlag aus dem Warum, „Affirmation des Tages“ auf Heute, Suche.
-        Migration `012_affirmationen.sql`; `sw.js` `v54`. Offen: Migration ausführen, auf Geräten prüfen
+        Migration `012_affirmationen.sql`; `sw.js` `v54`.
+        Ziele heißen in der App jetzt „Visionen“ (Ziel → Schritt, Schritt → Teilschritt), `sw.js` `v55`. Offen: Migration ausführen, auf Geräten prüfen
 - [ ] Gewohnheiten aufbauen und abbauen (`module/gewohnheiten.md`)
 
 ## Phase 4 – Wissen & Kreativ
