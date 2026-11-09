@@ -43,7 +43,7 @@
   Weiter beim ersten Satz ohne RIR (Übungen ohne Wdh starten deshalb immer vorn). Start aus Plan öffnet ihn direkt.
 - „Zuletzt <Datum>: …“ (`zuletztText` in rechnen.js) in Durchlauf, Einheit, Plan-Einheit und Übungsliste.
 - Plan: „▶ Start“ je Plan-Einheit, nur am eigenen Wochentag aktiv. Plan-Einheit: „Jetzt starten“ und Art weg.
-- Geprüft in iPhone-Breite (keine Überschneidung, kein Quer-Scrollen), nichts gespeichert. Offen: 010 ausführen, Geräte.
+- Geprüft in iPhone-Breite (keine Überschneidung, kein Quer-Scrollen), nichts gespeichert. 010 ausgeführt. Offen: Geräte.
 
 ## Nächster Schritt (Plan)
 - Training in der Suche (⌘K): in `src/app/suche.js` Gruppen „Übungen“ (Treffer → `#/training/uebung:<id>`, Router-Zusatz in

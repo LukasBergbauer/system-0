@@ -310,7 +310,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         008 + 009 ausgeführt, von Lukas auf Geräten geprüft.
   - [x] v2 nach Rückmeldung (09.11.2026): entschlackt (Art/RPE raus), „Heute“ mit großem Start, Start je Plan-Einheit nur am
         eigenen Tag, Durchlauf als Vollbild (Satz für Satz, −/+, RIR 1–4, „Wie war's?“), „Zuletzt …“ je Übung. Migration
-        `010_training_rir.sql`; `sw.js` `v50` (inkl. Wochen-Leiste mit Balken). Offen: 010 ausführen, auf Geräten prüfen
+        `010_training_rir.sql`; `sw.js` `v50` (inkl. Wochen-Leiste mit Balken). 010 ausgeführt. Offen: auf Geräten prüfen
   - [ ] Training in der Suche (⌘K): Gruppen Übungen (→ `#/training/uebung:<id>`) und Pläne (→ Plan), keine Einheiten
 
 ## Phase 3 – Kopf & Richtung
