@@ -12,7 +12,7 @@
       `cover-wahl.js`, `markdown.js` (#, >, -, 1., ---, **fett**, *kursiv*, ohne innerHTML), `editor.js` (Textfeld + Leiste, Listen fortsetzen, wächst mit),
       `bearbeiten.js`, `buch.js` (Vollbild: Leseansicht ↔ Bearbeiten), `view.js` (Umschalter Lese gerade/Will lesen/Gelesen, Cover-Raster). Stil `buecher.css`, Symbol `buecher`.
       Status wechseln trägt Begonnen/Beendet ein. Leeres neues Buch wird beim Schließen gelöscht. Suche (⌘K): Gruppe „Bücher“ → `#/buecher/<id>`.
-      Lokal geprüft (Mac + iPhone-Breite). Offen: Lukas führt `015` aus, prüft auf Geräten.
+      Lokal geprüft (Mac + iPhone-Breite). `015` ausgeführt, von Lukas auf Geräten geprüft.
 
 ## Nächster Schritt (Plan)
 - Nach Rückmeldung: evtl. Karte „Lese gerade“ auf Heute, Reihenfolge per Ziehen.
