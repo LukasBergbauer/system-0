@@ -39,5 +39,5 @@
       Lokal geprüft (Mac + iPhone-Breite, Testrunde ohne Speichern). `014` ausgeführt, von Lukas auf Geräten geprüft.
 
 ## Nächster Schritt (Plan)
-- Muskeln Teil 2 erledigt (09.11.2026, `sw.js` `v63`). Optional später: Mimik, Zungenbein-, Augenmuskeln.
+- Muskeln Teil 2 erledigt (09.11.2026, `sw.js` `v63`). ~~Mimik, Zungenbein-, Augenmuskeln~~ bewusst gestrichen (bei Bedarf per Import aus Claude).
 - Fragen ausbauen (Ziel ca. 10.000): je Sitzung z. B. 50–100 je Thema anhängen, IDs fortlaufend.

@@ -352,7 +352,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 - [x] Routinen-Sperre (`module/routinen.md`)
   - [x] Gebaut (09.11.2026): Schalter + Startzeit je Routine, Vollbild-Sperre, „Heute aussetzen“. Migration `017_routinen_sperre.sql`; `sw.js` `v70`.
         017 ausgeführt, von Lukas auf Geräten geprüft
-- [ ] Physio: Kosmos-Startseite mit Bubbles (`module/physio.md` → „Plan Kosmos“)
+- [x] Physio: Kosmos-Startseite mit Bubbles (`module/physio.md` → „Plan Kosmos“)
   - [x] Gebaut (09.11.2026): heller Glas-Kosmos, Bubbles je Pfad, Hover = eindringen, Klick = Innenansicht; Art Trainingsform.
         Migration `018_physio_trainingsform.sql`; `sw.js` `v72`. 018 ausgeführt, von Lukas auf Geräten geprüft
   - [x] Mindmap im Glas-Kosmos-Stil (09.11.2026): Glas-Bubbles statt Pillen, Lichtfäden, Schweben unregelmäßig (Kosmos + Mindmap),
@@ -366,7 +366,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] Art-Liste und Mindmap-Suche sind ein Overlay (09.11.2026, `tiefe.js` weg). `sw.js` `v78`.
   - [x] ~~Physio-Kugel = Listen-Suche (v79)~~ → falsch herum. Glas-Innenansicht für alle Kugeln, edler, flüssig gemessen. `sw.js` `v80`. Offen: auf Geräten prüfen
   - [ ] Physio-Kugel: eigene Funktionen (Lukas plant später)
-- [ ] Extra-Themen (09.11.2026, eine Sitzung, Block für Block)
+- [x] Extra-Themen (09.11.2026, eine Sitzung, Block für Block)
   - [x] 1. Wiederherstellen: Kachel in Einstellungen, Export-JSON → Vorschau je Tabelle → einspielen (lokal + Sync, nichts löschen,
         gleiche id = überschreiben). `src/core/wiederherstellen.js`, `src/app/wiederherstellen-kachel.js`; `sw.js` `v81`
   - [x] 2. Kalender: Wiederholungen (eigene Termine), Monatsansicht, fällige To-dos. Migration `019_termine_wiederholung.sql`; `sw.js` `v82`
@@ -381,6 +381,12 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         (Antippen öffnet Kalender/Routinen). Edge Function `supabase/functions/erinnerungen/index.ts` (`jsr:@negrel/webpush`),
         Migration `020_erinnerungen.sql` (Tabellen, `erinnerungen_faellig()`, Cron). `sw.js` `v86`.
         Grenze: geplant wird nur, wenn die App in den letzten 14 Tagen offen war. Offen: Einrichten (Lukas) + auf Geräten prüfen
+  - [x] 7. Abschluss: alle „Wünsche für später“ und offenen Punkte der Modul-Dokus abgehakt oder als „bewusst gestrichen“ markiert.
+        Einzig offen (bewusst): Physio-Kugel-Funktionen (Lukas plant).
+
+**Stand 09.11.2026:** Alle Phasen und Extras gebaut. Offen bei Lukas: Migrationen 019 + 020 ausführen, Edge Function
+„erinnerungen“ anlegen (VAPID_KEYS aus `tools/vapid.html`, VAPID_KONTAKT, „Verify JWT“ aus), alles auf Geräten prüfen.
+Nächster Schritt: Physio-Kugel-Funktionen, sobald Lukas sie geplant hat.
 - ~~Notion-Anbindung~~ gestrichen (Lukas, 09.11.2026: nicht mehr gewünscht)
-- [ ] Idee KI-Auswertung (Wochenrückblick über alle Module): kostet je nach Anbieter Geld bzw. Datenschutz klären;
+- ~~Idee KI-Auswertung~~ bewusst gestrichen (09.11.2026; kostet je nach Anbieter Geld bzw. Datenschutz);
       kostenlos jetzt schon: Export-JSON in einen Claude-Chat geben

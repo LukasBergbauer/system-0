@@ -54,3 +54,4 @@ und `trainingsplaene` (Name, Titel der Plan-Einheiten). Zusatz `uebung:<id>` / `
 - Erste Fassung fertig (v2 + Suche von Lukas geprüft). Weiteres nur nach Rückmeldung.
 
 ## Wünsche für später
+- Keine offenen (Stand 09.11.2026).

@@ -52,7 +52,7 @@ Der Rest ist der Titel.
 Bild-Objekt (Vorschlag): **steinerne Sonnenuhr**. Prompt aus `design.md`, `[OBJEKT]` = „a small weathered stone sundial“.
 
 ## Offene Fragen
-- Sollen später auch Termine aus System 0 in Google eingetragen werden?
+- ~~Termine aus System 0 in Google eintragen?~~ Bewusst gestrichen (09.11.2026): bräuchte Google-Login mit Schreibrechten (OAuth), Google bleibt nur lesen.
 
 ## Dateien (`src/module/kalender/`)
 | Datei | Aufgabe |
@@ -76,7 +76,7 @@ Stile: `src/styles/kalender.css`.
 ## Stand
 - [x] a) Grundgerüst + Liste gebaut und lokal geprüft (08.11.2026): anlegen, ganztägig über mehrere Tage,
       bearbeiten, löschen; Mac und iPhone-Größe. `sw.js` auf `v34`. Kopfbild fehlt noch (Teil e).
-- [ ] Lukas: Migration `005_kalender.sql` ausführen, dann Abgleich Mac ↔ iPhone prüfen (gepushte Fassung)
+- [x] Lukas: Migration `005_kalender.sql` ausführen, dann Abgleich Mac ↔ iPhone prüfen (gepushte Fassung)
 - [x] b) Schnelleingabe gebaut und lokal geprüft (08.11.2026): 19 Beispielsätze richtig erkannt
       (Wochentag, heute/morgen/übermorgen, Datum mit/ohne Jahr, Uhrzeit, Spanne, über Mitternacht).
       „ganztägig“ in der Liste klein und kursiv, damit die Titel bündig bleiben. `sw.js` auf `v35`.
@@ -103,8 +103,9 @@ Stile: `src/styles/kalender.css`.
 - [x] Monatsansicht
 - [x] Wiederholungen bei eigenen Terminen
 - [x] Fällige To-dos im Kalender
-- Termine aus System 0 auch in Google eintragen (offene Frage oben)
-- Google-Zeitzonen richtig umrechnen und seltene Wiederholungen („2. Dienstag im Monat“), falls es stört
+- ~~Termine aus System 0 auch in Google eintragen~~ bewusst gestrichen (siehe oben)
+- ~~Google-Zeitzonen und seltene Wiederholungen („2. Dienstag im Monat“)~~ bewusst gestrichen; nur, falls es im Alltag stört
+- [x] Erinnerungen als Mitteilung (Web Push, 09.11.2026) – siehe `docs/roadmap.md` Extra 6
 - [x] Review von b umgesetzt: Ansicht zeichnet sich jede Minute und beim Zurückkehren in die App neu
       (Mitternacht, vorbei gegangene Termine); ungültige Daten wie „31.11.“ werden nicht mehr erkannt;
       kleine Aufräumarbeiten. `sw.js` auf `v37`.

@@ -42,3 +42,4 @@ Für das ganze iPhone wäre die iOS-Funktion „Bildschirmzeit“ zuständig.
       Logik mit Testfällen geprüft. `sw.js` `v70`. 017 ausgeführt, von Lukas auf Geräten geprüft (09.11.2026).
 
 ## Wünsche für später
+- Keine offenen (Stand 09.11.2026).

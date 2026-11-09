@@ -26,3 +26,4 @@ Ziel → „Schritt“ (Zieldatum → „Bis wann“); Schritte darin → „Tei
 - Affirmationen (`module/affirmationen.md`), nutzen „Warum“ und Vision.
 
 ## Wünsche für später
+- Keine offenen (Stand 09.11.2026).

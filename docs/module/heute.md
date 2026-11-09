@@ -31,7 +31,7 @@ Als Glas-Dashboard gebaut (Plan unten, Schritte a–e alle fertig, 09.11.2026).
       Umschalter = `ui/tabs.js`), `donut.js` (offene To-dos je Bereich, „Ohne Bereich“ zählt als eigener Teil, ab 6 Teilen
       werden die kleinsten zu „Sonst“; Antippen → To-dos). Stil `src/styles/heute-karten.css`. Beim Neuzeichnen (`daten`)
       blendet nichts erneut ein (`.heute--ruhig`). `sw.js` `v41`. Lokal geprüft (Mac + iPhone-Größe, Termine mit Testdaten).
-      Offen: Schnellaktionen (Plan Punkt 5) sind keinem Schritt zugeordnet → mit d) zusammen bauen.
+      Schnellaktionen (Plan Punkt 5): mit d) gebaut.
 - [x] c) Seitenleiste mit Abschnitten + Platzhalter-Bereiche (09.11.2026). Abschnitte ALLTAG / KÖRPER & KOPF / SYSTEM
       (Zuordnung per id in `src/app/nav-plan.js`, Unbekanntes → ALLTAG, `ende` → SYSTEM), Suchfeld oben (nur Optik, Suche in e),
       Zahl offener To-dos am Eintrag (`shell.js` zählt über `core/store.js`, neu bei `daten`), unten „Lukas“ + Abgleich-Status

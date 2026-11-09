@@ -111,16 +111,16 @@ weiter, wenn er die Datenbank wirklich befüllt und merkt, was fehlt oder hakt �
 
 ## Wünsche für später
 Lukas sammelt hier, was beim Befüllen auffällt; umgesetzt wird es als eigener kleiner Schritt.
-- Kopfbild: drei Fotos `assets/bilder/physio-1…3.webp` (Lukas erzeugt sie mit dem Prompt aus `design.md`, Vorschlag:
+- ~~Kopfbild~~ bewusst gestrichen (Kopfbilder sind pausiert, `design.md`): drei Fotos `assets/bilder/physio-1…3.webp` (Lukas erzeugt sie mit dem Prompt aus `design.md`, Vorschlag:
   „a smooth stone sphere connected to smaller pebbles by thin threads of light“), dann Zeile `bild:` in `index.js`
   einschalten und Fotos in `APP_FILES` von `sw.js` eintragen
 - [x] Hinweise (09.11.2026, `tipps.js`): Glas-Pille über dem Fuß, erst „Mitte antippen zum Öffnen“, dann (nur Mindmap)
   „Punkt lange drücken zum Lösen“ (Mac: Rechtsklick); je Hinweis, bis man es einmal getan hat (`localStorage` `system0-physio-tipps`)
 - [x] Eintrag: Titel + Kurzbeschreibung in einer Glas-Karte, eng (`.mm-eintrag__kopf`)
 - [x] Mac (ab 768 px): Art-Chips im Eintrag brechen um. `sw.js` `v85`
-- Zurück-Wischen und Kamera/Mediathek auf dem echten iPhone weiter beobachten
-- Verknüpfungen und Funktionen: ergeben sich beim Befüllen (Lukas, 05.11.2026)
-- Später (aus dem ursprünglichen Plan): Übungen ins Trainings-Notebook übernehmen, Lernpfade, Notion, Bild-Export
+- ~~Zurück-Wischen und Kamera/Mediathek beobachten~~ erledigt ohne Befund, nichts zu bauen
+- [ ] Physio-Kugel: eigene Funktionen (Lukas plant später, bewusst offen)
+- [x] Übungen ins Trainings-Notebook (Training verweist auf Physio), [x] Lernpfade, ~~Notion~~ gestrichen, ~~Bild-Export~~ bewusst gestrichen (Export-JSON reicht)
 
 ## Entscheidungen (Gespräch 04.11.2026)
 - Zuerst: Übungen, Krankheitsbilder, Muskeln + Regionen. Techniken gibt es als Art schon, Inhalte später.
@@ -332,8 +332,7 @@ Stand Lernpfade (09.11.2026, `sw.js` `v75`): gebaut. Einstieg: Kosmos → Region
 - Später evtl.: „Ins Training“ direkt am Pfad-Ende
 
 ## Offen / bitte prüfen (aus der Planung, erledigt bzw. unter „Wünsche für später“)
-- Das Overlay ist hell (Elfenbein-Weiß mit dunkler Schrift), während die App sonst dunkel ist. So gewünscht;
-  falls es zu grell wirkt, später einen Ton dunkler.
-- Foto-Objekt für den Kopf (Prompt in `design.md`), Vorschlag: „a smooth stone sphere connected to smaller pebbles
+- [x] Overlay hell: passt, die ganze App ist seit dem Glas-Design hell.
+- ~~Foto-Objekt für den Kopf~~ bewusst gestrichen (Kopfbilder pausiert) (Prompt in `design.md`), Vorschlag: „a smooth stone sphere connected to smaller pebbles
   by thin threads of light“ oder einfacher „a stone anatomical vertebra“.
 
