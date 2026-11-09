@@ -22,7 +22,10 @@ function registerServiceWorker() {
     reloaded = true;
     location.reload();
   });
-  navigator.serviceWorker.register('./sw.js').catch((err) => {
+  navigator.serviceWorker.register('./sw.js').then((reg) => {
+    // Bleibt die App lange offen (Mac), auch beim Zurückkehren ins Fenster nach einer neuen Fassung schauen.
+    document.addEventListener('visibilitychange', () => document.visibilityState === 'visible' && reg.update().catch(() => {}));
+  }).catch((err) => {
     console.warn('Service Worker konnte nicht starten:', err);
   });
 }
