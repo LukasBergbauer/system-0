@@ -1,4 +1,4 @@
-// Suche über To-dos, Termine, Physio-Punkte, Trainings-Übungen und -Pläne, Ziele: Suchfeld oben in der Seitenleiste oder ⌘K / Strg+K.
+// Suche über To-dos, Termine, Physio-Punkte, Trainings-Übungen und -Pläne, Ziele, Affirmationen: Suchfeld oben in der Seitenleiste oder ⌘K / Strg+K.
 // Liest nur über core/ (store, Google-Zwischenspeicher). Ein Treffer öffnet seinen Bereich über den
 // Router-Zusatz #/<bereich>/<id>; der Bereich liest ihn mit zusatzNehmen() und öffnet den Eintrag.
 // Enter öffnet den ersten Treffer, Esc schließt.
@@ -16,9 +16,9 @@ const naehe = (iso) => Math.abs(new Date(iso) - Date.now()); // Termine: zuerst 
 
 // Alle durchsuchbaren Einträge, schon in der Reihenfolge, in der sie erscheinen sollen.
 async function laden() {
-  const [todos, termine, google, physio, uebungen, plaene, planEinheiten, zielBereiche, ziele] = await Promise.all([
+  const [todos, termine, google, physio, uebungen, plaene, planEinheiten, zielBereiche, ziele, affs] = await Promise.all([
     getAll('todos'), getAll('termine'), getMeta('kalender:google'), getAll('physio_eintraege'),
-    getAll('training_uebungen'), getAll('trainingsplaene'), getAll('plan_einheiten'), getAll('ziel_bereiche'), getAll('lebensziele'),
+    getAll('training_uebungen'), getAll('trainingsplaene'), getAll('plan_einheiten'), getAll('ziel_bereiche'), getAll('lebensziele'), getAll('affirmationen'),
   ]);
   const physioName = new Map(physio.map((p) => [p.id, p.titel]));
   const uebungName = (u) => (u.physio_id && physioName.get(u.physio_id)) || u.name || 'Übung';
@@ -62,6 +62,10 @@ async function laden() {
         ...ziele.map((z) => ({ id: z.id, titel: z.titel || 'Ziel', text: z.warum, sub: zielBereiche.find((b) => b.id === z.bereich_id)?.name })),
         ...zielBereiche.map((b) => ({ id: b.id, titel: b.name, text: b.vision, sub: 'Bereich' })),
       ],
+    },
+    {
+      titel: 'Affirmationen', bereich: 'affirmationen',
+      eintraege: affs.map((a) => ({ id: a.id, titel: a.text, sub: ziele.find((z) => z.id === a.lebensziel_id)?.titel })),
     },
   ];
 }

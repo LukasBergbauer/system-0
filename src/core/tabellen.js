@@ -1,3 +1,3 @@
 // Alle Tabellen, die mit Supabase abgeglichen werden.
 // Neues Modul mit eigener Tabelle → Namen hier eintragen (und Migration mit sync_felder-Trigger anlegen).
-export const TABLES = ['einstellungen', 'todo_bereiche', 'todos', 'physio_eintraege', 'physio_links', 'physio_bilder', 'termine', 'routinen', 'routine_schritte', 'routine_logs', 'training_uebungen', 'einheiten', 'saetze', 'trainingsplaene', 'plan_einheiten', 'ziel_bereiche', 'lebensziele', 'ziel_schritte'];
+export const TABLES = ['einstellungen', 'todo_bereiche', 'todos', 'physio_eintraege', 'physio_links', 'physio_bilder', 'termine', 'routinen', 'routine_schritte', 'routine_logs', 'training_uebungen', 'einheiten', 'saetze', 'trainingsplaene', 'plan_einheiten', 'ziel_bereiche', 'lebensziele', 'ziel_schritte', 'affirmationen'];
