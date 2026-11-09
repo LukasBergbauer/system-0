@@ -24,7 +24,9 @@
       `data.js` (Laden, Daily/Endlos-Auswahl, Serie, Statistik, Import), `runde.js` (Vollbild-Runde), `view.js`, `import.js`;
       Stil `wissen.css`; Symbol `quiz`; Heute: `heute/quiz-karte.js` (offen → `#/quiz/daily` startet direkt).
       Grundstock 150 Fragen: `fragen/{allgemein,geschichte,geografie,natur,anatomie,physio}.json`, je 25,
-      Format `{ id, f, a: [richtig, 3× falsch], e }`, IDs `<kürzel>-0001` fortlaufend. Neue Datei/Thema → `THEMEN` in `data.js` und `sw.js`.
+      Format `{ id, f, a: [richtig, 3× falsch], e }`, IDs `<kürzel>-0001` fortlaufend.
+      Runde 2 (09.11.2026): Fragen verständlicher; Anatomie/Physio schwieriger mit „Was/Warum“-Erklärung, neu als `ana-/phy-0026–0050`
+      (alte 0001–0025 entfernt, nie wiederverwenden). Import-Prompt entsprechend. `sw.js` `v60`. Neue Datei/Thema → `THEMEN` in `data.js` und `sw.js`.
       Daily nur vollständig gespeichert; Endlos auch abgebrochen (ab 1 Antwort). Import: Prompt-Knopf im Modal, doppelte Fragen werden übersprungen.
       Lokal geprüft (Mac + iPhone-Breite, Testrunde ohne Speichern). Offen: Lukas führt `014` aus, prüft auf Geräten.
 

@@ -7,7 +7,8 @@ import { THEMEN, importiere } from './data.js';
 const PROMPT = `Erstelle 50 neue Quizfragen auf Deutsch zum Thema <THEMA>, gemischte Schwierigkeit, fachlich korrekt.
 Antworte nur mit einer JSON-Liste, ohne weiteren Text, in genau diesem Format:
 [{"thema":"<THEMA>","f":"Frage?","a":["richtige Antwort","falsch","falsch","falsch"],"e":"kurze Erklärung (1–2 Sätze)"}]
-Die erste Antwort ist immer die richtige. Die falschen Antworten sollen plausibel und ähnlich lang sein.
+Die erste Antwort ist immer die richtige. Die falschen Antworten sollen plausibel und ähnlich lang sein. Formuliere die Fragen klar und verständlich.
+Bei Anatomie und Physio: anspruchsvoll (Physiotherapie-Fachwissen), Erklärung als „Was: … Warum: …“ (2–3 Sätze).
 Mögliche Themen: ${THEMEN.map((t) => t.name).join(', ')} (oder ein neues).`;
 
 export function oeffneImport(vorhandene) {
