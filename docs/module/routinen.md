@@ -33,6 +33,6 @@ Für das ganze iPhone wäre die iOS-Funktion „Bildschirmzeit“ zuständig.
 - [x] Fehler behoben: `reihenfolge` = `Date.now()` passte nicht in `integer` → Upload abgelehnt, ganzer Abgleich stand.
       Migration `007_routinen_reihenfolge.sql` (Spalte `bigint`). Punkte zeigen jetzt die Woche Mo–So
       (kommende Tage blass). `sw.js` `v46`
-- [ ] Migration 007 in Supabase ausführen, dann Abgleich Mac ↔ iPhone erneut prüfen
+- [x] Migration 007 ausgeführt, Abgleich Mac ↔ iPhone geprüft
 
 ## Wünsche für später

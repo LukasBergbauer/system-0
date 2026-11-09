@@ -296,7 +296,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 - [x] Routinen, ohne Sperre (`module/routinen.md`) – gebaut 09.11.2026: Karten je Routine mit 7-Tage-Verlauf und Serie,
   Bearbeiten (Schritte als Zeilen), Durchlauf als Vollbild, Leiste auf Heute. Migration `006_routinen.sql`; `sw.js` `v45`.
   Fix 09.11.: Abgleich (Migration `007`, `reihenfolge` → `bigint`), Punkte = Woche Mo–So; `sw.js` `v46`.
-  Migration ausgeführt. Offen: mit Login auf Mac und iPhone prüfen
+  Migration ausgeführt, mit Lukas auf Mac und iPhone geprüft.
 
 ## Phase 2 – Körper
 - (PhysioZentrum: Datenbank und Suche → nach Phase 1 vorgezogen)
