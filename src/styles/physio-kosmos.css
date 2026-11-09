@@ -1,5 +1,5 @@
 /* Physio: Kosmos (src/module/physio/kosmos.js) und die 3D-Glaskugeln, die Kosmos und Mindmap teilen.
-   Der Kosmos selbst ist eine Fokus-Karte (physio-karte.css). Nur Werte aus tokens.css. Innenansicht: physio-tiefe.css. */
+   Der Kosmos selbst ist eine Fokus-Karte (physio-karte.css). Nur Werte aus tokens.css. */
 
 .kos {
   position: relative;

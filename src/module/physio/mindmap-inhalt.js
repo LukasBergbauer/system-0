@@ -7,7 +7,7 @@
 //   bild        – ein Bild der Mitte groß, mit „Als Titelbild“ und „Löschen“ (bild-gross.js)
 // Jeder Wechsel ist ein Schritt im Verlauf; „‹ Zurück“ und Zurück-Wischen gehen einen Schritt zurück.
 // const m = mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId }); m.start(); m.daten(eintraege, links, bilder);
-// mitteId (optional) = mit der Fokus-Karte dieses Punkts starten (oder gleich mit ansicht, z. B. 'eintrag'); lernpfad = dabei als Lernpfad (lernpfad.js).
+// art (optional) = mit der Liste dieser Art starten (Kosmos); mitteId (optional) = mit der Fokus-Karte dieses Punkts starten (oder gleich mit ansicht, z. B. 'eintrag'); lernpfad = dabei als Lernpfad (lernpfad.js).
 // Im Lernpfad trägt jeder Schritt pfad (ids bis zur Mitte); Antippen hängt den Punkt an, Suche beendet ihn.
 import { el } from '../../ui/dom.js';
 import { list } from '../../ui/list.js';
@@ -23,10 +23,10 @@ import { naechste, pfadLeiste } from './lernpfad.js';
 
 const MIT_MITTE = ['karte', 'liste', 'verknuepfen', 'eintrag', 'bild'];
 
-export function mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId = null, lernpfad = false, ansicht = 'karte' }) {
+export function mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId = null, lernpfad = false, ansicht = 'karte', art = null }) {
   // stand wird mit suche.js und verknuepfen.js geteilt (eintraege, suchtext)
   const stand = { eintraege: [], links: [], bilder: [], suchtext: '' };
-  let schritt = mitteId ? { ansicht, mitteId, pfad: lernpfad ? [mitteId] : null } : { ansicht: 'suche', mitteId: null };
+  let schritt = mitteId ? { ansicht, mitteId, pfad: lernpfad ? [mitteId] : null } : { ansicht: 'suche', mitteId: null, art };
   const element = el('div', { class: 'mm__inhalt' });
   const verlauf = mmVerlauf((s) => { schritt = s; zeige(); });
 
@@ -36,7 +36,11 @@ export function mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId = null, lernpf
     verlauf.weiter(schritt);
     zeige();
   };
-  const waehle = (id) => geheZu('karte', id, schritt.pfad && schritt.ansicht !== 'suche' ? { pfad: [...schritt.pfad, id] } : { pfad: null });
+  // Lernpfad: im Pfad hängt Antippen an; aus der Liste „Regionen“ beginnt ein neuer Pfad
+  const waehle = (id) => {
+    if (schritt.ansicht === 'suche') return geheZu('karte', id, { pfad: schritt.art === 'region' ? [id] : null });
+    geheZu('karte', id, { pfad: schritt.pfad ? [...schritt.pfad, id] : null });
+  };
 
   const karte = fokusKarte({
     waehle,
@@ -107,10 +111,10 @@ export function mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId = null, lernpf
       }
     } else if (ansicht === 'bild') {
       element.replaceChildren(bildGross({ bild, bilder, fertig: () => verlauf.zurueck() }));
-    } else if (element.firstChild?.classList.contains('mm-suche--feld')) {
+    } else if (element.firstChild?.classList.contains('mm-suche--feld') && element.firstChild.dataset.art === (schritt.art ?? '')) {
       element.firstChild.aktualisiere(); // Suche neu zeichnen, Fokus und Text bleiben
     } else {
-      element.replaceChildren(suchAnsicht({ stand, waehle }));
+      element.replaceChildren(suchAnsicht({ stand, waehle, art: schritt.art }));
     }
   }
 

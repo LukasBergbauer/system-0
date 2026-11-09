@@ -362,7 +362,8 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] Lernpfade (09.11.2026, `module/physio.md` → „Plan Lernpfade“): Region → Krankheitsbild → Muskel/Trainingsform → Übung,
         Pfad-Leiste oben. `sw.js` `v75`. Offen: auf Geräten mit echten Regionen prüfen
   - [x] 3D-Kugeln + Weiterhangeln im Kosmos (09.11.2026): Kosmos nutzt die Fokus-Karte, Mitte antippen = anderes Interface. `sw.js` `v76`.
-        Gerät zeigte altes JS + neues CSS (GitHub-CDN lieferte beim Update kurz alte Datei) → `sw.js` holt mit `?v=VERSION`, `v77`. Offen: auf Geräten prüfen
+        Gerät zeigte altes JS + neues CSS (GitHub-CDN lieferte beim Update kurz alte Datei) → `sw.js` holt mit `?v=VERSION`, `v77`.
+  - [x] Art-Liste und Mindmap-Suche sind ein Overlay (09.11.2026, `tiefe.js` weg). `sw.js` `v78`. Offen: auf Geräten prüfen
   - [ ] Danach: Lernpfade, Notion
 - [ ] Notion-Anbindung
 - [ ] Idee KI-Auswertung (Wochenrückblick über alle Module): kostet je nach Anbieter Geld bzw. Datenschutz klären;

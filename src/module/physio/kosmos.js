@@ -1,11 +1,10 @@
 // Kosmos: Startseite von Physio, gebaut aus derselben Fokus-Karte wie die Mindmap (fokus.js).
 // Gedachte Punkte: Kern „Physio“ ↔ je Art ein Ball ↔ alle Einträge dieser Art; dazu die echten Verknüpfungen.
 // So kann man sich weiterhangeln: Ball außen antippen → schwebt in die Mitte, seine Verknüpfungen tauchen auf.
-// Mitte antippen → anderes Interface: Kern = Mindmap (Suche), Art = Innenansicht (tiefe.js), Eintrag = sein Text.
+// Mitte antippen → anderes Interface, immer das Mindmap-Overlay: Kern = Suche, Art = Liste der Art, Eintrag = sein Text.
 import { el } from '../../ui/dom.js';
 import { ARTEN } from './arten.js';
 import { fokusKarte } from './fokus.js';
-import { oeffneTiefe } from './tiefe.js';
 import { oeffneMindmap } from './overlay.js';
 
 const KERN = 'physio';
@@ -13,26 +12,21 @@ const artId = (a) => `art:${a}`;
 const zahl = (n) => (n === 1 ? '1 Eintrag' : `${n} Einträge`);
 
 export function kosmos({ signal }) {
-  let echte = [];
   let mitteId = KERN;
   let daten = { eintraege: [], links: [], bilder: [] };
 
   const karte = fokusKarte({
     waehle: (id) => { mitteId = id; zeige(); },
-    zeigeAlle: () => (mitteId.startsWith('art:') ? tiefe(mitteId.slice(4), null) : oeffneMindmap({ signal, mitteId })),
+    zeigeAlle: () => (mitteId.startsWith('art:') ? oeffneMindmap({ signal, art: mitteId.slice(4) }) : oeffneMindmap({ signal, mitteId })),
     mitteTippen: (id, knopf) => {
       if (id === KERN) oeffneMindmap({ ausKnopf: knopf, signal });
-      else if (id.startsWith('art:')) tiefe(id.slice(4), knopf);
+      else if (id.startsWith('art:')) oeffneMindmap({ ausKnopf: knopf, signal, art: id.slice(4) });
       else oeffneMindmap({ ausKnopf: knopf, signal, mitteId: id, ansicht: 'eintrag' });
     },
     verknuepfen() {}, oeffnen() {}, loesen() {},
   });
   karte.element.dataset.mmStart = ''; // Mindmap schrumpft beim Schließen hierhin zurück
   const buehne = el('div', { class: 'kos' }, [el('span', { class: 'kos__staub' }), karte.element]);
-
-  function tiefe(art, knopf) {
-    oeffneTiefe({ art, ausBubble: knopf ?? karte.element, eintraege: () => echte, signal });
-  }
 
   function zeige() {
     if (mitteId !== KERN && !daten.eintraege.some((e) => e.id === mitteId)) mitteId = KERN; // gelöscht
@@ -42,7 +36,6 @@ export function kosmos({ signal }) {
   return {
     element: buehne,
     daten(eintraege, links, bilder) {
-      echte = eintraege;
       const kern = { id: KERN, art: 'kern', titel: 'Physio', label: 'Mindmap', kurz: '' };
       const arten = ARTEN.map((a) => ({
         id: artId(a.id), art: 'pfad', titel: a.mehrzahl, label: zahl(eintraege.filter((e) => e.art === a.id).length), kurz: '',

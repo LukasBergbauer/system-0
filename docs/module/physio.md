@@ -303,6 +303,10 @@ Stand Kugeln + Weiterhangeln (09.11.2026, `sw.js` `v76`): `wolke.js` → `wabbel
   und wanderndem Lichtschimmer; Fäden 1 px ohne Glühen; Ring gleichmäßig (`fokus-layout.js` ohne Zufall). `knoten.js`: `label` überschreibt die Art.
 - Lokal geprüft (Mac-Breite, iPhone-Größe). Offen: Lukas prüft auf Geräten.
 
+Stand Ein Overlay (09.11.2026, `sw.js` `v78`): Innenansicht `tiefe.js` + `physio-tiefe.css` entfernt. Art-Kugel in der Mitte antippen
+→ `oeffneMindmap({ art })` → dieselbe Suche (`suche.js` mit `art`: alle Punkte der Art, Feld „… durchsuchen“, „+ Neu“ legt mit dieser Art an,
+`anlegenForm({ art })`). Aus „Regionen“ heraus startet ein Lernpfad (`waehle` in `mindmap-inhalt.js`). Lokal geprüft. Offen: Geräte.
+
 ## Plan Lernpfade (von Lukas freigegeben 09.11.2026)
 - Start im Kosmos: Bubble „Regionen“ → Region wählen → Mindmap zeigt nur den nächsten Schritt als Bubbles:
   Region → Krankheitsbilder → Muskeln/Trainingsformen → Übungen (Reihenfolge fest in `lernpfad.js`)
