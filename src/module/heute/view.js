@@ -22,14 +22,14 @@ import { quizKarte } from './quiz-karte.js';
 const GOOGLE = 'kalender:google'; // Zwischenspeicher des Kalenders: { termine: [...] }
 
 async function laden() {
-  const [todos, termine, bereiche, google, routinen, schritte, logs, einheiten, plaene, planEinheiten, ziele, zielSchritte, affirmationen, gewohnheiten, gewLogs, rueckfaelle, quiz] = await Promise.all([
+  const [todos, termine, bereiche, google, routinen, schritte, logs, einheiten, plaene, planEinheiten, ziele, zielSchritte, affirmationen, gewohnheiten, gewLogs, rueckfaelle, quiz, saetze] = await Promise.all([
     getAll('todos'), getAll('termine'), getAll('todo_bereiche'), getMeta(GOOGLE),
     getAll('routinen'), getAll('routine_schritte'), getAll('routine_logs'),
     getAll('einheiten'), getAll('trainingsplaene'), getAll('plan_einheiten'), getAll('lebensziele'), getAll('ziel_schritte'), getAll('affirmationen'),
-    getAll('gewohnheiten'), getAll('gewohnheit_logs'), getAll('rueckfaelle'), getAll('quiz_ergebnisse'),
+    getAll('gewohnheiten'), getAll('gewohnheit_logs'), getAll('rueckfaelle'), getAll('quiz_ergebnisse'), getAll('saetze'),
   ]);
   return { todos, bereiche, termine: [...termine, ...(google?.termine || [])], routinen: { routinen, schritte, logs },
-    training: rechneTraining({ einheiten, plaene, planEinheiten }), ziele: { ziele, schritte: zielSchritte }, affirmationen: { affirmationen, ziele },
+    training: rechneTraining({ einheiten, saetze, plaene, planEinheiten }), ziele: { ziele, schritte: zielSchritte }, affirmationen: { affirmationen, ziele },
     gewohnheiten: { gewohnheiten, logs: gewLogs, rueckfaelle }, quiz };
 }
 

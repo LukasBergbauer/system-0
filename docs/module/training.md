@@ -8,6 +8,7 @@
 - Verlauf und Fortschritt pro Übung
 
 ## Stand
+- Zählregel (09.11.2026): Eine Einheit zählt (Woche, Serie, Heute) nur mit Sätzen oder Dauer/Gefühl/Belastung/Notiz – `zaehlt()` in `rechnen.js`, gleiche Regel in `heute/training.js`.
 **Erste Fassung gebaut (09.11.2026)**, Plan a)–d) mit Lukas abgestimmt. Migration `008_training.sql`; `sw.js` `v47`.
 - Daten (`daten.js`): `training_uebungen` (eigene Übung oder Verweis `physio_id`; Name/Kurz kommen dann live aus dem
   PhysioZentrum), `einheiten`, `saetze` (hängen direkt an Einheit + Übung, keine Zwischentabelle). Physio nur über `core/store.js` gelesen.

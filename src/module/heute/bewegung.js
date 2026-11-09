@@ -27,6 +27,7 @@ export function ring(anteil, mitte, animiert = true) {
     '<svg viewBox="0 0 168 168" aria-hidden="true"><circle class="bahn" cx="84" cy="84" r="70"/><circle class="wert" cx="84" cy="84" r="70"/></svg>');
   const kreis = box.querySelector('.wert');
   const ziel = UMFANG * (1 - (anteil ?? 0));
+  if (!(anteil > 0)) kreis.style.visibility = 'hidden'; // runde Linienenden malen in Safari sonst bei 0 einen Punkt
   if (!animiert || ruhig()) {
     kreis.style.transition = 'none';
     kreis.style.strokeDashoffset = ziel;

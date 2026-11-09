@@ -1,11 +1,14 @@
-// Heute: Training aus den Rohdaten (einheiten, trainingsplaene, plan_einheiten) – Zahlen für Kachel und Schnellaktion
+// Heute: Training aus den Rohdaten (einheiten, saetze, trainingsplaene, plan_einheiten) – Zahlen für Kachel und Schnellaktion
 // und die Leiste „Training heute“ (Plan-Einheiten des aktiven Plans; antippen startet bzw. öffnet über '#/training/plan:<id>').
 import { el } from '../../ui/dom.js';
 import { symbol } from '../../ui/symbol.js';
 import { go } from '../../core/router.js';
 import { tagISO, plusTage } from './rechnen.js';
 
-export function rechneTraining({ einheiten, plaene, planEinheiten }, jetzt = new Date()) {
+// Wie im Training: eine Einheit zählt nur mit Inhalt (Sätze oder Dauer/Gefühl/Belastung/Notiz).
+export function rechneTraining({ einheiten: alle, saetze, plaene, planEinheiten }, jetzt = new Date()) {
+  const mitSatz = new Set(saetze.map((s) => s.einheit_id));
+  const einheiten = alle.filter((e) => mitSatz.has(e.id) || e.dauer || e.gefuehl || e.belastung || e.notiz);
   const heute = plusTage(jetzt, 0);
   const h = tagISO(heute);
   const tag = ((heute.getDay() + 6) % 7) + 1;

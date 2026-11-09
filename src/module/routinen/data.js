@@ -56,6 +56,7 @@ export async function setzeSchritte(routine, zeilen) {
 
 export async function loescheRoutine(routine) {
   for (const s of routine.schritte) await remove(SCHRITTE, s.id);
+  for (const l of routine.logs) await remove(LOGS, l.id);
   await remove(ROUTINEN, routine.id);
 }
 

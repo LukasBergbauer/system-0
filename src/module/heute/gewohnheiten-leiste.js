@@ -2,7 +2,7 @@
 // Abbauen: „Tage ohne“, Antippen → '#/gewohnheiten'. Schreibt nur über core/store.js.
 import { el } from '../../ui/dom.js';
 import { symbol } from '../../ui/symbol.js';
-import { save } from '../../core/store.js';
+import { save, remove } from '../../core/store.js';
 import { go } from '../../core/router.js';
 import { tagISO } from './rechnen.js';
 
@@ -20,13 +20,17 @@ export function gewohnheitenLeiste({ gewohnheiten, logs, rueckfaelle }) {
   ]);
 
   function auf(g) {
-    const log = logs.filter((l) => l.gewohnheit_id === g.id && l.tag === heute).sort((a, b) => b.wert - a.wert)[0];
+    const amTag = logs.filter((l) => l.gewohnheit_id === g.id && l.tag === heute).sort((a, b) => b.wert - a.wert);
+    const log = amTag[0];
     const w = log?.wert || 0;
     const fertig = w >= g.ziel;
     const neu = g.messart === 'haken' ? (fertig ? 0 : 1) : w + SCHRITT[g.messart];
     const e = (x) => (g.messart === 'zeit' ? `${x} Min` : x);
     return knopf(g, fertig, Math.min(1, w / g.ziel), fertig ? 'Erledigt ✓' : g.messart === 'haken' ? 'offen' : `${e(w)} / ${e(g.ziel)}`,
-      () => save('gewohnheit_logs', { ...(log ? { id: log.id } : {}), gewohnheit_id: g.id, tag: heute, wert: neu }));
+      async () => {
+        for (const l of amTag.slice(1)) await remove('gewohnheit_logs', l.id); // sonst bliebe der höhere stehen
+        await save('gewohnheit_logs', { ...(log ? { id: log.id } : {}), gewohnheit_id: g.id, tag: heute, wert: neu });
+      });
   }
 
   function ab(g) {

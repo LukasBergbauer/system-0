@@ -59,14 +59,17 @@ function montag(tag) {
   return tagISO(d);
 }
 
+// Zählt nur, wenn etwas drinsteht (Sätze oder Dauer/Gefühl/Belastung/Notiz) – alles entfernt → zählt nicht mehr.
+export const zaehlt = (e) => !!(e.saetze?.length || e.dauer || e.gefuehl || e.belastung || e.notiz);
+
 export function dieseWoche(einheiten) {
   const mo = montag(tagISO());
-  return einheiten.filter((e) => e.datum >= mo && e.datum <= tagISO()).length;
+  return einheiten.filter((e) => zaehlt(e) && e.datum >= mo && e.datum <= tagISO()).length;
 }
 
 // Wochen in Folge mit mindestens einer Einheit (aktuelle Woche zählt mit, wenn schon trainiert).
 export function wochenSerie(einheiten) {
-  const wochen = new Set(einheiten.map((e) => montag(e.datum)));
+  const wochen = new Set(einheiten.filter(zaehlt).map((e) => montag(e.datum)));
   const d = new Date(`${montag(tagISO())}T12:00`);
   if (!wochen.has(tagISO(d))) d.setDate(d.getDate() - 7);
   let n = 0;

@@ -24,7 +24,7 @@ function wochenLeiste(daten) {
       el('small', { text: `von ${ziel} ${ziel === 1 ? 'Einheit' : 'Einheiten'}` }),
     ]),
     el('div', { class: 'training__balken', attrs: { role: 'progressbar', 'aria-valuemin': 0, 'aria-valuemax': ziel, 'aria-valuenow': woche } },
-      el('i', { attrs: { style: `width:${Math.min(100, (woche / ziel) * 100)}%` } })),
+      woche > 0 && el('i', { attrs: { style: `width:${Math.min(100, (woche / ziel) * 100)}%` } })), // bei 0 kein Leuchten
     serie > 1 && el('small', { text: `${mehrzahl(serie, 'Woche', 'Wochen')} in Folge` }),
   ]);
 }

@@ -44,8 +44,10 @@ const logAm = (g, tag) => g.logs.filter((l) => l.tag === tag).sort((a, b) => b.w
 export const wertAm = (g, tag = tagISO()) => logAm(g, tag)?.wert || 0;
 const geschafft = (g, tag) => wertAm(g, tag) >= g.ziel;
 
-export function setzeWert(g, wert) {
+// Andere Einträge desselben Tags (zweites Gerät) werden entfernt – sonst bliebe nach dem Zurücksetzen der höhere stehen.
+export async function setzeWert(g, wert) {
   const alt = logAm(g, tagISO());
+  for (const l of g.logs) if (l.tag === tagISO() && l.id !== alt?.id) await remove(LOGS, l.id);
   return save(LOGS, { ...(alt ? { id: alt.id } : {}), gewohnheit_id: g.id, tag: tagISO(), wert: Math.max(0, wert) });
 }
 

@@ -329,6 +329,10 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         Leiste auf Heute. Migration `013_gewohnheiten.sql`; `sw.js` `v58`.
   - [x] Migration 013 ausgeführt, auf Geräten geprüft (09.11.2026)
 
+- [x] Zähler gehen beim Entfernen auf 0 (09.11.2026): Training zählt nur Einheiten mit Inhalt (Sätze oder Dauer/Gefühl/Belastung/Notiz),
+      in Training und Heute gleich; Einheit löschen räumt alle Sätze frisch gelesen weg; Gewohnheit zurücksetzen entfernt
+      zweite Tageseinträge (anderes Gerät); Routine löschen räumt Logs weg; Ring/Balken zeigen bei 0 keinen Punkt bzw. kein Leuchten. `sw.js` `v62`
+
 ## Phase 4 – Wissen & Kreativ
 - [ ] Wissen-Quiz (`module/wissen.md`)
   - [x] Erste Fassung (09.11.2026): Daily (5 neue Fragen/Tag, Serie), Endlos (Themen, neue zuerst), Statistik, Import aus Claude-Chat,

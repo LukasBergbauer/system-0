@@ -62,7 +62,8 @@ export const neueEinheit = () => save(EINHEITEN, { datum: tagISO(), art: 'kraft'
 export const aendere = (table, felder) => save(table, felder);
 
 export async function loescheEinheit(e) {
-  for (const s of e.saetze) await remove(SAETZE, s.id);
+  // frisch lesen: e.saetze kann veraltet sein (Sätze, die nach dem Öffnen dazukamen)
+  for (const s of (await getAll(SAETZE)).filter((x) => x.einheit_id === e.id)) await remove(SAETZE, s.id);
   await remove(EINHEITEN, e.id);
 }
 
