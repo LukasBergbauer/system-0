@@ -3,7 +3,7 @@
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
 import { STATUS, ladeBuch, coverUrl, loescheBuch } from './data.js';
-import { zeigeMarkdown } from './markdown.js';
+import { zeigeMarkdown } from '../../ui/markdown.js';
 import { coverBild } from './cover-wahl.js';
 import { bearbeiten } from './bearbeiten.js';
 

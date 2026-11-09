@@ -12,6 +12,7 @@ import '../module/affirmationen/index.js';
 import '../module/gewohnheiten/index.js';
 import '../module/wissen/index.js';
 import '../module/buecher/index.js';
+import '../module/insta/index.js';
 import { einstellungenBereich } from './einstellungen.js';
 import { mehrBereich } from './mehr.js';
 

@@ -1,0 +1,58 @@
+/* Modul „Insta-Organizer“: Planer, Monat, Post-Vollbild, Hashtag-Sets, Erkenntnisse. Nur Werte aus tokens.css. */
+.insta { display: flex; flex-direction: column; gap: var(--space-4); }
+.insta__inhalt { display: flex; flex-direction: column; gap: var(--space-4); }
+.insta-knoepfe { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.insta-gruppe { display: flex; flex-direction: column; gap: var(--space-2); }
+
+/* Monat */
+.insta-monat__kopf { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-3); }
+.insta-pfeil { width: var(--tap); height: var(--tap); font-size: 24px; color: var(--text-2); background: none; border: 0; cursor: pointer; }
+.insta-monat__raster { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: var(--space-1); }
+.insta-monat__wt { text-align: center; color: var(--text-2); font-size: var(--fs-small); }
+.insta-tag { min-height: 72px; display: flex; flex-direction: column; gap: 2px; padding: var(--space-1); border-radius: var(--radius-klein);
+  border: 1px solid var(--glas-rand); background: var(--glas-verlauf); overflow: hidden; }
+.insta-tag > small { color: var(--text-2); font-size: var(--fs-small); }
+.insta-tag.fremd { opacity: .4; }
+.insta-tag.heute > small { color: var(--accent); font-weight: 700; }
+.insta-tag__post { padding: 2px 4px; font: inherit; font-size: 11px; line-height: 1.25; text-align: left; white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis; border: 0; border-radius: 6px; color: var(--text); background: color-mix(in oklch, var(--accent) 18%, transparent); cursor: pointer; }
+.insta-tag__post.gepostet { color: var(--accent-ink); background: var(--accent); }
+.insta-tag__post.idee, .insta-tag__post.arbeit { background: var(--surface-2); }
+
+/* Post-Vollbild */
+.insta-kopf { display: flex; flex-direction: column; gap: var(--space-2); }
+.insta-kopf small { color: var(--text-2); font-size: var(--fs-small); }
+.insta-hook { margin: 0; padding-left: var(--space-5); border-left: 2px solid var(--accent); font-size: var(--fs-title); font-style: italic; line-height: 1.5; }
+.insta-abschnitt { display: flex; flex-direction: column; gap: var(--space-2); }
+.insta-abschnitt > p { margin: 0; line-height: 1.6; white-space: pre-line; }
+.insta-text { font-size: var(--fs-normal); }
+.insta-caption { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+.insta-caption p { margin: 0; white-space: pre-line; line-height: 1.6; }
+.insta-kz-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: var(--space-2); }
+.insta-kz { display: flex; flex-direction: column; padding: var(--space-3); border-radius: var(--radius-klein); border: 1px solid var(--glas-rand); background: var(--glas-verlauf); }
+.insta-kz b { font-size: var(--fs-title); }
+.insta-kz small { color: var(--text-2); font-size: var(--fs-small); }
+
+/* Bearbeiten */
+.insta-form { display: flex; flex-direction: column; gap: var(--space-4); }
+.insta-form textarea, .insta-import, .insta-set textarea { resize: vertical; font: inherit; line-height: 1.5; }
+.insta-label { display: flex; justify-content: space-between; gap: var(--space-2); }
+.insta-zahl { color: var(--text-2); font-size: var(--fs-small); font-weight: 400; }
+.insta-zahl.zu-viel { color: var(--warn); font-weight: 600; }
+.insta-zahlen-form { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: var(--space-2); }
+.insta-zahl-feld { display: flex; flex-direction: column; gap: 2px; }
+.insta-zahl-feld small { color: var(--text-2); font-size: var(--fs-small); }
+
+/* Hashtag-Sets */
+.insta-sets { display: flex; flex-direction: column; gap: var(--space-4); }
+.insta-set { display: flex; flex-direction: column; gap: var(--space-2); }
+.insta-set__fuss { display: flex; align-items: center; gap: var(--space-2); }
+.insta-set__fuss .insta-zahl { margin-right: auto; }
+
+/* Erkenntnisse */
+.insta-erk { display: flex; flex-direction: column; gap: var(--space-3); }
+.insta-erk__karte { display: flex; flex-direction: column; gap: var(--space-2); }
+.insta-erk__text { margin: 0; font-weight: 600; line-height: 1.4; }
+.insta-erk__warum { margin: 0; color: var(--text-2); line-height: 1.5; }
+.insta-erk__fuss { display: flex; align-items: center; justify-content: space-between; }
+.insta-erk__fuss small { color: var(--text-2); font-size: var(--fs-small); }

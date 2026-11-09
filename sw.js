@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v67';
+const VERSION = 'v68';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -101,12 +101,23 @@ const APP_FILES = [
   './src/module/buecher/index.js',
   './src/module/buecher/data.js',
   './src/module/buecher/cover.js',
-  './src/module/buecher/markdown.js',
   './src/module/buecher/editor.js',
   './src/module/buecher/cover-wahl.js',
   './src/module/buecher/bearbeiten.js',
   './src/module/buecher/buch.js',
   './src/module/buecher/view.js',
+  './src/ui/markdown.js',
+  './src/module/insta/index.js',
+  './src/module/insta/data.js',
+  './src/module/insta/austausch.js',
+  './src/module/insta/claude.js',
+  './src/module/insta/hashtags.js',
+  './src/module/insta/post-form.js',
+  './src/module/insta/post.js',
+  './src/module/insta/monat.js',
+  './src/module/insta/erkenntnisse.js',
+  './src/module/insta/view.js',
+  './src/module/heute/insta-leiste.js',
   './src/module/wissen/index.js',
   './src/module/wissen/data.js',
   './src/module/wissen/view.js',
@@ -181,6 +192,7 @@ const APP_FILES = [
   './src/styles/gewohnheiten.css',
   './src/styles/wissen.css',
   './src/styles/buecher.css',
+  './src/styles/insta.css',
   './src/styles/kopfbild.css',
   './src/styles/kachel.css',
   './src/styles/farbkreise.css',

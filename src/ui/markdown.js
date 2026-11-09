@@ -1,7 +1,7 @@
 // Einfaches Markdown → Elemente (ohne innerHTML, also sicher).
 // Zeilen: # / ## / ### Überschrift, > Zitat, - oder * Liste, 1. Nummernliste, --- Linie, Leerzeile = neuer Absatz.
 // Im Text: **fett**, *kursiv*.
-import { el } from '../../ui/dom.js';
+import { el } from './dom.js';
 
 function inline(text) {
   return text.split(/(\*\*[^*]+\*\*|\*[^*\s][^*]*\*)/).filter(Boolean).map((t) => {
@@ -13,7 +13,7 @@ function inline(text) {
 
 const mitUmbruch = (zeilen) => zeilen.flatMap((z, i) => (i ? [el('br'), ...inline(z)] : inline(z)));
 
-export function zeigeMarkdown(text) {
+export function zeigeMarkdown(text, klasse = 'buch-text') {
   const bloecke = [];
   let art = null;
   let zeilen = [];
@@ -43,5 +43,5 @@ export function zeigeMarkdown(text) {
     else sammle('p', z);
   }
   fertig();
-  return el('div', { class: 'buch-text' }, bloecke);
+  return el('div', { class: klasse }, bloecke);
 }

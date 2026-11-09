@@ -344,6 +344,9 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] Erste Fassung (09.11.2026): Liste nach Status, Cover (Foto oder Open Library), Markdown-Editor, Leseansicht, Suche.
         Migration `015_buecher.sql`; `sw.js` `v67`. 015 ausgeführt, von Lukas auf Geräten geprüft
 - [ ] Insta-Organizer (`module/insta.md`)
+  - [x] Erste Fassung (09.11.2026): Skript-Import aus Claude (JSON, Schlüssel = Update), Kurzfassung je Post, Planer/Monat, Hashtag-Sets,
+        Zahlen von Hand bzw. per Import, Export für eigenen Agenten, Erkenntnisse, Heute-Leiste, Suche. Migration `016_insta.sql`; `sw.js` `v68`.
+        Offen: Migration 016 ausführen, auf Geräten prüfen
 
 ## Phase 5 – Ausbau
 - [ ] Routinen-Sperre

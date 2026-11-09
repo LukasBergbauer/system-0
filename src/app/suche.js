@@ -1,4 +1,4 @@
-// Suche über To-dos, Termine, Physio-Punkte, Trainings-Übungen und -Pläne, Ziele, Affirmationen: Suchfeld oben in der Seitenleiste oder ⌘K / Strg+K.
+// Suche über To-dos, Termine, Physio-Punkte, Trainings-Übungen und -Pläne, Ziele, Affirmationen, Bücher, Insta-Posts: Suchfeld oben in der Seitenleiste oder ⌘K / Strg+K.
 // Liest nur über core/ (store, Google-Zwischenspeicher). Ein Treffer öffnet seinen Bereich über den
 // Router-Zusatz #/<bereich>/<id>; der Bereich liest ihn mit zusatzNehmen() und öffnet den Eintrag.
 // Enter öffnet den ersten Treffer, Esc schließt.
@@ -16,9 +16,9 @@ const naehe = (iso) => Math.abs(new Date(iso) - Date.now()); // Termine: zuerst 
 
 // Alle durchsuchbaren Einträge, schon in der Reihenfolge, in der sie erscheinen sollen.
 async function laden() {
-  const [todos, termine, google, physio, uebungen, plaene, planEinheiten, zielBereiche, ziele, affs, buecher] = await Promise.all([
+  const [todos, termine, google, physio, uebungen, plaene, planEinheiten, zielBereiche, ziele, affs, buecher, insta] = await Promise.all([
     getAll('todos'), getAll('termine'), getMeta('kalender:google'), getAll('physio_eintraege'),
-    getAll('training_uebungen'), getAll('trainingsplaene'), getAll('plan_einheiten'), getAll('ziel_bereiche'), getAll('lebensziele'), getAll('affirmationen'), getAll('buecher'),
+    getAll('training_uebungen'), getAll('trainingsplaene'), getAll('plan_einheiten'), getAll('ziel_bereiche'), getAll('lebensziele'), getAll('affirmationen'), getAll('buecher'), getAll('insta_posts'),
   ]);
   const physioName = new Map(physio.map((p) => [p.id, p.titel]));
   const uebungName = (u) => (u.physio_id && physioName.get(u.physio_id)) || u.name || 'Übung';
@@ -71,6 +71,11 @@ async function laden() {
       titel: 'Bücher', bereich: 'buecher',
       eintraege: buecher.filter((b) => b.titel).sort((a, b) => a.titel.localeCompare(b.titel, 'de'))
         .map((b) => ({ id: b.id, titel: b.titel, text: `${b.autor || ''} ${b.zusammenfassung || ''}`, sub: b.autor })),
+    },
+    {
+      titel: 'Insta-Posts', bereich: 'insta',
+      eintraege: insta.filter((p) => p.titel).sort((a, b) => (b.datum || '').localeCompare(a.datum || ''))
+        .map((p) => ({ id: p.id, titel: p.titel, text: `${p.hook || ''} ${p.skript || ''} ${p.caption || ''} ${p.hashtags || ''}`, sub: p.hook })),
     },
   ];
 }
