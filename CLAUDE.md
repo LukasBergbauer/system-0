@@ -28,6 +28,8 @@ Läuft auf Mac und iPhone als PWA (Web-App auf dem Homescreen), gleiche Daten, s
 - So tokensparend wie möglich schreiben. Keine unnötigen Zeilen, keine Erklärungen, was an Doku geändert wurde.
 - Nach jeder abgeschlossenen Aufgabe „Stand“ (knapp) in Modul-Doku und `docs/roadmap.md` vermerken, damit Claude aktuell ist,
   **und** Pläne, Ergebnisse und Infos immer auch in den Chat. So wenig Zeilen wie möglich, so viel wie nötig.
+- **Supabase:** Jede neue Migration bzw. jedes SQL immer zusätzlich vollständig als ```sql-Codeblock in den Chat
+  (zum direkten Reinkopieren in den SQL-Editor), nicht nur den Dateinamen nennen.
 - Dann **direkt** committen (kurze deutsche Nachricht), ohne zu fragen. `git push` macht Lukas selbst.
 - Danach kurz sagen, was gemacht wurde (wenige Zeilen).
 - **Übergabe:** Erst wenn eine Aufgabe komplett fertig ist, „Aufgabe fertig, bitte neue Sitzung starten.“ und einen
