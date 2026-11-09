@@ -80,3 +80,7 @@ Liest nur über `core/` bzw. `getAll()` die Tabellen `todos`, `termine`, `todo_b
 Animationen wie Musterseite: Zahlen zählen hoch, Ring/Donut füllen sich, Kurven zeichnen sich, Kacheln heben sich.
 Reihenfolge zum Bauen (je ein Commit): a) Daten-Rechnungen + Kopf/Hero/Kacheln, b) Kalender-Karte, Verlauf, Donut,
 c) Seitenleiste mit Abschnitten + Platzhalter-Bereiche, d) Neu-Menü + Akzent-Knopf, e) Suche.
+
+## Wünsche für später
+- Kacheln auf Heute per Drag & Drop umordnen. Die Anordnung gilt nur für das jeweilige Gerät (in `localStorage`, nicht in Supabase).
+  Die Werte auf den Kacheln werden weiter abgeglichen
