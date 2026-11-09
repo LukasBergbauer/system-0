@@ -1,4 +1,4 @@
-// Fokus-Karte: ein Punkt in der Mitte, seine Verknüpfungen schweben als Glas-Bubbles ringsum.
+// Fokus-Karte: ein Punkt in der Mitte, seine Verknüpfungen als Wolken-Bubbles ringsum (feste Plätze).
 // Antippen eines Nachbarn → waehle(id): diese Bubble schwebt in die Mitte, alle anderen blenden aus,
 // danach perlen die neuen Nachbarn aus der Mitte heraus.
 // Linien: gebogene Lichtfäden Mitte → Nachbar (enden am Rand der Bubble); fein auch zwischen verknüpften Nachbarn.
@@ -117,7 +117,7 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
     linien.setAttribute('viewBox', `${-w / 2} ${-h / 2} ${w} ${h}`);
     linien.innerHTML = striche.join('');
     if (neueMitte) {
-      // Linien erst einblenden, wenn die Punkte angekommen sind
+      // Linien blenden mit den neuen Punkten ein
       linien.classList.remove('mm-karte__linien--ein');
       void linien.getBoundingClientRect();
       linien.classList.add('mm-karte__linien--ein');

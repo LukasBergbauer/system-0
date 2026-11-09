@@ -1,4 +1,4 @@
-// Bilder der Punkte im PhysioZentrum. Zeilen in der Tabelle physio_bilder (store.js),
+// Bilder der Punkte in Physio. Zeilen in der Tabelle physio_bilder (store.js),
 // die Dateien selbst über core/dateien.js (erst im Gerät, dann Supabase Storage, Ordner „physio-bilder“).
 // Je Bild zwei Dateien: <user_id>/<id>.jpg (groß) und <user_id>/<id>-klein.jpg (Ball).
 // Reihenfolge: kleinste Zahl = Titelbild (das Bild im Ball).

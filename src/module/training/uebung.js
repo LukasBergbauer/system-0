@@ -1,4 +1,4 @@
-// Seite „Übung“: Name (eigene) bzw. Verweis ins PhysioZentrum, Messung, eigene Notiz, Bestwert, Verlauf-Linie, Liste der Einheiten.
+// Seite „Übung“: Name (eigene) bzw. Verweis nach Physio, Messung, eigene Notiz, Bestwert, Verlauf-Linie, Liste der Einheiten.
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
 import { input } from '../../ui/input.js';
@@ -56,12 +56,12 @@ export function uebungSeite(id, { daten, zurueck, oeffne }) {
     kopf = [
       el('h2', { class: 'training__titel', text: u.name }),
       u.physio.kurz && el('p', { class: 'training__zuletzt', text: u.physio.kurz }),
-      button({ text: 'Im PhysioZentrum öffnen', onClick: () => { location.hash = `#/physio/${encodeURIComponent(u.physio_id)}`; } }),
+      button({ text: 'In Physio öffnen', onClick: () => { location.hash = `#/physio/${encodeURIComponent(u.physio_id)}`; } }),
     ];
   } else {
     const f = input({ label: 'Name', value: u.name });
     f.querySelector('input').addEventListener('change', (ev) => ev.target.value.trim() && aendere(UEBUNGEN, { id, name: ev.target.value.trim() }));
-    kopf = [f, u.physio_id && el('p', { class: 'app__note', text: 'Der Eintrag im PhysioZentrum wurde gelöscht.' })];
+    kopf = [f, u.physio_id && el('p', { class: 'app__note', text: 'Der Eintrag in Physio wurde gelöscht.' })];
   }
 
   async function loeschen() {

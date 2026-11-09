@@ -4,7 +4,7 @@ Diese Datei liest Claude Code zu Beginn jeder Sitzung. Sie enthält nur die fest
 Details stehen in `docs/`. Lies immer nur die Doku, die für die aktuelle Aufgabe nötig ist.
 
 ## Was System 0 ist
-Eine persönliche App nur für Lukas: Termine, To-dos, Routinen, Training, PhysioZentrum,
+Eine persönliche App nur für Lukas: Termine, To-dos, Routinen, Training, Physio,
 Gewohnheiten, Lebensziele, Affirmationen, Wissen-Quiz, Bücher, Insta-Organizer.
 Läuft auf Mac und iPhone als PWA (Web-App auf dem Homescreen), gleiche Daten, synchronisiert.
 
@@ -12,7 +12,7 @@ Läuft auf Mac und iPhone als PWA (Web-App auf dem Homescreen), gleiche Daten, s
 1. **Alles kostenlos.** Hosting über GitHub Pages (oder Cloudflare Pages), Daten in Supabase Free.
    Keine kostenpflichtigen Dienste, Abos oder Bibliotheken.
 2. **Nur ein Nutzer.** Login über Supabase Auth, Row Level Security auf jeder Tabelle (`user_id = auth.uid()`).
-3. **Keine Patientendaten.** Kein Bezug zum Praxis-Terminkalender. Das PhysioZentrum enthält nur allgemeines Fachwissen.
+3. **Keine Patientendaten.** Kein Bezug zum Praxis-Terminkalender. Das Physio enthält nur allgemeines Fachwissen.
 4. **Keine Secrets im Code.** Der Supabase-anon-Key ist erlaubt (durch RLS geschützt), alles andere nicht.
 5. **Technik:** Vanilla HTML, CSS und JavaScript mit ES-Modulen. Kein Framework, kein Build-Schritt.
    Externe Bibliotheken nur, wenn wirklich nötig, über eine CDN-URL mit fester Version.

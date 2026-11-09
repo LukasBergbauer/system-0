@@ -68,7 +68,7 @@
   color-scheme: light;
 }
 
-/* Helle Fläche (Mindmap-Overlay im PhysioZentrum): eigenes, deckendes Weiß. */
+/* Helle Fläche (Mindmap-Overlay in Physio): eigenes, deckendes Weiß. */
 .hell {
   --bg: #FBF7F4;
   --surface: rgba(43, 30, 25, 0.04);

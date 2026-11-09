@@ -3,11 +3,12 @@
 // vom Nachbarn zur Mitte wird (so kann er sichtbar dorthin gleiten).
 // Lange drücken (iPhone) oder Rechtsklick (Mac) → onLang(id), z. B. Verknüpfung lösen.
 // Mit Titelbild wird der Punkt ein runder Ball (Foto schwarz-weiß, Titel darunter), Klasse mm-knoten--ball.
-// Aufbau: Knopf (Platz, gleitet) > Blase (Glas, schwebt eigenständig) > Inhalt. Größe je Punkt leicht anders (--v).
+// Aufbau: Knopf (Platz, gleitet) > Blase (Hover: etwas größer) > Inhalt + Wolken-Haut (wolke.js, wabbelt beim Hovern).
+// Größe und Form je Punkt leicht anders (--v, --wolke).
 import { el } from '../../ui/dom.js';
 import { art } from './arten.js';
 import { bildUrl } from './bilder.js';
-import { schwebeTakt } from './schweben.js';
+import { wolke, wabbeln } from './wolke.js';
 
 // fester Zahlenwert je id (gleicher Punkt = gleicher Takt und gleiche Größe)
 const zahl = (id) => [...id].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
@@ -50,10 +51,12 @@ export function knoten(id, onClick, onLang) {
     el('span', { class: 'mm-knoten__titel' }),
     el('span', { class: 'mm-knoten__kurz', attrs: { 'aria-hidden': 'true' } }),
     el('span', { class: 'mm-knoten__foto', attrs: { 'aria-hidden': 'true' } }, el('img', { attrs: { alt: '', decoding: 'async' } })),
+    el('span', { class: 'mm-knoten__haut' }),
   ]));
   knopf.dataset.id = id;
   const n = zahl(id);
-  schwebeTakt(knopf.style, n % 97);
+  wolke(knopf.style, n % 997);
+  knopf.addEventListener('mouseenter', () => wabbeln(knopf.querySelector('.mm-knoten__haut'), n));
   knopf.style.setProperty('--v', (0.88 + (n % 23) / 100).toFixed(2));
   const warLang = langDruecken(knopf, () => onLang?.(id));
   knopf.addEventListener('click', () => {

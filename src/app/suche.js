@@ -46,7 +46,7 @@ async function laden() {
     },
     {
       titel: 'Trainings-Übungen', bereich: 'training',
-      eintraege: uebungen.map((u) => ({ id: `uebung:${u.id}`, titel: uebungName(u), text: u.notiz, sub: u.physio_id ? 'aus PhysioZentrum' : '' }))
+      eintraege: uebungen.map((u) => ({ id: `uebung:${u.id}`, titel: uebungName(u), text: u.notiz, sub: u.physio_id ? 'aus Physio' : '' }))
         .sort((a, b) => a.titel.localeCompare(b.titel, 'de')),
     },
     {

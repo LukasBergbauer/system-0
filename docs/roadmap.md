@@ -154,7 +154,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
     kein Umschalter mehr
   - Einstellungen wirken plump. Gewählt: Kacheln (große Status-Kachel für den Abgleich, kleinere für den Rest)
   - „Alles sieht gleich aus“: mehr verschiedene Bausteine (Kopfbild, Kachel, Chips) statt überall dieselbe Karte
-  - PhysioZentrum ist wichtig und kommt direkt nach der Design-Runde (Roadmap entsprechend umgestellt)
+  - Physio ist wichtig und kommt direkt nach der Design-Runde (Roadmap entsprechend umgestellt)
 
   Plan (mit Lukas abgestimmt; eine Sitzung, Teile a → f, nach jedem Teil kurz prüfen):
   - a) Grundlook: `tokens.css` + `design.md`. Hintergrund heller (Graphit statt fast Schwarz),
@@ -269,7 +269,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
     Ränder weich ins Seiten-Hintergrund auslaufen lassen (Verlauf/Maske), eher zart als flächig
   - Neon-Grün fällt weg: Akzent ist Weiß, dazu pro Seite ein leichter Farbschimmer in der Bereichsfarbe
     (Lichtschein oben, Kopfbild, kleine Details). `--accent` wird Weiß; Haken, aktiver Tab usw. entsprechend
-- [x] PhysioZentrum mit Mindmap, erste Fassung (`module/physio.md`) – vorgezogen aus Phase 2, abgeschlossen 05.11.2026
+- [x] Physio mit Mindmap, erste Fassung (`module/physio.md`) – vorgezogen aus Phase 2, abgeschlossen 05.11.2026
   Mindmap als Hauptansicht (helles Overlay, Suche, Fokus-Karte mit Gleiten, Verknüpfen/Anlegen direkt dort,
   Zurück-Wischen Schritt für Schritt), Eintrag mit Feldern je Art und Autospeichern, Bilder (Galerie im Eintrag,
   Bälle schwarz-weiß in der Karte, Mac: Ziehen/⌘V). Migrationen `003_physio.sql`, `004_physio_bilder.sql`; `sw.js` `v33`.
@@ -302,9 +302,9 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   Migration ausgeführt, mit Lukas auf Mac und iPhone geprüft.
 
 ## Phase 2 – Körper
-- (PhysioZentrum: Datenbank und Suche → nach Phase 1 vorgezogen)
-- [x] Trainings-Notebook mit Übernahme von Übungen aus dem PhysioZentrum (`module/training.md`)
-  - [x] Erste Fassung (09.11.2026): Einheiten, Sätze, Übungen (eigene + Verweis ins PhysioZentrum, Hyrox-Vorlagen),
+- (Physio: Datenbank und Suche → nach Phase 1 vorgezogen)
+- [x] Trainings-Notebook mit Übernahme von Übungen aus Physio (`module/training.md`)
+  - [x] Erste Fassung (09.11.2026): Einheiten, Sätze, Übungen (eigene + Verweis nach Physio, Hyrox-Vorlagen),
         Verlauf/Bestwert je Übung. Migration `008_training.sql`; `sw.js` `v47`. Offen: Migration ausführen, auf Geräten prüfen
   - [x] Wochenpläne + Training auf Heute (09.11.2026): Pläne (wöchentlich, einer aktiv), Plan-Einheiten mit Ziel-Sätzen,
         Start aus Plan (Sätze vorbefüllt), Kachel/Leiste/Schnellaktion auf Heute. Migration `009_training_plaene.sql`; `sw.js` `v48`.
@@ -352,11 +352,14 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 - [x] Routinen-Sperre (`module/routinen.md`)
   - [x] Gebaut (09.11.2026): Schalter + Startzeit je Routine, Vollbild-Sperre, „Heute aussetzen“. Migration `017_routinen_sperre.sql`; `sw.js` `v70`.
         017 ausgeführt, von Lukas auf Geräten geprüft
-- [ ] PhysioZentrum: Kosmos-Startseite mit Bubbles (`module/physio.md` → „Plan Kosmos“)
+- [ ] Physio: Kosmos-Startseite mit Bubbles (`module/physio.md` → „Plan Kosmos“)
   - [x] Gebaut (09.11.2026): heller Glas-Kosmos, Bubbles je Pfad, Hover = eindringen, Klick = Innenansicht; Art Trainingsform.
         Migration `018_physio_trainingsform.sql`; `sw.js` `v72`. 018 ausgeführt, von Lukas auf Geräten geprüft
   - [x] Mindmap im Glas-Kosmos-Stil (09.11.2026): Glas-Bubbles statt Pillen, Lichtfäden, Schweben unregelmäßig (Kosmos + Mindmap),
-        Bubble antippen = schwebt in die Mitte, Rest blendet aus; Knopf „Text“ öffnet den Eintrag (Glas-Karten). `sw.js` `v73`. Offen: auf Geräten prüfen
+        Bubble antippen = schwebt in die Mitte, Rest blendet aus; Knopf „Text“ öffnet den Eintrag (Glas-Karten). `sw.js` `v73`. Geprüft: Schweben gefiel nicht
+  - [x] Wolken statt Schweben (09.11.2026): feste Plätze, Wolken-Form, Hover = leicht größer + Wabbeln, Linien von Anfang an,
+        Kosmos-Bubble gleitet beim Klick in die Mitte; Name „Physio“. `sw.js` `v74`. Offen: auf Geräten prüfen
+  - [ ] Lernpfade (`module/physio.md` → „Plan Lernpfade“)
   - [ ] Danach: Lernpfade, Notion
 - [ ] Notion-Anbindung
 - [ ] Idee KI-Auswertung (Wochenrückblick über alle Module): kostet je nach Anbieter Geld bzw. Datenschutz klären;

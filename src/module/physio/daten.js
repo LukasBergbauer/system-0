@@ -1,4 +1,4 @@
-// Daten des PhysioZentrums: Lesen und Schreiben nur über core/store.js.
+// Daten von Physio: Lesen und Schreiben nur über core/store.js.
 // Tabellen: physio_eintraege (art, titel, kurz, text, felder, video)
 //           physio_links (a_id, b_id) – Verknüpfung gilt in beide Richtungen
 import { getAll, save, remove } from '../../core/store.js';

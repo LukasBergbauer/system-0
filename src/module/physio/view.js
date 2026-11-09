@@ -1,4 +1,4 @@
-// Ansicht „PhysioZentrum“: Kosmos mit Kern „Physio“ und schwebenden Bubbles je Pfad (kosmos.js),
+// Ansicht „Physio“: Kosmos mit Kern „Physio“ und schwebenden Bubbles je Pfad (kosmos.js),
 // darunter eine leise Zeile mit Punkten und Verknüpfungen. Zeichnet Zahlen neu, sobald sich Daten ändern.
 import { el } from '../../ui/dom.js';
 import { on } from '../../core/events.js';

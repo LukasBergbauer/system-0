@@ -7,7 +7,7 @@ import { symbol } from '../ui/symbol.js';
 import { MEHR } from './nav-plan.js';
 import { oeffneSuche } from './suche.js';
 
-// kurz = true (Kapsel): kurzer Name, falls der Bereich einen hat („Physio“ statt „PhysioZentrum“).
+// kurz = true (Kapsel): kurzer Name, falls der Bereich einen hat.
 // zahl: kleine Zahl rechts am Eintrag (nur Seitenleiste, z. B. offene To-dos), 0 = keine.
 function link(bereich, klasse, aktiv, kurz = false, zahl = 0) {
   return el('a', {

@@ -1,4 +1,4 @@
-// Modal „Übung wählen“: Suche über eigene Übungen, Übungen aus dem PhysioZentrum und Hyrox-Vorlagen.
+// Modal „Übung wählen“: Suche über eigene Übungen, Übungen aus Physio und Hyrox-Vorlagen.
 // Physio-Übung oder Vorlage wählen legt die eigene Übung (Verweis) erst dann an.
 // const u = await waehleUebung(daten) → Übung oder null (geschlossen).
 import { el } from '../../ui/dom.js';
@@ -36,8 +36,8 @@ export function waehleUebung({ uebungen, physioUebungen }) {
       const passt = (t) => !q || norm(t).includes(q);
       treffer.replaceChildren(
         ...gruppe('Meine Übungen', eigene.filter((u) => passt(u.name)).map((u) =>
-          listRow({ title: u.name, sub: u.physio ? 'PhysioZentrum' : '', onClick: () => nimm(() => u) }))),
-        ...gruppe('PhysioZentrum', physioUebungen.filter((p) => !verknuepft.has(p.id) && passt(p.titel)).map((p) =>
+          listRow({ title: u.name, sub: u.physio ? 'Physio' : '', onClick: () => nimm(() => u) }))),
+        ...gruppe('Physio', physioUebungen.filter((p) => !verknuepft.has(p.id) && passt(p.titel)).map((p) =>
           listRow({ title: p.titel, sub: p.kurz || '', onClick: () => nimm(() => uebungZuPhysio(p.id, uebungen)) }))),
         ...gruppe('Hyrox', HYROX.filter((h) => !namen.has(norm(h.name)) && passt(h.name)).map((h) =>
           listRow({ title: h.name, onClick: () => nimm(() => neueUebung(h)) }))),

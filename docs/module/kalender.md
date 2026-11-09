@@ -86,7 +86,7 @@ Stile: `src/styles/kalender.css`.
       Termine von 90 Tagen zurück bis 1 Jahr voraus. Grenzen (bewusst): Zeitzone von Google-Terminen wird als
       Gerätezeit genommen; seltene Wiederholungen („2. Dienstag im Monat“) zeigen nur den ersten Termin.
 - [x] Supabase-Funktion `google-kalender` von Lukas angelegt, Abruf funktioniert (08.11.2026)
-- [x] e) Abschluss: Kopfbild-Zeile in `index.js` vorbereitet (auskommentiert, wie beim PhysioZentrum).
+- [x] e) Abschluss: Kopfbild-Zeile in `index.js` vorbereitet (auskommentiert, wie bein Physio).
       Sobald die 3 Fotos (steinerne Sonnenuhr) als `assets/bilder/kalender-1…3.webp` da sind: Zeile einschalten,
       Fotos in `APP_FILES` von `sw.js`, `VERSION` hochzählen. Evtl. erst nach Design-Runde 2 (helles Dashboard).
 

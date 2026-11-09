@@ -1,4 +1,4 @@
-# Modul: PhysioZentrum
+# Modul: Physio
 Vorgezogen nach Phase 1 (Datenbank + Mindmap), **Phase 5** (Lernpfade, Notion).
 
 ## Inhalte
@@ -282,7 +282,21 @@ Stand Glas-Mindmap (09.11.2026, `sw.js` `v73`): Overlay ohne `.hell`, Hintergrun
 - `fokus.js`: Bubble antippen → schwebt in die Mitte, alle anderen blenden aus, neue Nachbarn danach (`gleite(…, spaeter)`); Mitte antippen tut nichts,
   Knopf „Text“ öffnet den Eintrag. Linien = gebogene Akzent-Fäden von Rand zu Rand (Verlauf `mm-faden`)
 - Eintrag: jedes Feld eine Glas-Karte (`physio-eintrag.css`). Lokal geprüft (Mac-Breite, iPhone-Größe). Offen: Lukas prüft auf Geräten.
-Nächster Schritt: Lernpfade.
+Lukas (09.11.): Schweben gefällt nicht, Hover hakt.
+
+Stand Wolken (09.11.2026, `sw.js` `v74`): nichts schwebt mehr (`schweben.js` weg). `wolke.js`: je Bubble eigene Wolken-Form
+(Kreis mit flachen Dellen, SVG-Maske `--wolke` + Rand `--wolke-rand`), `wabbeln()` = einmal unsymmetrisch nachwabbeln (Web Animations,
+läuft immer zu Ende → kein Ruckeln); Hover = Blase `scale 1.05`. Keine Unschärfe/Schatten-Wechsel mehr beim Hovern.
+- Kosmos: 6 Bubbles fest auf Ring (60°-Schritte, `ordne()` per ResizeObserver), Lichtlinien Kern → Bubble von Anfang an.
+  Klick = Bubble gleitet in die Mitte, Rest blendet aus, dann Innenansicht; darunter wieder an den Platz. Eindringen/Parallaxe/Bahnen entfernt
+- Mindmap: Wolken-Haut `.mm-knoten__haut` (Stil gemeinsam in `physio-kosmos.css`), Fotos in Wolken-Form, Fäden blenden mit den neuen Bubbles ein
+- Name überall „Physio“ (statt PhysioZentrum). Lokal geprüft (Mac-Breite, iPhone-Größe). Offen: Lukas prüft auf Geräten.
+
+## Plan Lernpfade (Vorschlag, noch abstimmen)
+- Start im Kosmos: Bubble „Regionen“ → Region wählen → Mindmap zeigt nur den nächsten Schritt als Bubbles:
+  Region → Krankheitsbilder → Muskeln/Trainingsformen → Übungen (Reihenfolge fest in `lernpfad.js`)
+- Oben eine Pfad-Leiste (Brotkrumen) mit den gewählten Schritten, antippen = zurück zu diesem Schritt
+- Nur vorhandene Verknüpfungen, keine neue Tabelle; Ende = Übung (Knopf „Text“ / „Ins Training“)
 
 ## Offen / bitte prüfen (aus der Planung, erledigt bzw. unter „Wünsche für später“)
 - Das Overlay ist hell (Elfenbein-Weiß mit dunkler Schrift), während die App sonst dunkel ist. So gewünscht;

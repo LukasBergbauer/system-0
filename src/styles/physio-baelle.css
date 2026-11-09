@@ -1,5 +1,5 @@
 /* Bälle mit Bild in der Fokus-Karte (src/module/physio/knoten.js, Klasse mm-knoten--ball).
-   Foto rund und schwarz-weiß (in Farbe erst im Eintrag), Titel klein darunter.
+   Foto in Wolken-Form und schwarz-weiß (in Farbe erst im Eintrag), Titel klein darunter.
    Größe --mm-ball setzt fokus.js (aus fokus-layout.js). Nur Werte aus tokens.css. */
 
 /* Foto-Fläche gibt es nur bei Bällen */
@@ -16,7 +16,8 @@
   position: absolute;
   inset: 4px;
   overflow: hidden;
-  border-radius: 50%;
+  -webkit-mask: var(--wolke) center / 100% 100% no-repeat;
+  mask: var(--wolke) center / 100% 100% no-repeat;
 }
 .mm-knoten__foto img {
   display: block;
