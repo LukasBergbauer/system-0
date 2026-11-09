@@ -372,6 +372,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] 2. Kalender: Wiederholungen (eigene Termine), Monatsansicht, fällige To-dos. Migration `019_termine_wiederholung.sql`; `sw.js` `v82`
   - [x] 3. To-dos: Schnell-Knöpfe, Wischen (abhaken/löschen + Rückgängig), Erledigte > 30 Tage ausgeblendet. `sw.js` `v83`
   - [x] 4. Heute: Kacheln per lange drücken + ziehen umordnen (pro Gerät). `sw.js` `v84`
+  - [x] 5. Physio: einmalige Hinweise (Mitte öffnen, Lösen), Titel/Kurz enger, Art-Chips am Mac umbrechen. `sw.js` `v85`
 - ~~Notion-Anbindung~~ gestrichen (Lukas, 09.11.2026: nicht mehr gewünscht)
 - [ ] Idee KI-Auswertung (Wochenrückblick über alle Module): kostet je nach Anbieter Geld bzw. Datenschutz klären;
       kostenlos jetzt schon: Export-JSON in einen Claude-Chat geben

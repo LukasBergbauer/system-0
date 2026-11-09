@@ -13,6 +13,7 @@ import { groessen, positionen } from './fokus-layout.js';
 import { knoten, fuelleKnoten, fuelleMehr } from './knoten.js';
 import { gleite, setzeZiel } from './gleiten.js';
 import { titelbilder } from './bilder.js';
+import { tipps } from './tipps.js';
 
 const SVG = 'http://www.w3.org/2000/svg';
 const MEHR = 'mehr';
@@ -27,7 +28,8 @@ const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)')
 
 const paar = (a, b) => (a < b ? `${a}|${b}` : `${b}|${a}`);
 
-export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen, mitteTippen }) {
+export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen, mitteTippen, loesbar = true }) {
+  const tipp = tipps({ loesbar });
   const linien = document.createElementNS(SVG, 'svg');
   linien.setAttribute('class', 'mm-karte__linien');
   linien.setAttribute('aria-hidden', 'true');
@@ -40,7 +42,7 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen, mi
     class: 'chip chip--aktion mm-karte__plus', text: '+ Verknüpfen',
     attrs: { type: 'button' }, on: { click: () => verknuepfen() },
   });
-  const element = el('div', { class: 'mm-karte' }, [linien, ebene, fuss]);
+  const element = el('div', { class: 'mm-karte' }, [linien, ebene, fuss, tipp.element]);
 
   const knoepfe = new Map(); // id → Knopf (bleibt über Wechsel hinweg erhalten)
   let stand = null; // { eintraege, links, mitteId }
@@ -48,7 +50,7 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen, mi
 
   function tippen(id) {
     if (!stand) return;
-    if (id === stand.mitteId) return mitteTippen?.(id, knoepfe.get(id));
+    if (id === stand.mitteId) { tipp.lerne('mitte'); return mitteTippen?.(id, knoepfe.get(id)); }
     if (id === MEHR) zeigeAlle();
     else waehle(id);
   }
@@ -58,7 +60,7 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen, mi
     const finde = (x) => stand.eintraege.find((e) => e.id === x);
     const mitte = finde(stand.mitteId);
     const nachbar = finde(id);
-    if (mitte && nachbar) loesen(mitte, nachbar);
+    if (mitte && nachbar) { tipp.lerne('loesen'); loesen(mitte, nachbar); }
   }
 
   // Rolle wechselt (Nachbar → Mitte oder umgekehrt): Text kurz ausblenden, nach dem Gleiten wieder einblenden.
@@ -183,6 +185,7 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen, mi
       el('div', { class: 'mm-karte__knoepfe' }, [text, plus]),
     );
     alteMitte = mitteId;
+    tipp.zeige(sichtbar.length, fuss.offsetHeight + 8);
   }
 
   // Größe ändert sich (Drehen, Fenster) → nur neu anordnen

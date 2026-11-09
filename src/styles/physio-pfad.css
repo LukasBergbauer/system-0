@@ -74,3 +74,30 @@
   font-size: var(--fs-label);
   color: var(--text-3);
 }
+
+/* Einmalige Hinweise in der Fokus-Karte (tipps.js): leise Glas-Pille über dem Fuß */
+.mm-tipp {
+  position: absolute;
+  left: 50%;
+  z-index: 3;
+  margin: 0;
+  padding: var(--space-1) var(--space-4);
+  font-size: var(--fs-small);
+  color: var(--text-2);
+  white-space: nowrap;
+  background: var(--glas-verlauf);
+  border: 1px solid var(--glas-rand);
+  border-radius: 999px;
+  box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  backdrop-filter: blur(var(--blur)) saturate(160%);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 6px);
+  transition: opacity 500ms var(--ease), transform 500ms var(--ease);
+}
+.mm-tipp--an {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  transition-delay: 900ms; /* erst nach dem Gleiten der Bubbles */
+}

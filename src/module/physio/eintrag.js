@@ -76,7 +76,7 @@ export function eintragAnsicht({ eintrag, bilder = [], geloescht, oeffneBild }) 
   titelFeld.feld.addEventListener('blur', () => { if (!titelFeld.feld.value.trim()) titelFeld.feld.value = titel; });
 
   const kurzFeld = textfeld({
-    wert: eintrag.kurz ?? '', platzhalter: 'Kurzbeschreibung – erscheint in der Mindmap', klasse: 'mm-eintrag__kurz',
+    wert: eintrag.kurz ?? '', platzhalter: 'Kurzbeschreibung (für die Mindmap)', klasse: 'mm-eintrag__kurz',
     onWert: (v) => merke({ kurz: v.trim() }),
   });
 
@@ -128,8 +128,7 @@ export function eintragAnsicht({ eintrag, bilder = [], geloescht, oeffneBild }) 
       onChange: (neu) => { art = neu; merke({ art }); zeigeArtFelder(); },
     }),
     bildleiste.element,
-    titelFeld,
-    kurzFeld,
+    el('div', { class: 'mm-eintrag__kopf' }, [titelFeld, kurzFeld]),
     el('hr', { class: 'strich' }),
     artFelder,
     notizen,

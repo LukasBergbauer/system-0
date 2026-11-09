@@ -26,7 +26,7 @@ export function kosmos({ signal }) {
       else if (id.startsWith('art:')) tiefe(id.slice(4), knopf);
       else oeffneMindmap({ ausKnopf: knopf, signal, mitteId: id, ansicht: 'eintrag' });
     },
-    verknuepfen() {}, oeffnen() {}, loesen() {},
+    verknuepfen() {}, oeffnen() {}, loesen() {}, loesbar: false,
   });
   karte.element.dataset.mmStart = ''; // Mindmap schrumpft beim Schließen hierhin zurück
   const buehne = el('div', { class: 'kos' }, [el('span', { class: 'kos__staub' }), karte.element]);

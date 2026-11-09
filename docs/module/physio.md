@@ -114,9 +114,10 @@ Lukas sammelt hier, was beim Befüllen auffällt; umgesetzt wird es als eigener 
 - Kopfbild: drei Fotos `assets/bilder/physio-1…3.webp` (Lukas erzeugt sie mit dem Prompt aus `design.md`, Vorschlag:
   „a smooth stone sphere connected to smaller pebbles by thin threads of light“), dann Zeile `bild:` in `index.js`
   einschalten und Fotos in `APP_FILES` von `sw.js` eintragen
-- Kleine Hinweise: „Lange drücken zum Lösen“, „Mitte antippen zum Öffnen“ (z. B. einmalig oder dezent in der Fußzeile)
-- Eintrag: Abstand Titel ↔ Kurzbeschreibung etwas enger
-- Mac: Art-Chip-Reihe im Eintrag auf breiten Bildschirmen umbrechen lassen („Technik“ wird abgeschnitten)
+- [x] Hinweise (09.11.2026, `tipps.js`): Glas-Pille über dem Fuß, erst „Mitte antippen zum Öffnen“, dann (nur Mindmap)
+  „Punkt lange drücken zum Lösen“ (Mac: Rechtsklick); je Hinweis, bis man es einmal getan hat (`localStorage` `system0-physio-tipps`)
+- [x] Eintrag: Titel + Kurzbeschreibung in einer Glas-Karte, eng (`.mm-eintrag__kopf`)
+- [x] Mac (ab 768 px): Art-Chips im Eintrag brechen um. `sw.js` `v85`
 - Zurück-Wischen und Kamera/Mediathek auf dem echten iPhone weiter beobachten
 - Verknüpfungen und Funktionen: ergeben sich beim Befüllen (Lukas, 05.11.2026)
 - Später (aus dem ursprünglichen Plan): Übungen ins Trainings-Notebook übernehmen, Lernpfade, Notion, Bild-Export
