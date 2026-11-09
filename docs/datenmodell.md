@@ -44,7 +44,7 @@ Nach jeder Änderung kommt das Ereignis `daten` mit `{ table }` (`src/core/event
 |---|---|
 | Basis | `einstellungen` (schluessel, wert als JSON) – angelegt in `001_basis.sql` |
 | To-dos | `todo_bereiche` (name, reihenfolge), `todos` (titel, notiz, prio 1–3, faellig_am, bereich_id, erledigt_am) – angelegt in `002_todos.sql` |
-| Routinen | `routinen` (name, art morgen/abend/frei, sperre), `routine_schritte`, `routine_logs` |
+| Routinen | `routinen` (name, art morgen/abend/frei, sperre, reihenfolge), `routine_schritte` (routine_id, text, reihenfolge), `routine_logs` (routine_id, tag, geschafft, fertig_am) – in `006_routinen.sql` |
 | Kalender | `termine` (titel, start, ende, ganztaegig, ort, notiz) – in `005_kalender.sql`; Google-Termine werden nur angezeigt, nicht gespeichert (Adresse in `einstellungen`) |
 | PhysioZentrum | `physio_eintraege` (art, titel, kurz, text, felder als JSON, video), `physio_links` (a_id, b_id, in beide Richtungen) – in `003_physio.sql`; `physio_bilder` (eintrag_id, reihenfolge, breite, hoehe) + Storage-Bucket `physio-bilder` – in `004_physio_bilder.sql` |
 | Training | `trainingsplaene`, `plan_einheiten`, `einheiten` (datum, art, gefuehl, belastung), `einheit_uebungen` (verweist auf `uebungen`), `saetze` (wdh, gewicht, zeit, distanz) |
