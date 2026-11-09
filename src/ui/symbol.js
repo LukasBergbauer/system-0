@@ -33,6 +33,8 @@ const FORMEN = {
   training: '<path d="M6 6v12M18 6v12M3 9v6M21 9v6M6 12h12"/>',
   // Zielscheibe (Ziele)
   ziele: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 12h.01"/>',
+  // Kreislauf mit Haken (Routinen)
+  routinen: '<path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4.5v3.5h-3.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
   // Pfeil nach links (Seitenleiste einklappen)
   zurueck: '<path d="M15 6l-6 6 6 6"/>',
 };

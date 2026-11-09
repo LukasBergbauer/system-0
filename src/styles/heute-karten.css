@@ -61,3 +61,14 @@
 @media (max-width: 760px) {
   .heute-verlauf { height: 170px; }
 }
+
+/* Routinen-Leiste: ganze Breite, eine Pille je Routine, Füllung = Anteil geschafft */
+.heute-routinen { grid-column: 1 / -1; }
+.heute-routinen__liste { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-3); }
+.heute-routine { flex: 1 1 180px; display: flex; align-items: center; gap: 10px; padding: 10px 14px; font: inherit; font-weight: 600;
+  font-size: var(--fs-small); text-align: left; color: var(--text); cursor: pointer; border: 1px solid var(--glas-rand); border-radius: var(--radius);
+  background: linear-gradient(90deg, color-mix(in oklch, var(--accent) 22%, transparent) calc(var(--anteil) * 100%), var(--surface-2) 0); }
+.heute-routine .heute-kz__symbol { width: 32px; height: 32px; flex: none; }
+.heute-routine small { display: block; font-weight: 400; color: var(--text-2); font-size: var(--fs-label); }
+.heute-routine--fertig { color: var(--accent-ink); background: var(--accent); }
+.heute-routine--fertig small { color: rgba(255,255,255,.85); }

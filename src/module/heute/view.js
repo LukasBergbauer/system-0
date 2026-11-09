@@ -1,5 +1,5 @@
 // Ansicht „Heute“: Glas-Dashboard (Plan in docs/module/heute.md).
-// Liest nur über core/ (To-dos, eigene Termine, Google-Termine aus dem Zwischenspeicher), speichert nichts.
+// Liest nur über core/ (To-dos, Routinen, eigene Termine, Google-Termine aus dem Zwischenspeicher), speichert nichts.
 // Bei jedem Ereignis 'daten' neu zeichnen – dann ohne Hochzähl-Bewegung, damit nichts zappelt.
 import { el } from '../../ui/dom.js';
 import { getAll } from '../../core/store.js';
@@ -13,14 +13,16 @@ import { kalenderKarte } from './kalender-karte.js';
 import { verlauf } from './verlauf.js';
 import { donut } from './donut.js';
 import { schnellaktionen } from './schnell.js';
+import { routinenLeiste } from './routinen-leiste.js';
 
 const GOOGLE = 'kalender:google'; // Zwischenspeicher des Kalenders: { termine: [...] }
 
 async function laden() {
-  const [todos, termine, bereiche, google] = await Promise.all([
+  const [todos, termine, bereiche, google, routinen, schritte, logs] = await Promise.all([
     getAll('todos'), getAll('termine'), getAll('todo_bereiche'), getMeta(GOOGLE),
+    getAll('routinen'), getAll('routine_schritte'), getAll('routine_logs'),
   ]);
-  return { todos, bereiche, termine: [...termine, ...(google?.termine || [])] };
+  return { todos, bereiche, termine: [...termine, ...(google?.termine || [])], routinen: { routinen, schritte, logs } };
 }
 
 export function heuteAnsicht({ signal }) {
@@ -39,6 +41,7 @@ export function heuteAnsicht({ signal }) {
         hero(z.woche, animiert),
         kalenderKarte(d.termine),
         ...kacheln(z, animiert),
+        routinenLeiste(d.routinen),
         ...schnellaktionen(z.woche),
         verlauf(d.todos, animiert),
         donut(d.todos, d.bereiche, animiert),

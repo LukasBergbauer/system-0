@@ -293,7 +293,9 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   a) Rechnungen, Kopf, Hero, 4 Kacheln, b) Kalender-Karte, Verlauf, Donut, c) Seitenleiste mit Abschnitten,
   d) Akzent-Knopf, Neu-Menü, Schnellaktionen (Router-Zusatz `#/todos/neu`), e) Suche (Seitenleisten-Feld + ⌘K,
   `src/app/suche.js`, öffnet Treffer über `#/<bereich>/<id>`). Offen/klein: Such-Einstieg auf dem iPhone.
-- [ ] Routinen, ohne Sperre (`module/routinen.md`)
+- [x] Routinen, ohne Sperre (`module/routinen.md`) – gebaut 09.11.2026: Karten je Routine mit 7-Tage-Verlauf und Serie,
+  Bearbeiten (Schritte als Zeilen), Durchlauf als Vollbild, Leiste auf Heute. Migration `006_routinen.sql`; `sw.js` `v45`.
+  Offen: Migration in Supabase ausführen, mit Login prüfen
 
 ## Phase 2 – Körper
 - (PhysioZentrum: Datenbank und Suche → nach Phase 1 vorgezogen)
