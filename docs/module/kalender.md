@@ -3,18 +3,20 @@
 
 ## Funktionen (mit Lukas abgestimmt, 08.11.2026)
 - **Ansichten:** Start = Liste „Nächste Termine“, gruppiert wie bei den To-dos (Heute · Morgen · Diese Woche · Später).
-  Umschalter (Chips) zur **Woche**. Monat kommt später.
-- **Felder:** Titel, Start, Ende, ganztägig, Ort, Notiz. Keine Erinnerungen, keine Wiederholung (vorerst).
+  Umschalter (Chips) zu **Woche** und **Monat** (Glas-Raster, Mac mit kurzen Titeln, iPhone mit Punkten; Tag antippen = Liste darunter).
+- **Felder:** Titel, Start, Ende, ganztägig, Wiederholen (Nie/täglich/wöchentlich/monatlich/jährlich, Ende optional), Ort, Notiz.
+  Wiederholung als RRULE-Text in `wiederholung`; aufgeklappt in `src/core/wiederholung.js` (`aufklappen`, auch für Heute).
+  Bearbeiten/Löschen gilt für die ganze Serie.
 - **Schnelleingabe mit Erkennung:** Feld oben, z. B. „Mo 18 Uhr Training“ → Montag 18:00–19:00 „Training“.
   Vorschau-Zeile darunter zeigt, was erkannt wurde, Enter legt an. Nichts erkannt → heute, ganztägig.
 - **Google-Kalender:** nur lesen, über die geheime iCal-Adresse von Google. Abruf über eine Supabase-Funktion
   (Google erlaubt Browsern keinen direkten Abruf, geprüft: kein CORS-Kopf). Google-Termine gedämpft angezeigt,
   nicht in Supabase gespeichert; letzter Abruf nur lokal (IndexedDB `meta`), damit offline lesbar.
-- **To-dos:** vorerst getrennt. Zusammenführen macht später die Heute-Übersicht.
+- **To-dos:** offene mit Fälligkeit stehen mit drin (○, „To-do“, Überfällige bei heute); antippen öffnet sie in To-dos.
 
 ## Datenmodell
 Migration `supabase/migrations/005_kalender.sql`: Tabelle `termine`
-(titel, start, ende, ganztaegig, ort, notiz + gemeinsame Spalten).
+(titel, start, ende, ganztaegig, ort, notiz + gemeinsame Spalten); `019_termine_wiederholung.sql`: `wiederholung` (RRULE-Text).
 Ganztägig: start = 0:00 Uhr des ersten Tags, ende = 0:00 Uhr des Folgetags nach dem letzten Tag (wie iCal).
 Google-Adresse: in `einstellungen` (Schlüssel `google_ical`), durch RLS geschützt.
 
@@ -65,7 +67,9 @@ Bild-Objekt (Vorschlag): **steinerne Sonnenuhr**. Prompt aus `design.md`, `[OBJE
 | `google.js` | Google-Abruf über die Supabase-Funktion, Zwischenspeicher im Gerät (IndexedDB `meta`, `kalender:google`), höchstens alle 15 Min. |
 | `google-adresse.js` | Modal (Chip „Google“): geheime iCal-Adresse eintragen/entfernen, Stand des letzten Abrufs |
 | `ical.js` | .ics lesen: Titel, Beginn, Ende, Ort, ausgelassene/verschobene/abgesagte Termine |
-| `wiederholung.js` | Wiederholungen (RRULE) ausrechnen: täglich/wöchentlich (auch Mo+Do)/monatlich/jährlich, Anzahl, Enddatum |
+| `monat.js` | Monatsansicht: Raster Mo–So, Pfeile, Tagesliste |
+| `wiederholung-feld.js` | Feld „Wiederholen“ im Modal (Chips + „Endet am“) → RRULE-Text |
+| `src/core/wiederholung.js` | RRULE ausrechnen (Google + eigene), `aufklappen` für eigene Termine |
 | `schnelleingabe.js` | Feld oben + Vorschau-Zeile („Fr., 13. Nov. · 19:00–22:00 · Kino“), Enter legt an |
 Stile: `src/styles/kalender.css`.
 
@@ -92,10 +96,13 @@ Stile: `src/styles/kalender.css`.
 
 **Erste Fassung abgeschlossen (08.11.2026).**
 
+- [x] Extra (09.11.2026): Wiederholungen, Monatsansicht, fällige To-dos im Kalender. Migration `019`; `sw.js` `v82`.
+      Tests: Erkennung 20/20, iCal 10/10. Offen: 019 ausführen, auf Geräten prüfen.
+
 ## Wünsche für später
-- Monatsansicht
-- Wiederholungen bei eigenen Terminen
-- Fällige To-dos im Kalender (über die Heute-Übersicht)
+- [x] Monatsansicht
+- [x] Wiederholungen bei eigenen Terminen
+- [x] Fällige To-dos im Kalender
 - Termine aus System 0 auch in Google eintragen (offene Frage oben)
 - Google-Zeitzonen richtig umrechnen und seltene Wiederholungen („2. Dienstag im Monat“), falls es stört
 - [x] Review von b umgesetzt: Ansicht zeichnet sich jede Minute und beim Zurückkehren in die App neu

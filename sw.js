@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v81';
+const VERSION = 'v82';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -73,8 +73,10 @@ const APP_FILES = [
   './src/module/kalender/erkennen.js',
   './src/module/kalender/schnelleingabe.js',
   './src/module/kalender/woche.js',
+  './src/module/kalender/monat.js',
+  './src/module/kalender/wiederholung-feld.js',
   './src/module/kalender/ical.js',
-  './src/module/kalender/wiederholung.js',
+  './src/core/wiederholung.js',
   './src/module/kalender/google.js',
   './src/module/kalender/google-adresse.js',
   './src/module/routinen/index.js',

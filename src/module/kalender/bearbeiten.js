@@ -1,5 +1,6 @@
 // Modal „Termin“: neu anlegen (ohne termin) oder bearbeiten/löschen.
-// Felder: Titel, ganztägig, Beginn (Tag + Uhrzeit), Ende (Tag + Uhrzeit), Ort, Notiz.
+// Felder: Titel, ganztägig, Beginn (Tag + Uhrzeit), Ende (Tag + Uhrzeit), Wiederholen, Ort, Notiz.
+// Wiederholter Termin: Bearbeiten/Löschen gilt für die ganze Serie.
 // Ganztägig: Uhrzeiten ausgeblendet, „Ende“ ist der letzte Tag (gespeichert wird 0:00 Uhr des Folgetags).
 import { el } from '../../ui/dom.js';
 import { modal } from '../../ui/modal.js';
@@ -7,6 +8,7 @@ import { input } from '../../ui/input.js';
 import { checkbox } from '../../ui/checkbox.js';
 import { button } from '../../ui/button.js';
 import { speichereTermin, loescheTermin } from './daten.js';
+import { wiederholungFeld } from './wiederholung-feld.js';
 import { tagISO, zeitHM, ausTagZeit, plusTage, letzterTag } from './zeit.js';
 
 // Neuer Termin: nächste volle Stunde, 1 Stunde lang.
@@ -39,6 +41,7 @@ export function oeffneTermin(termin) {
   const ganz = checkbox({ label: 'Ganztägig', checked: ganztaegig, onChange: (an) => { ganztaegig = an; zeigeZeiten(); } });
   const beginn = zeitpunkt('Beginn', new Date(t.start));
   const ende = zeitpunkt('Ende', t.ganztaegig ? letzterTag(t) : new Date(t.ende));
+  const wdh = wiederholungFeld(t.wiederholung);
   const ortFeld = input({ label: 'Ort', value: t.ort });
   const notiz = el('textarea', { class: 'field__input', attrs: { rows: 3, id: 'termin-notiz' } });
   notiz.value = t.notiz || '';
@@ -56,6 +59,7 @@ export function oeffneTermin(termin) {
       ganz,
       beginn.element,
       ende.element,
+      wdh.element,
       ortFeld,
       el('div', { class: 'field' }, [el('label', { class: 'field__label', text: 'Notiz', attrs: { for: 'termin-notiz' } }), notiz]),
     ],
@@ -90,12 +94,14 @@ export function oeffneTermin(termin) {
       ganztaegig,
       ort: ortFeld.querySelector('input').value.trim(),
       notiz: notiz.value.trim(),
+      // Spalte nur mitschicken, wenn genutzt (vor Migration 019 bleibt der Abgleich so heil)
+      ...(wdh.wert() || t.wiederholung ? { wiederholung: wdh.wert() } : {}),
     });
     m.close();
   }
 
   async function loeschen() {
-    if (!confirm(`„${t.titel}“ löschen?`)) return;
+    if (!confirm(`„${t.titel}“${t.wiederholung ? ' mit allen Wiederholungen' : ''} löschen?`)) return;
     await loescheTermin(t.id);
     m.close();
   }

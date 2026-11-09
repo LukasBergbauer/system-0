@@ -1,7 +1,7 @@
 // iCal-Datei (.ics) von Google lesen → Termine wie unsere eigenen: { id, titel, start, ende, ganztaegig, ort, google: true }.
 // Nur der Teil, den eine Anzeige braucht: Titel, Beginn, Ende, Ort, Wiederholung (wiederholung.js),
 // ausgelassene Tage (EXDATE), einzeln verschobene Termine (RECURRENCE-ID), abgesagte Termine (STATUS:CANCELLED).
-import { wiederhole } from './wiederholung.js';
+import { wiederhole } from '../../core/wiederholung.js';
 import { plusTage } from './zeit.js';
 
 // '20261110' → ganztägig; '20261110T170000Z' → UTC; '20261110T180000' (mit TZID) → Ortszeit des Geräts.

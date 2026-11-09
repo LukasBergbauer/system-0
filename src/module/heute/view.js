@@ -6,6 +6,7 @@ import { getAll } from '../../core/store.js';
 import { getMeta } from '../../core/sync-local.js';
 import { on } from '../../core/events.js';
 import { rechne } from './rechnen.js';
+import { aufklappen } from '../../core/wiederholung.js';
 import { kopf } from './kopf.js';
 import { hero } from './hero.js';
 import { kacheln } from './kacheln.js';
@@ -29,7 +30,7 @@ async function laden() {
     getAll('einheiten'), getAll('trainingsplaene'), getAll('plan_einheiten'), getAll('lebensziele'), getAll('ziel_schritte'), getAll('affirmationen'),
     getAll('gewohnheiten'), getAll('gewohnheit_logs'), getAll('rueckfaelle'), getAll('quiz_ergebnisse'), getAll('saetze'), getAll('insta_posts'),
   ]);
-  return { todos, bereiche, termine: [...termine, ...(google?.termine || [])], routinen: { routinen, schritte, logs },
+  return { todos, bereiche, termine: [...aufklappen(termine), ...(google?.termine || [])], routinen: { routinen, schritte, logs },
     training: rechneTraining({ einheiten, saetze, plaene, planEinheiten }), ziele: { ziele, schritte: zielSchritte }, affirmationen: { affirmationen, ziele },
     gewohnheiten: { gewohnheiten, logs: gewLogs, rueckfaelle }, quiz, insta };
 }

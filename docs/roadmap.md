@@ -369,6 +369,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 - [ ] Extra-Themen (09.11.2026, eine Sitzung, Block für Block)
   - [x] 1. Wiederherstellen: Kachel in Einstellungen, Export-JSON → Vorschau je Tabelle → einspielen (lokal + Sync, nichts löschen,
         gleiche id = überschreiben). `src/core/wiederherstellen.js`, `src/app/wiederherstellen-kachel.js`; `sw.js` `v81`
+  - [x] 2. Kalender: Wiederholungen (eigene Termine), Monatsansicht, fällige To-dos. Migration `019_termine_wiederholung.sql`; `sw.js` `v82`
 - ~~Notion-Anbindung~~ gestrichen (Lukas, 09.11.2026: nicht mehr gewünscht)
 - [ ] Idee KI-Auswertung (Wochenrückblick über alle Module): kostet je nach Anbieter Geld bzw. Datenschutz klären;
       kostenlos jetzt schon: Export-JSON in einen Claude-Chat geben

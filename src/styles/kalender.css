@@ -103,3 +103,130 @@
 .termin--google .termin-zeit {
   color: var(--text-2);
 }
+/* Wiederholen im Termin-Modal */
+.termin-wdh {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.termin-wdh > [hidden] {
+  display: none;
+}
+.termin-wdh .chips {
+  flex-wrap: wrap;
+}
+/* To-dos im Kalender: Haken-Kreis statt Uhrzeit */
+.termin--todo .termin-zeit {
+  color: var(--text-2);
+}
+/* Monatsansicht: Glas-Raster */
+.monat__raster {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--space-1);
+  padding: var(--space-3);
+  background: var(--glas-verlauf);
+  border: 1px solid var(--glas-rand);
+  border-radius: var(--radius-gross);
+  box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  backdrop-filter: blur(var(--blur)) saturate(160%);
+}
+.monat__wt {
+  text-align: center;
+  padding-bottom: var(--space-1);
+}
+.monat__tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 52px;
+  padding: var(--space-2) 2px;
+  font: inherit;
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-klein);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 260ms var(--feder), background-color var(--duration) var(--ease);
+}
+.monat__tag:active {
+  transform: scale(0.94);
+}
+@media (hover: hover) {
+  .monat__tag:hover {
+    background: var(--surface);
+  }
+}
+.monat__tag--fremd {
+  color: var(--text-3);
+}
+.monat__tag--heute .monat__zahl {
+  color: var(--accent);
+  font-weight: 600;
+}
+.monat__tag--an {
+  background: var(--surface-2);
+  box-shadow: var(--schatten);
+}
+.monat__zahl {
+  font-size: var(--fs-normal);
+  font-variant-numeric: tabular-nums;
+}
+.monat__punkte {
+  display: flex;
+  gap: 3px;
+  min-height: 6px;
+}
+/* iPhone: Punkte; der Titel ist nur für Mac */
+.monat__punkt {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  font-size: 0;
+  overflow: hidden;
+}
+.monat__punkt--google {
+  background: var(--text-3);
+}
+.monat__punkt--todo {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+@media (min-width: 900px) {
+  .monat__tag {
+    align-items: stretch;
+    min-height: 92px;
+    padding: var(--space-2);
+  }
+  .monat__zahl {
+    padding-left: var(--space-1);
+  }
+  .monat__punkte {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .monat__punkt {
+    width: auto;
+    height: auto;
+    padding: 1px var(--space-2);
+    border-radius: 6px;
+    font-size: var(--fs-label);
+    font-style: normal;
+    line-height: 1.5;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--accent-ink);
+    text-align: left;
+  }
+  .monat__punkt--google {
+    color: var(--text-2);
+    background: var(--surface-2);
+  }
+  .monat__punkt--todo {
+    color: var(--accent);
+  }
+}

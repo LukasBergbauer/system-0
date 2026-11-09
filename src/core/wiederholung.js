@@ -1,7 +1,7 @@
-// Wiederholungsregel (RRULE) aus Google ausrechnen → Liste aller Beginn-Zeitpunkte bis „bis“.
+// Wiederholungsregel (RRULE) ausrechnen → Liste aller Beginn-Zeitpunkte bis „bis“ (Google-Termine und eigene).
 // Kann: FREQ=DAILY/WEEKLY/MONTHLY/YEARLY, INTERVAL, COUNT, UNTIL, BYDAY bei WEEKLY (z. B. Mo + Do).
 // shortcut: Seltene Regeln (z. B. „jeden 2. Dienstag im Monat“, BYSETPOS, BYMONTHDAY) → nur der erste Termin.
-import { plusTage } from './zeit.js';
+const plusTage = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
 
 const TAGE = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA']; // Index = getDay()
 const UNTERSTUETZT = new Set(['FREQ', 'INTERVAL', 'COUNT', 'UNTIL', 'BYDAY', 'WKST']);
@@ -51,4 +51,21 @@ export function wiederhole(start, rrule, bis) {
     }
   }
   return starts;
+}
+
+// Eigene Termine mit Regel `wiederholung` in einzelne Vorkommen aufklappen (120 Tage zurück bis 400 Tage voraus).
+// Jedes Vorkommen behält die id und zeigt mit `serie` auf den gespeicherten Termin (zum Bearbeiten).
+export function aufklappen(termine) {
+  const von = Date.now() - 120 * 864e5;
+  const bis = new Date(Date.now() + 400 * 864e5);
+  return termine.flatMap((t) => {
+    if (!t.wiederholung) return [t];
+    const s = new Date(t.start);
+    const dauer = Date.parse(t.ende) - +s;
+    const tage = Math.round(dauer / 864e5); // ganztägig: über Zeitumstellung hinweg in Tagen rechnen
+    return wiederhole(s, t.wiederholung, bis)
+      .map((d) => ({ d, e: t.ganztaegig ? plusTage(d, tage) : new Date(+d + dauer) }))
+      .filter(({ e }) => +e > von)
+      .map(({ d, e }) => ({ ...t, start: d.toISOString(), ende: e.toISOString(), serie: t }));
+  });
 }

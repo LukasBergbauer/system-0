@@ -1,13 +1,16 @@
-// Ansicht „Kalender“: Chips „Liste · Woche“, Schnelleingabe und Knopf „+ Termin“.
+// Ansicht „Kalender“: Chips „Liste · Woche · Monat“, Schnelleingabe und Knopf „+ Termin“.
+// Fällige To-dos stehen mit drin (gedämpft, antippen = in To-dos öffnen).
 // Liste = „Nächste Termine“ in Gruppen (Heute · Morgen · Diese Woche · Später), Vergangenes ausgeblendet.
-// Woche = Mo–So mit Pfeilen (woche.js).
+// Woche = Mo–So mit Pfeilen (woche.js), Monat = Raster + Tagesliste (monat.js).
 // Zeichnet sich neu, sobald sich Termine ändern (auch durch das andere Gerät).
 import { el } from '../../ui/dom.js';
 import { list, listRow } from '../../ui/list.js';
 import { button } from '../../ui/button.js';
 import { on } from '../../core/events.js';
 import { zusatzNehmen } from '../../core/router.js';
-import { TERMINE, ladeTermine } from './daten.js';
+import { TERMINE, ladeTermine, faelligeTodos } from './daten.js';
+import { monatAnsicht, monatsErster } from './monat.js';
+import { go } from '../../core/router.js';
 import { gruppiere, tagText, zeitHM, letzterTag } from './zeit.js';
 import { oeffneTermin } from './bearbeiten.js';
 import { schnelleingabe } from './schnelleingabe.js';
@@ -26,6 +29,8 @@ function unterText(t, gruppe) {
   if (mehrtaegig) teile.push(`bis ${tagText(bis)}${t.ganztaegig ? '' : `, ${zeitHM(bis)}`}`);
   else if (!t.ganztaegig) teile.push(`bis ${zeitHM(bis)}`);
   if (t.ort) teile.push(t.ort);
+  if (t.wiederholung) teile.push('↻');
+  if (t.todo) teile.push('To-do');
   return teile.join(' · ');
 }
 
@@ -34,10 +39,11 @@ function zeile(t, gruppe) {
   const z = listRow({
     title: t.titel,
     sub: unterText(t, gruppe),
-    start: el('span', { class: `termin-zeit${t.ganztaegig ? ' termin-zeit--ganz' : ''}`, text: t.ganztaegig ? 'ganztägig' : zeitHM(new Date(t.start)) }),
-    onClick: t.google ? null : () => oeffneTermin(t),
+    start: el('span', { class: `termin-zeit${t.ganztaegig ? ' termin-zeit--ganz' : ''}`, text: t.todo ? '○' : t.ganztaegig ? 'ganztägig' : zeitHM(new Date(t.start)) }),
+    onClick: t.google ? null : t.todo ? () => go(`todos/${t.id}`) : () => oeffneTermin(t.serie || t),
   });
   if (t.google) z.classList.add('termin--google');
+  if (t.todo) z.classList.add('termin--todo');
   return z;
 }
 
@@ -45,7 +51,8 @@ const MERKER = 'system0-kalender-ansicht'; // nur auf diesem Gerät gemerkt, wie
 
 function gemerkt() {
   try {
-    return localStorage.getItem(MERKER) === 'woche' ? 'woche' : 'liste';
+    const wert = localStorage.getItem(MERKER);
+    return wert === 'woche' || wert === 'monat' ? wert : 'liste';
   } catch {
     return 'liste';
   }
@@ -78,11 +85,13 @@ export function kalenderAnsicht({ signal }) {
   if (zusatz === 'neu') requestAnimationFrame(() => oeffneTermin());
   if (zusatz === 'woche' || zusatz === 'neu') zusatz = null;
   let wochenStart = montag(new Date());
+  let monatStart = monatsErster(new Date());
+  let monatTag = null;
   let stand = 0; // nur das Ergebnis des neuesten Zeichnens zählt
 
   async function zeichne() {
     const nr = ++stand;
-    const termine = (await Promise.all([ladeTermine(), googleTermine()])).flat();
+    const termine = (await Promise.all([ladeTermine(), googleTermine(), faelligeTodos()])).flat();
     if (nr !== stand || signal.aborted) return;
     const gesucht = zusatz && termine.find((t) => t.id === zusatz);
     zusatz = null;
@@ -90,6 +99,14 @@ export function kalenderAnsicht({ signal }) {
     else if (gesucht) oeffneTermin(gesucht);
     inhalt.replaceChildren(...(ansicht === 'liste'
       ? liste(termine)
+      : ansicht === 'monat' ? [monatAnsicht({
+        termine,
+        start: monatStart,
+        tag: monatTag,
+        zeile: (t) => zeile(t, 'heute'),
+        onTag: (d) => { monatTag = d; },
+        onWechsel: (start) => { monatStart = start; monatTag = null; zeichne(); },
+      })]
       : [wocheAnsicht({
         termine,
         start: wochenStart,
@@ -99,7 +116,7 @@ export function kalenderAnsicht({ signal }) {
   }
 
   on('daten', ({ table }) => {
-    if (table === TERMINE || table === GOOGLE) zeichne();
+    if (table === TERMINE || table === GOOGLE || table === 'todos') zeichne();
   }, { signal });
   // Auch ohne neue Daten: wenn die App wieder sichtbar wird und jede Minute (Mitternacht, Termin vorbei)
   const auffrischen = () => { zeichne(); holeGoogle(); }; // Google höchstens alle 15 Min. (google.js)
@@ -109,7 +126,7 @@ export function kalenderAnsicht({ signal }) {
   auffrischen();
 
   const umschalter = chips({
-    items: [{ id: 'liste', label: 'Liste' }, { id: 'woche', label: 'Woche' }],
+    items: [{ id: 'liste', label: 'Liste' }, { id: 'woche', label: 'Woche' }, { id: 'monat', label: 'Monat' }],
     active: ansicht,
     onChange: (id) => { ansicht = id; merke(id); zeichne(); },
     aktionen: [{ label: 'Google', onClick: oeffneGoogleAdresse }],
