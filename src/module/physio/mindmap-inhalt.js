@@ -7,7 +7,8 @@
 //   bild        – ein Bild der Mitte groß, mit „Als Titelbild“ und „Löschen“ (bild-gross.js)
 // Jeder Wechsel ist ein Schritt im Verlauf; „‹ Zurück“ und Zurück-Wischen gehen einen Schritt zurück.
 // const m = mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId }); m.start(); m.daten(eintraege, links, bilder);
-// mitteId (optional) = mit der Fokus-Karte dieses Punkts starten.
+// mitteId (optional) = mit der Fokus-Karte dieses Punkts starten; lernpfad = dabei als Lernpfad (lernpfad.js).
+// Im Lernpfad trägt jeder Schritt pfad (ids bis zur Mitte); Antippen hängt den Punkt an, Suche beendet ihn.
 import { el } from '../../ui/dom.js';
 import { list } from '../../ui/list.js';
 import { nachbarn, loese } from './daten.js';
@@ -18,23 +19,24 @@ import { bildGross } from './bild-gross.js';
 import { bilderVon } from './bilder.js';
 import { fokusKarte } from './fokus.js';
 import { mmVerlauf } from './mm-verlauf.js';
+import { naechste, pfadLeiste } from './lernpfad.js';
 
 const MIT_MITTE = ['karte', 'liste', 'verknuepfen', 'eintrag', 'bild'];
 
-export function mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId = null }) {
+export function mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId = null, lernpfad = false }) {
   // stand wird mit suche.js und verknuepfen.js geteilt (eintraege, suchtext)
   const stand = { eintraege: [], links: [], bilder: [], suchtext: '' };
-  let schritt = mitteId ? { ansicht: 'karte', mitteId } : { ansicht: 'suche', mitteId: null };
+  let schritt = mitteId ? { ansicht: 'karte', mitteId, pfad: lernpfad ? [mitteId] : null } : { ansicht: 'suche', mitteId: null };
   const element = el('div', { class: 'mm__inhalt' });
   const verlauf = mmVerlauf((s) => { schritt = s; zeige(); });
 
   // extra: z. B. { bildId } für die Großansicht
   const geheZu = (ansicht, mitteId = schritt.mitteId, extra = {}) => {
-    schritt = { ansicht, mitteId, ...extra };
+    schritt = { ansicht, mitteId, pfad: schritt.pfad, ...extra };
     verlauf.weiter(schritt);
     zeige();
   };
-  const waehle = (id) => geheZu('karte', id);
+  const waehle = (id) => geheZu('karte', id, schritt.pfad && schritt.ansicht !== 'suche' ? { pfad: [...schritt.pfad, id] } : { pfad: null });
 
   const karte = fokusKarte({
     waehle,
@@ -69,10 +71,22 @@ export function mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId = null }) {
     if (ansicht === 'bild' && !bild) ansicht = 'eintrag'; // Bild inzwischen gelöscht
     leiste();
     element.classList.toggle('mm__inhalt--karte', ansicht === 'karte');
+    element.classList.toggle('mm__inhalt--pfad', ansicht === 'karte' && Boolean(schritt.pfad));
 
     if (ansicht === 'karte') {
+      const pfad = schritt.pfad;
+      const nur = pfad && naechste(pfad, stand.eintraege, stand.links);
+      // Karte selbst nicht neu einhängen (sonst springt das Gleiten), nur die Pfad-Leiste dahinter tauschen
       if (element.firstChild !== karte.element) element.replaceChildren(karte.element);
-      karte.zeige(stand.eintraege, stand.links, mitte.id, stand.bilder);
+      if (element.lastChild !== karte.element) element.lastChild.remove();
+      if (pfad) {
+        element.append(pfadLeiste({
+          pfad, eintraege: stand.eintraege, weiter: nur.size > 0,
+          gehe: (i) => geheZu('karte', pfad[i], { pfad: pfad.slice(0, i + 1) }),
+          beenden: () => geheZu('karte', mitte.id, { pfad: null }),
+        }));
+      }
+      karte.zeige(stand.eintraege, stand.links, mitte.id, stand.bilder, nur);
     } else if (ansicht === 'liste') {
       element.replaceChildren(liste(mitte));
     } else if (ansicht === 'verknuepfen') {
@@ -100,7 +114,7 @@ export function mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId = null }) {
   }
 
   zurueckKnopf.addEventListener('click', () => verlauf.zurueck());
-  sucheKnopf.addEventListener('click', () => geheZu('suche'));
+  sucheKnopf.addEventListener('click', () => geheZu('suche', schritt.mitteId, { pfad: null }));
 
   return {
     element,

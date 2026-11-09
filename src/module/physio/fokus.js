@@ -4,7 +4,8 @@
 // Linien: gebogene Lichtfäden Mitte → Nachbar (enden am Rand der Bubble); fein auch zwischen verknüpften Nachbarn.
 // Unten: „Text“ → oeffnen() (Eintrag), „+ Verknüpfen“ → verknuepfen(). Nachbar lange drücken/Rechtsklick → loesen(mitte, nachbar).
 // Punkte mit Titelbild sind runde Bälle (knoten.js); dann passen auf dem iPhone 6 statt 8 in den Ring.
-// const k = fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }); k.zeige(eintraege, links, mitteId, bilder);
+// const k = fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }); k.zeige(eintraege, links, mitteId, bilder, nur);
+// nur = Set von ids (Lernpfad: nur diese Nachbarn zeigen) oder null
 import { el } from '../../ui/dom.js';
 import { nachbarn } from './daten.js';
 import { groessen, positionen } from './fokus-layout.js';
@@ -140,7 +141,7 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
     element.style.setProperty('--mm-ball', `${g.ball}px`);
     ebene.style.height = linien.style.height = `${h}px`;
 
-    const alle = nachbarn(mitteId, eintraege, links);
+    const alle = nachbarn(mitteId, eintraege, links).filter((e) => !stand.nur || stand.nur.has(e.id));
     const { punkte, plaetze } = positionen(alle.length, w, h, alle.some((e) => titel.has(e.id)));
     const zuViele = alle.length > plaetze;
     const sichtbar = zuViele ? alle.slice(0, plaetze - 1) : alle;
@@ -175,7 +176,9 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
     const n = alle.length;
     fuss.replaceChildren(
       mitte.kurz && el('span', { class: 'mm-karte__kurz', text: mitte.kurz }),
-      el('span', { class: 'app__note', text: n ? (n === 1 ? '1 Verknüpfung' : `${n} Verknüpfungen`) : 'Noch keine Verknüpfungen' }),
+      el('span', { class: 'app__note', text: stand.nur
+        ? (n ? `${n} nächste${n === 1 ? 'r Schritt' : ' Schritte'}` : 'Ende des Pfads')
+        : (n ? (n === 1 ? '1 Verknüpfung' : `${n} Verknüpfungen`) : 'Noch keine Verknüpfungen') }),
       el('div', { class: 'mm-karte__knoepfe' }, [text, plus]),
     );
     alteMitte = mitteId;
@@ -184,8 +187,8 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen }) 
   // Größe ändert sich (Drehen, Fenster) → nur neu anordnen
   new ResizeObserver(() => render()).observe(element);
 
-  function zeige(eintraege, links, mitteId, bilder = []) {
-    stand = { eintraege, links, mitteId, bilder };
+  function zeige(eintraege, links, mitteId, bilder = [], nur = null) {
+    stand = { eintraege, links, mitteId, bilder, nur };
     render();
   }
 

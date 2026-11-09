@@ -292,11 +292,18 @@ läuft immer zu Ende → kein Ruckeln); Hover = Blase `scale 1.05`. Keine Unsch�
 - Mindmap: Wolken-Haut `.mm-knoten__haut` (Stil gemeinsam in `physio-kosmos.css`), Fotos in Wolken-Form, Fäden blenden mit den neuen Bubbles ein
 - Name überall „Physio“ (statt PhysioZentrum). Lokal geprüft (Mac-Breite, iPhone-Größe). Offen: Lukas prüft auf Geräten.
 
-## Plan Lernpfade (Vorschlag, noch abstimmen)
+## Plan Lernpfade (von Lukas freigegeben 09.11.2026)
 - Start im Kosmos: Bubble „Regionen“ → Region wählen → Mindmap zeigt nur den nächsten Schritt als Bubbles:
   Region → Krankheitsbilder → Muskeln/Trainingsformen → Übungen (Reihenfolge fest in `lernpfad.js`)
 - Oben eine Pfad-Leiste (Brotkrumen) mit den gewählten Schritten, antippen = zurück zu diesem Schritt
-- Nur vorhandene Verknüpfungen, keine neue Tabelle; Ende = Übung (Knopf „Text“ / „Ins Training“)
+- Nur vorhandene Verknüpfungen, keine neue Tabelle; Ende = Übung (Knopf „Text“)
+
+Stand Lernpfade (09.11.2026, `sw.js` `v75`): gebaut. Einstieg: Kosmos → Regionen → Region antippen (`tiefe.js` → `oeffneMindmap({ lernpfad })`).
+- `lernpfad.js`: `STUFEN`, `naechste(pfad, …)` = Nachbarn der nächsten Stufe mit Treffern (leere Stufen werden übersprungen, Pfad-Punkte nicht wieder),
+  `pfadLeiste()` (Schritte mit Art, antippen = zurück dorthin, „✕ Pfad“ = normale Mindmap). Stile `physio-pfad.css`
+- `mindmap-inhalt.js`: Schritt trägt `pfad`; Antippen hängt an, Suche beendet den Pfad. `fokus.js`: `zeige(…, nur)` filtert, Fuß „n nächste Schritte“ / „Ende des Pfads“
+- Lokal geprüft mit vorhandenen Punkten (Mac-Breite) und Logik mit Testdaten im Browser. Offen: Lukas prüft mit echten Regionen auf Geräten.
+- Später evtl.: „Ins Training“ direkt am Pfad-Ende
 
 ## Offen / bitte prüfen (aus der Planung, erledigt bzw. unter „Wünsche für später“)
 - Das Overlay ist hell (Elfenbein-Weiß mit dunkler Schrift), während die App sonst dunkel ist. So gewünscht;

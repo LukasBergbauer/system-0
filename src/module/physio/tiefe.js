@@ -1,5 +1,6 @@
 // Innenansicht einer Bubble: Die Bubble wächst über den ganzen Bildschirm (Kreis aus ihrer Mitte),
-// darin alle Einträge der Art mit Suchfeld und Anlegen. Eintrag antippen → Mindmap mit ihm in der Mitte.
+// darin alle Einträge der Art mit Suchfeld und Anlegen. Eintrag antippen → Mindmap mit ihm in der Mitte
+// (bei Regionen als Lernpfad, lernpfad.js).
 // Raus: „‹ Kosmos“, Esc oder Zurück-Wischen (eigener Verlaufseintrag); Kreis schrumpft zurück in die Bubble.
 import { el } from '../../ui/dom.js';
 import { on } from '../../core/events.js';
@@ -41,7 +42,7 @@ export function oeffneTiefe({ art, ausBubble, eintraege, signal }) {
     const da = alle.find((e) => norm(e.titel) === norm(t));
     oeffne(da ?? await neuerEintrag(art, t));
   }
-  const oeffne = (e, knopf) => oeffneMindmap({ ausKnopf: knopf, signal, mitteId: e.id });
+  const oeffne = (e, knopf) => oeffneMindmap({ ausKnopf: knopf, signal, mitteId: e.id, lernpfad: art === 'region' });
 
   function zeichne() {
     const text = feld.value.trim();

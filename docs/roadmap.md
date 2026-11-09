@@ -359,7 +359,8 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         Bubble antippen = schwebt in die Mitte, Rest blendet aus; Knopf „Text“ öffnet den Eintrag (Glas-Karten). `sw.js` `v73`. Geprüft: Schweben gefiel nicht
   - [x] Wolken statt Schweben (09.11.2026): feste Plätze, Wolken-Form, Hover = leicht größer + Wabbeln, Linien von Anfang an,
         Kosmos-Bubble gleitet beim Klick in die Mitte; Name „Physio“. `sw.js` `v74`. Offen: auf Geräten prüfen
-  - [ ] Lernpfade (`module/physio.md` → „Plan Lernpfade“)
+  - [x] Lernpfade (09.11.2026, `module/physio.md` → „Plan Lernpfade“): Region → Krankheitsbild → Muskel/Trainingsform → Übung,
+        Pfad-Leiste oben. `sw.js` `v75`. Offen: auf Geräten mit echten Regionen prüfen
   - [ ] Danach: Lernpfade, Notion
 - [ ] Notion-Anbindung
 - [ ] Idee KI-Auswertung (Wochenrückblick über alle Module): kostet je nach Anbieter Geld bzw. Datenschutz klären;

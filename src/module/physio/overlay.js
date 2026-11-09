@@ -14,8 +14,8 @@ const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)')
 let offen = null; // höchstens ein Overlay gleichzeitig
 
 // ausKnopf = Element, aus dem sich das Overlay öffnet (Mittelpunkt der Animation).
-// mitteId = gleich mit der Fokus-Karte dieses Punkts starten (statt mit der Suche).
-export function oeffneMindmap({ ausKnopf, signal, mitteId } = {}) {
+// mitteId = gleich mit der Fokus-Karte dieses Punkts starten (statt mit der Suche); lernpfad = von dort als Lernpfad.
+export function oeffneMindmap({ ausKnopf, signal, mitteId, lernpfad } = {}) {
   if (offen) return;
   const ende = new AbortController(); // endet beim Schließen
 
@@ -25,7 +25,7 @@ export function oeffneMindmap({ ausKnopf, signal, mitteId } = {}) {
   const sucheKnopf = leistenKnopf('mm__suchen', symbol('suche'), 'Suchen');
   const zu = leistenKnopf('mm__zu', '✕', 'Mindmap schließen');
   zu.addEventListener('click', () => schliessen());
-  const inhalt = mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId });
+  const inhalt = mindmapInhalt({ zurueckKnopf, sucheKnopf, mitteId, lernpfad });
 
   const dialog = el('dialog', { class: 'mm', attrs: { 'aria-label': 'Mindmap' } }, [
     el('div', { class: 'mm__leiste' }, [
