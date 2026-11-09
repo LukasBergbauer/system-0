@@ -4,6 +4,8 @@ import { el } from '../ui/dom.js';
 import { kopfbild } from '../ui/kopfbild.js';
 import { spruchDesTages } from '../core/sprueche.js';
 import { on } from '../core/events.js';
+import { getAll } from '../core/store.js';
+import { syncStatus } from '../core/sync.js';
 import { alleBereiche, aktuelleRoute } from '../core/router.js';
 import { navPlan } from './nav-plan.js';
 import { renderSide, renderTabs } from './nav.js';
@@ -23,10 +25,12 @@ export function shell() {
   // Seitenleiste eingeklappt? (pro Gerät gemerkt, Knopf in nav.js)
   try { if (localStorage.getItem('leiste') === 'zu') element.classList.add('shell--schmal'); } catch {}
 
+  let zahlen = {}; // kleine Zahlen in der Seitenleiste: offene To-dos
+
   function zeigeNav() {
     const plan = navPlan(alleBereiche());
     const id = aktuelleRoute()?.id;
-    renderSide(side, plan, id);
+    renderSide(side, plan, id, { zahlen, sync: syncStatus() });
     renderTabs(tabs, plan, id);
   }
 
@@ -50,10 +54,18 @@ export function shell() {
     zeigeNav();
   }
 
+  async function zaehlen(detail) {
+    if (detail?.table && detail.table !== 'todos') return;
+    zahlen = { todos: (await getAll('todos')).filter((t) => !t.erledigt_am).length };
+    zeigeNav();
+  }
+
   on('route', zeigeBereich, { signal: rahmen.signal });
   on('bereiche', zeigeNav, { signal: rahmen.signal });
+  on('sync', zeigeNav, { signal: rahmen.signal });
+  on('daten', zaehlen, { signal: rahmen.signal });
   zeigeBereich();
-  zeigeNav();
+  zaehlen();
 
   function destroy() {
     ansicht?.abort();

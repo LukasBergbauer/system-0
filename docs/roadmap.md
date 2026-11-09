@@ -290,7 +290,8 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   Offen/klein: `bausteine.html` zeigt noch den alten Abschnitt „Bereichsfarbe“ und ein Kopfbild; auf dem iPhone
   prüfen, ob die Statusleiste oben gut lesbar ist.
 - [ ] Heute-Übersicht (`module/heute.md`) – **in Arbeit**, als Glas-Dashboard; Plan a)–e) steht in `module/heute.md`.
-  Stand: a) Rechnungen, Kopf, Hero, 4 Kacheln und b) Kalender-Karte, Verlauf, Donut fertig; als Nächstes c) Seitenleiste
+  Stand: a) Rechnungen, Kopf, Hero, 4 Kacheln und b) Kalender-Karte, Verlauf, Donut, c) Seitenleiste mit Abschnitten fertig;
+  als Nächstes d) Neu-Menü + Akzent-Knopf (+ Schnellaktionen)
 - [ ] Routinen, ohne Sperre (`module/routinen.md`)
 
 ## Phase 2 – Körper

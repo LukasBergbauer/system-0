@@ -8,5 +8,7 @@ import '../module/physio/index.js';
 import { einstellungenBereich } from './einstellungen.js';
 import { mehrBereich } from './mehr.js';
 
+import './bald.js'; // Training, Ziele als „Kommt bald“ (nach den echten Modulen laden)
+
 register(einstellungenBereich);
 register(mehrBereich);

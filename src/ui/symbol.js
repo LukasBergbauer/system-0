@@ -29,6 +29,8 @@ const FORMEN = {
   flamme: '<path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/>',
   // Hantel (Training)
   training: '<path d="M6 6v12M18 6v12M3 9v6M21 9v6M6 12h12"/>',
+  // Zielscheibe (Ziele)
+  ziele: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 12h.01"/>',
   // Pfeil nach links (Seitenleiste einklappen)
   zurueck: '<path d="M15 6l-6 6 6 6"/>',
 };

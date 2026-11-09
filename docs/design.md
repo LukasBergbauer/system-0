@@ -69,6 +69,9 @@ Navigation (`src/app/nav.js`, Stil `nav.css`): iPhone = schwebende Glas-Kapsel u
 Mac = schwebende Glas-Seitenleiste links mit Logo „0“ (Akzent-Verlauf) und „System 0“; runder Knopf am Rand klappt
 sie auf 72 px ein (pro Gerät in `localStorage` „leiste“ gemerkt), unter 1100 px Fensterbreite immer eingeklappt.
 Aktiver Eintrag: weiße Pille (`.nav__zeiger`), die mit Nachfedern zum neuen Eintrag gleitet.
+Seitenleiste wie `docs/vorlagen/dashboard-glas.png`: Marke „System 0 / Lukas“, Suchfeld (Glas-Pille), Abschnitte
+ALLTAG / KÖRPER & KOPF / SYSTEM (10 px, gesperrt, `--text-3`), Zahl als Akzent-Pille rechts am Eintrag, unten Kreis „L“ mit
+Status-Punkt + „Lukas · synchronisiert“. Eingeklappt verschwinden Texte, Abschnitts-Namen und Zahlen.
 Seitenkopf (`kopfbild`): großer Titel (34 px, 600), darunter `ueber` (z. B. Datum) und Spruch in Nebentext.
 Ein `bild` wird zurzeit nicht übergeben (`shell.js`), die Bereiche behalten ihre Bildlisten für später.
 Listen-Gruppen in To-dos und Kalender (`.todo-gruppe`, `.termin-gruppe`) sind Glaskarten.

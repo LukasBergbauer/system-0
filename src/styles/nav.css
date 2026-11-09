@@ -198,11 +198,102 @@
   height: 18px;
   stroke-width: 1.8;
 }
-.nav-side__ende {
+.nav-side__marke b {
+  display: block;
+  font-size: 14px;
+}
+.nav-side__marke small {
+  color: var(--text-2);
+  font-size: 11px;
+  font-weight: 400;
+}
+/* Suchfeld (zurzeit nur Optik) */
+.nav-side__suche {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  gap: var(--space-2);
+  height: 38px;
+  margin-bottom: 4px;
+  padding: 0 13px;
+  color: var(--text-2);
+  font: inherit;
+  font-size: var(--fs-small);
+  text-align: left;
+  white-space: nowrap;
+  background: var(--glass);
+  border: 1px solid var(--glas-rand);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.nav-side__suche .symbol {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+.nav-side__abschnitt {
+  padding: 14px 13px 6px;
+  color: var(--text-3);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  transition: opacity 250ms var(--ease);
+}
+.nav-side__zahl {
+  display: grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  margin-left: auto;
+  padding: 0 6px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--accent);
+  border-radius: 10px;
+  transition: opacity 250ms var(--ease);
+}
+/* Unten: Lukas + Abgleich-Status (Punkt: grün = synchron, Akzent pulsiert = läuft, Warnfarbe = Fehler) */
+.nav-side__profil {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin-top: auto;
+  padding: 8px 2px 0;
+  white-space: nowrap;
+}
+.nav-side__avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  font-weight: 600;
+  background: linear-gradient(140deg, #fff, var(--akzent-hell));
+  border-radius: 50%;
+}
+.nav-side__avatar::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  background: var(--text-3);
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+.nav-side__profil--ok .nav-side__avatar::after { background: var(--gut); }
+.nav-side__profil--laeuft .nav-side__avatar::after { background: var(--accent); }
+.nav-side__profil--fehler .nav-side__avatar::after { background: var(--warn); }
+.nav-side__profil b {
+  display: block;
+  font-size: 14px;
+}
+.nav-side__profil small {
+  color: var(--text-2);
+  font-size: 11px;
 }
 /* Eingeklappt: Namen ausblenden (Symbole bleiben genau an ihrer Stelle) */
 .nav-side .nav__text {
@@ -210,12 +301,12 @@
   transition: opacity 250ms var(--ease);
 }
 @media (min-width: 768px) {
-  .shell--schmal .nav-side .nav__text {
+  .shell--schmal .nav-side :is(.nav__text, .nav-side__abschnitt, .nav-side__zahl) {
     opacity: 0;
   }
 }
 @media (min-width: 768px) and (max-width: 1099px) {
-  .nav-side .nav__text {
+  .nav-side :is(.nav__text, .nav-side__abschnitt, .nav-side__zahl) {
     opacity: 0;
   }
 }

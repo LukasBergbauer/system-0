@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v41';
+const VERSION = 'v42';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -30,6 +30,7 @@ const APP_FILES = [
   './src/app/shell.js',
   './src/app/nav.js',
   './src/app/nav-plan.js',
+  './src/app/bald.js',
   './src/app/bereiche.js',
   './src/app/mehr.js',
   './src/app/einstellungen.js',

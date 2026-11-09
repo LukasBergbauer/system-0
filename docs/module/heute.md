@@ -29,7 +29,13 @@ Wird als Glas-Dashboard gebaut (Plan unten, Schritte a–e).
       werden die kleinsten zu „Sonst“; Antippen → To-dos). Stil `src/styles/heute-karten.css`. Beim Neuzeichnen (`daten`)
       blendet nichts erneut ein (`.heute--ruhig`). `sw.js` `v41`. Lokal geprüft (Mac + iPhone-Größe, Termine mit Testdaten).
       Offen: Schnellaktionen (Plan Punkt 5) sind keinem Schritt zugeordnet → mit d) zusammen bauen.
-- [ ] c) Seitenleiste mit Abschnitten + Platzhalter-Bereiche – **als Nächstes**
+- [x] c) Seitenleiste mit Abschnitten + Platzhalter-Bereiche (09.11.2026). Abschnitte ALLTAG / KÖRPER & KOPF / SYSTEM
+      (Zuordnung per id in `src/app/nav-plan.js`, Unbekanntes → ALLTAG, `ende` → SYSTEM), Suchfeld oben (nur Optik, Suche in e),
+      Zahl offener To-dos am Eintrag (`shell.js` zählt über `core/store.js`, neu bei `daten`), unten „Lukas“ + Abgleich-Status
+      (Ereignis `sync`, Punkt am Kreis grün/Akzent/Warnfarbe). `src/app/bald.js` meldet Training und Ziele mit `bald: true`
+      an (Seite „Kommt bald“); ein echtes Modul mit gleicher id ersetzt sie. „Bald“-Bereiche nicht in der iPhone-Tab-Leiste.
+      Symbol `ziele`. `sw.js` `v42`. Lokal geprüft (Mac auf/eingeklappt, iPhone-Größe).
+- [ ] d) Neu-Menü + Akzent-Knopf (+ Schnellaktionen) – **als Nächstes**
 - [x] Design-Runde (Teil d): Kopf mit Stein-Kugel (`bild: 'assets/bilder/heute.svg'`), Datum über dem Titel
       (`ueber`, z. B. „MITTWOCH, 4. NOVEMBER“) und Spruch des Tages. Den Kopf baut `src/app/shell.js` für jeden Bereich.
 

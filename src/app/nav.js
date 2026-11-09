@@ -7,13 +7,35 @@ import { symbol } from '../ui/symbol.js';
 import { MEHR } from './nav-plan.js';
 
 // kurz = true (Kapsel): kurzer Name, falls der Bereich einen hat („Physio“ statt „PhysioZentrum“).
-function link(bereich, klasse, aktiv, kurz = false) {
+// zahl: kleine Zahl rechts am Eintrag (nur Seitenleiste, z. B. offene To-dos), 0 = keine.
+function link(bereich, klasse, aktiv, kurz = false, zahl = 0) {
   return el('a', {
     class: klasse,
     attrs: { href: `#/${bereich.id}`, 'aria-current': aktiv ? 'page' : false },
   }, [
     symbol(bereich.symbol),
     el('span', { class: 'nav__text', text: (kurz && bereich.kurztitel) || bereich.titel }),
+    zahl > 0 && el('span', { class: 'nav-side__zahl', text: String(zahl) }),
+  ]);
+}
+
+const SYNC_TEXT = { neu: 'noch nicht abgeglichen', läuft: 'gleicht ab …', ok: 'synchronisiert', fehler: 'Abgleich fehlgeschlagen' };
+
+// Suchfeld: zurzeit nur Optik (die Suche kommt in Schritt e)
+function suche() {
+  return el('button', { class: 'nav-side__suche', attrs: { type: 'button', 'aria-label': 'Suchen' } }, [
+    symbol('suche'),
+    el('span', { class: 'nav__text', text: 'Suchen …' }),
+  ]);
+}
+
+function profil(sync) {
+  return el('div', { class: `nav-side__profil nav-side__profil--${sync.state === 'läuft' ? 'laeuft' : sync.state}` }, [
+    el('span', { class: 'nav-side__avatar', text: 'L' }),
+    el('div', { class: 'nav__text' }, [
+      el('b', { text: 'Lukas' }),
+      el('small', { text: SYNC_TEXT[sync.state] ?? 'offline' }),
+    ]),
   ]);
 }
 
@@ -50,18 +72,20 @@ function klappe() {
   }, [symbol('zurueck')]);
 }
 
-export function renderSide(nav, plan, aktivId) {
-  const oben = plan.alle.filter((b) => !b.ende);
-  const unten = plan.alle.filter((b) => b.ende);
+// zahlen: { <bereich-id>: Zahl } für die kleinen Zahlen am Eintrag; sync: Status aus core/sync.js
+export function renderSide(nav, plan, aktivId, { zahlen = {}, sync }) {
   inhalt(nav).replaceChildren(
     el('div', { class: 'nav-side__marke' }, [
       el('span', { class: 'nav-side__logo', text: '0' }),
-      el('span', { class: 'nav__text', text: 'System 0' }),
+      el('div', { class: 'nav__text' }, [el('b', { text: 'System 0' }), el('small', { text: 'Lukas' })]),
     ]),
     klappe(),
-    ...oben.map((b) => link(b, 'nav-side__link', b.id === aktivId)),
-    unten.length > 0 && el('div', { class: 'nav-side__ende' },
-      unten.map((b) => link(b, 'nav-side__link', b.id === aktivId))),
+    suche(),
+    ...plan.abschnitte.flatMap((a) => [
+      el('div', { class: 'nav-side__abschnitt', text: a.titel }),
+      ...a.bereiche.map((b) => link(b, 'nav-side__link', b.id === aktivId, false, zahlen[b.id])),
+    ]),
+    profil(sync),
   );
   zeigerSetzen(nav);
 }
