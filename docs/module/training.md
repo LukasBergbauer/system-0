@@ -45,9 +45,11 @@
 - Plan: „▶ Start“ je Plan-Einheit, nur am eigenen Wochentag aktiv. Plan-Einheit: „Jetzt starten“ und Art weg.
 - Geprüft in iPhone-Breite (keine Überschneidung, kein Quer-Scrollen), nichts gespeichert. 010 ausgeführt. Offen: Geräte.
 
+**Suche (09.11.2026).** `src/app/suche.js` durchsucht `training_uebungen` (Name, bei Physio-Verweis Physio-Titel; Notiz)
+und `trainingsplaene` (Name, Titel der Plan-Einheiten). Zusatz `uebung:<id>` / `plaene:<id>` öffnet in view.js Übung bzw. Plan
+(eigener Verlaufseintrag, Zurück → Liste). Lokal geprüft.
+
 ## Nächster Schritt (Plan)
-- Training in der Suche (⌘K): in `src/app/suche.js` Gruppen „Übungen“ (Treffer → `#/training/uebung:<id>`, Router-Zusatz in
-  view.js ergänzen) und „Pläne“ (→ `#/training/plan-seite:<id>`); Einheiten nicht.
+- Lukas prüft Training v2 + Suche auf Geräten; danach nächstes Modul laut Roadmap.
 
 ## Wünsche für später
-- Training in der Suche (⌘K)

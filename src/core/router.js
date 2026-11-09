@@ -14,7 +14,8 @@
 //
 // Zusatz: '#/todos/neu' öffnet To-dos und sagt „gleich ein neues anlegen“. Der Bereich liest ihn beim Öffnen
 //   mit zusatzNehmen() (siehe dort). Bekannt: todos/neu, kalender/neu, kalender/woche, physio/neu, physio/mindmap,
-//   und <bereich>/<id> aus der Suche (todos/<id>, kalender/<id>, physio/<id>): öffnet genau diesen Eintrag.
+//   und <bereich>/<id> aus der Suche (todos/<id>, kalender/<id>, physio/<id>, training/uebung:<id>, training/plaene:<id>):
+//   öffnet genau diesen Eintrag.
 //   Ids mit Sonderzeichen mit encodeURIComponent anhängen; zusatzNehmen() dekodiert.
 //
 // Ereignisse: 'bereiche' (neuer Bereich angemeldet), 'route' (anderer Bereich aktiv).

@@ -1,6 +1,7 @@
 // Ansicht „Training“: drei Seiten im selben Bereich – Liste (Einheiten | Übungen), Einheit erfassen, Übung mit Verlauf.
 // Unterseiten bekommen einen eigenen Verlaufseintrag (gleiche Adresse), damit Zurück/Wischen zur Liste führt.
-// Zusatz '#/training/neu' legt gleich eine Einheit an, '#/training/plan:<id>' startet die Plan-Einheit (oder öffnet sie).
+// Zusatz '#/training/neu' legt gleich eine Einheit an, '#/training/plan:<id>' startet die Plan-Einheit (oder öffnet sie),
+// 'uebung:<id>' / 'plaene:<id>' (aus der Suche) öffnen Übung bzw. Plan.
 import { el } from '../../ui/dom.js';
 import { on } from '../../core/events.js';
 import { zusatzNehmen } from '../../core/router.js';
@@ -73,7 +74,9 @@ export function trainingAnsicht({ signal }) {
 
   const zusatz = zusatzNehmen();
   const planId = zusatz?.startsWith('plan:') && zusatz.slice(5);
+  const [art, sucheId] = zusatz?.split(':') ?? [];
   if (zusatz === 'neu') neu();
+  else if (art === 'uebung' || art === 'plaene') oeffne(art === 'uebung' ? 'uebung' : 'plan', sucheId);
   else if (planId) ladeAlles().then((d) => {
     const pe = d.planEinheiten.find((x) => x.id === planId);
     pe ? starte(pe) : zeichne();

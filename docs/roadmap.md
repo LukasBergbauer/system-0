@@ -311,7 +311,8 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] v2 nach Rückmeldung (09.11.2026): entschlackt (Art/RPE raus), „Heute“ mit großem Start, Start je Plan-Einheit nur am
         eigenen Tag, Durchlauf als Vollbild (Satz für Satz, −/+, RIR 1–4, „Wie war's?“), „Zuletzt …“ je Übung. Migration
         `010_training_rir.sql`; `sw.js` `v51` (inkl. Wochen-Leiste im Hero-Stil). 010 ausgeführt. Offen: auf Geräten prüfen
-  - [ ] Training in der Suche (⌘K): Gruppen Übungen (→ `#/training/uebung:<id>`) und Pläne (→ Plan), keine Einheiten
+  - [x] Training in der Suche (⌘K) (09.11.2026): Gruppen „Trainings-Übungen“ (→ `#/training/uebung:<id>`) und
+        „Trainingspläne“ (→ `#/training/plaene:<id>`), keine Einheiten. `sw.js` `v52`. Lokal geprüft.
 
 ## Phase 3 – Kopf & Richtung
 - [ ] Lebensziele und Visionen (`module/ziele.md`)

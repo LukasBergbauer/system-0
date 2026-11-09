@@ -1,4 +1,4 @@
-// Suche über To-dos, Termine und Physio-Punkte: Suchfeld oben in der Seitenleiste oder ⌘K / Strg+K.
+// Suche über To-dos, Termine, Physio-Punkte, Trainings-Übungen und -Pläne: Suchfeld oben in der Seitenleiste oder ⌘K / Strg+K.
 // Liest nur über core/ (store, Google-Zwischenspeicher). Ein Treffer öffnet seinen Bereich über den
 // Router-Zusatz #/<bereich>/<id>; der Bereich liest ihn mit zusatzNehmen() und öffnet den Eintrag.
 // Enter öffnet den ersten Treffer, Esc schließt.
@@ -16,9 +16,12 @@ const naehe = (iso) => Math.abs(new Date(iso) - Date.now()); // Termine: zuerst 
 
 // Alle durchsuchbaren Einträge, schon in der Reihenfolge, in der sie erscheinen sollen.
 async function laden() {
-  const [todos, termine, google, physio] = await Promise.all([
+  const [todos, termine, google, physio, uebungen, plaene, planEinheiten] = await Promise.all([
     getAll('todos'), getAll('termine'), getMeta('kalender:google'), getAll('physio_eintraege'),
+    getAll('training_uebungen'), getAll('trainingsplaene'), getAll('plan_einheiten'),
   ]);
+  const physioName = new Map(physio.map((p) => [p.id, p.titel]));
+  const uebungName = (u) => (u.physio_id && physioName.get(u.physio_id)) || u.name || 'Übung';
   const alleTermine = [...termine, ...(google?.termine ?? [])].sort((a, b) => naehe(a.start) - naehe(b.start));
   return [
     {
@@ -40,6 +43,18 @@ async function laden() {
       eintraege: [...physio].sort((a, b) => a.titel.localeCompare(b.titel, 'de')).map((e) => ({
         id: e.id, titel: e.titel, text: `${e.kurz || ''} ${e.text || ''}`, sub: e.kurz,
       })),
+    },
+    {
+      titel: 'Trainings-Übungen', bereich: 'training',
+      eintraege: uebungen.map((u) => ({ id: `uebung:${u.id}`, titel: uebungName(u), text: u.notiz, sub: u.physio_id ? 'aus PhysioZentrum' : '' }))
+        .sort((a, b) => a.titel.localeCompare(b.titel, 'de')),
+    },
+    {
+      titel: 'Trainingspläne', bereich: 'training',
+      eintraege: plaene.map((p) => {
+        const titel = planEinheiten.filter((pe) => pe.plan_id === p.id).map((pe) => pe.titel).filter(Boolean).join(', ');
+        return { id: `plaene:${p.id}`, titel: p.name || 'Plan', text: titel, sub: [p.aktiv && 'aktiv', titel].filter(Boolean).join(' · ') };
+      }),
     },
   ];
 }
