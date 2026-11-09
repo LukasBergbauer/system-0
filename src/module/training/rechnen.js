@@ -2,11 +2,13 @@
 import { zeitText, tagISO } from './daten.js';
 
 const zahl = (n) => String(n).replace('.', ',');
+const DATUM = new Intl.DateTimeFormat('de-DE', { weekday: 'short', day: 'numeric', month: 'short' });
+export const datumText = (tag) => DATUM.format(new Date(`${tag}T12:00`));
 
-// Ein Satz als Text, z. B. „10 × 40 kg“ oder „500 m · 2:05“.
+// Ein Satz als Text, z. B. „10 × 40 kg · RIR 2“ oder „500 m · 2:05“.
 export function satzText(s) {
   const vorne = [s.wdh != null && `${s.wdh}`, s.gewicht != null && `${zahl(s.gewicht)} kg`].filter(Boolean).join(' × ');
-  const hinten = [s.distanz != null && `${zahl(s.distanz)} m`, s.zeit != null && zeitText(s.zeit)].filter(Boolean);
+  const hinten = [s.distanz != null && `${zahl(s.distanz)} m`, s.zeit != null && zeitText(s.zeit), s.rir != null && `RIR ${s.rir}`].filter(Boolean);
   return [vorne, ...hinten].filter(Boolean).join(' · ') || '–';
 }
 
@@ -15,6 +17,16 @@ export function saetzeText(saetze) {
   const texte = saetze.map(satzText).filter((t) => t !== '–');
   if (!texte.length) return 'noch nichts eingetragen';
   return texte.every((t) => t === texte[0]) && texte.length > 1 ? `${texte.length} × ${texte[0]}` : texte.join(' / ');
+}
+
+// Letzter Eintrag einer Übung vor einer Einheit (ohne diese), als Text „Zuletzt Mo., 3. Nov.: 3 × 10 × 40 kg · RIR 2“ oder ''.
+export function zuletztText(uebung_id, einheiten, ohne = null, bis = tagISO()) {
+  for (const e of einheiten) {
+    if (e.id === ohne || e.datum > bis) continue;
+    const s = e.saetze.filter((x) => x.uebung_id === uebung_id);
+    if (s.length) return `Zuletzt ${datumText(e.datum)}: ${saetzeText(s)}`;
+  }
+  return '';
 }
 
 // Wonach eine Übung gemessen wird: Gewicht > Wdh > Distanz > Zeit (weniger ist besser).

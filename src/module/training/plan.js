@@ -1,15 +1,15 @@
-// Seite „Plan“: Name, Schalter „Aktiv“, Mo–So mit ihren Einheiten (antippen → Plan-Einheit), „+ Einheit“ je Tag.
+// Seite „Plan“: Name, Schalter „Aktiv“, Mo–So mit ihren Einheiten (antippen → Plan-Einheit, „Start“ nur am eigenen Tag), „+ Einheit“ je Tag.
 // Name speichert beim Verlassen des Felds; Neuzeichnen nur nach Anlegen (neuZeichnen).
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
 import { input } from '../../ui/input.js';
 import { checkbox } from '../../ui/checkbox.js';
-import { list, listRow } from '../../ui/list.js';
+import { list } from '../../ui/list.js';
 import { aendere } from './daten.js';
-import { PLAENE, TAGE, setzeAktiv, loeschePlan, neuePlanEinheit } from './plan-daten.js';
+import { PLAENE, TAGE, setzeAktiv, loeschePlan, neuePlanEinheit, wochentag } from './plan-daten.js';
 import { namenText } from './plaene.js';
 
-export function planSeite(id, { daten, zurueck, oeffne }) {
+export function planSeite(id, { daten, zurueck, oeffne, starte }) {
   const plan = daten.plaene.find((p) => p.id === id);
   if (!plan) return el('p', { class: 'app__note', text: 'Diesen Plan gibt es nicht mehr.' });
 
@@ -24,8 +24,13 @@ export function planSeite(id, { daten, zurueck, oeffne }) {
         button({ text: '+ Einheit', variant: 'ghost', onClick: async () => oeffne('plan-einheit', (await neuePlanEinheit(id, i + 1)).id) }),
       ]),
       pes.length
-        ? list(pes.map((pe) => listRow({ title: pe.titel || 'Einheit', sub: namenText(pe, daten.uebungen) || 'keine Übungen',
-          onClick: () => oeffne('plan-einheit', pe.id) })))
+        ? list(pes.map((pe) => el('li', { class: 'list__row' }, el('div', { class: 'list__inner training__plan-zeile' }, [
+          el('button', { class: 'list__text training__plan-link', attrs: { type: 'button' }, on: { click: () => oeffne('plan-einheit', pe.id) } }, [
+            el('span', { class: 'list__title', text: pe.titel || 'Einheit' }),
+            el('span', { class: 'list__sub', text: namenText(pe, daten.uebungen) || 'keine Übungen' }),
+          ]),
+          button({ text: '▶ Start', variant: 'primary', disabled: i + 1 !== wochentag(), onClick: () => starte(pe) }),
+        ]))))
         : el('p', { class: 'training__zuletzt', text: 'Ruhetag' }),
     ]);
   });

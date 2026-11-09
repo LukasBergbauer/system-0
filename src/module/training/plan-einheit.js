@@ -1,20 +1,21 @@
-// Seite „Plan-Einheit“: Titel, Wochentag, Art, Übungen mit Ziel (Sätze × Werte je Messung), „Jetzt starten“.
+// Seite „Plan-Einheit“: Titel, Wochentag, Übungen mit Ziel (Sätze × Werte je Messung) und „Zuletzt“.
 // Autospeichern je Feld; die Übungsliste wird als Ganzes gespeichert. Zeichnet nur die Übungen neu (Fokus bleibt).
 // ende(): leere Plan-Einheit (kein Titel, keine Übungen) beim Verlassen löschen.
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
 import { input } from '../../ui/input.js';
 import { chips } from '../../ui/chips.js';
-import { ARTEN, MESSUNG, aendere, ladeAlles } from './daten.js';
+import { MESSUNG, aendere, ladeAlles } from './daten.js';
 import { zeigen, lesen, PLATZ } from './saetze.js';
 import { waehleUebung } from './wahl.js';
+import { zuletztText } from './rechnen.js';
 import { PLAN_EINHEITEN, TAGE, loeschePlanEinheit } from './plan-daten.js';
 
 function feld(label, kind) {
   return el('div', { class: 'field', attrs: { role: 'group', 'aria-label': label } }, [el('span', { class: 'field__label', text: label }), kind]);
 }
 
-export function planEinheitSeite(id, { daten, zurueck, oeffne, starte }) {
+export function planEinheitSeite(id, { daten, zurueck, oeffne }) {
   const pe = daten.planEinheiten.find((x) => x.id === id);
   if (!pe) return { element: el('p', { class: 'app__note', text: 'Diese Plan-Einheit gibt es nicht mehr.' }), ende: null };
   const speichere = (felder) => { Object.assign(pe, felder); return aendere(PLAN_EINHEITEN, { id, ...felder }); };
@@ -58,6 +59,7 @@ export function planEinheitSeite(id, { daten, zurueck, oeffne, starte }) {
           el('button', { class: 'satz__weg', text: '×', attrs: { type: 'button', 'aria-label': `${u.name} entfernen` },
             on: { click: () => { pe.uebungen.splice(i, 1); speichereUebungen(); zeige(); } } }),
         ]),
+        zuletztText(u.id, daten.einheiten) && el('p', { class: 'training__letztes', text: zuletztText(u.id, daten.einheiten) }),
         ...zielZeile(z, messung),
       ]);
     }));
@@ -85,11 +87,9 @@ export function planEinheitSeite(id, { daten, zurueck, oeffne, starte }) {
       titel,
       feld('Wochentag', chips({ items: TAGE.map((t, i) => ({ id: i + 1, label: t.slice(0, 2) })), active: pe.wochentag,
         onChange: (wochentag) => speichere({ wochentag }) })),
-      feld('Art', chips({ items: ARTEN, active: pe.art, onChange: (art) => speichere({ art }) })),
     ]),
     box,
     button({ text: '+ Übung', variant: 'ghost', onClick: plusUebung }),
-    button({ text: 'Jetzt starten', variant: 'primary', onClick: () => starte(pe) }),
     button({ text: 'Plan-Einheit löschen', variant: 'ghost', onClick: loeschen }),
   ]);
 

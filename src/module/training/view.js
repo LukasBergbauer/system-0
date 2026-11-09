@@ -24,8 +24,8 @@ export function trainingAnsicht({ signal }) {
 
   const oben = () => stapel[stapel.length - 1];
 
-  function oeffne(seite, id) {
-    stapel.push({ seite, id });
+  function oeffne(seite, id, durchlauf = false) {
+    stapel.push({ seite, id, durchlauf });
     history.pushState({ training: stapel.length }, '', location.hash);
     zeichne();
   }
@@ -44,7 +44,7 @@ export function trainingAnsicht({ signal }) {
   }
   async function starte(pe) {
     const e = await starteAusPlan(pe, (await ladeAlles()).einheiten);
-    oeffne('einheit', e.id);
+    oeffne('einheit', e.id, true);
   }
 
   async function zeichne() {
@@ -54,8 +54,9 @@ export function trainingAnsicht({ signal }) {
     const ende = seitenEnde;
     seitenEnde = null;
     await ende?.();
-    const { seite, id } = oben();
-    const hilfen = { oeffne, zurueck, neu, starte, merk, daten };
+    const { seite, id, durchlauf } = oben();
+    oben().durchlauf = false; // nur einmal von selbst starten
+    const hilfen = { oeffne, zurueck, neu, starte, merk, daten, signal, durchlauf, neuZeichnen: zeichne };
     if (SELBST.includes(seite)) {
       const s = (seite === 'einheit' ? einheitSeite : planEinheitSeite)(id, hilfen);
       seitenEnde = s.ende;

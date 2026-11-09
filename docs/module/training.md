@@ -33,8 +33,20 @@
   „Training heute laut Plan“ (nur mit Plan-Einheiten heute), Schnellaktion startet die nächste offene Plan-Einheit bzw. `training/neu`.
 - Lokal geprüft (Mac + iPhone-Größe, Testdaten gelöscht). Offen: Lukas führt `009_training_plaene.sql` aus, prüft auf Geräten.
 
+**v2 nach Rückmeldung (09.11.2026).** Migration `010_training_rir.sql` (saetze.rir 1–4); `sw.js` `v49`.
+- Liste: „Heute“-Karte oben mit großem Start/Weiter, eine Zeile Wochen-Zahlen, „+ Freies Training“. Kacheln weg.
+- Einheit: Kopf nur Titel + Datum, „▶ Durchlauf starten“, Sätze mit RIR-Spalte (nur bei Wdh), Karte „Wie war's?“
+  (Gefühl, Dauer, Notiz). Art und RPE nicht mehr in der Oberfläche (Spalten bleiben).
+- `durchlauf.js`: Vollbild (Klassen aus routinen.css), ein Satz je Schritt, −/+ (Wdh 1, kg 2,5, m 50, Zeit 5 s), RIR-Chips,
+  „Satz fertig“ übernimmt Werte in den nächsten offenen Satz derselben Übung; Ende: Gefühl, Notiz, Dauer automatisch.
+  Weiter beim ersten Satz ohne RIR (Übungen ohne Wdh starten deshalb immer vorn). Start aus Plan öffnet ihn direkt.
+- „Zuletzt <Datum>: …“ (`zuletztText` in rechnen.js) in Durchlauf, Einheit, Plan-Einheit und Übungsliste.
+- Plan: „▶ Start“ je Plan-Einheit, nur am eigenen Wochentag aktiv. Plan-Einheit: „Jetzt starten“ und Art weg.
+- Geprüft in iPhone-Breite (keine Überschneidung, kein Quer-Scrollen), nichts gespeichert. Offen: 010 ausführen, Geräte.
+
 ## Nächster Schritt (Plan)
-- Lukas prüft auf echten Geräten; danach Training in der Suche (⌘K) oder nächstes Modul laut Roadmap
+- Training in der Suche (⌘K): in `src/app/suche.js` Gruppen „Übungen“ (Treffer → `#/training/uebung:<id>`, Router-Zusatz in
+  view.js ergänzen) und „Pläne“ (→ `#/training/plan-seite:<id>`); Einheiten nicht.
 
 ## Wünsche für später
 - Training in der Suche (⌘K)

@@ -1,4 +1,4 @@
-// Pläne in der Training-Liste: Tab „Pläne“ und Karte „Heute laut Plan“ (über den Tabs).
+// Pläne in der Training-Liste: Tab „Pläne“ und Karte „Heute“ (ganz oben, großer Start je Plan-Einheit).
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
 import { list, listRow } from '../../ui/list.js';
@@ -29,16 +29,14 @@ export function heutePlan({ daten, starte }) {
   if (!daten.plaene.some((p) => p.aktiv)) return null;
   const heute = planFuerTag(daten);
   return el('section', { class: 'card training__plan-heute' }, [
-    el('h3', { class: 'label', text: 'Heute laut Plan' }),
-    !heute.length && el('p', { class: 'training__zuletzt', text: 'Ruhetag.' }),
+    el('h3', { class: 'label', text: 'Heute' }),
+    !heute.length && el('p', { class: 'training__titel', text: 'Ruhetag' }),
     ...heute.map((pe) => {
       const da = gestartet(pe, daten.einheiten);
-      return el('div', { class: 'training__plan-zeile' }, [
-        el('div', {}, [
-          el('b', { text: pe.titel || 'Einheit' }),
-          el('p', { class: 'training__zuletzt', text: namenText(pe, daten.uebungen) || 'keine Übungen' }),
-        ]),
-        button({ text: da ? 'Öffnen' : 'Starten', variant: da ? 'ghost' : 'primary', onClick: () => starte(pe) }),
+      return el('div', { class: 'training__heute' }, [
+        el('h2', { class: 'training__titel', text: pe.titel || 'Einheit' }),
+        el('p', { class: 'training__zuletzt', text: namenText(pe, daten.uebungen) || 'keine Übungen' }),
+        el('button', { class: 'btn btn--primary training__start', text: da ? '▶ Weiter' : '▶ Start', attrs: { type: 'button' }, on: { click: () => starte(pe) } }),
       ]);
     }),
   ]);

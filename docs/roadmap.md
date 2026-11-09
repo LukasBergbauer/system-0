@@ -307,7 +307,11 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         Verlauf/Bestwert je Übung. Migration `008_training.sql`; `sw.js` `v47`. Offen: Migration ausführen, auf Geräten prüfen
   - [x] Wochenpläne + Training auf Heute (09.11.2026): Pläne (wöchentlich, einer aktiv), Plan-Einheiten mit Ziel-Sätzen,
         Start aus Plan (Sätze vorbefüllt), Kachel/Leiste/Schnellaktion auf Heute. Migration `009_training_plaene.sql`; `sw.js` `v48`.
-        Offen: Migrationen 008 + 009 ausführen, auf Geräten prüfen
+        008 + 009 ausgeführt, von Lukas auf Geräten geprüft.
+  - [x] v2 nach Rückmeldung (09.11.2026): entschlackt (Art/RPE raus), „Heute“ mit großem Start, Start je Plan-Einheit nur am
+        eigenen Tag, Durchlauf als Vollbild (Satz für Satz, −/+, RIR 1–4, „Wie war's?“), „Zuletzt …“ je Übung. Migration
+        `010_training_rir.sql`; `sw.js` `v49`. Offen: 010 ausführen, auf Geräten prüfen
+  - [ ] Training in der Suche (⌘K): Gruppen Übungen (→ `#/training/uebung:<id>`) und Pläne (→ Plan), keine Einheiten
 
 ## Phase 3 – Kopf & Richtung
 - [ ] Lebensziele und Visionen (`module/ziele.md`)

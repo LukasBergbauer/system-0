@@ -1,6 +1,6 @@
 // Daten des Trainings: Lesen und Schreiben nur über core/store.js.
 // Tabellen: training_uebungen (name, physio_id, notiz, messung), einheiten (datum, titel, art, gefuehl, belastung, dauer, notiz),
-//           saetze (einheit_id, uebung_id, reihenfolge, wdh, gewicht, zeit, distanz).
+//           saetze (einheit_id, uebung_id, reihenfolge, wdh, gewicht, zeit, distanz, rir 1–4).
 // Physio-Übungen werden nur gelesen (Tabelle physio_eintraege, art 'uebung'), nie kopiert.
 import { getAll, save, remove } from '../../core/store.js';
 
@@ -71,10 +71,10 @@ export async function aufraeumen(e) {
   if (!e.saetze.length && !e.titel && !e.notiz && !e.gefuehl && !e.belastung && !e.dauer) await remove(EINHEITEN, e.id);
 }
 
-// Neuer Satz; übernimmt die Werte von vorlage (letzter Satz).
+// Neuer Satz; übernimmt die Werte von vorlage (letzter Satz), RIR nicht.
 export function neuerSatz(einheit_id, uebung_id, vorlage) {
   const { wdh = null, gewicht = null, zeit = null, distanz = null } = vorlage || {};
-  return save(SAETZE, { einheit_id, uebung_id, reihenfolge: Date.now(), wdh, gewicht, zeit, distanz });
+  return save(SAETZE, { einheit_id, uebung_id, reihenfolge: Date.now(), wdh, gewicht, zeit, distanz, rir: null });
 }
 export const loescheSatz = (id) => remove(SAETZE, id);
 

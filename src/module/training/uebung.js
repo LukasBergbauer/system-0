@@ -5,8 +5,7 @@ import { input } from '../../ui/input.js';
 import { list, listRow } from '../../ui/list.js';
 import { kacheln, kachel } from '../../ui/kachel.js';
 import { UEBUNGEN, MESSUNG, aendere, loescheUebung } from './daten.js';
-import { verlauf, bestwert, saetzeText } from './rechnen.js';
-import { datumText } from './liste.js';
+import { verlauf, bestwert, saetzeText, datumText } from './rechnen.js';
 
 const SVG = 'http://www.w3.org/2000/svg';
 

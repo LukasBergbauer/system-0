@@ -39,3 +39,26 @@
 .training__plan-zeile, .training__tag-kopf { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
 .training__plan-zeile > div { min-width: 0; }
 .training__tag .label, .training__plan-heute .label { margin: 0; }
+
+/* v2: Heute-Karte, großer Start, Zuletzt, Durchlauf (Klassen .durchlauf* aus routinen.css) */
+.training__zahlen { margin: 0; color: var(--text-2); font-size: var(--fs-small); }
+.training__heute { display: flex; flex-direction: column; gap: var(--space-2); }
+.training__heute + .training__heute { padding-top: var(--space-3); border-top: 1px solid var(--line); }
+.training__seite > .training__start, .training__start { align-self: stretch; min-height: calc(var(--tap) + var(--space-3)); font-size: var(--fs-title); }
+.training__letztes { margin: 0; padding: var(--space-2) var(--space-3); border-radius: var(--radius-klein); color: var(--text);
+  font-size: var(--fs-small); font-weight: 600; background: color-mix(in oklch, var(--accent) 12%, transparent); }
+.training__plan-link { flex: 1; min-width: 0; padding: 0; font: inherit; color: inherit; text-align: left; background: none; border: 0; cursor: pointer; }
+.training__plan-zeile .btn { flex: none; }
+.training__plan-zeile .btn:disabled { opacity: .35; }
+
+.tdl__mitte { justify-content: flex-start; gap: var(--space-4); overflow-y: auto; }
+.tdl__name { font-size: var(--fs-large); }
+.tdl__zuletzt { margin: 0; color: var(--accent); font-size: var(--fs-small); font-weight: 600; }
+.tdl__feld { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); width: 100%; }
+.tdl__stepper { display: flex; align-items: center; gap: var(--space-3); width: 100%; max-width: 320px; }
+.tdl__wert { flex: 1; min-width: 0; height: calc(var(--tap) + var(--space-5)); font-size: var(--fs-display); text-align: center; font-variant-numeric: tabular-nums; }
+.tdl__pm { width: calc(var(--tap) + var(--space-4)); height: calc(var(--tap) + var(--space-4)); flex: none; border-radius: 50%; font-size: var(--fs-large); line-height: 1; color: var(--text);
+  background: var(--surface-2); border: 0; cursor: pointer; }
+.tdl__feld .chips { justify-content: center; }
+.tdl__feld .chip { min-width: calc(var(--tap) + var(--space-3)); min-height: calc(var(--tap) + var(--space-2)); font-size: var(--fs-title); }
+.training__kopf .chips { flex-wrap: wrap; overflow: visible; }
