@@ -2,7 +2,7 @@
 
 Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dann wachsen.
 
-**Regel (ab 09.11.2026):** Keine Pläne, Ergebnisse oder sonstigen Infos mehr in Dateien schreiben – immer in den Chat. So wenig Zeilen wie möglich, so viel wie nötig.
+**Regel (ab 09.11.2026):** Stand und Pläne knapp hier bzw. in der Modul-Doku vermerken **und** immer auch in den Chat. So wenig Zeilen wie möglich, so viel wie nötig.
 
 ## Phase 0 – Fundament
 - [x] Repo, Supabase-Projekt, GitHub Pages eingerichtet (`docs/start.md`)

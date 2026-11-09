@@ -26,13 +26,13 @@ Läuft auf Mac und iPhone als PWA (Web-App auf dem Homescreen), gleiche Daten, s
 ## Arbeitsweise mit Lukas
 - Einfach machen. Kleine Schritte, Rückfragen nur, wenn wirklich etwas unklar ist.
 - So tokensparend wie möglich schreiben. Keine unnötigen Zeilen, keine Erklärungen, was an Doku geändert wurde.
-- **Keine Pläne, Ergebnisse oder sonstigen Infos in Dateien** (auch kein „Stand“ in Doku/Roadmap) – immer in den Chat.
-  So wenig Zeilen wie möglich, so viel wie nötig.
-- Nach jeder abgeschlossenen Aufgabe **direkt** committen (kurze deutsche Nachricht), ohne zu fragen. `git push` macht Lukas selbst.
+- Nach jeder abgeschlossenen Aufgabe „Stand“ (knapp) in Modul-Doku und `docs/roadmap.md` vermerken, damit Claude aktuell ist,
+  **und** Pläne, Ergebnisse und Infos immer auch in den Chat. So wenig Zeilen wie möglich, so viel wie nötig.
+- Dann **direkt** committen (kurze deutsche Nachricht), ohne zu fragen. `git push` macht Lukas selbst.
 - Danach kurz sagen, was gemacht wurde (wenige Zeilen).
 - **Übergabe:** Erst wenn eine Aufgabe komplett fertig ist, „Aufgabe fertig, bitte neue Sitzung starten.“ und einen
   kurzen Prompt zum Reinkopieren (CLAUDE.md, docs/roadmap.md, passende Fach-Doku, konkreter Auftrag).
-  Den Plan für den nächsten Schritt in den Chat. Keine Werkzeug-Checkliste.
+  Den Plan für den nächsten Schritt in Roadmap bzw. Modul-Doku und in den Chat. Keine Werkzeug-Checkliste.
 
 ## Tokens sparen
 - Immer die einfachste Lösung, die funktioniert (Ponytail). Keine Vorrats-Funktionen, keine unnötigen Abstraktionen.
