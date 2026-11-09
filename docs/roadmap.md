@@ -315,9 +315,9 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         „Trainingspläne“ (→ `#/training/plaene:<id>`), keine Einheiten. `sw.js` `v52`. Von Lukas auf Geräten geprüft.
 
 ## Phase 3 – Kopf & Richtung
-- [ ] Lebensziele und Visionen (`module/ziele.md`)
+- [x] Lebensziele und Visionen (`module/ziele.md`)
   - [x] Erste Fassung (09.11.2026): Bereiche mit Vision, Ziele (Warum, Zieldatum, Status), Schritte, „Nächster Schritt“ auf Heute,
-        Suche. Migration `011_ziele.sql`; `sw.js` `v53`. Offen: Migration ausführen, auf Geräten prüfen
+        Suche. Migration `011_ziele.sql`; `sw.js` `v53`. 011 ausgeführt, von Lukas auf Geräten geprüft
 - [ ] Affirmationen täglich, passend zu den Zielen (`module/affirmationen.md`)
 - [ ] Gewohnheiten aufbauen und abbauen (`module/gewohnheiten.md`)
 

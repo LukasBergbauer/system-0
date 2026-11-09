@@ -16,9 +16,9 @@
   leeres neues Ziel wird beim Schließen gelöscht. Schritte in Reihenfolge des Anlegens (kein Umsortieren).
 - Heute (`heute/ziele-leiste.js`): Karte „Nächster Schritt“, je aktivem Ziel erster offener Schritt, max. 3, früheste Zieldaten zuerst.
 - Suche (⌘K): Gruppe „Ziele“ (Ziele + Bereiche) → `#/ziele/<id>`.
-- Lokal geprüft (Mac + iPhone-Breite, Testdaten gelöscht). Offen: Lukas führt `011_ziele.sql` aus, prüft auf Geräten.
+- Lokal geprüft (Mac + iPhone-Breite, Testdaten gelöscht). 011 ausgeführt, von Lukas auf Geräten geprüft.
 
 ## Nächster Schritt (Plan)
-- Lukas prüft auf Geräten; danach Affirmationen (`module/affirmationen.md`), nutzen „Warum“ und Vision.
+- Affirmationen (`module/affirmationen.md`), nutzen „Warum“ und Vision.
 
 ## Wünsche für später
