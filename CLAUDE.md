@@ -24,52 +24,20 @@ Läuft auf Mac und iPhone als PWA (Web-App auf dem Homescreen), gleiche Daten, s
 10. **UI-Sprache:** Deutsch.
 
 ## Arbeitsweise mit Lukas
-- Kleine Schritte. Vor größeren Änderungen kurz den Plan nennen und auf Okay warten.
-- Lukas will verstehen, was passiert: kurz und verständlich erklären, keine Fachwort-Lawinen.
-- Rückfragen stellen, wenn etwas unklar ist, statt zu raten.
-- Nach jeder abgeschlossenen Aufgabe: den Abschnitt „Stand“ in der Modul-Doku und `docs/roadmap.md` aktualisieren,
-  dann einen Git-Commit mit kurzer deutscher Nachricht.
-- **Übergabe an neue Sitzung:** Erst wenn eine Aufgabe komplett abgeschlossen ist (gebaut, geprüft,
-  Doku aktualisiert, committet), Lukas klar sagen: „Aufgabe fertig, bitte neue Sitzung starten.“
-  Dazu einen fertigen Prompt zum Reinkopieren für den nächsten Schritt liefern. Er nennt die nötigen
-  Dateien (immer CLAUDE.md und docs/roadmap.md, dazu nur die passende Fach-Doku) und den konkreten Auftrag.
-  Vorher den abgestimmten Plan für den nächsten Schritt in die Roadmap bzw. Modul-Doku schreiben,
-  damit die neue Sitzung ohne den alten Chat weitermachen kann. Nie mitten in einer Aufgabe wechseln.
-- **Werkzeug-Checkliste bei jeder Übergabe:** Direkt vor dem Prompt eine kurze Liste „Vor der nächsten Sitzung“
-  geben. Sie sagt genau, **was** Lukas **wo** (normales Terminal / Claude Code / Ponytail-Leiste / Finder),
-  **wann** (jetzt / vor dem Start / nach dem Start) und **wie** (exakter Befehl zum Kopieren) installieren,
-  aktivieren, schreiben oder ausführen soll, um möglichst viele Tokens zu sparen. Zum Beispiel:
-  - ob `/graphify .` nötig ist (ja nach einem fertigen Modul oder neuen Ordnern, sonst nein)
-  - welcher Ponytail-Modus passt (Standard: full)
-  - ob etwas im Terminal installiert werden muss (Befehl angeben)
-  - ob die neue Sitzung im Ordner System 0 gestartet werden muss (`cd …` und `claude`)
-  Ist nichts davon nötig, schreiben: „Nichts zu tun, einfach neue Sitzung starten.“
+- Einfach machen. Kleine Schritte, Rückfragen nur, wenn wirklich etwas unklar ist.
+- So tokensparend wie möglich schreiben. Keine unnötigen Zeilen, keine Erklärungen, was an Doku geändert wurde.
+- Nach jeder abgeschlossenen Aufgabe: „Stand“ in der Modul-Doku und `docs/roadmap.md` aktualisieren,
+  dann **direkt** committen (kurze deutsche Nachricht), ohne zu fragen. `git push` macht Lukas selbst.
+- Danach kurz sagen, was gemacht wurde (wenige Zeilen).
+- **Übergabe:** Erst wenn eine Aufgabe komplett fertig ist, „Aufgabe fertig, bitte neue Sitzung starten.“ und einen
+  kurzen Prompt zum Reinkopieren (CLAUDE.md, docs/roadmap.md, passende Fach-Doku, konkreter Auftrag).
+  Den Plan für den nächsten Schritt vorher in Roadmap bzw. Modul-Doku schreiben. Keine Werkzeug-Checkliste.
 
 ## Tokens sparen
-Jede Sitzung kostet Tokens. Ziel: so wenig lesen, ausgeben und wiederholen wie möglich.
-
-**Graphify (Projekt-Landkarte)**
-- Gibt es `graphify-out/`, zuerst `graphify-out/GRAPH_REPORT.md` bzw. `graph.json` nutzen, um die richtige Stelle
-  zu finden. Danach nur die wirklich nötigen Dateien lesen, nie ganze Ordner durchsuchen.
-- Graphify nicht selbst neu bauen. Ist der Graph veraltet (neues Modul, neue Ordner, große Umbauten),
-  das in der Werkzeug-Checkliste sagen.
-- `graphify-out/` steht in `.gitignore` (kann jederzeit neu erzeugt werden). Fehlt der Eintrag, ergänzen.
-
-**Ponytail (möglichst wenig Code)**
-- Immer die einfachste Lösung, die funktioniert. Keine Vorrats-Funktionen, keine unnötigen Abstraktionen.
-- Passt zu Regel 6: lieber eine kleine Datei weniger als eine zu viel.
-
-**Agent Skills (Arbeitsabläufe)**
-- Nutzen: Planen vor neuen Modulen und Testen nach Änderungen (damit andere Module nicht kaputtgehen).
-- Nicht nutzen, außer Lukas fragt danach: Deployment-, CI-, Team- und Release-Abläufe.
-
-**Allgemein**
-- Nichts selbst installieren (Pakete, Programme, Tools). Lukas den Befehl fürs normale Terminal nennen.
-  Das kostet ihn keine Tokens.
-- Lange Ausgaben kürzen (z. B. `| tail -20`), Logs und Paketlisten nicht komplett lesen.
-- Dateien nicht mehrfach lesen, wenn sich nichts geändert hat.
-- Antworten kurz halten, keinen Code wiederholen, der schon in Dateien steht.
-- Wird eine Sitzung lang, Lukas vorschlagen, `/compact` einzugeben, oder die Aufgabe sauber abschließen und übergeben.
+- Immer die einfachste Lösung, die funktioniert (Ponytail). Keine Vorrats-Funktionen, keine unnötigen Abstraktionen.
+- Agent Skills nur für Planen und Testen; Deployment-, CI-, Team- und Release-Abläufe nur auf Nachfrage.
+- Nichts selbst installieren; Lukas den Befehl fürs Terminal nennen.
+- Lange Ausgaben kürzen, Dateien nicht mehrfach lesen, keinen Code wiederholen.
 
 ## Wegweiser
 - Aufbau & Ordner: `docs/architektur.md`
@@ -78,4 +46,3 @@ Jede Sitzung kostet Tokens. Ziel: so wenig lesen, ausgeben und wiederholen wie m
 - Reihenfolge & Fortschritt: `docs/roadmap.md`
 - Einrichtung (einmalig): `docs/start.md`
 - Module: `docs/module/*.md`
-- Projekt-Landkarte (falls vorhanden): `graphify-out/GRAPH_REPORT.md`
