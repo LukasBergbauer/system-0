@@ -1,6 +1,6 @@
 // Ansicht „Training“: drei Seiten im selben Bereich – Liste (Einheiten | Übungen), Einheit erfassen, Übung mit Verlauf.
 // Unterseiten bekommen einen eigenen Verlaufseintrag (gleiche Adresse), damit Zurück/Wischen zur Liste führt.
-// Zusatz '#/training/neu' legt gleich eine Einheit an.
+// Zusatz '#/training/neu' legt gleich eine Einheit an, '#/training/plan:<id>' startet die Plan-Einheit (oder öffnet sie).
 import { el } from '../../ui/dom.js';
 import { on } from '../../core/events.js';
 import { zusatzNehmen } from '../../core/router.js';
@@ -8,6 +8,11 @@ import { TABELLEN, ladeAlles, neueEinheit } from './daten.js';
 import { listeSeite } from './liste.js';
 import { einheitSeite } from './einheit.js';
 import { uebungSeite } from './uebung.js';
+import { planSeite } from './plan.js';
+import { planEinheitSeite } from './plan-einheit.js';
+import { starte as starteAusPlan } from './plan-daten.js';
+
+const SELBST = ['einheit', 'plan-einheit']; // zeichnen sich selbst (Fokus in Feldern bleibt)
 
 export function trainingAnsicht({ signal }) {
   const box = el('div', { class: 'training' });
@@ -37,6 +42,10 @@ export function trainingAnsicht({ signal }) {
     const e = await neueEinheit();
     oeffne('einheit', e.id);
   }
+  async function starte(pe) {
+    const e = await starteAusPlan(pe, (await ladeAlles()).einheiten);
+    oeffne('einheit', e.id);
+  }
 
   async function zeichne() {
     const nr = ++stand;
@@ -46,21 +55,28 @@ export function trainingAnsicht({ signal }) {
     seitenEnde = null;
     await ende?.();
     const { seite, id } = oben();
-    const hilfen = { oeffne, zurueck, neu, merk, daten };
-    if (seite === 'einheit') {
-      const s = einheitSeite(id, hilfen);
+    const hilfen = { oeffne, zurueck, neu, starte, merk, daten };
+    if (SELBST.includes(seite)) {
+      const s = (seite === 'einheit' ? einheitSeite : planEinheitSeite)(id, hilfen);
       seitenEnde = s.ende;
       box.replaceChildren(s.element);
     } else if (seite === 'uebung') box.replaceChildren(uebungSeite(id, hilfen));
+    else if (seite === 'plan') box.replaceChildren(planSeite(id, hilfen));
     else box.replaceChildren(listeSeite(hilfen));
     if (zuletzt !== stapel.length) window.scrollTo(0, 0);
     zuletzt = stapel.length;
   }
 
-  // Andere Geräte / eigene Änderungen: Liste und Übung neu zeichnen. Die Einheit zeichnet sich selbst.
-  on('daten', ({ table }) => TABELLEN.includes(table) && oben().seite !== 'einheit' && zeichne(), { signal });
+  // Andere Geräte / eigene Änderungen: Liste, Plan und Übung neu zeichnen.
+  on('daten', ({ table }) => TABELLEN.includes(table) && !SELBST.includes(oben().seite) && zeichne(), { signal });
 
-  if (zusatzNehmen() === 'neu') neu();
+  const zusatz = zusatzNehmen();
+  const planId = zusatz?.startsWith('plan:') && zusatz.slice(5);
+  if (zusatz === 'neu') neu();
+  else if (planId) ladeAlles().then((d) => {
+    const pe = d.planEinheiten.find((x) => x.id === planId);
+    pe ? starte(pe) : zeichne();
+  });
   else zeichne();
   return box;
 }

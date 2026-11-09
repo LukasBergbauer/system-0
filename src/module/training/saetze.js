@@ -9,9 +9,9 @@ const zahlLesen = (t) => {
   const n = parseFloat(String(t).replace(',', '.'));
   return Number.isFinite(n) ? n : null;
 };
-const zeigen = (key, w) => (w == null ? '' : key === 'zeit' ? zeitText(w) : String(w).replace('.', ','));
-const lesen = (key, t) => (key === 'zeit' ? zeitLesen(t) : key === 'wdh' ? (zahlLesen(t) == null ? null : Math.round(zahlLesen(t))) : zahlLesen(t));
-const PLATZ = { wdh: '10', gewicht: '40', zeit: '1:30', distanz: '500' };
+export const zeigen = (key, w) => (w == null ? '' : key === 'zeit' ? zeitText(w) : String(w).replace('.', ','));
+export const lesen = (key, t) => (key === 'zeit' ? zeitLesen(t) : key === 'wdh' ? (zahlLesen(t) == null ? null : Math.round(zahlLesen(t))) : zahlLesen(t));
+export const PLATZ = { wdh: '10', gewicht: '40', zeit: '1:30', distanz: '500' };
 
 function satzZeile(satz, i, messung, neu) {
   const felder = messung.map((key) => {

@@ -68,8 +68,9 @@ Liest nur über `core/` bzw. `getAll()` die Tabellen `todos`, `termine`, `todo_b
 3. **Kalender-Karte:** großes Tagesdatum, Wochenleiste Mo–So (Tag antippen = Termine dieses Tages), bis zu 3 Termine,
    der nächste mit „Als Nächstes“.
 4. **4 Kacheln (Platzhalter-Variante):** Offene To-dos (davon heute) · Termine diese Woche · Erledigt-Serie in Tagen
-   (Akzent-Kachel; wird später zur Gewohnheits-Serie) · Training (Platzhalter „kommt bald“). Mini-Kurven = letzte 7 Tage.
-5. **Schnellaktionen:** Neues To-do · Termin · Training starten (kommt bald) · Mindmap öffnen.
+   (Akzent-Kachel; wird später zur Gewohnheits-Serie) · Training (Einheiten diese Woche, Text zum Plan; `training.js`). Mini-Kurven = letzte 7 Tage.
+5. **Schnellaktionen:** Neues To-do · Termin · Training starten (Plan-Einheit oder neue Einheit) · Mindmap öffnen.
+   Dazu Leiste „Training heute laut Plan“ unter den Routinen (nur wenn der aktive Plan heute etwas vorsieht).
 6. **Verlauf:** „Erledigt“ je Tag (Woche/Monat-Umschalter), gestrichelt = fällig je Tag.
 7. **Donut:** „To-dos nach Bereich“ (offene To-dos je `todo_bereiche`, max. 4 + „Sonst“).
 8. **Seitenleiste wie Bild:** Abschnitte ALLTAG / KÖRPER & KOPF / SYSTEM, Suchfeld oben, Zahl offener To-dos am Eintrag,

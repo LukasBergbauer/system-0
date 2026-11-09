@@ -31,6 +31,7 @@ export function kacheln(z, animiert) {
     kachel({ sym: 'flamme', trend: z.serie.rekord ? { text: 'Rekord', gut: true } : null, wert: z.serie.tage,
       nach: z.serie.tage === 1 ? ' Tag' : ' Tage', titel: 'Erledigt-Serie', text: 'Tage mit erledigtem To-do',
       kurve: z.serie.kurve, akzent: true, ziel: 'todos' }, animiert),
-    kachel({ sym: 'training', wert: '–', titel: 'Training', text: 'kommt bald' }, animiert),
+    kachel({ sym: 'training', wert: z.training.zahl, titel: 'Training', text: z.training.text,
+      kurve: z.training.kurve, ziel: 'training' }, animiert),
   ];
 }

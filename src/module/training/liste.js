@@ -1,4 +1,4 @@
-// Startseite Training: Kacheln (diese Woche, Wochen in Folge), „+ Einheit“, Tabs Einheiten | Übungen.
+// Startseite Training: Kacheln (diese Woche, Wochen in Folge), „Heute laut Plan“, „+ Einheit“, Tabs Einheiten | Pläne | Übungen.
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
 import { tabs } from '../../ui/tabs.js';
@@ -7,6 +7,7 @@ import { kacheln, kachel } from '../../ui/kachel.js';
 import { ARTEN, gruppen } from './daten.js';
 import { dieseWoche, wochenSerie, verlauf, bestwert } from './rechnen.js';
 import { waehleUebung } from './wahl.js';
+import { plaeneListe, heutePlan } from './plaene.js';
 
 const DATUM = new Intl.DateTimeFormat('de-DE', { weekday: 'short', day: 'numeric', month: 'short' });
 export const datumText = (tag) => DATUM.format(new Date(`${tag}T12:00`));
@@ -48,19 +49,22 @@ function uebungenListe({ daten, oeffne }) {
 export function listeSeite(hilfen) {
   const { daten, merk, neu } = hilfen;
   const inhalt = el('div', { class: 'card training__liste' });
-  const zeige = () => inhalt.replaceChildren(...[merk.tab === 'uebungen' ? uebungenListe(hilfen) : einheitenListe(hilfen)].flat());
+  const LISTEN = { einheiten: einheitenListe, plaene: plaeneListe, uebungen: uebungenListe };
+  const zeige = () => inhalt.replaceChildren(...[LISTEN[merk.tab](hilfen)].flat());
   zeige();
   const serie = wochenSerie(daten.einheiten);
   const woche = dieseWoche(daten.einheiten);
+  const plan = heutePlan(hilfen);
 
   return el('div', { class: 'training__seite' }, [
     kacheln([
       kachel({ symbol: 'training', titel: 'Diese Woche', wert: `${woche} ${woche === 1 ? 'Einheit' : 'Einheiten'}` }),
       kachel({ symbol: 'flamme', titel: 'In Folge', wert: `${serie} ${serie === 1 ? 'Woche' : 'Wochen'}` }),
     ]),
-    button({ text: '+ Einheit eintragen', variant: 'primary', onClick: neu }),
+    plan,
+    button({ text: '+ Einheit eintragen', variant: plan ? 'ghost' : 'primary', onClick: neu }),
     tabs({
-      items: [{ id: 'einheiten', label: 'Einheiten' }, { id: 'uebungen', label: 'Übungen' }],
+      items: [{ id: 'einheiten', label: 'Einheiten' }, { id: 'plaene', label: 'Pläne' }, { id: 'uebungen', label: 'Übungen' }],
       active: merk.tab,
       onChange: (id) => { merk.tab = id; zeige(); },
     }),

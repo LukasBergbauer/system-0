@@ -303,7 +303,9 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 - [ ] Trainings-Notebook mit Übernahme von Übungen aus dem PhysioZentrum (`module/training.md`)
   - [x] Erste Fassung (09.11.2026): Einheiten, Sätze, Übungen (eigene + Verweis ins PhysioZentrum, Hyrox-Vorlagen),
         Verlauf/Bestwert je Übung. Migration `008_training.sql`; `sw.js` `v47`. Offen: Migration ausführen, auf Geräten prüfen
-  - [ ] Wochenpläne + Training auf Heute (Plan in `module/training.md`)
+  - [x] Wochenpläne + Training auf Heute (09.11.2026): Pläne (wöchentlich, einer aktiv), Plan-Einheiten mit Ziel-Sätzen,
+        Start aus Plan (Sätze vorbefüllt), Kachel/Leiste/Schnellaktion auf Heute. Migration `009_training_plaene.sql`; `sw.js` `v48`.
+        Offen: Migrationen 008 + 009 ausführen, auf Geräten prüfen
 
 ## Phase 3 – Kopf & Richtung
 - [ ] Lebensziele und Visionen (`module/ziele.md`)

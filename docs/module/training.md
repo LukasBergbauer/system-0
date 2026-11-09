@@ -22,9 +22,19 @@
 - `ui/chips.js`: `active: null` = nichts gewählt.
 - Lokal geprüft (Mac + iPhone-Größe, Testdaten danach gelöscht). Offen: Lukas führt `008_training.sql` aus, prüft auf echten Geräten.
 
+**Wochenpläne (09.11.2026)**, mit Lukas abgestimmt. Migration `009_training_plaene.sql`; `sw.js` `v48`.
+- Daten (`plan-daten.js`): `trainingsplaene` (name, aktiv – nur einer), `plan_einheiten` (plan_id, wochentag 1–7, titel, art,
+  `uebungen` jsonb `[{ uebung_id, saetze, wdh, gewicht, zeit, distanz }]`). `einheiten.plan_einheit_id` = gestartet aus Plan.
+  Plan wiederholt sich jede Woche.
+- `plaene.js`: Tab „Pläne“ und Karte „Heute laut Plan“ (Starten/Öffnen) über den Tabs. `plan.js`: Name, Aktiv, Mo–So.
+  `plan-einheit.js`: Titel, Wochentag, Art, Übungen mit Ziel (Sätze + Messung), „Jetzt starten“; leere wird beim Verlassen gelöscht.
+- Start (`starte`): heute schon gestartet → öffnen, sonst Einheit mit vorbefüllten Sätzen (Zielwerte). Adresse `#/training/plan:<id>`.
+- Heute (`heute/training.js`, liest nur Tabellen): Kachel „Training“ (Einheiten diese Woche, Text zum Plan), Leiste
+  „Training heute laut Plan“ (nur mit Plan-Einheiten heute), Schnellaktion startet die nächste offene Plan-Einheit bzw. `training/neu`.
+- Lokal geprüft (Mac + iPhone-Größe, Testdaten gelöscht). Offen: Lukas führt `009_training_plaene.sql` aus, prüft auf Geräten.
+
 ## Nächster Schritt (Plan)
-- Wochenpläne: `trainingsplaene`, `plan_einheiten` (Wochentag, Übungen mit Ziel-Sätzen), Einheit aus Plan starten
-- Kachel/Leiste „Training“ auf Heute
+- Lukas prüft auf echten Geräten; danach Training in der Suche (⌘K) oder nächstes Modul laut Roadmap
 
 ## Wünsche für später
 - Training in der Suche (⌘K)

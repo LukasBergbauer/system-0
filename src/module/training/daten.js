@@ -8,7 +8,7 @@ export const UEBUNGEN = 'training_uebungen';
 export const EINHEITEN = 'einheiten';
 export const SAETZE = 'saetze';
 export const PHYSIO = 'physio_eintraege';
-export const TABELLEN = [UEBUNGEN, EINHEITEN, SAETZE, PHYSIO];
+export const TABELLEN = [UEBUNGEN, EINHEITEN, SAETZE, PHYSIO, 'trainingsplaene', 'plan_einheiten'];
 
 export const ARTEN = [
   { id: 'kraft', label: 'Kraft' },
@@ -33,9 +33,10 @@ export const HYROX = [
 const zwei = (n) => String(n).padStart(2, '0');
 export const tagISO = (d = new Date()) => `${d.getFullYear()}-${zwei(d.getMonth() + 1)}-${zwei(d.getDate())}`;
 
-// Alles auf einmal. uebungen bekommen name/physio aufgelöst, einheiten ihre saetze (sortiert), neueste zuerst.
+// Alles auf einmal. uebungen bekommen name/physio aufgelöst, einheiten ihre saetze (sortiert), neueste zuerst;
+// dazu plaene (aktiver zuerst) und planEinheiten (nach Wochentag).
 export async function ladeAlles() {
-  const [uebungen, einheiten, saetze, physio] = await Promise.all([getAll(UEBUNGEN), getAll(EINHEITEN), getAll(SAETZE), getAll(PHYSIO)]);
+  const [uebungen, einheiten, saetze, physio, plaene, planEinheiten] = await Promise.all(TABELLEN.map((t) => getAll(t)));
   const physioNach = new Map(physio.map((p) => [p.id, p]));
   const ue = new Map(uebungen.map((u) => {
     const p = u.physio_id ? physioNach.get(u.physio_id) : null;
@@ -45,7 +46,9 @@ export async function ladeAlles() {
     .map((e) => ({ ...e, saetze: saetze.filter((s) => s.einheit_id === e.id).sort((a, b) => a.reihenfolge - b.reihenfolge) }))
     .sort((a, b) => b.datum.localeCompare(a.datum) || b.created_at.localeCompare(a.created_at));
   const physioUebungen = physio.filter((p) => p.art === 'uebung').sort((a, b) => a.titel.localeCompare(b.titel, 'de'));
-  return { uebungen: ue, einheiten: einh, physioUebungen };
+  plaene.sort((a, b) => b.aktiv - a.aktiv || a.name.localeCompare(b.name, 'de'));
+  planEinheiten.sort((a, b) => a.wochentag - b.wochentag || a.reihenfolge - b.reihenfolge);
+  return { uebungen: ue, einheiten: einh, physioUebungen, plaene, planEinheiten };
 }
 
 // Übungen einer Einheit in der Reihenfolge ihres ersten Satzes: [{ uebung_id, saetze }]
