@@ -6,6 +6,7 @@ import { getAll } from '../../core/store.js';
 import { getMeta } from '../../core/sync-local.js';
 import { on } from '../../core/events.js';
 import { rechne } from './rechnen.js';
+import { ordnen, ziehbar } from './anordnen.js';
 import { aufklappen } from '../../core/wiederholung.js';
 import { kopf } from './kopf.js';
 import { hero } from './hero.js';
@@ -35,6 +36,9 @@ async function laden() {
     gewohnheiten: { gewohnheiten, logs: gewLogs, rueckfaelle }, quiz, insta };
 }
 
+// [name, element] → Elemente mit data-kachel (leere Kacheln fallen weg)
+const benennen = (paare) => paare.filter(([, k]) => k).map(([name, k]) => { k.dataset.kachel = name; return k; });
+
 export function heuteAnsicht({ signal }) {
   const box = el('div', { class: 'heute' });
   let erstesMal = true;
@@ -47,24 +51,25 @@ export function heuteAnsicht({ signal }) {
     box.classList.toggle('heute--ruhig', !animiert); // beim Neuzeichnen nicht noch einmal einblenden
     box.replaceChildren(
       kopf(z.dinge),
-      el('section', { class: 'heute-raster' }, [
-        hero(z.woche, animiert),
-        kalenderKarte(d.termine),
-        ...kacheln(z, animiert),
-        affirmationKarte(d.affirmationen),
-        quizKarte(d.quiz),
-        routinenLeiste(d.routinen),
-        gewohnheitenLeiste(d.gewohnheiten),
-        trainingLeiste(d.training),
-        zieleLeiste(d.ziele),
-        instaLeiste(d.insta),
-        verlauf(d.todos, animiert),
-        donut(d.todos, d.bereiche, animiert),
-      ]),
+      el('section', { class: 'heute-raster' }, ordnen(benennen([
+        ['hero', hero(z.woche, animiert)],
+        ['kalender', kalenderKarte(d.termine)],
+        ...kacheln(z, animiert).map((k, i) => [`kachel-${i}`, k]),
+        ['affirmation', affirmationKarte(d.affirmationen)],
+        ['quiz', quizKarte(d.quiz)],
+        ['routinen', routinenLeiste(d.routinen)],
+        ['gewohnheiten', gewohnheitenLeiste(d.gewohnheiten)],
+        ['training', trainingLeiste(d.training)],
+        ['ziele', zieleLeiste(d.ziele)],
+        ['insta', instaLeiste(d.insta)],
+        ['verlauf', verlauf(d.todos, animiert)],
+        ['donut', donut(d.todos, d.bereiche, animiert)],
+      ]))),
     );
   }
 
   zeichne();
+  ziehbar(box, signal); // lange drücken + ziehen = umordnen (nur dieses Gerät)
   // Einstellungen (z. B. Akzentfarbe) ändern hier nichts – sonst schlösse sich die Farbwahl bei jedem Tipp
   on('daten', ({ table }) => table !== 'einstellungen' && zeichne(), { signal });
   return box;

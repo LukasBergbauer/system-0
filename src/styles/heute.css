@@ -7,7 +7,7 @@
 .heute-kopf p { margin: 6px 0 0; color: var(--text-2); font-size: var(--fs-small); }
 
 /* Raster: 12 Spalten (Mac), 2 Spalten (iPhone) */
-.heute-raster { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--space-4); }
+.heute-raster { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-flow: dense; gap: var(--space-4); }
 .heute-s8 { grid-column: span 8; }
 .heute-s4 { grid-column: span 4; }
 .heute-s3 { grid-column: span 3; }
@@ -138,3 +138,8 @@
   .heute-kz > b { font-size: 30px; }
   .heute-spur { display: none; }
 }
+
+/* Umordnen (anordnen.js): lange drücken hebt die Kachel an, nur transform */
+.heute-raster > [data-kachel] { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.heute-zieht { position: relative; z-index: 5; box-shadow: var(--schatten-hoch); cursor: grabbing; animation: none; }
+.heute-raster--ordnen > :not(.heute-zieht) { animation: none; }

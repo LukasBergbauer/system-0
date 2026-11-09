@@ -86,5 +86,6 @@ Reihenfolge zum Bauen (je ein Commit): a) Daten-Rechnungen + Kopf/Hero/Kacheln, 
 c) Seitenleiste mit Abschnitten + Platzhalter-Bereiche, d) Neu-Menü + Akzent-Knopf, e) Suche.
 
 ## Wünsche für später
-- Kacheln auf Heute per Drag & Drop umordnen. Die Anordnung gilt nur für das jeweilige Gerät (in `localStorage`, nicht in Supabase).
-  Die Werte auf den Kacheln werden weiter abgeglichen
+- [x] Kacheln umordnen (09.11.2026, `anordnen.js`, `sw.js` `v84`): lange drücken (0,45 s) hebt an, ziehen, die anderen gleiten (FLIP,
+  nur transform). Reihenfolge pro Gerät in `localStorage` (`system0-heute-reihenfolge`, Namen über `data-kachel`);
+  Raster mit `grid-auto-flow: dense`, damit keine Lücken bleiben.
