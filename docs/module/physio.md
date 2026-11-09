@@ -311,6 +311,13 @@ Stand (09.11.2026, `sw.js` `v79`): Physio-Kugel öffnet dieselbe Liste wie die A
 kein Auto-Fokus im Suchfeld (Tastatur/Rahmen ruckelten beim Öffnen). Overlay: Kreis 560/420 ms weicher, Inhalt blendet nach bzw. zuerst aus
 (`animiere` zählt nur das `animationend` des Dialogs). Offen: Geräte.
 
+Lukas: v78/v79 war falsch herum – gewünscht ist der Glas-Look der Innenansicht für ALLE Kugeln, nicht die Listen-Suche.
+Stand (09.11.2026, `sw.js` `v80`): `tiefe.js` + `physio-tiefe.css` zurück und verallgemeinert: Kugel in der Mitte antippen →
+Innenansicht; `art: null` (Kugel „Physio“) = „Alle Punkte“, Anlegen mit Art-Wahl (Glas-Chips). Look: Glas-Karten mit Lichtkante,
+kleiner Glaskugel vorn, Art-Label; Karten perlen herein (`tief--erst`), Unschärfe erst nach dem Aufgehen (`tief--ruhig`),
+Schließen schrumpft bis 0. Mindmap-Suche wieder wie vor v78 (ohne Auto-Fokus). Gemessen (Mac): Öffnen/Schließen, Gleiten,
+Mindmap auf/zu ohne Bild über 24 ms. Später: eigene Funktionen für die Physio-Kugel (Lukas plant). Offen: Geräte.
+
 ## Plan Lernpfade (von Lukas freigegeben 09.11.2026)
 - Start im Kosmos: Bubble „Regionen“ → Region wählen → Mindmap zeigt nur den nächsten Schritt als Bubbles:
   Region → Krankheitsbilder → Muskeln/Trainingsformen → Übungen (Reihenfolge fest in `lernpfad.js`)

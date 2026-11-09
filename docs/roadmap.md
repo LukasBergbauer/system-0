@@ -364,7 +364,8 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] 3D-Kugeln + Weiterhangeln im Kosmos (09.11.2026): Kosmos nutzt die Fokus-Karte, Mitte antippen = anderes Interface. `sw.js` `v76`.
         Gerät zeigte altes JS + neues CSS (GitHub-CDN lieferte beim Update kurz alte Datei) → `sw.js` holt mit `?v=VERSION`, `v77`.
   - [x] Art-Liste und Mindmap-Suche sind ein Overlay (09.11.2026, `tiefe.js` weg). `sw.js` `v78`.
-  - [x] Physio-Kugel = gleiche Liste, ohne Auto-Fokus, weicheres Öffnen/Schließen. `sw.js` `v79`. Offen: auf Geräten prüfen
+  - [x] ~~Physio-Kugel = Listen-Suche (v79)~~ → falsch herum. Glas-Innenansicht für alle Kugeln, edler, flüssig gemessen. `sw.js` `v80`. Offen: auf Geräten prüfen
+  - [ ] Physio-Kugel: eigene Funktionen (Lukas plant später)
   - [ ] Danach: Lernpfade, Notion
 - [ ] Notion-Anbindung
 - [ ] Idee KI-Auswertung (Wochenrückblick über alle Module): kostet je nach Anbieter Geld bzw. Datenschutz klären;

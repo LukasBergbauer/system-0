@@ -1,6 +1,6 @@
 // Neuen Punkt anlegen: Art per Chip wählen, Titel tippen, Enter (oder „Anlegen“).
 // Die zuletzt gewählte Art wird gemerkt (nur auf diesem Gerät, Bequemlichkeit).
-// anlegenForm({ titel: 'Spanish Squat', art: 'uebung' (optional, sonst zuletzt gewählte), onAngelegt: (eintrag) => … })
+// anlegenForm({ titel: 'Spanish Squat', onAngelegt: (eintrag) => … })
 import { el } from '../../ui/dom.js';
 import { chips } from '../../ui/chips.js';
 import { input } from '../../ui/input.js';
@@ -25,8 +25,8 @@ export function merkeArt(id) {
   } catch { /* privates Fenster o. ä.: dann eben nicht merken */ }
 }
 
-export function anlegenForm({ titel = '', art: vorgabe, onAngelegt } = {}) {
-  let art = vorgabe ?? letzteArt();
+export function anlegenForm({ titel = '', onAngelegt } = {}) {
+  let art = letzteArt();
   const feld = input({ placeholder: 'Titel …', value: titel });
   const eingabe = feld.querySelector('input');
   eingabe.setAttribute('aria-label', 'Titel des neuen Punkts');
