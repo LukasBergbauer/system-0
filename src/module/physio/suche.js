@@ -1,5 +1,6 @@
 // Suche im Mindmap-Overlay: Suchfeld oben, darunter Treffer (Titel + Art).
-// Leeres Feld: zuletzt bearbeitete Punkte. Noch gar nichts da: gleich „Neuer Punkt“.
+// Leeres Feld: alle Punkte (bzw. alle der Art), wie in jeder Liste des Kosmos. Noch gar nichts da: gleich „Neuer Punkt“.
+// Kein Auto-Fokus: Tastatur/Fokus-Rahmen erst beim Antippen (sonst ruckelt das Öffnen).
 // Unter den Treffern: „+ „…“ anlegen“ (Titel = Suchtext). Gewählter Punkt → waehle(id).
 // stand = { eintraege, links, suchtext } aus overlay.js (suchtext bleibt beim Zurückkehren erhalten).
 // art (optional) = nur diese Art: leeres Feld zeigt alle ihre Punkte, Anlegen mit dieser Art (Kosmos → Art-Kugel).
@@ -10,7 +11,6 @@ import { suche } from './daten.js';
 import { anlegenForm } from './anlegen.js';
 
 const MAX_TREFFER = 30;
-const ZULETZT = 8;
 
 export function trefferZeile(e, waehle) {
   return listRow({
@@ -53,9 +53,9 @@ export function suchAnsicht({ stand, waehle, art = null }) {
     const text = feld.value.trim();
     const alle = art ? stand.eintraege.filter((e) => e.art === art) : stand.eintraege;
 
-    if (art && !text) {
+    if ((art || alle.length) && !text) {
       ergebnis.replaceChildren(
-        el('p', { class: 'label', text: `${name} · ${alle.length}` }),
+        el('p', { class: 'label', text: `${name || 'Alle Punkte'} · ${alle.length}` }),
         alle.length ? list(alle.map((e) => trefferZeile(e, waehle))) : el('p', { class: 'mm-suche__hinweis', text: `Noch keine ${name}.` }),
         neuKnopf('+ Neu'),
       );
@@ -67,16 +67,6 @@ export function suchAnsicht({ stand, waehle, art = null }) {
       ergebnis.replaceChildren(
         el('p', { class: 'mm-suche__hinweis', text: 'Noch leer. Lege deinen ersten Punkt an.' }),
         anlegenForm({ art, onAngelegt: angelegt }),
-      );
-      return;
-    }
-
-    if (!text) {
-      const zuletzt = [...alle].sort((a, b) => b.updated_at.localeCompare(a.updated_at)).slice(0, ZULETZT);
-      ergebnis.replaceChildren(
-        el('p', { class: 'label', text: 'Zuletzt bearbeitet' }),
-        list(zuletzt.map((e) => trefferZeile(e, waehle))),
-        neuKnopf('+ Neuer Punkt'),
       );
       return;
     }
@@ -101,6 +91,5 @@ export function suchAnsicht({ stand, waehle, art = null }) {
   // Neu zeichnen, wenn sich Daten ändern (z. B. durch das andere Gerät) – außer beim Ausfüllen.
   element.aktualisiere = () => { if (!formOffen) zeichne(); };
   zeichne();
-  requestAnimationFrame(() => feld.focus({ preventScroll: true }));
   return element;
 }

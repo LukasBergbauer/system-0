@@ -307,6 +307,10 @@ Stand Ein Overlay (09.11.2026, `sw.js` `v78`): Innenansicht `tiefe.js` + `physio
 → `oeffneMindmap({ art })` → dieselbe Suche (`suche.js` mit `art`: alle Punkte der Art, Feld „… durchsuchen“, „+ Neu“ legt mit dieser Art an,
 `anlegenForm({ art })`). Aus „Regionen“ heraus startet ein Lernpfad (`waehle` in `mindmap-inhalt.js`). Lokal geprüft. Offen: Geräte.
 
+Stand (09.11.2026, `sw.js` `v79`): Physio-Kugel öffnet dieselbe Liste wie die Arten („Alle Punkte · N“ statt „Zuletzt bearbeitet“),
+kein Auto-Fokus im Suchfeld (Tastatur/Rahmen ruckelten beim Öffnen). Overlay: Kreis 560/420 ms weicher, Inhalt blendet nach bzw. zuerst aus
+(`animiere` zählt nur das `animationend` des Dialogs). Offen: Geräte.
+
 ## Plan Lernpfade (von Lukas freigegeben 09.11.2026)
 - Start im Kosmos: Bubble „Regionen“ → Region wählen → Mindmap zeigt nur den nächsten Schritt als Bubbles:
   Region → Krankheitsbilder → Muskeln/Trainingsformen → Übungen (Reihenfolge fest in `lernpfad.js`)

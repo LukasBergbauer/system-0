@@ -67,7 +67,8 @@ export function oeffneMindmap({ ausKnopf, signal, mitteId, lernpfad, ansicht, ar
       dialog.classList.add(klasse);
       const timer = setTimeout(done, 900); // Sicherheitsnetz
       dialog.addEventListener('animationend', done);
-      function done() {
+      function done(e) {
+        if (e && e.target !== dialog) return; // Animationen im Inhalt zählen nicht
         clearTimeout(timer);
         dialog.removeEventListener('animationend', done);
         dialog.classList.remove(klasse);

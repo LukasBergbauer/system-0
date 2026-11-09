@@ -38,10 +38,22 @@
 }
 /* Öffnen: heller Kreis wächst aus dem Knopf; Schließen: schrumpft dorthin zurück */
 .mm--auf {
-  animation: mm-kreis 520ms var(--ease) both;
+  animation: mm-kreis 560ms cubic-bezier(.6, 0, .2, 1) both;
 }
 .mm--zu {
-  animation: mm-kreis 380ms var(--ease) reverse both;
+  animation: mm-kreis 420ms cubic-bezier(.6, 0, .2, 1) reverse both;
+}
+/* Inhalt blendet weich ein (kurz nach dem Kreis) und beim Schließen zuerst aus */
+.mm--auf .mm__leiste,
+.mm--auf .mm__inhalt {
+  animation: mm-inhalt-ein 520ms 120ms cubic-bezier(.2, .8, .2, 1) both;
+}
+.mm--zu .mm__leiste,
+.mm--zu .mm__inhalt {
+  animation: mm-inhalt-ein 200ms ease-in reverse both;
+}
+@keyframes mm-inhalt-ein {
+  from { opacity: 0; transform: scale(1.04); }
 }
 @keyframes mm-kreis {
   from { clip-path: circle(0 at var(--mm-x, 50%) var(--mm-y, 50%)); }
