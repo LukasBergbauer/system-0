@@ -370,6 +370,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] 1. Wiederherstellen: Kachel in Einstellungen, Export-JSON → Vorschau je Tabelle → einspielen (lokal + Sync, nichts löschen,
         gleiche id = überschreiben). `src/core/wiederherstellen.js`, `src/app/wiederherstellen-kachel.js`; `sw.js` `v81`
   - [x] 2. Kalender: Wiederholungen (eigene Termine), Monatsansicht, fällige To-dos. Migration `019_termine_wiederholung.sql`; `sw.js` `v82`
+  - [x] 3. To-dos: Schnell-Knöpfe, Wischen (abhaken/löschen + Rückgängig), Erledigte > 30 Tage ausgeblendet. `sw.js` `v83`
 - ~~Notion-Anbindung~~ gestrichen (Lukas, 09.11.2026: nicht mehr gewünscht)
 - [ ] Idee KI-Auswertung (Wochenrückblick über alle Module): kostet je nach Anbieter Geld bzw. Datenschutz klären;
       kostenlos jetzt schon: Export-JSON in einen Claude-Chat geben

@@ -70,3 +70,104 @@
 .todo-bereich > .field {
   flex: 1;
 }
+/* Schnell-Knöpfe unter der Schnelleingabe: kleine Glas-Kapseln, gewählt = Akzent */
+.todo-schnell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.todo-schnell__knoepfe {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.todo-schnell__knoepfe::-webkit-scrollbar {
+  display: none;
+}
+.todo-schnell__knopf {
+  flex: none;
+  white-space: nowrap;
+  min-height: 34px;
+  padding: 0 var(--space-4);
+  font: inherit;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--text-2);
+  background: var(--surface);
+  border: 1px solid var(--glas-rand);
+  border-radius: 999px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 260ms var(--feder), background-color var(--duration) var(--ease), color var(--duration) var(--ease);
+}
+.todo-schnell__knopf:active {
+  transform: scale(0.94);
+}
+.todo-schnell__knopf[aria-pressed="true"] {
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-color: transparent;
+}
+/* Wischen (iPhone): Zeile folgt dem Finger, Flächen links/rechts fahren mit */
+.wisch-zeile {
+  position: relative;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+.wisch-zeile > .todo-zeile {
+  position: relative;
+  will-change: transform;
+}
+.wisch {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-5);
+  font-size: var(--fs-small);
+  color: var(--accent-ink);
+  border-radius: var(--radius-klein);
+  pointer-events: none;
+}
+.wisch--haken {
+  justify-content: flex-end; /* sichtbar ist das rechte Ende der Fläche */
+  background: var(--accent);
+}
+.wisch--loeschen {
+  background: var(--warn);
+}
+.wisch b {
+  transition: transform 200ms var(--feder);
+}
+.wisch--bereit .wisch b {
+  transform: scale(1.25);
+}
+/* „Gelöscht · Rückgängig“ */
+.todo-undo {
+  position: fixed;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom) + 96px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-1) var(--space-1) var(--space-5);
+  font-size: var(--fs-small);
+  background: var(--glas-verlauf);
+  border: 1px solid var(--glas-rand);
+  border-radius: 999px;
+  box-shadow: var(--schatten-hoch);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  backdrop-filter: blur(var(--blur)) saturate(160%);
+  transform: translateX(-50%);
+  animation: todo-undo-rein 320ms var(--feder);
+  transition: opacity 300ms var(--ease), transform 300ms var(--ease);
+}
+.todo-undo--weg {
+  opacity: 0;
+  transform: translate(-50%, 12px);
+}
+@keyframes todo-undo-rein {
+  from { opacity: 0; transform: translate(-50%, 12px); }
+}

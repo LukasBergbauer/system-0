@@ -22,9 +22,9 @@ export async function ladeBereiche() {
   return rows.sort((a, b) => a.reihenfolge - b.reihenfolge || a.name.localeCompare(b.name, 'de'));
 }
 
-// Schnelleingabe: nur Titel, Priorität mittel, ohne Datum; Bereich = gerade gefilterter Bereich oder keiner.
-export function neuesTodo(titel, bereichId = null) {
-  return save(TODOS, { titel, notiz: '', prio: 2, faellig_am: null, bereich_id: bereichId, erledigt_am: null });
+// Schnelleingabe: Titel, Bereich, dazu optional Priorität und Datum aus den Schnell-Knöpfen.
+export function neuesTodo(titel, bereichId = null, { prio = 2, faellig_am = null } = {}) {
+  return save(TODOS, { titel, notiz: '', prio, faellig_am, bereich_id: bereichId, erledigt_am: null });
 }
 
 // Ändert nur die übergebenen Felder (id muss dabei sein).
@@ -38,6 +38,11 @@ export function setzeErledigt(id, erledigt) {
 
 export function loescheTodo(id) {
   return remove(TODOS, id);
+}
+
+// Rückgängig nach Wisch-Löschen
+export function holeZurueck(id) {
+  return save(TODOS, { id, deleted: false });
 }
 
 // ---------- Bereiche ----------

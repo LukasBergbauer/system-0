@@ -64,7 +64,8 @@ Eine Sitzung, Teile a → b, nach jedem Teil kurz prüfen.
 | `zeile.js` | eine Zeile: Checkbox (abhaken) + antippbarer Text (öffnet Bearbeiten) + Prioritäts-Punkt rechts |
 | `gruppen.js` | offene To-dos nach Zeit gruppieren: Überfällig · Heute · Diese Woche (nächste 7 Tage) · Später · Ohne Datum |
 | `filter.js` | Bereichs-Chips „Alle · Bereiche · Ohne Bereich“ + Aktions-Chip „Bereiche bearbeiten“; Filter gemerkt |
-| `schnelleingabe.js` | Feld oben, Enter legt an (im gerade gefilterten Bereich), Fokus bleibt |
+| `schnelleingabe.js` | Feld oben, Enter legt an (im gerade gefilterten Bereich), Fokus bleibt; Schnell-Knöpfe darunter |
+| `wischen.js` | Wischen (Finger) auf Zeilen: abhaken/löschen, „Rückgängig“-Pille |
 | `bearbeiten.js` | Modal: Titel, Notiz, Priorität (Tabs), Fälligkeit, Bereich, Löschen |
 | `erledigt.js` | eingeklappter Abschnitt „Erledigt“ |
 | `bereiche-verwalten.js` | Modal: Bereiche anlegen, umbenennen (beim Verlassen des Felds), löschen |
@@ -72,11 +73,11 @@ Eine Sitzung, Teile a → b, nach jedem Teil kurz prüfen.
 Stile: `src/styles/todos.css`. Gewählter Bereichs-Filter steht nur im Gerät (`localStorage`, Schlüssel `system0-todos-filter`).
 
 Wünsche für später (Funktionen sind nicht festgeschrieben, Lukas ergänzt hier, sobald ihm etwas einfällt):
-- Schnell-Knöpfe direkt unter der Schnelleingabe (Datum Heute/Morgen, Priorität, Bereich),
-  damit das Bearbeiten-Fenster seltener nötig ist (Idee aus der Design-Runde, 04.11.2026)
-- Wischen zum Abhaken/Löschen (Idee aus der Design-Runde)
+- [x] Schnell-Knöpfe unter der Schnelleingabe (Heute/Morgen, Priorität, Bereich antippen = nächster) – `schnelleingabe.js`
+- [x] Wischen (nur Finger): rechts = abhaken/öffnen, links = löschen mit „Rückgängig“-Pille 4 s – `wischen.js`
+  (09.11.2026, `sw.js` `v83`)
 
 Merke:
 - Abhaken wartet 350 ms, damit die Haken-Animation zu sehen ist, dann wandert die Zeile.
 - Bereich löschen setzt `bereich_id` aller seiner To-dos (auch erledigter) auf leer.
-- Erledigte werden nie automatisch aufgeräumt (später überlegen, z. B. nach 30 Tagen ausblenden).
+- Erledigte älter als 30 Tage sind ausgeblendet, Knopf „Ältere zeigen (n)“ im aufgeklappten Erledigt-Abschnitt (nichts wird gelöscht).
