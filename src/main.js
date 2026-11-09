@@ -3,6 +3,7 @@
 import { isLoggedIn, onAuthChange, watchSession } from './core/auth.js';
 import { startRouter } from './core/router.js';
 import { startSync } from './core/sync.js';
+import { startErinnerungen } from './core/erinnerungen.js';
 import { akzentLaden } from './core/akzent.js';
 import { loginView } from './app/login.js';
 import { shell } from './app/shell.js';
@@ -41,6 +42,7 @@ function render(loggedIn) {
   aufraeumen = rahmen.destroy;
   app.replaceChildren(rahmen.element);
   startSync();
+  startErinnerungen();
 }
 
 akzentLaden(); // gewählte Akzentfarbe sofort anwenden

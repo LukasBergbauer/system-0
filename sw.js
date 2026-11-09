@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v85';
+const VERSION = 'v86';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -79,6 +79,9 @@ const APP_FILES = [
   './src/module/kalender/wiederholung-feld.js',
   './src/module/kalender/ical.js',
   './src/core/wiederholung.js',
+  './src/core/mitteilungen.js',
+  './src/core/erinnerungen.js',
+  './src/app/mitteilungen-kachel.js',
   './src/module/kalender/google.js',
   './src/module/kalender/google-adresse.js',
   './src/module/routinen/index.js',
@@ -290,4 +293,27 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((hit) => hit || fetch(event.request))
   );
+});
+
+// Mitteilungen (Web Push, Supabase-Funktion „erinnerungen“): { titel, text, ziel, id }
+self.addEventListener('push', (event) => {
+  let d = {};
+  try { d = event.data?.json() || {}; } catch { d = { titel: event.data?.text() }; }
+  event.waitUntil(self.registration.showNotification(d.titel || 'System 0', {
+    body: d.text || '',
+    tag: d.id,
+    icon: './assets/icons/icon-192.png',
+    data: { ziel: d.ziel || '#/heute' },
+  }));
+});
+
+// Antippen: offenes Fenster nach vorn holen und dorthin springen, sonst App öffnen
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  const url = new URL(`./${event.notification.data?.ziel || ''}`, self.registration.scope).href;
+  event.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((fenster) => {
+    const f = fenster[0];
+    if (f) return f.focus().then(() => f.navigate(url));
+    return self.clients.openWindow(url);
+  }));
 });

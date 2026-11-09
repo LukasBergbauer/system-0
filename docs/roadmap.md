@@ -373,6 +373,14 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] 3. To-dos: Schnell-Knöpfe, Wischen (abhaken/löschen + Rückgängig), Erledigte > 30 Tage ausgeblendet. `sw.js` `v83`
   - [x] 4. Heute: Kacheln per lange drücken + ziehen umordnen (pro Gerät). `sw.js` `v84`
   - [x] 5. Physio: einmalige Hinweise (Mitte öffnen, Lösen), Titel/Kurz enger, Art-Chips am Mac umbrechen. `sw.js` `v85`
+  - [x] 6. Mitteilungen (Web Push) – geprüft: kostenlos (Supabase Free: Edge Functions, pg_cron, pg_net; Apple-Push gratis),
+        keine Secrets im Code (VAPID-Schlüssel nur als Supabase-Secret `VAPID_KEYS`, erzeugt mit `tools/vapid.html`).
+        iPhone nur als Home-Bildschirm-App (iOS 16.4+). Gebaut: Kachel „Mitteilungen“ (Einstellungen, an/aus je Gerät,
+        Vorlauf 5/15/30/60 Min.), `src/core/mitteilungen.js` (Abo), `src/core/erinnerungen.js` (plant 14 Tage: Termine inkl.
+        Wiederholungen, ganztägige 8:00; Routinen mit eigener Startzeit, außer fertig/ausgesetzt), `sw.js` zeigt die Mitteilung
+        (Antippen öffnet Kalender/Routinen). Edge Function `supabase/functions/erinnerungen/index.ts` (`jsr:@negrel/webpush`),
+        Migration `020_erinnerungen.sql` (Tabellen, `erinnerungen_faellig()`, Cron). `sw.js` `v86`.
+        Grenze: geplant wird nur, wenn die App in den letzten 14 Tagen offen war. Offen: Einrichten (Lukas) + auf Geräten prüfen
 - ~~Notion-Anbindung~~ gestrichen (Lukas, 09.11.2026: nicht mehr gewünscht)
 - [ ] Idee KI-Auswertung (Wochenrückblick über alle Module): kostet je nach Anbieter Geld bzw. Datenschutz klären;
       kostenlos jetzt schon: Export-JSON in einen Claude-Chat geben

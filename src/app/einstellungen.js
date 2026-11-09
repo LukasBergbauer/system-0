@@ -6,6 +6,7 @@ import { downloadExport } from '../core/export.js';
 import { abgleichKachel } from './abgleich-kachel.js';
 import { akzentKachel } from './akzent-kachel.js';
 import { wiederherstellenKachel } from './wiederherstellen-kachel.js';
+import { mitteilungenKachel } from './mitteilungen-kachel.js';
 
 function exportKachel(meldung) {
   return kachel({
@@ -44,7 +45,7 @@ function kontoKachel() {
 function ansicht({ signal }) {
   const meldung = el('p', { class: 'app__note app__note--warn', attrs: { role: 'alert' } });
   return el('div', { class: 'app__stack' }, [
-    kacheln([abgleichKachel({ signal }), akzentKachel(), exportKachel(meldung), wiederherstellenKachel(), kontoKachel()]),
+    kacheln([abgleichKachel({ signal }), akzentKachel(), mitteilungenKachel(), exportKachel(meldung), wiederherstellenKachel(), kontoKachel()]),
     meldung,
   ]);
 }

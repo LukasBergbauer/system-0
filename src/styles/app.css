@@ -81,3 +81,11 @@
 }
 .wh__zelle b { font-size: var(--fs-title); font-weight: 600; }
 .wh__zelle span { font-size: var(--fs-label); color: var(--text-2); text-transform: capitalize; }
+
+/* Mitteilungen (src/app/mitteilungen-kachel.js) */
+.kachel--gross:has(.mitteilung) { flex-wrap: wrap; }
+.mitteilung { display: flex; flex-direction: column; gap: var(--space-3); flex-basis: 100%; }
+.mitteilung__zeile { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.mitteilung__status { font-size: var(--fs-normal); font-weight: 600; }
+.mitteilung__vorlauf { display: flex; flex-direction: column; gap: var(--space-1); }
+.mitteilung [hidden] { display: none; }

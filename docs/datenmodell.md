@@ -54,6 +54,7 @@ Nach jeder Änderung kommt das Ereignis `daten` mit `{ table }` (`src/core/event
 | Wissen | `quiz_fragen` (thema, frage, antworten jsonb – erste richtig, erklaerung; nur importierte, Grundstock als JSON im Repo), `quiz_ergebnisse` (tag, modus daily/endlos, richtig, gesamt, antworten jsonb [{ id, ok }]) – in `014_wissen.sql` |
 | Bücher | `buecher` (titel, autor, status, cover, zusammenfassung als Markdown) |
 | Insta | `insta_ideen`, `insta_posts` (datum, caption, hashtags, status) |
+| Mitteilungen | `push_abos` (endpoint, p256dh, auth, geraet; id = Hash des endpoint), `erinnerungen` (zeit, titel, text, ziel, gesendet_am; id = Hash aus Quelle + Zeit) – in `020_erinnerungen.sql`. Die App plant (`src/core/erinnerungen.js`), die Edge Function `erinnerungen` schickt (pg_cron jede Minute) |
 
 ## Speicher
 Supabase Free hat begrenzten Datei-Speicher. Bilder werden vor dem Upload verkleinert.
