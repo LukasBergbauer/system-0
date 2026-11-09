@@ -8,7 +8,7 @@ export const DAILY_ANZAHL = 5;
 export const RUNDE_ANZAHL = 10;
 export const THEMEN = [
   { id: 'allgemein', name: 'Allgemeinbildung' }, { id: 'geschichte', name: 'Geschichte' }, { id: 'geografie', name: 'Geografie' },
-  { id: 'natur', name: 'Naturwissenschaft' }, { id: 'anatomie', name: 'Anatomie' }, { id: 'muskeln', name: 'Muskeln' }, { id: 'physio', name: 'Physio' },
+  { id: 'natur', name: 'Naturwissenschaft' }, { id: 'anatomie', name: 'Anatomie' }, { id: 'muskeln', name: 'Muskeln' }, { id: 'baender', name: 'Bänder' }, { id: 'physio', name: 'Physio' },
 ];
 
 const zwei = (n) => String(n).padStart(2, '0');

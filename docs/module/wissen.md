@@ -31,11 +31,13 @@
       Quelle `tools/quiz/muskeln.txt` (eine Zeile pro Muskel), erzeugt mit `python3 tools/quiz/muskeln.py` → `fragen/muskeln.json`
       (IDs `mus-<name>-u/a/f/i`, stabil). Falsche Antworten: Ursprung/Ansatz aus derselben Gruppe, Funktion aus anderen Gruppen,
       Nerven aus derselben Region; Teil-Treffer werden ausgeschlossen. Stand: 124 Muskeln (Arm, Bein, Rumpf, Atmung, Beckenboden, Hals, Nacken, Kaumuskeln) = 496 Fragen.
-      Daily nimmt jetzt je Thema höchstens eine Frage (Themen fest gemischt). `sw.js` `v61`. Neue Datei/Thema → `THEMEN` in `data.js` und `sw.js`.
+      Daily nimmt jetzt je Thema höchstens eine Frage (Themen fest gemischt). `sw.js` `v61`.
+- [x] Thema „Bänder“ (09.11.2026): je Band Verlauf, Aufgabe, Klinik (falls eingetragen) als Einzelfragen, Erklärung mit „Merke“.
+      Quelle `tools/quiz/baender.txt`, erzeugt mit `python3 tools/quiz/baender.py` → `fragen/baender.json` (IDs `ban-<name>-v/f/k`).
+      42 Bänder (Schulter, Ellenbogen, Hand, Becken/Hüfte, Knie, Fuß, Wirbelsäule) = 117 Fragen. `sw.js` `v64`. Neue Datei/Thema → `THEMEN` in `data.js` und `sw.js`.
       Daily nur vollständig gespeichert; Endlos auch abgebrochen (ab 1 Antwort). Import: Prompt-Knopf im Modal, doppelte Fragen werden übersprungen.
       Lokal geprüft (Mac + iPhone-Breite, Testrunde ohne Speichern). Offen: Lukas führt `014` aus, prüft auf Geräten.
 
 ## Nächster Schritt (Plan)
 - Muskeln Teil 2 erledigt (09.11.2026, `sw.js` `v63`). Optional später: Mimik, Zungenbein-, Augenmuskeln.
-- Bänder: eigene Tabelle `tools/quiz/baender.txt` (Verlauf von–bis, Funktion/hemmt, typische Verletzung, Test) mit gleichem Generator-Muster.
 - Fragen ausbauen (Ziel ca. 10.000): je Sitzung z. B. 50–100 je Thema anhängen, IDs fortlaufend.

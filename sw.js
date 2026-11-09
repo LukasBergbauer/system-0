@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v63';
+const VERSION = 'v64';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -110,6 +110,7 @@ const APP_FILES = [
   './src/module/wissen/fragen/anatomie.json',
   './src/module/wissen/fragen/physio.json',
   './src/module/wissen/fragen/muskeln.json',
+  './src/module/wissen/fragen/baender.json',
   './src/module/training/index.js',
   './src/module/training/daten.js',
   './src/module/training/rechnen.js',

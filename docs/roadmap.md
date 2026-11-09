@@ -337,7 +337,8 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 - [ ] Wissen-Quiz (`module/wissen.md`)
   - [x] Erste Fassung (09.11.2026): Daily (5 neue Fragen/Tag, Serie), Endlos (Themen, neue zuerst), Statistik, Import aus Claude-Chat,
         Karte auf Heute, 150 Fragen in 6 Themen. Migration `014_wissen.sql`; `sw.js` `v60` (Fragen überarbeitet: verständlicher, Anatomie/Physio schwieriger).
-  - [x] Thema Muskeln, Teil 1 (Arm + Bein, 368 Fragen, Generator `tools/quiz/`), `sw.js` `v61`. Teil 2 Rumpf/Atmung/Beckenboden/Hals/Nacken/Kau (124 Muskeln, 496 Fragen), `sw.js` `v63`. Nächstes: Bänder Offen: Migration ausführen, auf Geräten prüfen
+  - [x] Thema Muskeln, Teil 1 (Arm + Bein, 368 Fragen, Generator `tools/quiz/`), `sw.js` `v61`. Teil 2 Rumpf/Atmung/Beckenboden/Hals/Nacken/Kau (124 Muskeln, 496 Fragen), `sw.js` `v63`.
+  - [x] Thema Bänder (42 Bänder, 117 Fragen), `sw.js` `v64`. Offen: Migration 014 ausführen, auf Geräten prüfen Offen: Migration ausführen, auf Geräten prüfen
 - [ ] Bücher (`module/buecher.md`)
 - [ ] Insta-Organizer (`module/insta.md`)
 
