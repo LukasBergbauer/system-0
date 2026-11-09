@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v80';
+const VERSION = 'v81';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -35,6 +35,8 @@ const APP_FILES = [
   './src/app/bereiche.js',
   './src/app/mehr.js',
   './src/app/einstellungen.js',
+  './src/app/wiederherstellen-kachel.js',
+  './src/core/wiederherstellen.js',
   './src/app/akzent-kachel.js',
   './src/module/heute/index.js',
   './src/module/heute/view.js',

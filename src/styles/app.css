@@ -68,3 +68,16 @@
   border-radius: var(--radius);
   font-size: var(--fs-small);
 }
+
+/* Wiederherstellen (src/app/wiederherstellen-kachel.js): Vorschau als Glas-Zellen */
+.wh__kopf { display: flex; align-items: center; gap: var(--space-4); }
+.wh__summe { font-size: var(--fs-display); font-weight: 600; letter-spacing: -0.02em; color: var(--accent); }
+.wh__info { font-size: var(--fs-small); color: var(--text-2); }
+.wh__raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: var(--space-2); max-height: 46vh; overflow-y: auto; }
+.wh__zelle {
+  display: flex; flex-direction: column; gap: 2px; padding: var(--space-3);
+  border-radius: var(--radius-klein); background: var(--glas-verlauf); border: 1px solid var(--glas-rand);
+  box-shadow: var(--schatten);
+}
+.wh__zelle b { font-size: var(--fs-title); font-weight: 600; }
+.wh__zelle span { font-size: var(--fs-label); color: var(--text-2); text-transform: capitalize; }

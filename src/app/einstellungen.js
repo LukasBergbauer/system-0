@@ -1,10 +1,11 @@
-// Bereich „Einstellungen“ als Kacheln: große Kachel „Abgleich“, darunter klein „Export“ und „Konto“.
+// Bereich „Einstellungen“ als Kacheln: große Kachel „Abgleich“, darunter klein „Export“, „Wiederherstellen“ und „Konto“.
 import { el } from '../ui/dom.js';
 import { kachel, kacheln } from '../ui/kachel.js';
 import { signOut } from '../core/auth.js';
 import { downloadExport } from '../core/export.js';
 import { abgleichKachel } from './abgleich-kachel.js';
 import { akzentKachel } from './akzent-kachel.js';
+import { wiederherstellenKachel } from './wiederherstellen-kachel.js';
 
 function exportKachel(meldung) {
   return kachel({
@@ -43,7 +44,7 @@ function kontoKachel() {
 function ansicht({ signal }) {
   const meldung = el('p', { class: 'app__note app__note--warn', attrs: { role: 'alert' } });
   return el('div', { class: 'app__stack' }, [
-    kacheln([abgleichKachel({ signal }), akzentKachel(), exportKachel(meldung), kontoKachel()]),
+    kacheln([abgleichKachel({ signal }), akzentKachel(), exportKachel(meldung), wiederherstellenKachel(), kontoKachel()]),
     meldung,
   ]);
 }

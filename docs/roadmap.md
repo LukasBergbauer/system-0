@@ -366,6 +366,9 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
   - [x] Art-Liste und Mindmap-Suche sind ein Overlay (09.11.2026, `tiefe.js` weg). `sw.js` `v78`.
   - [x] ~~Physio-Kugel = Listen-Suche (v79)~~ → falsch herum. Glas-Innenansicht für alle Kugeln, edler, flüssig gemessen. `sw.js` `v80`. Offen: auf Geräten prüfen
   - [ ] Physio-Kugel: eigene Funktionen (Lukas plant später)
+- [ ] Extra-Themen (09.11.2026, eine Sitzung, Block für Block)
+  - [x] 1. Wiederherstellen: Kachel in Einstellungen, Export-JSON → Vorschau je Tabelle → einspielen (lokal + Sync, nichts löschen,
+        gleiche id = überschreiben). `src/core/wiederherstellen.js`, `src/app/wiederherstellen-kachel.js`; `sw.js` `v81`
 - ~~Notion-Anbindung~~ gestrichen (Lukas, 09.11.2026: nicht mehr gewünscht)
 - [ ] Idee KI-Auswertung (Wochenrückblick über alle Module): kostet je nach Anbieter Geld bzw. Datenschutz klären;
       kostenlos jetzt schon: Export-JSON in einen Claude-Chat geben
