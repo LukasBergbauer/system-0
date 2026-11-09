@@ -349,7 +349,9 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         Offen: Migration 016 ausführen, auf Geräten prüfen
 
 ## Phase 5 – Ausbau
-- [ ] Routinen-Sperre
+- [ ] Routinen-Sperre (`module/routinen.md`)
+  - [x] Gebaut (09.11.2026): Schalter + Startzeit je Routine, Vollbild-Sperre, „Heute aussetzen“. Migration `017_routinen_sperre.sql`; `sw.js` `v70`.
+        Offen: Migration 017 ausführen, auf Geräten prüfen
 - [ ] PhysioZentrum: Lernpfade (Mindmap selbst kommt schon mit dem PhysioZentrum), Bilder, Notion
 - [ ] Notion-Anbindung
 - [ ] Idee KI-Auswertung (Wochenrückblick über alle Module): kostet je nach Anbieter Geld bzw. Datenschutz klären;

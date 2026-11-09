@@ -44,7 +44,7 @@ Nach jeder Änderung kommt das Ereignis `daten` mit `{ table }` (`src/core/event
 |---|---|
 | Basis | `einstellungen` (schluessel, wert als JSON) – angelegt in `001_basis.sql` |
 | To-dos | `todo_bereiche` (name, reihenfolge), `todos` (titel, notiz, prio 1–3, faellig_am, bereich_id, erledigt_am) – angelegt in `002_todos.sql` |
-| Routinen | `routinen` (name, art morgen/abend/frei, sperre, reihenfolge), `routine_schritte` (routine_id, text, reihenfolge), `routine_logs` (routine_id, tag, geschafft, fertig_am) – in `006_routinen.sql` |
+| Routinen | `routinen` (name, art morgen/abend/frei, sperre, sperre_ab, reihenfolge), `routine_schritte` (routine_id, text, reihenfolge), `routine_logs` (routine_id, tag, geschafft, fertig_am, ausgesetzt) – in `006_routinen.sql`, `017_routinen_sperre.sql` |
 | Kalender | `termine` (titel, start, ende, ganztaegig, ort, notiz) – in `005_kalender.sql`; Google-Termine werden nur angezeigt, nicht gespeichert (Adresse in `einstellungen`) |
 | PhysioZentrum | `physio_eintraege` (art, titel, kurz, text, felder als JSON, video), `physio_links` (a_id, b_id, in beide Richtungen) – in `003_physio.sql`; `physio_bilder` (eintrag_id, reihenfolge, breite, hoehe) + Storage-Bucket `physio-bilder` – in `004_physio_bilder.sql` |
 | Training | `training_uebungen` (name, physio_id = Verweis auf `physio_eintraege`, notiz, messung als JSON), `einheiten` (datum, titel, art, gefuehl 1–5, belastung 1–10, dauer, notiz), `saetze` (einheit_id, uebung_id, reihenfolge, wdh, gewicht, zeit in s, distanz in m) – in `008_training.sql`; später `trainingsplaene`, `plan_einheiten` |

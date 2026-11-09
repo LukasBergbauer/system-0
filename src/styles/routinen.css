@@ -41,3 +41,10 @@
 .durchlauf__fuss .btn { flex: 1; min-height: 52px; }
 @keyframes durchlauf-rein { from { opacity: 0; transform: translateY(8px); } }
 @media (prefers-reduced-motion: reduce) { .durchlauf__text { animation: none; } }
+/* Sperre: wie der Durchlauf, aber deckend (App dahinter nicht sichtbar) */
+.sperre { background: var(--bg); }
+.sperre .durchlauf__fuss .btn--ghost { flex: 0 1 auto; color: var(--text-2); }
+.routine-sperre { display: flex; flex-direction: column; gap: var(--space-2); }
+.routine-sperre__ab { display: flex; align-items: center; gap: var(--space-3); color: var(--text-2); font-size: var(--fs-small); }
+.routine-sperre__ab[hidden] { display: none; }
+.routine-sperre__zeit { width: auto; }

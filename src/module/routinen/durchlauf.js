@@ -1,13 +1,13 @@
 // Durchlauf als Vollbild: ein Schritt groß, Fortschritt oben, „Erledigt“ → nächster, „Zurück“ → vorheriger.
 // Stand wird nach jedem Schritt gespeichert; erneutes Öffnen macht dort weiter. Am Ende „Geschafft“.
-// signal endet beim Verlassen der Ansicht (z. B. Zurück-Wischen) → Durchlauf schließt sich.
+// signal endet beim Verlassen der Ansicht (z. B. Zurück-Wischen) → Durchlauf schließt sich. onZu: nach dem Schließen (Sperre).
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
 import { logAm, speichereStand } from './data.js';
 
-export function starteDurchlauf(routine, { signal } = {}) {
+export function starteDurchlauf(routine, { signal, onZu } = {}) {
   const n = routine.schritte.length;
-  if (!n) return;
+  if (!n) return onZu?.();
   let log = logAm(routine);
   let i = log?.fertig_am ? 0 : Math.min(log?.geschafft || 0, n - 1); // fertig → von vorn
 
@@ -56,7 +56,7 @@ export function starteDurchlauf(routine, { signal } = {}) {
     zeichne();
   }
 
-  dialog.addEventListener('close', () => dialog.remove());
+  dialog.addEventListener('close', () => { dialog.remove(); onZu?.(); });
   signal?.addEventListener('abort', schliessen);
   document.body.append(dialog);
   dialog.showModal();

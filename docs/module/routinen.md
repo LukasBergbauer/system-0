@@ -35,4 +35,10 @@ Für das ganze iPhone wäre die iOS-Funktion „Bildschirmzeit“ zuständig.
       (kommende Tage blass). `sw.js` `v46`
 - [x] Migration 007 ausgeführt, Abgleich Mac ↔ iPhone geprüft
 
+- [x] Sperre gebaut (09.11.2026). Migration `017_routinen_sperre.sql` (`routinen.sperre_ab` „HH:MM“, `routine_logs.ausgesetzt`).
+      Bearbeiten: Schalter „Sperre“ + „gilt ab“ (Vorgabe Morgen/Frei 04:00, Abend 20:00). `sperre.js`: Vollbild über der App, solange
+      eine Routine mit Sperre ab ihrer Zeit heute weder geschafft noch ausgesetzt ist (früheste Zeit zuerst); „Starten/Weiter“ öffnet den
+      Durchlauf, „Heute aussetzen“ (Rückfrage, zählt nicht als geschafft). Prüft bei Start, Bereichswechsel, Daten, Fenster-Rückkehr, jede Minute.
+      Logik mit Testfällen geprüft. `sw.js` `v70`. Offen: Lukas führt `017` aus (vorher keine Sperre einschalten, sonst stockt der Abgleich), prüft auf Geräten.
+
 ## Wünsche für später

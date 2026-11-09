@@ -1,6 +1,6 @@
 // Daten der Routinen: Lesen und Schreiben nur über core/store.js.
-// Tabellen: routinen (name, art, sperre, reihenfolge), routine_schritte (routine_id, text, reihenfolge),
-//           routine_logs (routine_id, tag, geschafft, fertig_am) – ein Eintrag je Routine und Tag.
+// Tabellen: routinen (name, art, sperre, sperre_ab, reihenfolge), routine_schritte (routine_id, text, reihenfolge),
+//           routine_logs (routine_id, tag, geschafft, fertig_am, ausgesetzt) – ein Eintrag je Routine und Tag.
 import { getAll, save, remove } from '../../core/store.js';
 
 export const ROUTINEN = 'routinen';
@@ -36,8 +36,8 @@ export function logAm(routine, tag = tagISO()) {
     .sort((a, b) => !!b.fertig_am - !!a.fertig_am || b.geschafft - a.geschafft)[0] ?? null;
 }
 
-export async function neueRoutine({ name, art }) {
-  return save(ROUTINEN, { name, art, sperre: false, reihenfolge: Date.now() });
+export async function neueRoutine(felder) {
+  return save(ROUTINEN, { sperre: false, ...felder, reihenfolge: Date.now() });
 }
 
 export function aendereRoutine(felder) {
@@ -92,4 +92,23 @@ export function serie(routine) {
   let n = 0;
   while (fertig.has(tagISO(new Date(h.getFullYear(), h.getMonth(), h.getDate() - i)))) { n++; i++; }
   return n;
+}
+
+// Sperre: ab wann sie gilt („HH:MM“). Ohne eigene Zeit: Abend 20:00, sonst 04:00.
+export const sperreAb = (r) => r.sperre_ab || (r.art === 'abend' ? '20:00' : '04:00');
+
+// Routine, die die App gerade sperrt (früheste Startzeit zuerst), sonst null.
+export function sperrendeRoutine(routinen, jetzt = new Date()) {
+  const uhr = `${String(jetzt.getHours()).padStart(2, '0')}:${String(jetzt.getMinutes()).padStart(2, '0')}`;
+  const tag = tagISO(jetzt);
+  return routinen
+    .filter((r) => r.sperre && r.schritte.length && uhr >= sperreAb(r))
+    .filter((r) => !r.logs.some((l) => l.tag === tag && (l.fertig_am || l.ausgesetzt)))
+    .sort((a, b) => sperreAb(a).localeCompare(sperreAb(b)))[0] ?? null;
+}
+
+// „Heute aussetzen“: Sperre für heute aufheben, zählt nicht als geschafft.
+export function setzeAus(routine) {
+  const alt = logAm(routine);
+  return save(LOGS, { ...(alt ? { id: alt.id } : { routine_id: routine.id, tag: tagISO(), geschafft: 0, fertig_am: null }), ausgesetzt: true });
 }
