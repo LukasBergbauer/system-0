@@ -12,18 +12,18 @@ import { planFuerTag } from './plan-daten.js';
 const artLabel = (id) => ARTEN.find((a) => a.id === id)?.label ?? 'Training';
 const mehrzahl = (n, eins, viele) => `${n} ${n === 1 ? eins : viele}`;
 
-// Ziel = Einheiten im aktiven Plan pro Woche, sonst 3.
+// Ziel = Einheiten im aktiven Plan pro Woche. Ohne Plan kein Ziel und kein Balken, nur die Zahl.
 function wochenLeiste(daten) {
   const woche = dieseWoche(daten.einheiten);
-  const ziel = [1, 2, 3, 4, 5, 6, 7].reduce((n, t) => n + planFuerTag(daten, t).length, 0) || 3;
+  const ziel = [1, 2, 3, 4, 5, 6, 7].reduce((n, t) => n + planFuerTag(daten, t).length, 0);
   const serie = wochenSerie(daten.einheiten);
   return el('section', { class: 'card training__woche' }, [
     el('span', { class: 'training__woche-label', text: 'Diese Woche' }),
     el('div', { class: 'training__woche-kopf' }, [
       el('b', { text: String(woche) }),
-      el('small', { text: `von ${ziel} ${ziel === 1 ? 'Einheit' : 'Einheiten'}` }),
+      el('small', { text: ziel ? `von ${ziel} ${ziel === 1 ? 'Einheit' : 'Einheiten'}` : woche === 1 ? 'Einheit' : 'Einheiten' }),
     ]),
-    el('div', { class: 'training__balken', attrs: { role: 'progressbar', 'aria-valuemin': 0, 'aria-valuemax': ziel, 'aria-valuenow': woche } },
+    ziel > 0 && el('div', { class: 'training__balken', attrs: { role: 'progressbar', 'aria-valuemin': 0, 'aria-valuemax': ziel, 'aria-valuenow': woche } },
       woche > 0 && el('i', { attrs: { style: `width:${Math.min(100, (woche / ziel) * 100)}%` } })), // bei 0 kein Leuchten
     serie > 1 && el('small', { text: `${mehrzahl(serie, 'Woche', 'Wochen')} in Folge` }),
   ]);

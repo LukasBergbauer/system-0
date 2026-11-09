@@ -332,6 +332,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 - [x] Zähler gehen beim Entfernen auf 0 (09.11.2026): Training zählt nur Einheiten mit Inhalt (Sätze oder Dauer/Gefühl/Belastung/Notiz),
       in Training und Heute gleich; Einheit löschen räumt alle Sätze frisch gelesen weg; Gewohnheit zurücksetzen entfernt
       zweite Tageseinträge (anderes Gerät); Routine löschen räumt Logs weg; Ring/Balken zeigen bei 0 keinen Punkt bzw. kein Leuchten. `sw.js` `v62`
+      Training ohne Plan: kein Standardziel 3 mehr, nur „0 Einheiten“ ohne Balken. `sw.js` `v65`
 
 ## Phase 4 – Wissen & Kreativ
 - [ ] Wissen-Quiz (`module/wissen.md`)
