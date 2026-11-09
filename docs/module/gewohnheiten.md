@@ -23,4 +23,5 @@
       Dateien `src/module/gewohnheiten/`: `data.js`, `view.js`, `karte-auf.js`, `karte-ab.js`, `bearbeiten.js`, `rueckfall.js`;
       Stil `gewohnheiten.css` (nutzt Karten aus `routinen.css`); Symbol `gewohnheiten`; Heute: `heute/gewohnheiten-leiste.js`
       (schreibt beim Antippen über `core/store.js`). Ein Tipp = +1 bzw. +5 Min. „Ohne seit“ im Bearbeiten (Abbauen). `sw.js` `v58`.
-      Lokal mit Testdaten im Speicher geprüft (Mac + iPhone-Breite). Offen: Lukas führt `013` aus, prüft auf Geräten
+      Lokal mit Testdaten im Speicher geprüft (Mac + iPhone-Breite). 
+- [x] Migration 013 ausgeführt, auf Geräten geprüft (09.11.2026)
