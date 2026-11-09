@@ -257,7 +257,7 @@ Stand Teil g:
   - Lokal geprüft: iPhone-Größe (Bälle, 6 Plätze, „+2“, Ball gleitet in die Mitte), Mac-Breite (gemischter Ring),
     Ziehen und ⌘ + V mit Testpunkt (danach gelöscht, Speicher-Ordner leer); erfundene Ball-Bilder nur lokal, wieder entfernt
 
-## Plan Kosmos (Entwurf 09.11.2026, wartet auf Lukas' OK)
+## Plan Kosmos (09.11.2026, Lukas: heller Glas-Kosmos)
 Vision: Physio in der Mitte, drumherum je Pfad eine Bubble, schwebend wie im Weltall, futuristisch statt Kachel-Raster.
 - **Bühne** (`kosmos.js`, `physio-kosmos.css`): ersetzt die Kacheln. Tiefer Raum mit feinem Sternenstaub und Akzent-Nebel,
   Mitte Kern „Physio“ (Glas-Kugel, leuchtet im Akzent, öffnet die Suche/Mindmap)
@@ -270,6 +270,12 @@ Vision: Physio in der Mitte, drumherum je Pfad eine Bubble, schwebend wie im Wel
   Eintrag antippen → bestehende Mindmap mit diesem Punkt in der Mitte. Zurück = Bubble schrumpft, man ist wieder draußen
 - **Neue Art „Trainingsform“** (Felder: Ziel, Belastung/Dosierung, Prinzipien): Migration `018_physio_trainingsform.sql` (Check erweitern)
 - Nur `transform`/`opacity`, „Bewegung reduzieren“ = kein Schweben. Danach: Mindmap-Overlay optisch angleichen, Lernpfade
+
+Stand (09.11.2026, `sw.js` `v72`): gebaut. `kosmos.js` (Bühne, Bubbles, Eindringen, Parallaxe), `tiefe.js` (Innenansicht mit
+eigenem Verlaufsschritt; Eintrag → Mindmap, Zurück-Kette Mindmap → Bubble → Kosmos geht), `view.js` ohne Kacheln,
+Stile `physio-kosmos.css`, `physio-tiefe.css`. Art `trainingsform` in `arten.js`. Lokal geprüft (Mac-Breite, iPhone-Größe).
+Offen: Lukas führt `018_physio_trainingsform.sql` aus (vorher keine Trainingsform anlegen, sonst stockt der Abgleich), prüft auf Geräten.
+Nächster Schritt: Mindmap-Overlay im Glas-Kosmos-Stil (statt Elfenbein), dann Lernpfade.
 
 ## Offen / bitte prüfen (aus der Planung, erledigt bzw. unter „Wünsche für später“)
 - Das Overlay ist hell (Elfenbein-Weiß mit dunkler Schrift), während die App sonst dunkel ist. So gewünscht;

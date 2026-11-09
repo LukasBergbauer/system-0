@@ -1,31 +1,18 @@
-// Ansicht „PhysioZentrum“: große Kachel „Mindmap“ (Einstieg), darunter Kacheln mit der Anzahl je Art.
-// Antippen der Mindmap-Kachel öffnet das helle Overlay (overlay.js) aus der Kachel heraus.
-// Zeichnet sich neu, sobald sich Einträge oder Verknüpfungen ändern (auch durch das andere Gerät).
+// Ansicht „PhysioZentrum“: Kosmos mit Kern „Physio“ und schwebenden Bubbles je Pfad (kosmos.js),
+// darunter eine leise Zeile mit Punkten und Verknüpfungen. Zeichnet Zahlen neu, sobald sich Daten ändern.
 import { el } from '../../ui/dom.js';
-import { kachel, kacheln } from '../../ui/kachel.js';
 import { on } from '../../core/events.js';
 import { zusatzNehmen } from '../../core/router.js';
-import { ARTEN } from './arten.js';
+import { kosmos } from './kosmos.js';
 import { oeffneMindmap } from './overlay.js';
 import { EINTRAEGE, LINKS, ladeEintraege, ladeLinks, zaehleLinks } from './daten.js';
 
 const zahl = (n, eins, viele) => `${n} ${n === 1 ? eins : viele}`;
 
-function mindmapKachel(anzahl, signal) {
-  const k = kachel({
-    symbol: 'physio',
-    titel: 'Mindmap',
-    wert: 'Öffnen',
-    text: anzahl ? 'Suchen, verknüpfen, hinzufügen' : 'Noch leer – hier legst du den ersten Punkt an',
-    gross: true,
-    onClick: () => oeffneMindmap({ ausKnopf: k, signal }),
-  });
-  k.dataset.mmStart = ''; // Overlay findet die Kachel so auch nach dem Neuzeichnen wieder
-  return k;
-}
-
 export function physioAnsicht({ signal }) {
-  const inhalt = el('div', { class: 'app__stack' });
+  const k = kosmos({ signal });
+  const zeile = el('p', { class: 'kos__zeile' });
+  const inhalt = el('div', { class: 'app__stack' }, [k.element, zeile]);
   let stand = 0; // nur das Ergebnis des neuesten Zeichnens zählt
   // Zusatz von außen (z. B. Heute): 'mindmap' oder 'neu' öffnet die Mindmap (dort „+ Neuer Punkt“),
   // sonst die id eines Punkts (Suche): Mindmap gleich mit seiner Fokus-Karte
@@ -40,18 +27,9 @@ export function physioAnsicht({ signal }) {
     const [eintraege, links] = await Promise.all([ladeEintraege(), ladeLinks()]);
     if (nr !== stand || signal.aborted) return;
 
-    const proArt = ARTEN.map((a) => {
-      const n = eintraege.filter((e) => e.art === a.id).length;
-      return kachel({ titel: a.mehrzahl, wert: String(n) });
-    });
+    k.daten(eintraege);
     const n = zaehleLinks(eintraege, links);
-    inhalt.replaceChildren(
-      kacheln([
-        mindmapKachel(eintraege.length, signal),
-        ...proArt,
-        kachel({ titel: 'Verknüpfungen', wert: String(n), text: zahl(eintraege.length, 'Punkt', 'Punkte') + ' gesamt' }),
-      ]),
-    );
+    zeile.textContent = `${zahl(eintraege.length, 'Punkt', 'Punkte')} · ${zahl(n, 'Verknüpfung', 'Verknüpfungen')}`;
   }
 
   on('daten', ({ table }) => {

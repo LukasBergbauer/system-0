@@ -1,6 +1,6 @@
 // Arten der Einträge im PhysioZentrum und ihre optionalen Felder.
 // Die Felder landen in der Spalte `felder` (JSON), z. B. { dosierung: '3 × 10' }.
-// Neue Art: hier ergänzen und in 003_physio.sql (check bei `art`) per neuer Migration erlauben.
+// Neue Art: hier ergänzen und per neuer Migration im Check bei `art` erlauben (zuletzt 018).
 
 export const ARTEN = [
   {
@@ -23,6 +23,16 @@ export const ARTEN = [
       { key: 'symptome', label: 'Symptome' },
       { key: 'tests', label: 'Tests' },
       { key: 'behandlung', label: 'Behandlung' },
+    ],
+  },
+  {
+    id: 'trainingsform',
+    name: 'Trainingsform',
+    mehrzahl: 'Trainingsformen',
+    felder: [
+      { key: 'ziel', label: 'Ziel' },
+      { key: 'dosierung', label: 'Belastung / Dosierung' },
+      { key: 'prinzipien', label: 'Prinzipien' },
     ],
   },
   {
