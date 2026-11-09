@@ -43,13 +43,13 @@
   Weiter beim ersten Satz ohne RIR (Übungen ohne Wdh starten deshalb immer vorn). Start aus Plan öffnet ihn direkt.
 - „Zuletzt <Datum>: …“ (`zuletztText` in rechnen.js) in Durchlauf, Einheit, Plan-Einheit und Übungsliste.
 - Plan: „▶ Start“ je Plan-Einheit, nur am eigenen Wochentag aktiv. Plan-Einheit: „Jetzt starten“ und Art weg.
-- Geprüft in iPhone-Breite (keine Überschneidung, kein Quer-Scrollen), nichts gespeichert. 010 ausgeführt. Offen: Geräte.
+- Geprüft in iPhone-Breite (keine Überschneidung, kein Quer-Scrollen), nichts gespeichert. 010 ausgeführt, auf Geräten geprüft.
 
 **Suche (09.11.2026).** `src/app/suche.js` durchsucht `training_uebungen` (Name, bei Physio-Verweis Physio-Titel; Notiz)
 und `trainingsplaene` (Name, Titel der Plan-Einheiten). Zusatz `uebung:<id>` / `plaene:<id>` öffnet in view.js Übung bzw. Plan
 (eigener Verlaufseintrag, Zurück → Liste). Lokal geprüft.
 
 ## Nächster Schritt (Plan)
-- Lukas prüft Training v2 + Suche auf Geräten; danach nächstes Modul laut Roadmap.
+- Erste Fassung fertig (v2 + Suche von Lukas geprüft). Weiteres nur nach Rückmeldung.
 
 ## Wünsche für später

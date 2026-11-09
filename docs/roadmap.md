@@ -302,7 +302,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 
 ## Phase 2 – Körper
 - (PhysioZentrum: Datenbank und Suche → nach Phase 1 vorgezogen)
-- [ ] Trainings-Notebook mit Übernahme von Übungen aus dem PhysioZentrum (`module/training.md`)
+- [x] Trainings-Notebook mit Übernahme von Übungen aus dem PhysioZentrum (`module/training.md`)
   - [x] Erste Fassung (09.11.2026): Einheiten, Sätze, Übungen (eigene + Verweis ins PhysioZentrum, Hyrox-Vorlagen),
         Verlauf/Bestwert je Übung. Migration `008_training.sql`; `sw.js` `v47`. Offen: Migration ausführen, auf Geräten prüfen
   - [x] Wochenpläne + Training auf Heute (09.11.2026): Pläne (wöchentlich, einer aktiv), Plan-Einheiten mit Ziel-Sätzen,
@@ -310,9 +310,9 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         008 + 009 ausgeführt, von Lukas auf Geräten geprüft.
   - [x] v2 nach Rückmeldung (09.11.2026): entschlackt (Art/RPE raus), „Heute“ mit großem Start, Start je Plan-Einheit nur am
         eigenen Tag, Durchlauf als Vollbild (Satz für Satz, −/+, RIR 1–4, „Wie war's?“), „Zuletzt …“ je Übung. Migration
-        `010_training_rir.sql`; `sw.js` `v51` (inkl. Wochen-Leiste im Hero-Stil). 010 ausgeführt. Offen: auf Geräten prüfen
+        `010_training_rir.sql`; `sw.js` `v51` (inkl. Wochen-Leiste im Hero-Stil). 010 ausgeführt, von Lukas auf Geräten geprüft
   - [x] Training in der Suche (⌘K) (09.11.2026): Gruppen „Trainings-Übungen“ (→ `#/training/uebung:<id>`) und
-        „Trainingspläne“ (→ `#/training/plaene:<id>`), keine Einheiten. `sw.js` `v52`. Lokal geprüft.
+        „Trainingspläne“ (→ `#/training/plaene:<id>`), keine Einheiten. `sw.js` `v52`. Von Lukas auf Geräten geprüft.
 
 ## Phase 3 – Kopf & Richtung
 - [ ] Lebensziele und Visionen (`module/ziele.md`)
