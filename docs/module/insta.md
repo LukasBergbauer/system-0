@@ -35,5 +35,5 @@ Grundsatz: keine Verbindung zu Instagram. Die App ist Lukas' eigene Kopie (offli
       Import/Export mit Attrappe getestet. Browser-Test nicht möglich (lokaler Server blockiert). Offen: Lukas führt `016` aus, prüft auf Geräten.
 
 ## Nächster Schritt (Plan)
-- Eigener Claude-Code-Agent (Lukas): liest den Export, schreibt „Was hat funktioniert, warum“ als `{"erkenntnisse":[…]}` zurück.
+- Claude-Agent für die Auswertung baut Lukas später separat (nicht Teil der App). Die App ist bereit: Export rein, `{"erkenntnisse":[…]}` zurück.
 - Claude-Planung der Skripte ausbauen (Prompt-Vorlagen je Art), geplante Posts im Kalender-Modul anzeigen.
