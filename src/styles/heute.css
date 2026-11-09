@@ -90,7 +90,7 @@
 .heute-ring small { display: block; font-size: var(--fs-label); opacity: .8; }
 
 /* Kennzahl-Kacheln */
-.heute-kz, .heute-karte, .heute-schnell { position: relative; padding: 20px; font: inherit; color: var(--text); border-radius: var(--radius-gross);
+.heute-kz, .heute-karte { position: relative; padding: 20px; font: inherit; color: var(--text); border-radius: var(--radius-gross);
   background: var(--glas-verlauf); border: 1px solid var(--glas-rand); box-shadow: var(--schatten);
   -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%);
   transition: transform 380ms var(--feder), box-shadow 380ms var(--ease); }
@@ -119,15 +119,6 @@
 .heute-spur--fertig path { animation: none; stroke-dashoffset: 0; }
 .heute-kz--akzent .heute-spur path { stroke: #fff; }
 @keyframes heute-zeichnen { to { stroke-dashoffset: 0; } }
-
-/* Schnellaktionen */
-.heute-schnell { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: var(--radius); font-weight: 600;
-  font-size: var(--fs-small); text-align: left; cursor: pointer; }
-.heute-schnell .heute-kz__symbol { width: 32px; height: 32px; flex: none; }
-.heute-schnell small { display: block; font-weight: 400; color: var(--text-2); font-size: var(--fs-label); }
-@media (hover: hover) { .heute-schnell:not(:disabled):hover { transform: translateY(-3px); box-shadow: var(--schatten-hoch); } }
-.heute-schnell:not(:disabled):active { transform: scale(.985); }
-.heute-schnell:disabled { cursor: default; opacity: .7; }
 
 @media (max-width: 760px) {
   .heute-kopf { flex-direction: column; align-items: flex-start; }

@@ -12,7 +12,6 @@ import { kacheln } from './kacheln.js';
 import { kalenderKarte } from './kalender-karte.js';
 import { verlauf } from './verlauf.js';
 import { donut } from './donut.js';
-import { schnellaktionen } from './schnell.js';
 import { routinenLeiste } from './routinen-leiste.js';
 import { rechneTraining, trainingLeiste } from './training.js';
 import { zieleLeiste } from './ziele-leiste.js';
@@ -50,7 +49,6 @@ export function heuteAnsicht({ signal }) {
         routinenLeiste(d.routinen),
         trainingLeiste(d.training),
         zieleLeiste(d.ziele),
-        ...schnellaktionen(z.woche, z.training),
         verlauf(d.todos, animiert),
         donut(d.todos, d.bereiche, animiert),
       ]),

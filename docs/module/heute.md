@@ -9,6 +9,9 @@
 ## Hinweise
 Liest nur Daten der anderen Module über `core/`, speichert selbst nichts.
 
+## Grundsatz
+- Heute ist nie fertig: Lukas kann die Startseite jederzeit umbauen lassen (Karten weg, neu, umsortieren), wie er es möchte.
+
 ## Stand
 Als Glas-Dashboard gebaut (Plan unten, Schritte a–e alle fertig, 09.11.2026).
 - [x] a) Daten-Rechnungen + Kopf, Hero mit Ring, 4 Kacheln (08.11.2026). Dateien in `src/module/heute/`:
@@ -37,8 +40,8 @@ Als Glas-Dashboard gebaut (Plan unten, Schritte a–e alle fertig, 09.11.2026).
       Symbol `ziele`. `sw.js` `v42`. Lokal geprüft (Mac auf/eingeklappt, iPhone-Größe).
 - [x] d) Akzent-Knopf, Neu-Menü, Schnellaktionen (09.11.2026). `kopf-knoepfe.js`: „Akzent“ (Glas-Pille mit Farbpunkt,
       Popover mit den 7 Farben + eigener Farbe über `core/akzent.js`) und „Neu“ (dunkle Pille, Menü To-do · Termin ·
-      Physio-Punkt). Beide als HTML-Popover (Tipp daneben/Esc schließt). `schnell.js`: Neues To-do · Termin (Heute N Termine)
-      · Training starten (kommt bald, ausgegraut) · Mindmap öffnen. Weg über `core/`: Router-Zusatz `#/<bereich>/<zusatz>`,
+      Physio-Punkt). Beide als HTML-Popover (Tipp daneben/Esc schließt). Schnellaktionen (`schnell.js`) am 09.11.2026
+      auf Wunsch entfernt (`sw.js` `v57`). Weg über `core/`: Router-Zusatz `#/<bereich>/<zusatz>`,
       der Bereich liest ihn beim Öffnen mit `zusatzNehmen()` (entfernt ihn aus der Adresse). Bekannt: `todos/neu`
       (Fokus in die Schnelleingabe), `kalender/neu` (Termin-Fenster), `kalender/woche` (Wochenansicht, jetzt auch für
       „Woche ansehen“), `physio/neu` und `physio/mindmap` (öffnen die Mindmap; neuer Punkt dort über „+ Neuer Punkt“).
