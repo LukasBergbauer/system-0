@@ -29,6 +29,7 @@ Für das ganze iPhone wäre die iOS-Funktion „Bildschirmzeit“ zuständig.
       Heute: `heute/routinen-leiste.js` (ganze Breite unter den Kacheln, Füllung = Anteil geschafft).
       Einmal fertig bleibt der Tag fertig, auch bei „Nochmal“. `sw.js` `v45`.
       Lokal geprüft (Ansicht ohne Login eingehängt, Mac + iPhone-Größe): Anlegen, Schritte, Durchlauf, Weiter, Geschafft
-- [ ] Lukas: `006_routinen.sql` in Supabase ausführen, dann mit Login auf Mac und iPhone prüfen (Abgleich)
+- [x] Migration `006_routinen.sql` in Supabase ausgeführt
+- [ ] Mit Login auf Mac und iPhone prüfen (Abgleich)
 
 ## Wünsche für später
