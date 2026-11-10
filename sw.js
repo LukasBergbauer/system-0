@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v119';
+const VERSION = 'v120';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -186,6 +186,7 @@ const APP_FILES = [
   './src/module/physio/view.js',
   './src/module/physio/kosmos.js',
   './src/module/physio/tiefe.js',
+  './src/module/physio/datenbank.js',
   './src/module/physio/glas-flaeche.js',
   './src/module/physio/bereiche.js',
   './src/module/physio/notizen.js',
@@ -315,6 +316,15 @@ self.addEventListener('fetch', (event) => {
   // Nur eigene Dateien und die Supabase-Bibliothek, nur GET.
   // Alles andere (Supabase-Daten, Login) geht direkt ins Netz und wird nie gecacht.
   if (event.request.method !== 'GET' || !(own || url.href === LIB)) return;
+
+  // Lernzettel (Physio-Datenbank): nicht in APP_FILES, damit neue ohne Versionswechsel erscheinen.
+  // Netz zuerst und merken, offline aus dem Cache.
+  if (own && url.pathname.includes('/lernzettel/')) {
+    event.respondWith(caches.open(CACHE).then((cache) => fetch(event.request, { cache: 'no-cache' })
+      .then((antwort) => { if (antwort.ok) cache.put(url.pathname, antwort.clone()); return antwort; })
+      .catch(() => cache.match(url.pathname).then((hit) => hit || Response.error()))));
+    return;
+  }
 
   if (DEV && own) {
     // no-cache: beim Server nachfragen statt alte Dateien aus dem Browser-Zwischenspeicher zu nehmen.

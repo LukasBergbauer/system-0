@@ -165,3 +165,17 @@
   .tief, .tief__innen { transition: none; }
   .tief--erst .tief__zeile { animation: none; }
 }
+
+/* Datenbank (datenbank.js): Knopf unter dem Kosmos + Lernzettel-Ansicht */
+.physio-db { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); width: 100%; min-height: var(--tap);
+  padding: var(--space-4) var(--space-5); border: var(--glas-kante) solid var(--glas-rand); border-radius: var(--radius-gross);
+  background: var(--glas-verlauf); box-shadow: var(--schatten); backdrop-filter: blur(var(--blur)) saturate(160%); -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  font: inherit; color: var(--text); text-align: left; cursor: pointer; transition: transform var(--duration) var(--feder); }
+.physio-db:active { transform: scale(.985); }
+.physio-db__titel { font-size: var(--fs-title); font-weight: 650; letter-spacing: -0.01em; }
+.physio-db__text { color: var(--text-2); font-size: var(--fs-small); }
+.lernzettel { padding: var(--space-5); border-radius: var(--radius-gross); background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand); overflow-wrap: anywhere; }
+.lernzettel__text { max-width: 68ch; font-size: var(--fs-normal); }
+.lernzettel__text blockquote { margin: 0 0 var(--space-4); padding: var(--space-3) var(--space-4); border-left: 3px solid var(--accent); border-radius: var(--radius-klein); background: var(--surface-2); }
+.lernzettel__text blockquote p { margin: 0; }
+.lernzettel__zurueck { justify-self: start; }

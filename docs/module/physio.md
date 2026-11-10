@@ -363,7 +363,8 @@ Vision Lukas: Physio = Berufs-Datenbank, unendlich ausbaubar, jederzeit anpassba
   am Griff verschiebbar, Text bearbeitbar, × schließt (`schwebend.js`). Gerät merkt Notiz + Platz (localStorage). Nicht über der Mindmap (Dialog liegt oben).
   Lokal geprüft (Mac-Breite): Schweben, Ziehen, Verbindungs-Fenster, Feld in Verknüpfen; Speichern der Link-Notiz nicht (023 fehlt noch).
 
-## Lernzettel-Import (10.11.2026, `sw.js` `v119`)
-Prompt „Lernzettel → Physio“ (Einstellungen → Prompts, `app/prompt-vorlagen.js`): Claude Code macht aus einer Lerndatei Physio-Punkte
-und schreibt `supabase/physio-import/<thema>.sql` (insert in `physio_eintraege` mit `user_id` aus `auth.users`, doppelte Titel übersprungen;
-`physio_links` per Titel). Lukas führt sie im SQL-Editor aus, die App holt die Punkte per Sync. Hinweis: Vorlagen erscheinen nur, solange noch keine Prompts gespeichert sind.
+## Datenbank / Lernzettel-Vault (10.11.2026, `sw.js` `v120`)
+Knopf „Datenbank“ unter dem Kosmos (`view.js`) → Glas-Fläche `datenbank.js`: Suche, Liste, Lernzettel als Markdown (`ui/markdown.js`).
+Unabhängig von der Mindmap. Dateien: `lernzettel/physio/*.md` + `index.json` (`[{ datei, titel, kurz, thema, datum }]`, neueste oben).
+Anlegen: Lukas gibt Datei + Prompt „Lernzettel → Physio“ (Einstellungen → Prompts, Stil steht im Prompt) an Claude Code → Datei + Index + Commit → `git push`.
+`sw.js`: `/lernzettel/` Netz zuerst, sonst Cache (offline lesbar, nachdem einmal geöffnet); kein Versionswechsel für neue Zettel nötig.
