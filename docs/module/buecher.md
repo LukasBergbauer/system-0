@@ -15,7 +15,9 @@
       Lokal geprüft (Mac + iPhone-Breite). `015` ausgeführt, von Lukas auf Geräten geprüft.
 
 - [x] Phase 7.6 (10.11.2026, `sw.js` `v115`, Migration `024_buch_notizen.sql` – **noch ausführen**): Plan unten umgesetzt.
-      `seiten.js` (Kreis + Fenster „Seite [ ] von [ ]“ in einer Zeile, v116), `notizen.js` (Knöpfe + Einträge), Heute `absatz.js` (Art `absatz`). Lokal geprüft (Mac + iPhone).
+      `seiten.js` (Kreis + Fenster „Seite [ ] von [ ]“ in einer Zeile, v116)
+      v117: „Absatz“ heißt im UI „Zitat“ (Daten bleiben `art='absatz'`). Fenster = „Seite [ ]“ + eine Notizbox. Beim Buch Abschnitte
+      „Zitate“ und „Zusammenfassungen“ mit Anzahl, nach Seite. Heute-Feld heißt „Zitat“., `notizen.js` (Knöpfe + Einträge), Heute `absatz.js` (Art `absatz`). Lokal geprüft (Mac + iPhone).
 
 ## Plan Phase 7.6 (10.11.2026)
 - Raster: jedes Buch in eigener Glas-Box (Cover, Titel, Autor). Kreis unten rechts am Cover = Seite / Seiten;

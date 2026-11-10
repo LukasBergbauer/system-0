@@ -30,7 +30,8 @@
 
 /* Notizen: Zusammenfassung / Absatz mit Seite */
 .buch-notizen { display: flex; flex-direction: column; gap: var(--space-4); }
-.buch-notizen__liste { display: flex; flex-direction: column; gap: var(--space-3); max-width: 62ch; }
+.buch-notizen__liste { display: flex; flex-direction: column; gap: var(--space-5); max-width: 62ch; }
+.buch-notizen__gruppe { display: flex; flex-direction: column; gap: var(--space-3); }
 .buch-notizen__liste:empty { display: none; }
 .buch-notiz { display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-4); border-radius: var(--radius); cursor: pointer;
   font: inherit; color: var(--text); text-align: left; background: var(--surface); border: var(--glas-kante) solid var(--glas-rand); }
@@ -38,7 +39,8 @@
 .buch-notiz__seite { font-size: var(--fs-label); font-weight: 600; letter-spacing: var(--sperrung); text-transform: uppercase; color: var(--text-3); }
 .buch-notiz__text { margin: 0; line-height: 1.6; white-space: pre-wrap; }
 blockquote.buch-notiz__text { padding-left: var(--space-4); border-left: 2px solid var(--accent); font-style: italic; font-size: var(--fs-title); line-height: 1.5; }
-.buch-notiz-feld { min-height: 140px; resize: vertical; font: inherit; line-height: 1.55; }
+.buch-seiten-feld--klein { flex: 0 0 110px; }
+.buch-notiz-feld { width: 100%; margin-top: var(--space-3); padding: var(--space-3); min-height: 160px; resize: vertical; font: inherit; line-height: 1.55; }
 .buch-kachel__titel { font-weight: 600; line-height: 1.25; }
 .buch-kachel small { color: var(--text-2); font-size: var(--fs-small); }
 

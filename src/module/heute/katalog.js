@@ -38,7 +38,7 @@ export const ARTEN = {
     gross: ({ d }) => trainingLeiste(d.training), klein: ({ z, animiert }) => kennzahl('training', z, animiert) },
   affirmation: { titel: 'Affirmation', bereich: 'affirmationen', symbol: 'affirmation', std: [3, 1],
     gross: ({ d }) => affirmationKarte(d.affirmationen) },
-  absatz: { titel: 'Lieblingsstelle', bereich: 'buecher', symbol: 'buecher', std: [2, 1], gross: ({ d }, ref) => absatzKarte(d.buecher, ref) },
+  absatz: { titel: 'Zitat', bereich: 'buecher', symbol: 'buecher', std: [2, 1], gross: ({ d }, ref) => absatzKarte(d.buecher, ref) },
   quiz: { titel: 'Daily-Quiz', bereich: 'quiz', symbol: 'quiz', std: [1, 1], gross: ({ d }) => quizKarte(d.quiz) },
   routinen: { titel: 'Routinen', bereich: 'routinen', symbol: 'routinen', std: [4, 1], ab: [2, 1],
     gross: ({ d }) => routinenLeiste(d.routinen),

@@ -1,4 +1,4 @@
-// Heute: „Lieblingsstelle“ – ein Absatz aus Bücher (buch_notizen, art 'absatz'). Ohne ref: Absatz des Tages, antippen = nächster;
+// Heute: „Zitat“ – ein Zitat aus Bücher (buch_notizen, art 'absatz'). Ohne ref: Absatz des Tages, antippen = nächster;
 // mit ref: genau dieser Absatz. „Zum Buch“ öffnet es (#/buecher/<id>). Liest nur Rohdaten (buch_notizen, buecher).
 import { el } from '../../ui/dom.js';
 import { go } from '../../core/router.js';
@@ -14,7 +14,7 @@ export function absatzKarte(d, ref) {
   if (!a) return null;
   const buch = d.buecher.find((b) => b.id === a.buch_id);
   const karte = el('div', { class: 'heute-karte heute-absatz' }, [
-    el('div', { class: 'heute-karte__kopf' }, [el('div', {}, [el('h3', { text: 'Lieblingsstelle' }),
+    el('div', { class: 'heute-karte__kopf' }, [el('div', {}, [el('h3', { text: 'Zitat' }),
       el('small', { text: !ref && pool.length > 1 ? 'Antippen für die nächste' : '' })])]),
     el('blockquote', { class: 'heute-absatz__text', text: a.text }),
     el('button', { class: 'heute-absatz__quelle', text: [buch?.titel, a.seite != null && `S. ${a.seite}`].filter(Boolean).join(' · ') || 'Zum Buch',
