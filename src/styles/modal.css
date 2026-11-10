@@ -53,8 +53,15 @@
 }
 .modal__actions {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
   gap: var(--space-2);
+}
+/* iPhone: Knöpfe nebeneinander, gleich breit */
+@media (max-width: 767px) {
+  .modal__actions .btn {
+    flex: 1 1 0;
+  }
 }
 .modal.is-closing::backdrop {
   animation: modal-fade var(--duration) var(--ease) reverse forwards;

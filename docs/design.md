@@ -34,6 +34,7 @@ Hintergrund, Hero-Flächen, Haken, Fortschritt und Schatten werden per `color-mi
 | `--duration` / `--duration-slow` | 200 / 700 ms | Animationen / Akzent-Wechsel |
 | `--ease` / `--feder` | Abbremsen / leichtes Nachfedern | Bewegung |
 | `--tap` | 44px | Tippflächen |
+| `--knopf` | 44 px (Maus: 40 px) | eine Höhe für `.btn` und Heute-Pillen; mehrere Knöpfe nebeneinander (`.knopfreihe`, Fenster-Fuß; iPhone gleich breit) |
 | `--sidebar` / `--sidebar-zu` | 236 / 72 px | Seitenleiste beim Drüberfahren / in Ruhe |
 
 `.hell` (Mindmap-Overlay): deckendes Warmweiß statt Glas, gleiche Token-Namen.

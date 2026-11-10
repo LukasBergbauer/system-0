@@ -401,3 +401,4 @@ Vorschau ohne Login: `tests/vorschau.html` (lokal, Supabase aus). Muster: `muste
 - [x] 3. Bereichsfarben (`--c-<id>`, `data-bereich` → `--bereich`) in Navi, Seite und Heute-Feldern (`design.md`)
 - [x] 4. Akzente Weiß + Graphit (`akzent-neutral.css`), Nebentext kontrastreicher (`design.md` → Akzentfarbe)
 - [x] 5. Überschriften größer/edler (`--fs-seite` 42 px, 650) mit Bereichs-Symbol im Seitentitel und in Heute-Karten
+- [x] 6. Knöpfe: eine Höhe (`--knopf`), nebeneinander (`.knopfreihe`, Fenster-Fuß am iPhone gleich breit); Prüfskript fand keine gestapelten Paare

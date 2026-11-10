@@ -80,11 +80,15 @@
 
   /* Bedienung */
   --tap: 44px;
+  --knopf: 44px; /* eine Höhe für alle Knöpfe/Pillen (Mac mit Maus: 40 px) */
   --sidebar: 236px; /* Seitenleiste Mac, ausgeklappt */
   --sidebar-zu: 72px; /* eingeklappt */
 
   transition: --accent var(--duration-slow) var(--ease);
   color-scheme: light;
+}
+@media (pointer: fine) {
+  :root { --knopf: 40px; }
 }
 
 /* data-bereich="<id>" → --bereich (Seite, Navi-Eintrag, Feld auf Heute); heute = Akzent */
