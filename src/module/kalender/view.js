@@ -1,7 +1,7 @@
-// Ansicht „Kalender“: Chips „Liste · Woche · Monat“, Schnelleingabe und Knopf „+ Termin“.
+// Ansicht „Kalender“: Chips „Liste · Tag · Woche · Monat“, Schnelleingabe und Knopf „+ Termin“.
 // Fällige To-dos stehen mit drin (gedämpft, antippen = in To-dos öffnen).
 // Liste = „Nächste Termine“ in Gruppen (Heute · Morgen · Diese Woche · Später), Vergangenes ausgeblendet.
-// Woche = Mo–So mit Pfeilen (woche.js), Monat = Raster + Tagesliste (monat.js).
+// Tag/Woche = Zeitraster (tag.js, woche.js, raster.js), Monat = Raster + Tagesliste (monat.js).
 // Zeichnet sich neu, sobald sich Termine ändern (auch durch das andere Gerät).
 import { abschnitt } from '../../ui/abschnitt.js';
 import { el } from '../../ui/dom.js';
@@ -12,7 +12,8 @@ import { zusatzNehmen } from '../../core/router.js';
 import { TERMINE, ladeTermine, faelligeTodos } from './daten.js';
 import { monatAnsicht, monatsErster } from './monat.js';
 import { go } from '../../core/router.js';
-import { gruppiere, tagText, zeitHM, letzterTag } from './zeit.js';
+import { gruppiere, tagText, zeitHM, letzterTag, mitternacht } from './zeit.js';
+import { tagAnsicht } from './tag.js';
 import { oeffneTermin } from './bearbeiten.js';
 import { schnelleingabe } from './schnelleingabe.js';
 import { wocheAnsicht, montag } from './woche.js';
@@ -35,13 +36,16 @@ function unterText(t, gruppe) {
   return teile.join(' · ');
 }
 
-// Google-Termine: gedämpft und nicht antippbar (nur lesen)
+// Was beim Antippen passiert (Google: nichts, nur lesen)
+const tippen = (t) => (t.google ? null : t.todo ? () => go(`todos/${t.id}`) : () => oeffneTermin(t.serie || t));
+
+// Google-Termine: gedämpft und nicht antippbar
 function zeile(t, gruppe) {
   const z = listRow({
     title: t.titel,
     sub: unterText(t, gruppe),
     start: el('span', { class: `termin-zeit${t.ganztaegig ? ' termin-zeit--ganz' : ''}`, text: t.todo ? '○' : t.ganztaegig ? 'ganztägig' : zeitHM(new Date(t.start)) }),
-    onClick: t.google ? null : t.todo ? () => go(`todos/${t.id}`) : () => oeffneTermin(t.serie || t),
+    onClick: tippen(t),
   });
   if (t.google) z.classList.add('termin--google');
   if (t.todo) z.classList.add('termin--todo');
@@ -53,7 +57,7 @@ const MERKER = 'system0-kalender-ansicht'; // nur auf diesem Gerät gemerkt, wie
 function gemerkt() {
   try {
     const wert = localStorage.getItem(MERKER);
-    return wert === 'woche' || wert === 'monat' ? wert : 'liste';
+    return ['tag', 'woche', 'monat'].includes(wert) ? wert : 'liste';
   } catch {
     return 'liste';
   }
@@ -86,6 +90,8 @@ export function kalenderAnsicht({ signal }) {
   if (zusatz === 'neu') requestAnimationFrame(() => oeffneTermin());
   if (zusatz === 'woche' || zusatz === 'neu') zusatz = null;
   let wochenStart = montag(new Date());
+  let tagStart = mitternacht(new Date());
+  let lageSchluessel = ''; // Scroll-Lage des Zeitrasters bleibt beim Neuzeichnen derselben Ansicht
   let monatStart = monatsErster(new Date());
   let monatTag = null;
   let stand = 0; // nur das Ergebnis des neuesten Zeichnens zählt
@@ -98,22 +104,23 @@ export function kalenderAnsicht({ signal }) {
     zusatz = null;
     if (gesucht?.google) { ansicht = 'woche'; wochenStart = montag(new Date(gesucht.start)); }
     else if (gesucht) oeffneTermin(gesucht);
-    inhalt.replaceChildren(...(ansicht === 'liste'
-      ? liste(termine)
-      : ansicht === 'monat' ? [monatAnsicht({
-        termine,
-        start: monatStart,
-        tag: monatTag,
-        zeile: (t) => zeile(t, 'heute'),
-        onTag: (d) => { monatTag = d; },
-        onWechsel: (start) => { monatStart = start; monatTag = null; zeichne(); },
-      })]
-      : [wocheAnsicht({
-        termine,
-        start: wochenStart,
-        zeile: (t) => zeile(t, 'heute'),
-        onWechsel: (start) => { wochenStart = start; zeichne(); },
-      })]));
+    const schluessel = `${ansicht}${ansicht === 'tag' ? +tagStart : +wochenStart}`;
+    const alt = inhalt.querySelector('.zr');
+    const lage = alt && schluessel === lageSchluessel ? { top: alt.scrollTop, left: alt.scrollLeft } : null;
+    lageSchluessel = schluessel;
+    const raster = { termine, tippen, lage };
+    inhalt.replaceChildren(...(ansicht === 'liste' ? liste(termine)
+      : ansicht === 'tag' ? [tagAnsicht({ ...raster, start: tagStart, onWechsel: (d) => { tagStart = d; zeichne(); } })]
+        : ansicht === 'woche' ? [wocheAnsicht({ ...raster, start: wochenStart, onWechsel: (d) => { wochenStart = d; zeichne(); } })]
+          : [monatAnsicht({
+            termine,
+            start: monatStart,
+            tag: monatTag,
+            zeile: (t) => zeile(t, 'heute'),
+            onTag: (d) => { monatTag = d; },
+            onTagAnsicht: (d) => { tagStart = d; umschalter.select('tag'); },
+            onWechsel: (start) => { monatStart = start; monatTag = null; zeichne(); },
+          })]));
   }
 
   on('daten', ({ table }) => {
@@ -127,7 +134,7 @@ export function kalenderAnsicht({ signal }) {
   auffrischen();
 
   const umschalter = chips({
-    items: [{ id: 'liste', label: 'Liste' }, { id: 'woche', label: 'Woche' }, { id: 'monat', label: 'Monat' }],
+    items: [{ id: 'liste', label: 'Liste' }, { id: 'tag', label: 'Tag' }, { id: 'woche', label: 'Woche' }, { id: 'monat', label: 'Monat' }],
     active: ansicht,
     onChange: (id) => { ansicht = id; merke(id); zeichne(); },
     aktionen: [{ label: 'Google', onClick: oeffneGoogleAdresse }],

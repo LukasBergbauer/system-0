@@ -63,7 +63,9 @@ Bild-Objekt (Vorschlag): **steinerne Sonnenuhr**. Prompt aus `design.md`, `[OBJE
 | `view.js` | Knopf „+ Termin“, Liste „Nächste Termine“ in Gruppen; zeichnet bei Ereignis `daten` neu |
 | `bearbeiten.js` | Modal: neu/bearbeiten/löschen, ganztägig blendet Uhrzeiten aus |
 | `erkennen.js` | Schnelleingabe verstehen: Text → Titel, Start, Ende, ganztägig (reine Funktion) |
-| `woche.js` | Wochenansicht Mo–So mit Pfeilen ‹ ›, Zeitraum antippen = diese Woche |
+| `woche.js` | Wochenansicht (Zeitraster Mo–So), Pfeile ‹ ›; `navKopf` auch für Tag/Monat |
+| `tag.js` | Tagesansicht (Zeitraster, 1 Tag), Pfeile ±1 Tag |
+| `raster.js` | Zeitraster: Stunden, Kopf mit ganztägigen Pillen, Glas-Blöcke in Spuren, Jetzt-Linie |
 | `google.js` | Google-Abruf über die Supabase-Funktion, Zwischenspeicher im Gerät (IndexedDB `meta`, `kalender:google`), höchstens alle 15 Min. |
 | `google-adresse.js` | Modal (Chip „Google“): geheime iCal-Adresse eintragen/entfernen, Stand des letzten Abrufs |
 | `ical.js` | .ics lesen: Titel, Beginn, Ende, Ort, ausgelassene/verschobene/abgesagte Termine |
@@ -98,6 +100,18 @@ Stile: `src/styles/kalender.css`.
 
 - [x] Extra (09.11.2026): Wiederholungen, Monatsansicht, fällige To-dos im Kalender. Migration `019`; `sw.js` `v82`.
       Tests: Erkennung 20/20, iCal 10/10. Offen: 019 ausführen, auf Geräten prüfen.
+
+## Phase 7.2 – Tag / Woche / Monat mit Zeitraster (10.11.2026)
+Plan: Chips „Liste · Tag · Woche · Monat“ (Liste, Schnelleingabe, Google bleiben).
+- `raster.js`: gemeinsames Zeitraster für Tag und Woche. Ein Scroll-Fenster: Stunden links (klebt), Kopf mit Tag +
+  ganztägigen Pillen oben (klebt), Termine als Glas-Blöcke (Höhe = Dauer, überlappende nebeneinander), Jetzt-Linie.
+  Beim Öffnen auf 7 Uhr bzw. jetzt − 1 h gescrollt; Neuzeichnen (jede Minute) behält die Scroll-Lage.
+- `tag.js`: ein Tag, Pfeile ±1 Tag. `woche.js`: 7 Spalten, Mac alle sichtbar, iPhone 3 sichtbar und waagrecht wischbar
+  (scroll-snap, reines CSS), Pfeile ±7 Tage.
+- Monat bleibt Raster; Mac: Uhrzeit vor Titel, „+n“ bei mehr als 3; gewählten Tag nochmal antippen = Tagesansicht.
+- Stile `kalender-raster.css` (Fenster, Kopf, Stunden) + `kalender-block.css` (Blöcke, Pillen, Jetzt-Linie).
+- [x] Gebaut und lokal geprüft (10.11.2026, Mac 1300 px + iPhone 375 px, `tests/vorschau.html`): Überlappung nebeneinander,
+      mehrtägig ganztägig je Tag, Block antippen = bearbeiten, Monat→Tag, iPhone-Woche startet bei heute. `sw.js` `v114`.
 
 ## Wünsche für später
 - [x] Monatsansicht

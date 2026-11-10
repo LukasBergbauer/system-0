@@ -1,21 +1,18 @@
 // Monatsansicht: Pfeile ‹ › mit Monatsname (antippen = dieser Monat), Glas-Raster Mo–So mit Punkten je Termin
-// (Mac: kurze Titel), darunter die Termine des gewählten Tags. Tag antippen wechselt nur die Liste darunter.
+// (Mac: Uhrzeit + kurzer Titel, „+n“), darunter die Termine des gewählten Tags. Tag antippen wechselt die Liste
+// darunter, gewählten Tag nochmal antippen = Tagesansicht (onTagAnsicht).
 import { abschnitt } from '../../ui/abschnitt.js';
 import { el } from '../../ui/dom.js';
 import { list } from '../../ui/list.js';
-import { plusTage, tagISO } from './zeit.js';
-import { montag } from './woche.js';
+import { plusTage, tagISO, zeitHM } from './zeit.js';
+import { montag, navKopf } from './woche.js';
 
 export const monatsErster = (d) => new Date(d.getFullYear(), d.getMonth(), 1);
 const amTag = (t, von) => Date.parse(t.start) < +plusTage(von, 1) && Date.parse(t.ende) > +von;
 const sortiert = (liste) => liste.sort((a, b) => !!b.ganztaegig - !!a.ganztaegig || Date.parse(a.start) - Date.parse(b.start));
 
-function pfeil(text, label, onClick) {
-  return el('button', { class: 'btn btn--ghost woche__pfeil', text, attrs: { type: 'button', 'aria-label': label }, on: { click: onClick } });
-}
-
 // start = 1. des Monats; tag = gewählter Tag (oder null); onTag(d) merkt die Wahl
-export function monatAnsicht({ termine, start, tag, onWechsel, onTag, zeile }) {
+export function monatAnsicht({ termine, start, tag, onWechsel, onTag, onTagAnsicht, zeile }) {
   const heute = tagISO(new Date());
   const erster = montag(start);
   const wochen = Math.ceil(((start - erster) / 864e5 + new Date(start.getFullYear(), start.getMonth() + 1, 0).getDate()) / 7);
@@ -32,14 +29,20 @@ export function monatAnsicht({ termine, start, tag, onWechsel, onTag, zeile }) {
       on: { click: () => waehle(d, z) },
     }, [
       el('span', { class: 'monat__zahl', text: d.getDate() }),
-      el('span', { class: 'monat__punkte' }, anTag.slice(0, 3).map((t) =>
-        el('i', { class: `monat__punkt${t.google ? ' monat__punkt--google' : ''}${t.todo ? ' monat__punkt--todo' : ''}`, text: t.titel }))),
+      el('span', { class: 'monat__punkte' }, [
+        ...anTag.slice(0, 3).map((t) => el('i', {
+          class: `monat__punkt${t.google ? ' monat__punkt--google' : ''}${t.todo ? ' monat__punkt--todo' : ''}`,
+          text: `${t.ganztaegig ? '' : `${zeitHM(new Date(t.start))} `}${t.titel}`,
+        })),
+        anTag.length > 3 && el('i', { class: 'monat__mehr', text: `+${anTag.length - 3}` }),
+      ]),
     ]);
     z.datum = d;
     return z;
   });
 
   function waehle(d, zelle) {
+    if (zelle.classList.contains('monat__tag--an')) { onTagAnsicht(d); return; }
     gewaehlt = d;
     onTag(d);
     zellen.forEach((z) => z.classList.toggle('monat__tag--an', z === zelle));
@@ -53,11 +56,13 @@ export function monatAnsicht({ termine, start, tag, onWechsel, onTag, zeile }) {
 
   const name = start.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });
   return el('div', { class: 'woche monat' }, [
-    el('div', { class: 'woche__kopf' }, [
-      pfeil('‹', 'Voriger Monat', () => onWechsel(new Date(start.getFullYear(), start.getMonth() - 1, 1))),
-      el('button', { class: 'btn btn--ghost woche__zeitraum', text: name, attrs: { type: 'button', title: 'Dieser Monat' }, on: { click: () => onWechsel(monatsErster(new Date())) } }),
-      pfeil('›', 'Nächster Monat', () => onWechsel(new Date(start.getFullYear(), start.getMonth() + 1, 1))),
-    ]),
+    navKopf({
+      text: name,
+      titel: 'Dieser Monat',
+      zurueck: () => onWechsel(new Date(start.getFullYear(), start.getMonth() - 1, 1)),
+      vor: () => onWechsel(new Date(start.getFullYear(), start.getMonth() + 1, 1)),
+      jetzt: () => onWechsel(monatsErster(new Date())),
+    }),
     el('div', { class: 'monat__raster' }, [
       ...['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'].map((w) => el('span', { class: 'monat__wt label', text: w })),
       ...zellen,

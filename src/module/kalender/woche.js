@@ -1,9 +1,8 @@
-// Wochenansicht: oben Pfeile ‹ › und der Zeitraum (antippen = diese Woche), darunter Mo–So
-// als Abschnitte mit den Terminen des Tags. Mehrtägige Termine stehen an jedem ihrer Tage.
-import { abschnitt } from '../../ui/abschnitt.js';
+// Wochenansicht: Pfeile ‹ › und Zeitraum (antippen = diese Woche), darunter das Zeitraster Mo–So
+// (raster.js). Mac: alle 7 Tage, iPhone: 3 sichtbar, waagrecht wischbar.
 import { el } from '../../ui/dom.js';
-import { list } from '../../ui/list.js';
-import { plusTage, tagISO } from './zeit.js';
+import { plusTage } from './zeit.js';
+import { zeitraster } from './raster.js';
 
 // Montag 0:00 Uhr der Woche, in der d liegt
 export function montag(d) {
@@ -19,32 +18,28 @@ function zeitraum(start) {
   return `${von} – ${kurz(ende, { day: 'numeric', month: 'short', year: 'numeric' })}`;
 }
 
-function pfeil(text, label, onClick) {
+export function pfeil(text, label, onClick) {
   return el('button', { class: 'btn btn--ghost woche__pfeil', text, attrs: { type: 'button', 'aria-label': label }, on: { click: onClick } });
 }
 
-// termine: alle (auch vergangene); zeile(termin) baut eine Listenzeile
-export function wocheAnsicht({ termine, start, onWechsel, zeile }) {
-  const heute = tagISO(new Date());
-  const tage = Array.from({ length: 7 }, (_, i) => {
-    const von = plusTage(start, i);
-    const bis = plusTage(von, 1);
-    const anTag = termine
-      .filter((t) => Date.parse(t.start) < +bis && Date.parse(t.ende) > +von)
-      .sort((a, b) => Date.parse(a.start) - Date.parse(b.start));
-    const istHeute = tagISO(von) === heute;
-    return el('section', { class: `woche__tag${istHeute ? ' woche__tag--heute' : ''}` }, [
-      abschnitt({ titel: kurz(von, { weekday: 'short', day: 'numeric', month: 'numeric' }), zahl: istHeute ? 'Heute' : null }),
-      anTag.length ? list(anTag.map(zeile)) : el('p', { class: 'woche__leer', text: '—' }),
-    ]);
-  });
+// Kopfzeile mit ‹ Titel › (auch für Tag und Monat)
+export function navKopf({ text, titel, zurueck, vor, jetzt }) {
+  return el('div', { class: 'woche__kopf' }, [
+    pfeil('‹', `${titel} zurück`, zurueck),
+    el('button', { class: 'btn btn--ghost woche__zeitraum', text, attrs: { type: 'button', title: titel }, on: { click: jetzt } }),
+    pfeil('›', `${titel} vor`, vor),
+  ]);
+}
 
+export function wocheAnsicht({ termine, start, onWechsel, tippen, lage }) {
   return el('div', { class: 'woche' }, [
-    el('div', { class: 'woche__kopf' }, [
-      pfeil('‹', 'Vorige Woche', () => onWechsel(plusTage(start, -7))),
-      el('button', { class: 'btn btn--ghost woche__zeitraum', text: zeitraum(start), attrs: { type: 'button', title: 'Diese Woche' }, on: { click: () => onWechsel(montag(new Date())) } }),
-      pfeil('›', 'Nächste Woche', () => onWechsel(plusTage(start, 7))),
-    ]),
-    ...tage,
+    navKopf({
+      text: zeitraum(start),
+      titel: 'Diese Woche',
+      zurueck: () => onWechsel(plusTage(start, -7)),
+      vor: () => onWechsel(plusTage(start, 7)),
+      jetzt: () => onWechsel(montag(new Date())),
+    }),
+    zeitraster({ termine, start, tage: 7, art: 'woche', tippen, lage }),
   ]);
 }

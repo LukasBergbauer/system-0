@@ -438,7 +438,7 @@ Vorgemerkt (später): Sonntags-Reflexion zum Durchklicken über alle Bereiche.
 ## Phase 7 – Funktionen je Modul (Wünsche Lukas, 10.11.2026)
 Reihenfolge, je Punkt eigener Commit + `sw.js` hochzählen, lokal Mac + iPhone-Größe prüfen:
 - [x] 1. Heute: jede Box (auch klein) zeigt den Modulnamen (v109)
-- [ ] 2. Kalender: echte Tag-/Woche-/Monat-Ansicht (Zeitraster), Glas-Stil
+- [x] 2. Kalender (v114): Chips Liste · Tag · Woche · Monat; Tag/Woche als Zeitraster mit Glas-Blöcken, Jetzt-Linie, iPhone-Woche 3 Tage wischbar
 - [x] 3. To-dos (v110): Box „Heute“ + „Morgen“ vorneweg; morgige rutschen am Folgetag nach Heute; nicht erledigte von gestern
       unten als „Nicht erledigt“ mit Datum; Strich neben dem Titel weg; Bereichs-Chips unter „Neues To-do“ weg (Bereiche bleiben)
 - [x] 4. Routinen: strukturierter anordnen (Abschnitte Morgen/Abend/Weitere, v111)
@@ -446,5 +446,5 @@ Reihenfolge, je Punkt eigener Commit + `sw.js` hochzählen, lokal Mac + iPhone-G
 - [ ] 6. Bücher: Bücher in Glas-Box; Seiten-Kreis unten rechts am Cover (manuell setzen); „Zusammenfassung“ mit Seitenzahl,
       erscheint unter dem Buch; Knopf „Absatz“ für Lieblingsstellen, wählbar auf Heute
 - [x] 7. Einstellungen: Abmelden-Knopf volle Breite (Konto-Kachel `gross`, `app/einstellungen.js`, v113)
-Stand 10.11.2026: 1, 3, 4, 5, 7 fertig und lokal geprüft (Mac 1300 px + iPhone). Offen: 2 (Kalender), 6 (Bücher).
+Stand 10.11.2026: 1, 2, 3, 4, 5, 7 fertig und lokal geprüft (Mac 1300 px + iPhone). Offen: 6 (Bücher).
 Später: Physio, Insta.
