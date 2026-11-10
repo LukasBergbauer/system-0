@@ -2,6 +2,7 @@
 // Oben Art-Chips (für neue Punkte), darunter ein Feld „Titel oder suchen …“.
 // Beim Tippen: passende vorhandene Punkte → antippen verknüpft.
 // Enter / „Anlegen“: gibt es den Titel schon, wird dieser Punkt verknüpft (keine Doppelten), sonst neu angelegt.
+// Darunter optional „Notiz zur Verknüpfung“ (z. B. „häufigste Ursache“), steht später klein auf dem Faden.
 // Danach fertig() → zurück zur Karte, wo der Punkt einschwebt.
 import { el } from '../../ui/dom.js';
 import { chips } from '../../ui/chips.js';
@@ -26,6 +27,10 @@ export function verknuepfenAnsicht({ stand, mitte, fertig }) {
     },
     on: { input: () => zeichne() },
   });
+  const notiz = el('input', {
+    class: 'field__input mm-verknuepfen__notiz',
+    attrs: { type: 'text', placeholder: 'Notiz zur Verknüpfung (optional), z. B. häufigste Ursache', autocomplete: 'off', enterkeyhint: 'done' },
+  });
   const ergebnis = el('div', { class: 'mm-suche__ergebnis' });
   const anlegen = button({ text: 'Anlegen', variant: 'primary', onClick: () => los() });
 
@@ -39,7 +44,7 @@ export function verknuepfenAnsicht({ stand, mitte, fertig }) {
       ziel = await neuerEintrag(art, feld.value.trim());
       stand.eintraege = [...stand.eintraege, ziel]; // sofort bekannt, auch bevor neu geladen ist
     }
-    if (!schonDa.has(ziel.id)) await verknuepfe(mitte.id, ziel.id);
+    await verknuepfe(mitte.id, ziel.id, notiz.value.trim());
     fertig();
   }
 
@@ -69,6 +74,7 @@ export function verknuepfenAnsicht({ stand, mitte, fertig }) {
     ].filter(Boolean));
   }
 
+  notiz.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.isComposing) { e.preventDefault(); los(); } });
   feld.addEventListener('keydown', (e) => {
     if (e.key !== 'Enter' || e.isComposing) return;
     e.preventDefault();
@@ -83,6 +89,7 @@ export function verknuepfenAnsicht({ stand, mitte, fertig }) {
       onChange: (id) => { art = id; feld.focus(); },
     }),
     feld,
+    notiz,
     el('div', { class: 'mm-anlegen__aktion' }, anlegen),
     ergebnis,
   ]);

@@ -2,6 +2,7 @@
 // Antippen eines Nachbarn → waehle(id): diese Bubble schwebt in die Mitte, alle anderen blenden aus,
 // danach perlen die neuen Nachbarn aus der Mitte heraus.
 // Linien: gebogene Lichtfäden Mitte → Nachbar (enden am Rand der Bubble); fein auch zwischen verknüpften Nachbarn.
+// Notiz einer Verknüpfung (links[].notiz) steht klein auf dem Faden Mitte → Nachbar.
 // Mitte antippen → mitteTippen(id, knopf) (anderes Interface, z. B. Text). Neue Nachbarn tauchen nacheinander auf.
 // Unten: „Text“ → oeffnen() (Eintrag), „+ Verknüpfen“ → verknuepfen(). Nachbar lange drücken/Rechtsklick → loesen(mitte, nachbar).
 // Punkte mit Titelbild sind runde Bälle (knoten.js); dann passen auf dem iPhone 6 statt 8 in den Ring.
@@ -9,7 +10,7 @@
 // nur = Set von ids (Lernpfad: nur diese Nachbarn zeigen) oder null
 import { el } from '../../ui/dom.js';
 import { nachbarn } from './daten.js';
-import { groessen, positionen } from './fokus-layout.js';
+import { groessen, positionen, faden, fadenText } from './fokus-layout.js';
 import { knoten, fuelleKnoten, fuelleMehr } from './knoten.js';
 import { gleite, setzeZiel } from './gleiten.js';
 import { titelbilder } from './bilder.js';
@@ -82,21 +83,9 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen, mi
     setTimeout(() => knopf.remove(), AUSBLENDEN_MS);
   }
 
-  // Gebogener Faden von Rand zu Rand (Bubbles sind Glas, die Linie soll nicht hindurchscheinen)
-  function faden(a, b, ra, rb, i, klasse = '') {
-    const dx = b.x - a.x; const dy = b.y - a.y; const l = Math.hypot(dx, dy) || 1;
-    const ux = dx / l; const uy = dy / l;
-    if (l <= ra + rb + 4) return '';
-    const s = { x: a.x + ux * ra, y: a.y + uy * ra };
-    const e = { x: b.x - ux * rb, y: b.y - uy * rb };
-    const bogen = (i % 2 ? 1 : -1) * l * (0.08 + (i % 3) * 0.03);
-    const c = { x: (s.x + e.x) / 2 - uy * bogen, y: (s.y + e.y) / 2 + ux * bogen };
-    const r = (v) => Math.round(v);
-    return `<path${klasse} d="M${r(s.x)} ${r(s.y)} Q${r(c.x)} ${r(c.y)} ${r(e.x)} ${r(e.y)}"/>`;
-  }
-
   function zeichneLinien(w, h, ziele, links, neueMitte) {
     const verbunden = new Set(links.map((l) => paar(l.a_id, l.b_id)));
+    const notiz = new Map(links.filter((l) => l.notiz).map((l) => [paar(l.a_id, l.b_id), l.notiz]));
     const radius = (id) => (knoepfe.get(id)?.offsetWidth ?? 0) / 2;
     const nb = ziele.filter((z) => z.id !== MEHR && z.id !== stand.mitteId);
     const rm = radius(stand.mitteId);
@@ -104,6 +93,7 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen, mi
     const striche = [`<defs><radialGradient id="mm-faden" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="${Math.round(weit)}">`
       + '<stop offset="0" stop-opacity=".6"/><stop offset="1" stop-opacity=".14"/></radialGradient></defs>'];
     nb.forEach((z, i) => striche.push(faden({ x: 0, y: 0 }, z, rm, radius(z.id), i)));
+    const texte = nb.map((z, i) => fadenText({ x: 0, y: 0 }, z, rm, radius(z.id), i, notiz.get(paar(stand.mitteId, z.id))));
     for (let i = 0; i < nb.length; i++) {
       for (let j = i + 1; j < nb.length; j++) {
         if (verbunden.has(paar(nb[i].id, nb[j].id))) {
@@ -119,7 +109,7 @@ export function fokusKarte({ waehle, zeigeAlle, verknuepfen, loesen, oeffnen, mi
       setTimeout(() => alt.remove(), AUSBLENDEN_MS);
     }
     linien.setAttribute('viewBox', `${-w / 2} ${-h / 2} ${w} ${h}`);
-    linien.innerHTML = striche.join('');
+    linien.innerHTML = [...striche, ...texte].join('');
     if (neueMitte) {
       // Linien blenden mit den neuen Punkten ein
       linien.classList.remove('mm-karte__linien--ein');

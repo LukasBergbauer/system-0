@@ -1,6 +1,6 @@
 // Daten von Physio: Lesen und Schreiben nur über core/store.js.
 // Tabellen: physio_eintraege (art, titel, kurz, text, felder, video)
-//           physio_links (a_id, b_id) – Verknüpfung gilt in beide Richtungen
+//           physio_links (a_id, b_id, notiz) – Verknüpfung gilt in beide Richtungen, notiz z. B. „häufigste Ursache“
 import { getAll, save, remove } from '../../core/store.js';
 import { loescheBilderVon } from './bilder.js';
 
@@ -39,12 +39,22 @@ export async function loescheEintrag(id) {
 
 const verbindet = (l, x, y) => (l.a_id === x && l.b_id === y) || (l.a_id === y && l.b_id === x);
 
-// Verknüpft zwei Einträge. Gibt es die Verknüpfung schon (egal in welcher Richtung), passiert nichts.
-export async function verknuepfe(aId, bId) {
+// Verknüpft zwei Einträge. Gibt es die Verknüpfung schon (egal in welcher Richtung), wird nur eine neue Notiz gesetzt.
+export async function verknuepfe(aId, bId, notiz = '') {
   if (!aId || !bId || aId === bId) return null;
   const vorhanden = (await ladeLinks()).find((l) => verbindet(l, aId, bId));
-  return vorhanden ?? save(LINKS, { a_id: aId, b_id: bId });
+  if (!vorhanden) return save(LINKS, { a_id: aId, b_id: bId, notiz });
+  return notiz ? save(LINKS, { id: vorhanden.id, notiz }) : vorhanden;
 }
+
+// Notiz an der Verknüpfung ändern ('' = weg).
+export async function setzeLinkNotiz(aId, bId, notiz) {
+  for (const l of await ladeLinks()) {
+    if (verbindet(l, aId, bId) && (l.notiz ?? '') !== notiz) await save(LINKS, { id: l.id, notiz });
+  }
+}
+
+export const linkNotiz = (links, aId, bId) => links.find((l) => verbindet(l, aId, bId))?.notiz ?? '';
 
 // Löst die Verknüpfung (alle, falls durch zwei Geräte doppelt entstanden).
 export async function loese(aId, bId) {

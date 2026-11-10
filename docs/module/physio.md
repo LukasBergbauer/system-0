@@ -355,3 +355,10 @@ Vision Lukas: Physio = Berufs-Datenbank, unendlich ausbaubar, jederzeit anpassba
 - **Lücken finden** (`v90`): Physio in der Mitte → Knopf „Lücken · N“ rechts neben dem Verlauf → `luecken.js`: Gruppen „Ohne Verknüpfung“,
   „Nur Titel, noch kein Inhalt“ (kein Kurz/Text/Video/Feld), „Ohne verknüpfte Übung“ (Krankheitsbild, Muskel). Antippen = Fenster zu, Ball fliegt in die Mitte.
   Lokal mit echten Daten geprüft.
+- **Verknüpfung mit Notiz** (`v91`): Spalte `physio_links.notiz` (Migration `023`). Notiz steht klein und kursiv auf dem Faden Mitte → Nachbar
+  (`fokus-layout.js`: `faden`, `fadenText`, auch in der Mindmap). Eingeben: in „+ Verknüpfen“ (Feld „Notiz zur Verknüpfung“, setzt sie auch bei
+  schon verknüpften) oder im Kosmos Nachbar lange drücken/Rechtsklick → `verbindung.js` (Glas-Fläche: Notiz + „Verknüpfung lösen“).
+  In der Mindmap bleibt lange drücken = lösen.
+- **Schwebende Notiz** (`v91`): Notizen → „Im Kosmos“ → Fenster zu, Notiz schwebt klein über Kosmos und Glas-Flächen (z. B. Verknüpfen),
+  am Griff verschiebbar, Text bearbeitbar, × schließt (`schwebend.js`). Gerät merkt Notiz + Platz (localStorage). Nicht über der Mindmap (Dialog liegt oben).
+  Lokal geprüft (Mac-Breite): Schweben, Ziehen, Verbindungs-Fenster, Feld in Verknüpfen; Speichern der Link-Notiz nicht (023 fehlt noch).

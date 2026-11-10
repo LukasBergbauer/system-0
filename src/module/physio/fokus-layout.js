@@ -50,3 +50,35 @@ export function positionen(anzahl, breite, hoehe, mitBildern = false) {
     ],
   };
 }
+
+// ---------- Fäden ----------
+// Gebogener Faden von Rand zu Rand (Bubbles sind Glas, die Linie soll nicht hindurchscheinen).
+function bogen(a, b, ra, rb, i) {
+  const dx = b.x - a.x; const dy = b.y - a.y; const l = Math.hypot(dx, dy) || 1;
+  const ux = dx / l; const uy = dy / l;
+  if (l <= ra + rb + 4) return null;
+  const s = { x: a.x + ux * ra, y: a.y + uy * ra };
+  const e = { x: b.x - ux * rb, y: b.y - uy * rb };
+  const h = (i % 2 ? 1 : -1) * l * (0.08 + (i % 3) * 0.03);
+  return { s, e, c: { x: (s.x + e.x) / 2 - uy * h, y: (s.y + e.y) / 2 + ux * h } };
+}
+
+const r = (v) => Math.round(v);
+
+export function faden(a, b, ra, rb, i, klasse = '') {
+  const f = bogen(a, b, ra, rb, i);
+  return f ? `<path${klasse} d="M${r(f.s.x)} ${r(f.s.y)} Q${r(f.c.x)} ${r(f.c.y)} ${r(f.e.x)} ${r(f.e.y)}"/>` : '';
+}
+
+const MAX_ZEICHEN = 26;
+const schuetze = (t) => t.replace(/[&<>"]/g, (z) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[z]);
+
+// Notiz klein in der Mitte des Fadens (Kurvenpunkt bei t = 0,5).
+export function fadenText(a, b, ra, rb, i, text) {
+  const f = text && bogen(a, b, ra, rb, i);
+  if (!f) return '';
+  const x = (f.s.x + 2 * f.c.x + f.e.x) / 4;
+  const y = (f.s.y + 2 * f.c.y + f.e.y) / 4;
+  const kurz = text.length > MAX_ZEICHEN ? `${text.slice(0, MAX_ZEICHEN - 1)}…` : text;
+  return `<text class="faden-notiz" x="${r(x)}" y="${r(y)}">${schuetze(kurz)}</text>`;
+}

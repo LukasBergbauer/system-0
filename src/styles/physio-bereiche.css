@@ -51,3 +51,57 @@
 .notiz--neu { justify-items: end; }
 .notiz--neu .mm-textfeld { justify-self: stretch; }
 .notiz__fuss { align-items: center; justify-content: space-between; font-size: var(--fs-label); color: var(--text-3); }
+
+/* Notiz an einer Verknüpfung: klein auf dem Faden (fokus-layout.js), Feld in verknuepfen.js */
+.mm-karte__linien .faden-notiz {
+  fill: var(--text-2);
+  font-size: var(--fs-label);
+  font-style: italic;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  paint-order: stroke;
+  stroke: var(--bg);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+.mm-verknuepfen__notiz { background: var(--surface); }
+
+/* Schwebende Notiz (schwebend.js): klein über Kosmos und Glas-Flächen */
+.schwebend {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  width: min(240px, calc(100vw - 8px));
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,.78);
+  background: linear-gradient(160deg, rgba(255,255,255,.82), rgba(255,255,255,.55));
+  backdrop-filter: blur(var(--blur)) saturate(160%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  box-shadow: 0 18px 40px -20px color-mix(in oklch, var(--accent) 60%, rgba(60,30,20,.45));
+  font-size: var(--fs-small);
+}
+.schwebend__griff {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: var(--space-3);
+  color: var(--text-3);
+  font-size: var(--fs-label);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.schwebend__zu {
+  min-width: var(--tap);
+  min-height: 36px;
+  border: 0;
+  background: none;
+  color: var(--text-2);
+  font: inherit;
+  font-size: var(--fs-normal);
+  cursor: pointer;
+}
+.schwebend .mm-textfeld { padding: 0 var(--space-3) var(--space-3); }
+.schwebend .mm-text { max-height: 40vh; overflow-y: auto !important; font-size: var(--fs-small); }

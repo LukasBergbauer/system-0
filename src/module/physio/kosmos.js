@@ -4,11 +4,14 @@
 // Mitte antippen → anderes Interface: Kern = Bereiche bearbeiten (bereiche.js), Bereich = Innenansicht (tiefe.js), Eintrag = sein Text.
 // Oben: Suche (Treffer antippen = Ball fliegt in die Mitte), Verlauf der Mitten (antippen = dorthin zurück)
 // und „+ Verknüpfen“ (nur bei echten Einträgen): Glas-Fläche mit verknuepfen.js, danach schwebt der Punkt ein.
-// Nachbar lange drücken / Rechtsklick → Verknüpfung lösen (nur zwischen echten Einträgen). „Notizen“ öffnet die Schnell-Notizen.
+// Nachbar lange drücken / Rechtsklick → Verknüpfung bearbeiten: Notiz oder lösen (verbindung.js, nur zwischen echten Einträgen).
+// „Notizen“ öffnet die Schnell-Notizen; eine davon kann klein über dem Kosmos schweben (schwebend.js).
 // Physio in der Mitte: statt „+ Verknüpfen“ der Knopf „Lücken · N“ (luecken.js).
 import { el } from '../../ui/dom.js';
 import { ARTEN, art } from './arten.js';
-import { suche, loese } from './daten.js';
+import { suche } from './daten.js';
+import { oeffneVerbindung } from './verbindung.js';
+import { schwebeNotiz, schwebeGemerkte } from './schwebend.js';
 import { verknuepfenAnsicht } from './verknuepfen.js';
 import { oeffneFlaeche } from './glas-flaeche.js';
 import { fokusKarte } from './fokus.js';
@@ -44,9 +47,9 @@ export function kosmos({ signal }) {
       else oeffneMindmap({ ausKnopf: knopf, signal, mitteId: id, ansicht: 'eintrag' });
     },
     verknuepfen() {}, oeffnen() {}, loesbar: false,
-    async loesen(a, b) {
+    loesen(a, b) {
       const echt = (x) => echte.some((e) => e.id === x.id);
-      if (echt(a) && echt(b) && confirm(`Verknüpfung lösen?\n\n${a.titel} – ${b.titel}`)) await loese(a.id, b.id);
+      if (echt(a) && echt(b)) oeffneVerbindung({ a, b, links: echteLinks, ausBubble: karte.element, signal });
     },
   });
   karte.element.dataset.mmStart = ''; // Mindmap schrumpft beim Schließen hierhin zurück
@@ -89,7 +92,8 @@ export function kosmos({ signal }) {
   });
 
   const notizen = el('button', { class: 'chip kos__notizen', text: '✎ Notizen', attrs: { type: 'button' } });
-  notizen.addEventListener('click', () => oeffneNotizen({ ausBubble: notizen, signal }));
+  notizen.addEventListener('click', () => oeffneNotizen({ ausBubble: notizen, signal, schweben: (n) => schwebeNotiz(n, signal) }));
+  schwebeGemerkte(signal);
 
   const lueckenKnopf = el('button', { class: 'chip kos__plus', attrs: { type: 'button' } });
   lueckenKnopf.addEventListener('click', () => oeffneLuecken({ ausBubble: lueckenKnopf, eintraege: echte, links: echteLinks, hin, signal }));

@@ -1,5 +1,6 @@
 // Schnell-Notizen (Kosmos, Knopf „Notizen“ oben): Glas-Fläche mit Feld zum schnellen Notieren und allen Notizen,
 // neueste zuerst. Notizen bleiben, bis Lukas sie löscht; Text direkt bearbeitbar (speichert beim Verlassen des Felds).
+// „Im Kosmos“ → Fenster zu, Notiz schwebt klein über dem Kosmos (schweben(n), siehe schwebend.js).
 // Tabelle physio_notizen (text), Migration 022.
 import { el } from '../../ui/dom.js';
 import { on } from '../../core/events.js';
@@ -15,7 +16,7 @@ export async function ladeNotizen() {
 
 const datum = (iso) => new Date(iso).toLocaleDateString('de-DE', { day: 'numeric', month: 'short', year: 'numeric' });
 
-export function oeffneNotizen({ ausBubble, signal }) {
+export function oeffneNotizen({ ausBubble, signal, schweben }) {
   const neu = textfeld({ platzhalter: 'Schnell notieren …', klasse: 'notiz__neu' });
   const merken = el('button', { class: 'chip chip--aktion', text: 'Merken', attrs: { type: 'button' } });
   const liste = el('div', { class: 'tief__liste' });
@@ -41,7 +42,10 @@ export function oeffneNotizen({ ausBubble, signal }) {
     });
     const weg = el('button', { class: 'bereich__knopf', text: 'Löschen', attrs: { type: 'button' } });
     weg.addEventListener('click', () => confirm('Notiz löschen?') && remove(NOTIZEN, n.id));
-    return el('div', { class: 'notiz' }, [t, el('div', { class: 'bereich__knoepfe notiz__fuss' }, [el('span', { text: datum(n.created_at) }), weg])]);
+    const hin = el('button', { class: 'bereich__knopf', text: 'Im Kosmos', attrs: { type: 'button' } });
+    hin.addEventListener('click', () => { f.schliessen(); schweben({ ...n, text: t.feld.value.trim() || n.text }); });
+    const fuss = el('div', { class: 'bereich__knoepfe notiz__fuss' }, [el('span', { text: datum(n.created_at) }), el('span', { class: 'bereich__knoepfe' }, [hin, weg])]);
+    return el('div', { class: 'notiz' }, [t, fuss]);
   }
 
   async function zeichne() {
