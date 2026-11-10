@@ -441,7 +441,7 @@ Reihenfolge, je Punkt eigener Commit + `sw.js` hochzählen, lokal Mac + iPhone-G
 - [ ] 2. Kalender: echte Tag-/Woche-/Monat-Ansicht (Zeitraster), Glas-Stil
 - [x] 3. To-dos (v110): Box „Heute“ + „Morgen“ vorneweg; morgige rutschen am Folgetag nach Heute; nicht erledigte von gestern
       unten als „Nicht erledigt“ mit Datum; Strich neben dem Titel weg; Bereichs-Chips unter „Neues To-do“ weg (Bereiche bleiben)
-- [ ] 4. Routinen: strukturierter anordnen (nicht lose nebeneinander)
+- [x] 4. Routinen: strukturierter anordnen (Abschnitte Morgen/Abend/Weitere, v111)
 - [ ] 5. Quiz: Statistik volle Breite; Daily-Box mittig mit „Starten“ und mehr Text; Endlos als schmalerer, gefüllter Balken mit allen Themen
 - [ ] 6. Bücher: Bücher in Glas-Box; Seiten-Kreis unten rechts am Cover (manuell setzen); „Zusammenfassung“ mit Seitenzahl,
       erscheint unter dem Buch; Knopf „Absatz“ für Lieblingsstellen, wählbar auf Heute

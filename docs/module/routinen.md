@@ -40,6 +40,8 @@ Für das ganze iPhone wäre die iOS-Funktion „Bildschirmzeit“ zuständig.
       eine Routine mit Sperre ab ihrer Zeit heute weder geschafft noch ausgesetzt ist (früheste Zeit zuerst); „Starten/Weiter“ öffnet den
       Durchlauf, „Heute aussetzen“ (Rückfrage, zählt nicht als geschafft). Prüft bei Start, Bereichswechsel, Daten, Fenster-Rückkehr, jede Minute.
       Logik mit Testfällen geprüft. `sw.js` `v70`. 017 ausgeführt, von Lukas auf Geräten geprüft (09.11.2026).
+- [x] Phase 7.4 (10.11.2026): Ansicht in Abschnitten Morgen · Abend · Weitere (`abschnitt`-Kasten mit Zahl), je festes Raster
+      2 Spalten (iPhone 1); Art-Label in der Karte entfällt. `sw.js` `v111`.
 
 ## Wünsche für später
 - Keine offenen (Stand 09.11.2026).

@@ -1,7 +1,7 @@
 // Karte einer Routine: Name, Art, Stand heute, Woche Mo–So als Punkte, Serie, Starten/Weiter.
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
-import { ARTEN, logAm, wocheTage, serie } from './data.js';
+import { logAm, wocheTage, serie } from './data.js';
 
 const TAG = new Intl.DateTimeFormat('de-DE', { weekday: 'narrow' });
 
@@ -21,7 +21,6 @@ export function routineKarte(r, { onStart, onEdit }) {
 
   return el('article', { class: `routine${fertig ? ' routine--fertig' : ''}` }, [
     el('button', { class: 'routine__kopf', attrs: { type: 'button', 'aria-label': `${r.name} bearbeiten` }, on: { click: () => onEdit(r) } }, [
-      el('span', { class: 'label', text: ARTEN.find((a) => a.id === r.art)?.label }),
       el('h2', { class: 'routine__name', text: r.name }),
     ]),
     el('p', { class: 'routine__stand', text: stand }),

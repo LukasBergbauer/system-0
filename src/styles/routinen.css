@@ -1,6 +1,8 @@
 /* Modul „Routinen“: Karten je Routine und Durchlauf als Vollbild. Nur Werte aus tokens.css. */
-.routinen { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); }
-.routinen__raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-4); width: 100%; }
+.routinen { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-6); }
+.routinen__abschnitt { display: flex; flex-direction: column; gap: var(--space-3); width: 100%; }
+.routinen__raster { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); width: 100%; }
+@media (max-width: 760px) { .routinen__raster { grid-template-columns: 1fr; } }
 
 .routine { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-5); border-radius: var(--radius-gross);
   background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten);

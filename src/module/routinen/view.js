@@ -1,7 +1,8 @@
-// Ansicht „Routinen“: eine Karte je Routine, „Neue Routine“ unten. Leer: Morgen- und Abendroutine anlegen.
+// Ansicht „Routinen“: Abschnitte Morgen · Abend · Weitere, je ein festes Raster aus Karten; „Neue Routine“ unten. Leer: Morgen- und Abendroutine anlegen.
 // Zusatz '#/routinen/<id>' (z. B. von Heute) startet gleich den Durchlauf dieser Routine.
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
+import { abschnitt } from '../../ui/abschnitt.js';
 import { on } from '../../core/events.js';
 import { zusatzNehmen } from '../../core/router.js';
 import { TABELLEN, ladeAlles, neueRoutine } from './data.js';
@@ -32,7 +33,13 @@ export function routinenAnsicht({ signal }) {
     }
     box.replaceChildren(...(routinen.length
       ? [
-        el('div', { class: 'routinen__raster' }, routinen.map((r) => routineKarte(r, { onStart: start, onEdit: oeffneBearbeiten }))),
+        ...[['morgen', 'Morgen'], ['abend', 'Abend'], ['frei', 'Weitere']].map(([art, titel]) => {
+          const liste = routinen.filter((r) => (r.art === art) || (art === 'frei' && r.art !== 'morgen' && r.art !== 'abend'));
+          return liste.length && el('section', { class: 'routinen__abschnitt' }, [
+            abschnitt({ titel, zahl: liste.length, symbol: 'routinen' }),
+            el('div', { class: 'routinen__raster' }, liste.map((r) => routineKarte(r, { onStart: start, onEdit: oeffneBearbeiten }))),
+          ]);
+        }).filter(Boolean),
         button({ text: '+ Neue Routine', variant: 'ghost', onClick: () => oeffneBearbeiten() }),
       ]
       : [
