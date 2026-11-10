@@ -38,7 +38,8 @@
 .tief__zurueck,
 .tief__feld,
 .tief__zeile,
-.bereich {
+.bereich,
+.notiz {
   border: 1px solid rgba(255,255,255,.78);
   background: linear-gradient(160deg, rgba(255,255,255,.7), rgba(255,255,255,.3));
   box-shadow:
@@ -51,7 +52,8 @@
 .tief--ruhig .tief__zurueck,
 .tief--ruhig .tief__feld,
 .tief--ruhig .tief__zeile,
-.tief--ruhig .bereich {
+.tief--ruhig .bereich,
+.tief--ruhig .notiz {
   backdrop-filter: blur(var(--blur)) saturate(160%);
   -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
 }

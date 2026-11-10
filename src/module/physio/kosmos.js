@@ -4,7 +4,7 @@
 // Mitte antippen → anderes Interface: Kern = Bereiche bearbeiten (bereiche.js), Bereich = Innenansicht (tiefe.js), Eintrag = sein Text.
 // Oben: Suche (Treffer antippen = Ball fliegt in die Mitte), Verlauf der Mitten (antippen = dorthin zurück)
 // und „+ Verknüpfen“ (nur bei echten Einträgen): Glas-Fläche mit verknuepfen.js, danach schwebt der Punkt ein.
-// Nachbar lange drücken / Rechtsklick → Verknüpfung lösen (nur zwischen echten Einträgen).
+// Nachbar lange drücken / Rechtsklick → Verknüpfung lösen (nur zwischen echten Einträgen). „Notizen“ öffnet die Schnell-Notizen.
 import { el } from '../../ui/dom.js';
 import { ARTEN, art } from './arten.js';
 import { suche, loese } from './daten.js';
@@ -14,6 +14,7 @@ import { fokusKarte } from './fokus.js';
 import { oeffneMindmap } from './overlay.js';
 import { oeffneTiefe } from './tiefe.js';
 import { oeffneBereiche } from './bereiche.js';
+import { oeffneNotizen } from './notizen.js';
 
 const KERN = 'physio';
 const artId = (a) => `art:${a}`;
@@ -85,8 +86,11 @@ export function kosmos({ signal }) {
     f = oeffneFlaeche({ name: `Mit ${m.titel} verknüpfen`, ausBubble: plus, signal, inhalt: [ansicht] });
   });
 
+  const notizen = el('button', { class: 'chip kos__notizen', text: '✎ Notizen', attrs: { type: 'button' } });
+  notizen.addEventListener('click', () => oeffneNotizen({ ausBubble: notizen, signal }));
+
   const oben = el('div', { class: 'kos__oben' }, [
-    el('div', { class: 'kos__suche' }, [feld, treffer]),
+    el('div', { class: 'kos__suche' }, [el('div', { class: 'kos__suche-zeile' }, [feld, notizen]), treffer]),
     el('div', { class: 'kos__zeile' }, [spur, plus]),
   ]);
 

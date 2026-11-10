@@ -349,3 +349,6 @@ Vision Lukas: Physio = Berufs-Datenbank, unendlich ausbaubar, jederzeit anpassba
 - **Verknüpfen im Kosmos** (`v88`): neben dem Verlauf „+ Verknüpfen“ (nur wenn ein echter Eintrag in der Mitte ist) → Glas-Fläche mit
   `verknuepfen.js` (vorhandenen Punkt wählen oder neu anlegen), danach zu, Punkt schwebt ein. Nachbar lange drücken/Rechtsklick = lösen (Rückfrage).
   Lokal geprüft (Öffnen, Suche, Schließen), ohne echte Verknüpfung anzulegen.
+- **Schnell-Notizen** (`v89`): Knopf „✎ Notizen“ neben der Suche → Glas-Fläche `notizen.js`: Feld + „Merken“ (Mac: ⌘ + Enter),
+  Notizen neueste zuerst, direkt bearbeitbar, bleiben bis „Löschen“. Tabelle `physio_notizen` (Migration `022`, in `tabellen.js`).
+  Lokal nur Öffnen geprüft (Tabelle fehlte noch → 404 beim Abgleich). Zufall/Wiederholen gestrichen (Lukas).

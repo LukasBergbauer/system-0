@@ -88,6 +88,8 @@
 .kos__rahmen { display: grid; gap: var(--space-2); }
 .kos__oben { display: grid; gap: var(--space-2); position: relative; z-index: 4; }
 .kos__suche { position: relative; }
+.kos__suche-zeile { display: flex; gap: var(--space-2); align-items: center; }
+.kos__notizen { flex: none; min-height: var(--tap); }
 .kos__feld,
 .kos__treffer:not(:empty) {
   border: 1px solid var(--glas-rand);
@@ -97,7 +99,8 @@
   backdrop-filter: blur(var(--blur)) saturate(160%);
 }
 .kos__feld {
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   min-height: var(--tap);
   padding: 0 var(--space-5);
   border-radius: 999px;
