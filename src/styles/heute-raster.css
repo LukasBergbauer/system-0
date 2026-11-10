@@ -27,7 +27,7 @@ button.feld-k:active { transform: scale(.985); }
 .feld-k--fertig .feld-k__text { color: var(--bereich-tief); font-weight: 600; }
 
 /* Bereichs-Symbol: klein, Linie in Bereichsfarbe auf zartem Glas-Plättchen */
-.feld-symbol { display: grid; place-items: center; flex: none; width: 26px; height: 26px; border-radius: 9px; color: var(--bereich-tief);
+.feld-symbol { display: grid; place-items: center; flex: none; width: 26px; height: 26px; border-radius: 8px; color: var(--bereich-tief);
   background: color-mix(in oklch, var(--bereich) 13%, rgba(255,255,255,.7)); box-shadow: inset 0 0 0 .5px color-mix(in oklch, var(--bereich) 30%, transparent); }
 .feld-symbol .symbol { width: 15px; height: 15px; stroke-width: 1.9; }
 

@@ -10,7 +10,7 @@
 .insta-monat__raster { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: var(--space-1); }
 .insta-monat__wt { text-align: center; color: var(--text-2); font-size: var(--fs-small); }
 .insta-tag { min-height: 72px; display: flex; flex-direction: column; gap: 2px; padding: var(--space-1); border-radius: var(--radius-klein);
-  border: 1px solid var(--glas-rand); background: var(--glas-verlauf); overflow: hidden; }
+  border: var(--glas-kante) solid var(--glas-rand); background: var(--glas-verlauf); overflow: hidden; }
 .insta-tag > small { color: var(--text-2); font-size: var(--fs-small); }
 .insta-tag.fremd { opacity: .4; }
 .insta-tag.heute > small { color: var(--accent); font-weight: 700; }
@@ -29,7 +29,7 @@
 .insta-caption { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); }
 .insta-caption p { margin: 0; white-space: pre-line; line-height: 1.6; }
 .insta-kz-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: var(--space-2); }
-.insta-kz { display: flex; flex-direction: column; padding: var(--space-3); border-radius: var(--radius-klein); border: 1px solid var(--glas-rand); background: var(--glas-verlauf); }
+.insta-kz { display: flex; flex-direction: column; padding: var(--space-3); border-radius: var(--radius-klein); border: var(--glas-kante) solid var(--glas-rand); background: var(--glas-verlauf); }
 .insta-kz b { font-size: var(--fs-title); }
 .insta-kz small { color: var(--text-2); font-size: var(--fs-small); }
 

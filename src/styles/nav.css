@@ -13,7 +13,7 @@
 .nav-tabs,
 .nav-side {
   background: var(--glas-verlauf);
-  border: 1px solid var(--glas-rand);
+  border: var(--glas-kante) solid var(--glas-rand);
   box-shadow: var(--schatten);
   -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
   backdrop-filter: blur(var(--blur)) saturate(160%);
@@ -23,7 +23,7 @@
   left: 0;
   top: 0;
   z-index: 0;
-  border-radius: 13px;
+  border-radius: var(--radius-klein);
   background: #fff;
   box-shadow: 0 6px 18px -8px rgba(70, 25, 10, 0.35);
   transition: transform 420ms var(--ease), width 420ms var(--ease), height 420ms var(--ease), opacity var(--duration);
@@ -51,7 +51,7 @@
 .nav-side__link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: -2px;
-  border-radius: 13px;
+  border-radius: var(--radius-klein);
 }
 
 /* ---------- Kapsel (iPhone) ---------- */
@@ -147,7 +147,7 @@
   flex: none;
   width: 44px;
   height: 44px;
-  border-radius: 14px;
+  border-radius: var(--radius-klein);
   color: #fff;
   font-size: 18px;
   font-weight: 700;
@@ -160,7 +160,7 @@
   gap: var(--space-3);
   height: 42px;
   padding: 0 13px;
-  border-radius: 13px;
+  border-radius: var(--radius-klein);
   font-weight: 500;
   white-space: nowrap;
 }
@@ -203,7 +203,7 @@
   text-align: left;
   white-space: nowrap;
   background: var(--glass);
-  border: 1px solid var(--glas-rand);
+  border: var(--glas-kante) solid var(--glas-rand);
   border-radius: 999px;
   cursor: pointer;
 }

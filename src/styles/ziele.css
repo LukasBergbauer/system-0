@@ -2,7 +2,7 @@
 .ziele { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); }
 .ziele__raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-4); width: 100%; }
 .ziel-bereich { display: flex; flex-direction: column; align-items: stretch; gap: var(--space-3); padding: var(--space-5); border-radius: var(--radius-gross);
-  background: var(--glas-verlauf); border: 1px solid var(--glas-rand); box-shadow: var(--schatten);
+  background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten);
   -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%); }
 .ziel-bereich > .btn { align-self: flex-start; }
 .ziel-bereich__vision { margin: var(--space-1) 0 0; color: var(--text-2); font-style: italic; white-space: pre-line; }

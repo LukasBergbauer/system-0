@@ -11,7 +11,7 @@
 
 /* Cover: Buchformat 2:3, leicht gerundet; ohne Bild ein ruhiges Glasfeld mit Titel */
 .buch-cover { display: block; aspect-ratio: 2 / 3; object-fit: cover; border-radius: var(--radius-klein); box-shadow: var(--schatten); background: var(--surface-2); }
-.buch-cover--leer { display: flex; align-items: flex-end; padding: var(--space-3); border: 1px solid var(--glas-rand); background: var(--glas-verlauf);
+.buch-cover--leer { display: flex; align-items: flex-end; padding: var(--space-3); border: var(--glas-kante) solid var(--glas-rand); background: var(--glas-verlauf);
   font-size: var(--fs-small); font-weight: 600; line-height: 1.25; color: var(--text-2); overflow: hidden; }
 
 /* Vollbild */

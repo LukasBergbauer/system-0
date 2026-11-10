@@ -40,7 +40,7 @@
   font-size: var(--fs-small);
   color: var(--text-2);
   background: none;
-  border: 1px solid var(--glas-rand);
+  border: var(--glas-kante) solid var(--glas-rand);
   border-radius: 999px;
   cursor: pointer;
 }

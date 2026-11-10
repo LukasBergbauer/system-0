@@ -5,16 +5,6 @@
       "name": "system-0",
       "url": "http://localhost:8000",
       "port": 8000
-    },
-    {
-      "name": "vorschau-kopie",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": [
-        "-I",
-        "-c",
-        "import http.server as h, functools as f\nclass H(h.SimpleHTTPRequestHandler):\n  def end_headers(s):\n    s.send_header('Cache-Control','no-store'); super().end_headers()\nh.ThreadingHTTPServer(('127.0.0.1',8021),f.partial(H,directory='/private/tmp/claude-501/-Users-lukas--claude-spares-spare-OLw4qH/595f576b-b4bc-4b5d-8845-5077014b46d5/scratchpad/app')).serve_forever()"
-      ],
-      "port": 8021
     }
   ]
 }

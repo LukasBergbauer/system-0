@@ -64,7 +64,7 @@
 .training__kopf .chips { flex-wrap: wrap; overflow: visible; }
 /* Wochen-Leiste: Akzent-Karte wie der Hero auf Heute */
 .training__woche { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: var(--space-2);
-  padding: var(--space-5); border-radius: var(--radius-gross); color: var(--accent-ink); border: 1px solid var(--glas-rand); box-shadow: var(--schatten);
+  padding: var(--space-5); border-radius: var(--radius-gross); color: var(--accent-ink); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten);
   background: linear-gradient(135deg, var(--akzent-hell) 0%, var(--accent) 48%, var(--akzent-tief) 130%); }
 .training__woche::before { content: ""; position: absolute; inset: 0; pointer-events: none;
   background: radial-gradient(60% 70% at 0% 0%, rgba(255,255,255,.35), transparent 60%); }

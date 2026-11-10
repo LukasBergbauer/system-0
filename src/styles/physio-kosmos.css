@@ -92,7 +92,7 @@
 .kos__notizen { flex: none; min-height: var(--tap); }
 .kos__feld,
 .kos__treffer:not(:empty) {
-  border: 1px solid var(--glas-rand);
+  border: var(--glas-kante) solid var(--glas-rand);
   background: var(--glas-verlauf);
   box-shadow: var(--schatten);
   -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
@@ -133,7 +133,7 @@
   border: 0;
   cursor: pointer;
 }
-.kos__treffer-zeile + .kos__treffer-zeile { border-top: 1px solid var(--glas-rand); }
+.kos__treffer-zeile + .kos__treffer-zeile { border-top: var(--glas-kante) solid var(--glas-rand); }
 .kos__treffer-zeile span,
 .kos__schritt + .kos__schritt::before { font-size: var(--fs-label); color: var(--accent); }
 .kos__zeile { display: flex; align-items: center; gap: var(--space-2); min-height: 34px; }

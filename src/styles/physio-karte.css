@@ -174,7 +174,7 @@
   line-height: 1.35;
   color: var(--text);
   background: var(--glas-verlauf);
-  border: 1px solid var(--glas-rand);
+  border: var(--glas-kante) solid var(--glas-rand);
   box-shadow: var(--schatten);
   backdrop-filter: blur(var(--blur));
   -webkit-backdrop-filter: blur(var(--blur));

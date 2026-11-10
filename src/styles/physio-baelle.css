@@ -46,7 +46,7 @@
   /* schmale Glas-Kapsel, damit Fäden nicht durch den Titel laufen */
   padding: 1px var(--space-2);
   background: var(--glas-verlauf);
-  border: 1px solid var(--glas-rand);
+  border: var(--glas-kante) solid var(--glas-rand);
   border-radius: 999px;
 }
 

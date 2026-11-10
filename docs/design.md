@@ -20,11 +20,11 @@ Hintergrund, Hero-Flächen, Haken, Fortschritt und Schatten werden per `color-mi
 | `--surface` / `--surface-2` | Weiß 42 % / 66 % | Glas-Flächen / Hover, Eingabefelder |
 | `--glass` | Weiß 50 % | Leisten |
 | `--glas-verlauf` | Weiß 58 % → 30 % | Hintergrund von Karte, Kachel, Leisten, Listen-Gruppen |
-| `--glas-rand` | Weiß 62 % | 1px-Rand an Glas |
+| `--glas-rand` / `--glas-kante` | Weiß 86 % / 0,5 px | feiner Lichtrand (Haarlinie) an Glas |
 | `--line` | Text 9 % | Trennlinien in Listen |
-| `--schatten` / `--schatten-hoch` | innen weiße Kante + außen weich, Akzent-getönt | Glas in Ruhe / beim Anheben |
+| `--schatten` / `--schatten-hoch` | Innenlicht oben + zarter Innenrand, außen naher + weicher, ruhiger Schatten (Akzent nur leicht) | Glas in Ruhe / beim Anheben |
 | `--blur` | 22px | Unschärfe hinter Glas (mit `saturate(160%)`) |
-| `--radius` / `--radius-gross` / `--radius-klein` | 18 / 26 / 12 px | Rundungen |
+| `--radius` / `--radius-gross` / `--radius-klein` | 16 / 22 / 10 px | Felder & Popover / Karten & Leisten / Plättchen & Tage; Pillen 999px. Keine festen px-Radien in Modulen |
 | `--warn` / `--gut` | #D9364F / #3E9B6E | überfällig / Trend nach oben |
 | `--font` | System (SF Pro) | einzige Schrift |
 | `--space-1` … `--space-7` | 4 / 8 / 12 / 16 / 24 / 32 / 48 px | Abstände |
@@ -112,7 +112,8 @@ Listen-Gruppen in To-dos und Kalender (`.todo-gruppe`, `.termin-gruppe`) sind Gl
 ## Regeln
 - Eine Akzentfarbe plus die gedämpften Bereichsfarben (nur klein: Symbol, Ring, Schimmer), sonst Weiß-Glas, warmes Fast-Schwarz und die Farbwolken.
 - Systemschrift überall; große Zahlen und Titel mit Gewicht 600 und leicht engem Buchstabenabstand.
-- Glas = `--glas-verlauf` + `--glas-rand` + `--schatten` + Unschärfe. Trennlinien nur in Listen.
+- Glas = `--glas-verlauf` + Rand `var(--glas-kante) solid var(--glas-rand)` + `--schatten` + Unschärfe. Trennlinien nur in Listen.
+- Ecken fein statt „weich-groß“ (Lukas, 10.11.2026): nur die drei Radius-Tokens, innen kleiner als außen.
 - Kleine Animationen nur über `transform`/`opacity` (flüssig auf dem iPhone): Seiteninhalt blendet gestaffelt ein,
   antippbare Kacheln heben sich beim Drüberfahren (`--feder`), alles Antippbare gibt beim Drücken kurz nach.
 - Respektiert „Bewegung reduzieren“ des Geräts (`base.css`).

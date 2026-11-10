@@ -62,7 +62,7 @@
   font: inherit;
   font-size: var(--fs-small);
   color: var(--text-2);
-  border: 1px solid var(--glas-rand);
+  border: var(--glas-kante) solid var(--glas-rand);
   border-radius: 999px;
   background: var(--glas-verlauf);
   cursor: pointer;
@@ -86,7 +86,7 @@
   color: var(--text-2);
   white-space: nowrap;
   background: var(--glas-verlauf);
-  border: 1px solid var(--glas-rand);
+  border: var(--glas-kante) solid var(--glas-rand);
   border-radius: 999px;
   box-shadow: var(--schatten);
   -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);

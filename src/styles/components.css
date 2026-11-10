@@ -5,7 +5,7 @@
 .card,
 .kachel {
   background: var(--glas-verlauf);
-  border: 1px solid var(--glas-rand);
+  border: var(--glas-kante) solid var(--glas-rand);
   border-radius: var(--radius-gross);
   box-shadow: var(--schatten);
   -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
@@ -100,7 +100,7 @@
   gap: var(--space-2);
   color: var(--text);
   background: var(--surface-2);
-  border: 1px solid var(--glas-rand);
+  border: var(--glas-kante) solid var(--glas-rand);
   border-radius: 999px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -158,8 +158,8 @@
   font-size: var(--fs-normal);
   color: var(--text);
   background: var(--surface-2);
-  border: 1px solid var(--glas-rand);
-  border-radius: 14px;
+  border: var(--glas-kante) solid var(--glas-rand);
+  border-radius: var(--radius-klein);
   outline: none;
   transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease), background var(--duration) var(--ease);
 }
@@ -181,7 +181,7 @@
   padding: 3px;
   border-radius: 999px;
   background: var(--surface);
-  border: 1px solid var(--glas-rand);
+  border: var(--glas-kante) solid var(--glas-rand);
   overflow-x: auto;
   scrollbar-width: none;
 }

@@ -23,16 +23,19 @@
   --surface-2: rgba(255, 255, 255, 0.66); /* Hover, Eingabefelder, Zeilen in Karten */
   --glass: rgba(255, 255, 255, 0.5); /* Leisten, Modal */
   --glas-verlauf: linear-gradient(180deg, rgba(255,255,255,.58), rgba(255,255,255,.30));
-  --glas-rand: rgba(255, 255, 255, 0.62);
+  --glas-rand: rgba(255, 255, 255, 0.86); /* feiner Lichtrand */
   --line: rgba(43, 30, 25, 0.09); /* Trennlinien */
-  --schatten: inset 0 1px 0 rgba(255,255,255,.7), 0 12px 32px -14px color-mix(in oklch, var(--accent) 50%, rgba(70,25,10,.55));
-  --schatten-hoch: inset 0 1px 0 rgba(255,255,255,.8), 0 22px 44px -16px color-mix(in oklch, var(--accent) 55%, rgba(70,25,10,.6));
+  /* Glas-Kante: Innenlicht oben + zarter Innenrand, außen ein naher und ein weicher, ruhiger Schatten */
+  --schatten: inset 0 1px 0 rgba(255,255,255,.9), inset 0 0 0 .5px rgba(255,255,255,.3), 0 1px 2px rgba(60,30,20,.06),
+    0 18px 40px -22px color-mix(in oklch, var(--accent) 35%, rgba(60,30,20,.5));
+  --schatten-hoch: inset 0 1px 0 rgba(255,255,255,.95), inset 0 0 0 .5px rgba(255,255,255,.35), 0 2px 4px rgba(60,30,20,.06),
+    0 26px 48px -22px color-mix(in oklch, var(--accent) 40%, rgba(60,30,20,.55));
   --blur: 22px;
-  --glas-kante: 1px; /* Breite der hellen Glaskante */
+  --glas-kante: 0.5px; /* Breite der hellen Glaskante (Haarlinie) */
 
   /* Bereichsfarbe: jedes Element mit data-bereich setzt --bereich (Liste unten); ohne = Akzent */
   --bereich: var(--accent);
-  --bereich-tief: color-mix(in oklch, var(--bereich) 72%, #2B1E19);
+  --bereich-tief: color-mix(in oklch, var(--bereich) 80%, black);
   /* Bereichsfarben: gedämpft, je Bereich eine (Linien-Symbol, Ring, feiner Schimmer) */
   --c-kalender: #4F7FBF;
   --c-todos: #D27245;
@@ -48,9 +51,9 @@
   --c-einstellungen: #7D7F86;
 
   /* Form */
-  --radius: 18px;
-  --radius-gross: 26px;
-  --radius-klein: 12px;
+  --radius: 16px; /* Eingabefelder, Zeilen, Popover */
+  --radius-gross: 22px; /* Karten, Kacheln, Leisten */
+  --radius-klein: 10px; /* Symbol-Plättchen, Tage, kleine Flächen */
 
   /* Abstände (4er-Raster) */
   --space-1: 4px;
@@ -92,7 +95,7 @@
 }
 
 /* data-bereich="<id>" → --bereich (Seite, Navi-Eintrag, Feld auf Heute); heute = Akzent */
-[data-bereich] { --bereich: var(--accent); --bereich-tief: color-mix(in oklch, var(--bereich) 72%, #2B1E19); }
+[data-bereich] { --bereich: var(--accent); --bereich-tief: color-mix(in oklch, var(--bereich) 80%, black); }
 [data-bereich="kalender"] { --bereich: var(--c-kalender); }
 [data-bereich="todos"] { --bereich: var(--c-todos); }
 [data-bereich="routinen"] { --bereich: var(--c-routinen); }

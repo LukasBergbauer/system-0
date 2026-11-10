@@ -18,7 +18,7 @@
   flex-direction: column;
   gap: var(--space-1);
   padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--glas-rand);
+  border: var(--glas-kante) solid var(--glas-rand);
   border-radius: var(--radius);
   background: var(--glas-verlauf);
   box-shadow: var(--schatten);
@@ -75,7 +75,7 @@
 /* Titel + Kurzbeschreibung: eine Glas-Karte, eng beieinander */
 .mm-eintrag__kopf {
   padding: var(--space-3) var(--space-4) var(--space-2);
-  border: 1px solid var(--glas-rand);
+  border: var(--glas-kante) solid var(--glas-rand);
   border-radius: var(--radius);
   background: var(--glas-verlauf);
   box-shadow: var(--schatten);

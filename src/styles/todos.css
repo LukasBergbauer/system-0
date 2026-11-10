@@ -10,7 +10,7 @@
 .todo-gruppe {
   padding: var(--space-4) var(--space-5) var(--space-2);
   background: var(--glas-verlauf);
-  border: 1px solid var(--glas-rand);
+  border: var(--glas-kante) solid var(--glas-rand);
   border-radius: var(--radius-gross);
   box-shadow: var(--schatten);
   -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
@@ -95,7 +95,7 @@
   font-weight: 600;
   color: var(--text-2);
   background: var(--surface);
-  border: 1px solid var(--glas-rand);
+  border: var(--glas-kante) solid var(--glas-rand);
   border-radius: 999px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -155,7 +155,7 @@
   padding: var(--space-1) var(--space-1) var(--space-1) var(--space-5);
   font-size: var(--fs-small);
   background: var(--glas-verlauf);
-  border: 1px solid var(--glas-rand);
+  border: var(--glas-kante) solid var(--glas-rand);
   border-radius: 999px;
   box-shadow: var(--schatten-hoch);
   -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);

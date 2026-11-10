@@ -16,7 +16,7 @@
 .quiz-frage { margin: 0; font-size: var(--fs-large); font-weight: 600; line-height: 1.25; letter-spacing: -.01em; }
 .quiz-antworten { display: flex; flex-direction: column; gap: var(--space-2); }
 .quiz-antwort { min-height: 52px; padding: var(--space-3) var(--space-4); font: inherit; text-align: left; color: var(--text);
-  background: var(--surface-2); border: 1px solid var(--glas-rand); border-radius: var(--radius); cursor: pointer;
+  background: var(--surface-2); border: var(--glas-kante) solid var(--glas-rand); border-radius: var(--radius); cursor: pointer;
   transition: background var(--duration) var(--ease), transform var(--duration) var(--ease); }
 .quiz-antwort:not(:disabled):hover { background: var(--glass); }
 .quiz-antwort:not(:disabled):active { transform: scale(.98); }
