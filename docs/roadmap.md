@@ -434,3 +434,16 @@ Vorgemerkt (später): Sonntags-Reflexion zum Durchklicken über alle Bereiche.
       nach dem Überblenden (Zeitgeber + `transitionend`), `sw.js` `v107`
 - Vorschläge Funktionen (10.11.2026, nur Liste im Chat): Wochenrückblick (= Sonntags-Reflexion), Erinnerungen, Inbox, Training-Fortschritt,
   Zitate aus Büchern, Gewohnheiten↔Ziele, Quiz-Wiederholung, Backup-Export, Heute-Abendmodus, Insta-Auswertung.
+
+## Phase 7 – Funktionen je Modul (Wünsche Lukas, 10.11.2026)
+Reihenfolge, je Punkt eigener Commit + `sw.js` hochzählen, lokal Mac + iPhone-Größe prüfen:
+- [ ] 1. Heute: jede Box (auch klein) zeigt den Modulnamen
+- [ ] 2. Kalender: echte Tag-/Woche-/Monat-Ansicht (Zeitraster), Glas-Stil
+- [ ] 3. To-dos: Box „Heute“ + „Morgen“ vorneweg; morgige rutschen am Folgetag nach Heute; nicht erledigte von gestern
+      unten als „Nicht erledigt“ mit Datum; Strich neben dem Titel weg; Bereichs-Chips unter „Neues To-do“ weg (Bereiche bleiben)
+- [ ] 4. Routinen: strukturierter anordnen (nicht lose nebeneinander)
+- [ ] 5. Quiz: Statistik volle Breite; Daily-Box mittig mit „Starten“ und mehr Text; Endlos als schmalerer, gefüllter Balken mit allen Themen
+- [ ] 6. Bücher: Bücher in Glas-Box; Seiten-Kreis unten rechts am Cover (manuell setzen); „Zusammenfassung“ mit Seitenzahl,
+      erscheint unter dem Buch; Knopf „Absatz“ für Lieblingsstellen, wählbar auf Heute
+- [ ] 7. Einstellungen: Abmelden-Knopf volle Breite
+Später: Physio, Insta.
