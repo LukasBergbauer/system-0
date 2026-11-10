@@ -33,7 +33,7 @@ Hintergrund, Hero-Flächen, Haken, Fortschritt und Schatten werden per `color-mi
 | `--duration` / `--duration-slow` | 200 / 700 ms | Animationen / Akzent-Wechsel |
 | `--ease` / `--feder` | Abbremsen / leichtes Nachfedern | Bewegung |
 | `--tap` | 44px | Tippflächen |
-| `--sidebar` / `--sidebar-zu` | 236 / 72 px | Seitenleiste aus- / eingeklappt |
+| `--sidebar` / `--sidebar-zu` | 236 / 72 px | Seitenleiste beim Drüberfahren / in Ruhe |
 
 `.hell` (Mindmap-Overlay): deckendes Warmweiß statt Glas, gleiche Token-Namen.
 
@@ -66,9 +66,9 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 | `symbol.js` | `symbol(name)` | dünnes Linien-Symbol (24 px, Textfarbe), z. B. `heute`, `todos`, `einstellungen`, `mehr`, `abgleich`, `export`, `konto`, `physio`, `suche` |
 
 Navigation (`src/app/nav.js`, Stil `nav.css`): iPhone = schwebende Glas-Kapsel unten, nur Symbole.
-Mac = schwebende Glas-Seitenleiste links mit Logo „0“ (Akzent-Verlauf) und „System 0“; runder Knopf am Rand klappt
-sie auf 72 px ein (pro Gerät in `localStorage` „leiste“ gemerkt), unter 1100 px Fensterbreite immer eingeklappt.
-Aktiver Eintrag: weiße Pille (`.nav__zeiger`), die mit Nachfedern zum neuen Eintrag gleitet.
+Mac = schwebende Glas-Seitenleiste links mit Logo „0“ (Akzent-Verlauf) und „System 0“; immer schmal (72 px),
+klappt beim Drüberfahren (bzw. Tastatur-Fokus) über den Inhalt auf 236 px auf. Kein Klapp-Knopf mehr.
+Aktiver Eintrag: weiße Pille (`.nav__zeiger`), gleitet ruhig ohne Nachfedern (nur senkrecht, Breite per CSS).
 Seitenleiste wie `docs/vorlagen/dashboard-glas.png`: Marke „System 0 / Lukas“, Suchfeld (Glas-Pille), Abschnitte
 ALLTAG / KÖRPER & KOPF / SYSTEM (10 px, gesperrt, `--text-3`), Zahl als Akzent-Pille rechts am Eintrag, unten Kreis „L“ mit
 Status-Punkt + „Lukas · synchronisiert“. Eingeklappt verschwinden Texte, Abschnitts-Namen und Zahlen.

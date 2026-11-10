@@ -1,5 +1,6 @@
 /* Rahmen der App: schwebende Glas-Kapsel unten (iPhone) und schwebende Glas-Seitenleiste links (Mac, ab 768 px).
-   Aktiver Eintrag: weiße Pille (.nav__zeiger), die per transform von Eintrag zu Eintrag gleitet (nav.js). */
+   Seitenleiste ist schmal und klappt beim Drüberfahren über den Inhalt auf.
+   Aktiver Eintrag: weiße Pille (.nav__zeiger), die per transform ruhig von Eintrag zu Eintrag gleitet (nav.js). */
 
 .shell {
   min-height: inherit;
@@ -25,7 +26,7 @@
   border-radius: 13px;
   background: #fff;
   box-shadow: 0 6px 18px -8px rgba(70, 25, 10, 0.35);
-  transition: transform 500ms var(--feder), width 450ms var(--ease), height 450ms var(--ease), opacity var(--duration);
+  transition: transform 420ms var(--ease), width 420ms var(--ease), height 420ms var(--ease), opacity var(--duration);
 }
 .nav-tabs__link,
 .nav-side__link {
@@ -94,16 +95,9 @@
   display: none;
 }
 @media (min-width: 768px) {
-  .shell {
-    --leiste: var(--sidebar);
-  }
-  .shell--schmal {
-    --leiste: var(--sidebar-zu);
-  }
   .shell__main {
     padding-bottom: 0;
-    margin-left: calc(var(--leiste) + var(--space-4));
-    transition: margin-left 450ms var(--ease);
+    margin-left: calc(var(--sidebar-zu) + var(--space-4));
   }
   .nav-tabs {
     display: none;
@@ -115,19 +109,22 @@
     left: var(--space-4);
     bottom: var(--space-4);
     display: block;
-    width: var(--leiste);
+    width: var(--sidebar-zu);
     padding: 14px;
-    border-radius: 28px;
-    transition: width 450ms var(--ease);
+    border-radius: var(--radius-gross);
+    overflow: hidden;
+    transition: width 380ms var(--ease) 60ms, box-shadow 380ms var(--ease);
   }
-}
-/* Schmale Fenster: immer eingeklappt */
-@media (min-width: 768px) and (max-width: 1099px) {
-  .shell {
-    --leiste: var(--sidebar-zu);
+  /* Aufklappen: Maus drüber oder Tastatur-Fokus darin (schwebt über dem Inhalt) */
+  .nav-side:hover,
+  .nav-side:has(:focus-visible) {
+    width: var(--sidebar);
+    box-shadow: var(--schatten-hoch);
+    transition-delay: 120ms;
   }
-  .nav-side__klappe {
-    display: none;
+  .nav-side .nav__zeiger {
+    left: 14px;
+    right: 14px;
   }
 }
 .nav-side .nav__inhalt {
@@ -156,32 +153,6 @@
   font-weight: 700;
   background: linear-gradient(140deg, var(--akzent-hell), var(--accent) 55%, var(--akzent-tief));
   box-shadow: 0 6px 16px -6px var(--accent);
-}
-.nav-side__klappe {
-  position: absolute;
-  top: 26px;
-  right: -12px;
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  width: 26px;
-  height: 26px;
-  padding: 0;
-  color: var(--text);
-  background: #fff;
-  border: 0;
-  border-radius: 50%;
-  box-shadow: 0 4px 12px -4px rgba(60, 20, 10, 0.35);
-  cursor: pointer;
-  transition: transform 450ms var(--feder);
-}
-.nav-side__klappe .symbol {
-  width: 14px;
-  height: 14px;
-  stroke-width: 2;
-}
-.shell--schmal .nav-side__klappe {
-  transform: rotate(180deg);
 }
 .nav-side__link {
   display: flex;
@@ -307,12 +278,7 @@
   transition: opacity 250ms var(--ease);
 }
 @media (min-width: 768px) {
-  .shell--schmal .nav-side :is(.nav__text, .nav-side__abschnitt, .nav-side__zahl) {
-    opacity: 0;
-  }
-}
-@media (min-width: 768px) and (max-width: 1099px) {
-  .nav-side :is(.nav__text, .nav-side__abschnitt, .nav-side__zahl) {
+  .nav-side:not(:hover, :has(:focus-visible)) :is(.nav__text, .nav-side__abschnitt, .nav-side__zahl) {
     opacity: 0;
   }
 }

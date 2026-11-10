@@ -1,0 +1,29 @@
+<!doctype html>
+<!-- Lokale Vorschau der App ohne Login und ohne Supabase (nur zum Prüfen des Designs, Daten nur in IndexedDB).
+     Öffnen: http://127.0.0.1:8000/tests/vorschau.html#/heute -->
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Vorschau</title>
+  <script>
+    // Test-Service-Worker (umgeht den Browser-Cache), dann den echten für die App abschalten
+    if (!navigator.serviceWorker.controller) navigator.serviceWorker.register('vorschau-sw.js').then(() => setTimeout(() => location.reload(), 300));
+    localStorage.setItem('system0-auth', JSON.stringify({ access_token: 't', expires_at: 9999999999, user: { id: '0' } }));
+    const f = window.fetch;
+    window.fetch = (u, o) => (String(u?.url || u).includes('supabase') ? Promise.reject(new TypeError('offline')) : f(u, o));
+    Object.defineProperty(Navigator.prototype, 'onLine', { get: () => false });
+    Object.defineProperty(Navigator.prototype, 'serviceWorker', { get: () => ({ controller: null, addEventListener() {}, register: () => Promise.reject(new Error('aus')) }) });
+  </script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module">
+    const html = await (await fetch('../index.html', { cache: 'no-store' })).text();
+    for (const [, href] of html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)) {
+      document.head.append(Object.assign(document.createElement('link'), { rel: 'stylesheet', href: `../${href}` }));
+    }
+    await import('../src/main.js');
+  </script>
+</body>
+</html>

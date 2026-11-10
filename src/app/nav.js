@@ -48,8 +48,10 @@ function zeigerSetzen(nav) {
   if (!a || !a.offsetWidth) { z.style.opacity = '0'; return; }
   const n = nav.getBoundingClientRect(), r = a.getBoundingClientRect();
   const x = r.left - n.left - nav.clientLeft, y = r.top - n.top - nav.clientTop;
+  const seite = nav.classList.contains('nav-side'); // Seitenleiste: Breite per CSS, nur senkrecht gleiten
   if (!z.dataset.da) z.style.transition = 'none';
-  Object.assign(z.style, { opacity: '1', width: `${r.width}px`, height: `${r.height}px`, transform: `translate(${x}px, ${y}px)` });
+  Object.assign(z.style, { opacity: '1', width: seite ? '' : `${r.width}px`, height: `${r.height}px`,
+    transform: `translate(${seite ? 0 : x}px, ${y}px)` });
   if (!z.dataset.da) { z.dataset.da = '1'; requestAnimationFrame(() => requestAnimationFrame(() => (z.style.transition = ''))); }
 }
 
@@ -62,17 +64,6 @@ function inhalt(nav) {
   return nav.lastChild;
 }
 
-function klappe() {
-  return el('button', {
-    class: 'nav-side__klappe',
-    attrs: { type: 'button', 'aria-label': 'Seitenleiste ein- oder ausklappen' },
-    on: { click: (e) => {
-      const shell = e.currentTarget.closest('.shell');
-      shell.classList.toggle('shell--schmal');
-      try { localStorage.setItem('leiste', shell.classList.contains('shell--schmal') ? 'zu' : 'auf'); } catch {}
-    } },
-  }, [symbol('zurueck')]);
-}
 
 // zahlen: { <bereich-id>: Zahl } für die kleinen Zahlen am Eintrag; sync: Status aus core/sync.js
 export function renderSide(nav, plan, aktivId, { zahlen = {}, sync }) {
@@ -81,7 +72,6 @@ export function renderSide(nav, plan, aktivId, { zahlen = {}, sync }) {
       el('span', { class: 'nav-side__logo', text: '0' }),
       el('div', { class: 'nav__text' }, [el('b', { text: 'System 0' }), el('small', { text: 'Lukas' })]),
     ]),
-    klappe(),
     suche(),
     ...plan.abschnitte.flatMap((a) => [
       el('div', { class: 'nav-side__abschnitt', text: a.titel }),

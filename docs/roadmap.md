@@ -391,3 +391,10 @@ Offen bei Lukas: 019–023 ausführen, Edge Function „erinnerungen“ einricht
 - ~~Notion-Anbindung~~ gestrichen (Lukas, 09.11.2026: nicht mehr gewünscht)
 - ~~Idee KI-Auswertung~~ bewusst gestrichen (09.11.2026; kostet je nach Anbieter Geld bzw. Datenschutz);
       kostenlos jetzt schon: Export-JSON in einen Claude-Chat geben
+
+## Phase 6 – Design-Überarbeitung (10.11.2026)
+Entscheidungen Lukas: Bereichs-„Emoji“ = vorhandene Linien-Symbole, dezent; Ecken „fein“; Titel groß + kräftig mit Symbol.
+Vorschau ohne Login: `tests/vorschau.html` (lokal, Supabase aus). Muster: `muster/vorschlaege.html`.
+- [x] 1. Seitenleiste: Klapp-Knopf weg, schmal + Aufklappen beim Drüberfahren; Zeiger gleitet ohne Nachfedern
+      (Ursache Sprung: `--feder` schwingt ~10 % der Strecke über, dazu Breite/Höhe-Nachlauf beim Ein-/Ausklappen)
+

@@ -23,8 +23,6 @@ export function shell() {
     el('main', { class: 'shell__main' }, [inhalt]),
     tabs,
   ]);
-  // Seitenleiste eingeklappt? (pro Gerät gemerkt, Knopf in nav.js)
-  try { if (localStorage.getItem('leiste') === 'zu') element.classList.add('shell--schmal'); } catch {}
 
   let zahlen = {}; // kleine Zahlen in der Seitenleiste: offene To-dos
 
