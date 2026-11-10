@@ -462,3 +462,5 @@ Stand 10.11.2026: Phase 8 fertig (v118), lokal geprüft (Mac + iPhone 375 px): K
       Claude prüft/korrigiert, schreibt Physio-Punkte im festen Stil (kurz, Felder mit •, Notizen MERKE/SO STELLST DU ES DIR VOR/PRAXIS/QUIZ)
       und eine SQL-Datei `supabase/physio-import/<thema>.sql` für den SQL-Editor (Einträge + Verknüpfungen per Titel), Sync holt sie ab (v119).
 - [x] 5. Physio „Datenbank“ (v120): Lernzettel-Vault unter dem Kosmos statt SQL-Import. Claude legt aus Datei + Prompt `lernzettel/physio/<thema>.md` + `index.json` an (`module/physio.md`).
+- [x] 6. Alte SQL-Fassung von „Lernzettel → Physio“ wird beim Öffnen der Prompts automatisch durch die neue ersetzt (v121).
+

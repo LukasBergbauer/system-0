@@ -66,6 +66,10 @@ export function promptsKachel() {
 
   getSetting('prompts', null).then((wert) => {
     prompts = Array.isArray(wert) ? wert : structuredClone(PROMPT_VORLAGEN);
+    // Alte SQL-Fassung von „Lernzettel → Physio“ (v119) durch die aktuelle Vorlage ersetzen.
+    const neu = PROMPT_VORLAGEN.find((v) => v.titel === 'Lernzettel → Physio');
+    const alt = prompts.find((p) => p.text.includes('supabase/physio-import'));
+    if (alt) { alt.titel = neu.titel; alt.text = neu.text; setSetting('prompts', prompts); }
     zeige();
   });
 
