@@ -38,7 +38,7 @@
 .training__plan-heute, .training__tag { display: flex; flex-direction: column; gap: var(--space-2); }
 .training__plan-zeile, .training__tag-kopf { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
 .training__plan-zeile > div { min-width: 0; }
-.training__tag .label, .training__plan-heute .label { margin: 0; }
+.training__tag-kopf > .abschnitt { flex: 1; }
 
 /* v2: Heute-Karte, großer Start, Zuletzt, Durchlauf (Klassen .durchlauf* aus routinen.css) */
 .training__zahlen { margin: 0; color: var(--text-2); font-size: var(--fs-small); }

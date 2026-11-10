@@ -1,5 +1,6 @@
 // Wochenansicht: oben Pfeile ‹ › und der Zeitraum (antippen = diese Woche), darunter Mo–So
 // als Abschnitte mit den Terminen des Tags. Mehrtägige Termine stehen an jedem ihrer Tage.
+import { abschnitt } from '../../ui/abschnitt.js';
 import { el } from '../../ui/dom.js';
 import { list } from '../../ui/list.js';
 import { plusTage, tagISO } from './zeit.js';
@@ -33,7 +34,7 @@ export function wocheAnsicht({ termine, start, onWechsel, zeile }) {
       .sort((a, b) => Date.parse(a.start) - Date.parse(b.start));
     const istHeute = tagISO(von) === heute;
     return el('section', { class: `woche__tag${istHeute ? ' woche__tag--heute' : ''}` }, [
-      el('h2', { class: 'termin-gruppe__titel label', text: kurz(von, { weekday: 'short', day: 'numeric', month: 'numeric' }) + (istHeute ? ' · Heute' : '') }),
+      abschnitt({ titel: kurz(von, { weekday: 'short', day: 'numeric', month: 'numeric' }), zahl: istHeute ? 'Heute' : null }),
       anTag.length ? list(anTag.map(zeile)) : el('p', { class: 'woche__leer', text: '—' }),
     ]);
   });

@@ -78,6 +78,7 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 | `kopfbild.js` | `kopfbild({ titel, symbol, abschnitt, werte })` | Seitenkopf als Glas-Kopfleiste mit Kennzahlen; `kopf.werte(neue)` tauscht sie |
 | `kachel.js` | `kacheln([…])`, `kachel({ symbol, titel, wert, text, gross, onClick, children })` | Glas-Kacheln im 2er-Raster; klein = Symbol oben, `gross` = ganze Breite mit Symbol links; Symbol im weißen Kreis (38 px), `titel` als Label, `wert` groß (26 px, 600), `text` klein; antippbar = hebt sich beim Drüberfahren; Zustände `kachel--laeuft` (Symbol dreht), `kachel--warn` |
 | `chips.js` | `chips({ items, active, onChange, aktionen })` | waagrechte Kapsel-Leiste (wischbar); gewählt = Akzent gefüllt; `aktionen` = gestrichelte Chips, die nur etwas auslösen |
+| `abschnitt.js` | `abschnitt({ titel, zahl, symbol, tag })` | Abschnitts-Überschrift als Glas-Kasten (Symbol, Label, Zahl rechts); in Karten ohne Schatten (`schrift.css`). Ersetzt lose `.label`-Überschriften (To-dos, Kalender, Gewohnheiten, Training, Insta) |
 | `symbol.js` | `symbol(name)` | dünnes Linien-Symbol (24 px, Textfarbe), z. B. `heute`, `todos`, `einstellungen`, `mehr`, `abgleich`, `export`, `konto`, `physio`, `suche` |
 
 Navigation (`src/app/nav.js`, Stil `nav.css`): iPhone = schwebende Glas-Kapsel unten, nur Symbole.
@@ -97,7 +98,7 @@ Insta Kachelraster, Einstellungen ohne Muster (Monospace). Muster: `muster/runde
 Karten-/Fenstertitel 650, `--fs-title`, eng;
 Karten auf Heute mit kleinem Bereichs-Symbol im Titel.
 Ein `bild` wird zurzeit nicht übergeben (`shell.js`), die Bereiche behalten ihre Bildlisten für später.
-Listen-Gruppen in To-dos und Kalender (`.todo-gruppe`, `.termin-gruppe`) sind Glaskarten.
+Listen-Gruppen in To-dos und Kalender (`.todo-gruppe`, `.termin-gruppe`) sind Glaskarten mit `abschnitt`-Kasten als Kopf.
 
 ## Kopfbilder und Sprüche (pausiert)
 - Fotos von Lukas (Bild-KI), je Bereich drei Varianten: `assets/bilder/<bereich>-1…3.webp` (1536 × 1024, je ca. 80–125 KB).

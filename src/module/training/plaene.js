@@ -1,4 +1,5 @@
 // Pläne in der Training-Liste: Tab „Pläne“ und Karte „Heute“ (ganz oben, großer Start je Plan-Einheit).
+import { abschnitt } from '../../ui/abschnitt.js';
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
 import { list, listRow } from '../../ui/list.js';
@@ -29,7 +30,7 @@ export function heutePlan({ daten, starte }) {
   if (!daten.plaene.some((p) => p.aktiv)) return null;
   const heute = planFuerTag(daten);
   return el('section', { class: 'card training__plan-heute' }, [
-    el('h3', { class: 'label', text: 'Heute' }),
+    abschnitt({ titel: 'Heute', tag: 'h3', symbol: 'training' }),
     !heute.length && el('p', { class: 'training__titel', text: 'Ruhetag' }),
     ...heute.map((pe) => {
       return el('div', { class: 'training__heute' }, [

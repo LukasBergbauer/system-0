@@ -1,6 +1,5 @@
 /* Modul „Gewohnheiten“: nutzt die Karten aus routinen.css, hier nur das Eigene. Nur Werte aus tokens.css. */
 .gewohnheiten__abschnitt { display: flex; flex-direction: column; gap: var(--space-3); width: 100%; }
-.gewohnheiten__abschnitt > .label { margin: 0; }
 .gewohnheit__zaehler { display: flex; align-items: center; gap: var(--space-2); margin-left: auto; font-weight: 600; font-size: var(--fs-small); }
 .gewohnheit__zaehler .btn { margin: 0; min-width: var(--tap); }
 .gewohnheit__ohne { display: flex; align-items: baseline; gap: var(--space-2); }

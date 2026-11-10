@@ -3,6 +3,7 @@
 // Liste = „Nächste Termine“ in Gruppen (Heute · Morgen · Diese Woche · Später), Vergangenes ausgeblendet.
 // Woche = Mo–So mit Pfeilen (woche.js), Monat = Raster + Tagesliste (monat.js).
 // Zeichnet sich neu, sobald sich Termine ändern (auch durch das andere Gerät).
+import { abschnitt } from '../../ui/abschnitt.js';
 import { el } from '../../ui/dom.js';
 import { list, listRow } from '../../ui/list.js';
 import { button } from '../../ui/button.js';
@@ -70,7 +71,7 @@ function liste(termine) {
   const gruppen = gruppiere(termine);
   if (!gruppen.length) return [el('p', { class: 'app__note', text: 'Keine Termine. Freie Zeit.' })];
   return gruppen.map((g) => el('section', { class: 'termin-gruppe' }, [
-    el('h2', { class: 'termin-gruppe__titel label', text: `${g.titel} · ${g.termine.length}` }),
+    abschnitt({ titel: g.titel, zahl: g.termine.length, symbol: 'kalender' }),
     list(g.termine.map((t) => zeile(t, g.id))),
   ]));
 }

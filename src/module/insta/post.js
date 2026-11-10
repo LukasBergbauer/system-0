@@ -1,5 +1,6 @@
 // Ein Post als Vollbild: Kurzfassung (Hook, Skript, CTA, Caption + Hashtags kopieren, Zahlen) oder Bearbeiten.
 // oeffnePost(id, { neu }) – neu: gleich bearbeiten; bleibt er leer, wird er beim Schließen gelöscht.
+import { abschnitt as kasten } from '../../ui/abschnitt.js';
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
 import { zeigeMarkdown } from '../../ui/markdown.js';
@@ -11,7 +12,7 @@ export const tag = (d) => DATUM.format(new Date(`${d}T12:00`));
 const zahl = new Intl.NumberFormat('de-DE');
 
 function abschnitt(titel, inhalt) {
-  return inhalt && el('section', { class: 'insta-abschnitt' }, [el('h3', { class: 'label', text: titel }), inhalt]);
+  return inhalt && el('section', { class: 'insta-abschnitt' }, [kasten({ titel, tag: 'h3', symbol: 'insta' }), inhalt]);
 }
 
 function zahlenRaster(z) {

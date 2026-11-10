@@ -2,6 +2,7 @@
 // (Überfällig · Heute · Diese Woche · Später · Ohne Datum), ganz unten „Erledigt“ (eingeklappt).
 // Keine Kästen: jede Gruppe ist eine kleine Überschrift mit Zeilen darunter.
 // Zeichnet sich neu, sobald sich To-dos oder Bereiche ändern (auch durch das andere Gerät).
+import { abschnitt } from '../../ui/abschnitt.js';
 import { el } from '../../ui/dom.js';
 import { list } from '../../ui/list.js';
 import { on } from '../../core/events.js';
@@ -18,7 +19,7 @@ import { erledigtAbschnitt } from './erledigt.js';
 
 function gruppe({ titel, todos }, zeile) {
   return el('section', { class: 'todo-gruppe' }, [
-    el('h2', { class: 'todo-gruppe__titel label', text: `${titel} · ${todos.length}` }),
+    abschnitt({ titel, zahl: todos.length, symbol: 'todos' }),
     list(todos.map(zeile)),
   ]);
 }

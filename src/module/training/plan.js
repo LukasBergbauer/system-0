@@ -1,5 +1,6 @@
 // Seite „Plan“: Name, Schalter „Aktiv“, Mo–So mit ihren Einheiten (antippen → Plan-Einheit, „Start“ nur am eigenen Tag), „+ Einheit“ je Tag.
 // Name speichert beim Verlassen des Felds; Neuzeichnen nur nach Anlegen (neuZeichnen).
+import { abschnitt } from '../../ui/abschnitt.js';
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
 import { input } from '../../ui/input.js';
@@ -20,7 +21,7 @@ export function planSeite(id, { daten, zurueck, oeffne, starte }) {
     const pes = daten.planEinheiten.filter((pe) => pe.plan_id === id && pe.wochentag === i + 1);
     return el('section', { class: 'card training__tag' }, [
       el('div', { class: 'training__tag-kopf' }, [
-        el('h3', { class: 'label', text: tag }),
+        abschnitt({ titel: tag, tag: 'h3' }),
         button({ text: '+ Einheit', variant: 'ghost', onClick: async () => oeffne('plan-einheit', (await neuePlanEinheit(id, i + 1)).id) }),
       ]),
       pes.length

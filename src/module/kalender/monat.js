@@ -1,5 +1,6 @@
 // Monatsansicht: Pfeile ‹ › mit Monatsname (antippen = dieser Monat), Glas-Raster Mo–So mit Punkten je Termin
 // (Mac: kurze Titel), darunter die Termine des gewählten Tags. Tag antippen wechselt nur die Liste darunter.
+import { abschnitt } from '../../ui/abschnitt.js';
 import { el } from '../../ui/dom.js';
 import { list } from '../../ui/list.js';
 import { plusTage, tagISO } from './zeit.js';
@@ -44,7 +45,7 @@ export function monatAnsicht({ termine, start, tag, onWechsel, onTag, zeile }) {
     zellen.forEach((z) => z.classList.toggle('monat__tag--an', z === zelle));
     const anTag = sortiert(termine.filter((t) => amTag(t, d)));
     tagListe.replaceChildren(
-      el('h2', { class: 'termin-gruppe__titel label', text: d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' }) }),
+      abschnitt({ titel: d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' }), symbol: 'kalender' }),
       anTag.length ? list(anTag.map(zeile)) : el('p', { class: 'woche__leer', text: 'Frei.' }),
     );
   }
