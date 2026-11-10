@@ -113,7 +113,8 @@
     padding: 14px;
     border-radius: var(--radius-gross);
     overflow: hidden;
-    transition: width 260ms var(--ease), box-shadow 260ms var(--ease); /* 260 ms = DAUER in app/gleiten.js */
+    /* gleichmäßig statt Satz am Anfang; Dauer + Kurve = app/gleiten.js */
+    transition: width 420ms cubic-bezier(0.45, 0, 0.2, 1), box-shadow 420ms cubic-bezier(0.45, 0, 0.2, 1);
     contain: layout paint style; /* Auf-/Zuklappen rechnet nur die Leiste neu */
   }
   /* Aufklappen: Klasse aus nav.js (Maus drüber oder Tastatur-Fokus). Der Inhalt weicht sofort aus, sichtbar gleitet er
@@ -287,6 +288,6 @@
   .shell--leiste-offen .nav-side :is(.nav__text, .nav-side__abschnitt, .nav-side__zahl) {
     opacity: 1;
     visibility: visible;
-    transition: opacity 160ms var(--ease) 90ms, visibility 0s;
+    transition: opacity 220ms var(--ease) 160ms, visibility 0s;
   }
 }

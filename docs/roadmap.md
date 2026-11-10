@@ -421,3 +421,5 @@ Offen bei Lukas: auf Geräten prüfen (v. a. Hover-Leiste, Bearbeiten-Modus am i
       Jetzt: Inhalt weicht in **allen** Bereichen aus, gleitet per FLIP/Web Animations (`app/gleiten.js`, 260 ms, Heute-Felder einzeln),
       Zeiger nur bei neuer Höhe, Leiste `contain`. Kopf-Kennzahlen ohne Trennstriche. Training-Karte „Diese Woche“ gestrichen,
       Kopf zeigt Einheiten · Minuten · Wochen in Folge. `sw.js` `v103`. Offen bei Lukas: Gefühl in Safari/am Mac prüfen.
+- [x] 14. Sprung noch zu heftig (Kurve `--ease` legte ~80 % der Strecke ins erste Drittel): Leiste + Inhalt jetzt 420 ms,
+      sanfte Kurve `cubic-bezier(.45,0,.2,1)`, startet sofort; Text blendet ab 160 ms ein. `sw.js` `v104`

@@ -3,7 +3,8 @@
 // So rechnet das Gerät pro Bild kein Layout neu, nur die Grafikeinheit bewegt. Teile = Kinder von .app;
 // enthält ein Teil ein Raster ([data-raster], z. B. Heute), gleiten dessen Felder einzeln (rutschen um, wenn nötig).
 // Web Animations statt Inline-Übergang: liegt über laufenden CSS-Animationen (Einblenden) und lässt sich abbrechen.
-export const DAUER = 260; // gleich wie die Breite der Leiste in nav.css
+// gleich wie die Breite der Leiste in nav.css: startet sofort, aber sanft (kein Satz am Anfang)
+const DAUER = 420, KURVE = 'cubic-bezier(0.45, 0, 0.2, 1)';
 
 const ruhig = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const teile = (e) => (e.matches('[data-raster]') || e.querySelector('[data-raster]') ? [...e.children].flatMap(teile) : [e]);
@@ -17,7 +18,6 @@ export function gleiten(main, aendern) {
   aendern();
   liste.forEach((e) => e.gleiten?.cancel());
   const nachher = liste.map((e) => e.getBoundingClientRect()); // ein Layout für alle
-  const ease = getComputedStyle(main).getPropertyValue('--ease').trim() || 'ease-out';
   liste.forEach((e, i) => {
     const a = vorher[i], n = nachher[i];
     if (!sichtbar(a) && !sichtbar(n)) return;
@@ -26,6 +26,6 @@ export function gleiten(main, aendern) {
     e.gleiten = e.animate([
       { transformOrigin: '0 0', transform: `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})` },
       { transformOrigin: '0 0', transform: 'none' },
-    ], { duration: DAUER, easing: ease });
+    ], { duration: DAUER, easing: KURVE });
   });
 }

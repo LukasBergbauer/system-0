@@ -84,7 +84,7 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 Navigation (`src/app/nav.js`, Stil `nav.css`): iPhone = schwebende Glas-Kapsel unten, nur Symbole.
 Mac = schwebende Glas-Seitenleiste links mit Logo „0“ (Akzent-Verlauf) und „System 0“; immer schmal (72 px),
 klappt beim Drüberfahren (bzw. Tastatur-Fokus) sofort auf 236 px auf und schiebt den Inhalt in allen Bereichen:
-Rand springt sofort, sichtbar gleiten die Teile per FLIP (`app/gleiten.js`, Felder mit `[data-raster]` einzeln, 260 ms wie die Leiste).
+Rand springt sofort, sichtbar gleiten die Teile per FLIP (`app/gleiten.js`, Felder mit `[data-raster]` einzeln, 420 ms, sanfte Kurve wie die Leiste).
 Zustand als Klasse `shell--leiste-offen` (nav.js `leisteKlappen`), kein `:hover/:has` (Safari). Kein Klapp-Knopf mehr.
 Aktiver Eintrag: weiße Pille (`.nav__zeiger`), gleitet ruhig ohne Nachfedern (nur senkrecht, Breite per CSS).
 Seitenleiste wie `docs/vorlagen/dashboard-glas.png`: Marke „System 0 / Lukas“, Suchfeld (Glas-Pille), Abschnitte
