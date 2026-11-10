@@ -1,0 +1,43 @@
+/* Charakter je Bereich im Seitenkopf (Lukas, Runde 2): immer dieselbe Farbe, Unterschied über leises Muster (--muster,
+   rechts auslaufend), Aufbau und Schrift. Bereich kommt aus data-bereich an .app (shell.js). Muster: muster/runde2.html */
+.app {
+  --mline: color-mix(in srgb, var(--text) 13%, transparent);
+  --makz: color-mix(in srgb, var(--bereich-tief) 22%, transparent);
+}
+/* To-dos: Notizblock-Linien, Haken-Spalte */
+[data-bereich="todos"] .kopf { --muster: repeating-linear-gradient(0deg, var(--mline) 0 1px, transparent 1px 18px); }
+[data-bereich="todos"] .kopf::after { content: ""; position: absolute; left: 84px; top: 0; bottom: 0; width: 1px; background: var(--makz); }
+/* Kalender: Monatsraster */
+[data-bereich="kalender"] .kopf { --muster: linear-gradient(var(--mline) 1px, transparent 1px) 0 0 / 22px 22px, linear-gradient(90deg, var(--mline) 1px, transparent 1px) 0 0 / 22px 22px; }
+/* Routinen: Zeitstrahl mit Stunden-Strichen am Fuß */
+[data-bereich="routinen"] .kopf { --muster: repeating-linear-gradient(90deg, var(--mline) 0 1px, transparent 1px 28px) 0 100% / 100% 14px no-repeat,
+  repeating-linear-gradient(90deg, var(--makz) 0 1.5px, transparent 1.5px 112px) 0 100% / 100% 26px no-repeat; }
+/* Training: schräge Streifen, Zahlen kräftiger */
+[data-bereich="training"] .kopf { --muster: repeating-linear-gradient(-55deg, var(--mline) 0 1px, transparent 1px 11px); }
+[data-bereich="training"] .kopf__wert b { font-size: 34px; font-weight: 700; letter-spacing: -0.05em; }
+/* Physio: Höhenlinien */
+[data-bereich="physio"] .kopf { --muster: repeating-radial-gradient(circle at 92% 30%, transparent 0 13px, var(--mline) 13px 14px); }
+/* Visionen: Strahlen vom Horizont */
+[data-bereich="ziele"] .kopf { --muster: repeating-conic-gradient(from 180deg at 100% 100%, var(--mline) 0 .6deg, transparent .6deg 6deg); }
+/* Affirmationen: mittig, Licht von oben, Serife kursiv */
+[data-bereich="affirmationen"] .kopf { --muster: radial-gradient(60% 90% at 50% 0%, rgba(255,255,255,.85), transparent 70%);
+  flex-direction: column; text-align: center; }
+[data-bereich="affirmationen"] .kopf::before { -webkit-mask: none; mask: none; opacity: 1; }
+[data-bereich="affirmationen"] .kopf__werte { margin: 0; }
+[data-bereich="affirmationen"] .kopf__wert:first-child { border-left: 0; padding-left: 0; }
+/* Gewohnheiten: Punkte wie ein Tracker */
+[data-bereich="gewohnheiten"] .kopf { --muster: radial-gradient(circle, var(--makz) 2.2px, transparent 2.6px) 0 0 / 16px 16px; }
+/* Wissen-Quiz: feines Punkt-Raster */
+[data-bereich="quiz"] .kopf { --muster: radial-gradient(circle, var(--text) 1px, transparent 1.4px) 0 0 / 10px 10px; }
+[data-bereich="quiz"] .kopf::before { opacity: 0.22; }
+/* Bücher: Leinen, Buchrücken links, Serifentitel */
+[data-bereich="buecher"] .kopf { --muster: repeating-linear-gradient(0deg, var(--mline) 0 .5px, transparent .5px 3px), repeating-linear-gradient(90deg, var(--mline) 0 .5px, transparent .5px 3px);
+  padding-left: calc(var(--space-5) + 10px); }
+[data-bereich="buecher"] .kopf::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 8px; background: linear-gradient(90deg, var(--makz), transparent); }
+:is([data-bereich="buecher"], [data-bereich="affirmationen"]) .kopf__titel { font-family: ui-serif, "New York", Georgia, serif; letter-spacing: -0.02em; }
+[data-bereich="buecher"] .kopf__titel { font-weight: 600; }
+[data-bereich="affirmationen"] .kopf__titel { font-weight: 500; font-style: italic; }
+/* Insta: 3er-Kachelraster */
+[data-bereich="insta"] .kopf { --muster: linear-gradient(var(--mline) 2px, transparent 2px) 0 0 / 34px 34px, linear-gradient(90deg, var(--mline) 2px, transparent 2px) 0 0 / 34px 34px; }
+/* Einstellungen: technisch, kein Muster, Werte in Monospace */
+[data-bereich="einstellungen"] .kopf__wert b { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 20px; font-weight: 500; letter-spacing: 0; }

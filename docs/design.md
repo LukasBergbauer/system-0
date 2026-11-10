@@ -75,7 +75,7 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 | `input.js` | `input({ label, placeholder, value, type, onInput })` | Eingabefeld mit Beschriftung |
 | `modal.js` | `modal({ title, content, actions })` → `{ open, close }` | iPhone: von unten, Mac: mittig |
 | `tabs.js` | `tabs({ items, active, onChange })` | Pillen-Umschalter, aktiver Tab = dunkle Pille |
-| `kopfbild.js` | `kopfbild({ titel, bild, spruch })` | Seitenkopf: großer Titel, darunter Zeile und Spruch (Bild zurzeit pausiert) |
+| `kopfbild.js` | `kopfbild({ titel, symbol, abschnitt, werte })` | Seitenkopf als Glas-Kopfleiste mit Kennzahlen; `kopf.werte(neue)` tauscht sie |
 | `kachel.js` | `kacheln([…])`, `kachel({ symbol, titel, wert, text, gross, onClick, children })` | Glas-Kacheln im 2er-Raster; klein = Symbol oben, `gross` = ganze Breite mit Symbol links; Symbol im weißen Kreis (38 px), `titel` als Label, `wert` groß (26 px, 600), `text` klein; antippbar = hebt sich beim Drüberfahren; Zustände `kachel--laeuft` (Symbol dreht), `kachel--warn` |
 | `chips.js` | `chips({ items, active, onChange, aktionen })` | waagrechte Kapsel-Leiste (wischbar); gewählt = Akzent gefüllt; `aktionen` = gestrichelte Chips, die nur etwas auslösen |
 | `symbol.js` | `symbol(name)` | dünnes Linien-Symbol (24 px, Textfarbe), z. B. `heute`, `todos`, `einstellungen`, `mehr`, `abgleich`, `export`, `konto`, `physio`, `suche` |
@@ -88,8 +88,13 @@ Aktiver Eintrag: weiße Pille (`.nav__zeiger`), gleitet ruhig ohne Nachfedern (n
 Seitenleiste wie `docs/vorlagen/dashboard-glas.png`: Marke „System 0 / Lukas“, Suchfeld (Glas-Pille), Abschnitte
 ALLTAG / KÖRPER & KOPF / SYSTEM (10 px, gesperrt, `--text-3`), Zahl als Akzent-Pille rechts am Eintrag, unten Kreis „L“ mit
 Status-Punkt + „Lukas · synchronisiert“. Eingeklappt verschwinden Texte, Abschnitts-Namen und Zahlen.
-Seitenkopf (`kopfbild`): großer Titel (`--fs-seite`, 650, eng) mit Bereichs-Symbol davor (40 px weißes Glas-Plättchen, Linie in
-`--bereich-tief`), darunter `ueber` (z. B. Datum) und Spruch in Nebentext. Karten-/Fenstertitel 650, `--fs-title`, eng;
+Seitenkopf (`kopfbild`, Runde 2, Variante A): Glas-Kopfleiste mit Symbol-Plättchen (48 px), Abschnitt (ALLTAG …) über dem Titel
+(`--fs-display`, 650), rechts Kennzahlen (`bereich.kennzahlen()` → `[{ zahl, text }]`, je Modul `kennzahlen.js`, frisch bei `daten`),
+durch Haarlinien getrennt; iPhone: Kennzahlen unter dem Titel. **Charakter je Bereich** (`kopf-muster.css`, eine Farbe):
+To-dos Notizblock-Linien + Haken-Spalte, Kalender Raster, Routinen Zeitstrahl, Training Streifen + kräftige Zahlen, Physio Höhenlinien,
+Visionen Strahlen, Affirmationen mittig + Serife kursiv, Gewohnheiten Punkte, Quiz Punkt-Raster, Bücher Leinen + Buchrücken + Serife,
+Insta Kachelraster, Einstellungen ohne Muster (Monospace). Muster: `muster/runde2.html`.
+Karten-/Fenstertitel 650, `--fs-title`, eng;
 Karten auf Heute mit kleinem Bereichs-Symbol im Titel.
 Ein `bild` wird zurzeit nicht übergeben (`shell.js`), die Bereiche behalten ihre Bildlisten für später.
 Listen-Gruppen in To-dos und Kalender (`.todo-gruppe`, `.termin-gruppe`) sind Glaskarten.

@@ -1,5 +1,6 @@
 // Modul „To-dos“: meldet sich beim Router an.
 import { register } from '../../core/router.js';
+import { kennzahlen } from './kennzahlen.js';
 import { todosAnsicht } from './view.js';
 
 register({
@@ -8,4 +9,5 @@ register({
   symbol: 'todos',
   bild: [1, 2, 3].map((n) => `assets/bilder/todos-${n}.webp`), // Steinstapel, drei Varianten
   ansicht: todosAnsicht,
+  kennzahlen,
 });

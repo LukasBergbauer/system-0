@@ -2,7 +2,6 @@
 // const s = shell(); app.append(s.element); … s.destroy() beim Abmelden.
 import { el } from '../ui/dom.js';
 import { kopfbild } from '../ui/kopfbild.js';
-import { spruchDesTages } from '../core/sprueche.js';
 import { on } from '../core/events.js';
 import { getAll } from '../core/store.js';
 import { syncStatus } from '../core/sync.js';
@@ -40,18 +39,18 @@ export function shell() {
     ansicht?.abort();
     ansicht = new AbortController();
     document.title = `${bereich.titel} · System 0`;
-    // Kopf: großer Titel, Zeile darüber und Spruch des Tages. Kopfbilder (Steine) sind pausiert.
+    // Kopf: Glas-Kopfleiste mit Abschnitt und Kennzahlen (bereich.kennzahlen() → [{ zahl, text }], frisch bei Datenänderung).
     // dashboard: true (Heute) = eigener Kopf und breite Fläche statt der schmalen Spalte
-    const versatz = Math.max(0, alleBereiche().indexOf(bereich));
     inhalt.classList.toggle('app--breit', Boolean(bereich.dashboard));
     element.classList.toggle('shell--schieben', Boolean(bereich.dashboard)); // Heute: offene Leiste schiebt den Inhalt
-    inhalt.dataset.bereich = bereich.id; // Bereichsfarbe (--bereich, tokens.css) für Titel und Akzente der Seite
-    const kopf = bereich.dashboard ? [] : [kopfbild({
-      titel: bereich.titel,
-      symbol: bereich.symbol,
-      ueber: bereich.ueber?.(),
-      spruch: bereich.spruch ? spruchDesTages(versatz) : null, // nur wo gewünscht
-    })];
+    inhalt.dataset.bereich = bereich.id; // Muster je Bereich im Kopf (kopf-muster.css)
+    const abschnitt = navPlan(alleBereiche()).abschnitte.find((a) => a.bereiche.includes(bereich))?.titel;
+    const kopf = bereich.dashboard ? [] : [kopfbild({ titel: bereich.titel, symbol: bereich.symbol, abschnitt })];
+    if (kopf[0] && bereich.kennzahlen) {
+      const werte = () => kopf[0].werte(bereich.kennzahlen().catch(() => []));
+      werte();
+      on('daten', werte, { signal: ansicht.signal });
+    }
     inhalt.replaceChildren(...kopf, bereich.ansicht({ signal: ansicht.signal }));
     window.scrollTo(0, 0);
     zeigeNav();

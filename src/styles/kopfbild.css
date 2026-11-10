@@ -1,71 +1,114 @@
-/* Seitenkopf aus src/ui/kopfbild.js: Zeile darüber (z. B. Datum), großer Titel, Spruch als Unterzeile.
-   Kopfbilder (Steine) sind pausiert; ein übergebenes Bild wird einfach weich hinter den Kopf gelegt. */
+/* Seitenkopf (src/ui/kopfbild.js): Glas-Kopfleiste. Symbol-Plättchen, Abschnitt + Titel, Kennzahlen rechts.
+   Muster je Bereich: kopf-muster.css (::before, leise, rechts). */
 .kopf {
   position: relative;
-  padding: var(--space-3) 0 var(--space-2);
-}
-.kopf__bild {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: right center;
-  border-radius: var(--radius-gross);
-  opacity: 0.5;
-  pointer-events: none;
-}
-.kopf__text {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-.kopf__ueber {
-  margin: 0;
-  order: 2; /* steht unter dem Titel, wie in der Vorlage */
-  font-size: var(--fs-small);
-  color: var(--text-2);
-}
-.kopf__titel {
+  overflow: hidden;
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin: 0;
-  font-size: var(--fs-seite);
-  font-weight: 650;
-  line-height: 1.05;
-  letter-spacing: -0.035em;
+  gap: var(--space-4);
+  margin-bottom: var(--space-2);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-gross);
+  background: var(--glas-verlauf);
+  border: var(--glas-kante) solid var(--glas-rand);
+  box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  backdrop-filter: blur(var(--blur)) saturate(160%);
 }
-/* Bereichs-Symbol: feine Linie auf weißem Glas-Plättchen, dezent neben dem Titel */
+.kopf::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--muster, none);
+  opacity: 0.55;
+  pointer-events: none;
+  -webkit-mask: linear-gradient(100deg, transparent 30%, #000 90%);
+  mask: linear-gradient(100deg, transparent 30%, #000 90%);
+}
+.kopf > * {
+  position: relative;
+}
 .kopf__symbol {
   display: grid;
   place-items: center;
   flex: none;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border-radius: var(--radius-klein);
   color: var(--bereich-tief);
-  background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.5));
+  background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.5));
   box-shadow: inset 0 0 0 .5px rgba(43,30,25,.08), inset 0 1px 0 #fff, 0 6px 14px -10px rgba(60,30,20,.35);
 }
 .kopf__symbol .symbol {
-  width: 21px;
-  height: 21px;
-  stroke-width: 1.7;
+  width: 24px;
+  height: 24px;
+  stroke-width: 1.6;
 }
-.kopf__spruch {
-  order: 3;
-  max-width: 32em;
+.kopf__text {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.kopf__abschnitt {
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--sperrung);
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.kopf__titel {
   margin: 0;
-  font-size: var(--fs-normal);
+  font-size: var(--fs-display);
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+.kopf__werte {
+  display: flex;
+  margin-left: auto;
+}
+.kopf__wert {
+  display: grid;
+  gap: 4px;
+  padding: 0 var(--space-5);
+  border-left: var(--glas-kante) solid color-mix(in srgb, var(--text) 14%, transparent);
+}
+.kopf__wert:last-child {
+  padding-right: 0;
+}
+.kopf__wert b {
+  font-size: var(--fs-large);
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.kopf__wert span {
+  font-size: var(--fs-small);
   color: var(--text-2);
+  white-space: nowrap;
 }
 @media (max-width: 767px) {
+  .kopf {
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    padding: var(--space-4);
+  }
   .kopf__titel {
-    gap: 12px;
-    font-size: 32px;
+    font-size: 28px;
   }
   .kopf__symbol {
-    width: 34px;
-    height: 34px;
+    width: 42px;
+    height: 42px;
+  }
+  .kopf__werte:not(:empty) {
+    width: 100%;
+    margin-left: 0;
+    padding-top: var(--space-3);
+    border-top: var(--glas-kante) solid var(--line);
+  }
+  .kopf__wert:first-child {
+    padding-left: 0;
+    border-left: 0;
   }
 }

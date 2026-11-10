@@ -1,5 +1,6 @@
 // Modul „Physio“: meldet sich beim Router an.
 import { register } from '../../core/router.js';
+import { kennzahlen } from './kennzahlen.js';
 import { physioAnsicht } from './view.js';
 
 register({
@@ -10,4 +11,5 @@ register({
   // und die Fotos in APP_FILES von sw.js eintragen.
   // bild: [1, 2, 3].map((n) => `assets/bilder/physio-${n}.webp`),
   ansicht: physioAnsicht,
+  kennzahlen,
 });
