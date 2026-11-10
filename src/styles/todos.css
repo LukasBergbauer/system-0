@@ -168,3 +168,7 @@
 @keyframes todo-undo-rein {
   from { opacity: 0; transform: translate(-50%, 12px); }
 }
+/* Oben: Glas-Boxen „Heute“ + „Morgen“ nebeneinander (iPhone untereinander) */
+.todo-oben { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); align-items: start; }
+.todo-leer { margin: 0; padding: var(--space-3) 0 var(--space-3); color: var(--text-2); font-size: var(--fs-small); }
+@media (max-width: 760px) { .todo-oben { grid-template-columns: 1fr; } }

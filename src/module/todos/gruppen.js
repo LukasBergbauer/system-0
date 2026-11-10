@@ -1,29 +1,20 @@
-// Offene To-dos nach Zeit gruppieren: Überfällig · Heute · Diese Woche · Später · Ohne Datum.
-// Innerhalb jeder Gruppe bleibt die Reihenfolge aus sortiereOffene (Priorität, dann Datum).
+// Offene To-dos nach Zeit: Heute · Morgen (oben als Boxen) · Diese Woche · Später · Ohne Datum · Nicht erledigt (vergangene Tage, ganz unten).
+// Morgige rutschen am nächsten Tag von selbst nach „Heute“ (alles hängt am Datum). Reihenfolge je Fach aus sortiereOffene.
 import { heuteISO } from './sortierung.js';
 
-const GRUPPEN = [
-  { id: 'ueberfaellig', titel: 'Überfällig' },
-  { id: 'heute', titel: 'Heute' },
-  { id: 'woche', titel: 'Diese Woche' }, // die nächsten 7 Tage ab morgen
-  { id: 'spaeter', titel: 'Später' },
-  { id: 'ohne', titel: 'Ohne Datum' },
-];
-
-function gruppeVon(todo, heute, inSiebenTagen) {
-  const d = todo.faellig_am;
+function fachVon(d, heute, morgen, inSiebenTagen) {
   if (!d) return 'ohne';
-  if (d < heute) return 'ueberfaellig';
+  if (d < heute) return 'alt';
   if (d === heute) return 'heute';
-  if (d <= inSiebenTagen) return 'woche';
-  return 'spaeter';
+  if (d === morgen) return 'morgen';
+  return d <= inSiebenTagen ? 'woche' : 'spaeter';
 }
 
-// offene: schon sortiert → [{ id, titel, todos }], nur Gruppen mit Inhalt
+// offene: schon sortiert → { heute, morgen, woche, spaeter, ohne, alt } (je eine Liste)
 export function gruppiereNachZeit(offene) {
-  const heute = heuteISO();
-  const inSiebenTagen = heuteISO(7);
-  const fach = new Map(GRUPPEN.map((g) => [g.id, []]));
-  for (const t of offene) fach.get(gruppeVon(t, heute, inSiebenTagen)).push(t);
-  return GRUPPEN.map((g) => ({ ...g, todos: fach.get(g.id) })).filter((g) => g.todos.length);
+  const fach = { heute: [], morgen: [], woche: [], spaeter: [], ohne: [], alt: [] };
+  const [heute, morgen, sieben] = [heuteISO(), heuteISO(1), heuteISO(7)];
+  for (const t of offene) fach[fachVon(t.faellig_am, heute, morgen, sieben)].push(t);
+  fach.alt.sort((a, b) => b.faellig_am.localeCompare(a.faellig_am)); // jüngste zuerst
+  return fach;
 }

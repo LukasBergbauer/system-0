@@ -41,6 +41,10 @@ Eine Sitzung, Teile a → b, nach jedem Teil kurz prüfen.
   darin sortiert nach Priorität und Datum; „Ohne Bereich“ zuletzt). Gewählte Ansicht merken (lokal reicht).
 
 ## Stand
+- [x] Phase 7.3 (10.11.2026): oben Glas-Boxen „Heute“ + „Morgen“ (`.todo-oben`, iPhone untereinander; morgige rutschen am Folgetag
+      von selbst nach Heute), dann Diese Woche · Später · Ohne Datum · Erledigt, ganz unten „Nicht erledigt“ (vergangene Tage,
+      jüngste zuerst, mit Datum). Strich im Kopf weg (`kopf-muster.css`). Bereich-Knopf unter „Neues To-do“ weg (neues To-do
+      landet im gefilterten Bereich, sonst ohne; Bereich im Bearbeiten-Fenster). `sw.js` `v110`.
 - [x] Migration `supabase/migrations/002_todos.sql` geschrieben; `todo_bereiche` und `todos` in `src/core/tabellen.js`.
       `bereich_id` absichtlich ohne Fremdschlüssel (To-do darf vor seinem Bereich beim Server ankommen)
 - [x] Migration von Lukas im Supabase-SQL-Editor ausgeführt
@@ -62,9 +66,9 @@ Eine Sitzung, Teile a → b, nach jedem Teil kurz prüfen.
 | `sortierung.js` | Sortierung (Priorität → Datum → älteste zuerst), Datums-Texte („Heute“, „Morgen“ …), überfällig |
 | `view.js` | Ansicht: Bereichs-Chips, Schnelleingabe, Gruppen nach Zeit, „Erledigt“; zeichnet bei Ereignis `daten` neu |
 | `zeile.js` | eine Zeile: Checkbox (abhaken) + antippbarer Text (öffnet Bearbeiten) + Prioritäts-Punkt rechts |
-| `gruppen.js` | offene To-dos nach Zeit gruppieren: Überfällig · Heute · Diese Woche (nächste 7 Tage) · Später · Ohne Datum |
+| `gruppen.js` | offene To-dos nach Zeit: Heute · Morgen · Diese Woche (bis 7 Tage) · Später · Ohne Datum · Nicht erledigt (vergangen) |
 | `filter.js` | Bereichs-Chips „Alle · Bereiche · Ohne Bereich“ + Aktions-Chip „Bereiche bearbeiten“; Filter gemerkt |
-| `schnelleingabe.js` | Feld oben, Enter legt an (im gerade gefilterten Bereich), Fokus bleibt; Schnell-Knöpfe darunter |
+| `schnelleingabe.js` | Feld oben, Enter legt an (im gerade gefilterten Bereich), Fokus bleibt; Schnell-Knöpfe Heute/Morgen/Priorität |
 | `wischen.js` | Wischen (Finger) auf Zeilen: abhaken/löschen, „Rückgängig“-Pille |
 | `bearbeiten.js` | Modal: Titel, Notiz, Priorität (Tabs), Fälligkeit, Bereich, Löschen |
 | `erledigt.js` | eingeklappter Abschnitt „Erledigt“ |

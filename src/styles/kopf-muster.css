@@ -6,7 +6,6 @@
 }
 /* To-dos: Notizblock-Linien, Haken-Spalte */
 [data-bereich="todos"] .kopf { --muster: repeating-linear-gradient(0deg, var(--mline) 0 1px, transparent 1px 18px); }
-[data-bereich="todos"] .kopf::after { content: ""; position: absolute; left: 84px; top: 0; bottom: 0; width: 1px; background: var(--makz); }
 /* Kalender: Monatsraster */
 [data-bereich="kalender"] .kopf { --muster: linear-gradient(var(--mline) 1px, transparent 1px) 0 0 / 22px 22px, linear-gradient(90deg, var(--mline) 1px, transparent 1px) 0 0 / 22px 22px; }
 /* Routinen: Zeitstrahl mit Stunden-Strichen am Fuß */

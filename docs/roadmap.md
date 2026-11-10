@@ -439,7 +439,7 @@ Vorgemerkt (später): Sonntags-Reflexion zum Durchklicken über alle Bereiche.
 Reihenfolge, je Punkt eigener Commit + `sw.js` hochzählen, lokal Mac + iPhone-Größe prüfen:
 - [x] 1. Heute: jede Box (auch klein) zeigt den Modulnamen (v109)
 - [ ] 2. Kalender: echte Tag-/Woche-/Monat-Ansicht (Zeitraster), Glas-Stil
-- [ ] 3. To-dos: Box „Heute“ + „Morgen“ vorneweg; morgige rutschen am Folgetag nach Heute; nicht erledigte von gestern
+- [x] 3. To-dos (v110): Box „Heute“ + „Morgen“ vorneweg; morgige rutschen am Folgetag nach Heute; nicht erledigte von gestern
       unten als „Nicht erledigt“ mit Datum; Strich neben dem Titel weg; Bereichs-Chips unter „Neues To-do“ weg (Bereiche bleiben)
 - [ ] 4. Routinen: strukturierter anordnen (nicht lose nebeneinander)
 - [ ] 5. Quiz: Statistik volle Breite; Daily-Box mittig mit „Starten“ und mehr Text; Endlos als schmalerer, gefüllter Balken mit allen Themen
