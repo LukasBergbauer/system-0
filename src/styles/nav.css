@@ -146,6 +146,8 @@
   white-space: nowrap;
 }
 .nav-side__logo {
+  display: grid; /* falls noch eine alte Fassung Text statt Bild liefert: mittig */
+  place-items: center;
   flex: none;
   width: 44px;
   height: 44px;
