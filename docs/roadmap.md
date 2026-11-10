@@ -437,7 +437,7 @@ Vorgemerkt (später): Sonntags-Reflexion zum Durchklicken über alle Bereiche.
 
 ## Phase 7 – Funktionen je Modul (Wünsche Lukas, 10.11.2026)
 Reihenfolge, je Punkt eigener Commit + `sw.js` hochzählen, lokal Mac + iPhone-Größe prüfen:
-- [ ] 1. Heute: jede Box (auch klein) zeigt den Modulnamen
+- [x] 1. Heute: jede Box (auch klein) zeigt den Modulnamen (v109)
 - [ ] 2. Kalender: echte Tag-/Woche-/Monat-Ansicht (Zeitraster), Glas-Stil
 - [ ] 3. To-dos: Box „Heute“ + „Morgen“ vorneweg; morgige rutschen am Folgetag nach Heute; nicht erledigte von gestern
       unten als „Nicht erledigt“ mit Datum; Strich neben dem Titel weg; Bereichs-Chips unter „Neues To-do“ weg (Bereiche bleiben)

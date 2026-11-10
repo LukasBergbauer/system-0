@@ -13,6 +13,8 @@ Liest nur Daten der anderen Module über `core/`, speichert selbst nichts.
 - Heute ist nie fertig: Lukas kann die Startseite jederzeit umbauen lassen (Karten weg, neu, umsortieren), wie er es möchte.
 
 ## Stand
+Phase 7.1 (10.11.2026): jedes Feld zeigt oben einheitlich den Modulnamen (Symbol + Label, `.feld-modul`, `MODUL` in `feld.js`);
+gleicher Titel darunter fällt weg, Symbol der Kennzahl-Kacheln ausgeblendet. `sw.js` `v109`.
 Neu (10.11.2026): Felder im festen Raster + Bearbeiten-Modus (Abschnitt unten).
 Als Glas-Dashboard gebaut (Plan unten, Schritte a–e alle fertig, 09.11.2026).
 - [x] a) Daten-Rechnungen + Kopf, Hero mit Ring, 4 Kacheln (08.11.2026). Dateien in `src/module/heute/`:
