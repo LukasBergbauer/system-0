@@ -423,3 +423,5 @@ Offen bei Lukas: auf Geräten prüfen (v. a. Hover-Leiste, Bearbeiten-Modus am i
       Kopf zeigt Einheiten · Minuten · Wochen in Folge. `sw.js` `v103`. Offen bei Lukas: Gefühl in Safari/am Mac prüfen.
 - [x] 14. Sprung noch zu heftig (Kurve `--ease` legte ~80 % der Strecke ins erste Drittel): Leiste + Inhalt jetzt 420 ms,
       sanfte Kurve `cubic-bezier(.45,0,.2,1)`, startet sofort; Text blendet ab 160 ms ein. `sw.js` `v104`
+**Stand 10.11.2026:** Lukas: Leiste wirkt ruhig, Feinschliff (Tempo, Felder-Verzerrung beim Gleiten) evtl. später.
+Runde 2 abgeschlossen. Nächster Schritt: offen, Lukas wählt.
