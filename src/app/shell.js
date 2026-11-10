@@ -46,6 +46,7 @@ export function shell() {
     inhalt.dataset.bereich = bereich.id; // Bereichsfarbe (--bereich, tokens.css) für Titel und Akzente der Seite
     const kopf = bereich.dashboard ? [] : [kopfbild({
       titel: bereich.titel,
+      symbol: bereich.symbol,
       ueber: bereich.ueber?.(),
       spruch: bereich.spruch ? spruchDesTages(versatz) : null, // nur wo gewünscht
     })];

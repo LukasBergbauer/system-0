@@ -1,6 +1,6 @@
 /* Heute: Kalender-Karte, Verlauf und Donut (Glas-Grundfläche .heute-karte steht in heute.css). */
 .heute-karte__kopf { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-3); margin-bottom: var(--space-2); }
-.heute-karte__kopf h3 { margin: 0; font-size: var(--fs-normal); font-weight: 600; }
+.heute-karte__kopf h3 { margin: 0; font-size: 17px; font-weight: 650; letter-spacing: -.02em; }
 .heute-karte__kopf small { color: var(--text-2); font-size: 12px; }
 .heute-karte__kopf .tabs { flex: none; }
 .heute-leer { margin: var(--space-3) 0 0; color: var(--text-2); font-size: var(--fs-small); }

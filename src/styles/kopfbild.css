@@ -26,11 +26,31 @@
   color: var(--text-2);
 }
 .kopf__titel {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   margin: 0;
-  font-size: var(--fs-display);
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
+  font-size: var(--fs-seite);
+  font-weight: 650;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+/* Bereichs-Symbol: feine Linie in Bereichsfarbe auf zartem Glas-Plättchen, dezent neben dem Titel */
+.kopf__symbol {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-klein);
+  color: var(--bereich-tief);
+  background: linear-gradient(180deg, rgba(255,255,255,.75), color-mix(in oklch, var(--bereich) 12%, rgba(255,255,255,.45)));
+  box-shadow: inset 0 0 0 .5px color-mix(in oklch, var(--bereich) 32%, transparent), inset 0 1px 0 #fff;
+}
+.kopf__symbol .symbol {
+  width: 21px;
+  height: 21px;
+  stroke-width: 1.7;
 }
 .kopf__spruch {
   order: 3;
@@ -41,6 +61,11 @@
 }
 @media (max-width: 767px) {
   .kopf__titel {
-    font-size: 30px;
+    gap: 12px;
+    font-size: 32px;
+  }
+  .kopf__symbol {
+    width: 34px;
+    height: 34px;
   }
 }

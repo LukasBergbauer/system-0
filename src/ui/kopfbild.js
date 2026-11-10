@@ -3,6 +3,7 @@
 // kopfbild({ titel: 'Heute', bild: 'assets/bilder/heute-1.webp', ueber: 'Mittwoch, 4. November', spruch: 'Ein Schritt nach dem anderen.' })
 // ueber = kleines Label über dem Titel (optional).
 import { el } from './dom.js';
+import { symbol as linie } from './symbol.js';
 
 // Foto als Hintergrund eines leeren Elements (rein schmückend, für Screenreader unsichtbar).
 function hintergrund(bild) {
@@ -11,14 +12,15 @@ function hintergrund(bild) {
   return node;
 }
 
-export function kopfbild({ titel, bild, ueber, spruch } = {}) {
+// symbol = Bereichs-Symbol vor dem Titel (Farbe aus --bereich der Seite)
+export function kopfbild({ titel, bild, ueber, spruch, symbol } = {}) {
   // Ohne Spruch (alle Seiten außer Heute) ist der Kopf niedriger, damit der Inhalt früher anfängt.
   const klasse = `kopf${bild ? '' : ' kopf--ohne-bild'}${spruch ? '' : ' kopf--kompakt'}`;
   return el('header', { class: klasse }, [
     bild && hintergrund(bild),
     el('div', { class: 'kopf__text' }, [
       ueber && el('p', { class: 'kopf__ueber', text: ueber }),
-      el('h1', { class: 'kopf__titel', text: titel }),
+      el('h1', { class: 'kopf__titel' }, [symbol && el('span', { class: 'kopf__symbol' }, [linie(symbol)]), titel]),
       spruch && el('p', { class: 'kopf__spruch', text: spruch }),
     ]),
   ]);

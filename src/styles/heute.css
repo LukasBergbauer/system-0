@@ -3,7 +3,7 @@
 
 /* Kopf: Gruß + Datumszeile */
 .heute-kopf { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); }
-.heute-kopf h1 { margin: 0; font-size: var(--fs-display); font-weight: 600; letter-spacing: -0.025em; line-height: 1.1; }
+.heute-kopf h1 { margin: 0; font-size: var(--fs-seite); font-weight: 650; letter-spacing: -0.035em; line-height: 1.05; }
 .heute-kopf p { margin: 6px 0 0; color: var(--text-2); font-size: var(--fs-small); }
 
 /* Raster und Felder: heute-raster.css */
@@ -122,7 +122,7 @@
 
 @media (max-width: 760px) {
   .heute-kopf { flex-direction: column; align-items: flex-start; }
-  .heute-kopf h1 { font-size: 28px; }
+  .heute-kopf h1 { font-size: 32px; }
   .heute-hero { flex-direction: column-reverse; align-items: flex-start; padding: 22px; }
   .heute-ring { width: 128px; height: 128px; align-self: center; }
   .heute-ring b { font-size: 28px; }

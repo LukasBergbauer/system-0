@@ -28,7 +28,8 @@ Hintergrund, Hero-Flächen, Haken, Fortschritt und Schatten werden per `color-mi
 | `--warn` / `--gut` | #D9364F / #3E9B6E | überfällig / Trend nach oben |
 | `--font` | System (SF Pro) | einzige Schrift |
 | `--space-1` … `--space-7` | 4 / 8 / 12 / 16 / 24 / 32 / 48 px | Abstände |
-| `--fs-label` … `--fs-display` | 11 / 13 / 16 / 18 / 26 / 34 px | Schriftgrößen |
+| `--fs-label` … `--fs-display` | 11 / 13 / 16 / 19 / 26 / 34 px | Schriftgrößen (`--fs-display` = große Zahlen) |
+| `--fs-seite` | 42 px (iPhone 32) | Seitentitel, Gewicht 650, Abstand −0,035em |
 | `--sperrung` | 0.12em | kleine Labels in Großbuchstaben |
 | `--duration` / `--duration-slow` | 200 / 700 ms | Animationen / Akzent-Wechsel |
 | `--ease` / `--feder` | Abbremsen / leichtes Nachfedern | Bewegung |
@@ -83,7 +84,9 @@ Aktiver Eintrag: weiße Pille (`.nav__zeiger`), gleitet ruhig ohne Nachfedern (n
 Seitenleiste wie `docs/vorlagen/dashboard-glas.png`: Marke „System 0 / Lukas“, Suchfeld (Glas-Pille), Abschnitte
 ALLTAG / KÖRPER & KOPF / SYSTEM (10 px, gesperrt, `--text-3`), Zahl als Akzent-Pille rechts am Eintrag, unten Kreis „L“ mit
 Status-Punkt + „Lukas · synchronisiert“. Eingeklappt verschwinden Texte, Abschnitts-Namen und Zahlen.
-Seitenkopf (`kopfbild`): großer Titel (34 px, 600), darunter `ueber` (z. B. Datum) und Spruch in Nebentext.
+Seitenkopf (`kopfbild`): großer Titel (`--fs-seite`, 650, eng) mit Bereichs-Symbol davor (40 px Glas-Plättchen, Linie in
+`--bereich-tief`), darunter `ueber` (z. B. Datum) und Spruch in Nebentext. Karten-/Fenstertitel 650, `--fs-title`, eng;
+Karten auf Heute mit kleinem Bereichs-Symbol im Titel.
 Ein `bild` wird zurzeit nicht übergeben (`shell.js`), die Bereiche behalten ihre Bildlisten für später.
 Listen-Gruppen in To-dos und Kalender (`.todo-gruppe`, `.termin-gruppe`) sind Glaskarten.
 

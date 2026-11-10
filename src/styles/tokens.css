@@ -66,9 +66,10 @@
   --fs-label: 11px;
   --fs-small: 13px;
   --fs-normal: 16px; /* 16px verhindert das automatische Zoomen auf dem iPhone */
-  --fs-title: 18px;
+  --fs-title: 19px; /* Karten- und Fenstertitel */
   --fs-large: 26px;
-  --fs-display: 34px; /* Seitentitel */
+  --fs-display: 34px; /* große Zahlen */
+  --fs-seite: 42px; /* Seitentitel (iPhone 32 px) */
   --sperrung: 0.12em; /* Buchstabenabstand für kleine Labels */
 
   /* Bewegung */
@@ -87,7 +88,7 @@
 }
 
 /* data-bereich="<id>" → --bereich (Seite, Navi-Eintrag, Feld auf Heute); heute = Akzent */
-[data-bereich] { --bereich: var(--accent); }
+[data-bereich] { --bereich: var(--accent); --bereich-tief: color-mix(in oklch, var(--bereich) 72%, #2B1E19); }
 [data-bereich="kalender"] { --bereich: var(--c-kalender); }
 [data-bereich="todos"] { --bereich: var(--c-todos); }
 [data-bereich="routinen"] { --bereich: var(--c-routinen); }

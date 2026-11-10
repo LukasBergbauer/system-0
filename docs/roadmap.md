@@ -400,3 +400,4 @@ Vorschau ohne Login: `tests/vorschau.html` (lokal, Supabase aus). Muster: `muste
 - [x] 2. Heute: Bearbeiten-Modus mit festem Raster statt Drag & Drop (`module/heute.md`), `sw.js` `v93`
 - [x] 3. Bereichsfarben (`--c-<id>`, `data-bereich` → `--bereich`) in Navi, Seite und Heute-Feldern (`design.md`)
 - [x] 4. Akzente Weiß + Graphit (`akzent-neutral.css`), Nebentext kontrastreicher (`design.md` → Akzentfarbe)
+- [x] 5. Überschriften größer/edler (`--fs-seite` 42 px, 650) mit Bereichs-Symbol im Seitentitel und in Heute-Karten
