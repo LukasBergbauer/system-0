@@ -386,7 +386,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 
 **Stand 09.11.2026:** Alle Phasen und Extras gebaut. Offen bei Lukas: Migrationen 019 + 020 ausführen, Edge Function
 „erinnerungen“ anlegen (VAPID_KEYS aus `tools/vapid.html`, VAPID_KONTAKT, „Verify JWT“ aus), alles auf Geräten prüfen.
-Nächster Schritt: Lukas wählt aus den Physio-Vorschlägen (~~Verknüpfen im Kosmos~~ `v88`, ~~Schnell-Notiz~~ `v89`, ~~Zufall~~ gestrichen; offen: Verknüpfung mit Notiz, Lücken finden). Offen: `021`, `022` ausführen.
+Nächster Schritt: Lukas wählt aus den Physio-Vorschlägen (~~Verknüpfen im Kosmos~~ `v88`, ~~Schnell-Notiz~~ `v89`, ~~Zufall~~ gestrichen; ~~Lücken finden~~ `v90`; offen: Verknüpfung mit Notiz). Offen: `021`, `022` ausführen.
 - ~~Notion-Anbindung~~ gestrichen (Lukas, 09.11.2026: nicht mehr gewünscht)
 - ~~Idee KI-Auswertung~~ bewusst gestrichen (09.11.2026; kostet je nach Anbieter Geld bzw. Datenschutz);
       kostenlos jetzt schon: Export-JSON in einen Claude-Chat geben

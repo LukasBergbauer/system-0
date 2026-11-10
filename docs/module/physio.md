@@ -352,3 +352,6 @@ Vision Lukas: Physio = Berufs-Datenbank, unendlich ausbaubar, jederzeit anpassba
 - **Schnell-Notizen** (`v89`): Knopf „✎ Notizen“ neben der Suche → Glas-Fläche `notizen.js`: Feld + „Merken“ (Mac: ⌘ + Enter),
   Notizen neueste zuerst, direkt bearbeitbar, bleiben bis „Löschen“. Tabelle `physio_notizen` (Migration `022`, in `tabellen.js`).
   Lokal nur Öffnen geprüft (Tabelle fehlte noch → 404 beim Abgleich). Zufall/Wiederholen gestrichen (Lukas).
+- **Lücken finden** (`v90`): Physio in der Mitte → Knopf „Lücken · N“ rechts neben dem Verlauf → `luecken.js`: Gruppen „Ohne Verknüpfung“,
+  „Nur Titel, noch kein Inhalt“ (kein Kurz/Text/Video/Feld), „Ohne verknüpfte Übung“ (Krankheitsbild, Muskel). Antippen = Fenster zu, Ball fliegt in die Mitte.
+  Lokal mit echten Daten geprüft.

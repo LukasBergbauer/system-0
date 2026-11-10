@@ -5,6 +5,7 @@
 // Oben: Suche (Treffer antippen = Ball fliegt in die Mitte), Verlauf der Mitten (antippen = dorthin zurück)
 // und „+ Verknüpfen“ (nur bei echten Einträgen): Glas-Fläche mit verknuepfen.js, danach schwebt der Punkt ein.
 // Nachbar lange drücken / Rechtsklick → Verknüpfung lösen (nur zwischen echten Einträgen). „Notizen“ öffnet die Schnell-Notizen.
+// Physio in der Mitte: statt „+ Verknüpfen“ der Knopf „Lücken · N“ (luecken.js).
 import { el } from '../../ui/dom.js';
 import { ARTEN, art } from './arten.js';
 import { suche, loese } from './daten.js';
@@ -15,6 +16,7 @@ import { oeffneMindmap } from './overlay.js';
 import { oeffneTiefe } from './tiefe.js';
 import { oeffneBereiche } from './bereiche.js';
 import { oeffneNotizen } from './notizen.js';
+import { anzahlLuecken, oeffneLuecken } from './luecken.js';
 
 const KERN = 'physio';
 const artId = (a) => `art:${a}`;
@@ -89,9 +91,12 @@ export function kosmos({ signal }) {
   const notizen = el('button', { class: 'chip kos__notizen', text: '✎ Notizen', attrs: { type: 'button' } });
   notizen.addEventListener('click', () => oeffneNotizen({ ausBubble: notizen, signal }));
 
+  const lueckenKnopf = el('button', { class: 'chip kos__plus', attrs: { type: 'button' } });
+  lueckenKnopf.addEventListener('click', () => oeffneLuecken({ ausBubble: lueckenKnopf, eintraege: echte, links: echteLinks, hin, signal }));
+
   const oben = el('div', { class: 'kos__oben' }, [
     el('div', { class: 'kos__suche' }, [el('div', { class: 'kos__suche-zeile' }, [feld, notizen]), treffer]),
-    el('div', { class: 'kos__zeile' }, [spur, plus]),
+    el('div', { class: 'kos__zeile' }, [spur, plus, lueckenKnopf]),
   ]);
 
   function tiefe(a, knopf) {
@@ -105,6 +110,8 @@ export function kosmos({ signal }) {
     karte.zeige(daten.eintraege, daten.links, mitte(), daten.bilder);
     zeichneVerlauf();
     plus.hidden = !echte.some((e) => e.id === mitte());
+    lueckenKnopf.hidden = mitte() !== KERN;
+    lueckenKnopf.textContent = `Lücken · ${anzahlLuecken(echte, echteLinks)}`;
   }
 
   return {
