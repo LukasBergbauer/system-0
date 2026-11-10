@@ -430,5 +430,7 @@ Vorgemerkt (später): Sonntags-Reflexion zum Durchklicken über alle Bereiche.
       `assets/icons/icon.svg`, PNG 180/192/512 per Chrome headless gerendert, Manifest `background_color` #F6F5F2, `sw.js` `v105`.
       Offen bei Lukas: Icon am iPhone neu vom Homescreen hinzufügen (iOS behält das alte sonst).
 - [x] 16. Leiste: Logo oben links = App-Icon, Profil „L“ als gravierte Stein-Kachel (`avatar-l.svg`), `sw.js` `v106`
+- [x] 17. Fensterleiste (Mac-Web-App) / Statusleiste färbt sich wie der Hintergrund: `core/akzent.js` setzt `theme-color` = aufgelöstes `--bg`
+      nach dem Überblenden (Zeitgeber + `transitionend`), `sw.js` `v107`
 - Vorschläge Funktionen (10.11.2026, nur Liste im Chat): Wochenrückblick (= Sonntags-Reflexion), Erinnerungen, Inbox, Training-Fortschritt,
   Zitate aus Büchern, Gewohnheiten↔Ziele, Quiz-Wiederholung, Backup-Export, Heute-Abendmodus, Insta-Auswertung.

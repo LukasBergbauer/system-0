@@ -54,7 +54,7 @@ Neutrale Akzente „Weiß“ und „Graphit“ (Werte `weiss`/`schwarz`): `--acc
 dunkler Schrift, Hintergrund mit zartem Unterton. Graphit = warmes Steingrau #E2E1DE, Hero dunkel (#5C5E64 → #16171A),
 kein reines Schwarz. Kontrast geprüft: Text 13–15:1, Nebentext ≈4,5:1, Weiß auf Hero-Graphit 13:1.
 `src/core/akzent.js`: `akzentSetzen(farbe)` speichert als Einstellung `akzent` (synchronisiert) und lokal;
-`akzentLaden()` beim Start (erst lokal = kein Farbsprung, dann die synchronisierte). 9 Vorgaben in `AKZENT_FARBEN` (Weiß, Graphit + 7 Farben)
+`theme-color` (Fensterleiste) folgt `--bg`. `akzentLaden()` beim Start (erst lokal = kein Farbsprung, dann die synchronisierte). 9 Vorgaben in `AKZENT_FARBEN` (Weiß, Graphit + 7 Farben)
 plus freier Farbwähler (Kachel `src/app/akzent-kachel.js`, Stil `farbkreise.css`).
 
 ## UI-Bausteine (`src/ui/`)

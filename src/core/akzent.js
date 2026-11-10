@@ -24,6 +24,21 @@ function anwenden(farbe) {
   else delete html.dataset.akzent;
   gewaehlt = farbe;
   try { localStorage.setItem(SCHLUESSEL, farbe); } catch {}
+  clearTimeout(leisteZeit);
+  leisteZeit = setTimeout(leisteFaerben, 750); // nach dem Überblenden (--duration-slow)
+}
+
+// Fensterleiste (Mac-Web-App) und Statusleiste in der Seitenfarbe: theme-color = aufgelöstes --bg
+let leisteZeit;
+document.documentElement.addEventListener('transitionend', (e) => {
+  if (e.target === document.documentElement && e.propertyName === '--accent') leisteFaerben();
+});
+function leisteFaerben() {
+  const probe = document.body.appendChild(Object.assign(document.createElement('i'), { hidden: true }));
+  probe.style.color = 'var(--bg)';
+  const farbe = getComputedStyle(probe).color;
+  probe.remove();
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', farbe);
 }
 
 // gewählte Farbe bzw. „weiss“/„schwarz“ (nicht der Zwischenwert während des Überblendens)
