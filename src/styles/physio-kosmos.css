@@ -84,4 +84,74 @@
   .mm-knoten--mitte .mm-knoten__haut::after { animation: none; }
 }
 
-.kos__zeile { text-align: center; color: var(--text-3); font-size: var(--fs-small); margin: 0; }
+/* ---------- Oben: Suche + Verlauf ---------- */
+.kos__rahmen { display: grid; gap: var(--space-2); }
+.kos__oben { display: grid; gap: var(--space-2); position: relative; z-index: 4; }
+.kos__suche { position: relative; }
+.kos__feld,
+.kos__treffer:not(:empty) {
+  border: 1px solid var(--glas-rand);
+  background: var(--glas-verlauf);
+  box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  backdrop-filter: blur(var(--blur)) saturate(160%);
+}
+.kos__feld {
+  width: 100%;
+  min-height: var(--tap);
+  padding: 0 var(--space-5);
+  border-radius: 999px;
+  font: inherit;
+  color: var(--text);
+  outline: none;
+}
+.kos__feld::placeholder { color: var(--text-3); }
+.kos__feld::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+.kos__treffer {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  left: 0;
+  right: 0;
+  display: grid;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.kos__treffer-zeile {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: var(--tap);
+  padding: 0 var(--space-5);
+  align-items: center;
+  font: inherit;
+  text-align: left;
+  color: var(--text);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.kos__treffer-zeile + .kos__treffer-zeile { border-top: 1px solid var(--glas-rand); }
+.kos__treffer-zeile span,
+.kos__schritt + .kos__schritt::before { font-size: var(--fs-label); color: var(--accent); }
+.kos__verlauf {
+  display: flex;
+  gap: var(--space-1);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 var(--space-2);
+}
+.kos__verlauf::-webkit-scrollbar { display: none; }
+.kos__schritt {
+  flex: none;
+  padding: 0;
+  font: inherit;
+  font-size: var(--fs-small);
+  color: var(--text-2);
+  background: none;
+  border: 0;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.kos__schritt + .kos__schritt::before { content: "›"; margin-right: var(--space-1); }
+.kos__schritt--jetzt { color: var(--text); font-weight: 600; cursor: default; }

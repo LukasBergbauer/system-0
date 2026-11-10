@@ -365,7 +365,7 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         Gerät zeigte altes JS + neues CSS (GitHub-CDN lieferte beim Update kurz alte Datei) → `sw.js` holt mit `?v=VERSION`, `v77`.
   - [x] Art-Liste und Mindmap-Suche sind ein Overlay (09.11.2026, `tiefe.js` weg). `sw.js` `v78`.
   - [x] ~~Physio-Kugel = Listen-Suche (v79)~~ → falsch herum. Glas-Innenansicht für alle Kugeln, edler, flüssig gemessen. `sw.js` `v80`. Offen: auf Geräten prüfen
-  - [ ] Physio-Kugel: eigene Funktionen (Lukas plant später)
+  - [x] Physio-Kugel (10.11.2026, `v87`): Bereiche selbst festlegen, Suche + Verlauf oben im Kosmos, Fußzeile weg. Offen: `021` ausführen, Geräte
 - [x] Extra-Themen (09.11.2026, eine Sitzung, Block für Block)
   - [x] 1. Wiederherstellen: Kachel in Einstellungen, Export-JSON → Vorschau je Tabelle → einspielen (lokal + Sync, nichts löschen,
         gleiche id = überschreiben). `src/core/wiederherstellen.js`, `src/app/wiederherstellen-kachel.js`; `sw.js` `v81`
@@ -382,11 +382,11 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
         Migration `020_erinnerungen.sql` (Tabellen, `erinnerungen_faellig()`, Cron). `sw.js` `v86`.
         Grenze: geplant wird nur, wenn die App in den letzten 14 Tagen offen war. Offen: Einrichten (Lukas) + auf Geräten prüfen
   - [x] 7. Abschluss: alle „Wünsche für später“ und offenen Punkte der Modul-Dokus abgehakt oder als „bewusst gestrichen“ markiert.
-        Einzig offen (bewusst): Physio-Kugel-Funktionen (Lukas plant).
+        Physio-Kugel-Funktionen gebaut (10.11.2026).
 
 **Stand 09.11.2026:** Alle Phasen und Extras gebaut. Offen bei Lukas: Migrationen 019 + 020 ausführen, Edge Function
 „erinnerungen“ anlegen (VAPID_KEYS aus `tools/vapid.html`, VAPID_KONTAKT, „Verify JWT“ aus), alles auf Geräten prüfen.
-Nächster Schritt: Physio-Kugel-Funktionen, sobald Lukas sie geplant hat.
+Nächster Schritt: Lukas wählt aus den Physio-Vorschlägen (Verknüpfen direkt im Kosmos, Verknüpfung mit Notiz, Schnell-Notiz, Zufall/Wiederholen, Lücken finden).
 - ~~Notion-Anbindung~~ gestrichen (Lukas, 09.11.2026: nicht mehr gewünscht)
 - ~~Idee KI-Auswertung~~ bewusst gestrichen (09.11.2026; kostet je nach Anbieter Geld bzw. Datenschutz);
       kostenlos jetzt schon: Export-JSON in einen Claude-Chat geben

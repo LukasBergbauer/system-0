@@ -38,7 +38,7 @@
 .tief__zurueck,
 .tief__feld,
 .tief__zeile,
-.tief__art {
+.bereich {
   border: 1px solid rgba(255,255,255,.78);
   background: linear-gradient(160deg, rgba(255,255,255,.7), rgba(255,255,255,.3));
   box-shadow:
@@ -50,7 +50,8 @@
 }
 .tief--ruhig .tief__zurueck,
 .tief--ruhig .tief__feld,
-.tief--ruhig .tief__zeile {
+.tief--ruhig .tief__zeile,
+.tief--ruhig .bereich {
   backdrop-filter: blur(var(--blur)) saturate(160%);
   -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
 }
@@ -156,18 +157,6 @@
   text-align: left;
   cursor: pointer;
 }
-.tief__neu--wahl { cursor: default; }
-.tief__arten { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-.tief__art {
-  min-height: 34px;
-  padding: 0 var(--space-3);
-  border-radius: 999px;
-  font-size: var(--fs-small);
-  font-weight: 500;
-  cursor: pointer;
-  transition: transform .25s var(--ease);
-}
-.tief__art:active { transform: scale(.95); }
 .tief__leer { color: var(--text-3); text-align: center; margin: var(--space-5) 0; }
 
 @media (prefers-reduced-motion: reduce) {

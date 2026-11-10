@@ -1,0 +1,47 @@
+/* Physio: Bereiche bearbeiten (src/module/physio/bereiche.js). Glas der Karte kommt aus physio-tiefe.css. Nur Werte aus tokens.css. */
+
+.bereich {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius);
+}
+.bereich__kopf { display: flex; align-items: baseline; gap: var(--space-3); }
+.bereich__kopf .bereich__feld { flex: 1; font-size: var(--fs-title); font-weight: 600; letter-spacing: -0.02em; }
+.bereich__zeile { display: flex; align-items: baseline; gap: var(--space-2); font-size: var(--fs-small); color: var(--text-3); }
+.bereich__zeile .bereich__feld { flex: 1; }
+.bereich__feld,
+.bereich__felder {
+  min-width: 0;
+  padding: 2px 0;
+  font: inherit;
+  color: var(--text);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  outline: none;
+  transition: border-color .2s var(--ease);
+}
+.bereich__felder {
+  resize: vertical;
+  font-size: var(--fs-small);
+  line-height: 1.6;
+  color: var(--text-2);
+}
+.bereich__feld:hover, .bereich__feld:focus,
+.bereich__felder:hover, .bereich__felder:focus { border-bottom-color: color-mix(in oklch, var(--accent) 45%, transparent); }
+.bereich__felder::placeholder, .bereich__feld::placeholder { color: var(--text-3); }
+.bereich__knoepfe { display: flex; justify-content: flex-end; gap: var(--space-2); }
+.bereich__knopf {
+  min-width: 34px;
+  min-height: 34px;
+  padding: 0 var(--space-3);
+  font: inherit;
+  font-size: var(--fs-small);
+  color: var(--text-2);
+  background: none;
+  border: 1px solid var(--glas-rand);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.bereich__knopf:disabled { opacity: .35; cursor: default; }

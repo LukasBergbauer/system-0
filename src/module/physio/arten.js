@@ -1,8 +1,12 @@
-// Arten der Einträge in Physio und ihre optionalen Felder.
-// Die Felder landen in der Spalte `felder` (JSON), z. B. { dosierung: '3 × 10' }.
-// Neue Art: hier ergänzen und per neuer Migration im Check bei `art` erlauben (zuletzt 018).
+// Bereiche (Arten) der Einträge in Physio und ihre optionalen Felder. Lukas legt sie selbst fest (bereiche.js);
+// gespeichert als Liste in der Einstellung `physio_bereiche`, ohne Einstellung gilt STANDARD.
+// Die Felder landen in der Spalte `felder` (JSON), z. B. { dosierung: '3 × 10' }. Spalte `art` ist frei (Migration 021).
+// ARTEN wird beim Laden an Ort und Stelle ersetzt, damit alle Importe immer den aktuellen Stand sehen.
+import { getSetting, setSetting } from '../../core/einstellungen.js';
 
-export const ARTEN = [
+const SCHLUESSEL = 'physio_bereiche';
+
+const STANDARD = [
   {
     id: 'uebung',
     name: 'Übung',
@@ -59,9 +63,20 @@ export const ARTEN = [
   },
 ];
 
-const NACH_ID = new Map(ARTEN.map((a) => [a.id, a]));
+export const ARTEN = structuredClone(STANDARD);
 
-// Art zu einer id; unbekannte Art (z. B. von einer neueren App-Fassung) bekommt einen Ersatz.
+export async function ladeArten() {
+  const liste = await getSetting(SCHLUESSEL);
+  if (Array.isArray(liste) && liste.length) ARTEN.splice(0, ARTEN.length, ...liste);
+  return ARTEN;
+}
+
+export function speichereArten(liste) {
+  ARTEN.splice(0, ARTEN.length, ...liste);
+  return setSetting(SCHLUESSEL, liste);
+}
+
+// Art zu einer id; unbekannte Art (gelöschter Bereich, neuere App-Fassung) bekommt einen Ersatz.
 export function art(id) {
-  return NACH_ID.get(id) ?? { id, name: 'Eintrag', mehrzahl: 'Einträge', felder: [] };
+  return ARTEN.find((a) => a.id === id) ?? { id, name: 'Eintrag', mehrzahl: 'Einträge', felder: [] };
 }

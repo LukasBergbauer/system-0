@@ -119,7 +119,7 @@ Lukas sammelt hier, was beim Befüllen auffällt; umgesetzt wird es als eigener 
 - [x] Eintrag: Titel + Kurzbeschreibung in einer Glas-Karte, eng (`.mm-eintrag__kopf`)
 - [x] Mac (ab 768 px): Art-Chips im Eintrag brechen um. `sw.js` `v85`
 - ~~Zurück-Wischen und Kamera/Mediathek beobachten~~ erledigt ohne Befund, nichts zu bauen
-- [ ] Physio-Kugel: eigene Funktionen (Lukas plant später, bewusst offen)
+- [x] Physio-Kugel: eigene Funktionen (10.11.2026, siehe „Stand Physio-Kugel“)
 - [x] Übungen ins Trainings-Notebook (Training verweist auf Physio), [x] Lernpfade, ~~Notion~~ gestrichen, ~~Bild-Export~~ bewusst gestrichen (Export-JSON reicht)
 
 ## Entscheidungen (Gespräch 04.11.2026)
@@ -336,3 +336,13 @@ Stand Lernpfade (09.11.2026, `sw.js` `v75`): gebaut. Einstieg: Kosmos → Region
 - ~~Foto-Objekt für den Kopf~~ bewusst gestrichen (Kopfbilder pausiert) (Prompt in `design.md`), Vorschlag: „a smooth stone sphere connected to smaller pebbles
   by thin threads of light“ oder einfacher „a stone anatomical vertebra“.
 
+
+## Stand Physio-Kugel (10.11.2026, `sw.js` `v87`)
+Vision Lukas: Physio = Berufs-Datenbank, unendlich ausbaubar, jederzeit anpassbar und schnell da.
+- **Bereiche selbst festlegen:** Kugel „Physio“ in der Mitte antippen → `bereiche.js` (Glas-Fläche, `glas-flaeche.js`, auch von `tiefe.js` genutzt):
+  je Bereich Ballname, Einzahl, Felder (eine Zeile je Feld), ↑, Löschen (nur leer). Unten „+ Neuer Bereich“.
+  Gespeichert in Einstellung `physio_bereiche` (`arten.js`: `ladeArten`/`speichereArten`, `ARTEN` wird an Ort und Stelle ersetzt; ohne Einstellung = Standard).
+  Migration `021_physio_bereiche_frei.sql`: Check auf `art` entfernt. Lernpfad-Stufen bleiben an den Standard-ids.
+- **Oben im Kosmos:** Suche („Ball suchen …“, Treffer inkl. Bereiche, Enter = erster) → Ball fliegt in die Mitte;
+  Verlauf der Mitten (Physio › … ), antippen = dorthin zurück (Rest abgeschnitten). Fußzeile „N Punkte · N Verknüpfungen“ entfernt.
+- Lokal geprüft (Mac-Breite, iPhone-Größe), Bereiche-Speichern nicht mit echten Daten getestet. Offen: 021 ausführen, Geräte.

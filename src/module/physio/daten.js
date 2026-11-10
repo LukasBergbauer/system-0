@@ -66,17 +66,6 @@ export function nachbarn(id, eintraege, links) {
     .sort((a, b) => a.titel.localeCompare(b.titel, 'de'));
 }
 
-// Anzahl Verknüpfungen zwischen vorhandenen Einträgen (für die Übersicht).
-export function zaehleLinks(eintraege, links) {
-  const da = new Set(eintraege.map((e) => e.id));
-  const paare = new Set();
-  for (const l of links) {
-    if (!da.has(l.a_id) || !da.has(l.b_id) || l.a_id === l.b_id) continue;
-    paare.add([l.a_id, l.b_id].sort().join('|'));
-  }
-  return paare.size;
-}
-
 // ---------- Suche ----------
 
 // Klein, ohne Akzente: „Übung“ findet auch „ubung“.
