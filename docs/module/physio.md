@@ -346,3 +346,6 @@ Vision Lukas: Physio = Berufs-Datenbank, unendlich ausbaubar, jederzeit anpassba
 - **Oben im Kosmos:** Suche („Ball suchen …“, Treffer inkl. Bereiche, Enter = erster) → Ball fliegt in die Mitte;
   Verlauf der Mitten (Physio › … ), antippen = dorthin zurück (Rest abgeschnitten). Fußzeile „N Punkte · N Verknüpfungen“ entfernt.
 - Lokal geprüft (Mac-Breite, iPhone-Größe), Bereiche-Speichern nicht mit echten Daten getestet. Offen: 021 ausführen, Geräte.
+- **Verknüpfen im Kosmos** (`v88`): neben dem Verlauf „+ Verknüpfen“ (nur wenn ein echter Eintrag in der Mitte ist) → Glas-Fläche mit
+  `verknuepfen.js` (vorhandenen Punkt wählen oder neu anlegen), danach zu, Punkt schwebt ein. Nachbar lange drücken/Rechtsklick = lösen (Rückfrage).
+  Lokal geprüft (Öffnen, Suche, Schließen), ohne echte Verknüpfung anzulegen.
