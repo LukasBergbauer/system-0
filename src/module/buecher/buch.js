@@ -2,10 +2,13 @@
 // oeffneBuch(id, { neu }) – neu: gleich bearbeiten, Titel fokussiert; bleibt es leer, wird es beim Schließen gelöscht.
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
-import { STATUS, ladeBuch, coverUrl, loescheBuch } from './data.js';
+import { BUECHER, STATUS, ladeBuch, coverUrl, loescheBuch } from './data.js';
 import { zeigeMarkdown } from '../../ui/markdown.js';
 import { coverBild } from './cover-wahl.js';
 import { bearbeiten } from './bearbeiten.js';
+import { notizen } from './notizen.js';
+import { seitenKreis } from './seiten.js';
+import { on } from '../../core/events.js';
 
 const DATUM = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'short', year: 'numeric' });
 const tag = (d) => DATUM.format(new Date(`${d}T12:00`));
@@ -22,6 +25,7 @@ export async function oeffneBuch(id, { neu = false } = {}) {
   if (!buch) return;
   const holeBuch = async () => (buch = (await ladeBuch(id)) || buch);
   let form = null;
+  let lauf = null; // AbortController der Leseansicht (Ereignisse)
 
   const dialog = el('dialog', { class: 'durchlauf buch', attrs: { 'aria-label': buch.titel || 'Buch' } });
   const schliessen = () => dialog.open && dialog.close();
@@ -40,10 +44,13 @@ export async function oeffneBuch(id, { neu = false } = {}) {
   async function lesen() {
     if (form) { await form.sichern(); form = null; }
     await holeBuch();
+    lauf?.abort();
+    lauf = new AbortController();
+    let kreis = seitenKreis(buch);
     const sub = [STATUS.find((s) => s.id === buch.status)?.label, zeitraum(buch)].filter(Boolean).join(' · ');
     rahmen('Buch', [
       el('header', { class: 'buch-kopf' }, [
-        coverBild(buch, await coverUrl(buch)),
+        el('div', { class: 'buch-kopf__cover' }, [coverBild(buch, await coverUrl(buch)), kreis]),
         el('div', { class: 'buch-kopf__text' }, [
           el('h1', { class: 'buch-kopf__titel', text: buch.titel || 'Ohne Titel' }),
           buch.autor && el('p', { class: 'buch-kopf__autor', text: buch.autor }),
@@ -51,13 +58,20 @@ export async function oeffneBuch(id, { neu = false } = {}) {
           sub && el('small', { text: sub }),
         ]),
       ]),
-      buch.zusammenfassung
-        ? zeigeMarkdown(buch.zusammenfassung)
-        : el('p', { class: 'app__note', text: 'Noch keine Zusammenfassung.' }),
-    ], [button({ text: buch.zusammenfassung ? 'Bearbeiten' : 'Zusammenfassung schreiben', variant: 'primary', onClick: schreiben })]);
+      notizen(buch, lauf.signal),
+      buch.zusammenfassung && zeigeMarkdown(buch.zusammenfassung),
+    ], [button({ text: 'Bearbeiten', variant: 'primary', onClick: schreiben })]);
+    // Seite geändert (Kreis) → nur den Kreis neu
+    on('daten', async ({ table }) => {
+      if (table !== BUECHER) return;
+      const neu = seitenKreis(await holeBuch());
+      kreis.replaceWith(neu);
+      kreis = neu;
+    }, { signal: lauf.signal });
   }
 
   function schreiben() {
+    lauf?.abort();
     form = bearbeiten({ buch, holeBuch });
     rahmen(neu ? 'Neues Buch' : 'Bearbeiten', form.element, [
       button({ text: 'Löschen', variant: 'ghost', onClick: loeschen }),
@@ -73,6 +87,7 @@ export async function oeffneBuch(id, { neu = false } = {}) {
   }
 
   dialog.addEventListener('close', async () => {
+    lauf?.abort();
     dialog.remove();
     if (form) await form.sichern();
     const b = await ladeBuch(id);

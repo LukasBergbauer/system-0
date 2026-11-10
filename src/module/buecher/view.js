@@ -8,6 +8,7 @@ import { zusatzNehmen } from '../../core/router.js';
 import { BUECHER, STATUS, ladeBuecher, ladeBuch, neuesBuch, coverUrl } from './data.js';
 import { coverBild } from './cover-wahl.js';
 import { oeffneBuch } from './buch.js';
+import { seitenKreis } from './seiten.js';
 
 const LEER = {
   lese: 'Gerade kein Buch in Arbeit.',
@@ -15,9 +16,14 @@ const LEER = {
   gelesen: 'Noch kein Buch fertig. Nach dem Lesen hier eine Zusammenfassung schreiben.',
 };
 
+// Glas-Box: Cover mit Seiten-Kreis unten rechts, darunter Titel und Autor. Ganze Box öffnet das Buch.
 async function kachel(b) {
-  return el('button', { class: 'buch-kachel', attrs: { type: 'button', 'aria-label': b.titel || 'Ohne Titel' }, on: { click: () => oeffneBuch(b.id) } }, [
-    coverBild(b, await coverUrl(b)),
+  const oeffnen = () => oeffneBuch(b.id);
+  return el('div', { class: 'buch-kachel', on: { click: oeffnen } }, [
+    el('div', { class: 'buch-kachel__cover' }, [
+      el('button', { class: 'buch-kachel__auf', attrs: { type: 'button', 'aria-label': b.titel || 'Ohne Titel' } }, [coverBild(b, await coverUrl(b))]),
+      (b.status === 'lese' || b.seiten) && seitenKreis(b),
+    ]),
     el('span', { class: 'buch-kachel__titel', text: b.titel || 'Ohne Titel' }),
     el('small', { text: [b.autor, b.bewertung && '★'.repeat(b.bewertung)].filter(Boolean).join(' · ') }),
   ]);

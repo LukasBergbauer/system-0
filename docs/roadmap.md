@@ -443,8 +443,8 @@ Reihenfolge, je Punkt eigener Commit + `sw.js` hochzählen, lokal Mac + iPhone-G
       unten als „Nicht erledigt“ mit Datum; Strich neben dem Titel weg; Bereichs-Chips unter „Neues To-do“ weg (Bereiche bleiben)
 - [x] 4. Routinen: strukturierter anordnen (Abschnitte Morgen/Abend/Weitere, v111)
 - [x] 5. Quiz (v112): Statistik volle Breite; Daily-Box mittig mit „Starten“ und mehr Text; Endlos als schmalerer, gefüllter Balken mit allen Themen
-- [ ] 6. Bücher: Bücher in Glas-Box; Seiten-Kreis unten rechts am Cover (manuell setzen); „Zusammenfassung“ mit Seitenzahl,
+- [x] 6. Bücher (v115, Migration 024): Bücher in Glas-Box; Seiten-Kreis unten rechts am Cover (manuell setzen); „Zusammenfassung“ mit Seitenzahl,
       erscheint unter dem Buch; Knopf „Absatz“ für Lieblingsstellen, wählbar auf Heute
 - [x] 7. Einstellungen: Abmelden-Knopf volle Breite (Konto-Kachel `gross`, `app/einstellungen.js`, v113)
-Stand 10.11.2026: 1, 2, 3, 4, 5, 7 fertig und lokal geprüft (Mac 1300 px + iPhone). Offen: 6 (Bücher).
+Stand 10.11.2026: Phase 7 komplett (1–7) und lokal geprüft (Mac 1300 px + iPhone). 024 in Supabase ausführen.
 Später: Physio, Insta.

@@ -12,6 +12,7 @@ import { zieleLeiste } from './ziele-leiste.js';
 import { affirmationKarte } from './affirmation.js';
 import { gewohnheitenLeiste, gewohnheitStand } from './gewohnheiten-leiste.js';
 import { quizKarte } from './quiz-karte.js';
+import { absatzKarte, absaetze } from './absatz.js';
 import { instaLeiste } from './insta-leiste.js';
 import { einzelGewohnheit, einzelRoutine, einzelZiel, todoListe } from './einzeln.js';
 import { tagISO } from './rechnen.js';
@@ -37,6 +38,7 @@ export const ARTEN = {
     gross: ({ d }) => trainingLeiste(d.training), klein: ({ z, animiert }) => kennzahl('training', z, animiert) },
   affirmation: { titel: 'Affirmation', bereich: 'affirmationen', symbol: 'affirmation', std: [3, 1],
     gross: ({ d }) => affirmationKarte(d.affirmationen) },
+  absatz: { titel: 'Lieblingsstelle', bereich: 'buecher', symbol: 'buecher', std: [2, 1], gross: ({ d }, ref) => absatzKarte(d.buecher, ref) },
   quiz: { titel: 'Daily-Quiz', bereich: 'quiz', symbol: 'quiz', std: [1, 1], gross: ({ d }) => quizKarte(d.quiz) },
   routinen: { titel: 'Routinen', bereich: 'routinen', symbol: 'routinen', std: [4, 1], ab: [2, 1],
     gross: ({ d }) => routinenLeiste(d.routinen),
@@ -75,13 +77,14 @@ export function auswahl(d) {
   const art = (typ, w, h, titel, ref) => ({ typ, ref, w: w ?? ARTEN[typ].std[0], h: h ?? ARTEN[typ].std[1], titel: titel || ARTEN[typ].titel });
   return [
     { titel: 'Übersicht', eintraege: ['woche', 'kalender', 'todos', 'termine', 'serie', 'verlauf', 'donut'].map((t) => art(t)) },
-    { titel: 'Bereiche', eintraege: ['routinen', 'gewohnheiten', 'training', 'ziele', 'insta', 'affirmation', 'quiz'].map((t) => art(t)) },
+    { titel: 'Bereiche', eintraege: ['routinen', 'gewohnheiten', 'training', 'ziele', 'insta', 'affirmation', 'quiz', 'absatz'].map((t) => art(t)) },
     { titel: 'Ringe', eintraege: [art('woche', 1, 1, 'To-dos der Woche'), art('routinen', 1, 1, 'Routinen heute'),
       art('gewohnheiten', 1, 1, 'Gewohnheiten heute')] },
     { titel: 'Einzelne Felder', eintraege: [
       ...d.gewohnheiten.gewohnheiten.map((g) => art('gewohnheit', 1, 1, g.name, g.id)),
       ...d.routinen.routinen.map((r) => art('routine', 1, 1, r.name, r.id)),
       ...d.ziele.ziele.filter((z) => z.status === 'aktiv').map((z) => art('ziel', 1, 1, z.titel || 'Schritt', z.id)),
+      ...absaetze(d.buecher).map((n) => art('absatz', 2, 1, `„${n.text.slice(0, 40)}${n.text.length > 40 ? '…' : ''}“`, n.id)),
     ] },
   ].filter((g) => g.eintraege.length);
 }

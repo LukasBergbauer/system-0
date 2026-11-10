@@ -2,10 +2,42 @@
 .buecher { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-5); }
 .buecher__liste { width: 100%; }
 .buecher__raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: var(--space-5) var(--space-4); }
-.buch-kachel { display: flex; flex-direction: column; gap: var(--space-1); padding: 0; font: inherit; color: inherit; text-align: left;
-  background: none; border: 0; cursor: pointer; }
-.buch-kachel .buch-cover { width: 100%; margin-bottom: var(--space-2); transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease); }
-.buch-kachel:hover .buch-cover { transform: translateY(-3px); box-shadow: var(--schatten-hoch); }
+.buch-kachel { display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-3); border-radius: var(--radius-gross); cursor: pointer;
+  background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%);
+  transition: transform var(--duration) var(--feder), box-shadow var(--duration) var(--ease); }
+.buch-kachel:hover { transform: translateY(-3px); box-shadow: var(--schatten-hoch); }
+.buch-kachel:active { transform: scale(.98); }
+.buch-kachel__cover, .buch-kopf__cover { position: relative; margin-bottom: var(--space-2); }
+.buch-kachel__auf { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; border-radius: var(--radius-klein); }
+.buch-kachel .buch-cover { width: 100%; }
+
+/* Seiten-Kreis unten rechts am Cover */
+.buch-kreis { position: absolute; right: calc(-1 * var(--space-2)); bottom: calc(-1 * var(--space-2)); display: grid; place-items: center;
+  width: var(--tap); height: var(--tap); padding: 0; border: var(--glas-kante) solid var(--glas-rand); border-radius: 999px; cursor: pointer;
+  background: var(--surface-2); box-shadow: var(--schatten); -webkit-backdrop-filter: blur(var(--blur)); backdrop-filter: blur(var(--blur));
+  font: inherit; font-size: var(--fs-label); font-weight: 650; color: var(--text); transition: transform var(--duration) var(--feder); }
+.buch-kreis:active { transform: scale(.92); }
+.buch-kreis > * { grid-area: 1 / 1; }
+.buch-kreis svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.buch-kreis circle { fill: none; stroke-width: 3; }
+.buch-kreis__grund { stroke: var(--line); }
+.buch-kreis__wert { stroke: var(--accent); stroke-linecap: round; }
+.buch-kreis--fertig { background: var(--accent); color: var(--accent-ink); }
+.buch-kreis--fertig .buch-kreis__wert { stroke: var(--accent-ink); }
+.buch-seiten-form { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+
+/* Notizen: Zusammenfassung / Absatz mit Seite */
+.buch-notizen { display: flex; flex-direction: column; gap: var(--space-4); }
+.buch-notizen__liste { display: flex; flex-direction: column; gap: var(--space-3); max-width: 62ch; }
+.buch-notizen__liste:empty { display: none; }
+.buch-notiz { display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-4); border-radius: var(--radius); cursor: pointer;
+  font: inherit; color: var(--text); text-align: left; background: var(--surface); border: var(--glas-kante) solid var(--glas-rand); }
+.buch-notiz:hover { background: var(--surface-2); }
+.buch-notiz__seite { font-size: var(--fs-label); font-weight: 600; letter-spacing: var(--sperrung); text-transform: uppercase; color: var(--text-3); }
+.buch-notiz__text { margin: 0; line-height: 1.6; white-space: pre-wrap; }
+blockquote.buch-notiz__text { padding-left: var(--space-4); border-left: 2px solid var(--accent); font-style: italic; font-size: var(--fs-title); line-height: 1.5; }
+.buch-notiz-feld { min-height: 140px; resize: vertical; font: inherit; line-height: 1.55; }
 .buch-kachel__titel { font-weight: 600; line-height: 1.25; }
 .buch-kachel small { color: var(--text-2); font-size: var(--fs-small); }
 
@@ -21,7 +53,8 @@
 .buch .durchlauf__fuss .btn { flex: 0 1 220px; }
 
 .buch-kopf { display: flex; gap: var(--space-5); align-items: flex-end; }
-.buch-kopf .buch-cover { width: 128px; flex: none; }
+.buch-kopf__cover { flex: none; margin: 0; }
+.buch-kopf .buch-cover { width: 128px; }
 .buch-kopf__text { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
 .buch-kopf__titel { margin: 0; font-size: var(--fs-large); font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
 .buch-kopf__autor { margin: 0; color: var(--text-2); }

@@ -1,10 +1,12 @@
 // Daten der Bücher: Zeilen über core/store.js, Cover-Dateien über core/dateien.js (Ordner „buch-cover“).
-// buecher (titel, autor, status, cover, begonnen, beendet, bewertung, zusammenfassung, reihenfolge).
+// buecher (titel, autor, status, cover, begonnen, beendet, bewertung, zusammenfassung, reihenfolge, seite, seiten),
+// buch_notizen (buch_id, art zusammenfassung|absatz, seite, text).
 import { getAll, get, save, remove } from '../../core/store.js';
 import { speichereDatei, loescheDatei, dateiUrl } from '../../core/dateien.js';
 import { getUser } from '../../core/auth.js';
 
 export const BUECHER = 'buecher';
+export const NOTIZEN = 'buch_notizen';
 const ORDNER = 'buch-cover';
 
 export const STATUS = [
@@ -59,5 +61,12 @@ export async function entferneCover(buch) {
 
 export async function loescheBuch(buch) {
   if (buch.cover) await loescheDatei(await pfad(buch.cover));
+  for (const n of await ladeNotizen(buch.id)) await remove(NOTIZEN, n.id);
   await remove(BUECHER, buch.id);
 }
+
+// Notizen eines Buchs nach Seite (ohne Seite zuletzt), sonst nach Anlage.
+export const ladeNotizen = async (buchId) => (await getAll(NOTIZEN)).filter((n) => n.buch_id === buchId)
+  .sort((a, b) => (a.seite ?? 1e9) - (b.seite ?? 1e9) || a.created_at.localeCompare(b.created_at));
+export const speichereNotiz = (n) => save(NOTIZEN, n);
+export const loescheNotiz = (id) => remove(NOTIZEN, id);
