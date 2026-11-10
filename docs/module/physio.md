@@ -362,3 +362,8 @@ Vision Lukas: Physio = Berufs-Datenbank, unendlich ausbaubar, jederzeit anpassba
 - **Schwebende Notiz** (`v91`): Notizen → „Im Kosmos“ → Fenster zu, Notiz schwebt klein über Kosmos und Glas-Flächen (z. B. Verknüpfen),
   am Griff verschiebbar, Text bearbeitbar, × schließt (`schwebend.js`). Gerät merkt Notiz + Platz (localStorage). Nicht über der Mindmap (Dialog liegt oben).
   Lokal geprüft (Mac-Breite): Schweben, Ziehen, Verbindungs-Fenster, Feld in Verknüpfen; Speichern der Link-Notiz nicht (023 fehlt noch).
+
+## Lernzettel-Import (10.11.2026, `sw.js` `v119`)
+Prompt „Lernzettel → Physio“ (Einstellungen → Prompts, `app/prompt-vorlagen.js`): Claude Code macht aus einer Lerndatei Physio-Punkte
+und schreibt `supabase/physio-import/<thema>.sql` (insert in `physio_eintraege` mit `user_id` aus `auth.users`, doppelte Titel übersprungen;
+`physio_links` per Titel). Lukas führt sie im SQL-Editor aus, die App holt die Punkte per Sync. Hinweis: Vorlagen erscheinen nur, solange noch keine Prompts gespeichert sind.

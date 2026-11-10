@@ -49,15 +49,14 @@ export function promptsKachel() {
     m.open();
   }
 
+  // Zu: nur Titel + „Kopieren“. Auf: ganzer Text (bricht um) + „Bearbeiten“.
   function zeile(p, i) {
     const kopie = button({ text: 'Kopieren', variant: 'primary' });
-    kopie.addEventListener('click', () => kopieren(p, kopie));
-    return el('div', { class: 'prompts__zeile' }, [
-      el('button', { class: 'prompts__text', attrs: { type: 'button' }, on: { click: () => bearbeiten(i) } }, [
-        el('span', { class: 'prompts__titel', text: p.titel }),
-        el('span', { class: 'prompts__vorschau', text: p.text }),
-      ]),
-      kopie,
+    kopie.addEventListener('click', (e) => { e.preventDefault(); kopieren(p, kopie); }); // nicht auf-/zuklappen
+    return el('details', { class: 'prompts__zeile' }, [
+      el('summary', { class: 'prompts__kopf' }, [el('span', { class: 'prompts__titel', text: p.titel }), kopie]),
+      el('p', { class: 'prompts__voll', text: p.text }),
+      button({ text: 'Bearbeiten', onClick: () => bearbeiten(i) }),
     ]);
   }
 
@@ -70,5 +69,5 @@ export function promptsKachel() {
     zeige();
   });
 
-  return kachel({ symbol: 'prompt', titel: 'Prompts', text: 'Antippen zum Bearbeiten', gross: true, children: liste });
+  return kachel({ symbol: 'prompt', titel: 'Prompts', text: 'Antippen zum Aufklappen', gross: true, children: liste });
 }
