@@ -31,10 +31,37 @@ export function aktuellerAkzent() {
   return gewaehlt || '#E8664F';
 }
 
+// Unterton: zweite, leise Note derselben Farbe (Verlaufs-Ende, Hintergrund-Wolken; bei Weiß/Graphit die einzige Farbe).
+// '' = kein Unterton (dann gilt die Akzentfarbe). Einstellung „unterton“, synchronisiert.
+export const UNTERTOENE = [
+  ['', 'Kein'], ['#C9A45C', 'Gold'], ['#D9A3A6', 'Rosé'], ['#B98A6E', 'Kupfer'],
+  ['#9DB39A', 'Salbei'], ['#8FA3BF', 'Nebel'], ['#A89BCF', 'Flieder'],
+];
+const UNTERTON = 'unterton';
+let unterton = '';
+
+function untertonAnwenden(farbe) {
+  if (farbe !== '' && !GUELTIG.test(farbe || '')) return;
+  if (farbe) document.documentElement.style.setProperty('--unterton', farbe);
+  else document.documentElement.style.removeProperty('--unterton');
+  unterton = farbe;
+  try { localStorage.setItem(UNTERTON, farbe); } catch {}
+}
+
+export const aktuellerUnterton = () => unterton;
+
+export async function untertonSetzen(farbe) {
+  untertonAnwenden(farbe);
+  await setSetting(UNTERTON, farbe);
+}
+
 // Beim Start: erst die lokale Kopie (sofort, kein Farbsprung), dann die synchronisierte Einstellung.
 export async function akzentLaden() {
-  try { anwenden(localStorage.getItem(SCHLUESSEL)); } catch {}
-  try { anwenden(await getSetting(SCHLUESSEL)); } catch (err) { console.warn(err); }
+  try { anwenden(localStorage.getItem(SCHLUESSEL)); untertonAnwenden(localStorage.getItem(UNTERTON) ?? ''); } catch {}
+  try {
+    anwenden(await getSetting(SCHLUESSEL));
+    untertonAnwenden(await getSetting(UNTERTON, unterton));
+  } catch (err) { console.warn(err); }
 }
 
 export async function akzentSetzen(farbe) {

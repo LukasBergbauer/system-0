@@ -405,4 +405,5 @@ Vorschau ohne Login: `tests/vorschau.html` (lokal, Supabase aus; nur Testdaten i
 - [x] 7. Ecken/Glaskante: Radien 16/22/10 als Tokens, 0,5-px-Lichtrand, Innenlicht, ruhiger Schatten (`design.md`), `sw.js` `v98`
 **Stand 10.11.2026:** Design-Überarbeitung 1–7 fertig, lokal am Mac (1300 px) und in iPhone-Größe geprüft (Koralle, Weiß, Graphit).
 Offen bei Lukas: auf Geräten prüfen (v. a. Hover-Leiste, Bearbeiten-Modus am iPhone, Akzente Weiß/Graphit).
-Nächster Schritt (Vorschlag): Bereichsfarben auch in den Modul-Seiten dezent nutzen (Haken, Chips), wenn gewünscht.
+- [x] 8. Rückmeldung Lukas: Bereichsfarben zurückgebaut (alles einheitlich), dafür wählbarer **Unterton** (`design.md`), `sw.js` `v99`.
+      Lokal geprüft: Koralle+Gold, Weiß+Rosé (Mac), Graphit+Gold (iPhone). Offen: auf Geräten prüfen.

@@ -6,7 +6,7 @@ import { el } from '../../ui/dom.js';
 import { symbol } from '../../ui/symbol.js';
 import { go } from '../../core/router.js';
 import { emit } from '../../core/events.js';
-import { AKZENT_FARBEN, akzentSetzen, aktuellerAkzent, zeigeFarbe } from '../../core/akzent.js';
+import { AKZENT_FARBEN, akzentSetzen, aktuellerAkzent, zeigeFarbe, UNTERTOENE, untertonSetzen, aktuellerUnterton } from '../../core/akzent.js';
 
 const NEU = [['todos', 'To-do'], ['kalender', 'Termin'], ['physio', 'Physio-Punkt']];
 
@@ -44,7 +44,21 @@ function farbwahl(knopf) {
   return popover(knopf, 'heute-farbwahl', [
     el('p', { text: 'AKZENTFARBE' }),
     el('div', { class: 'heute-farben' }, [...kreise, el('label', { attrs: { title: 'Eigene Farbe' } }, [eigen])]),
+    el('p', { class: 'heute-farbwahl__zwei', text: 'UNTERTON' }),
+    untertonWahl('heute-farben heute-farben--klein'),
   ]);
+}
+
+// Unterton: kleine Kreise, „Kein“ = durchgestrichener Kreis
+export function untertonWahl(klasse) {
+  const kreise = UNTERTOENE.map(([farbe, name]) => el('button', {
+    class: farbe ? '' : 'ohne-ton',
+    attrs: { type: 'button', 'aria-label': `Unterton ${name}`, title: name, style: farbe ? `--f:${farbe}` : '' },
+    on: { click: () => { untertonSetzen(farbe).catch((err) => console.warn(err)); markieren(); } },
+  }));
+  const markieren = () => UNTERTOENE.forEach(([f], i) => kreise[i].setAttribute('aria-pressed', String(f === aktuellerUnterton())));
+  markieren();
+  return el('div', { class: klasse }, kreise);
 }
 
 function neuMenue(knopf) {

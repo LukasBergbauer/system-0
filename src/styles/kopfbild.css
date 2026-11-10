@@ -35,7 +35,7 @@
   line-height: 1.05;
   letter-spacing: -0.035em;
 }
-/* Bereichs-Symbol: feine Linie in Bereichsfarbe auf zartem Glas-Plättchen, dezent neben dem Titel */
+/* Bereichs-Symbol: feine Linie auf weißem Glas-Plättchen, dezent neben dem Titel */
 .kopf__symbol {
   display: grid;
   place-items: center;
@@ -44,8 +44,8 @@
   height: 40px;
   border-radius: var(--radius-klein);
   color: var(--bereich-tief);
-  background: linear-gradient(180deg, rgba(255,255,255,.75), color-mix(in oklch, var(--bereich) 12%, rgba(255,255,255,.45)));
-  box-shadow: inset 0 0 0 .5px color-mix(in oklch, var(--bereich) 32%, transparent), inset 0 1px 0 #fff;
+  background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.5));
+  box-shadow: inset 0 0 0 .5px rgba(43,30,25,.08), inset 0 1px 0 #fff, 0 6px 14px -10px rgba(60,30,20,.35);
 }
 .kopf__symbol .symbol {
   width: 21px;

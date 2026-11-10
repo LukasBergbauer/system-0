@@ -45,9 +45,9 @@ body::before {
     /* iPhone: dunklerer Streifen unter der Statusleiste, damit Uhrzeit/Akku (weiß) lesbar sind; am Mac 0 px hoch */
     linear-gradient(180deg, color-mix(in oklch, var(--accent) 45%, #3b1a10) 0, transparent calc(env(safe-area-inset-top) * 2.5)),
     radial-gradient(55% 45% at 12% -5%, color-mix(in oklch, var(--accent) 55%, #3b1a10) 0%, transparent 70%),
-    radial-gradient(45% 55% at 100% 0%, color-mix(in oklch, var(--accent) 50%, white) 0%, transparent 70%),
+    radial-gradient(45% 55% at 100% 0%, color-mix(in oklch, var(--unterton) 50%, white) 0%, transparent 70%),
     radial-gradient(60% 55% at 70% 105%, color-mix(in oklch, var(--accent) 60%, white) 0%, transparent 70%),
-    radial-gradient(45% 50% at -5% 85%, color-mix(in oklch, var(--accent) 40%, #f3e2d8) 0%, transparent 70%),
+    radial-gradient(45% 50% at -5% 85%, color-mix(in oklch, var(--unterton) 40%, #f3e2d8) 0%, transparent 70%),
     var(--bg);
 }
 body::after {

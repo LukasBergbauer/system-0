@@ -1,8 +1,9 @@
 /* Neutrale Akzente „Weiß“ und „Graphit“ (core/akzent.js setzt data-akzent am <html>).
-   --accent ist dann Graphit (Haken, Chips, Hauptknöpfe gut lesbar); Farbe kommt nur über die Bereichsfarben. */
+   --accent ist dann Graphit (Haken, Chips, Hauptknöpfe gut lesbar); Farbe kommt nur über den gewählten Unterton. */
 :root[data-akzent] {
   --akzent-hell: #5C5E64;
-  --akzent-tief: #16171A;
+  --akzent-tief: color-mix(in oklch, var(--unterton) 18%, #16171A);
+  --bereich: var(--unterton);
 }
 
 /* ---------- Weiß: helles Papier, weiße Glasflächen, dunkle Schrift ---------- */
@@ -14,9 +15,8 @@
 [data-akzent="weiss"] body::before {
   background:
     radial-gradient(50% 45% at 8% -5%, #E4E2DE 0%, transparent 70%),
-    radial-gradient(40% 45% at 100% 0%, color-mix(in oklch, var(--c-kalender) 14%, #F3F2EF) 0%, transparent 70%),
-    radial-gradient(55% 50% at 75% 105%, color-mix(in oklch, var(--c-todos) 12%, #F3F2EF) 0%, transparent 70%),
-    radial-gradient(40% 45% at -5% 85%, color-mix(in oklch, var(--c-gewohnheiten) 12%, #F3F2EF) 0%, transparent 70%),
+    radial-gradient(40% 45% at 100% 0%, color-mix(in oklch, var(--unterton) 14%, #F3F2EF) 0%, transparent 70%),
+    radial-gradient(55% 50% at 75% 105%, color-mix(in oklch, var(--unterton) 10%, #F3F2EF) 0%, transparent 70%),
     var(--bg);
 }
 [data-akzent="weiss"] .heute-hero { color: var(--text); border-color: rgba(255,255,255,.95);
@@ -45,9 +45,12 @@
     radial-gradient(60% 50% at 10% -8%, #6E6F73 0%, transparent 70%),
     radial-gradient(45% 55% at 100% 0%, #C9C8C4 0%, transparent 70%),
     radial-gradient(60% 55% at 72% 108%, #B5B4B0 0%, transparent 70%),
-    radial-gradient(45% 50% at -5% 85%, color-mix(in oklch, var(--c-kalender) 18%, #D6D5D1) 0%, transparent 70%),
+    radial-gradient(45% 50% at -5% 85%, color-mix(in oklch, var(--unterton) 18%, #D6D5D1) 0%, transparent 70%),
     var(--bg);
 }
 
 /* Farbkreise: Weiß braucht einen feinen Rand */
 .heute-farben [data-farbe="weiss"], .farbkreis[data-farbe="weiss"] { box-shadow: inset 0 0 0 1px rgba(43,30,25,.18); }
+.heute-farben [data-farbe="weiss"][aria-pressed="true"], .farbkreis[data-farbe="weiss"][aria-pressed="true"] {
+  box-shadow: inset 0 0 0 1px rgba(43,30,25,.18), 0 0 0 2px #fff, 0 0 0 4px var(--text-3);
+}

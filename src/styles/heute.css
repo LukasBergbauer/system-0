@@ -99,7 +99,7 @@
 .heute-kz:disabled { cursor: default; }
 .heute-kz__kopf { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: auto; }
 .heute-kz__symbol { width: 38px; height: 38px; border-radius: var(--radius-klein); display: grid; place-items: center; color: var(--bereich-tief);
-  background: color-mix(in oklch, var(--bereich) 13%, rgba(255,255,255,.7)); box-shadow: inset 0 0 0 .5px color-mix(in oklch, var(--bereich) 30%, transparent); }
+  background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.6)); box-shadow: inset 0 0 0 .5px rgba(43,30,25,.08), inset 0 1px 0 #fff; }
 .heute-kz__symbol .symbol { width: 18px; height: 18px; }
 .heute-trend { font-size: var(--fs-label); font-weight: 600; color: var(--text-2); background: rgba(255,255,255,.65); padding: 3px 8px; border-radius: 999px; }
 .heute-trend--gut { color: var(--gut); }
@@ -133,8 +133,5 @@
   .heute-spur { display: none; }
 }
 
-/* Bereich zeigen: feiner Farbschimmer oben links auf jedem Feld (Farbe aus data-bereich) */
-.feld > :is(.heute-karte, .heute-kz:not(.heute-kz--akzent), .feld-k) {
-  background: radial-gradient(110% 75% at 0% 0%, color-mix(in oklch, var(--bereich) 13%, transparent), transparent 62%), var(--glas-verlauf); }
 .heute-karte__kopf h3 { display: flex; align-items: center; gap: var(--space-2); }
 .feld .heute-karte__kopf > .heute-kz__symbol { display: none; } /* Symbol steht schon im Titel */

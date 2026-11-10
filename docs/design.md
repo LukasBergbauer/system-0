@@ -39,17 +39,19 @@ Hintergrund, Hero-Flächen, Haken, Fortschritt und Schatten werden per `color-mi
 
 `.hell` (Mindmap-Overlay): deckendes Warmweiß statt Glas, gleiche Token-Namen.
 
-## Bereichsfarben (10.11.2026)
-Jeder Bereich hat eine gedämpfte eigene Farbe (`--c-<id>` in `tokens.css`). Ein Element mit `data-bereich="<id>"` setzt
-`--bereich` (und `--bereich-tief` für Schrift/Linien); Heute bzw. ohne Bereich = Akzentfarbe.
-Gesetzt von: `shell.js` (ganze Seite `.app`), `nav.js` (jeder Eintrag: Symbol leise in Bereichsfarbe, aktiv voll),
-Heute-Felder (`feld.js`): Symbol auf zartem Farbplättchen im Titel, feiner Farbschimmer oben links, Ringe/Kurven/Punkte in Bereichsfarbe.
-Bereichs-„Emoji“ = die Linien-Symbole aus `ui/symbol.js` (keine Apple-Emoji), dezent, nie flächig.
+## Eine Farbe + Unterton (10.11.2026)
+Alles bleibt in **einer** Farbe (Lukas: einheitlich, edel, nicht überladen). Keine Farben je Bereich.
+Bereiche erkennt man an Linien-Symbol (`ui/symbol.js`, auf weißem Glas-Plättchen) und Form (Ring, Zahl, Liste).
+**Unterton** (optional, Einstellung `unterton`, synchronisiert, `core/akzent.js`): zweite, leise Note derselben Farbe.
+`--unterton` (ohne Wahl = `--accent`) färbt das Ende der Verläufe (`--akzent-tief`: Hero, Logo, Serie-Kachel) und zwei
+Hintergrund-Wolken. Bei Weiß/Graphit ist er die einzige Farbe (`--bereich` = Unterton: Ringe, Kurven, Kalender-Tag).
+Vorgaben `UNTERTOENE`: Kein, Gold, Rosé, Kupfer, Salbei, Nebel, Flieder. Wahl im Akzent-Popover (Heute) und in Einstellungen.
+`--bereich`/`--bereich-tief` = Detailfarbe auf Heute (Akzent bzw. Unterton), kein eigener Wert je Bereich mehr.
 
 ## Akzentfarbe
 Neutrale Akzente „Weiß“ und „Graphit“ (Werte `weiss`/`schwarz`): `--accent` wird Graphit #2E3035 (Haken, Chips, Knöpfe),
 `data-akzent` am `<html>` schaltet Flächen in `akzent-neutral.css` um. Weiß = helles Papier #F3F2EF, weiße Hero-Karte mit
-dunkler Schrift, Hintergrund mit zarten Bereichsfarben. Graphit = warmes Steingrau #E2E1DE, Hero dunkel (#5C5E64 → #16171A),
+dunkler Schrift, Hintergrund mit zartem Unterton. Graphit = warmes Steingrau #E2E1DE, Hero dunkel (#5C5E64 → #16171A),
 kein reines Schwarz. Kontrast geprüft: Text 13–15:1, Nebentext ≈4,5:1, Weiß auf Hero-Graphit 13:1.
 `src/core/akzent.js`: `akzentSetzen(farbe)` speichert als Einstellung `akzent` (synchronisiert) und lokal;
 `akzentLaden()` beim Start (erst lokal = kein Farbsprung, dann die synchronisierte). 9 Vorgaben in `AKZENT_FARBEN` (Weiß, Graphit + 7 Farben)
@@ -85,7 +87,7 @@ Aktiver Eintrag: weiße Pille (`.nav__zeiger`), gleitet ruhig ohne Nachfedern (n
 Seitenleiste wie `docs/vorlagen/dashboard-glas.png`: Marke „System 0 / Lukas“, Suchfeld (Glas-Pille), Abschnitte
 ALLTAG / KÖRPER & KOPF / SYSTEM (10 px, gesperrt, `--text-3`), Zahl als Akzent-Pille rechts am Eintrag, unten Kreis „L“ mit
 Status-Punkt + „Lukas · synchronisiert“. Eingeklappt verschwinden Texte, Abschnitts-Namen und Zahlen.
-Seitenkopf (`kopfbild`): großer Titel (`--fs-seite`, 650, eng) mit Bereichs-Symbol davor (40 px Glas-Plättchen, Linie in
+Seitenkopf (`kopfbild`): großer Titel (`--fs-seite`, 650, eng) mit Bereichs-Symbol davor (40 px weißes Glas-Plättchen, Linie in
 `--bereich-tief`), darunter `ueber` (z. B. Datum) und Spruch in Nebentext. Karten-/Fenstertitel 650, `--fs-title`, eng;
 Karten auf Heute mit kleinem Bereichs-Symbol im Titel.
 Ein `bild` wird zurzeit nicht übergeben (`shell.js`), die Bereiche behalten ihre Bildlisten für später.
@@ -110,7 +112,7 @@ Listen-Gruppen in To-dos und Kalender (`.todo-gruppe`, `.termin-gruppe`) sind Gl
   `spruchDesTages(versatz)` wechselt um Mitternacht; jeder Bereich nimmt einen eigenen `versatz`.
 
 ## Regeln
-- Eine Akzentfarbe plus die gedämpften Bereichsfarben (nur klein: Symbol, Ring, Schimmer), sonst Weiß-Glas, warmes Fast-Schwarz und die Farbwolken.
+- Eine Akzentfarbe (+ optional ein Unterton derselben Stimmung), sonst Weiß-Glas, warmes Fast-Schwarz und die Farbwolken. Keine weiteren bunten Farben.
 - Systemschrift überall; große Zahlen und Titel mit Gewicht 600 und leicht engem Buchstabenabstand.
 - Glas = `--glas-verlauf` + Rand `var(--glas-kante) solid var(--glas-rand)` + `--schatten` + Unschärfe. Trennlinien nur in Listen.
 - Ecken fein statt „weich-groß“ (Lukas, 10.11.2026): nur die drei Radius-Tokens, innen kleiner als außen.

@@ -41,3 +41,23 @@
   opacity: 0;
   cursor: pointer;
 }
+
+/* Unterton (Einstellungen + Popover auf Heute): kleinere Kreise, „Kein“ = feiner durchgestrichener Ring */
+.farbkreise__titel {
+  flex-basis: 100%;
+  margin: var(--space-2) 0 0;
+}
+.farbkreis--klein {
+  width: 28px;
+  height: 28px;
+}
+.ohne-ton {
+  --f: transparent;
+  background: linear-gradient(135deg, transparent calc(50% - .5px), var(--text-3) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)) !important;
+  box-shadow: inset 0 0 0 1px var(--text-3) !important;
+}
+.ohne-ton[aria-pressed="true"] {
+  box-shadow: inset 0 0 0 1px var(--text-3), 0 0 0 2px #fff, 0 0 0 4px var(--text-2) !important;
+}
+.heute-farbwahl__zwei { margin-top: var(--space-4) !important; }
+.heute-farben.heute-farben--klein { grid-template-columns: repeat(7, 1fr); gap: 7px; }
