@@ -426,7 +426,8 @@ Offen bei Lukas: auf Geräten prüfen (v. a. Hover-Leiste, Bearbeiten-Modus am i
 **Stand 10.11.2026:** Lukas: Leiste wirkt ruhig, Feinschliff (Tempo, Felder-Verzerrung beim Gleiten) evtl. später.
 Runde 2 abgeschlossen. Nächster Schritt: iPhone-App-Icon (stille Stein-Null auf weißem Schimmer) + Funktions-Vorschläge.
 Vorgemerkt (später): Sonntags-Reflexion zum Durchklicken über alle Bereiche.
-- [ ] 15. App-Icon: Musterseite `muster/icon.html` (SVGs in `muster/icon/`: A Marmor erhaben, B Graphit, C graviert). Wartet auf Wahl Lukas,
-      danach: icon.svg + PNG 180/192/512 (SVG-Filter → PNG rendern), Manifest-Farben weiß, `sw.js` hochzählen.
+- [x] 15. App-Icon: Muster `muster/icon.html` (A Marmor, B Graphit, C graviert). Lukas: Null von C + Hintergrund von A →
+      `assets/icons/icon.svg`, PNG 180/192/512 per Chrome headless gerendert, Manifest `background_color` #F6F5F2, `sw.js` `v105`.
+      Offen bei Lukas: Icon am iPhone neu vom Homescreen hinzufügen (iOS behält das alte sonst).
 - Vorschläge Funktionen (10.11.2026, nur Liste im Chat): Wochenrückblick (= Sonntags-Reflexion), Erinnerungen, Inbox, Training-Fortschritt,
   Zitate aus Büchern, Gewohnheiten↔Ziele, Quiz-Wiederholung, Backup-Export, Heute-Abendmodus, Insta-Auswertung.
