@@ -1,4 +1,4 @@
-// Ansicht „Heute“: Glas-Dashboard (Plan in docs/module/heute.md).
+// Ansicht „Heute“: Glas-Dashboard aus Feldern im festen Raster (layout.js, katalog.js); „Bearbeiten“ im Kopf (bearbeiten.js).
 // Liest nur über core/ (To-dos, Routinen, Training, Ziele, Affirmationen, Gewohnheiten, Quiz-Ergebnisse, Insta-Posts, eigene Termine, Google-Termine aus dem Zwischenspeicher), speichert nur das Abhaken von Gewohnheiten (gewohnheiten-leiste.js).
 // Bei jedem Ereignis 'daten' neu zeichnen – dann ohne Hochzähl-Bewegung, damit nichts zappelt.
 import { el } from '../../ui/dom.js';
@@ -6,21 +6,13 @@ import { getAll } from '../../core/store.js';
 import { getMeta } from '../../core/sync-local.js';
 import { on } from '../../core/events.js';
 import { rechne } from './rechnen.js';
-import { ordnen, ziehbar } from './anordnen.js';
 import { aufklappen } from '../../core/wiederholung.js';
 import { kopf } from './kopf.js';
-import { hero } from './hero.js';
-import { kacheln } from './kacheln.js';
-import { kalenderKarte } from './kalender-karte.js';
-import { verlauf } from './verlauf.js';
-import { donut } from './donut.js';
-import { routinenLeiste } from './routinen-leiste.js';
-import { rechneTraining, trainingLeiste } from './training.js';
-import { zieleLeiste } from './ziele-leiste.js';
-import { affirmationKarte } from './affirmation.js';
-import { gewohnheitenLeiste } from './gewohnheiten-leiste.js';
-import { quizKarte } from './quiz-karte.js';
-import { instaLeiste } from './insta-leiste.js';
+import { rechneTraining } from './training.js';
+import { ARTEN } from './katalog.js';
+import { feld } from './feld.js';
+import { layoutLaden, layoutSpeichern, STANDARD } from './layout.js';
+import { griffe, plusFeld, bearbeitbar, hinzufuegen } from './bearbeiten.js';
 
 const GOOGLE = 'kalender:google'; // Zwischenspeicher des Kalenders: { termine: [...] }
 
@@ -36,41 +28,52 @@ async function laden() {
     gewohnheiten: { gewohnheiten, logs: gewLogs, rueckfaelle }, quiz, insta };
 }
 
-// [name, element] → Elemente mit data-kachel (leere Kacheln fallen weg)
-const benennen = (paare) => paare.filter(([, k]) => k).map(([name, k]) => { k.dataset.kachel = name; return k; });
-
 export function heuteAnsicht({ signal }) {
   const box = el('div', { class: 'heute' });
   let erstesMal = true;
+  let layout = null; // [{ typ, ref?, w, h }] (layout.js)
+  let bearbeiten = false;
+  let d = null;
 
-  async function zeichne() {
-    const d = await laden();
+  async function zeichne(neuLaden = true) {
+    if (neuLaden || !d) [d, layout] = await Promise.all([laden(), layout ? layout : layoutLaden()]);
     const z = { ...rechne(d), training: d.training };
     const animiert = erstesMal;
     erstesMal = false;
+    const ctx = { d, z, animiert, bearbeiten };
     box.classList.toggle('heute--ruhig', !animiert); // beim Neuzeichnen nicht noch einmal einblenden
+    box.classList.toggle('heute--bearbeiten', bearbeiten);
+    const felder = layout.map((e, i) => {
+      const f = feld(ARTEN[e.typ], e, ctx);
+      if (f && bearbeiten) griffe(f, i);
+      return f;
+    }).filter(Boolean);
     box.replaceChildren(
-      kopf(z.dinge),
-      el('section', { class: 'heute-raster' }, ordnen(benennen([
-        ['hero', hero(z.woche, animiert)],
-        ['kalender', kalenderKarte(d.termine)],
-        ...kacheln(z, animiert).map((k, i) => [`kachel-${i}`, k]),
-        ['affirmation', affirmationKarte(d.affirmationen)],
-        ['quiz', quizKarte(d.quiz)],
-        ['routinen', routinenLeiste(d.routinen)],
-        ['gewohnheiten', gewohnheitenLeiste(d.gewohnheiten)],
-        ['training', trainingLeiste(d.training)],
-        ['ziele', zieleLeiste(d.ziele)],
-        ['insta', instaLeiste(d.insta)],
-        ['verlauf', verlauf(d.todos, animiert)],
-        ['donut', donut(d.todos, d.bereiche, animiert)],
-      ]))),
+      kopf(z.dinge, { bearbeiten, umschalten, standard }),
+      el('section', { class: 'heute-raster' }, [...felder, bearbeiten && plusFeld(() => hinzufuegen(d, (e) => aendern([...layout, e])))]),
     );
   }
 
+  function aendern(neu) {
+    layout = neu;
+    layoutSpeichern(layout).catch((err) => console.warn(err));
+    zeichne(false);
+  }
+  function umschalten() { bearbeiten = !bearbeiten; zeichne(false); }
+  function standard() { aendern(STANDARD.map((e) => ({ ...e }))); }
+
+  bearbeitbar(box, {
+    entfernen: (i) => aendern(layout.filter((_, j) => j !== i)),
+    verschieben: (reihe) => aendern([...reihe.map((i) => layout[i]), ...layout.filter((_, i) => !reihe.includes(i))]),
+    groesse: (i, w, h) => aendern(layout.map((e, j) => (j === i ? { ...e, w, h } : e))),
+  }, signal);
+
   zeichne();
-  ziehbar(box, signal); // lange drücken + ziehen = umordnen (nur dieses Gerät)
-  // Einstellungen (z. B. Akzentfarbe) ändern hier nichts – sonst schlösse sich die Farbwahl bei jedem Tipp
-  on('daten', ({ table }) => table !== 'einstellungen' && zeichne(), { signal });
+  // Einstellungen: nur neu zeichnen, wenn sich das Layout geändert hat (z. B. vom anderen Gerät) – sonst schlösse sich die Farbwahl
+  on('daten', async ({ table }) => {
+    if (table !== 'einstellungen') return zeichne();
+    const neu = await layoutLaden();
+    if (!bearbeiten && JSON.stringify(neu) !== JSON.stringify(layout)) { layout = neu; zeichne(false); }
+  }, { signal });
   return box;
 }

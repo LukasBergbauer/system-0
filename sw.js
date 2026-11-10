@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v92';
+const VERSION = 'v93';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -40,7 +40,11 @@ const APP_FILES = [
   './src/app/akzent-kachel.js',
   './src/module/heute/index.js',
   './src/module/heute/view.js',
-  './src/module/heute/anordnen.js',
+  './src/module/heute/feld.js',
+  './src/module/heute/katalog.js',
+  './src/module/heute/layout.js',
+  './src/module/heute/einzeln.js',
+  './src/module/heute/bearbeiten.js',
   './src/module/heute/rechnen.js',
   './src/module/heute/bewegung.js',
   './src/module/heute/kopf.js',
@@ -211,6 +215,7 @@ const APP_FILES = [
   './src/styles/nav.css',
   './src/styles/heute.css',
   './src/styles/heute-karten.css',
+  './src/styles/heute-raster.css',
   './src/styles/todos.css',
   './src/styles/kalender.css',
   './src/styles/routinen.css',

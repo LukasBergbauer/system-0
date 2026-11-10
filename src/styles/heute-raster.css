@@ -1,0 +1,94 @@
+/* Heute: festes Raster (Mac 4, iPhone 2 Spalten), Felder in Rastergrößen, kleines Feld (Kennzahl/Ring) und Bearbeiten-Modus.
+   Farbe je Feld kommt aus data-bereich → --bereich (tokens.css). */
+.heute-raster { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: minmax(150px, auto);
+  grid-auto-flow: dense; gap: var(--space-4); }
+.feld { position: relative; display: flex; min-width: 0; grid-column: span 1; grid-row: span 1; }
+.feld--w2 { grid-column: span 2; } .feld--w3 { grid-column: span 3; } .feld--w4 { grid-column: span 4; }
+.feld--h2 { grid-row: span 2; } .feld--h3 { grid-row: span 3; }
+.feld > :first-child { flex: 1; min-width: 0; min-height: 0; margin: 0; box-sizing: border-box; }
+.feld .heute-hero, .feld .heute-kz { min-height: 0; }
+
+/* Kleines Feld: Symbol + Titel, Ring oder Zahl, Unterzeile */
+.feld-k { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); padding: 18px; font: inherit; text-align: left;
+  color: var(--text); border-radius: var(--radius-gross); background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand);
+  box-shadow: var(--schatten); -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%);
+  transition: transform 380ms var(--feder), box-shadow 380ms var(--ease); }
+button.feld-k { cursor: pointer; }
+@media (hover: hover) { button.feld-k:hover { transform: translateY(-3px); box-shadow: var(--schatten-hoch); } }
+button.feld-k:active { transform: scale(.985); }
+.feld-k__kopf { display: flex; align-items: center; gap: var(--space-2); max-width: 100%; font-size: var(--fs-small); font-weight: 600; }
+.feld-k__kopf > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.feld-k__zahl { margin-top: auto; font-size: 36px; font-weight: 600; letter-spacing: -.035em; line-height: 1; }
+.feld-k__text { color: var(--text-2); font-size: var(--fs-label); }
+.feld-k .heute-ring { width: 76px; height: 76px; margin: auto 0 0; }
+.feld-k .heute-ring .bahn { stroke: color-mix(in oklch, var(--bereich) 14%, transparent); }
+.feld-k .heute-ring .wert { stroke: var(--bereich); filter: none; }
+.feld-k .heute-ring b { font-size: var(--fs-normal); }
+.feld-k--fertig .feld-k__text { color: var(--bereich-tief); font-weight: 600; }
+
+/* Bereichs-Symbol: klein, Linie in Bereichsfarbe auf zartem Glas-Plättchen */
+.feld-symbol { display: grid; place-items: center; flex: none; width: 26px; height: 26px; border-radius: 9px; color: var(--bereich-tief);
+  background: color-mix(in oklch, var(--bereich) 13%, rgba(255,255,255,.7)); box-shadow: inset 0 0 0 .5px color-mix(in oklch, var(--bereich) 30%, transparent); }
+.feld-symbol .symbol { width: 15px; height: 15px; stroke-width: 1.9; }
+
+/* To-do-Liste (großes To-do-Feld) */
+.heute-liste { display: flex; flex-direction: column; overflow: auto; }
+.heute-liste__zeile { display: flex; align-items: center; gap: 10px; width: 100%; padding: 9px 4px; border: 0; border-top: 1px solid var(--line);
+  background: none; font: inherit; font-size: var(--fs-small); color: var(--text); text-align: left; cursor: pointer; }
+.heute-liste__zeile span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.heute-liste__zeile small { color: var(--text-2); font-size: var(--fs-label); }
+.heute-liste__punkt { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--bereich); }
+.heute-liste__punkt--warn { background: var(--warn); }
+
+/* ---------- Bearbeiten ---------- */
+.heute--bearbeiten .feld > :first-child { pointer-events: none; }
+.heute--bearbeiten .feld[data-i] { outline: 1.5px dashed color-mix(in oklch, var(--text) 16%, transparent); outline-offset: 4px;
+  border-radius: var(--radius-gross); animation: feld-wackeln 2.6s ease-in-out infinite; }
+.heute--bearbeiten .feld[data-i]:nth-child(2n) { animation-delay: -1.3s; }
+@keyframes feld-wackeln { 25% { transform: rotate(.25deg); } 75% { transform: rotate(-.25deg); } }
+.feld--zieht { z-index: 5; opacity: .9; animation: none !important; outline-color: var(--accent) !important; }
+.feld-weg, .feld-griff { position: absolute; z-index: 3; display: grid; place-items: center; padding: 0; border: 0; cursor: pointer;
+  -webkit-tap-highlight-color: transparent; }
+.feld-weg { top: -9px; left: -9px; width: 26px; height: 26px; border-radius: 50%; background: var(--dunkel); box-shadow: 0 4px 10px -4px rgba(0,0,0,.4); }
+.feld-weg i { width: 10px; height: 1.6px; border-radius: 1px; background: #fff; }
+.feld-griff { touch-action: none; }
+.feld-griff--bewegen { top: -11px; left: 50%; width: 44px; height: 22px; margin-left: -22px; gap: 4px; grid-template-columns: repeat(3, 3px); border-radius: 999px;
+  background: rgba(255,255,255,.85); box-shadow: 0 2px 8px -3px rgba(0,0,0,.25); cursor: grab; }
+.feld-griff--bewegen i { width: 3px; height: 3px; border-radius: 50%; background: var(--text-2); }
+.feld-griff--groesse { right: 4px; bottom: 4px; width: 28px; height: 28px; background: none; cursor: nwse-resize; }
+.feld-griff--groesse::after { content: ""; width: 11px; height: 11px; border-right: 2px solid var(--text-2); border-bottom: 2px solid var(--text-2);
+  border-bottom-right-radius: 5px; }
+.feld-plus { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font: inherit; font-size: var(--fs-small);
+  font-weight: 600; color: var(--text-2); background: rgba(255,255,255,.18); border: 1.5px dashed color-mix(in oklch, var(--text) 18%, transparent);
+  border-radius: var(--radius-gross); cursor: pointer; }
+.feld-plus > * { flex: none !important; }
+.feld-plus .symbol { width: 20px; height: 20px; }
+.feld-plus:hover { color: var(--text); background: rgba(255,255,255,.35); }
+
+/* Auswahl im Fenster */
+.feld-wahl + .feld-wahl { margin-top: var(--space-4); }
+.feld-wahl .label { margin: 0 0 var(--space-2); }
+.feld-wahl__liste { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: var(--space-2); }
+.feld-wahl__knopf { display: flex; align-items: center; gap: 10px; min-height: var(--tap); padding: 8px 12px; border: var(--glas-kante) solid var(--glas-rand);
+  border-radius: var(--radius); background: var(--surface-2); font: inherit; font-size: var(--fs-small); font-weight: 600; color: var(--text);
+  text-align: left; cursor: pointer; }
+.feld-wahl__knopf span:nth-child(2) { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.feld-wahl__knopf small { color: var(--text-3); font-weight: 500; }
+.feld-wahl__knopf:hover { background: #fff; }
+
+@media (max-width: 760px) {
+  .heute-raster { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(138px, auto); gap: var(--space-3); }
+  .feld--w3, .feld--w4 { grid-column: span 2; }
+  .feld-k { padding: var(--space-4); }
+  .feld-k__zahl { font-size: 30px; }
+}
+@media (prefers-reduced-motion: reduce) { .heute--bearbeiten .feld[data-i] { animation: none; } }
+
+/* Inhalt passt sich der Feldbreite an (schmale Spalte am iPhone) */
+.feld { container-type: inline-size; }
+@container (max-width: 230px) {
+  .heute-kal__woche { grid-template-columns: repeat(4, 1fr); row-gap: 6px; }
+  .heute-kal__datum > b { font-size: 36px; }
+  .heute-kz__titel, .heute-kz small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+}
+@media (max-width: 760px) { .heute-pille__text { display: none; } }

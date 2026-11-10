@@ -21,7 +21,7 @@ function terminZeile(t, naechster) {
 export function kalenderKarte(termine, jetzt = new Date()) {
   const heute = plusTage(jetzt, 0);
   const montag = plusTage(heute, -((heute.getDay() + 6) % 7));
-  const karte = el('article', { class: 'heute-karte heute-kal heute-s4' });
+  const karte = el('article', { class: 'heute-karte heute-kal' });
 
   function zeige(tag) {
     const amTagListe = termine.filter((t) => amTag(t, tag))

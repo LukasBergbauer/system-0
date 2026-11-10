@@ -56,7 +56,7 @@ export function verlauf(todos, animiert, jetzt = new Date()) {
     bild.innerHTML = svg(d, bewegt);
   }
   zeichne(gewaehlt, animiert);
-  return el('article', { class: 'heute-karte heute-s8' }, [
+  return el('article', { class: 'heute-karte' }, [
     el('div', { class: 'heute-karte__kopf' }, [
       el('div', {}, [el('h3', { text: 'Erledigt' }), zeile]),
       tabs({ items: [{ id: 'woche', label: 'Woche' }, { id: 'monat', label: 'Monat' }], active: gewaehlt, onChange: (z) => zeichne(z, true) }),

@@ -28,6 +28,11 @@
   --schatten: inset 0 1px 0 rgba(255,255,255,.7), 0 12px 32px -14px color-mix(in oklch, var(--accent) 50%, rgba(70,25,10,.55));
   --schatten-hoch: inset 0 1px 0 rgba(255,255,255,.8), 0 22px 44px -16px color-mix(in oklch, var(--accent) 55%, rgba(70,25,10,.6));
   --blur: 22px;
+  --glas-kante: 1px; /* Breite der hellen Glaskante */
+
+  /* Bereichsfarbe: jedes Element mit data-bereich setzt --bereich (Liste unten); ohne = Akzent */
+  --bereich: var(--accent);
+  --bereich-tief: color-mix(in oklch, var(--bereich) 72%, #2B1E19);
 
   /* Form */
   --radius: 18px;

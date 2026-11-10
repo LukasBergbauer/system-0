@@ -397,4 +397,4 @@ Entscheidungen Lukas: Bereichs-„Emoji“ = vorhandene Linien-Symbole, dezent; 
 Vorschau ohne Login: `tests/vorschau.html` (lokal, Supabase aus). Muster: `muster/vorschlaege.html`.
 - [x] 1. Seitenleiste: Klapp-Knopf weg, schmal + Aufklappen beim Drüberfahren; Zeiger gleitet ohne Nachfedern
       (Ursache Sprung: `--feder` schwingt ~10 % der Strecke über, dazu Breite/Höhe-Nachlauf beim Ein-/Ausklappen)
-
+- [x] 2. Heute: Bearbeiten-Modus mit festem Raster statt Drag & Drop (`module/heute.md`), `sw.js` `v93`

@@ -1,4 +1,4 @@
-// Heute: Knöpfe rechts im Kopf – „Akzent“ (Farbwahl) und „Neu“ (Menü: To-do, Termin, Physio-Punkt).
+// Heute: Knöpfe rechts im Kopf – „Bearbeiten“ (Raster anpassen; dann „Standard“ + „Fertig“), „Akzent“ (Farbwahl) und „Neu“.
 // Beide Fenster sind HTML-Popover: Tipp daneben oder Esc schließt sie von selbst.
 // Lupe (nur iPhone, am Mac gibt es das Suchfeld in der Seitenleiste) meldet emit('suche'); die App-Hülle öffnet die Suche.
 // „Neu“ geht über den Router-Zusatz (#/todos/neu …); der Zielbereich öffnet dann sein Anlegen.
@@ -55,10 +55,18 @@ function neuMenue(knopf) {
   return box;
 }
 
-export function kopfKnoepfe() {
+export function kopfKnoepfe({ bearbeiten, umschalten, standard }) {
+  if (bearbeiten) {
+    return el('div', { class: 'heute-kopf__knoepfe' }, [
+      el('button', { class: 'heute-pille heute-pille--glas', text: 'Standard', attrs: { type: 'button' }, on: { click: standard } }),
+      el('button', { class: 'heute-pille heute-pille--dunkel', text: 'Fertig', attrs: { type: 'button' }, on: { click: umschalten } }),
+    ]);
+  }
+  const anpassen = el('button', { class: 'heute-pille heute-pille--glas', attrs: { type: 'button', 'aria-label': 'Heute bearbeiten' }, on: { click: umschalten } },
+    [symbol('mehr'), el('span', { class: 'heute-pille__text', text: 'Bearbeiten' })]);
   const akzent = el('button', { class: 'heute-pille heute-pille--glas', attrs: { type: 'button' } },
     [el('span', { class: 'heute-punkt' }), 'Akzent']);
   const neu = el('button', { class: 'heute-pille heute-pille--dunkel', attrs: { type: 'button' } }, [symbol('plus'), 'Neu']);
   const suche = el('button', { class: 'heute-pille heute-pille--glas heute-pille--suche', attrs: { type: 'button', 'aria-label': 'Suchen' }, on: { click: () => emit('suche') } }, [symbol('suche')]);
-  return el('div', { class: 'heute-kopf__knoepfe' }, [suche, akzent, neu, farbwahl(akzent), neuMenue(neu)]);
+  return el('div', { class: 'heute-kopf__knoepfe' }, [suche, anpassen, akzent, neu, farbwahl(akzent), neuMenue(neu)]);
 }

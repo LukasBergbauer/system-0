@@ -16,12 +16,13 @@ function dingeText(n) {
   return n === 1 ? '1 Ding braucht dich' : `${n} Dinge brauchen dich`;
 }
 
-export function kopf(dinge, jetzt = new Date()) {
+// modus = { bearbeiten, umschalten, standard } für den Bearbeiten-Knopf
+export function kopf(dinge, modus, jetzt = new Date()) {
   return el('header', { class: 'heute-kopf' }, [
     el('div', {}, [
       el('h1', { text: `${gruss(jetzt.getHours())}, Lukas` }),
       el('p', { text: `${DATUM.format(jetzt)} · ${dingeText(dinge)}` }),
     ]),
-    kopfKnoepfe(),
+    kopfKnoepfe(modus),
   ]);
 }

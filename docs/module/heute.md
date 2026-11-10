@@ -13,6 +13,7 @@ Liest nur Daten der anderen Module über `core/`, speichert selbst nichts.
 - Heute ist nie fertig: Lukas kann die Startseite jederzeit umbauen lassen (Karten weg, neu, umsortieren), wie er es möchte.
 
 ## Stand
+Neu (10.11.2026): Felder im festen Raster + Bearbeiten-Modus (Abschnitt unten).
 Als Glas-Dashboard gebaut (Plan unten, Schritte a–e alle fertig, 09.11.2026).
 - [x] a) Daten-Rechnungen + Kopf, Hero mit Ring, 4 Kacheln (08.11.2026). Dateien in `src/module/heute/`:
       `rechnen.js` (alle Zahlen), `bewegung.js` (Zahl zählt hoch, Ring, Mini-Kurve), `kopf.js`, `hero.js`, `kacheln.js`,
@@ -86,6 +87,15 @@ Reihenfolge zum Bauen (je ein Commit): a) Daten-Rechnungen + Kopf/Hero/Kacheln, 
 c) Seitenleiste mit Abschnitten + Platzhalter-Bereiche, d) Neu-Menü + Akzent-Knopf, e) Suche.
 
 ## Wünsche für später
-- [x] Kacheln umordnen (09.11.2026, `anordnen.js`, `sw.js` `v84`): lange drücken (0,45 s) hebt an, ziehen, die anderen gleiten (FLIP,
-  nur transform). Reihenfolge pro Gerät in `localStorage` (`system0-heute-reihenfolge`, Namen über `data-kachel`);
-  Raster mit `grid-auto-flow: dense`, damit keine Lücken bleiben.
+- [x] ~~Kacheln umordnen per lange drücken (v84, `anordnen.js`)~~ → verbuggt, ersetzt durch Bearbeiten-Modus (10.11.2026, unten).
+
+## Bearbeiten-Modus mit festem Raster (10.11.2026, `sw.js` `v93`)
+- Raster: Mac 4 Spalten, iPhone 2 (breitere Felder dort 2 breit), Zeilen mind. 150/138 px, `grid-auto-flow: dense` (`heute-raster.css`).
+- Layout = Einstellung `heute_layout` (synchronisiert): `[{ typ, ref?, w, h }]`, `layout.js` (prüfen, `STANDARD`).
+- `katalog.js` (`ARTEN`): je Feld-Art Titel, Bereich (Farbe), Symbol, Standardgröße, `gross` (Karte ab Größe `ab`) und `klein`
+  (Kennzahl/Ring). `feld.js` wählt danach; schmale Felder passen sich zusätzlich per Container-Abfrage an.
+  Arten: woche, kalender, todos (groß = Liste), termine, serie, training (2×1 = Plan heute), affirmation, quiz, routinen,
+  gewohnheiten, ziele, insta, verlauf, donut; Einzel-Felder `gewohnheit`/`routine`/`ziel` mit `ref` (`einzeln.js`).
+- „Bearbeiten“ im Kopf → Felder wackeln leicht: „−“ entfernt, Griff oben mittig = verschieben, Ecke unten rechts = in Rastergrößen
+  ziehen (1–4 × 1–3), „+ Feld“ öffnet die Auswahl (Übersicht, Bereiche, Ringe, Einzelne Felder). „Standard“ setzt zurück,
+  „Fertig“ beendet. Jede Änderung wird sofort gespeichert. Leere Felder sind nur im Bearbeiten-Modus sichtbar.

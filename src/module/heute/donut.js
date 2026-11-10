@@ -35,7 +35,7 @@ export function donut(todos, bereiche, animiert) {
     requestAnimationFrame(() => requestAnimationFrame(() => ring.querySelectorAll('circle[data-l]').forEach((c, i) =>
       setTimeout(() => c.setAttribute('stroke-dasharray', `${c.dataset.l} ${U}`), 400 + i * 120))));
   }
-  return el('article', { class: 'heute-karte heute-s4', on: { click: () => go('todos') } }, [
+  return el('article', { class: 'heute-karte', on: { click: () => go('todos') } }, [
     el('div', { class: 'heute-karte__kopf' }, [el('div', {}, [el('h3', { text: 'To-dos nach Bereich' }), el('small', { text: 'offene To-dos' })])]),
     ring,
     gesamt ? el('div', { class: 'heute-anteile' }, liste.map(([name, n], i) => el('span', {}, [

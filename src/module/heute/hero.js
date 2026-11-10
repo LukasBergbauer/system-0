@@ -35,7 +35,7 @@ export function hero(w, animiert) {
     prozent === null ? el('b', { text: '–' }) : zahl(prozent, { nach: ' %', animiert }),
     el('small', { text: 'erledigt' }),
   ]);
-  return el('article', { class: 'heute-hero heute-s8' }, [
+  return el('article', { class: 'heute-hero' }, [
     el('div', { class: 'heute-hero__text' }, [
       el('span', { class: 'heute-status' }, [el('i'), `Woche ${w.kw} · ${mehrzahl(w.termineHeute, 'Termin', 'Termine')} heute`]),
       h2,

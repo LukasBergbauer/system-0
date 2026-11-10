@@ -7,18 +7,23 @@ import { tagISO } from './rechnen.js';
 
 const RANG = { morgen: 0, abend: 1, frei: 2 };
 
+// Stand einer Routine heute: n Schritte, davon geschafft; fertig = Durchlauf abgeschlossen
+export function routineStand(r, { schritte, logs }) {
+  const heute = tagISO(new Date());
+  const n = schritte.filter((s) => s.routine_id === r.id).length;
+  const amTag = logs.filter((l) => l.routine_id === r.id && l.tag === heute);
+  const fertig = amTag.some((l) => l.fertig_am);
+  return { n, fertig, geschafft: fertig ? n : Math.min(Math.max(0, ...amTag.map((l) => l.geschafft)), n) };
+}
+
 export function routinenLeiste({ routinen, schritte, logs }) {
   if (!routinen.length) return null;
-  const heute = tagISO(new Date());
   const reihe = [...routinen].sort((a, b) => RANG[a.art] - RANG[b.art] || a.reihenfolge - b.reihenfolge);
 
   return el('article', { class: 'heute-karte heute-routinen' }, [
     el('div', { class: 'heute-karte__kopf' }, [el('div', {}, [el('h3', { text: 'Routinen' }), el('small', { text: 'heute' })])]),
     el('div', { class: 'heute-routinen__liste' }, reihe.map((r) => {
-      const n = schritte.filter((s) => s.routine_id === r.id).length;
-      const amTag = logs.filter((l) => l.routine_id === r.id && l.tag === heute);
-      const fertig = amTag.some((l) => l.fertig_am);
-      const geschafft = fertig ? n : Math.min(Math.max(0, ...amTag.map((l) => l.geschafft)), n);
+      const { n, fertig, geschafft } = routineStand(r, { schritte, logs });
       return el('button', {
         class: `heute-routine${fertig ? ' heute-routine--fertig' : ''}`,
         attrs: { type: 'button', style: `--anteil:${n ? geschafft / n : 0}` },

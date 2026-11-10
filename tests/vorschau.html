@@ -7,8 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Vorschau</title>
   <script>
-    // Test-Service-Worker (umgeht den Browser-Cache), dann den echten für die App abschalten
-    if (!navigator.serviceWorker.controller) navigator.serviceWorker.register('vorschau-sw.js').then(() => setTimeout(() => location.reload(), 300));
     localStorage.setItem('system0-auth', JSON.stringify({ access_token: 't', expires_at: 9999999999, user: { id: '0' } }));
     const f = window.fetch;
     window.fetch = (u, o) => (String(u?.url || u).includes('supabase') ? Promise.reject(new TypeError('offline')) : f(u, o));
