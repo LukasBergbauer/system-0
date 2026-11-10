@@ -15,7 +15,7 @@
 .heute-kal__tag small { display: block; font-size: 10px; color: var(--text-3); font-weight: 500; }
 .heute-kal__tag:hover { background: rgba(255,255,255,.5); transform: translateY(-2px); }
 .heute-kal__tag--heute { color: var(--bereich); }
-.heute-kal__tag--an { background: var(--bereich); color: #fff; box-shadow: 0 8px 16px -8px var(--bereich); }
+.heute-kal__tag--an { background: var(--bereich-tief); color: #fff; box-shadow: 0 8px 16px -8px var(--bereich); }
 .heute-kal__tag--an:hover { background: var(--bereich); }
 .heute-kal__tag--an small { color: rgba(255,255,255,.8); }
 .heute-termin { display: flex; align-items: center; gap: var(--space-3); width: 100%; padding: 10px var(--space-3); margin-top: var(--space-2);
@@ -70,5 +70,5 @@
   background: linear-gradient(90deg, color-mix(in oklch, var(--bereich) 22%, transparent) calc(var(--anteil) * 100%), var(--surface-2) 0); }
 .heute-routine .heute-kz__symbol { width: 32px; height: 32px; flex: none; }
 .heute-routine small { display: block; font-weight: 400; color: var(--text-2); font-size: var(--fs-label); }
-.heute-routine--fertig { color: #fff; background: var(--bereich); }
+.heute-routine--fertig { color: #fff; background: var(--bereich-tief); }
 .heute-routine--fertig small { color: rgba(255,255,255,.85); }

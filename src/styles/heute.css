@@ -42,9 +42,9 @@
   transition: opacity 220ms var(--ease), transform 300ms var(--feder), display 300ms allow-discrete, overlay 300ms allow-discrete; }
 .heute-pop:popover-open { opacity: 1; transform: none; }
 @starting-style { .heute-pop:popover-open { opacity: 0; transform: translateY(-6px) scale(.97); } }
-.heute-farbwahl { width: 236px; }
+.heute-farbwahl { width: 260px; }
 .heute-farbwahl p { margin: 0 0 10px; font-size: var(--fs-label); font-weight: 600; color: var(--text-2); }
-.heute-farben { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.heute-farben { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
 .heute-farben button, .heute-farben label { aspect-ratio: 1; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
   background: var(--f); box-shadow: inset 0 0 0 2px rgba(255,255,255,.6); transition: transform 300ms var(--feder); }
 .heute-farben button:hover { transform: scale(1.12); }

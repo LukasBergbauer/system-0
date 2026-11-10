@@ -14,8 +14,8 @@
 
   --bg: color-mix(in oklch, var(--accent) 16%, #FBF4EF); /* Grundton hinter den Farbwolken */
   --text: #2B1E19; /* warmes Fast-Schwarz */
-  --text-2: rgba(43, 30, 25, 0.56);
-  --text-3: rgba(43, 30, 25, 0.34);
+  --text-2: rgba(43, 30, 25, 0.64);
+  --text-3: rgba(43, 30, 25, 0.42);
   --dunkel: #21170F; /* dunkle Pille: Hauptknopf, gewählter Umschalter */
 
   /* Glas */

@@ -15,7 +15,7 @@ Hintergrund, Hero-Flächen, Haken, Fortschritt und Schatten werden per `color-mi
 | `--akzent-hell` / `--akzent-tief` | aus `--accent` gemischt | Verläufe (Hero, Logo) |
 | `--accent-ink` | #FFFFFF | Schrift/Haken auf Akzent |
 | `--bg` | Akzent 16 % + #FBF4EF | Grundton hinter den Farbwolken (`body::before` in `base.css`) |
-| `--text` / `--text-2` / `--text-3` | #2B1E19 / 56 % / 34 % | Text, Nebentext, ganz leise |
+| `--text` / `--text-2` / `--text-3` | #2B1E19 / 64 % / 42 % | Text, Nebentext (≈4,5:1 auf Glas), ganz leise |
 | `--dunkel` | #21170F | dunkle Pille: Hauptknopf, gewählter Tab |
 | `--surface` / `--surface-2` | Weiß 42 % / 66 % | Glas-Flächen / Hover, Eingabefelder |
 | `--glass` | Weiß 50 % | Leisten |
@@ -45,8 +45,12 @@ Heute-Felder (`feld.js`): Symbol auf zartem Farbplättchen im Titel, feiner Farb
 Bereichs-„Emoji“ = die Linien-Symbole aus `ui/symbol.js` (keine Apple-Emoji), dezent, nie flächig.
 
 ## Akzentfarbe
+Neutrale Akzente „Weiß“ und „Graphit“ (Werte `weiss`/`schwarz`): `--accent` wird Graphit #2E3035 (Haken, Chips, Knöpfe),
+`data-akzent` am `<html>` schaltet Flächen in `akzent-neutral.css` um. Weiß = helles Papier #F3F2EF, weiße Hero-Karte mit
+dunkler Schrift, Hintergrund mit zarten Bereichsfarben. Graphit = warmes Steingrau #E2E1DE, Hero dunkel (#5C5E64 → #16171A),
+kein reines Schwarz. Kontrast geprüft: Text 13–15:1, Nebentext ≈4,5:1, Weiß auf Hero-Graphit 13:1.
 `src/core/akzent.js`: `akzentSetzen(farbe)` speichert als Einstellung `akzent` (synchronisiert) und lokal;
-`akzentLaden()` beim Start (erst lokal = kein Farbsprung, dann die synchronisierte). 7 Vorgaben in `AKZENT_FARBEN`
+`akzentLaden()` beim Start (erst lokal = kein Farbsprung, dann die synchronisierte). 9 Vorgaben in `AKZENT_FARBEN` (Weiß, Graphit + 7 Farben)
 plus freier Farbwähler (Kachel `src/app/akzent-kachel.js`, Stil `farbkreise.css`).
 
 ## UI-Bausteine (`src/ui/`)

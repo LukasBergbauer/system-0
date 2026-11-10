@@ -6,7 +6,7 @@ import { el } from '../../ui/dom.js';
 import { symbol } from '../../ui/symbol.js';
 import { go } from '../../core/router.js';
 import { emit } from '../../core/events.js';
-import { AKZENT_FARBEN, akzentSetzen, aktuellerAkzent } from '../../core/akzent.js';
+import { AKZENT_FARBEN, akzentSetzen, aktuellerAkzent, zeigeFarbe } from '../../core/akzent.js';
 
 const NEU = [['todos', 'To-do'], ['kalender', 'Termin'], ['physio', 'Physio-Punkt']];
 
@@ -26,7 +26,7 @@ function popover(knopf, klasse, kinder) {
 
 function farbwahl(knopf) {
   const kreise = AKZENT_FARBEN.map(([farbe, name]) => el('button', {
-    attrs: { type: 'button', 'aria-label': name, style: `--f:${farbe}` },
+    attrs: { type: 'button', 'aria-label': name, 'data-farbe': farbe, style: `--f:${zeigeFarbe(farbe)}` },
     on: { click: () => waehlen(farbe) },
   }));
   const eigen = el('input', { attrs: { type: 'color', 'aria-label': 'Eigene Farbe' }, on: { change: () => waehlen(eigen.value) } });

@@ -1,7 +1,7 @@
 // Einstellungen: große Kachel „Akzentfarbe“ mit Farbkreisen und freiem Farbwähler.
 import { el } from '../ui/dom.js';
 import { kachel } from '../ui/kachel.js';
-import { AKZENT_FARBEN, akzentSetzen, aktuellerAkzent } from '../core/akzent.js';
+import { AKZENT_FARBEN, akzentSetzen, aktuellerAkzent, zeigeFarbe } from '../core/akzent.js';
 
 export function akzentKachel() {
   const kreise = AKZENT_FARBEN.map(([farbe, name]) => el('button', {
@@ -21,7 +21,7 @@ export function akzentKachel() {
   }
 
   kreise.forEach((k) => {
-    k.style.setProperty('--f', k.dataset.farbe);
+    k.style.setProperty('--f', zeigeFarbe(k.dataset.farbe));
     k.addEventListener('click', () => waehlen(k.dataset.farbe));
   });
   eigen.addEventListener('change', () => waehlen(eigen.value));

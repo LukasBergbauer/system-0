@@ -1,0 +1,53 @@
+/* Neutrale Akzente „Weiß“ und „Graphit“ (core/akzent.js setzt data-akzent am <html>).
+   --accent ist dann Graphit (Haken, Chips, Hauptknöpfe gut lesbar); Farbe kommt nur über die Bereichsfarben. */
+:root[data-akzent] {
+  --akzent-hell: #5C5E64;
+  --akzent-tief: #16171A;
+}
+
+/* ---------- Weiß: helles Papier, weiße Glasflächen, dunkle Schrift ---------- */
+:root[data-akzent="weiss"] {
+  --bg: #F3F2EF;
+  --schatten: inset 0 1px 0 rgba(255,255,255,.95), 0 1px 2px rgba(30,32,38,.05), 0 16px 36px -20px rgba(30,32,38,.32);
+  --schatten-hoch: inset 0 1px 0 rgba(255,255,255,1), 0 2px 4px rgba(30,32,38,.05), 0 24px 46px -20px rgba(30,32,38,.38);
+}
+[data-akzent="weiss"] body::before {
+  background:
+    radial-gradient(50% 45% at 8% -5%, #E4E2DE 0%, transparent 70%),
+    radial-gradient(40% 45% at 100% 0%, color-mix(in oklch, var(--c-kalender) 14%, #F3F2EF) 0%, transparent 70%),
+    radial-gradient(55% 50% at 75% 105%, color-mix(in oklch, var(--c-todos) 12%, #F3F2EF) 0%, transparent 70%),
+    radial-gradient(40% 45% at -5% 85%, color-mix(in oklch, var(--c-gewohnheiten) 12%, #F3F2EF) 0%, transparent 70%),
+    var(--bg);
+}
+[data-akzent="weiss"] .heute-hero { color: var(--text); border-color: rgba(255,255,255,.95);
+  background: linear-gradient(140deg, #FFFFFF 0%, #F7F6F3 55%, #E9E7E2 130%); }
+[data-akzent="weiss"] .heute-hero::before { background: radial-gradient(60% 70% at 0% 0%, rgba(255,255,255,.9), transparent 60%); }
+[data-akzent="weiss"] .heute-status { background: rgba(43,30,25,.06); }
+[data-akzent="weiss"] .heute-status i { background: var(--gut); }
+[data-akzent="weiss"] .heute-werte div { border-left-color: var(--line); }
+[data-akzent="weiss"] .heute-hero p, [data-akzent="weiss"] .heute-werte small { color: var(--text-2); opacity: 1; }
+[data-akzent="weiss"] .heute-pille--weiss { color: #fff; background: var(--dunkel); }
+[data-akzent="weiss"] .heute-pille--rand { color: var(--text); border-color: rgba(43,30,25,.16); background: rgba(255,255,255,.6); }
+[data-akzent="weiss"] .heute-hero .heute-ring .bahn { stroke: rgba(43,30,25,.08); }
+[data-akzent="weiss"] .heute-hero .heute-ring .wert { stroke: var(--text); filter: none; }
+[data-akzent="weiss"] .nav-side__logo { color: var(--text);
+  background: linear-gradient(140deg, #FFFFFF, #ECEAE6); box-shadow: inset 0 0 0 .5px rgba(0,0,0,.08), 0 6px 16px -8px rgba(0,0,0,.3); }
+
+/* ---------- Graphit: dunkle, warme Steinflächen statt reinem Schwarz ---------- */
+:root[data-akzent="schwarz"] {
+  --bg: #E2E1DE;
+  --schatten: inset 0 1px 0 rgba(255,255,255,.75), 0 1px 2px rgba(20,21,24,.08), 0 16px 36px -18px rgba(20,21,24,.45);
+  --schatten-hoch: inset 0 1px 0 rgba(255,255,255,.85), 0 2px 4px rgba(20,21,24,.08), 0 24px 46px -18px rgba(20,21,24,.5);
+}
+[data-akzent="schwarz"] body::before {
+  background:
+    linear-gradient(180deg, #2A2B2F 0, transparent calc(env(safe-area-inset-top) * 2.5)),
+    radial-gradient(60% 50% at 10% -8%, #6E6F73 0%, transparent 70%),
+    radial-gradient(45% 55% at 100% 0%, #C9C8C4 0%, transparent 70%),
+    radial-gradient(60% 55% at 72% 108%, #B5B4B0 0%, transparent 70%),
+    radial-gradient(45% 50% at -5% 85%, color-mix(in oklch, var(--c-kalender) 18%, #D6D5D1) 0%, transparent 70%),
+    var(--bg);
+}
+
+/* Farbkreise: Weiß braucht einen feinen Rand */
+.heute-farben [data-farbe="weiss"], .farbkreis[data-farbe="weiss"] { box-shadow: inset 0 0 0 1px rgba(43,30,25,.18); }
