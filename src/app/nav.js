@@ -34,7 +34,7 @@ function suche() {
 
 function profil(sync) {
   return el('div', { class: `nav-side__profil nav-side__profil--${sync.state === 'läuft' ? 'laeuft' : sync.state}` }, [
-    el('span', { class: 'nav-side__avatar', text: 'L' }),
+    el('span', { class: 'nav-side__avatar' }, [el('img', { attrs: { src: new URL('../../assets/icons/avatar-l.svg', import.meta.url).href, alt: '' } })]),
     el('div', { class: 'nav__text' }, [
       el('b', { text: 'Lukas' }),
       el('small', { text: SYNC_TEXT[sync.state] ?? 'offline' }),
@@ -93,7 +93,7 @@ function inhalt(nav) {
 export function renderSide(nav, plan, aktivId, { zahlen = {}, sync }) {
   inhalt(nav).replaceChildren(
     el('div', { class: 'nav-side__marke' }, [
-      el('span', { class: 'nav-side__logo', text: '0' }),
+      el('img', { class: 'nav-side__logo', attrs: { src: new URL('../../assets/icons/icon.svg', import.meta.url).href, alt: '' } }),
       el('div', { class: 'nav__text' }, [el('b', { text: 'System 0' }), el('small', { text: 'Lukas' })]),
     ]),
     suche(),

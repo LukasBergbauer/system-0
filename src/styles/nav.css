@@ -146,17 +146,11 @@
   white-space: nowrap;
 }
 .nav-side__logo {
-  display: grid;
-  place-items: center;
   flex: none;
   width: 44px;
   height: 44px;
   border-radius: var(--radius-klein);
-  color: #fff;
-  font-size: 18px;
-  font-weight: 700;
-  background: linear-gradient(140deg, var(--akzent-hell), var(--accent) 55%, var(--akzent-tief));
-  box-shadow: 0 6px 16px -6px var(--accent);
+  box-shadow: 0 0 0 var(--glas-kante) var(--glas-rand), 0 4px 12px -4px rgb(0 0 0 / .18);
 }
 .nav-side__link {
   display: flex;
@@ -248,15 +242,15 @@
   flex: none;
   width: 40px;
   height: 40px;
-  font-weight: 600;
-  background: linear-gradient(140deg, #fff, var(--akzent-hell));
-  border-radius: 50%;
+  border-radius: var(--radius-klein);
+  box-shadow: 0 0 0 var(--glas-kante) var(--glas-rand), 0 4px 12px -4px rgb(0 0 0 / .18);
 }
+.nav-side__avatar img { width: 100%; height: 100%; border-radius: inherit; }
 .nav-side__avatar::after {
   content: "";
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: -3px;
+  bottom: -3px;
   width: 10px;
   height: 10px;
   background: var(--text-3);

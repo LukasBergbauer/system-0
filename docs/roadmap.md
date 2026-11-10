@@ -429,5 +429,6 @@ Vorgemerkt (später): Sonntags-Reflexion zum Durchklicken über alle Bereiche.
 - [x] 15. App-Icon: Muster `muster/icon.html` (A Marmor, B Graphit, C graviert). Lukas: Null von C + Hintergrund von A →
       `assets/icons/icon.svg`, PNG 180/192/512 per Chrome headless gerendert, Manifest `background_color` #F6F5F2, `sw.js` `v105`.
       Offen bei Lukas: Icon am iPhone neu vom Homescreen hinzufügen (iOS behält das alte sonst).
+- [x] 16. Leiste: Logo oben links = App-Icon, Profil „L“ als gravierte Stein-Kachel (`avatar-l.svg`), `sw.js` `v106`
 - Vorschläge Funktionen (10.11.2026, nur Liste im Chat): Wochenrückblick (= Sonntags-Reflexion), Erinnerungen, Inbox, Training-Fortschritt,
   Zitate aus Büchern, Gewohnheiten↔Ziele, Quiz-Wiederholung, Backup-Export, Heute-Abendmodus, Insta-Auswertung.

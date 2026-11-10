@@ -82,13 +82,13 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 | `symbol.js` | `symbol(name)` | dünnes Linien-Symbol (24 px, Textfarbe), z. B. `heute`, `todos`, `einstellungen`, `mehr`, `abgleich`, `export`, `konto`, `physio`, `suche` |
 
 Navigation (`src/app/nav.js`, Stil `nav.css`): iPhone = schwebende Glas-Kapsel unten, nur Symbole.
-Mac = schwebende Glas-Seitenleiste links mit Logo „0“ (Akzent-Verlauf) und „System 0“; immer schmal (72 px),
+Mac = schwebende Glas-Seitenleiste links mit Logo = App-Icon (`assets/icons/icon.svg`, gravierte Stein-0) und „System 0“; immer schmal (72 px),
 klappt beim Drüberfahren (bzw. Tastatur-Fokus) sofort auf 236 px auf und schiebt den Inhalt in allen Bereichen:
 Rand springt sofort, sichtbar gleiten die Teile per FLIP (`app/gleiten.js`, Felder mit `[data-raster]` einzeln, 420 ms, sanfte Kurve wie die Leiste).
 Zustand als Klasse `shell--leiste-offen` (nav.js `leisteKlappen`), kein `:hover/:has` (Safari). Kein Klapp-Knopf mehr.
 Aktiver Eintrag: weiße Pille (`.nav__zeiger`), gleitet ruhig ohne Nachfedern (nur senkrecht, Breite per CSS).
 Seitenleiste wie `docs/vorlagen/dashboard-glas.png`: Marke „System 0 / Lukas“, Suchfeld (Glas-Pille), Abschnitte
-ALLTAG / KÖRPER & KOPF / SYSTEM (10 px, gesperrt, `--text-3`), Zahl als Akzent-Pille rechts am Eintrag, unten Kreis „L“ mit
+ALLTAG / KÖRPER & KOPF / SYSTEM (10 px, gesperrt, `--text-3`), Zahl als Akzent-Pille rechts am Eintrag, unten Stein-Kachel „L“ (`assets/icons/avatar-l.svg`, Stil wie App-Icon) mit
 Status-Punkt + „Lukas · synchronisiert“. Eingeklappt verschwinden Texte, Abschnitts-Namen und Zahlen.
 Seitenkopf (`kopfbild`, Runde 2, Variante A): Glas-Kopfleiste mit Symbol-Plättchen (48 px), Abschnitt (ALLTAG …) über dem Titel
 (`--fs-display`, 650), rechts Kennzahlen (`bereich.kennzahlen()` → `[{ zahl, text }]`, je Modul `kennzahlen.js`, frisch bei `daten`),
