@@ -1,4 +1,4 @@
-// Bereich „Einstellungen“ als Kacheln: große Kachel „Abgleich“, darunter klein „Export“, „Wiederherstellen“ und „Konto“.
+// Bereich „Einstellungen“ als Kacheln: Abgleich, Akzent, Mitteilungen, Export, Wiederherstellen, Prompts, Verlauf, Konto.
 import { el } from '../ui/dom.js';
 import { kachel, kacheln } from '../ui/kachel.js';
 import { signOut } from '../core/auth.js';
@@ -7,6 +7,8 @@ import { abgleichKachel } from './abgleich-kachel.js';
 import { akzentKachel } from './akzent-kachel.js';
 import { wiederherstellenKachel } from './wiederherstellen-kachel.js';
 import { mitteilungenKachel } from './mitteilungen-kachel.js';
+import { promptsKachel } from './prompts-kachel.js';
+import { verlaufKachel } from './verlauf-kachel.js';
 
 function exportKachel(meldung) {
   return kachel({
@@ -46,7 +48,7 @@ function kontoKachel() {
 function ansicht({ signal }) {
   const meldung = el('p', { class: 'app__note app__note--warn', attrs: { role: 'alert' } });
   return el('div', { class: 'app__stack' }, [
-    kacheln([abgleichKachel({ signal }), akzentKachel(), mitteilungenKachel(), exportKachel(meldung), wiederherstellenKachel(), kontoKachel()]),
+    kacheln([abgleichKachel({ signal }), akzentKachel(), mitteilungenKachel(), exportKachel(meldung), wiederherstellenKachel(), promptsKachel(), verlaufKachel(), kontoKachel()]),
     meldung,
   ]);
 }

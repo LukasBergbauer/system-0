@@ -448,3 +448,13 @@ Reihenfolge, je Punkt eigener Commit + `sw.js` hochzählen, lokal Mac + iPhone-G
 - [x] 7. Einstellungen: Abmelden-Knopf volle Breite (Konto-Kachel `gross`, `app/einstellungen.js`, v113)
 Stand 10.11.2026: Phase 7 komplett (1–7) und lokal geprüft (Mac 1300 px + iPhone). 024 in Supabase ausführen.
 Später: Physio, Insta.
+
+## Phase 8 – Einstellungen: Prompts & Verlauf (10.11.2026)
+Plan:
+- [x] 1. Kachel „Prompts“ (`app/prompts-kachel.js`): Liste Titel + Text, je Prompt „Kopieren“ und „Bearbeiten“ (Fenster mit Löschen),
+      „Neuer Prompt“. Gespeichert als Einstellung `prompts` (Liste, synchronisiert, keine neue Tabelle).
+      Vorlagen (`app/prompt-vorlagen.js`), solange nichts gespeichert ist: „Neue Sitzung“, „Lernzettel“.
+- [x] 2. Kachel „Verlauf“ (`app/verlauf-kachel.js`), aufklappbar; Stichpunkte statisch in `app/verlauf.js`
+      (aus git log, `start.md`, Roadmap). Neue Schritte unten anhängen.
+- [x] 3. Lernzettel-Prompt mit Platzhaltern Aufteilung / Aufbau / Ziel. Notion später evtl. (bräuchte geheimen Token → Edge Function).
+Stand 10.11.2026: Phase 8 fertig (v118), lokal geprüft (Mac + iPhone 375 px): Kopieren, Bearbeiten, Speichern, Löschen, Verlauf auf/zu.
