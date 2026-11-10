@@ -1,5 +1,17 @@
 /* Modul „Wissen-Quiz“: Karten aus routinen.css, Rahmen der Runde aus dem Durchlauf. Nur Werte aus tokens.css. */
-.quiz-karte { gap: var(--space-3); }
+.quiz-karte { gap: var(--space-3); width: 100%; box-sizing: border-box; }
+.quiz .routine { width: 100%; box-sizing: border-box; }
+/* Daily: mittig, viel Luft, großer Start */
+.quiz-daily { align-items: center; text-align: center; gap: var(--space-3); padding: var(--space-6) var(--space-5); }
+.quiz-daily__titel { margin: 0; font-size: var(--fs-display); font-weight: 650; letter-spacing: -.03em; }
+.quiz-daily__text { margin: 0; max-width: 440px; color: var(--text-2); font-size: var(--fs-normal); line-height: 1.45; }
+.quiz-daily > .btn { min-width: 240px; min-height: 52px; margin-top: var(--space-2); font-size: var(--fs-normal); }
+/* Endlos: schmaler Balken, alle Themen sichtbar */
+.quiz-endlos { gap: var(--space-3); padding: var(--space-4) var(--space-5); }
+.quiz-endlos__kopf { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
+/* Statistik: Themen in zwei Spalten */
+.quiz-karte .quiz-stat { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3) var(--space-5); }
+@media (max-width: 760px) { .quiz-karte .quiz-stat { grid-template-columns: 1fr; } .quiz-endlos__kopf { flex-direction: column; align-items: flex-start; } }
 .quiz-karte > .btn { align-self: flex-start; }
 .quiz-raster { display: flex; gap: var(--space-1); }
 .quiz-raster i { width: 26px; height: 26px; border-radius: var(--radius-klein); background: var(--warn); }

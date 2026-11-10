@@ -1,4 +1,5 @@
-// Ansicht „Wissen-Quiz“: Karte Daily, Karte Endlos (mit Themenwahl), Statistik je Thema, „Fragen importieren“.
+// Ansicht „Wissen-Quiz“: Daily-Box mittig (Text + großer Start), darunter Endlos als schmaler Balken mit allen Themen,
+// Statistik je Thema über die volle Breite, „Fragen importieren“.
 // '#/quiz/daily' (von Heute) startet das Daily direkt, wenn es noch offen ist.
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
@@ -49,14 +50,26 @@ export function quizAnsicht({ signal }) {
     const stat = statistik(fragen, ergebnisse);
     const gesehenAlle = stat.reduce((s, x) => s + x.gesehen, 0);
 
-    box.replaceChildren(el('div', { class: 'routinen__raster' }, [
-      karte('Daily-Quiz', heute ? `Heute ${heute.richtig} von ${heute.gesamt} richtig` : `${DAILY_ANZAHL} neue Fragen für heute`, [
+    const themenChips = chips({ items: [{ id: null, label: 'Alle' }, ...themen.map((t) => ({ id: t, label: themaName(t) }))], active: thema, onChange: (t) => { thema = t; } });
+    themenChips.classList.add('chips--umbruch');
+
+    box.replaceChildren(
+      el('article', { class: 'routine quiz-daily' }, [
+        el('span', { class: 'label', text: heute ? 'Heute geschafft' : 'Jeden Tag neu' }),
+        el('h2', { class: 'quiz-daily__titel', text: 'Daily-Quiz' }),
+        el('p', { class: 'quiz-daily__text', text: heute
+          ? `${heute.richtig} von ${heute.gesamt} richtig. Morgen warten ${DAILY_ANZAHL} neue Fragen auf dich.`
+          : `${DAILY_ANZAHL} neue Fragen, jede aus einem anderen Thema – jeden Tag andere. Nach jeder Antwort gibt es eine kurze Erklärung. Dauert etwa zwei Minuten und hält deine Serie am Laufen.` }),
         heute ? raster(heute.antworten) : button({ text: 'Daily starten', variant: 'primary', onClick: daily }),
-        el('p', { class: 'routine__serie', text: n ? `Serie: ${tageText(n)}` : 'Noch keine Serie' }),
+        el('p', { class: 'routine__serie', text: n ? `Serie: ${tageText(n)}` : 'Noch keine Serie – heute anfangen' }),
       ]),
-      karte('Endlos', `Runden à ${RUNDE_ANZAHL} Fragen · neue zuerst, falsche öfter`, [
-        chips({ items: [{ id: null, label: 'Alle' }, ...themen.map((t) => ({ id: t, label: themaName(t) }))], active: thema, onChange: (t) => { thema = t; } }),
-        button({ text: 'Runde starten', variant: 'primary', onClick: endlos }),
+      el('article', { class: 'routine quiz-endlos' }, [
+        el('div', { class: 'quiz-endlos__kopf' }, [
+          el('div', {}, [el('h2', { class: 'routine__name', text: 'Endlos' }),
+            el('p', { class: 'routine__stand', text: `Runden à ${RUNDE_ANZAHL} Fragen · neue zuerst, falsche öfter` })]),
+          button({ text: 'Runde starten', variant: 'primary', onClick: endlos }),
+        ]),
+        themenChips,
       ]),
       karte('Statistik', `${gesehenAlle} von ${fragen.length} Fragen gesehen`, [
         el('ul', { class: 'quiz-stat' }, stat.map((s) => el('li', {}, [
@@ -65,7 +78,8 @@ export function quizAnsicht({ signal }) {
           el('span', { class: 'routine__balken' }, [el('i', { attrs: { style: `width:${s.gesamt ? (100 * s.gesehen) / s.gesamt : 0}%` } })]),
         ]))),
       ]),
-    ]), button({ text: 'Fragen importieren', variant: 'ghost', onClick: () => oeffneImport(fragen) }));
+      button({ text: 'Fragen importieren', variant: 'ghost', onClick: () => oeffneImport(fragen) }),
+    );
 
     if (autoDaily) { autoDaily = false; if (!heute) daily(); }
   }

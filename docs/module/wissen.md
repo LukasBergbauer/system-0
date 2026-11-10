@@ -37,6 +37,9 @@
       42 Bänder (Schulter, Ellenbogen, Hand, Becken/Hüfte, Knie, Fuß, Wirbelsäule) = 117 Fragen. `sw.js` `v64`. Neue Datei/Thema → `THEMEN` in `data.js` und `sw.js`.
       Daily nur vollständig gespeichert; Endlos auch abgebrochen (ab 1 Antwort). Import: Prompt-Knopf im Modal, doppelte Fragen werden übersprungen.
       Lokal geprüft (Mac + iPhone-Breite, Testrunde ohne Speichern). `014` ausgeführt, von Lukas auf Geräten geprüft.
+- [x] Phase 7.5 (10.11.2026): Ansicht neu: Daily-Box mittig (Label, großer Titel, erklärender Text, großer „Daily starten“, Serie),
+      darunter Endlos als schmaler Balken (Titel + „Runde starten“, alle Themen als umbrechende Chips), Statistik volle Breite
+      (Themen in 2 Spalten, iPhone 1). Stil `wissen.css`. `sw.js` `v112`.
 
 ## Nächster Schritt (Plan)
 - Muskeln Teil 2 erledigt (09.11.2026, `sw.js` `v63`). ~~Mimik, Zungenbein-, Augenmuskeln~~ bewusst gestrichen (bei Bedarf per Import aus Claude).
