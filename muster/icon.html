@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System 0 – App-Icon</title>
+<style>
+  body { margin: 0; font: 15px/1.4 -apple-system, system-ui, sans-serif; color: #2B1E19; background: #F3F1EE; }
+  main { max-width: 980px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 34px; font-weight: 650; letter-spacing: -.03em; margin: 0 0 4px; }
+  p.leise { color: #7a6f6a; margin: 0 0 32px; }
+  .reihe { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px; }
+  .wahl { background: rgba(255,255,255,.6); border: .5px solid #fff; border-radius: 22px; padding: 24px;
+          box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 12px 32px rgba(60,40,30,.08); }
+  .wahl h2 { font-size: 19px; font-weight: 650; margin: 16px 0 4px; }
+  .wahl p { margin: 0; color: #6b605b; font-size: 13px; }
+  .icon { display: block; border-radius: 22.37%; box-shadow: 0 2px 6px rgba(0,0,0,.08), 0 10px 24px rgba(0,0,0,.08); }
+  .gross { width: 180px; height: 180px; margin: 0 auto; }
+  .homes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+  .home { flex: 1 1 120px; border-radius: 16px; padding: 16px 0; display: flex; justify-content: center; align-items: center; gap: 14px; }
+  .home img { width: 60px; height: 60px; }
+  .home--hell { background: linear-gradient(135deg, #E9DED6, #C9D3DB); }
+  .home--dunkel { background: linear-gradient(135deg, #1D2230, #3A2E33); }
+  .klein { width: 29px !important; height: 29px !important; border-radius: 7px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>App-Icon</h1>
+  <p class="leise">Stille „0“ in Steinoptik auf weißem Schimmer. Groß = 180 px (iPhone), darunter Homescreen hell/dunkel mit 60 px und Einstellungs-Größe 29 px.</p>
+  <div class="reihe" id="reihe"></div>
+</main>
+<script type="module">
+  const varianten = [
+    ['a-marmor', 'A · Marmor', 'Helle Marmor-Null, zarte graue Adern, leicht erhaben mit weichem Schatten. Am ruhigsten.'],
+    ['b-graphit', 'B · Graphit', 'Geschliffener dunkler Stein, feines Korn. Klarster Kontrast, wirkt auch klein.'],
+    ['c-graviert', 'C · Graviert', 'Die 0 ist in eine helle Marmorplatte eingraviert. Sehr still, fast nur Licht und Schatten.'],
+  ];
+  const reihe = document.getElementById('reihe');
+  for (const [datei, titel, text] of varianten) {
+    const src = `icon/${datei}.svg`;
+    reihe.insertAdjacentHTML('beforeend', `<section class="wahl">
+      <img class="icon gross" src="${src}" alt="">
+      <h2>${titel}</h2><p>${text}</p>
+      <div class="homes">
+        <div class="home home--hell"><img class="icon" src="${src}" alt=""><img class="icon klein" src="${src}" alt=""></div>
+        <div class="home home--dunkel"><img class="icon" src="${src}" alt=""><img class="icon klein" src="${src}" alt=""></div>
+      </div></section>`);
+  }
+</script>
+</body>
+</html>
