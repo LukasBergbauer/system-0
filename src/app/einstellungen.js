@@ -31,6 +31,7 @@ function kontoKachel() {
     symbol: 'konto',
     titel: 'Konto',
     wert: 'Abmelden',
+    gross: true, // volle Breite
     text: 'Daten bleiben gespeichert',
     onClick: async () => {
       // Kachel ist groß und schnell angetippt, deshalb kurz nachfragen.

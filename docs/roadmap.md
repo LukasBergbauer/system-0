@@ -445,5 +445,6 @@ Reihenfolge, je Punkt eigener Commit + `sw.js` hochzählen, lokal Mac + iPhone-G
 - [x] 5. Quiz (v112): Statistik volle Breite; Daily-Box mittig mit „Starten“ und mehr Text; Endlos als schmalerer, gefüllter Balken mit allen Themen
 - [ ] 6. Bücher: Bücher in Glas-Box; Seiten-Kreis unten rechts am Cover (manuell setzen); „Zusammenfassung“ mit Seitenzahl,
       erscheint unter dem Buch; Knopf „Absatz“ für Lieblingsstellen, wählbar auf Heute
-- [ ] 7. Einstellungen: Abmelden-Knopf volle Breite
+- [x] 7. Einstellungen: Abmelden-Knopf volle Breite (Konto-Kachel `gross`, `app/einstellungen.js`, v113)
+Stand 10.11.2026: 1, 3, 4, 5, 7 fertig und lokal geprüft (Mac 1300 px + iPhone). Offen: 2 (Kalender), 6 (Bücher).
 Später: Physio, Insta.
