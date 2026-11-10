@@ -1,0 +1,82 @@
+<!doctype html>
+<!-- Musterseite Design-Runde 2 (Seitenkopf, Abschnitte, Bereichs-Charakter). Öffnen: http://127.0.0.1:8000/muster/runde2.html -->
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Muster Runde 2</title>
+  <link rel="stylesheet" href="../src/styles/tokens.css">
+  <link rel="stylesheet" href="../src/styles/base.css">
+  <link rel="stylesheet" href="../src/styles/components.css">
+  <link rel="stylesheet" href="../src/styles/akzent-neutral.css">
+  <link rel="stylesheet" href="runde2.css">
+  <link rel="stylesheet" href="runde2-bereiche.css">
+</head>
+<body>
+<main class="m" id="m"></main>
+<script type="module">
+  import { symbol } from '../src/ui/symbol.js';
+  import { akzentLaden } from '../src/core/akzent.js';
+  akzentLaden();
+  const s = (n) => symbol(n).outerHTML;
+  const werte = [['3', 'Einheiten'], ['42', 'Min. Ø'], ['5', 'Wochen Serie']];
+  const inhalt = (abschnitt) => `${abschnitt}
+    <div class="liste glas">${['Ganzkörper A · 45 min', 'Laufen locker · 30 min', 'Mobilität · 15 min'].map((t, i) =>
+      `<div class="zeile">${s('training')}<span>${t}</span><span class="klein">${['Mo', 'Mi', 'Fr'][i]}</span></div>`).join('')}</div>`;
+  const absA = `<div class="a1 glas">${s('training')}<span class="lab">Diese Woche</span><span class="klein">3 von 4</span></div>`;
+
+  const kopfA = `<header class="ka glas"><span class="plaett">${s('training')}</span>
+    <div class="ka__titel"><span class="lab">Körper &amp; Kopf</span><h1>Training</h1></div>
+    <div class="ka__werte">${werte.map(([z, l]) => `<div class="ka__wert"><span class="zahl">${z}</span><span class="klein">${l}</span></div>`).join('')}</div></header>`;
+  const kopfB = `<header class="kb glas"><svg class="kb__wz" viewBox="0 0 24 24">${symbol('training').innerHTML}</svg>
+    <span class="lab">Körper &amp; Kopf · Woche 46</span><h1>Training</h1>
+    <span class="klein">Stark bleiben, ohne Eile. Drei von vier Einheiten geschafft.</span>
+    <div class="kb__fuss">${werte.map(([z, l]) => `<span class="kb__pille"><b>${z}</b>${l}</span>`).join('')}</div></header>`;
+  const kopfC = `<header class="kc"><span class="kc__nr">05</span><span class="lab">Körper &amp; Kopf</span>
+    <div class="kc__werte">${werte.slice(0, 2).map(([z, l]) => `<div><div class="zahl">${z}</div><div class="klein">${l}</div></div>`).join('')}</div>
+    <h1>Training</h1></header>`;
+
+  const abschnitte = [
+    ['Glas-Kasten', 'Volle Breite, Symbol + Label + Zahl rechts. Ruhig, sehr klar.', absA],
+    ['Reiter', 'Label sitzt als Glas-Reiter auf der Karte darunter (wie ein Ordner).',
+      `<div class="a2"><div class="a2__reiter glas">${s('training')}<span class="lab">Diese Woche</span></div>
+       <div class="liste glas"><div class="zeile"><span>Ganzkörper A · 45 min</span><span class="klein">Mo</span></div></div></div>`],
+    ['Linie mit Punkt', 'Ohne Kasten: Akzent-Punkt, Label, Haarlinie läuft aus. Am leichtesten.',
+      `<div class="a3"><span class="a3__punkt"></span><span class="lab">Diese Woche</span><span class="klein">3 von 4</span></div>`],
+  ];
+
+  const bereiche = [
+    ['todos', 'To-dos', 'Notizblock-Linien, Haken-Spalte', '7', 'offen'],
+    ['kalender', 'Kalender', 'Feines Monatsraster', '2', 'Termine heute'],
+    ['routinen', 'Routinen', 'Zeitstrahl mit Stunden-Strichen', '4/6', 'erledigt'],
+    ['training', 'Training', 'Schräge Streifen, Zahl extra kräftig', '3', 'Einheiten'],
+    ['physio', 'Physio', 'Höhenlinien (Topografie)', '128', 'Einträge'],
+    ['ziele', 'Visionen', 'Strahlen vom Horizont', '5', 'Ziele aktiv'],
+    ['affirmationen', 'Affirmationen', 'Mittig, Licht von oben, Serife kursiv', '12', 'Sätze'],
+    ['gewohnheiten', 'Gewohnheiten', 'Punkte wie ein Tracker', '18', 'Tage Serie'],
+    ['quiz', 'Wissen-Quiz', 'Punkt-Raster (Rätselblatt)', '84 %', 'richtig'],
+    ['buecher', 'Bücher', 'Papier-Leinen, Buchrücken, Serifentitel', '2', 'lese ich gerade'],
+    ['insta', 'Insta', '3er-Kachelraster wie das Profil', '9', 'Entwürfe'],
+    ['einstellungen', 'Einstellungen', 'Technisch: kein Muster, Monospace-Werte', 'v100', 'Version'],
+  ];
+  const gal = bereiche.map(([id, t, idee, z, l]) => `<div class="gk glas" data-b="${id}">
+    <div class="gk__kopf"><span class="plaett">${s(id === 'quiz' ? 'quiz' : id === 'affirmationen' ? 'affirmation' : id)}</span><h3>${t}</h3></div>
+    <p class="gk__idee">${idee}</p><div class="gk__wert"><span class="zahl">${z}</span><span class="klein">${l}</span></div></div>`).join('');
+
+  const v = (n, name, txt, html) => `<div class="v"><div class="v__name"><b>${n}</b><strong>${name}</strong> – ${txt}</div>${html}</div>`;
+  document.getElementById('m').innerHTML = `
+    <section><h2>1 · Seitenkopf</h2><p>Statt nur Titel: Kopf mit Symbol, Bereich, Titel und Kennzahlen. Beispiel Training.</p>
+      ${v('A', 'Glas-Kopfleiste', 'kompakt, Kennzahlen rechts mit Haarlinien getrennt', kopfA + inhalt(absA))}
+      ${v('B', 'Plakette', 'großer Kasten, Symbol als Wasserzeichen, Untertitel, Kennzahl-Pillen', kopfB + inhalt(absA))}
+      ${v('C', 'Editorial', 'kein Kasten, Bereichsnummer, Linie mit Akzent-Strich, wie ein Magazin', kopfC + inhalt(absA))}
+    </section>
+    <section><h2>2 · Abschnitts-Überschriften</h2><p>Ersetzen die losen Labels (z. B. „Diese Woche“, „Lese gerade“).</p>
+      ${abschnitte.map(([n, t, h], i) => v(i + 1, n, t, h)).join('')}
+    </section>
+    <section><h2>3 · Jeder Bereich anders</h2><p>Eine Farbe + Unterton bleibt. Unterschied über Muster (sehr leise, rechts),
+      Aufbau und Schrift. Muster würde im gewählten Kopf (A/B/C) liegen. Gefällt nicht alles? Einzelne streichen.</p>
+      <div class="gal">${gal}</div>
+    </section>`;
+</script>
+</body>
+</html>

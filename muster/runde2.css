@@ -1,0 +1,79 @@
+/* Musterseite Design-Runde 2: Seitenkopf, Abschnitts-Überschriften, Bereichs-Charakter. Nur Tokens, eine Farbe. */
+body { padding: var(--space-6) var(--space-5) 120px; }
+.m { max-width: 980px; margin: 0 auto; display: grid; gap: var(--space-7); }
+.m h2 { margin: 0 0 var(--space-2); font-size: var(--fs-title); font-weight: 650; letter-spacing: -0.02em; }
+.m h2 + p { margin: 0 0 var(--space-5); color: var(--text-2); font-size: var(--fs-small); max-width: 46em; }
+.v { display: grid; gap: var(--space-3); margin-bottom: var(--space-6); }
+.v__name { display: flex; gap: var(--space-2); align-items: baseline; font-size: var(--fs-small); color: var(--text-2); }
+.v__name b { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; color: #fff; background: var(--dunkel); font-size: 12px; }
+.glas { background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%); }
+.plaett { display: grid; place-items: center; flex: none; width: 48px; height: 48px; border-radius: var(--radius-klein);
+  color: var(--bereich-tief, var(--akzent-tief)); background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.5));
+  box-shadow: inset 0 0 0 .5px rgba(43,30,25,.08), inset 0 1px 0 #fff, 0 6px 14px -10px rgba(60,30,20,.35); }
+.plaett .symbol { width: 24px; height: 24px; stroke-width: 1.6; }
+.zahl { font-size: var(--fs-large); font-weight: 650; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; line-height: 1; }
+.lab { font-size: var(--fs-label); letter-spacing: var(--sperrung); text-transform: uppercase; color: var(--text-3); font-weight: 600; }
+.klein { font-size: var(--fs-small); color: var(--text-2); }
+
+/* ---------- Kopf A: Glas-Kopfleiste ---------- */
+.ka { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4) var(--space-5); border-radius: var(--radius-gross); }
+.ka h1 { margin: 0; font-size: 34px; font-weight: 650; letter-spacing: -0.035em; line-height: 1; }
+.ka__titel { display: grid; gap: 4px; }
+.ka__werte { display: flex; margin-left: auto; }
+.ka__wert { display: grid; gap: 4px; padding: 0 var(--space-5); border-left: var(--glas-kante) solid color-mix(in srgb, var(--text) 14%, transparent); }
+
+/* ---------- Kopf B: Plakette mit Wasserzeichen ---------- */
+.kb { position: relative; overflow: hidden; display: grid; gap: var(--space-3); padding: var(--space-6) var(--space-6) var(--space-5); border-radius: var(--radius-gross); }
+.kb h1 { margin: 0; font-size: var(--fs-seite); font-weight: 650; letter-spacing: -0.035em; line-height: 1; }
+.kb__wz { position: absolute; right: -18px; top: -24px; width: 210px; height: 210px; fill: none; stroke: var(--text); stroke-linecap: round; stroke-linejoin: round; opacity: .14; }
+.kb__wz * { vector-effect: non-scaling-stroke; stroke-width: 1.2; }
+.kb__fuss { display: flex; gap: var(--space-2); flex-wrap: wrap; padding-top: var(--space-4); border-top: var(--glas-kante) solid color-mix(in srgb, var(--text) 12%, transparent); }
+.kb__pille { display: flex; gap: 6px; align-items: baseline; padding: 6px 12px; border-radius: 999px; background: var(--glass); border: var(--glas-kante) solid var(--glas-rand); font-size: var(--fs-small); color: var(--text-2); }
+.kb__pille b { color: var(--text); font-weight: 650; font-variant-numeric: tabular-nums; }
+
+/* ---------- Kopf C: Editorial (ohne Kasten, feine Linie) ---------- */
+.kc { display: grid; grid-template-columns: auto 1fr auto; align-items: end; gap: var(--space-2) var(--space-5); padding-bottom: var(--space-4);
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 22%, transparent); position: relative; }
+.kc::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 64px; height: 2px; background: var(--akzent-tief); }
+.kc__nr { grid-row: span 2; font-size: 64px; font-weight: 200; letter-spacing: -0.05em; line-height: .8; color: var(--text-3); font-variant-numeric: tabular-nums; }
+.kc h1 { margin: 0; font-size: var(--fs-seite); font-weight: 650; letter-spacing: -0.035em; line-height: 1; }
+.kc__werte { grid-row: span 2; display: flex; gap: var(--space-5); text-align: right; }
+
+/* ---------- Inhalt darunter (zum Eindruck) ---------- */
+.liste { border-radius: var(--radius-gross); overflow: hidden; }
+.zeile { display: flex; align-items: center; gap: var(--space-3); padding: 14px var(--space-5); border-top: var(--glas-kante) solid var(--line); }
+.zeile:first-child { border-top: 0; }
+.zeile .klein { margin-left: auto; }
+
+/* ---------- Abschnitts-Überschriften ---------- */
+.a1 { display: flex; align-items: center; gap: var(--space-2); padding: 9px 14px; border-radius: var(--radius); }
+.a1 .symbol { width: 16px; height: 16px; color: var(--akzent-tief); }
+.a1 .klein { margin-left: auto; font-variant-numeric: tabular-nums; }
+.a2 { display: grid; }
+.a2__reiter { justify-self: start; display: flex; gap: var(--space-2); align-items: center; padding: 8px 16px 10px; margin-bottom: -6px;
+  border-radius: var(--radius) var(--radius) 0 0; border-bottom: 0; box-shadow: none; }
+.a2__reiter .symbol { width: 15px; height: 15px; color: var(--akzent-tief); }
+.a3 { display: flex; align-items: center; gap: var(--space-3); }
+.a3::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, color-mix(in srgb, var(--text) 22%, transparent), transparent); }
+.a3__punkt { width: 6px; height: 6px; border-radius: 50%; background: var(--akzent-tief); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent); }
+
+/* ---------- Galerie: jeder Bereich mit eigenem Muster (immer nur Textfarbe/Akzent, sehr leise) ---------- */
+.gal { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: var(--space-4); }
+.gk { position: relative; overflow: hidden; display: grid; gap: var(--space-3); min-height: 150px; padding: var(--space-5); border-radius: var(--radius-gross); align-content: start; }
+.gk::before { content: ""; position: absolute; inset: 0; background: var(--muster); opacity: .55; pointer-events: none;
+  -webkit-mask: linear-gradient(100deg, transparent 25%, #000 85%); mask: linear-gradient(100deg, transparent 25%, #000 85%); }
+.gk > * { position: relative; }
+.gk__kopf { display: flex; align-items: center; gap: var(--space-3); }
+.gk h3 { margin: 0; font-size: 24px; font-weight: 650; letter-spacing: -0.03em; }
+.gk__idee { margin: 0; font-size: var(--fs-small); color: var(--text-2); }
+.gk__wert { display: flex; gap: var(--space-2); align-items: baseline; margin-top: auto; }
+@media (max-width: 767px) {
+  body { padding: var(--space-5) var(--space-4) 120px; }
+  .ka { flex-wrap: wrap; }
+  .ka__werte { margin-left: 0; width: 100%; padding-top: var(--space-3); border-top: var(--glas-kante) solid var(--line); }
+  .ka__wert:first-child { border-left: 0; padding-left: 0; }
+  .kc { grid-template-columns: auto 1fr; }
+  .kc__werte { grid-row: auto; grid-column: 1 / -1; text-align: left; }
+  .kc__nr { font-size: 48px; }
+}

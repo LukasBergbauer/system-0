@@ -410,3 +410,6 @@ Offen bei Lukas: auf Geräten prüfen (v. a. Hover-Leiste, Bearbeiten-Modus am i
 - [x] 9. Runde 2 – Seitenleiste: Auf/Zu per Klasse `shell--leiste-offen` (nav.js `leisteKlappen`) statt `:not(:hover, :has(:focus-visible))`
       (Safari rechnete das nicht zuverlässig neu → Abschnitts-Namen blieben stehen/fehlten; Text blendete vor der Breite ein).
       Auf sofort (240 ms), zu nach 140 ms; Text zu sofort weg, auf erst nach 90 ms. Heute: Leiste schiebt den Inhalt. `sw.js` `v100`
+- [ ] 10. Runde 2 – Module außer Heute: Musterseite `muster/runde2.html` (Kopf A Glas-Leiste / B Plakette / C Editorial,
+      Abschnitte 1 Glas-Kasten / 2 Reiter / 3 Linie, Bereichs-Muster je Modul). Wartet auf Auswahl von Lukas, dann
+      Kopf in `ui/kopfbild.js`, Abschnitts-Baustein in `ui/`, Muster je Bereich über `data-bereich` in eigener CSS-Datei.

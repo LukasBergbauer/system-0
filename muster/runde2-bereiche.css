@@ -1,0 +1,48 @@
+/* Bereichs-Charakter: Muster (--muster), Form und Aufbau je Bereich. Farbe nur --text / --akzent-tief, ganz leise. */
+:root { --mline: color-mix(in srgb, var(--text) 13%, transparent); --makz: color-mix(in srgb, var(--akzent-tief) 22%, transparent); }
+
+/* To-dos: Notizblock-Linien, Haken-Spalte links */
+[data-b="todos"] { --muster: repeating-linear-gradient(0deg, var(--mline) 0 1px, transparent 1px 18px); }
+[data-b="todos"]::after { content: ""; position: absolute; left: 76px; top: 0; bottom: 0; width: 1px; background: var(--makz); }
+
+/* Kalender: feines Raster wie ein Monatsblatt */
+[data-b="kalender"] { --muster: linear-gradient(var(--mline) 1px, transparent 1px) 0 0 / 22px 22px, linear-gradient(90deg, var(--mline) 1px, transparent 1px) 0 0 / 22px 22px; }
+
+/* Routinen: Zeitstrahl mit Stunden-Strichen */
+[data-b="routinen"] { --muster: repeating-linear-gradient(90deg, var(--mline) 0 1px, transparent 1px 28px) 0 100% / 100% 14px no-repeat,
+  repeating-linear-gradient(90deg, var(--makz) 0 1.5px, transparent 1.5px 112px) 0 100% / 100% 26px no-repeat; }
+
+/* Training: schräge Kraft-Streifen, Zahl besonders groß */
+[data-b="training"] { --muster: repeating-linear-gradient(-55deg, var(--mline) 0 1px, transparent 1px 11px); }
+[data-b="training"] .zahl { font-size: 44px; font-weight: 700; letter-spacing: -0.05em; }
+
+/* Physio: Höhenlinien (Topografie) */
+[data-b="physio"] { --muster: repeating-radial-gradient(circle at 92% 30%, transparent 0 13px, var(--mline) 13px 14px); }
+
+/* Visionen: Strahlen aus einem Punkt am Horizont */
+[data-b="ziele"] { --muster: repeating-conic-gradient(from 180deg at 100% 100%, var(--mline) 0 .6deg, transparent .6deg 6deg); }
+
+/* Affirmationen: mittig, ruhig, weiches Licht statt Muster, Titel in Serife */
+[data-b="affirmationen"] { --muster: radial-gradient(60% 90% at 50% 0%, color-mix(in srgb, #fff 85%, transparent), transparent 70%); justify-items: center; text-align: center; }
+[data-b="affirmationen"]::before { -webkit-mask: none; mask: none; opacity: 1; }
+[data-b="affirmationen"] .gk__kopf { flex-direction: column; }
+[data-b="affirmationen"] h3 { font-family: ui-serif, "New York", Georgia, serif; font-weight: 500; font-style: italic; font-size: 28px; }
+
+/* Gewohnheiten: Punkte-Reihen wie ein Tracker */
+[data-b="gewohnheiten"] { --muster: radial-gradient(circle, var(--makz) 2.2px, transparent 2.6px) 0 0 / 16px 16px; }
+
+/* Wissen-Quiz: feines Punkt-Raster (Rätselblatt) */
+[data-b="quiz"] { --muster: radial-gradient(circle, var(--text) 1px, transparent 1.4px) 0 0 / 10px 10px; }
+[data-b="quiz"]::before { opacity: .22; }
+
+/* Bücher: Papier (feine Leinenstruktur), Serifentitel, Buchrücken links */
+[data-b="buecher"] { --muster: repeating-linear-gradient(0deg, var(--mline) 0 .5px, transparent .5px 3px), repeating-linear-gradient(90deg, var(--mline) 0 .5px, transparent .5px 3px); padding-left: calc(var(--space-5) + 10px); }
+[data-b="buecher"]::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 8px; background: linear-gradient(90deg, var(--makz), transparent); }
+[data-b="buecher"] h3 { font-family: ui-serif, "New York", Georgia, serif; font-weight: 600; font-size: 27px; }
+
+/* Insta: 3er-Kachelraster */
+[data-b="insta"] { --muster: linear-gradient(var(--mline) 2px, transparent 2px) 0 0 / 34px 34px, linear-gradient(90deg, var(--mline) 2px, transparent 2px) 0 0 / 34px 34px; }
+
+/* Einstellungen: technisch, kein Muster, enge Schrift, Werte in Monospace */
+[data-b="einstellungen"] { --muster: none; }
+[data-b="einstellungen"] .zahl { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 22px; font-weight: 500; letter-spacing: 0; }
