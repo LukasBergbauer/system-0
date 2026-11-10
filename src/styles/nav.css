@@ -1,5 +1,5 @@
 /* Rahmen der App: schwebende Glas-Kapsel unten (iPhone) und schwebende Glas-Seitenleiste links (Mac, ab 768 px).
-   Seitenleiste ist schmal und klappt beim Drüberfahren über den Inhalt auf.
+   Seitenleiste ist schmal und klappt beim Drüberfahren über den Inhalt auf (Heute: schiebt ihn).
    Aktiver Eintrag: weiße Pille (.nav__zeiger), die per transform ruhig von Eintrag zu Eintrag gleitet (nav.js). */
 
 .shell {
@@ -113,14 +113,19 @@
     padding: 14px;
     border-radius: var(--radius-gross);
     overflow: hidden;
-    transition: width 380ms var(--ease) 60ms, box-shadow 380ms var(--ease);
+    transition: width 200ms var(--ease), box-shadow 200ms var(--ease);
   }
-  /* Aufklappen: Maus drüber oder Tastatur-Fokus darin (schwebt über dem Inhalt) */
-  .nav-side:hover,
-  .nav-side:has(:focus-visible) {
+  /* Aufklappen: Klasse aus nav.js (Maus drüber oder Tastatur-Fokus); schwebt über dem Inhalt, auf Heute schiebt sie ihn */
+  .shell--leiste-offen .nav-side {
     width: var(--sidebar);
     box-shadow: var(--schatten-hoch);
-    transition-delay: 120ms;
+    transition-duration: 240ms;
+  }
+  .shell--schieben .shell__main {
+    transition: margin-left 240ms var(--ease);
+  }
+  .shell--schieben.shell--leiste-offen .shell__main {
+    margin-left: calc(var(--sidebar) + var(--space-4));
   }
   .nav-side .nav__zeiger {
     left: 14px;
@@ -214,7 +219,6 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   white-space: nowrap;
-  transition: opacity 250ms var(--ease);
 }
 .nav-side__zahl {
   display: grid;
@@ -228,7 +232,6 @@
   font-weight: 600;
   background: var(--accent);
   border-radius: 10px;
-  transition: opacity 250ms var(--ease);
 }
 /* Unten: Lukas + Abgleich-Status (Punkt: grün = synchron, Akzent pulsiert = läuft, Warnfarbe = Fehler) */
 .nav-side__profil {
@@ -272,13 +275,20 @@
   color: var(--text-2);
   font-size: 11px;
 }
-/* Eingeklappt: Namen ausblenden (Symbole bleiben genau an ihrer Stelle) */
+/* Eingeklappt: Namen sofort aus (kein abgeschnittener Rest), beim Aufklappen erst einblenden, wenn Platz da ist.
+   Symbole bleiben genau an ihrer Stelle. */
 .nav-side .nav__text {
   overflow: hidden;
-  transition: opacity 250ms var(--ease);
 }
 @media (min-width: 768px) {
-  .nav-side:not(:hover, :has(:focus-visible)) :is(.nav__text, .nav-side__abschnitt, .nav-side__zahl) {
+  .nav-side :is(.nav__text, .nav-side__abschnitt, .nav-side__zahl) {
     opacity: 0;
+    visibility: hidden;
+    transition: opacity 80ms linear, visibility 0s 80ms;
+  }
+  .shell--leiste-offen .nav-side :is(.nav__text, .nav-side__abschnitt, .nav-side__zahl) {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 160ms var(--ease) 90ms, visibility 0s;
   }
 }

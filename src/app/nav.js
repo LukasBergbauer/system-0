@@ -55,6 +55,18 @@ function zeigerSetzen(nav) {
   if (!z.dataset.da) { z.dataset.da = '1'; requestAnimationFrame(() => requestAnimationFrame(() => (z.style.transition = ''))); }
 }
 
+// Seitenleiste auf/zu: Klasse am Rahmen statt :hover/:has (Safari rechnet das nicht zuverlässig neu → Text blieb
+// stehen oder fehlte). Auf sofort, zu mit kurzer Gnadenzeit gegen Flackern. Tastatur-Fokus öffnet auch.
+export function leisteKlappen(nav, rahmen, signal) {
+  let zu;
+  const setze = (offen) => { clearTimeout(zu); rahmen.classList.toggle('shell--leiste-offen', offen); };
+  const schliessen = () => { clearTimeout(zu); zu = setTimeout(() => setze(false), 140); };
+  nav.addEventListener('pointerenter', (e) => e.pointerType === 'mouse' && setze(true), { signal });
+  nav.addEventListener('pointerleave', () => !nav.querySelector(':focus-visible') && schliessen(), { signal });
+  nav.addEventListener('focusin', (e) => e.target.matches(':focus-visible') && setze(true), { signal });
+  nav.addEventListener('focusout', (e) => !nav.contains(e.relatedTarget) && !nav.matches(':hover') && schliessen(), { signal });
+}
+
 // Gerüst einmal anlegen: Zeiger + Inhalt. Neu ausrichten, wenn sich die Größe ändert (Einklappen, Fenster).
 function inhalt(nav) {
   if (!nav.firstChild) {

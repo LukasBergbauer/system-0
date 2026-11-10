@@ -407,3 +407,6 @@ Vorschau ohne Login: `tests/vorschau.html` (lokal, Supabase aus; nur Testdaten i
 Offen bei Lukas: auf Geräten prüfen (v. a. Hover-Leiste, Bearbeiten-Modus am iPhone, Akzente Weiß/Graphit).
 - [x] 8. Rückmeldung Lukas: Bereichsfarben zurückgebaut (alles einheitlich), dafür wählbarer **Unterton** (`design.md`), `sw.js` `v99`.
       Lokal geprüft: Koralle+Gold, Weiß+Rosé (Mac), Graphit+Gold (iPhone). Offen: auf Geräten prüfen.
+- [x] 9. Runde 2 – Seitenleiste: Auf/Zu per Klasse `shell--leiste-offen` (nav.js `leisteKlappen`) statt `:not(:hover, :has(:focus-visible))`
+      (Safari rechnete das nicht zuverlässig neu → Abschnitts-Namen blieben stehen/fehlten; Text blendete vor der Breite ein).
+      Auf sofort (240 ms), zu nach 140 ms; Text zu sofort weg, auf erst nach 90 ms. Heute: Leiste schiebt den Inhalt. `sw.js` `v100`

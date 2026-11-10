@@ -8,7 +8,7 @@ import { getAll } from '../core/store.js';
 import { syncStatus } from '../core/sync.js';
 import { alleBereiche, aktuelleRoute } from '../core/router.js';
 import { navPlan } from './nav-plan.js';
-import { renderSide, renderTabs } from './nav.js';
+import { renderSide, renderTabs, leisteKlappen } from './nav.js';
 import { sucheTaste, oeffneSuche } from './suche.js';
 
 export function shell() {
@@ -23,6 +23,7 @@ export function shell() {
     el('main', { class: 'shell__main' }, [inhalt]),
     tabs,
   ]);
+  leisteKlappen(side, element, rahmen.signal);
 
   let zahlen = {}; // kleine Zahlen in der Seitenleiste: offene To-dos
 
@@ -43,6 +44,7 @@ export function shell() {
     // dashboard: true (Heute) = eigener Kopf und breite Fläche statt der schmalen Spalte
     const versatz = Math.max(0, alleBereiche().indexOf(bereich));
     inhalt.classList.toggle('app--breit', Boolean(bereich.dashboard));
+    element.classList.toggle('shell--schieben', Boolean(bereich.dashboard)); // Heute: offene Leiste schiebt den Inhalt
     inhalt.dataset.bereich = bereich.id; // Bereichsfarbe (--bereich, tokens.css) für Titel und Akzente der Seite
     const kopf = bereich.dashboard ? [] : [kopfbild({
       titel: bereich.titel,

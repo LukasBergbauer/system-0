@@ -82,7 +82,8 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 
 Navigation (`src/app/nav.js`, Stil `nav.css`): iPhone = schwebende Glas-Kapsel unten, nur Symbole.
 Mac = schwebende Glas-Seitenleiste links mit Logo „0“ (Akzent-Verlauf) und „System 0“; immer schmal (72 px),
-klappt beim Drüberfahren (bzw. Tastatur-Fokus) über den Inhalt auf 236 px auf. Kein Klapp-Knopf mehr.
+klappt beim Drüberfahren (bzw. Tastatur-Fokus) sofort auf 236 px auf: über dem Inhalt, auf Heute schiebt sie ihn.
+Zustand als Klasse `shell--leiste-offen` (nav.js `leisteKlappen`), kein `:hover/:has` (Safari). Kein Klapp-Knopf mehr.
 Aktiver Eintrag: weiße Pille (`.nav__zeiger`), gleitet ruhig ohne Nachfedern (nur senkrecht, Breite per CSS).
 Seitenleiste wie `docs/vorlagen/dashboard-glas.png`: Marke „System 0 / Lukas“, Suchfeld (Glas-Pille), Abschnitte
 ALLTAG / KÖRPER & KOPF / SYSTEM (10 px, gesperrt, `--text-3`), Zahl als Akzent-Pille rechts am Eintrag, unten Kreis „L“ mit
