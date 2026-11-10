@@ -1,5 +1,5 @@
 // Seitenkopf aller Bereiche außer Heute: Glas-Kopfleiste mit Symbol, Abschnitt (z. B. „Körper & Kopf“), Titel
-// und rechts kurze Kennzahlen, durch Haarlinien getrennt. Das Muster je Bereich kommt aus kopf-muster.css.
+// und rechts kurze Kennzahlen (ohne Trennstriche). Das Muster je Bereich kommt aus kopf-muster.css.
 // kopfbild({ titel: 'Training', symbol: 'training', abschnitt: 'KÖRPER & KOPF', werte: [{ zahl: 3, text: 'Einheiten' }] })
 // werte darf ein Promise sein; kopf.werte(neue) tauscht sie später aus.
 import { el } from './dom.js';

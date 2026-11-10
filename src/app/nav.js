@@ -6,6 +6,7 @@ import { el } from '../ui/dom.js';
 import { symbol } from '../ui/symbol.js';
 import { MEHR } from './nav-plan.js';
 import { oeffneSuche } from './suche.js';
+import { gleiten } from './gleiten.js';
 
 // kurz = true (Kapsel): kurzer Name, falls der Bereich einen hat.
 // zahl: kleine Zahl rechts am Eintrag (nur Seitenleiste, z. B. offene To-dos), 0 = keine.
@@ -57,9 +58,14 @@ function zeigerSetzen(nav) {
 
 // Seitenleiste auf/zu: Klasse am Rahmen statt :hover/:has (Safari rechnet das nicht zuverlässig neu → Text blieb
 // stehen oder fehlte). Auf sofort, zu mit kurzer Gnadenzeit gegen Flackern. Tastatur-Fokus öffnet auch.
+// Der Inhalt weicht in jedem Bereich aus (gleiten.js, ohne Layout pro Bild).
 export function leisteKlappen(nav, rahmen, signal) {
   let zu;
-  const setze = (offen) => { clearTimeout(zu); rahmen.classList.toggle('shell--leiste-offen', offen); };
+  const main = rahmen.querySelector('.shell__main');
+  const setze = (offen) => {
+    clearTimeout(zu);
+    if (rahmen.classList.contains('shell--leiste-offen') !== offen) gleiten(main, () => rahmen.classList.toggle('shell--leiste-offen', offen));
+  };
   const schliessen = () => { clearTimeout(zu); zu = setTimeout(() => setze(false), 140); };
   nav.addEventListener('pointerenter', (e) => e.pointerType === 'mouse' && setze(true), { signal });
   nav.addEventListener('pointerleave', () => !nav.querySelector(':focus-visible') && schliessen(), { signal });
@@ -67,11 +73,17 @@ export function leisteKlappen(nav, rahmen, signal) {
   nav.addEventListener('focusout', (e) => !nav.contains(e.relatedTarget) && !nav.matches(':hover') && schliessen(), { signal });
 }
 
-// Gerüst einmal anlegen: Zeiger + Inhalt. Neu ausrichten, wenn sich die Größe ändert (Einklappen, Fenster).
+// Gerüst einmal anlegen: Zeiger + Inhalt. Neu ausrichten, wenn sich die Größe ändert (Fenster);
+// Seitenleiste nur bei neuer Höhe – beim Auf-/Zuklappen (Breite) nicht in jedem Bild messen (ruckelte).
 function inhalt(nav) {
   if (!nav.firstChild) {
     nav.append(el('span', { class: 'nav__zeiger', attrs: { 'aria-hidden': 'true' } }), el('div', { class: 'nav__inhalt' }));
-    new ResizeObserver(() => zeigerSetzen(nav)).observe(nav);
+    let h;
+    new ResizeObserver(([e]) => {
+      if (nav.classList.contains('nav-side') && e.contentRect.height === h) return;
+      h = e.contentRect.height;
+      zeigerSetzen(nav);
+    }).observe(nav);
   }
   return nav.lastChild;
 }

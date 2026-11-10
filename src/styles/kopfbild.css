@@ -70,11 +70,7 @@
 .kopf__wert {
   display: grid;
   gap: 4px;
-  padding: 0 var(--space-5);
-  border-left: var(--glas-kante) solid color-mix(in srgb, var(--text) 14%, transparent);
-}
-.kopf__wert:last-child {
-  padding-right: 0;
+  padding: 0 0 0 var(--space-6);
 }
 .kopf__wert b {
   font-size: var(--fs-large);
@@ -109,6 +105,5 @@
   }
   .kopf__wert:first-child {
     padding-left: 0;
-    border-left: 0;
   }
 }

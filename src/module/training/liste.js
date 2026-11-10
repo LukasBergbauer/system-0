@@ -1,33 +1,14 @@
-// Startseite Training: Wochen-Leiste (Einheiten / Ziel als Balken), „Heute“ mit großem Start, „+ Freies Training“, Tabs Einheiten | Pläne | Übungen.
+// Startseite Training (Wochenzahlen stehen im Seitenkopf, kennzahlen.js): „Heute“ mit großem Start, „+ Freies Training“, Tabs Einheiten | Pläne | Übungen.
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
 import { tabs } from '../../ui/tabs.js';
 import { list, listRow } from '../../ui/list.js';
 import { ARTEN, gruppen } from './daten.js';
-import { dieseWoche, wochenSerie, verlauf, bestwert, zuletztText, datumText } from './rechnen.js';
+import { verlauf, bestwert, zuletztText, datumText } from './rechnen.js';
 import { waehleUebung } from './wahl.js';
 import { plaeneListe, heutePlan } from './plaene.js';
-import { planFuerTag } from './plan-daten.js';
 
 const artLabel = (id) => ARTEN.find((a) => a.id === id)?.label ?? 'Training';
-const mehrzahl = (n, eins, viele) => `${n} ${n === 1 ? eins : viele}`;
-
-// Ziel = Einheiten im aktiven Plan pro Woche. Ohne Plan kein Ziel und kein Balken, nur die Zahl.
-function wochenLeiste(daten) {
-  const woche = dieseWoche(daten.einheiten);
-  const ziel = [1, 2, 3, 4, 5, 6, 7].reduce((n, t) => n + planFuerTag(daten, t).length, 0);
-  const serie = wochenSerie(daten.einheiten);
-  return el('section', { class: 'card training__woche' }, [
-    el('span', { class: 'training__woche-label', text: 'Diese Woche' }),
-    el('div', { class: 'training__woche-kopf' }, [
-      el('b', { text: String(woche) }),
-      el('small', { text: ziel ? `von ${ziel} ${ziel === 1 ? 'Einheit' : 'Einheiten'}` : woche === 1 ? 'Einheit' : 'Einheiten' }),
-    ]),
-    ziel > 0 && el('div', { class: 'training__balken', attrs: { role: 'progressbar', 'aria-valuemin': 0, 'aria-valuemax': ziel, 'aria-valuenow': woche } },
-      woche > 0 && el('i', { attrs: { style: `width:${Math.min(100, (woche / ziel) * 100)}%` } })), // bei 0 kein Leuchten
-    serie > 1 && el('small', { text: `${mehrzahl(serie, 'Woche', 'Wochen')} in Folge` }),
-  ]);
-}
 
 function einheitenListe({ daten, oeffne }) {
   if (!daten.einheiten.length) return el('p', { class: 'app__note', text: 'Noch keine Einheit eingetragen.' });
@@ -65,7 +46,6 @@ export function listeSeite(hilfen) {
   zeige();
 
   return el('div', { class: 'training__seite' }, [
-    wochenLeiste(daten),
     heutePlan(hilfen),
     button({ text: '+ Freies Training', variant: 'normal', onClick: neu }),
     tabs({

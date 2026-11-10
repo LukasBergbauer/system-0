@@ -50,7 +50,7 @@ export function heuteAnsicht({ signal }) {
     }).filter(Boolean);
     box.replaceChildren(
       kopf(z.dinge, { bearbeiten, umschalten, standard }),
-      el('section', { class: 'heute-raster' }, [...felder, bearbeiten && plusFeld(() => hinzufuegen(d, (e) => aendern([...layout, e])))]),
+      el('section', { class: 'heute-raster', attrs: { 'data-raster': '' } }, [...felder, bearbeiten && plusFeld(() => hinzufuegen(d, (e) => aendern([...layout, e])))]),
     );
   }
 

@@ -416,4 +416,8 @@ Offen bei Lukas: auf Geräten prüfen (v. a. Hover-Leiste, Bearbeiten-Modus am i
 - [x] 12. Abschnitts-Überschriften als Glas-Kasten (`ui/abschnitt.js`, Stil in `schrift.css`) in To-dos, Kalender (Liste/Woche/Monat),
       Gewohnheiten, Training (Plan, Heute), Insta-Post. `sw.js` `v102`
 **Stand Runde 2 (10.11.2026):** 9–12 fertig, lokal geprüft am Mac (1300 px) und iPhone-Größe. Offen bei Lukas: auf Geräten prüfen
-(v. a. Leiste in Safari, Muster-Stärke). Nächster möglicher Schritt: Training-Karte „Diese Woche“ doppelt zur Kopf-Kennzahl → streichen?
+(v. a. Leiste in Safari, Muster-Stärke).
+- [x] 13. Rückmeldung Runde 2: Leiste ruckelte (margin-Übergang rechnete Heute jedes Bild neu, Zeiger-Messung je Bild).
+      Jetzt: Inhalt weicht in **allen** Bereichen aus, gleitet per FLIP/Web Animations (`app/gleiten.js`, 260 ms, Heute-Felder einzeln),
+      Zeiger nur bei neuer Höhe, Leiste `contain`. Kopf-Kennzahlen ohne Trennstriche. Training-Karte „Diese Woche“ gestrichen,
+      Kopf zeigt Einheiten · Minuten · Wochen in Folge. `sw.js` `v103`. Offen bei Lukas: Gefühl in Safari/am Mac prüfen.

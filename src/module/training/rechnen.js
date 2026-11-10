@@ -53,7 +53,7 @@ export function verlauf(uebung, einheiten) {
 }
 
 // Montag der Woche eines Datums als ISO-Tag.
-function montag(tag) {
+export function montag(tag) {
   const d = new Date(`${tag}T12:00`);
   d.setDate(d.getDate() - ((d.getDay() + 6) % 7));
   return tagISO(d);

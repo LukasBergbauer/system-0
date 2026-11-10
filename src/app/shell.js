@@ -42,7 +42,6 @@ export function shell() {
     // Kopf: Glas-Kopfleiste mit Abschnitt und Kennzahlen (bereich.kennzahlen() → [{ zahl, text }], frisch bei Datenänderung).
     // dashboard: true (Heute) = eigener Kopf und breite Fläche statt der schmalen Spalte
     inhalt.classList.toggle('app--breit', Boolean(bereich.dashboard));
-    element.classList.toggle('shell--schieben', Boolean(bereich.dashboard)); // Heute: offene Leiste schiebt den Inhalt
     inhalt.dataset.bereich = bereich.id; // Muster je Bereich im Kopf (kopf-muster.css)
     const abschnitt = navPlan(alleBereiche()).abschnitte.find((a) => a.bereiche.includes(bereich))?.titel;
     const kopf = bereich.dashboard ? [] : [kopfbild({ titel: bereich.titel, symbol: bereich.symbol, abschnitt })];
