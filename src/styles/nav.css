@@ -169,6 +169,17 @@
   height: 18px;
   stroke-width: 1.8;
 }
+/* Symbole in Bereichsfarbe: leise in Ruhe, voll am aktiven Eintrag */
+.nav-side__link .symbol,
+.nav-tabs__link .symbol {
+  color: color-mix(in oklch, var(--bereich) 62%, var(--text-2));
+  transition: color 250ms var(--ease);
+}
+.nav-side__link[aria-current="page"] .symbol,
+.nav-tabs__link[aria-current="page"] .symbol,
+.nav-side__link:hover .symbol {
+  color: var(--bereich);
+}
 .nav-side__marke b {
   display: block;
   font-size: 14px;

@@ -12,7 +12,7 @@ import { oeffneSuche } from './suche.js';
 function link(bereich, klasse, aktiv, kurz = false, zahl = 0) {
   return el('a', {
     class: klasse,
-    attrs: { href: `#/${bereich.id}`, 'aria-current': aktiv ? 'page' : false },
+    attrs: { href: `#/${bereich.id}`, 'aria-current': aktiv ? 'page' : false, 'data-bereich': bereich.id },
   }, [
     symbol(bereich.symbol),
     el('span', { class: 'nav__text', text: (kurz && bereich.kurztitel) || bereich.titel }),

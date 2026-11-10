@@ -37,6 +37,13 @@ Hintergrund, Hero-Flächen, Haken, Fortschritt und Schatten werden per `color-mi
 
 `.hell` (Mindmap-Overlay): deckendes Warmweiß statt Glas, gleiche Token-Namen.
 
+## Bereichsfarben (10.11.2026)
+Jeder Bereich hat eine gedämpfte eigene Farbe (`--c-<id>` in `tokens.css`). Ein Element mit `data-bereich="<id>"` setzt
+`--bereich` (und `--bereich-tief` für Schrift/Linien); Heute bzw. ohne Bereich = Akzentfarbe.
+Gesetzt von: `shell.js` (ganze Seite `.app`), `nav.js` (jeder Eintrag: Symbol leise in Bereichsfarbe, aktiv voll),
+Heute-Felder (`feld.js`): Symbol auf zartem Farbplättchen im Titel, feiner Farbschimmer oben links, Ringe/Kurven/Punkte in Bereichsfarbe.
+Bereichs-„Emoji“ = die Linien-Symbole aus `ui/symbol.js` (keine Apple-Emoji), dezent, nie flächig.
+
 ## Akzentfarbe
 `src/core/akzent.js`: `akzentSetzen(farbe)` speichert als Einstellung `akzent` (synchronisiert) und lokal;
 `akzentLaden()` beim Start (erst lokal = kein Farbsprung, dann die synchronisierte). 7 Vorgaben in `AKZENT_FARBEN`
@@ -95,7 +102,7 @@ Listen-Gruppen in To-dos und Kalender (`.todo-gruppe`, `.termin-gruppe`) sind Gl
   `spruchDesTages(versatz)` wechselt um Mitternacht; jeder Bereich nimmt einen eigenen `versatz`.
 
 ## Regeln
-- Eine Akzentfarbe, sonst Weiß-Glas, warmes Fast-Schwarz und die Farbwolken. Keine weiteren bunten Farben.
+- Eine Akzentfarbe plus die gedämpften Bereichsfarben (nur klein: Symbol, Ring, Schimmer), sonst Weiß-Glas, warmes Fast-Schwarz und die Farbwolken.
 - Systemschrift überall; große Zahlen und Titel mit Gewicht 600 und leicht engem Buchstabenabstand.
 - Glas = `--glas-verlauf` + `--glas-rand` + `--schatten` + Unschärfe. Trennlinien nur in Listen.
 - Kleine Animationen nur über `transform`/`opacity` (flüssig auf dem iPhone): Seiteninhalt blendet gestaffelt ein,

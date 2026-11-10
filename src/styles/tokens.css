@@ -33,6 +33,19 @@
   /* Bereichsfarbe: jedes Element mit data-bereich setzt --bereich (Liste unten); ohne = Akzent */
   --bereich: var(--accent);
   --bereich-tief: color-mix(in oklch, var(--bereich) 72%, #2B1E19);
+  /* Bereichsfarben: gedämpft, je Bereich eine (Linien-Symbol, Ring, feiner Schimmer) */
+  --c-kalender: #4F7FBF;
+  --c-todos: #D27245;
+  --c-routinen: #BF9030;
+  --c-physio: #2F9A8C;
+  --c-training: #CC5257;
+  --c-ziele: #7B62C9;
+  --c-affirmationen: #C9689A;
+  --c-gewohnheiten: #589A56;
+  --c-quiz: #3F8BCB;
+  --c-buecher: #9A6B43;
+  --c-insta: #B44E88;
+  --c-einstellungen: #7D7F86;
 
   /* Form */
   --radius: 18px;
@@ -72,6 +85,21 @@
   transition: --accent var(--duration-slow) var(--ease);
   color-scheme: light;
 }
+
+/* data-bereich="<id>" → --bereich (Seite, Navi-Eintrag, Feld auf Heute); heute = Akzent */
+[data-bereich] { --bereich: var(--accent); }
+[data-bereich="kalender"] { --bereich: var(--c-kalender); }
+[data-bereich="todos"] { --bereich: var(--c-todos); }
+[data-bereich="routinen"] { --bereich: var(--c-routinen); }
+[data-bereich="physio"] { --bereich: var(--c-physio); }
+[data-bereich="training"] { --bereich: var(--c-training); }
+[data-bereich="ziele"] { --bereich: var(--c-ziele); }
+[data-bereich="affirmationen"] { --bereich: var(--c-affirmationen); }
+[data-bereich="gewohnheiten"] { --bereich: var(--c-gewohnheiten); }
+[data-bereich="quiz"] { --bereich: var(--c-quiz); }
+[data-bereich="buecher"] { --bereich: var(--c-buecher); }
+[data-bereich="insta"] { --bereich: var(--c-insta); }
+[data-bereich="einstellungen"] { --bereich: var(--c-einstellungen); }
 
 /* Helle Fläche (Mindmap-Overlay in Physio): eigenes, deckendes Weiß. */
 .hell {

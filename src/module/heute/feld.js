@@ -31,6 +31,7 @@ export function feld(art, e, ctx) {
   if (!inhalt && !gross && art.gross) inhalt = art.gross(ctx, e.ref); // Karte ohne kleine Form: trotzdem zeigen
   if (!inhalt && !ctx.bearbeiten) return null; // nichts für heute
   inhalt ||= kleinFeld({ symbol: art.symbol, titel: art.titel, wert: '–', text: 'gerade nichts' }, false);
+  inhalt.querySelector('.heute-karte__kopf h3')?.prepend(el('span', { class: 'feld-symbol' }, [symbol(art.symbol)])); // Karten-Titel mit Bereichs-Symbol
   const huelle = el('div', { class: `feld feld--w${e.w} feld--h${e.h}`, attrs: { 'data-bereich': art.bereich } }, [inhalt]);
   huelle.style.setProperty('--w', e.w);
   huelle.style.setProperty('--h', e.h);

@@ -17,4 +17,4 @@
 
 /* Heute: Leiste */
 .heute-gewohnheiten { grid-column: 1 / -1; }
-.heute-gewohnheit strong { color: var(--accent); }
+.heute-gewohnheit strong { color: var(--bereich-tief); }

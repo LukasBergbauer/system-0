@@ -98,22 +98,23 @@
 .heute-kz:not(:disabled):active { transform: scale(.985); }
 .heute-kz:disabled { cursor: default; }
 .heute-kz__kopf { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: auto; }
-.heute-kz__symbol { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.75); }
+.heute-kz__symbol { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; color: var(--bereich-tief);
+  background: color-mix(in oklch, var(--bereich) 13%, rgba(255,255,255,.7)); box-shadow: inset 0 0 0 .5px color-mix(in oklch, var(--bereich) 30%, transparent); }
 .heute-kz__symbol .symbol { width: 18px; height: 18px; }
 .heute-trend { font-size: var(--fs-label); font-weight: 600; color: var(--text-2); background: rgba(255,255,255,.65); padding: 3px 8px; border-radius: 999px; }
 .heute-trend--gut { color: var(--gut); }
 .heute-kz > b { font-size: 36px; font-weight: 600; letter-spacing: -.035em; line-height: 1; margin-top: 18px; }
 .heute-kz__titel { font-size: var(--fs-small); font-weight: 600; margin-top: var(--space-2); }
 .heute-kz small { color: var(--text-2); font-size: var(--fs-label); }
-.heute-kz--akzent { color: var(--accent-ink); border-color: rgba(255,255,255,.35);
-  background: linear-gradient(150deg, var(--akzent-hell), var(--accent) 60%, var(--akzent-tief)); }
+.heute-kz--akzent { color: #fff; border-color: rgba(255,255,255,.35);
+  background: linear-gradient(150deg, color-mix(in oklch, var(--bereich) 68%, white), var(--bereich) 60%, color-mix(in oklch, var(--bereich) 72%, #2a0f08)); }
 .heute-kz--akzent small, .heute-kz--akzent .heute-kz__titel { color: rgba(255,255,255,.85); }
 .heute-kz--akzent .heute-kz__symbol, .heute-kz--akzent .heute-trend { background: rgba(255,255,255,.22); color: #fff; }
 
 /* Mini-Kurve: zeichnet sich beim Erscheinen */
 .heute-spur { position: absolute; right: 18px; bottom: 20px; width: 64px; height: 24px; }
 .heute-spur svg { width: 100%; height: 100%; display: block; }
-.heute-spur path { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+.heute-spur path { fill: none; stroke: var(--bereich); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   stroke-dasharray: 1; stroke-dashoffset: 1; animation: heute-zeichnen 1300ms var(--ease) 500ms forwards; }
 .heute-spur--fertig path { animation: none; stroke-dashoffset: 0; }
 .heute-kz--akzent .heute-spur path { stroke: #fff; }
@@ -131,3 +132,9 @@
   .heute-kz > b { font-size: 30px; }
   .heute-spur { display: none; }
 }
+
+/* Bereich zeigen: feiner Farbschimmer oben links auf jedem Feld (Farbe aus data-bereich) */
+.feld > :is(.heute-karte, .heute-kz:not(.heute-kz--akzent), .feld-k) {
+  background: radial-gradient(110% 75% at 0% 0%, color-mix(in oklch, var(--bereich) 13%, transparent), transparent 62%), var(--glas-verlauf); }
+.heute-karte__kopf h3 { display: flex; align-items: center; gap: var(--space-2); }
+.feld .heute-karte__kopf > .heute-kz__symbol { display: none; } /* Symbol steht schon im Titel */

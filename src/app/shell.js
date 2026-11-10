@@ -43,6 +43,7 @@ export function shell() {
     // dashboard: true (Heute) = eigener Kopf und breite Fläche statt der schmalen Spalte
     const versatz = Math.max(0, alleBereiche().indexOf(bereich));
     inhalt.classList.toggle('app--breit', Boolean(bereich.dashboard));
+    inhalt.dataset.bereich = bereich.id; // Bereichsfarbe (--bereich, tokens.css) für Titel und Akzente der Seite
     const kopf = bereich.dashboard ? [] : [kopfbild({
       titel: bereich.titel,
       ueber: bereich.ueber?.(),

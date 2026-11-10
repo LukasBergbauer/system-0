@@ -398,3 +398,4 @@ Vorschau ohne Login: `tests/vorschau.html` (lokal, Supabase aus). Muster: `muste
 - [x] 1. Seitenleiste: Klapp-Knopf weg, schmal + Aufklappen beim Drüberfahren; Zeiger gleitet ohne Nachfedern
       (Ursache Sprung: `--feder` schwingt ~10 % der Strecke über, dazu Breite/Höhe-Nachlauf beim Ein-/Ausklappen)
 - [x] 2. Heute: Bearbeiten-Modus mit festem Raster statt Drag & Drop (`module/heute.md`), `sw.js` `v93`
+- [x] 3. Bereichsfarben (`--c-<id>`, `data-bereich` → `--bereich`) in Navi, Seite und Heute-Feldern (`design.md`)
