@@ -25,7 +25,8 @@
 .buch-kreis__wert { stroke: var(--accent); stroke-linecap: round; }
 .buch-kreis--fertig { background: var(--accent); color: var(--accent-ink); }
 .buch-kreis--fertig .buch-kreis__wert { stroke: var(--accent-ink); }
-.buch-seiten-form { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+.buch-seiten-form { display: flex; align-items: center; gap: var(--space-3); color: var(--text-2); }
+.buch-seiten-feld { width: 0; flex: 1; min-width: 0; text-align: center; font-weight: 600; }
 
 /* Notizen: Zusammenfassung / Absatz mit Seite */
 .buch-notizen { display: flex; flex-direction: column; gap: var(--space-4); }

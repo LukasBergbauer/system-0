@@ -1,7 +1,6 @@
 // Seiten-Kreis am Cover: Ring = Seite ÷ Seiten, Zahl = aktuelle Seite. Antippen → Fenster „Seite“ + „von“ (manuell setzen).
 // seitenKreis(buch) → Knopf. Speichert über data.js; die Ansicht zeichnet bei 'daten' neu.
 import { el } from '../../ui/dom.js';
-import { input } from '../../ui/input.js';
 import { button } from '../../ui/button.js';
 import { modal } from '../../ui/modal.js';
 import { speichereBuch } from './data.js';
@@ -17,20 +16,25 @@ function kreis(klasse, anteil) {
   return c;
 }
 
-const zahl = (v) => (v === '' ? null : Math.max(0, Math.round(Number(v))) || null);
+const zahl = (v) => Math.max(0, parseInt(v, 10)) || null;
 
 export function seitenEingabe(buch) {
-  const seite = input({ label: 'Seite', type: 'number', value: buch.seite ?? '' });
-  const von = input({ label: 'von', type: 'number', value: buch.seiten ?? '' });
-  for (const f of [seite, von]) f.querySelector('input').setAttribute('inputmode', 'numeric');
+  // Eine Zeile: „Seite [ ] von [ ]“, Zifferntastatur, ohne Pfeile
+  const feld = (wert, label) => {
+    const f = el('input', { class: 'field__input buch-seiten-feld', attrs: { inputmode: 'numeric', pattern: '[0-9]*', 'aria-label': label, autocomplete: 'off' } });
+    f.value = wert ?? '';
+    return f;
+  };
+  const s1 = feld(buch.seite, 'Seite');
+  const s2 = feld(buch.seiten, 'Seiten gesamt');
   const m = modal({
     title: buch.titel || 'Seite',
-    content: [el('div', { class: 'buch-seiten-form' }, [seite, von])],
+    content: [el('div', { class: 'buch-seiten-form' }, ['Seite', s1, 'von', s2])],
     actions: [button({ text: 'Abbrechen', variant: 'ghost', onClick: () => m.close() }), button({ text: 'Speichern', variant: 'primary', onClick: sichern })],
   });
   async function sichern() {
-    const s = zahl(seite.querySelector('input').value);
-    const v = zahl(von.querySelector('input').value);
+    const s = zahl(s1.value);
+    const v = zahl(s2.value);
     await speichereBuch(buch, { seite: s, seiten: v });
     Object.assign(buch, { seite: s, seiten: v });
     m.close();
@@ -38,7 +42,7 @@ export function seitenEingabe(buch) {
   m.element.addEventListener('close', () => m.element.remove());
   m.element.addEventListener('keydown', (e) => e.key === 'Enter' && sichern());
   m.open();
-  seite.querySelector('input').select();
+  s1.select();
 }
 
 export function seitenKreis(buch) {
