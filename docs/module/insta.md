@@ -44,6 +44,8 @@ Grundsatz: keine Verbindung zu Instagram. Die App ist Lukas' eigene Kopie (offli
       Import/Export mit Attrappe getestet. Browser-Test nicht möglich (lokaler Server blockiert). 016 ausgeführt, von Lukas auf Geräten geprüft (09.11.2026).
 
 - [x] Fix: leere Status-Gruppen zeigten „null“ im Planer (11.11.2026, `sw.js` `v122`).
+- [x] Übersicht mit Haken „gefilmt“ (11.11.2026, `sw.js` `v123`): Status `arbeit` heißt jetzt **Gefilmt**. Haken in der Planer-Zeile
+      → `arbeit`, weg → `idee`; gepostete Posts ohne Haken. Ablauf: Skript importieren → abhaken nach dem Dreh → Insta-Agent schneidet und postet.
 
 ## Nächster Schritt (Plan)
 - Claude-Agent für die Auswertung baut Lukas später separat (nicht Teil der App). Die App ist bereit: Export rein, `{"erkenntnisse":[…]}` zurück.

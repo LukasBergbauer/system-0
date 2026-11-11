@@ -56,3 +56,8 @@
 .insta-erk__warum { margin: 0; color: var(--text-2); line-height: 1.5; }
 .insta-erk__fuss { display: flex; align-items: center; justify-content: space-between; }
 .insta-erk__fuss small { color: var(--text-2); font-size: var(--fs-small); }
+
+/* Zeile mit Haken „gefilmt“ */
+.insta-zeile { display: flex; align-items: center; gap: var(--space-3); }
+.insta-zeile > .check { flex: none; }
+.insta-zeile > .list__inner { flex: 1; min-width: 0; }

@@ -9,7 +9,7 @@ export const ERKENNTNISSE = 'insta_erkenntnisse';
 
 export const STATUS = [
   { id: 'idee', label: 'Idee' },
-  { id: 'arbeit', label: 'In Arbeit' },
+  { id: 'arbeit', label: 'Gefilmt' },
   { id: 'geplant', label: 'Geplant' },
   { id: 'gepostet', label: 'Gepostet' },
 ];
