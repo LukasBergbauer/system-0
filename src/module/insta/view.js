@@ -30,7 +30,7 @@ function planer(posts) {
         onClick: () => oeffnePost(p.id),
       }))),
     ]);
-  });
+  }).filter(Boolean);
 }
 
 export function instaAnsicht({ signal }) {

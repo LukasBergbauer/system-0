@@ -43,6 +43,8 @@ Grundsatz: keine Verbindung zu Instagram. Die App ist Lukas' eigene Kopie (offli
       und setzen ohne Status auf „gepostet“; Erkenntnisse mit gleichem Text werden übersprungen. ```json-Zäune werden entfernt.
       Import/Export mit Attrappe getestet. Browser-Test nicht möglich (lokaler Server blockiert). 016 ausgeführt, von Lukas auf Geräten geprüft (09.11.2026).
 
+- [x] Fix: leere Status-Gruppen zeigten „null“ im Planer (11.11.2026, `sw.js` `v122`).
+
 ## Nächster Schritt (Plan)
 - Claude-Agent für die Auswertung baut Lukas später separat (nicht Teil der App). Die App ist bereit: Export rein, `{"erkenntnisse":[…]}` zurück.
 - Claude-Planung der Skripte ausbauen (Prompt-Vorlagen je Art), geplante Posts im Kalender-Modul anzeigen.
