@@ -46,6 +46,7 @@ Grundsatz: keine Verbindung zu Instagram. Die App ist Lukas' eigene Kopie (offli
 - [x] Fix: leere Status-Gruppen zeigten „null“ im Planer (11.11.2026, `sw.js` `v122`).
 - [x] Übersicht mit Haken „gefilmt“ (11.11.2026, `sw.js` `v123`): Status `arbeit` heißt jetzt **Gefilmt**. Haken in der Planer-Zeile
       → `arbeit`, weg → `idee`; gepostete Posts ohne Haken. Ablauf: Skript importieren → abhaken nach dem Dreh → Insta-Agent schneidet und postet.
+- [x] Planer-Zeile zeigt nur die Überschrift („Video 01 – …“, kommt so aus dem Insta-Agent), sortiert nach Datum, dann Überschrift (`sw.js` `v124`).
 
 ## Nächster Schritt (Plan)
 - Claude-Agent für die Auswertung baut Lukas später separat (nicht Teil der App). Die App ist bereit: Export rein, `{"erkenntnisse":[…]}` zurück.

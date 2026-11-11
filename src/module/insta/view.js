@@ -7,8 +7,8 @@ import { list, listItem } from '../../ui/list.js';
 import { checkbox } from '../../ui/checkbox.js';
 import { on } from '../../core/events.js';
 import { zusatzNehmen } from '../../core/router.js';
-import { POSTS, SETS, ERKENNTNISSE, STATUS, ARTEN, label, ladePosts, ladePost, neuerPost, speicherePost } from './data.js';
-import { oeffnePost, tag } from './post.js';
+import { POSTS, SETS, ERKENNTNISSE, STATUS, ladePosts, ladePost, neuerPost, speicherePost } from './data.js';
+import { oeffnePost } from './post.js';
 import { oeffneClaude } from './claude.js';
 import { oeffneSets } from './hashtags.js';
 import { monat } from './monat.js';
@@ -17,13 +17,10 @@ import { erkenntnisse } from './erkenntnisse.js';
 const ANSICHTEN = [{ id: 'planer', label: 'Planer' }, { id: 'monat', label: 'Monat' }, { id: 'erkenntnisse', label: 'Erkenntnisse' }];
 let ansicht = 'planer';
 
-// Zeile mit Haken „gefilmt“ (nicht bei geposteten Posts). Haken → Status „arbeit“ (Gefilmt), weg → zurück zu „idee“.
+// Zeile: nur die Überschrift („Video 01 – …“) mit Haken „gefilmt“ (nicht bei geposteten Posts). Haken → Status „arbeit“ (Gefilmt), weg → zurück zu „idee“.
 function zeile(p) {
   const text = el('button', { class: 'list__inner list__inner--tap', attrs: { type: 'button' }, on: { click: () => oeffnePost(p.id) } }, [
-    el('span', { class: 'list__text' }, [
-      el('span', { class: 'list__title', text: p.titel || 'Ohne Titel' }),
-      el('span', { class: 'list__sub', text: [label(ARTEN, p.art), p.datum && tag(p.datum), p.hook].filter(Boolean).join(' · ') }),
-    ]),
+    el('span', { class: 'list__text' }, [el('span', { class: 'list__title', text: p.titel || 'Ohne Titel' })]),
   ]);
   if (p.status === 'gepostet') return listItem(el('div', { class: 'insta-zeile' }, [text]));
   const haken = checkbox({
@@ -37,7 +34,9 @@ function zeile(p) {
 function planer(posts) {
   if (!posts.length) return el('p', { class: 'app__note', text: 'Noch keine Posts. Idee oben eintippen oder Skripte über „Claude“ importieren.' });
   return STATUS.map((s) => {
-    let reihe = posts.filter((p) => p.status === s.id);
+    // Datum zuerst, sonst nach Überschrift (Video 01, 02 … in richtiger Reihenfolge)
+    let reihe = posts.filter((p) => p.status === s.id).sort((a, b) => (a.datum || '9999').localeCompare(b.datum || '9999')
+      || (a.titel || '').localeCompare(b.titel || '', 'de', { numeric: true }));
     if (s.id === 'gepostet') reihe = reihe.reverse(); // zuletzt gepostet zuerst
     if (!reihe.length) return null;
     return el('section', { class: 'card insta-gruppe' }, [
