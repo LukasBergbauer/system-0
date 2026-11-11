@@ -8,7 +8,16 @@
 - Status pro Post (Idee / in Arbeit / geplant / gepostet)
 
 ## Hinweis
-Kein automatisches Posten (die Instagram-Schnittstelle ist dafür nicht gratis/einfach nutzbar). Gepostet wird von Hand.
+Die App selbst hat keine Verbindung zu Instagram (keine Geheimnisse im Code). Automatisches Posten ist gewünscht und
+kommt später aus Lukas' **Insta-Agent** (`~/Documents/Insta Agent`, lokal auf dem Mac, Token im Schlüsselbund).
+
+## Verbindung zum Insta-Agent (entschieden 11.11.2026)
+System 0 ersetzt die geplante eigene Mac-App des Insta-Agents. Austausch nur per JSON (Format siehe `claude.js`):
+- **Skripte rein:** Im Insta-Agent `python3 system0/export.py` → `system0/import.json` → hier „Datei wählen“ → Importieren.
+  Schlüssel = Dateiname des Skripts (`01-vorstellung-parkplatz`). Status/Datum werden nicht mitgeschickt (Planung bleibt hier).
+- **Auswertung zurück (geplant):** Export hier → `/auswertung` im Insta-Agent → `{"erkenntnisse":[…]}` hier importieren.
+- **CTA** = kurzer Folgen-Hinweis, keine Handlungs-Aufforderung (Insta-Agent STRATEGIE.md, Regel 9).
+- Nur Texte in Supabase (wenige KB pro Post), Videos bleiben lokal. Grenze: 500 MB (Supabase Free).
 
 ## Plan (mit Lukas abgestimmt, 09.11.2026)
 Grundsatz: keine Verbindung zu Instagram. Die App ist Lukas' eigene Kopie (offline lesbar). Skripte, Zahlen und Erkenntnisse kommen per Import bzw. Einfügen rein.
