@@ -496,6 +496,7 @@ Plan:
 - [x] 2+3. (v130) To-dos umgebaut: `ui/segment.js` (iOS-Segment) für Bereiche + Textknopf „Bearbeiten“; Eingabe-Leiste mit
       Kalender-Symbol (ohne → Heute → Morgen), „!“ (normal → !! → ↓) und Akzent-„+“ (`leiste.css`, gilt für alle Leisten);
       Gruppen-Titel über der Karte, eingerückte Linien, „!!“ vor dem Titel, Erledigt/Ältere als Zeile. Lokal geprüft Mac + iPhone.
-- [ ] 4. Den Feinschliff (Segment statt Kapsel-Tabs, Gruppen-Titel über Karte) auf andere Seiten übertragen – nach Rückmeldung Lukas.
+- [x] 3b. (v131) Lukas: kleine iOS-Gruppen sehen blöd aus → Gruppen, Zeilen, Erledigt wieder wie davor (Glas-Karten, Punkt-Priorität).
+      Bleibt: Segment für Bereiche, Eingabe-Zeile mit Kapseln „Heute“ · „Morgen“ · „!“ (Priorität) + „+“.
 - [ ] 2. Stil global: kleinere Rundungen, Haarlinien, Segment-Umschalter, eckigere Haken/Knöpfe (tokens + components).
 - [ ] 3. To-dos neu: Ansichten-Segment, Eingabe mit Optionen (Datum, Priorität, Bereich) in einer Leiste, Liste mit Linien, Metadaten rechts, Erledigt einklappbar.

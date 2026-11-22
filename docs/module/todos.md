@@ -87,3 +87,4 @@ Merke:
 - Erledigte älter als 30 Tage sind ausgeblendet, Knopf „Ältere zeigen (n)“ im aufgeklappten Erledigt-Abschnitt (nichts wird gelöscht).
 
 - [x] Apple-Feinschliff (22.11.2026, v130): Segment für Bereiche, Eingabe-Leiste mit Datum/Priorität als Symbole + „+“, Gruppen im iOS-Stil, „!!“ für hohe Priorität (mittel/niedrig ohne Zeichen), Erledigt als Zeile.
+- [x] v131: Gruppen/Zeilen wieder wie davor; Heute · Morgen · „!“ als Kapseln direkt in der Eingabe-Zeile.
