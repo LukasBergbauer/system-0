@@ -7,11 +7,11 @@
 .gew { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--innen); border-radius: var(--radius-gross);
   background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten);
   -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%); }
-.gew__kopf { display: flex; align-items: center; gap: var(--space-2); }
-.gew__name { display: flex; align-items: center; gap: var(--space-3); flex: 1; min-width: 0; padding: 0; font: inherit; color: inherit;
+.gew__kopf { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.gew__name { display: flex; align-items: center; gap: var(--space-3); flex: 1 1 120px; min-width: 0; padding: 0; font: inherit; color: inherit;
   text-align: left; background: none; border: 0; cursor: pointer; }
 .gew__name > span:last-child { display: flex; flex-direction: column; min-width: 0; }
-.gew__name strong { font-size: var(--fs-normal); font-weight: 650; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gew__name strong { font-size: var(--fs-normal); font-weight: 650; letter-spacing: -.01em; line-height: 1.25; overflow-wrap: break-word; }
 .gew__name small { font-size: var(--fs-label); color: var(--text-2); }
 .gew__symbol { display: grid; place-items: center; width: 34px; height: 34px; flex: none; border-radius: var(--radius-klein);
   color: var(--g); background: color-mix(in srgb, var(--g) 14%, transparent); }
@@ -32,7 +32,9 @@ button.gew-pille { cursor: pointer; -webkit-user-select: none; user-select: none
 .raster { --zelle: 11px; --luecke: 3px; display: flex; gap: var(--space-2); font-size: 10px; color: var(--text-3); }
 .raster__tage, .raster__zellen { display: grid; grid-template-rows: repeat(7, var(--zelle)); gap: var(--luecke); }
 .raster__tage { grid-template-rows: 14px repeat(7, var(--zelle)); line-height: var(--zelle); }
-.raster__wisch { flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.raster__wisch { flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; padding: 0 3px 3px; } /* Platz für den Heute-Rand */
+.raster__wisch--wischbar { -webkit-mask: linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 16px), transparent);
+  mask: linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 16px), transparent); }
 .raster__wisch::-webkit-scrollbar { display: none; }
 .raster__monate { display: grid; grid-auto-columns: var(--zelle); column-gap: var(--luecke); height: 14px; margin-bottom: var(--luecke); }
 .raster__monate span { grid-row: 1; white-space: nowrap; }

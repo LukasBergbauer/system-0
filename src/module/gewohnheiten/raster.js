@@ -28,7 +28,9 @@ export function raster(stufe) {
     el('div', { class: 'raster__zellen', attrs: { role: 'img', 'aria-label': `Jahr ${jahr}` } }, zellen),
   ]);
   requestAnimationFrame(() => {
-    if (heuteZelle && wisch.scrollWidth > wisch.clientWidth) wisch.scrollLeft = heuteZelle.offsetLeft - wisch.clientWidth + 4 * heuteZelle.offsetWidth;
+    if (wisch.scrollWidth <= wisch.clientWidth) return;
+    wisch.classList.add('raster__wisch--wischbar'); // Ränder weich ausblenden statt hart abschneiden
+    if (heuteZelle) wisch.scrollLeft = heuteZelle.offsetLeft - wisch.clientWidth + 4 * heuteZelle.offsetWidth;
   });
   return el('div', { class: 'raster' }, [
     el('div', { class: 'raster__tage', attrs: { 'aria-hidden': 'true' } }, ['', 'Mo', '', 'Mi', '', 'Fr', '', ''].map((t) => el('span', { text: t }))),

@@ -110,6 +110,8 @@ Listen-Gruppen in To-dos und Kalender (`.todo-gruppe`, `.termin-gruppe`) sind Gl
 - **Knöpfe verschmelzen:** `ui/leiste.js` `leiste(input, onSenden)` (Stil `leiste.css`) = Eingabe mit eingebautem dunklem „+“.
   Genutzt: To-dos, Kalender (leeres „+“ = Termin-Fenster, ersetzt „+ Termin“), Insta-Idee (ersetzt „+ Post“), Visionen-Teilschritt.
   Nebenaktionen dezent (ghost) oder als Symbol. Leere Hinweise nur ein kurzer Satz, Erklärtexte weg.
+- Kopf überall gleich aufgebaut (keine Sonderform/Serife mehr bei Affirmationen, Bücher, Training, Einstellungen), nur das Muster wechselt.
+  iPhone-Titel `clamp(26px, 8.5vw, --fs-seite)`, bricht nie ab.
 - Karten (`.card`, `.kachel`, `.routine`, `.gew`, Gruppen, Ziel-Bereich, Quiz-Endlos) innen `--innen`, Abstände zwischen Blöcken `--luft` in allen Modulen.
 
 ## Kopfbilder und Sprüche (pausiert)

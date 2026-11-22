@@ -78,7 +78,7 @@
   .kopf { flex-wrap: wrap; min-height: 128px; gap: var(--space-3); padding: var(--space-4); }
   .kopf__symbol { width: 34px; height: 34px; }
   .kopf__text { flex-basis: calc(100% - 50px); }
-  .kopf__titel { font-size: var(--fs-seite); }
+  .kopf__titel { font-size: clamp(26px, 8.5vw, var(--fs-seite)); overflow-wrap: anywhere; hyphens: auto; }
   .kopf__werte:not(:empty) { width: 100%; text-align: left; }
   .kopf__wert { padding: 0 var(--space-5) 0 0; }
   .kopf__wert b { font-size: var(--fs-large); }

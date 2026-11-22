@@ -29,3 +29,4 @@
       bzw. „Rückfall“, Serie mit Flamme), `raster.js` (Wochen-Spalten Jan–Dez, Stufen 0–4, heute mit Rand, iPhone wischbar ab heute).
       Farbe je Gewohnheit (Wunsch Lukas) nach Reihenfolge aus `--gew-1…6` (tokens.css). Heute: Abhaken an/aus, Anzahl/Zeit +1 Schritt,
       lang drücken/Rechtsklick = Schritt zurück. Abbauen: Tage ohne Rückfall seit Beginn gefüllt. Keine Migration.
+- [x] Nichts steht über (v129): Namen brechen um, Pillen rutschen bei Platzmangel unter den Namen, wischbares Raster mit weichen Rändern.
