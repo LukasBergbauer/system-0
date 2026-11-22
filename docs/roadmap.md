@@ -470,4 +470,5 @@ Plan:
 - [x] 1. (v125) Gewohnheiten wie „FocusHero“: je Gewohnheit Glas-Karte (Symbol, Name, Summe), Pillen „Heute“ + Serie (Flamme),
       Jahres-Raster (Wochen-Spalten Jan–Dez, Mo/Mi/Fr), Stufen aus Akzent/Unterton, heute mit Rand, iPhone wischbar ab heute.
       Daten reichen → keine Migration. Lukas: bunt je Gewohnheit (`--gew-1…6`). Lokal geprüft Mac 1300 px + iPhone 375 px.
-- [ ] 2. Overlay-Design: erst klären, welches; Muster `muster/overlay.html`; dann umsetzen (Ort klar, eine Hauptaktion, weniger Text).
+- [ ] 2. Seiten-Design (Lukas: alle Seiten sehen gleich aus, wirken leer/„reingeklatscht“ aus losen Blöcken): Muster `muster/seiten.html`
+      (A Bühne · B Farbiger Kopf + Bento · C Ordner-Reiter), Wahl Lukas offen; dann umsetzen (Ort klar, eine Hauptaktion, weniger Text).
