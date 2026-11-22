@@ -471,4 +471,7 @@ Plan:
       Jahres-Raster (Wochen-Spalten Jan–Dez, Mo/Mi/Fr), Stufen aus Akzent/Unterton, heute mit Rand, iPhone wischbar ab heute.
       Daten reichen → keine Migration. Lukas: bunt je Gewohnheit (`--gew-1…6`). Lokal geprüft Mac 1300 px + iPhone 375 px.
 - [ ] 2. Seiten-Design (Lukas: alle Seiten sehen gleich aus, wirken leer/„reingeklatscht“ aus losen Blöcken): Muster `muster/seiten.html`
-      (A Bühne · B Farbiger Kopf + Bento · C Ordner-Reiter), Wahl Lukas offen; dann umsetzen (Ort klar, eine Hauptaktion, weniger Text).
+      (A Bühne · B Farbiger Kopf + Bento · C Ordner-Reiter). Lukas wählt **B**.
+- [x] 3. (v126) Farbkopf auf allen Seiten (`kopfbild.css`), Bento (`bento.css`) in To-dos + Gewohnheiten (`design.md`). Lokal geprüft Mac + iPhone.
+- [ ] 4. Bento in den übrigen Modulen (Kalender, Routinen, Training, Physio, Visionen, Affirmationen, Quiz, Bücher, Insta, Einstellungen):
+      je Modul Container `.bento`, lose Kästen zu Feldern, eine Hauptaktion im Fuß, Rest als Symbol, Text kürzen.

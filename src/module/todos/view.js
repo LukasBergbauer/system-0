@@ -90,7 +90,7 @@ export function todosAnsicht({ signal }) {
       },
     });
     inhalt.replaceChildren(...[
-      el('div', { class: 'todo-oben' }, [gruppe('Heute', g.heute, zeile, 'Nichts für heute.'), gruppe('Morgen', g.morgen, zeile, 'Nichts für morgen.')]),
+      el('div', { class: 'todo-oben bento__reihe' }, [gruppe('Heute', g.heute, zeile, 'Nichts für heute.'), gruppe('Morgen', g.morgen, zeile, 'Nichts für morgen.')]),
       ...[['Diese Woche', g.woche], ['Später', g.spaeter], ['Ohne Datum', g.ohne]].filter(([, t]) => t.length).map(([titel, t]) => gruppe(titel, t, zeile)),
       erledigt,
       g.alt.length && gruppe('Nicht erledigt', g.alt, zeile),
@@ -108,5 +108,5 @@ export function todosAnsicht({ signal }) {
   }, { signal });
   zeichne();
 
-  return el('div', { class: 'app__stack' }, [leiste, eingabe, inhalt]);
+  return el('div', { class: 'bento' }, [el('div', { class: 'bento__feld todo-werkzeug' }, [leiste, eingabe]), inhalt]);
 }

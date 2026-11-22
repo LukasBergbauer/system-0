@@ -101,6 +101,15 @@ Karten auf Heute mit kleinem Bereichs-Symbol im Titel.
 Ein `bild` wird zurzeit nicht übergeben (`shell.js`), die Bereiche behalten ihre Bildlisten für später.
 Listen-Gruppen in To-dos und Kalender (`.todo-gruppe`, `.termin-gruppe`) sind Glaskarten mit `abschnitt`-Kasten als Kopf.
 
+## Farbkopf + Bento (22.11.2026, Lukas: Variante B aus `muster/seiten.html`)
+Grund: alle Seiten sahen gleich aus und wirkten wie lose, „reingeklatschte“ Blöcke.
+- Seitenkopf (`ui/kopfbild.js`, `kopfbild.css`) = Farb-Band im Akzent-Verlauf wie die Heute-Hero, Muster je Bereich hell darauf
+  (`kopf-muster.css`, `--mline`/`--makz` weiß), Titel groß (`--fs-seite`) unten links, Kennzahlen rechts. Weiß-Akzent: weißes Band.
+- Inhalt hängt 3 px unter dem Band (`.kopf + *`). Modul-Container `.bento` (`bento.css`): Felder `.bento__feld` mit 3 px Fuge,
+  innen `--radius-klein`, unten außen `--radius-gross`; `.bento__reihe` = 2 Spalten (iPhone 1); `.abschnitt` im Bento nur als Label;
+  `.bento__fuss` = Fuß-Feld mit der einen Hauptaktion (dunkle Pille).
+- Umgestellt: To-dos, Gewohnheiten. Übrige Module folgen.
+
 ## Kopfbilder und Sprüche (pausiert)
 - Fotos von Lukas (Bild-KI), je Bereich drei Varianten: `assets/bilder/<bereich>-1…3.webp` (1536 × 1024, je ca. 80–125 KB).
   Der Bereich gibt sie beim Anmelden als Liste an (`bild: [...]`); `src/app/kopfbilder.js` wählt täglich eine andere

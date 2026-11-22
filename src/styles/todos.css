@@ -169,6 +169,10 @@
   from { opacity: 0; transform: translate(-50%, 12px); }
 }
 /* Oben: Glas-Boxen „Heute“ + „Morgen“ nebeneinander (iPhone untereinander) */
-.todo-oben { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); align-items: start; }
+.todo-oben { align-items: stretch; }
 .todo-leer { margin: 0; padding: var(--space-3) 0 var(--space-3); color: var(--text-2); font-size: var(--fs-small); }
-@media (max-width: 760px) { .todo-oben { grid-template-columns: 1fr; } }
+/* Bento (bento.css): Liste fügt sich lückenlos in die Felder ein */
+.bento .todo-liste { display: contents; }
+.todo-werkzeug { display: flex; flex-direction: column; gap: var(--space-3); }
+.todo-werkzeug > * { margin: 0; }
+.bento > .todo-liste > .app__stack { padding: var(--space-2) 0 0; }
