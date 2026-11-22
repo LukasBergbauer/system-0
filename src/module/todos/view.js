@@ -16,9 +16,13 @@ import { schnelleingabe } from './schnelleingabe.js';
 import { oeffneBearbeiten } from './bearbeiten.js';
 import { erledigtAbschnitt } from './erledigt.js';
 
+// Heute · Morgen · Diese Woche sind hervorgehoben (eigenes Symbol, Akzent-Kopf).
+const WICHTIG = { Heute: 'heute', Morgen: 'morgen', 'Diese Woche': 'kalender' };
+
 function gruppe(titel, todos, zeile, leer) {
-  return el('section', { class: 'todo-gruppe' }, [
-    abschnitt({ titel, zahl: todos.length, symbol: 'todos' }),
+  const wichtig = WICHTIG[titel];
+  return el('section', { class: `todo-gruppe${wichtig ? ' todo-gruppe--wichtig' : ''}` }, [
+    abschnitt({ titel, zahl: todos.length, symbol: wichtig || 'todos' }),
     todos.length ? list(todos.map(zeile)) : el('p', { class: 'todo-leer', text: leer }),
   ]);
 }

@@ -1,12 +1,13 @@
 // Schnelleingabe oben: Titel tippen, Enter → To-do ist angelegt.
-// In der Zeile: Knöpfe „Heute“, „Morgen“ (an/aus), „!“ Priorität (normal → !! hoch → ↓ niedrig), „+“; gelten für das nächste To-do.
+// In der Zeile: kleine Symbol-Knöpfe Sonne = Heute, Sonnenaufgang = Morgen (an/aus), Fahne = Priorität (normal → hoch → niedrig), „+“.
+// Gelten für das nächste To-do.
 // Bereich = gerade gefilterter Bereich (zielBereich(), sonst keiner); ändern im Bearbeiten-Fenster.
 // Das Feld bleibt im Fokus, damit gleich das nächste To-do folgen kann.
 import { el } from '../../ui/dom.js';
 import { symbol } from '../../ui/symbol.js';
 import { neuesTodo } from './data.js';
 
-const PRIO = { 1: '!!', 2: '!', 3: '↓' }; // hoch · normal · niedrig
+const PRIO_SYMBOL = { 1: 'prio', 2: 'prio', 3: 'runter' }; // hoch (Akzent) · normal (grau) · niedrig
 const PRIO_NAME = { 1: 'Priorität hoch', 2: 'Priorität normal', 3: 'Priorität niedrig' };
 const NAECHSTE_PRIO = { 2: 1, 1: 3, 3: 2 };
 const tagISO = (plus) => {
@@ -32,11 +33,13 @@ export function schnelleingabe({ zielBereich = () => null } = {}) {
     on: { click: anlegen, mousedown: (e) => e.preventDefault() } }, [symbol('plus')]);
 
   function zeige() {
-    heute.textContent = 'Heute';
-    morgen.textContent = 'Morgen';
+    heute.replaceChildren(symbol('heute'));
+    morgen.replaceChildren(symbol('morgen'));
+    heute.setAttribute('aria-label', 'Heute fällig');
+    morgen.setAttribute('aria-label', 'Morgen fällig');
     heute.setAttribute('aria-pressed', String(tag === 0));
     morgen.setAttribute('aria-pressed', String(tag === 1));
-    prioKnopf.textContent = PRIO[prio];
+    prioKnopf.replaceChildren(symbol(PRIO_SYMBOL[prio]));
     prioKnopf.setAttribute('aria-label', PRIO_NAME[prio]);
     prioKnopf.setAttribute('aria-pressed', String(prio !== 2));
   }

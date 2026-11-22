@@ -52,6 +52,10 @@ const FORMEN = {
   // Pfeil nach links (Seitenleiste einklappen)
   zurueck: '<path d="M15 6l-6 6 6 6"/>',
   prompt: '<path d="M4.5 5.5h15v10h-8l-4 3.5v-3.5h-3z"/><path d="M8.5 9l2 1.5-2 1.5"/><path d="M12.5 12h3"/>',
+  // Sonnenaufgang (Morgen), Fahne (Priorität), Pfeil nach unten (niedrig)
+  morgen: '<path d="M3 18h18M7 18a5 5 0 0 1 10 0M12 7v3M5.6 11.6l1.4 1.4M18.4 11.6L17 13"/>',
+  prio: '<path d="M6.5 21V4M6.5 4.5h10.5l-2.5 4 2.5 4H6.5"/>',
+  runter: '<path d="M12 5v14M6.5 13.5L12 19l5.5-5.5"/>',
   verlauf: '<path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 4.5v3h3"/><path d="M12 8v4l2.5 2"/>',
 };
 

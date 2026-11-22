@@ -18,6 +18,12 @@
 .todo-gruppe > .abschnitt {
   margin-bottom: var(--space-1);
 }
+/* Heute · Morgen · Diese Woche hervorgehoben: Akzent-Kopf, kräftiger Titel, Zahl als Pille */
+.todo-gruppe--wichtig > .abschnitt { background: color-mix(in srgb, var(--accent) 13%, rgba(255, 255, 255, 0.5)); }
+.todo-gruppe--wichtig .abschnitt .symbol { color: var(--accent); width: 18px; height: 18px; }
+.todo-gruppe--wichtig .abschnitt__titel { color: var(--text); font-size: var(--fs-small); font-weight: 700; }
+.todo-gruppe--wichtig .abschnitt__zahl { min-width: 22px; padding: 1px 7px; text-align: center; border-radius: 999px;
+  color: var(--accent-ink); background: var(--accent); font-weight: 600; }
 .todo-gruppe .list__title {
   font-size: var(--fs-normal);
 }

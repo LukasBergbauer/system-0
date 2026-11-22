@@ -498,5 +498,7 @@ Plan:
       Gruppen-Titel über der Karte, eingerückte Linien, „!!“ vor dem Titel, Erledigt/Ältere als Zeile. Lokal geprüft Mac + iPhone.
 - [x] 3b. (v131) Lukas: kleine iOS-Gruppen sehen blöd aus → Gruppen, Zeilen, Erledigt wieder wie davor (Glas-Karten, Punkt-Priorität).
       Bleibt: Segment für Bereiche, Eingabe-Zeile mit Kapseln „Heute“ · „Morgen“ · „!“ (Priorität) + „+“.
+- [x] 3c. (v132) Kapseln klein (28 px) mit Symbolen: Sonne = Heute, Sonnenaufgang = Morgen, Fahne = Priorität (hoch = Akzent, niedrig = Pfeil).
+      Gruppen Heute · Morgen · Diese Woche hervorgehoben (eigenes Symbol, Akzent-Kopf, Zahl als Pille).
 - [ ] 2. Stil global: kleinere Rundungen, Haarlinien, Segment-Umschalter, eckigere Haken/Knöpfe (tokens + components).
 - [ ] 3. To-dos neu: Ansichten-Segment, Eingabe mit Optionen (Datum, Priorität, Bereich) in einer Leiste, Liste mit Linien, Metadaten rechts, Erledigt einklappbar.

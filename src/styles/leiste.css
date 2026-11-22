@@ -11,9 +11,9 @@
 .leiste__knopf:active { transform: scale(.9); }
 .leiste__knopf .symbol { width: 18px; height: 18px; stroke-width: 2; }
 /* Option in der Zeile (z. B. Heute, Morgen, Priorität): kleine graue Kapsel, gewählt = Akzent gefüllt */
-.leiste__option { display: inline-flex; align-items: center; justify-content: center; gap: 4px; flex: none; min-width: 30px; height: 30px;
-  padding: 0 10px; font: inherit; font-size: var(--fs-small); font-weight: 600; color: var(--text-2); background: rgba(118, 118, 128, 0.12);
+.leiste__option { display: inline-flex; align-items: center; justify-content: center; gap: 4px; flex: none; min-width: 28px; height: 28px;
+  padding: 0; font: inherit; font-size: var(--fs-small); font-weight: 600; color: var(--text-2); background: rgba(118, 118, 128, 0.12);
   border: 0; border-radius: 999px; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration) var(--ease); }
-.leiste__option .symbol { width: 18px; height: 18px; }
+.leiste__option .symbol { width: 16px; height: 16px; stroke-width: 1.8; }
 .leiste__option[aria-pressed="true"] { color: var(--accent-ink); background: var(--accent); }
-@media (max-width: 380px) { .leiste__option { padding: 0 8px; } .leiste { padding-left: var(--space-3); } }
+@media (max-width: 380px) { .leiste { padding-left: var(--space-3); } }
