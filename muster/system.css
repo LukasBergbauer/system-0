@@ -1,0 +1,73 @@
+/* Muster „Ein System“ (22.11.2026): gleiche Abstände, Schriftrollen, Rundungen; Knöpfe verschmelzen mit Leisten.
+   Jede Variante setzt nur die Maße (--luft, --innen, --leiste, --rund …), die Bausteine sind dieselben. */
+body { padding: var(--space-5); }
+.m { display: flex; flex-direction: column; gap: var(--space-7); max-width: 1240px; margin: 0 auto; }
+.m > section > h2 { margin: 0 0 var(--space-1); font-size: var(--fs-title); }
+.m > section > p { margin: 0 0 var(--space-4); color: var(--text-2); font-size: var(--fs-small); max-width: 75ch; }
+.reihe { display: flex; gap: var(--space-6); flex-wrap: wrap; }
+.tel { width: 360px; flex: none; display: flex; flex-direction: column; gap: var(--luft); }
+.symbol { width: 18px; height: 18px; }
+
+/* Schriftrollen – überall gleich */
+.r-titel { font-size: var(--fs-large); font-weight: 650; letter-spacing: -.03em; line-height: 1.1; }
+.r-label { font-size: var(--fs-label); font-weight: 600; letter-spacing: var(--sperrung); text-transform: uppercase; color: var(--text-3); }
+.r-text { font-size: var(--fs-normal); }
+.r-meta { font-size: var(--fs-small); color: var(--text-2); }
+
+.glas { background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%); }
+
+/* Kopf */
+.kopf { display: flex; align-items: flex-end; gap: var(--space-3); padding: var(--innen); min-height: 104px; color: #fff;
+  border-radius: var(--rund-gross); background: linear-gradient(135deg, var(--akzent-hell), var(--accent) 48%, var(--akzent-tief) 130%); box-shadow: var(--schatten); }
+.kopf .r-titel { flex: 1; font-size: var(--fs-display); }
+.kopf b { font-size: var(--fs-large); font-weight: 650; }
+.kopf .r-label { color: rgba(255,255,255,.75); display: block; }
+
+/* Leiste = eine Höhe, eine Rundung; Knöpfe sitzen IN der Leiste */
+.leiste { display: flex; align-items: center; height: var(--leiste); border-radius: var(--rund); padding: 0 0 0 var(--innen); gap: var(--space-2); }
+.leiste input { flex: 1; min-width: 0; height: 100%; border: 0; background: none; font: inherit; font-size: var(--fs-normal); color: var(--text); outline: none; }
+.leiste__knopf { display: grid; place-items: center; align-self: stretch; aspect-ratio: 1; margin: var(--kante); border: 0; color: #fff;
+  background: var(--dunkel); border-radius: calc(var(--rund) - var(--kante)); }
+.leiste__knopf--breit { aspect-ratio: auto; padding: 0 var(--innen); font: inherit; font-size: var(--fs-small); font-weight: 600; }
+/* Umschalter: Segmente in EINER Leiste */
+.segmente { display: flex; padding: var(--kante); height: var(--leiste); border-radius: var(--rund); }
+.segmente span { flex: 1; display: grid; place-items: center; font-size: var(--fs-small); font-weight: 600; color: var(--text-2);
+  border-radius: calc(var(--rund) - var(--kante)); }
+.segmente .an { background: #fff; color: var(--text); box-shadow: 0 1px 4px rgba(40,20,10,.12); }
+
+/* Feld mit Kopfleiste (Label links, Aktion rechts als Symbol) */
+.feld { border-radius: var(--rund-gross); padding: var(--innen); display: flex; flex-direction: column; gap: var(--space-3); }
+.feld__kopf { display: flex; align-items: center; gap: var(--space-2); }
+.feld__kopf .r-label { flex: 1; }
+.ico { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; color: var(--text-2); background: var(--surface); }
+.zeile { display: flex; align-items: center; gap: var(--space-3); min-height: var(--leiste); }
+.zeile + .zeile { border-top: var(--glas-kante) solid var(--line); }
+.zeile > :nth-child(2) { flex: 1; }
+.haken { width: 20px; height: 20px; flex: none; border-radius: 50%; border: 1.5px solid var(--text-3); }
+
+/* Geteilte Pille: Heute | Serie verschmolzen */
+.split { display: flex; height: 32px; border-radius: 999px; overflow: hidden; font-size: var(--fs-small); font-weight: 600; }
+.split > span { display: flex; align-items: center; gap: 6px; padding: 0 var(--space-3); }
+.split > span:first-child { background: var(--g); color: #fff; }
+.split > span:last-child { color: var(--g); background: color-mix(in srgb, var(--g) 14%, #fff); }
+.split .symbol { width: 14px; height: 14px; }
+.mini { display: grid; grid-template-rows: repeat(7, 8px); grid-auto-flow: column; grid-auto-columns: 8px; gap: 3px; }
+.mini i { border-radius: 2px; background: color-mix(in srgb, var(--text) 7%, transparent); }
+.mini i.an { background: var(--g); }
+.mini i.halb { background: color-mix(in srgb, var(--g) 45%, transparent); }
+
+/* Fuß-Aktion: verschmilzt mit der Unterkante des Felds */
+.feld--fuss { padding-bottom: 0; overflow: hidden; }
+.feld__fuss { display: flex; align-items: center; justify-content: center; gap: var(--space-2); height: var(--leiste);
+  margin: 0 calc(var(--innen) * -1); background: var(--dunkel); color: #fff; font-size: var(--fs-small); font-weight: 600; }
+
+/* ---- Varianten: nur Maße ---- */
+.v-a { --luft: var(--space-5); --innen: var(--space-5); --leiste: 48px; --rund: var(--radius); --rund-gross: var(--radius-gross); --kante: 4px; }
+.v-b { --luft: var(--space-4); --innen: var(--space-4); --leiste: 52px; --rund: 26px; --rund-gross: 26px; --kante: 5px; }
+.v-c { --luft: var(--space-6); --innen: var(--space-5); --leiste: 48px; --rund: var(--radius-klein); --rund-gross: var(--radius); --kante: 4px; }
+.v-b .feld__kopf { margin: calc(var(--innen) * -1) calc(var(--innen) * -1) 0; padding: 0 var(--kante) 0 var(--innen); height: var(--leiste);
+  border-bottom: var(--glas-kante) solid var(--line); }
+.v-b .feld__kopf .ico { width: 42px; height: 42px; background: var(--dunkel); color: #fff; }
+.v-c .glas { box-shadow: none; }
+.v-c .feld { border-left: 3px solid var(--accent); }
