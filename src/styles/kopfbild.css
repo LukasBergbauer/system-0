@@ -1,6 +1,6 @@
 /* Seitenkopf (src/ui/kopfbild.js) – Variante B „Farbkopf“ (Lukas, 22.11.2026, muster/seiten.html):
    Farb-Band im Akzent-Verlauf wie die Heute-Hero, Muster je Bereich (kopf-muster.css, hell auf Farbe), Titel groß unten links,
-   Kennzahlen rechts. Der Inhalt darunter schließt eng an (Bento, .kopf + * in bento.css). */
+   Kennzahlen rechts. Abstand zum Inhalt = --luft. */
 .kopf {
   --mline: rgba(255,255,255,.3);
   --makz: rgba(255,255,255,.45);
@@ -13,7 +13,7 @@
   min-height: 150px;
   padding: var(--space-5);
   color: var(--accent-ink);
-  border-radius: var(--radius-gross) var(--radius-gross) var(--radius-klein) var(--radius-klein);
+  border-radius: var(--radius-gross);
   border: var(--glas-kante) solid rgba(255,255,255,.35);
   box-shadow: var(--schatten);
   background: linear-gradient(135deg, var(--akzent-hell) 0%, var(--accent) 48%, var(--akzent-tief) 130%);

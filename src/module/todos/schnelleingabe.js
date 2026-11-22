@@ -3,7 +3,7 @@
 // Bereich = gerade gefilterter Bereich (zielBereich(), sonst keiner); ändern im Bearbeiten-Fenster.
 // Das Feld bleibt im Fokus, damit gleich das nächste To-do folgen kann.
 import { el } from '../../ui/dom.js';
-import { input } from '../../ui/input.js';
+import { symbol } from '../../ui/symbol.js';
 import { neuesTodo } from './data.js';
 
 const PRIO = { 1: '! Hoch', 2: 'Priorität', 3: '↓ Niedrig' };
@@ -20,10 +20,10 @@ function knopf(onClick) {
 }
 
 export function schnelleingabe({ zielBereich = () => null } = {}) {
-  const feld = input({ placeholder: 'Neues To-do …' });
-  const eingabe = feld.querySelector('input');
-  eingabe.setAttribute('aria-label', 'Neues To-do');
-  eingabe.setAttribute('enterkeyhint', 'enter');
+  const eingabe = el('input', { class: 'leiste__feld', attrs: { placeholder: 'Neues To-do …', 'aria-label': 'Neues To-do', enterkeyhint: 'enter' } });
+  const plus = el('button', { class: 'leiste__knopf', attrs: { type: 'button', 'aria-label': 'To-do anlegen' },
+    on: { click: anlegen, mousedown: (e) => e.preventDefault() } }, [symbol('plus')]);
+  const feld = el('div', { class: 'leiste' }, [eingabe, plus]);
 
   let tag = null; // 0 = heute, 1 = morgen
   let prio = 2;
@@ -41,9 +41,13 @@ export function schnelleingabe({ zielBereich = () => null } = {}) {
     prioKnopf.setAttribute('aria-pressed', String(prio !== 2));
   }
 
-  eingabe.addEventListener('keydown', async (e) => {
+  eingabe.addEventListener('keydown', (e) => {
     if (e.key !== 'Enter' || e.isComposing) return;
     e.preventDefault();
+    anlegen();
+  });
+
+  async function anlegen() {
     const titel = eingabe.value.trim();
     if (!titel) return;
     eingabe.value = '';
@@ -51,7 +55,7 @@ export function schnelleingabe({ zielBereich = () => null } = {}) {
     tag = null;
     prio = 2;
     zeige();
-  });
+  }
 
   zeige();
   const box = el('div', { class: 'todo-schnell' }, [feld, el('div', { class: 'todo-schnell__knoepfe' }, [heute, morgen, prioKnopf])]);

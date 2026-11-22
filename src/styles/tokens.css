@@ -73,6 +73,10 @@
 
   /* Bedienung */
   --tap: 44px;
+  /* Ein System (Variante A, 22.11.2026): Luft zwischen Feldern, Innenabstand, Leistenhöhe (Eingabe, Umschalter) */
+  --luft: var(--space-5);
+  --innen: var(--space-5);
+  --leiste: 48px;
   --knopf: 44px; /* eine Höhe für alle Knöpfe/Pillen (Mac mit Maus: 40 px) */
   --sidebar: 236px; /* Seitenleiste Mac, ausgeklappt */
   --sidebar-zu: 72px; /* eingeklappt */

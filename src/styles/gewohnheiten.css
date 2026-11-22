@@ -1,7 +1,10 @@
 /* Modul „Gewohnheiten“: nutzt die Karten aus routinen.css, hier nur das Eigene. Nur Werte aus tokens.css. */
 
+.gewohnheiten__abschnitt { display: flex; flex-direction: column; gap: var(--space-3); width: 100%; }
+.gew-liste { display: flex; flex-direction: column; gap: var(--space-4); width: 100%; }
+
 /* Karte je Gewohnheit, Farbe --g (tokens --gew-1…6) */
-.gew { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-gross);
+.gew { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--innen); border-radius: var(--radius-gross);
   background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten);
   -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%); }
 .gew__kopf { display: flex; align-items: center; gap: var(--space-2); }

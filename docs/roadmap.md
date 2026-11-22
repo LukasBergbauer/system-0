@@ -473,7 +473,10 @@ Plan:
 - [ ] 2. Seiten-Design (Lukas: alle Seiten sehen gleich aus, wirken leer/„reingeklatscht“ aus losen Blöcken): Muster `muster/seiten.html`
       (A Bühne · B Farbiger Kopf + Bento · C Ordner-Reiter). Lukas wählt **B**.
 - [x] 3. (v126) Farbkopf auf allen Seiten (`kopfbild.css`), Bento (`bento.css`) in To-dos + Gewohnheiten (`design.md`). Lokal geprüft Mac + iPhone.
-- [ ] 5. Lukas: Bento zu gedrückt. Wunsch: ein System (gleiche Abstände, Schriftrollen, Rundungen), Knöpfe verschmelzen mit Leisten,
+- [x] 6. (v127) Lukas: „eher A, aber nicht alles zusammengefasst“. Bento raus, Karten/Abschnitte wie davor, Tokens `--luft`/`--innen`/`--leiste`,
+      `.leiste` mit eingebautem Knopf (To-dos). Lokal geprüft Mac + iPhone.
+- [ ] 7. System A in allen übrigen Modulen: Abstände über `--luft`/`--innen`, Eingaben als `.leiste`, Nebenknöpfe als Symbol, Zusatztexte weg.
+- [x] 5. Lukas: Bento zu gedrückt. Wunsch: ein System (gleiche Abstände, Schriftrollen, Rundungen), Knöpfe verschmelzen mit Leisten,
       Zusatztexte weg. Muster `muster/system.html` (A Ruhig & luftig · B Kapseln · C Flach mit Fuß-Aktion), Wahl offen.
       Danach: System in tokens/components, Bento-Fugen zurück, alle Module umstellen.
 - [ ] 4. (ersetzt durch 5) Bento in den übrigen Modulen (Kalender, Routinen, Training, Physio, Visionen, Affirmationen, Quiz, Bücher, Insta, Einstellungen):

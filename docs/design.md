@@ -101,14 +101,15 @@ Karten auf Heute mit kleinem Bereichs-Symbol im Titel.
 Ein `bild` wird zurzeit nicht übergeben (`shell.js`), die Bereiche behalten ihre Bildlisten für später.
 Listen-Gruppen in To-dos und Kalender (`.todo-gruppe`, `.termin-gruppe`) sind Glaskarten mit `abschnitt`-Kasten als Kopf.
 
-## Farbkopf + Bento (22.11.2026, Lukas: Variante B aus `muster/seiten.html`)
-Grund: alle Seiten sahen gleich aus und wirkten wie lose, „reingeklatschte“ Blöcke.
+## Farbkopf + System A (22.11.2026, Lukas; Muster `muster/seiten.html` B-Kopf, `muster/system.html` A)
 - Seitenkopf (`ui/kopfbild.js`, `kopfbild.css`) = Farb-Band im Akzent-Verlauf wie die Heute-Hero, Muster je Bereich hell darauf
   (`kopf-muster.css`, `--mline`/`--makz` weiß), Titel groß (`--fs-seite`) unten links, Kennzahlen rechts. Weiß-Akzent: weißes Band.
-- Inhalt hängt 3 px unter dem Band (`.kopf + *`). Modul-Container `.bento` (`bento.css`): Felder `.bento__feld` mit 3 px Fuge,
-  innen `--radius-klein`, unten außen `--radius-gross`; `.bento__reihe` = 2 Spalten (iPhone 1); `.abschnitt` im Bento nur als Label;
-  `.bento__fuss` = Fuß-Feld mit der einen Hauptaktion (dunkle Pille).
-- Umgestellt: To-dos, Gewohnheiten. Übrige Module folgen.
+- Bento (Felder lückenlos verbunden) verworfen: zu gedrückt. Karten und Abschnitts-Kästen bleiben einzeln.
+- **Ein System:** `--luft` 24 px zwischen Feldern (`.app`, `.app__stack`, Listen), `--innen` 24 px Innenabstand der Karten,
+  `--leiste` 48 px Höhe für Eingaben/Umschalter, Rundung `--radius`. Schriftrollen: Titel / Label / Text / Nebentext (`--fs-*`).
+- **Knöpfe verschmelzen:** `.leiste` (`leiste.css`) = Eingabe mit eingebautem dunklem Hauptknopf (`.leiste__knopf`).
+  Nebenaktionen nur als Symbol. Zusatztexte weg.
+- Umgestellt: To-dos (Schnelleingabe), Gewohnheiten. Übrige Module folgen.
 
 ## Kopfbilder und Sprüche (pausiert)
 - Fotos von Lukas (Bild-KI), je Bereich drei Varianten: `assets/bilder/<bereich>-1…3.webp` (1536 × 1024, je ca. 80–125 KB).

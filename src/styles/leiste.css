@@ -1,0 +1,12 @@
+/* Leiste (System A, 22.11.2026): Eingabe mit eingebautem Hauptknopf. Eine Höhe (--leiste), eine Rundung (--radius). */
+.leiste { display: flex; align-items: center; gap: var(--space-2); height: var(--leiste); padding-left: var(--space-4);
+  border-radius: var(--radius); background: var(--surface-2); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten); }
+.leiste:focus-within { background: #fff; }
+.leiste__feld { flex: 1; min-width: 0; height: 100%; padding: 0; border: 0; background: none; outline: none;
+  font: inherit; font-size: var(--fs-normal); color: var(--text); }
+.leiste__feld::placeholder { color: var(--text-3); }
+.leiste__knopf { display: grid; place-items: center; flex: none; align-self: stretch; aspect-ratio: 1; margin: 4px; padding: 0; border: 0;
+  color: #fff; background: var(--dunkel); border-radius: calc(var(--radius) - 4px); cursor: pointer;
+  transition: transform 260ms var(--feder); }
+.leiste__knopf:active { transform: scale(.92); }
+.leiste__knopf .symbol { width: 18px; height: 18px; }
