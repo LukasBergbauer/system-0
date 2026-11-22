@@ -1,0 +1,60 @@
+<!doctype html>
+<!-- Muster „Sleek & edel“ + To-dos-Makeover. Öffnen: http://127.0.0.1:8000/muster/sleek.html -->
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Muster Sleek</title>
+  <link rel="stylesheet" href="../src/styles/tokens.css">
+  <link rel="stylesheet" href="../src/styles/base.css">
+  <link rel="stylesheet" href="../src/styles/components.css">
+  <link rel="stylesheet" href="../src/styles/akzent-neutral.css">
+  <link rel="stylesheet" href="sleek.css">
+</head>
+<body>
+<main class="m" id="m"></main>
+<script type="module">
+  import { symbol } from '../src/ui/symbol.js';
+  import { akzentLaden } from '../src/core/akzent.js';
+  akzentLaden();
+  const s = (n) => symbol(n).outerHTML;
+  const prio = (n) => `<span class="prio" aria-label="Priorität">${[1, 2, 3].map((i) => `<i class="${i <= n ? 'an' : ''}"></i>`).join('')}</span>`;
+  const TODOS = {
+    heute: [['Physio-Skript Kapitel 4', 'Uni', '', 3], ['Einkaufen', 'Privat', '', 1], ['Rechnung bezahlen', 'Privat', 'gestern', 2, true]],
+    morgen: [['Steuer abgeben', 'Büro', 'Mo', 2]],
+    woche: [['Trainingsplan anpassen', '', 'Do', 1], ['Mama anrufen', 'Privat', 'Fr', 1]],
+  };
+  const zeile = ([t, b, d, p, warn], mitStrich) => `<div class="zeile${mitStrich && p === 3 ? ' prio-strich' : ''}"><i class="haken"></i><span class="zeile__titel">${t}</span>
+    <span class="zeile__rechts">${b ? `<span class="tag">${b}</span>` : ''}${d ? `<span class="meta${warn ? ' warn' : ''}">${d}</span>` : ''}${mitStrich ? '' : prio(p)}</span></div>`;
+  const gruppe = (titel, liste, { strich = false, zahl = true } = {}) => `<section class="flaeche">
+    <div class="gruppe__kopf"><span class="lab">${titel}</span>${zahl ? `<span class="meta">${liste.length}</span>` : ''}</div>
+    ${liste.map((z) => zeile(z, strich)).join('')}</section>`;
+  const kopf = `<div class="kopf"><h1>To-dos</h1><span class="meta"><b>6</b> offen · <b class="warn">1</b> überfällig</span></div>`;
+  const seg = (items, an) => `<div class="seg">${items.map(([t, n]) => `<span class="${t === an ? 'an' : ''}">${t}${n != null ? `<sup>${n}</sup>` : ''}</span>`).join('')}</div>`;
+  const ANSICHTEN = [['Heute', 3], ['Morgen', 1], ['Woche', 2], ['Alle', 6]];
+  const eingabe = `<div class="flaeche eingabe"><input placeholder="Neues To-do …">
+    <div class="optionen"><span class="an">${s('kalender')}Heute</span><span>${prio(2)}</span><span>Privat</span><span class="plus">${s('plus')}</span></div></div>`;
+  const erledigt = `<section class="flaeche"><div class="fuss"><span class="lab">Erledigt</span><span class="meta">12 ›</span></div></section>`;
+
+  const A = () => [kopf, seg(ANSICHTEN, 'Heute'), eingabe, gruppe('Heute', TODOS.heute), gruppe('Morgen', TODOS.morgen), erledigt];
+  const B = () => [kopf, seg([['Alle'], ['Privat'], ['Uni'], ['Büro']], 'Alle'), eingabe,
+    `<section class="flaeche">${['heute', 'morgen', 'woche'].map((k, i) => `<div class="gruppe__kopf" ${i ? 'style="border-top:1px solid var(--linie)"' : ''}><span class="lab">${{ heute: 'Heute', morgen: 'Morgen', woche: 'Diese Woche' }[k]}</span><span class="meta">${TODOS[k].length}</span></div>${TODOS[k].map((z) => zeile(z, true)).join('')}`).join('')}
+    <div class="fuss"><span class="lab">Erledigt</span><span class="meta">12 ›</span></div></section>`];
+  const navC = `<nav><span class="lab">Ansicht</span>${ANSICHTEN.map(([t, n], i) => `<div class="${i ? '' : 'an'}"><span>${t}</span><span class="meta">${n}</span></div>`).join('')}
+    <span class="lab">Bereiche</span>${[['Privat', 3], ['Uni', 1], ['Büro', 1]].map(([t, n]) => `<div><span>${t}</span><span class="meta">${n}</span></div>`).join('')}</nav>`;
+  const C = () => [`<div class="mac flaeche"><div class="split">${navC}<div>
+    <div class="eingabe" style="border-bottom:1px solid var(--linie)"><input placeholder="Neues To-do …"><div class="optionen"><span class="an">${s('kalender')}Heute</span><span>${prio(2)}</span><span>Privat</span><span class="plus">${s('plus')}</span></div></div>
+    <div class="gruppe__kopf"><span class="lab">Heute</span><span class="meta">3</span></div>${TODOS.heute.map((z) => zeile(z)).join('')}
+    <div class="gruppe__kopf" style="border-top:1px solid var(--linie)"><span class="lab">Morgen</span><span class="meta">1</span></div>${TODOS.morgen.map((z) => zeile(z)).join('')}
+    <div class="fuss"><span class="lab">Erledigt</span><span class="meta">12 ›</span></div></div></div></div>`];
+
+  const VARIANTEN = [
+    ['v-a', 'A · Klar & ruhig', 'Rundungen 8–10 px, Haarlinien, eckige Haken. Oben ein Segment Heute · Morgen · Woche · Alle mit Zahlen. Eingabe und Optionen (Datum, Priorität als 3 Striche, Bereich) sind EIN Block, „+“ verschmilzt rechts. Gruppen als schlanke Flächen, Meta rechts (Bereich-Tag, Datum, Priorität).', A],
+    ['v-b', 'B · Glas-Liste', 'Etwas mehr Glas (14 px, weißer Lichtrand), runde Haken. Segment filtert nach Bereich. Alle Gruppen in EINER Fläche, nur durch Linien getrennt – wie eine edle Tabelle. Hohe Priorität = feiner Akzent-Strich links.', B],
+    ['v-c', 'C · Zwei Spalten (Mac)', 'Am Mac links eine Liste der Ansichten und Bereiche mit Zahlen, rechts Eingabe + Aufgaben. Am iPhone wie A. Am strengsten, wie eine Profi-App.', C],
+  ];
+  document.getElementById('m').innerHTML = VARIANTEN.map(([k, t, txt, f]) =>
+    `<section><h2>${t}</h2><p>${txt}</p><div class="reihe ${k}"><div class="${k === 'v-c' ? '' : 'tel'}">${f().join('')}</div></div></section>`).join('');
+</script>
+</body>
+</html>

@@ -486,3 +486,10 @@ Plan:
       Danach: System in tokens/components, Bento-Fugen zurück, alle Module umstellen.
 - [ ] 4. (ersetzt durch 5) Bento in den übrigen Modulen (Kalender, Routinen, Training, Physio, Visionen, Affirmationen, Quiz, Bücher, Insta, Einstellungen):
       je Modul Container `.bento`, lose Kästen zu Feldern, eine Hauptaktion im Fuß, Rest als Symbol, Text kürzen.
+
+## Phase 10 – Sleek & edel + To-dos-Makeover (22.11.2026)
+Lukas: weniger „bubbly“, edler; leichtes Glas bleibt, dazu strikte Linien und klare Auswahl (Segmente statt Kapseln). To-dos komplett neu, gut bedienbar.
+Plan:
+- [ ] 1. Muster `muster/sleek.html`: 3 Richtungen (Stil + To-dos), Lukas wählt.
+- [ ] 2. Stil global: kleinere Rundungen, Haarlinien, Segment-Umschalter, eckigere Haken/Knöpfe (tokens + components).
+- [ ] 3. To-dos neu: Ansichten-Segment, Eingabe mit Optionen (Datum, Priorität, Bereich) in einer Leiste, Liste mit Linien, Metadaten rechts, Erledigt einklappbar.
