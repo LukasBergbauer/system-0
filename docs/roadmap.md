@@ -490,6 +490,8 @@ Plan:
 ## Phase 10 – Sleek & edel + To-dos-Makeover (22.11.2026)
 Lukas: weniger „bubbly“, edler; leichtes Glas bleibt, dazu strikte Linien und klare Auswahl (Segmente statt Kapseln). To-dos komplett neu, gut bedienbar.
 Plan:
-- [ ] 1. Muster `muster/sleek.html`: 3 Richtungen (Stil + To-dos), Lukas wählt.
+- [x] 1. Muster `muster/sleek.html` (A/B/C): Lukas: „sieht aus wie Windows“, lieber wie bisher, nur Feinschliff, mehr Apple.
+- [ ] 1b. Muster `muster/apple.html`: To-dos wie bisher + iOS-Feinschliff (Segment, Gruppen-Titel über Karte, eingerückte Linien,
+      runde Haken, „!!“-Priorität, Erledigt als Zeile). Wahl Lukas offen.
 - [ ] 2. Stil global: kleinere Rundungen, Haarlinien, Segment-Umschalter, eckigere Haken/Knöpfe (tokens + components).
 - [ ] 3. To-dos neu: Ansichten-Segment, Eingabe mit Optionen (Datum, Priorität, Bereich) in einer Leiste, Liste mit Linien, Metadaten rechts, Erledigt einklappbar.
