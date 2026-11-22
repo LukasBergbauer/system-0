@@ -114,6 +114,13 @@ Listen-Gruppen in To-dos und Kalender (`.todo-gruppe`, `.termin-gruppe`) sind Gl
   iPhone-Titel `clamp(26px, 8.5vw, --fs-seite)`, bricht nie ab.
 - Karten (`.card`, `.kachel`, `.routine`, `.gew`, Gruppen, Ziel-Bereich, Quiz-Endlos) innen `--innen`, Abstände zwischen Blöcken `--luft` in allen Modulen.
 
+## Apple-Feinschliff (22.11.2026, Muster `muster/apple.html`)
+Design bleibt (Farbkopf, Glas, Akzent), aber ruhiger nach iOS-Art. Bisher in To-dos:
+- `ui/segment.js` (`segment.css`): graue Spur, weißer Daumen, wischbar bei vielen Teilen; `.textknopf` = Akzent-Text ohne Rahmen.
+- `.leiste` (`leiste.css`): Rundung 12 px, Optionen als kleine graue Symbole (`.leiste__option`, gewählt = Akzent getönt), „+“ als Akzent-Kreis.
+- Gruppen „inset grouped“: Titel klein in Großbuchstaben über der Karte (`.todo-gruppe__titel`), Karte 12 px, Zeilen 48 px,
+  Trennlinie eingerückt (0,5 px), runder Haken, hohe Priorität als „!!“ vor dem Titel.
+
 ## Kopfbilder und Sprüche (pausiert)
 - Fotos von Lukas (Bild-KI), je Bereich drei Varianten: `assets/bilder/<bereich>-1…3.webp` (1536 × 1024, je ca. 80–125 KB).
   Der Bereich gibt sie beim Anmelden als Liste an (`bild: [...]`); `src/app/kopfbilder.js` wählt täglich eine andere

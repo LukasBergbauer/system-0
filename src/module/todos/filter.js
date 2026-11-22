@@ -1,6 +1,7 @@
-// Bereichs-Filter oben: Chips „Alle · <Bereiche> · Ohne Bereich“ und ein Aktions-Chip „Bereiche bearbeiten“.
+// Bereichs-Filter oben: iOS-Segment „Alle · <Bereiche> · Ohne“ und rechts Textknopf „Bearbeiten“.
 // Der gewählte Filter wird nur auf diesem Gerät gemerkt (localStorage).
-import { chips } from '../../ui/chips.js';
+import { el } from '../../ui/dom.js';
+import { segment } from '../../ui/segment.js';
 import { oeffneBereicheVerwalten } from './bereiche-verwalten.js';
 
 const MERKER = 'system0-todos-filter';
@@ -40,15 +41,10 @@ export function filterLeiste({ bereiche, aktiv, onChange }) {
   const items = [
     { id: ALLE, label: 'Alle' },
     ...bereiche.map((b) => ({ id: b.id, label: b.name })),
-    { id: OHNE, label: 'Ohne Bereich' },
+    { id: OHNE, label: 'Ohne' },
   ];
-  return chips({
-    items,
-    active: aktiv,
-    onChange: (id) => {
-      merke(id);
-      onChange(id);
-    },
-    aktionen: [{ label: 'Bereiche bearbeiten', onClick: oeffneBereicheVerwalten }],
-  });
+  return el('div', { class: 'todo-filter' }, [
+    segment({ items, active: aktiv, onChange: (id) => { merke(id); onChange(id); } }),
+    el('button', { class: 'textknopf', text: 'Bearbeiten', attrs: { type: 'button', 'aria-label': 'Bereiche bearbeiten' }, on: { click: oeffneBereicheVerwalten } }),
+  ]);
 }

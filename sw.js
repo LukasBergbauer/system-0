@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v129';
+const VERSION = 'v130';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -137,6 +137,7 @@ const APP_FILES = [
   './src/module/buecher/seiten.js',
   './src/module/buecher/notizen.js',
   './src/ui/leiste.js',
+  './src/ui/segment.js',
   './src/ui/markdown.js',
   './src/module/insta/index.js',
   './src/module/insta/kennzahlen.js',
@@ -246,6 +247,7 @@ const APP_FILES = [
   './src/styles/routinen.css',
   './src/styles/gewohnheiten.css',
   './src/styles/leiste.css',
+  './src/styles/segment.css',
   './src/styles/wissen.css',
   './src/styles/buecher.css',
   './src/styles/insta.css',

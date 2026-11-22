@@ -1,5 +1,4 @@
-// Eine To-do-Zeile: Checkbox links, daneben Titel und darunter Datum/Bereich, rechts ein Punkt für die Priorität
-// (hoch = Elfenbein, mittel = grau, niedrig = kein Punkt).
+// Eine To-do-Zeile: runder Haken links, Titel (hohe Priorität mit „!!“ davor wie in Erinnerungen), darunter Datum/Bereich.
 // Checkbox = abhaken, Rest der Zeile antippen = Bearbeiten öffnen.
 import { el } from '../../ui/dom.js';
 import { listItem } from '../../ui/list.js';
@@ -11,9 +10,10 @@ const HAKEN_MS = 350;
 
 function unterzeile(todo, bereichName) {
   const teile = [];
-  if (todo.faellig_am) {
-    const warn = istUeberfaellig(todo);
-    teile.push(el('span', { class: warn ? 'todo-zeile__warn' : '', text: datumText(todo.faellig_am) }));
+  const datum = todo.faellig_am && datumText(todo.faellig_am);
+  // „Heute“/„Morgen“ steht schon als Gruppe darüber
+  if (datum && (todo.erledigt_am || !['Heute', 'Morgen'].includes(datum))) {
+    teile.push(el('span', { class: istUeberfaellig(todo) ? 'todo-zeile__warn' : '', text: datum }));
   }
   if (bereichName) teile.push(el('span', { text: bereichName }));
   if (!teile.length) return null;
@@ -34,13 +34,12 @@ export function todoZeile(todo, { bereichName, onToggle, onOpen }) {
     { class: 'list__inner list__inner--tap', attrs: { type: 'button' }, on: { click: () => onOpen(todo) } },
     [
       el('span', { class: 'list__text' }, [
-        el('span', { class: 'list__title', text: todo.titel }),
+        el('span', { class: 'list__title' }, [
+          !erledigt && todo.prio === 1 && el('span', { class: 'todo-prio', text: '!!', attrs: { 'aria-label': 'Priorität hoch' } }),
+          todo.titel,
+        ]),
         unterzeile(todo, bereichName),
       ]),
-      !erledigt && todo.prio !== 3 && el('span', {
-        class: `todo-prio todo-prio--${todo.prio === 1 ? 'hoch' : 'mittel'}`,
-        attrs: { title: todo.prio === 1 ? 'Priorität hoch' : 'Priorität mittel' },
-      }),
     ]
   );
 

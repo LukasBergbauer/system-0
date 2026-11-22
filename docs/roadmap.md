@@ -491,7 +491,11 @@ Plan:
 Lukas: weniger „bubbly“, edler; leichtes Glas bleibt, dazu strikte Linien und klare Auswahl (Segmente statt Kapseln). To-dos komplett neu, gut bedienbar.
 Plan:
 - [x] 1. Muster `muster/sleek.html` (A/B/C): Lukas: „sieht aus wie Windows“, lieber wie bisher, nur Feinschliff, mehr Apple.
-- [ ] 1b. Muster `muster/apple.html`: To-dos wie bisher + iOS-Feinschliff (Segment, Gruppen-Titel über Karte, eingerückte Linien,
-      runde Haken, „!!“-Priorität, Erledigt als Zeile). Wahl Lukas offen.
+- [x] 1b. Muster `muster/apple.html`: To-dos wie bisher + iOS-Feinschliff (Segment, Gruppen-Titel über Karte, eingerückte Linien,
+      runde Haken, „!!“-Priorität, Erledigt als Zeile). Lukas: ja, aber Zusatzknöpfe (Heute/Morgen/Priorität) besser einbauen.
+- [x] 2+3. (v130) To-dos umgebaut: `ui/segment.js` (iOS-Segment) für Bereiche + Textknopf „Bearbeiten“; Eingabe-Leiste mit
+      Kalender-Symbol (ohne → Heute → Morgen), „!“ (normal → !! → ↓) und Akzent-„+“ (`leiste.css`, gilt für alle Leisten);
+      Gruppen-Titel über der Karte, eingerückte Linien, „!!“ vor dem Titel, Erledigt/Ältere als Zeile. Lokal geprüft Mac + iPhone.
+- [ ] 4. Den Feinschliff (Segment statt Kapsel-Tabs, Gruppen-Titel über Karte) auf andere Seiten übertragen – nach Rückmeldung Lukas.
 - [ ] 2. Stil global: kleinere Rundungen, Haarlinien, Segment-Umschalter, eckigere Haken/Knöpfe (tokens + components).
 - [ ] 3. To-dos neu: Ansichten-Segment, Eingabe mit Optionen (Datum, Priorität, Bereich) in einer Leiste, Liste mit Linien, Metadaten rechts, Erledigt einklappbar.

@@ -85,3 +85,5 @@ Merke:
 - Abhaken wartet 350 ms, damit die Haken-Animation zu sehen ist, dann wandert die Zeile.
 - Bereich löschen setzt `bereich_id` aller seiner To-dos (auch erledigter) auf leer.
 - Erledigte älter als 30 Tage sind ausgeblendet, Knopf „Ältere zeigen (n)“ im aufgeklappten Erledigt-Abschnitt (nichts wird gelöscht).
+
+- [x] Apple-Feinschliff (22.11.2026, v130): Segment für Bereiche, Eingabe-Leiste mit Datum/Priorität als Symbole + „+“, Gruppen im iOS-Stil, „!!“ für hohe Priorität (mittel/niedrig ohne Zeichen), Erledigt als Zeile.

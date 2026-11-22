@@ -1,7 +1,6 @@
 // Ansicht „To-dos“: Bereichs-Filter oben, Schnelleingabe, Glas-Boxen „Heute“ + „Morgen“, dann Diese Woche · Später · Ohne Datum,
 // „Erledigt“ (eingeklappt) und ganz unten „Nicht erledigt“ (vergangene Tage, mit Datum).
 // Zeichnet sich neu, sobald sich To-dos oder Bereiche ändern (auch durch das andere Gerät).
-import { abschnitt } from '../../ui/abschnitt.js';
 import { el } from '../../ui/dom.js';
 import { list } from '../../ui/list.js';
 import { on } from '../../core/events.js';
@@ -18,8 +17,8 @@ import { erledigtAbschnitt } from './erledigt.js';
 
 function gruppe(titel, todos, zeile, leer) {
   return el('section', { class: 'todo-gruppe' }, [
-    abschnitt({ titel, zahl: todos.length, symbol: 'todos' }),
-    todos.length ? list(todos.map(zeile)) : el('p', { class: 'todo-leer', text: leer }),
+    el('div', { class: 'todo-gruppe__titel' }, [el('b', { text: titel }), el('span', { text: String(todos.length) })]),
+    el('div', { class: 'todo-karte' }, [todos.length ? list(todos.map(zeile)) : el('p', { class: 'todo-leer', text: leer })]),
   ]);
 }
 
