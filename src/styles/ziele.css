@@ -1,7 +1,7 @@
 /* Modul „Ziele“: Bereichs-Karten (Glas wie .routine), Ziel-Zeilen, Schritte im Modal. Nur Werte aus tokens.css. */
-.ziele { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); }
-.ziele__raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-4); width: 100%; }
-.ziel-bereich { display: flex; flex-direction: column; align-items: stretch; gap: var(--space-3); padding: var(--space-5); border-radius: var(--radius-gross);
+.ziele { display: flex; flex-direction: column; align-items: flex-start; gap: var(--luft); }
+.ziele__raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--luft); width: 100%; }
+.ziel-bereich { display: flex; flex-direction: column; align-items: stretch; gap: var(--space-3); padding: var(--innen); border-radius: var(--radius-gross);
   background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten);
   -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%); }
 .ziel-bereich > .btn { align-self: flex-start; }

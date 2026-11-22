@@ -133,7 +133,6 @@ export function eintragAnsicht({ eintrag, bilder = [], geloescht, oeffneBild }) 
     artFelder,
     notizen,
     el('div', { class: 'mm-eintrag__video-zeile' }, [video, oeffnen]),
-    el('p', { class: 'app__note', text: 'Änderungen werden automatisch gespeichert.' }),
     loeschen,
   ]);
   // Verlassen eines Felds speichert sofort (z. B. vor „‹ Zurück“)

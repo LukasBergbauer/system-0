@@ -1,7 +1,7 @@
 /* Modul „Bücher“: Cover-Raster, Vollbild (Leseansicht + Bearbeiten), Editor. Nur Werte aus tokens.css. */
-.buecher { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-5); }
+.buecher { display: flex; flex-direction: column; align-items: flex-start; gap: var(--luft); }
 .buecher__liste { width: 100%; }
-.buecher__raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: var(--space-5) var(--space-4); }
+.buecher__raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: var(--luft) var(--space-4); }
 .buch-kachel { display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-3); border-radius: var(--radius-gross); cursor: pointer;
   background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten);
   -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%);

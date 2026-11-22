@@ -7,6 +7,7 @@ import { tabs } from '../../ui/tabs.js';
 import { button } from '../../ui/button.js';
 import { checkbox } from '../../ui/checkbox.js';
 import { STATUS, ladeAlles, speichereZiel, neuerSchritt, hakeSchritt, loescheSchritt, loescheZiel } from './data.js';
+import { leiste } from '../../ui/leiste.js';
 
 const finde = async (id) => (await ladeAlles()).flatMap((b) => b.ziele).find((z) => z.id === id);
 
@@ -29,14 +30,14 @@ export async function oeffneZiel(id, { neu = false } = {}) {
   const status = tabs({ items: STATUS, active: ziel.status, onChange: (s) => setze({ status: s }) });
 
   const liste = el('div', { class: 'ziel-schritte' });
-  const neuFeld = el('input', { class: 'field__input', attrs: { type: 'text', placeholder: '+ Teilschritt, Enter', 'aria-label': 'Neuer Teilschritt', enterkeyhint: 'done' } });
-  neuFeld.addEventListener('keydown', async (e) => {
+  const neuFeld = el('input', { attrs: { type: 'text', placeholder: 'Teilschritt', 'aria-label': 'Neuer Teilschritt', enterkeyhint: 'done' } });
+  const neuLeiste = leiste(neuFeld, async () => {
     const text = neuFeld.value.trim();
-    if (e.key !== 'Enter' || !text) return;
+    if (!text) return;
     neuFeld.value = '';
     await neuerSchritt(id, text);
     zeigeSchritte();
-  });
+  }, 'Teilschritt anlegen');
 
   async function zeigeSchritte() {
     ziel = await finde(id);
@@ -54,7 +55,7 @@ export async function oeffneZiel(id, { neu = false } = {}) {
       el('div', { class: 'field' }, [el('label', { class: 'field__label', text: 'Warum', attrs: { for: 'ziel-warum' } }), warum]),
       datumFeld,
       el('div', { class: 'field', attrs: { role: 'group', 'aria-label': 'Status' } }, [el('span', { class: 'field__label', text: 'Status' }), status]),
-      el('div', { class: 'field' }, [el('span', { class: 'field__label', text: 'Teilschritte' }), liste, neuFeld]),
+      el('div', { class: 'field' }, [el('span', { class: 'field__label', text: 'Teilschritte' }), liste, neuLeiste]),
     ],
     actions: [
       button({ text: 'Löschen', variant: 'ghost', onClick: loeschen }),

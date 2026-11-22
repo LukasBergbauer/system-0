@@ -32,7 +32,7 @@ export function zieleAnsicht({ signal }) {
         button({ text: '+ Bereich', variant: 'ghost', onClick: () => oeffneBereich() }),
       ]
       : [
-        el('p', { class: 'app__note', text: 'Noch keine Bereiche. Ein Bereich, z. B. Gesundheit oder Beruf, beschreibt, wie es sein soll, und sammelt Schritte dorthin.' }),
+        el('p', { class: 'app__note', text: 'Noch keine Bereiche, z. B. Gesundheit oder Beruf.' }),
         button({ text: '+ Ersten Bereich anlegen', variant: 'primary', onClick: () => oeffneBereich() }),
       ]));
   }

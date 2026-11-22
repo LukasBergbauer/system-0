@@ -6,7 +6,7 @@ import { tag } from './post.js';
 
 export async function erkenntnisse(posts, oeffne) {
   const liste = await ladeErkenntnisse();
-  if (!liste.length) return el('p', { class: 'app__note', text: 'Noch keine Erkenntnisse. Über „Claude“ exportieren, mit deinem Agenten auswerten und die Antwort importieren.' });
+  if (!liste.length) return el('p', { class: 'app__note', text: 'Noch keine Erkenntnisse.' });
   return el('div', { class: 'insta-erk' }, liste.map((e) => {
     const belege = (e.belege || '').split(',').map((s) => s.trim()).filter(Boolean)
       .map((s) => posts.find((p) => p.schluessel === s) || { titel: s });

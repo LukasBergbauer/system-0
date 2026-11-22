@@ -29,7 +29,7 @@ function uebungenListe({ daten, oeffne }) {
     const u = await waehleUebung(daten);
     if (u) oeffne('uebung', u.id);
   } });
-  if (!alle.length) return [el('p', { class: 'app__note', text: 'Noch keine Übungen. Sie entstehen beim Eintragen oder hier.' }), neu];
+  if (!alle.length) return [el('p', { class: 'app__note', text: 'Noch keine Übungen.' }), neu];
   return [list(alle.map((u) => listRow({
     title: u.name,
     sub: zuletztText(u.id, daten.einheiten) || 'noch nie gemacht',

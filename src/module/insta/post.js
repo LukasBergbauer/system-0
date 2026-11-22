@@ -62,7 +62,7 @@ export async function oeffnePost(id, { neu = false } = {}) {
       abschnitt('Caption', posting && el('div', { class: 'insta-caption' }, [el('p', { text: posting }), kopieren])),
       abschnitt('Zahlen', zahlenRaster(post.zahlen)),
       abschnitt('Notiz', post.notiz && el('p', { text: post.notiz })),
-      leer && el('p', { class: 'app__note', text: 'Noch kein Skript. Mit Claude planen und über „Claude“ importieren oder selbst schreiben.' }),
+      leer && el('p', { class: 'app__note', text: 'Noch kein Skript.' }),
     ], [button({ text: 'Bearbeiten', variant: 'primary', onClick: bearbeiten })]);
   }
 

@@ -1,5 +1,5 @@
 /* Modul „Training“: Liste, Einheit mit Sätzen, Übung mit Verlauf. Nur Werte aus tokens.css. */
-.training__seite { display: flex; flex-direction: column; align-items: stretch; gap: var(--space-4); max-width: 720px; }
+.training__seite { display: flex; flex-direction: column; align-items: stretch; gap: var(--luft); max-width: 720px; }
 .training__seite > .btn { align-self: flex-start; }
 .training__liste { padding-top: var(--space-2); padding-bottom: var(--space-2); }
 .training__kopf { display: flex; flex-direction: column; gap: var(--space-3); }
@@ -8,7 +8,7 @@
 .training__zeile .field__input { width: 100%; min-width: 0; }
 .training__titel { margin: 0; font-size: var(--fs-title); font-weight: 600; }
 .training__notiz { resize: vertical; min-height: 72px; width: 100%; }
-.training__uebungen { display: flex; flex-direction: column; gap: var(--space-4); }
+.training__uebungen { display: flex; flex-direction: column; gap: var(--luft); }
 .training__uebungen:empty { display: none; }
 
 .training__block { display: flex; flex-direction: column; gap: var(--space-2); }

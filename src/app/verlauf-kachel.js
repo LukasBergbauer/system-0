@@ -11,7 +11,6 @@ export function verlaufKachel() {
   return kachel({
     symbol: 'verlauf',
     titel: 'Verlauf',
-    text: 'Wie System 0 entstanden ist',
     gross: true,
     children: el('details', { class: 'verlauf' }, [el('summary', { class: 'verlauf__auf' }), ...inhalt]),
   });

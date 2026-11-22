@@ -58,8 +58,8 @@ export function quizAnsicht({ signal }) {
         el('span', { class: 'label', text: heute ? 'Heute geschafft' : 'Jeden Tag neu' }),
         el('h2', { class: 'quiz-daily__titel', text: 'Daily-Quiz' }),
         el('p', { class: 'quiz-daily__text', text: heute
-          ? `${heute.richtig} von ${heute.gesamt} richtig. Morgen warten ${DAILY_ANZAHL} neue Fragen auf dich.`
-          : `${DAILY_ANZAHL} neue Fragen, jede aus einem anderen Thema – jeden Tag andere. Nach jeder Antwort gibt es eine kurze Erklärung. Dauert etwa zwei Minuten und hält deine Serie am Laufen.` }),
+          ? `${heute.richtig} von ${heute.gesamt} richtig`
+          : `${DAILY_ANZAHL} Fragen aus verschiedenen Themen · 2 Min.` }),
         heute ? raster(heute.antworten) : button({ text: 'Daily starten', variant: 'primary', onClick: daily }),
         el('p', { class: 'routine__serie', text: n ? `Serie: ${tageText(n)}` : 'Noch keine Serie – heute anfangen' }),
       ]),

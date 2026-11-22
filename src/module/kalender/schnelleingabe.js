@@ -1,7 +1,7 @@
 // Schnelleingabe oben: z. B. „Mo 18 Uhr Training“. Darunter zeigt eine Zeile, was erkannt wurde.
 // Enter legt den Termin an, das Feld bleibt im Fokus für den nächsten.
 import { el } from '../../ui/dom.js';
-import { input } from '../../ui/input.js';
+import { leiste } from '../../ui/leiste.js';
 import { speichereTermin } from './daten.js';
 import { erkenne } from './erkennen.js';
 import { tagText, zeitHM, letzterTag } from './zeit.js';
@@ -16,11 +16,9 @@ function vorschauText(r) {
   return r.titel ? `${wann} · ${r.titel}` : `${wann} · Titel fehlt`;
 }
 
-export function schnelleingabe() {
-  const feld = input({ placeholder: 'z. B. Mo 18 Uhr Training' });
-  const eingabe = feld.querySelector('input');
-  eingabe.setAttribute('aria-label', 'Neuer Termin');
-  eingabe.setAttribute('enterkeyhint', 'enter');
+// leer(): „+“ bei leerem Feld = ausführliches Termin-Fenster (eine Hauptaktion statt zwei Knöpfe).
+export function schnelleingabe({ leer } = {}) {
+  const eingabe = el('input', { attrs: { placeholder: 'z. B. Mo 18 Uhr Training', 'aria-label': 'Neuer Termin', enterkeyhint: 'enter' } });
   const vorschau = el('p', { class: 'termin-vorschau', attrs: { 'aria-live': 'polite' } });
 
   eingabe.addEventListener('input', () => {
@@ -28,9 +26,8 @@ export function schnelleingabe() {
     vorschau.textContent = text ? vorschauText(erkenne(text)) : '';
   });
 
-  eingabe.addEventListener('keydown', async (e) => {
-    if (e.key !== 'Enter' || e.isComposing) return;
-    e.preventDefault();
+  async function senden() {
+    if (!eingabe.value.trim()) return leer?.();
     const r = erkenne(eingabe.value.trim());
     if (!r.titel) return;
     eingabe.value = '';
@@ -43,7 +40,7 @@ export function schnelleingabe() {
       ort: '',
       notiz: '',
     });
-  });
+  }
 
-  return el('div', { class: 'termin-schnell' }, [feld, vorschau]);
+  return el('div', { class: 'termin-schnell' }, [leiste(eingabe, senden, 'Termin anlegen'), vorschau]);
 }

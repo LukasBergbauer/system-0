@@ -1,6 +1,6 @@
 /* Modul „Insta-Organizer“: Planer, Monat, Post-Vollbild, Hashtag-Sets, Erkenntnisse. Nur Werte aus tokens.css. */
-.insta { display: flex; flex-direction: column; gap: var(--space-4); }
-.insta__inhalt { display: flex; flex-direction: column; gap: var(--space-4); }
+.insta { display: flex; flex-direction: column; gap: var(--luft); }
+.insta__inhalt { display: flex; flex-direction: column; gap: var(--luft); }
 .insta-knoepfe { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .insta-gruppe { display: flex; flex-direction: column; gap: var(--space-2); }
 

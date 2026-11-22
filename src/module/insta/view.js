@@ -1,5 +1,6 @@
-// Ansicht „Insta“: Ideen-Feld, Knöpfe (Claude, Hashtag-Sets, + Post), Umschalter Planer · Monat · Erkenntnisse.
+// Ansicht „Insta“: Ideen-Leiste mit „+“, dezente Knöpfe Claude · Hashtag-Sets, Umschalter Planer · Monat · Erkenntnisse.
 // Zusatz '#/insta/<id>' (Suche, Heute) öffnet diesen Post.
+import { leiste } from '../../ui/leiste.js';
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
 import { tabs } from '../../ui/tabs.js';
@@ -32,7 +33,7 @@ function zeile(p) {
 }
 
 function planer(posts) {
-  if (!posts.length) return el('p', { class: 'app__note', text: 'Noch keine Posts. Idee oben eintippen oder Skripte über „Claude“ importieren.' });
+  if (!posts.length) return el('p', { class: 'app__note', text: 'Noch keine Posts.' });
   return STATUS.map((s) => {
     // Datum zuerst, sonst nach Überschrift (Video 01, 02 … in richtiger Reihenfolge)
     let reihe = posts.filter((p) => p.status === s.id).sort((a, b) => (a.datum || '9999').localeCompare(b.datum || '9999')
@@ -59,12 +60,12 @@ export function instaAnsicht({ signal }) {
     inhalt.replaceChildren(...[teil].flat());
   }
 
-  const idee = el('input', { class: 'field__input', attrs: { placeholder: 'Neue Idee … (Enter)', 'aria-label': 'Neue Idee', enterkeyhint: 'done' } });
-  idee.addEventListener('keydown', async (e) => {
-    if (e.key !== 'Enter' || !idee.value.trim()) return;
+  const idee = el('input', { attrs: { placeholder: 'Neue Idee …', 'aria-label': 'Neue Idee', enterkeyhint: 'done' } });
+  const ideeLeiste = leiste(idee, async () => {
+    if (!idee.value.trim()) return;
     await neuerPost({ titel: idee.value.trim() });
     idee.value = '';
-  });
+  }, 'Idee anlegen');
 
   const zusatz = zusatzNehmen();
   if (zusatz) ladePost(zusatz).then((p) => p && oeffnePost(p.id));
@@ -72,11 +73,10 @@ export function instaAnsicht({ signal }) {
   on('daten', ({ table }) => [POSTS, SETS, ERKENNTNISSE].includes(table) && zeichne(), { signal });
   zeichne();
   return el('div', { class: 'insta' }, [
-    idee,
+    ideeLeiste,
     el('div', { class: 'insta-knoepfe' }, [
-      button({ text: 'Claude', onClick: oeffneClaude }),
+      button({ text: 'Claude', variant: 'ghost', onClick: oeffneClaude }),
       button({ text: 'Hashtag-Sets', variant: 'ghost', onClick: () => oeffneSets() }),
-      button({ text: '+ Post', variant: 'ghost', onClick: async () => oeffnePost((await neuerPost()).id, { neu: true }) }),
     ]),
     umschalter, inhalt,
   ]);

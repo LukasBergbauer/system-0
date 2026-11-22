@@ -42,7 +42,6 @@ export function akzentKachel() {
   return kachel({
     symbol: 'farbe',
     titel: 'Akzentfarbe',
-    text: 'Eine Farbe für die ganze App, dazu ein leiser Unterton',
     gross: true,
     children: el('div', { class: 'farbkreise' }, [
       ...kreise,

@@ -6,7 +6,6 @@
 import { abschnitt } from '../../ui/abschnitt.js';
 import { el } from '../../ui/dom.js';
 import { list, listRow } from '../../ui/list.js';
-import { button } from '../../ui/button.js';
 import { on } from '../../core/events.js';
 import { zusatzNehmen } from '../../core/router.js';
 import { TERMINE, ladeTermine, faelligeTodos } from './daten.js';
@@ -142,10 +141,7 @@ export function kalenderAnsicht({ signal }) {
 
   return el('div', { class: 'app__stack' }, [
     umschalter,
-    el('div', { class: 'termin-kopf' }, [
-      schnelleingabe(),
-      button({ text: '+ Termin', variant: 'primary', onClick: () => oeffneTermin() }),
-    ]),
+    schnelleingabe({ leer: () => oeffneTermin() }),
     inhalt,
   ]);
 }

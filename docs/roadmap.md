@@ -475,7 +475,9 @@ Plan:
 - [x] 3. (v126) Farbkopf auf allen Seiten (`kopfbild.css`), Bento (`bento.css`) in To-dos + Gewohnheiten (`design.md`). Lokal geprüft Mac + iPhone.
 - [x] 6. (v127) Lukas: „eher A, aber nicht alles zusammengefasst“. Bento raus, Karten/Abschnitte wie davor, Tokens `--luft`/`--innen`/`--leiste`,
       `.leiste` mit eingebautem Knopf (To-dos). Lokal geprüft Mac + iPhone.
-- [ ] 7. System A in allen übrigen Modulen: Abstände über `--luft`/`--innen`, Eingaben als `.leiste`, Nebenknöpfe als Symbol, Zusatztexte weg.
+- [x] 7. (v128) System A in allen Modulen: `--luft`/`--innen` überall, `ui/leiste.js` (Kalender, Insta, Visionen), doppelte Hauptknöpfe
+      weg („+ Termin“, „+ Post“), Erklärtexte gekürzt (Quiz, Einstellungen, leere Hinweise). Lokal geprüft Mac + iPhone.
+      Offen bei Lukas: auf Geräten ansehen. Danach evtl. Physio-Overlay (Glas-Flächen) im gleichen System.
 - [x] 5. Lukas: Bento zu gedrückt. Wunsch: ein System (gleiche Abstände, Schriftrollen, Rundungen), Knöpfe verschmelzen mit Leisten,
       Zusatztexte weg. Muster `muster/system.html` (A Ruhig & luftig · B Kapseln · C Flach mit Fuß-Aktion), Wahl offen.
       Danach: System in tokens/components, Bento-Fugen zurück, alle Module umstellen.

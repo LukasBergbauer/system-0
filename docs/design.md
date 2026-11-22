@@ -107,9 +107,10 @@ Listen-Gruppen in To-dos und Kalender (`.todo-gruppe`, `.termin-gruppe`) sind Gl
 - Bento (Felder lückenlos verbunden) verworfen: zu gedrückt. Karten und Abschnitts-Kästen bleiben einzeln.
 - **Ein System:** `--luft` 24 px zwischen Feldern (`.app`, `.app__stack`, Listen), `--innen` 24 px Innenabstand der Karten,
   `--leiste` 48 px Höhe für Eingaben/Umschalter, Rundung `--radius`. Schriftrollen: Titel / Label / Text / Nebentext (`--fs-*`).
-- **Knöpfe verschmelzen:** `.leiste` (`leiste.css`) = Eingabe mit eingebautem dunklem Hauptknopf (`.leiste__knopf`).
-  Nebenaktionen nur als Symbol. Zusatztexte weg.
-- Umgestellt: To-dos (Schnelleingabe), Gewohnheiten. Übrige Module folgen.
+- **Knöpfe verschmelzen:** `ui/leiste.js` `leiste(input, onSenden)` (Stil `leiste.css`) = Eingabe mit eingebautem dunklem „+“.
+  Genutzt: To-dos, Kalender (leeres „+“ = Termin-Fenster, ersetzt „+ Termin“), Insta-Idee (ersetzt „+ Post“), Visionen-Teilschritt.
+  Nebenaktionen dezent (ghost) oder als Symbol. Leere Hinweise nur ein kurzer Satz, Erklärtexte weg.
+- Karten (`.card`, `.kachel`, `.routine`, `.gew`, Gruppen, Ziel-Bereich, Quiz-Endlos) innen `--innen`, Abstände zwischen Blöcken `--luft` in allen Modulen.
 
 ## Kopfbilder und Sprüche (pausiert)
 - Fotos von Lukas (Bild-KI), je Bereich drei Varianten: `assets/bilder/<bereich>-1…3.webp` (1536 × 1024, je ca. 80–125 KB).

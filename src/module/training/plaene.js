@@ -12,7 +12,7 @@ export const namenText = (pe, uebungen) => pe.uebungen.map((z) => uebungen.get(z
 
 export function plaeneListe({ daten, oeffne }) {
   const neu = button({ text: '+ Plan', variant: 'ghost', onClick: async () => oeffne('plan', (await neuerPlan()).id) });
-  if (!daten.plaene.length) return [el('p', { class: 'app__note', text: 'Noch kein Plan. Ein Plan wiederholt sich jede Woche.' }), neu];
+  if (!daten.plaene.length) return [el('p', { class: 'app__note', text: 'Noch kein Wochenplan.' }), neu];
   return [list(daten.plaene.map((p) => {
     const pes = daten.planEinheiten.filter((pe) => pe.plan_id === p.id);
     const tage = [...new Set(pes.map((pe) => TAGE[pe.wochentag - 1].slice(0, 2)))].join(' ');

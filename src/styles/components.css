@@ -12,7 +12,7 @@
   backdrop-filter: blur(var(--blur)) saturate(160%);
 }
 .card {
-  padding: var(--space-5);
+  padding: var(--innen);
 }
 .card__title {
   font-size: var(--fs-title);
