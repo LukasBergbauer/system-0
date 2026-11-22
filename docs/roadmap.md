@@ -500,5 +500,20 @@ Plan:
       Bleibt: Segment für Bereiche, Eingabe-Zeile mit Kapseln „Heute“ · „Morgen“ · „!“ (Priorität) + „+“.
 - [x] 3c. (v132) Kapseln klein (28 px) mit Symbolen: Sonne = Heute, Sonnenaufgang = Morgen, Fahne = Priorität (hoch = Akzent, niedrig = Pfeil).
       Gruppen Heute · Morgen · Diese Woche hervorgehoben (eigenes Symbol, Akzent-Kopf, Zahl als Pille).
-- [ ] 2. Stil global: kleinere Rundungen, Haarlinien, Segment-Umschalter, eckigere Haken/Knöpfe (tokens + components).
-- [ ] 3. To-dos neu: Ansichten-Segment, Eingabe mit Optionen (Datum, Priorität, Bereich) in einer Leiste, Liste mit Linien, Metadaten rechts, Erledigt einklappbar.
+- [–] 2./3. (ursprünglicher Plan) ersetzt durch 1b–3c: Lukas will kein Komplett-Redesign, nur Apple-Feinschliff.
+**Stand 22.11.2026:** Phase 9/10 fertig (v132). Gewohnheiten-Raster, Farbkopf, System A, To-dos-Feinschliff. Offen: auf Geräten prüfen.
+
+## Phase 11 – Neue Vision: Prioritätspyramide (ab 22.11.2026)
+Idee Lukas: Das System richtet sich nach **Tages-Prioritäten** aus. Neues Modul „Pyramide“ + Funktions-Redesign je Bereich.
+Doku: `docs/module/pyramide.md`.
+Plan:
+- [ ] 1. Mit Lukas klären (kurz): Ebenen (Vorschlag 1-3-5: 1 große, 3 mittlere, 5 kleine Aufgaben), wann geplant wird
+      (abends für morgen / morgens), was mit Unerledigtem passiert, ob Termine/Routinen/Gewohnheiten mitzählen.
+- [ ] 2. Muster `muster/pyramide.html` (2–3 Varianten, Mac + iPhone), Lukas wählt.
+- [ ] 3. Datenmodell: Tabelle `prioritaeten` (tag, ebene, reihenfolge, text, todo_id optional, erledigt_am) mit RLS;
+      Migration als SQL-Codeblock in den Chat. Local-first über `core/store.js`.
+- [ ] 4. Modul `src/module/pyramide/` + Symbol + Nav-Eintrag; To-dos per Antippen in eine Ebene ziehen.
+- [ ] 5. Heute: Pyramide als Hauptkarte oben (ersetzt/ergänzt Hero).
+- [ ] 6. Funktions-Redesign je Bereich, jeweils erst kurz mit Lukas klären, dann bauen, ein Commit je Bereich.
+      Leitfrage: Wie zahlt der Bereich auf die Tages-Prioritäten ein, was ist überflüssig?
+      Reihenfolge: To-dos → Kalender → Routinen → Gewohnheiten → Training → Visionen/Affirmationen → Quiz → Bücher → Insta → Physio → Einstellungen.
