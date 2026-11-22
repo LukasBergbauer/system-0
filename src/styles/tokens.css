@@ -11,6 +11,8 @@
   --accent-2: #7A5CFF;
   --warn: #D9364F;
   --gut: #3E9B6E;
+  /* Gewohnheiten: eigene Farbe je Gewohnheit (Wunsch Lukas, 22.11.2026), gedämpft passend zum Glas */
+  --gew-1: #4F86D9; --gew-2: #4FA27A; --gew-3: #8B72D6; --gew-4: #C99A45; --gew-5: #3A9FA6; --gew-6: #D46A8C;
 
   --bg: color-mix(in oklch, var(--accent) 16%, #FBF4EF); /* Grundton hinter den Farbwolken */
   --text: #2B1E19; /* warmes Fast-Schwarz */

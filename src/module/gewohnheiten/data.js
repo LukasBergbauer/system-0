@@ -51,14 +51,25 @@ export async function setzeWert(g, wert) {
   return save(LOGS, { ...(alt ? { id: alt.id } : {}), gewohnheit_id: g.id, tag: tagISO(), wert: Math.max(0, wert) });
 }
 
-// Diese Woche Mo–So: [{ tag, fertig, zukunft }]
-export function wocheTage(g) {
-  const h = new Date();
-  const mo = h.getDate() - ((h.getDay() + 6) % 7);
-  return Array.from({ length: 7 }, (_, i) => {
-    const tag = tagISO(new Date(h.getFullYear(), h.getMonth(), mo + i));
-    return { tag, fertig: geschafft(g, tag), zukunft: tag > tagISO(h) };
-  });
+// Raster-Stufe 0–4 je Tag: Abhaken = voll; Anzahl/Zeit nach Anteil am Ziel.
+export function stufeAuf(g, tag) {
+  const w = wertAm(g, tag);
+  if (!w) return 0;
+  if (g.messart === 'haken') return 4;
+  const q = w / g.ziel;
+  return q >= 1.5 ? 4 : q >= 1 ? 3 : q >= 0.5 ? 2 : 1;
+}
+
+// Summe unter dem Namen: Tage (Abhaken), Stunden (Zeit) oder Gesamtzahl (Anzahl).
+export function summe(g) {
+  const tage = new Map();
+  for (const l of g.logs) tage.set(l.tag, Math.max(tage.get(l.tag) || 0, l.wert));
+  const werte = [...tage.values()].filter(Boolean);
+  if (g.messart === 'haken') return `${werte.length} ${werte.length === 1 ? 'Tag' : 'Tage'}`;
+  const n = werte.reduce((a, b) => a + b, 0);
+  if (g.messart === 'anzahl') return `${n} gesamt`;
+  const h = Math.floor(n / 60);
+  return h ? `${h} h${n % 60 ? ` ${n % 60} min` : ''}` : `${n} min`;
 }
 
 // Tage in Folge geschafft (bis heute, oder bis gestern, wenn heute noch offen ist).
@@ -81,6 +92,9 @@ export function besteSerie(g) {
   const punkte = [g.seit, ...g.rueckfaelle.map((r) => r.tag).filter((t) => t >= g.seit), tagISO()];
   return Math.max(0, ...punkte.slice(1).map((t, i) => tageZwischen(punkte[i], t)));
 }
+
+// Raster: Tage ohne Rückfall seit Beginn = voll, Rückfall-Tag leer.
+export const stufeAb = (g, tag) => (tag >= g.seit && !g.rueckfaelle.some((r) => r.tag === tag) ? 4 : 0);
 
 // Häufigste Auslöser: [[name, anzahl], …] absteigend.
 export function ausloeserZaehlen(g) {

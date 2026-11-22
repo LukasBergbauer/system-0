@@ -464,3 +464,10 @@ Stand 10.11.2026: Phase 8 fertig (v118), lokal geprüft (Mac + iPhone 375 px): K
 - [x] 5. Physio „Datenbank“ (v120): Lernzettel-Vault unter dem Kosmos statt SQL-Import. Claude legt aus Datei + Prompt `lernzettel/physio/<thema>.md` + `index.json` an (`module/physio.md`).
 - [x] 6. Alte SQL-Fassung von „Lernzettel → Physio“ wird beim Öffnen der Prompts automatisch durch die neue ersetzt (v121).
 
+
+## Phase 9 – Gewohnheiten-Raster + Overlay-Design (22.11.2026)
+Plan:
+- [x] 1. (v125) Gewohnheiten wie „FocusHero“: je Gewohnheit Glas-Karte (Symbol, Name, Summe), Pillen „Heute“ + Serie (Flamme),
+      Jahres-Raster (Wochen-Spalten Jan–Dez, Mo/Mi/Fr), Stufen aus Akzent/Unterton, heute mit Rand, iPhone wischbar ab heute.
+      Daten reichen → keine Migration. Lukas: bunt je Gewohnheit (`--gew-1…6`). Lokal geprüft Mac 1300 px + iPhone 375 px.
+- [ ] 2. Overlay-Design: erst klären, welches; Muster `muster/overlay.html`; dann umsetzen (Ort klar, eine Hauptaktion, weniger Text).

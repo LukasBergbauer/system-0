@@ -25,3 +25,7 @@
       (schreibt beim Antippen über `core/store.js`). Ein Tipp = +1 bzw. +5 Min. „Ohne seit“ im Bearbeiten (Abbauen). `sw.js` `v58`.
       Lokal mit Testdaten im Speicher geprüft (Mac + iPhone-Breite). 
 - [x] Migration 013 ausgeführt, auf Geräten geprüft (09.11.2026)
+- [x] Jahres-Raster wie „FocusHero“ (22.11.2026, v125): `karte.js` (eine Karte für Auf/Ab: Symbol, Name, Summe, Pille „Heute“
+      bzw. „Rückfall“, Serie mit Flamme), `raster.js` (Wochen-Spalten Jan–Dez, Stufen 0–4, heute mit Rand, iPhone wischbar ab heute).
+      Farbe je Gewohnheit (Wunsch Lukas) nach Reihenfolge aus `--gew-1…6` (tokens.css). Heute: Abhaken an/aus, Anzahl/Zeit +1 Schritt,
+      lang drücken/Rechtsklick = Schritt zurück. Abbauen: Tage ohne Rückfall seit Beginn gefüllt. Keine Migration.

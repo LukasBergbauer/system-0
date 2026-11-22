@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v124';
+const VERSION = 'v125';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -121,8 +121,8 @@ const APP_FILES = [
   './src/module/gewohnheiten/kennzahlen.js',
   './src/module/gewohnheiten/data.js',
   './src/module/gewohnheiten/view.js',
-  './src/module/gewohnheiten/karte-auf.js',
-  './src/module/gewohnheiten/karte-ab.js',
+  './src/module/gewohnheiten/karte.js',
+  './src/module/gewohnheiten/raster.js',
   './src/module/gewohnheiten/bearbeiten.js',
   './src/module/gewohnheiten/rueckfall.js',
   './src/module/buecher/index.js',
