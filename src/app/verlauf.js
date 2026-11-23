@@ -18,7 +18,7 @@ export const VERLAUF = [
     punkte: [
       'index.html, manifest.webmanifest, sw.js (Service Worker mit Versionsnummer) und Icons → App ist installierbar (PWA)',
       'Icons mit Mac-Bordmitteln aus einer SVG in 180/192/512 px erzeugt',
-      'Lokal testen im Terminal: cd ~/Documents/GitHub/system-0 und python3 -m http.server 8000, dann http://127.0.0.1:8000',
+      'Lokal testen im Terminal: cd ~/Projekte/system-0 und python3 -m http.server 8000, dann http://127.0.0.1:8000',
       'iPhone: Seite in Safari öffnen → Teilen → „Zum Home-Bildschirm“; Mac: Safari → Ablage → „Zum Dock hinzufügen“',
       'Ab hier jede Aufgabe gleich: Claude baut und committet, Lukas lädt mit git push hoch, Pages veröffentlicht nach ca. 1 Min.',
     ],

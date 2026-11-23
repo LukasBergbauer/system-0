@@ -9,7 +9,7 @@
 
 ## Hinweis
 Die App selbst hat keine Verbindung zu Instagram (keine Geheimnisse im Code). Automatisches Posten ist gewünscht und
-kommt später aus Lukas' **Insta-Agent** (`~/Documents/Insta Agent`, lokal auf dem Mac, Token im Schlüsselbund).
+kommt später aus Lukas' **Insta-Agent** (`~/Projekte/insta-agent`, lokal auf dem Mac, Token im Schlüsselbund).
 
 ## Verbindung zum Insta-Agent (entschieden 11.11.2026)
 System 0 ersetzt die geplante eigene Mac-App des Insta-Agents. Austausch nur per JSON (Format siehe `claude.js`):
