@@ -61,6 +61,8 @@ Als Glas-Dashboard gebaut (Plan unten, Schritte a–e alle fertig, 09.11.2026).
 - [x] Design-Runde (Teil d): Kopf mit Stein-Kugel (`bild: 'assets/bilder/heute.svg'`), Datum über dem Titel
       (`ueber`, z. B. „MITTWOCH, 4. NOVEMBER“) und Spruch des Tages. Den Kopf baut `src/app/shell.js` für jeden Bereich.
 
+Phase 11 (23.11.2026): neue Feld-Art `pyramide` (Standard 2×3, ganz oben vor dem Hero); bestehende Layouts bekommen sie einmalig oben eingefügt (Einstellung `heute_pyramide_neu`), danach entfernbar. `sw.js` `v134`.
+
 ## Plan: Heute als Glas-Dashboard (abgestimmt mit Lukas, 08.11.2026)
 Layout **genau wie** `muster/glas.html` (Bild von Lukas: `docs/vorlagen/dashboard-glas.png`), aber mit echten Daten.
 Liest nur über `core/` bzw. `getAll()` die Tabellen `todos`, `termine`, `todo_bereiche`, `physio_eintraege`, `physio_links`

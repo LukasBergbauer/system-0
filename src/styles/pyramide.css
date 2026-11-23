@@ -12,3 +12,8 @@
   box-shadow: 0 6px 16px -10px color-mix(in oklch, var(--accent) 60%, black); }
 .pyr-stufe:first-child { color: var(--text); }
 .pyr-text { resize: vertical; min-height: 120px; }
+
+/* Heute-Feld */
+.heute-pyr { display: flex; flex-direction: column; gap: var(--space-3); text-align: left; font: inherit; color: inherit; cursor: pointer; }
+.heute-pyr .pyr-stufen { flex: 1; justify-content: flex-end; }
+.heute-pyr .pyr-stufe { font-size: var(--fs-label); }

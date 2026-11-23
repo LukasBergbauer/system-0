@@ -13,6 +13,7 @@ import { affirmationKarte } from './affirmation.js';
 import { gewohnheitenLeiste, gewohnheitStand } from './gewohnheiten-leiste.js';
 import { quizKarte } from './quiz-karte.js';
 import { absatzKarte, absaetze } from './absatz.js';
+import { pyramideKarte } from './pyramide-karte.js';
 import { instaLeiste } from './insta-leiste.js';
 import { einzelGewohnheit, einzelRoutine, einzelZiel, todoListe } from './einzeln.js';
 import { tagISO } from './rechnen.js';
@@ -21,6 +22,8 @@ import { go } from '../../core/router.js';
 const ring = (fertig, n, text, ziel) => (n ? { wert: `${fertig}/${n}`, anteil: fertig / n, text, klick: () => go(ziel) } : null);
 
 export const ARTEN = {
+  pyramide: { titel: 'Pyramide', bereich: 'pyramide', symbol: 'pyramide', std: [2, 3],
+    gross: ({ d }) => pyramideKarte(d.pyramiden) },
   woche: { titel: 'Woche', bereich: 'heute', symbol: 'heute', std: [3, 2], ab: [2, 2],
     gross: ({ z, animiert }) => hero(z.woche, animiert),
     klein: ({ z }) => ({ wert: z.woche.quote === null ? '–' : Math.round(z.woche.quote * 100), nach: z.woche.quote === null ? '' : ' %',
@@ -76,7 +79,7 @@ export const ARTEN = {
 export function auswahl(d) {
   const art = (typ, w, h, titel, ref) => ({ typ, ref, w: w ?? ARTEN[typ].std[0], h: h ?? ARTEN[typ].std[1], titel: titel || ARTEN[typ].titel });
   return [
-    { titel: 'Übersicht', eintraege: ['woche', 'kalender', 'todos', 'termine', 'serie', 'verlauf', 'donut'].map((t) => art(t)) },
+    { titel: 'Übersicht', eintraege: ['pyramide', 'woche', 'kalender', 'todos', 'termine', 'serie', 'verlauf', 'donut'].map((t) => art(t)) },
     { titel: 'Bereiche', eintraege: ['routinen', 'gewohnheiten', 'training', 'ziele', 'insta', 'affirmation', 'quiz', 'absatz'].map((t) => art(t)) },
     { titel: 'Ringe', eintraege: [art('woche', 1, 1, 'To-dos der Woche'), art('routinen', 1, 1, 'Routinen heute'),
       art('gewohnheiten', 1, 1, 'Gewohnheiten heute')] },
