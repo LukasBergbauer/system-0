@@ -53,7 +53,7 @@ Doku: `docs/module/pyramide.md`.
 Plan:
 - [x] 1. Geklärt (23.11.): reine Erinnerung, kein Abhaken; unten groß/wichtig, oben klein; 1 Begriff je Ebene;
       viele Pyramiden (1 dauerhafte + kleine abends für morgen); keine Verbindung zu To-dos usw. Details `docs/module/pyramide.md`.
-- [ ] 2. `[Sonnet, mittel]` Muster `muster/pyramide.html` (3 Varianten), Lukas wählt.
+- [x] 2. Muster `muster/pyramide.html`: A · Stufen gewählt.
 - [ ] 3. `[Opus, hoch]` Datenmodell: Tabelle `pyramiden` (titel, art dauerhaft/tag, tag, ebenen text[]) mit RLS;
       Migration als SQL-Codeblock in den Chat. Local-first über `core/store.js`.
 - [ ] 4. `[Sonnet, mittel]` Modul `src/module/pyramide/` + Symbol + Nav-Eintrag; Pyramiden anlegen/bearbeiten/wechseln.

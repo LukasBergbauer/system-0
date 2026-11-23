@@ -9,4 +9,4 @@
 - Keine Verbindung zu To-dos, Terminen, Routinen, Gewohnheiten.
 
 ## Stand
-- [x] Geklärt. Muster `muster/pyramide.html` (3 Varianten), Lukas wählt.
+- [x] Geklärt. Muster `muster/pyramide.html`: **A · Stufen** gewählt (23.11.): Balken nach oben schmaler und heller, unten kräftig in Akzentfarbe.
