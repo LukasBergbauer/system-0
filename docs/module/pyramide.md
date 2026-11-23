@@ -1,15 +1,12 @@
-# Modul: Pyramide (Tages-Prioritäten)
-**Phase 11.** Neue Mitte des Systems (Lukas, 22.11.2026).
+# Modul: Pyramide (Prioritäten-Erinnerung)
+**Phase 11.** Eigenes Modul (Lukas, 23.11.2026).
 
-## Idee
-Jeden Tag wenige Wichtigste oben, darunter der Rest. Vorschlag 1-3-5: 1 große, 3 mittlere, 5 kleine Aufgaben.
-Aufgaben kommen aus To-dos (antippen → Ebene) oder werden frei eingetragen. Unerledigtes kann auf morgen wandern.
-
-## Offen (mit Lukas klären)
-- Ebenen fest 1-3-5 oder frei?
-- Planen abends für morgen oder morgens?
-- Zählen Termine, Routinen, Gewohnheiten mit oder nur To-dos?
-- Rückblick am Abend (geschafft / verschoben)?
+## Idee (geklärt 23.11.2026)
+- **Keine To-do-Liste**, nichts abhaken. Ein tägliches Abbild: was hat zurzeit Priorität.
+- Ebenen von unten nach oben: unten groß und wichtig (Fundament), oben klein und speziell (der Reihe nach).
+- **Ein Begriff pro Ebene.**
+- **Viele Pyramiden** anlegbar: eine große dauerhafte + kleine, abends für morgen erstellt.
+- Keine Verbindung zu To-dos, Terminen, Routinen, Gewohnheiten.
 
 ## Stand
-- [ ] Noch nicht begonnen. Plan in `docs/roadmap.md` (Phase 11).
+- [x] Geklärt. Muster `muster/pyramide.html` (3 Varianten), Lukas wählt.

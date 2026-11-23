@@ -1,0 +1,49 @@
+<!doctype html>
+<!-- Muster „Pyramide“ (Phase 11): 3 Varianten. Öffnen: http://127.0.0.1:8000/muster/pyramide.html -->
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Muster Pyramide</title>
+  <link rel="stylesheet" href="../src/styles/tokens.css">
+  <link rel="stylesheet" href="../src/styles/base.css">
+  <link rel="stylesheet" href="../src/styles/components.css">
+  <link rel="stylesheet" href="pyramide.css">
+</head>
+<body>
+<main class="m" id="m"></main>
+<script type="module">
+  import { akzentLaden } from '../src/core/akzent.js';
+  akzentLaden();
+  // Ebenen von unten (Fundament) nach oben (klein)
+  const dauer = ['Gesundheit', 'Beziehung', 'Studium', 'Training', 'Lesen'];
+  const morgen = ['Lernen', 'Training', 'Einkauf', 'Mama anrufen'];
+  const kopf = `<header class="kopf"><h1><small>FOKUS</small>Pyramide</h1></header>`;
+  const seg = `<div class="seg"><span class="an">Dauerhaft</span><span>Morgen</span><span>Reise</span><span class="plus">+</span></div>`;
+  const oben = e => [...e].reverse(); // Anzeige von oben nach unten
+
+  // A: Stufen – Balken werden nach oben schmaler, unten kräftig
+  const a = e => `<div class="karte"><div class="stufen">${oben(e).map((t, i) => {
+    const n = e.length, stufe = i + 1; // n = unten
+    return `<div class="stufe" style="--b:${30 + (70 * stufe) / n}%;--k:${20 + (80 * stufe) / n}%">${t}</div>`;
+  }).join('')}</div></div>`;
+
+  // B: echtes Dreieck in Bändern, Zahl links
+  const b = e => `<div class="karte"><div class="dreieck">${oben(e).map((t, i) =>
+    `<div class="band" style="--k:${15 + (85 * (i + 1)) / e.length}%"><span>${t}</span></div>`).join('')}</div>
+    <div class="legende"><span>klein · der Reihe nach</span><span>Fundament</span></div></div>`;
+
+  // C: Typografie – Schrift wird nach unten größer, feine Dreieck-Linie dahinter
+  const c = e => `<div class="karte"><div class="typo">${oben(e).map((t, i) =>
+    `<div style="--g:${13 + (21 * (i + 1)) / e.length}px;--o:${.45 + (.55 * (i + 1)) / e.length}">${t}</div>`).join('')}</div></div>`;
+
+  const liste = `<div class="karte klein"><div class="zeile"><b>Dauerhaft</b><span>5 Ebenen</span></div>
+    <div class="zeile"><b>Morgen · Di 24.11.</b><span>4 Ebenen</span></div><div class="zeile"><b>Reise</b><span>3 Ebenen</span></div></div>`;
+
+  const spalte = (titel, f) => `<div class="spalte"><h2>${titel}</h2><div class="tel">${kopf}${seg}${f(dauer)}
+    <h3>Abends für morgen</h3>${f(morgen)}${liste}</div></div>`;
+  document.getElementById('m').innerHTML =
+    spalte('A · Stufen', a) + spalte('B · Dreieck', b) + spalte('C · Schrift', c);
+</script>
+</body>
+</html>

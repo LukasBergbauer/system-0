@@ -1,0 +1,49 @@
+/* Muster „Pyramide“ (23.11.2026): unten groß/wichtig, oben klein, ein Begriff je Ebene. */
+body { padding: var(--space-5); }
+.m { display: flex; gap: var(--space-7); flex-wrap: wrap; justify-content: center; align-items: flex-start; }
+.spalte h2 { margin: 0 0 var(--space-3); font-size: var(--fs-small); color: var(--text-2); font-weight: 600; }
+.tel { width: min(375px, calc(100vw - 48px)); display: flex; flex-direction: column; gap: var(--space-5); }
+.tel h3 { margin: 0 0 calc(-1 * var(--space-3)); padding-left: var(--space-2); font-size: 12px; font-weight: 600;
+  color: var(--text-2); text-transform: uppercase; letter-spacing: .04em; }
+
+.kopf { display: flex; align-items: flex-end; min-height: 128px; padding: var(--space-5); color: #fff;
+  border-radius: var(--radius-gross); background: linear-gradient(135deg, var(--akzent-hell), var(--accent) 48%, var(--akzent-tief) 130%);
+  box-shadow: var(--schatten); }
+.kopf h1 { margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -.03em; line-height: 1; }
+.kopf small { display: block; margin-bottom: 6px; font-size: 11px; font-weight: 600; letter-spacing: .12em; opacity: .75; }
+
+.seg { display: flex; padding: 2px; border-radius: 9px; background: rgba(118,118,128,.12); }
+.seg span { flex: 1; text-align: center; padding: 6px 0; font-size: 13px; font-weight: 500; border-radius: 7px; }
+.seg .an { background: #fff; font-weight: 600; box-shadow: 0 3px 8px rgba(0,0,0,.12); }
+.seg .plus { flex: 0 0 36px; color: var(--accent); font-weight: 700; }
+
+.karte { padding: var(--innen); border-radius: var(--radius-gross); background: var(--glas-verlauf);
+  -webkit-backdrop-filter: blur(var(--blur)); backdrop-filter: blur(var(--blur)); box-shadow: var(--schatten); }
+.karte.klein { padding: 0 var(--space-4); }
+.zeile { display: flex; justify-content: space-between; align-items: center; min-height: 48px; font-size: 15px; }
+.zeile + .zeile { border-top: .5px solid var(--line); }
+.zeile b { font-weight: 600; }
+.zeile span { color: var(--text-3); font-size: 13px; }
+
+/* A: Stufen */
+.stufen { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.stufe { width: var(--b); padding: 10px 0; text-align: center; border-radius: 12px; font-size: 15px; font-weight: 600;
+  background: color-mix(in oklch, var(--accent) var(--k), white); color: var(--accent-ink);
+  box-shadow: 0 6px 16px -10px color-mix(in oklch, var(--accent) 60%, black); }
+.stufe:first-child { color: var(--text); }
+
+/* B: Dreieck in Bändern */
+.dreieck { display: flex; flex-direction: column; gap: 3px; aspect-ratio: 1.15; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.band { flex: 1; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 6px;
+  background: color-mix(in oklch, var(--accent) var(--k), white); color: #fff; font-weight: 600; font-size: 14px; }
+.band:first-child { color: var(--text); font-size: 12px; }
+.legende { display: flex; justify-content: space-between; margin-top: var(--space-3); font-size: 11px; color: var(--text-3);
+  text-transform: uppercase; letter-spacing: .06em; }
+
+/* C: Schrift */
+.typo { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: var(--space-3) 0; position: relative;
+  text-align: center; }
+.typo::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .18;
+  background: linear-gradient(to top, var(--accent), transparent); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.typo div { font-size: var(--g); opacity: var(--o); font-weight: 650; letter-spacing: -.02em; line-height: 1.15; }
+.typo div:last-child { color: var(--accent); }
