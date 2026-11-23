@@ -74,7 +74,7 @@
   color: var(--text-2);
 }
 /* in einer Glaskarte: innen kleiner, ohne Schatten und Unschärfe */
-:is(.card, .todo-gruppe, .termin-gruppe) .abschnitt {
+:is(.card, .todo-gruppe) .abschnitt {
   border-radius: var(--radius-klein);
   background: rgba(255, 255, 255, 0.4);
   box-shadow: none;

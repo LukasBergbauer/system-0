@@ -87,8 +87,6 @@ button.feld-k:active { transform: scale(.985); }
 /* Inhalt passt sich der Feldbreite an (schmale Spalte am iPhone) */
 .feld { container-type: inline-size; }
 @container (max-width: 230px) {
-  .heute-kal__woche { grid-template-columns: repeat(4, 1fr); row-gap: 6px; }
-  .heute-kal__datum > b { font-size: 36px; }
   .heute-kz__titel, .heute-kz small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
 }
 @media (max-width: 760px) { .heute-pille__text { display: none; } }

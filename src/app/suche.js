@@ -1,4 +1,4 @@
-// Suche über To-dos, Termine, Physio-Punkte, Trainings-Übungen und -Pläne, Ziele, Affirmationen, Bücher, Insta-Posts: Suchfeld oben in der Seitenleiste oder ⌘K / Strg+K.
+// Suche über To-dos, Physio-Punkte, Trainings-Übungen und -Pläne, Ziele, Affirmationen, Bücher, Insta-Posts: Suchfeld oben in der Seitenleiste oder ⌘K / Strg+K.
 // Liest nur über core/ (store, Google-Zwischenspeicher). Ein Treffer öffnet seinen Bereich über den
 // Router-Zusatz #/<bereich>/<id>; der Bereich liest ihn mit zusatzNehmen() und öffnet den Eintrag.
 // Enter öffnet den ersten Treffer, Esc schließt.
@@ -6,36 +6,26 @@ import { el } from '../ui/dom.js';
 import { modal } from '../ui/modal.js';
 import { list, listRow } from '../ui/list.js';
 import { getAll } from '../core/store.js';
-import { getMeta } from '../core/sync-local.js';
 import { go } from '../core/router.js';
 
 const MAX = 6; // Treffer je Gruppe
 const norm = (s) => (s || '').toLocaleLowerCase('de');
 const datum = (iso) => new Date(iso).toLocaleDateString('de-DE', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
-const naehe = (iso) => Math.abs(new Date(iso) - Date.now()); // Termine: zuerst die zeitlich nächsten
 
 // Alle durchsuchbaren Einträge, schon in der Reihenfolge, in der sie erscheinen sollen.
 async function laden() {
-  const [todos, termine, google, physio, uebungen, plaene, planEinheiten, zielBereiche, ziele, affs, buecher, insta] = await Promise.all([
-    getAll('todos'), getAll('termine'), getMeta('kalender:google'), getAll('physio_eintraege'),
+  const [todos, physio, uebungen, plaene, planEinheiten, zielBereiche, ziele, affs, buecher, insta] = await Promise.all([
+    getAll('todos'), getAll('physio_eintraege'),
     getAll('training_uebungen'), getAll('trainingsplaene'), getAll('plan_einheiten'), getAll('ziel_bereiche'), getAll('lebensziele'), getAll('affirmationen'), getAll('buecher'), getAll('insta_posts'),
   ]);
   const physioName = new Map(physio.map((p) => [p.id, p.titel]));
   const uebungName = (u) => (u.physio_id && physioName.get(u.physio_id)) || u.name || 'Übung';
-  const alleTermine = [...termine, ...(google?.termine ?? [])].sort((a, b) => naehe(a.start) - naehe(b.start));
   return [
     {
       titel: 'To-dos', bereich: 'todos',
       eintraege: [...todos].sort((a, b) => !!a.erledigt_am - !!b.erledigt_am).map((t) => ({
         id: t.id, titel: t.titel, text: t.notiz,
         sub: t.erledigt_am ? 'Erledigt' : t.faellig_am ? `Fällig ${datum(t.faellig_am)}` : '',
-      })),
-    },
-    {
-      titel: 'Termine', bereich: 'kalender',
-      eintraege: alleTermine.map((t) => ({
-        id: t.id, titel: t.titel, text: `${t.ort || ''} ${t.notiz || ''}`,
-        sub: [datum(t.start), t.ort, t.google && 'Google'].filter(Boolean).join(' · '),
       })),
     },
     {
@@ -101,7 +91,7 @@ export function oeffneSuche() {
   let gruppen = [];
   const feld = el('input', {
     class: 'field__input suche__feld',
-    attrs: { type: 'search', placeholder: 'To-dos, Termine, Physio …', 'aria-label': 'Suchen', enterkeyhint: 'go' },
+    attrs: { type: 'search', placeholder: 'To-dos, Physio …', 'aria-label': 'Suchen', enterkeyhint: 'go' },
   });
   const ergebnis = el('div', { class: 'suche__ergebnis' });
   fenster = modal({ title: 'Suchen', content: [feld, ergebnis] });
@@ -113,7 +103,7 @@ export function oeffneSuche() {
   function zeige() {
     const text = feld.value.trim();
     const gefunden = finde(gruppen, text);
-    if (!text) return ergebnis.replaceChildren(el('p', { class: 'app__note', text: 'Suche in To-dos, Terminen und Physio-Punkten.' }));
+    if (!text) return ergebnis.replaceChildren(el('p', { class: 'app__note', text: 'Suche in To-dos, Physio-Punkten und mehr.' }));
     if (!gefunden.length) return ergebnis.replaceChildren(el('p', { class: 'app__note', text: 'Nichts gefunden.' }));
     ergebnis.replaceChildren(...gefunden.map((g) => el('section', { class: 'suche__gruppe' }, [
       el('h3', { class: 'label', text: g.titel }),

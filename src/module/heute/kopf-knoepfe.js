@@ -8,7 +8,7 @@ import { go } from '../../core/router.js';
 import { emit } from '../../core/events.js';
 import { AKZENT_FARBEN, akzentSetzen, aktuellerAkzent, zeigeFarbe, UNTERTOENE, untertonSetzen, aktuellerUnterton } from '../../core/akzent.js';
 
-const NEU = [['todos', 'To-do'], ['kalender', 'Termin'], ['physio', 'Physio-Punkt']];
+const NEU = [['todos', 'To-do'], ['physio', 'Physio-Punkt']];
 
 // Fenster unter seinem Knopf, rechtsbündig, aber nie über den Bildschirmrand
 function popover(knopf, klasse, kinder) {

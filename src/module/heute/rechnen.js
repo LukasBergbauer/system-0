@@ -1,16 +1,9 @@
 // Heute: alle Zahlen für das Dashboard aus den Rohdaten (reine Rechnungen, nichts wird gespeichert).
-// rechne({ todos, termine, jetzt }) → { dinge, woche, kacheln … }. termine = eigene + Google, mit start/ende als ISO-Text.
+// rechne({ todos, jetzt }) → { dinge, woche, kacheln … }.
 const zwei = (n) => String(n).padStart(2, '0');
 export const tagISO = (d) => `${d.getFullYear()}-${zwei(d.getMonth() + 1)}-${zwei(d.getDate())}`;
 export const plusTage = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
 const zaehle = (liste, test) => liste.filter(test).length;
-
-// liegt der Termin (auch teilweise) am Tag, der um 0:00 Uhr „tag“ beginnt?
-export function amTag(t, tag) {
-  const s = new Date(t.start);
-  const e = Math.max(+new Date(t.ende || t.start), +s + 1);
-  return s < plusTage(tag, 1) && e > tag;
-}
 
 // Kalenderwoche nach ISO (Woche mit dem ersten Donnerstag = KW 1)
 function kalenderwoche(d) {
@@ -40,7 +33,7 @@ function trend(diff, gutWennWeniger = false) {
   return { text, gut: gutWennWeniger ? diff <= 0 : diff >= 0 };
 }
 
-export function rechne({ todos, termine, jetzt = new Date() }) {
+export function rechne({ todos, jetzt = new Date() }) {
   const heute = plusTage(jetzt, 0); // 0:00 Uhr
   const h = tagISO(heute);
   const montag = plusTage(heute, -((heute.getDay() + 6) % 7));
@@ -50,7 +43,6 @@ export function rechne({ todos, termine, jetzt = new Date() }) {
 
   const ueberfaellig = zaehle(offen, (t) => t.faellig_am && t.faellig_am < h);
   const heuteFaellig = zaehle(offen, (t) => t.faellig_am === h);
-  const termineHeute = zaehle(termine, (t) => amTag(t, heute));
 
   // Woche: To-dos mit Fälligkeit Mo–So → Anteil erledigt
   const dieseWoche = todos.filter((t) => t.faellig_am >= mo && t.faellig_am <= so);
@@ -63,22 +55,17 @@ export function rechne({ todos, termine, jetzt = new Date() }) {
     const ende = +plusTage(tag, 1);
     return zaehle(todos, (t) => Date.parse(t.created_at) < ende && (!t.erledigt_am || Date.parse(t.erledigt_am) >= ende));
   };
-  const wochenTage = (start) => [0, 1, 2, 3, 4, 5, 6].map((n) => zaehle(termine, (t) => amTag(t, plusTage(start, n))));
-  const termineWoche = wochenTage(montag);
-  const termineVorwoche = wochenTage(plusTage(montag, -7));
-  const summe = (l) => l.reduce((a, b) => a + b, 0);
   const tageMitErledigt = new Set(todos.map(erledigtAm).filter(Boolean));
   const serie = serien(tageMitErledigt, heute);
 
   return {
-    dinge: ueberfaellig + heuteFaellig + termineHeute,
+    dinge: ueberfaellig + heuteFaellig,
     woche: {
       kw: kalenderwoche(heute),
       quote,
       erledigt: zaehle(todos, (t) => erledigtAm(t) >= mo && erledigtAm(t) <= so),
       heuteFaellig,
       ueberfaellig,
-      termineHeute,
       offenWoche: dieseWoche.length - wocheErledigt,
     },
     offen: {
@@ -86,11 +73,6 @@ export function rechne({ todos, termine, jetzt = new Date() }) {
       heute: heuteFaellig,
       trend: trend(offen.length - offenAm(plusTage(heute, -7)), true),
       kurve: sieben.map(offenAm),
-    },
-    termine: {
-      zahl: summe(termineWoche),
-      trend: trend(summe(termineWoche) - summe(termineVorwoche)),
-      kurve: termineWoche,
     },
     serie: {
       tage: serie.aktuell,

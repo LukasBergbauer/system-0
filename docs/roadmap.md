@@ -60,4 +60,5 @@ Plan:
 - [ ] 6. `[Opus, mittel]` Funktions-Redesign je Bereich, jeweils erst kurz mit Lukas klären, dann bauen, ein Commit je Bereich.
       Leitfrage: Wie zahlt der Bereich auf die Tages-Prioritäten ein, was ist überflüssig?
       - [x] To-dos (23.11.): Heute max. 3 (Fokus), nur noch Heute · Morgen · Irgendwann · Erledigt; Priorität, Bereiche, „Nicht erledigt“ und Donut weg. `v136`.
-      Reihenfolge: ~~To-dos~~ → Kalender → Routinen → Gewohnheiten → Training → Visionen/Affirmationen → Quiz → Bücher → Insta → Physio → Einstellungen.
+      - [x] Kalender (23.11.): **ganz entfernt** (Modul, Nav, Heute-Felder Kalender/Termine, Suche, Termin-Erinnerungen, Google-Abgleich im Client). Tabelle `termine`/`todo_bereiche` bleiben in der DB, werden nicht mehr synchronisiert. Tab-Leiste: Heute · To-dos · Pyramide · Training. `v138`.
+      Reihenfolge: ~~To-dos~~ → ~~Kalender~~ → Routinen → Gewohnheiten → Training → Visionen/Affirmationen → Quiz → Bücher → Insta → Physio → Einstellungen.

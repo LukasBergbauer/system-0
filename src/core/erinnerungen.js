@@ -1,18 +1,14 @@
-// Erinnerungen planen: aus Terminen und Routinen die Mitteilungen der nächsten 14 Tage in die Tabelle „erinnerungen“.
+// Erinnerungen planen: aus Routinen die Mitteilungen der nächsten 14 Tage in die Tabelle „erinnerungen“.
 // Die Supabase-Funktion „erinnerungen“ schickt sie zur Zeit (pg_cron jede Minute). Nur wenn irgendein Gerät
 // Mitteilungen eingeschaltet hat (push_abos). Gleiche Quelle + Zeit = gleiche id, deshalb doppelt nichts,
 // auch wenn Mac und iPhone beide planen. Vergangenes/Gesendetes wird nie angefasst.
-// - Termine (eigene, auch Wiederholungen): Vorlauf aus Einstellung „erinnerung_minuten“ (Standard 15) vor Beginn;
-//   ganztägige um 8:00 Uhr am Tag.
 // - Routinen mit eigener Startzeit (sperre_ab): täglich zur Startzeit, außer heute schon fertig oder ausgesetzt.
 import { getAll, save, remove } from './store.js';
 import { on } from './events.js';
-import { aufklappen } from './wiederholung.js';
-import { getSetting } from './einstellungen.js';
 
 export const ERINNERUNGEN = 'erinnerungen';
 const TAGE = 14;
-const QUELLEN = new Set(['termine', 'routinen', 'routine_logs', 'push_abos', 'einstellungen']);
+const QUELLEN = new Set(['routinen', 'routine_logs', 'push_abos', 'einstellungen']);
 
 // Feste uuid aus einem Text (SHA-256, als uuid geschrieben)
 export async function idAus(text) {
@@ -25,14 +21,7 @@ const uhr = (d) => d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-d
 const tagISO = (d) => d.toLocaleDateString('sv-SE');
 
 async function gewuenscht(jetzt, bis) {
-  const minuten = Number(await getSetting('erinnerung_minuten', 15)) || 15;
   const liste = [];
-  for (const t of aufklappen(await getAll('termine'))) {
-    const s = new Date(t.start);
-    const zeit = t.ganztaegig ? new Date(s.getFullYear(), s.getMonth(), s.getDate(), 8) : new Date(+s - minuten * 60e3);
-    const text = t.ganztaegig ? 'Heute, ganztägig' : `Um ${uhr(s)}${t.ort ? ` · ${t.ort}` : ''}`;
-    liste.push({ quelle: `termin|${t.id}`, zeit, titel: t.titel, text, ziel: '#/kalender' });
-  }
   const logs = await getAll('routine_logs');
   for (const r of (await getAll('routinen')).filter((x) => x.sperre_ab)) {
     const [h, m] = r.sperre_ab.split(':').map(Number);

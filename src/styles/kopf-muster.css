@@ -7,7 +7,6 @@
 /* To-dos: Notizblock-Linien, Haken-Spalte */
 [data-bereich="todos"] .kopf { --muster: repeating-linear-gradient(0deg, var(--mline) 0 1px, transparent 1px 18px); }
 /* Kalender: Monatsraster */
-[data-bereich="kalender"] .kopf { --muster: linear-gradient(var(--mline) 1px, transparent 1px) 0 0 / 22px 22px, linear-gradient(90deg, var(--mline) 1px, transparent 1px) 0 0 / 22px 22px; }
 /* Routinen: Zeitstrahl mit Stunden-Strichen am Fuß */
 [data-bereich="routinen"] .kopf { --muster: repeating-linear-gradient(90deg, var(--mline) 0 1px, transparent 1px 28px) 0 100% / 100% 14px no-repeat,
   repeating-linear-gradient(90deg, var(--makz) 0 1.5px, transparent 1.5px 112px) 0 100% / 100% 26px no-repeat; }

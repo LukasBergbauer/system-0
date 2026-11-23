@@ -1,4 +1,4 @@
-// Heute: Kennzahl-Kacheln (Offene To-dos · Termine · Erledigt-Serie · Training).
+// Heute: Kennzahl-Kacheln (Offene To-dos · Erledigt-Serie · Training).
 // Jede Kachel: Symbol, Trend-Pille, große Zahl, Titel, Unterzeile, Mini-Kurve der letzten Tage.
 import { el } from '../../ui/dom.js';
 import { symbol } from '../../ui/symbol.js';
@@ -22,13 +22,11 @@ function kachel({ sym, trend, wert, nach, titel, text, kurve, akzent, ziel }, an
   ]);
 }
 
-// name: 'todos' | 'termine' | 'serie' | 'training'
+// name: 'todos' | 'serie' | 'training'
 export function kennzahl(name, z, animiert) {
   const k = {
     todos: () => ({ sym: 'todos', trend: z.offen.trend, wert: z.offen.zahl, titel: 'Offene To-dos',
       text: `${z.offen.heute} davon heute`, kurve: z.offen.kurve, ziel: 'todos' }),
-    termine: () => ({ sym: 'kalender', trend: z.termine.trend, wert: z.termine.zahl, titel: 'Termine',
-      text: 'diese Woche', kurve: z.termine.kurve, ziel: 'kalender' }),
     serie: () => ({ sym: 'flamme', trend: z.serie.rekord ? { text: 'Rekord', gut: true } : null, wert: z.serie.tage,
       nach: z.serie.tage === 1 ? ' Tag' : ' Tage', titel: 'Erledigt-Serie', text: 'Tage mit erledigtem To-do',
       kurve: z.serie.kurve, akzent: true, ziel: 'todos' }),

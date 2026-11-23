@@ -9,8 +9,8 @@ export const SPALTEN = 4; // Mac; iPhone zeigt 2 (breitere Felder werden dort 2 
 export const MAX_H = 3;
 
 export const STANDARD = [
-  ['pyramide', 2, 3], ['woche', 2, 2], ['kalender', 1, 2], ['todos', 1, 1], ['termine', 1, 1], ['serie', 1, 1], ['training', 1, 1],
-  ['affirmation', 3, 1], ['quiz', 1, 1], ['routinen', 4, 1], ['gewohnheiten', 4, 1], ['ziele', 4, 1], ['insta', 4, 1],
+  ['pyramide', 2, 3], ['woche', 2, 2], ['todos', 1, 1], ['serie', 1, 1], ['training', 1, 1], ['quiz', 1, 1],
+  ['affirmation', 4, 1], ['routinen', 4, 1], ['gewohnheiten', 4, 1], ['ziele', 4, 1], ['insta', 4, 1],
   ['verlauf', 4, 2],
 ].map(([typ, w, h]) => ({ typ, w, h }));
 

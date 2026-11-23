@@ -3,10 +3,10 @@
 // „ende“-Bereiche (Einstellungen) in SYSTEM. Neues Modul → seine id unten in den passenden Abschnitt.
 // iPhone (Tab-Leiste): Heute, To-dos, Kalender, Training, dann der Rest, „ende“ ganz hinten.
 // Bis zu 5 passen direkt hinein, sonst die ersten 4 + „Mehr“. „Kommt bald“-Bereiche (bald: true) nur in der Seitenleiste.
-const TAB_REIHENFOLGE = ['heute', 'todos', 'kalender', 'training'];
+const TAB_REIHENFOLGE = ['heute', 'todos', 'pyramide', 'training'];
 const TAB_PLAETZE = 5;
 const ABSCHNITTE = [
-  { titel: 'ALLTAG', ids: ['heute', 'kalender', 'todos', 'routinen'] },
+  { titel: 'ALLTAG', ids: ['heute', 'todos', 'routinen'] },
   { titel: 'KÖRPER & KOPF', ids: ['physio', 'training', 'pyramide', 'ziele', 'affirmationen', 'gewohnheiten', 'quiz', 'buecher', 'insta'] },
 ];
 
