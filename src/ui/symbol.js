@@ -51,6 +51,8 @@ const FORMEN = {
   affirmation: '<path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9-1.9 5.1-1.9-5.1L5 10.5l5.1-1.9z"/><path d="M18.5 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/>',
   // Pfeil nach links (Seitenleiste einklappen)
   zurueck: '<path d="M15 6l-6 6 6 6"/>',
+  // Drei Stufen (Pyramide)
+  pyramide: '<rect x="9.5" y="4" width="5" height="4" rx="1.2"/><rect x="6.5" y="10" width="11" height="4" rx="1.2"/><rect x="3.5" y="16" width="17" height="4" rx="1.2"/>',
   prompt: '<path d="M4.5 5.5h15v10h-8l-4 3.5v-3.5h-3z"/><path d="M8.5 9l2 1.5-2 1.5"/><path d="M12.5 12h3"/>',
   // Sonnenaufgang (Morgen), Fahne (Priorität), Pfeil nach unten (niedrig)
   morgen: '<path d="M3 18h18M7 18a5 5 0 0 1 10 0M12 7v3M5.6 11.6l1.4 1.4M18.4 11.6L17 13"/>',

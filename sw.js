@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v132';
+const VERSION = 'v133';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -105,6 +105,12 @@ const APP_FILES = [
   './src/module/routinen/bearbeiten.js',
   './src/module/routinen/durchlauf.js',
   './src/module/routinen/sperre.js',
+  './src/module/pyramide/index.js',
+  './src/module/pyramide/kennzahlen.js',
+  './src/module/pyramide/data.js',
+  './src/module/pyramide/view.js',
+  './src/module/pyramide/stufen.js',
+  './src/module/pyramide/bearbeiten.js',
   './src/module/ziele/index.js',
   './src/module/ziele/kennzahlen.js',
   './src/module/ziele/data.js',
@@ -183,6 +189,7 @@ const APP_FILES = [
   './src/module/heute/training.js',
   './src/styles/training.css',
   './src/styles/ziele.css',
+  './src/styles/pyramide.css',
   './src/module/physio/index.js',
   './src/module/physio/kennzahlen.js',
   './src/module/physio/view.js',

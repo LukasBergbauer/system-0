@@ -7,7 +7,7 @@ const TAB_REIHENFOLGE = ['heute', 'todos', 'kalender', 'training'];
 const TAB_PLAETZE = 5;
 const ABSCHNITTE = [
   { titel: 'ALLTAG', ids: ['heute', 'kalender', 'todos', 'routinen'] },
-  { titel: 'KÖRPER & KOPF', ids: ['physio', 'training', 'ziele', 'affirmationen', 'gewohnheiten', 'quiz', 'buecher', 'insta'] },
+  { titel: 'KÖRPER & KOPF', ids: ['physio', 'training', 'pyramide', 'ziele', 'affirmationen', 'gewohnheiten', 'quiz', 'buecher', 'insta'] },
 ];
 
 export const MEHR = { id: 'mehr', titel: 'Mehr', symbol: 'mehr' };

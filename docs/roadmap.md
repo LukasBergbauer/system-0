@@ -55,7 +55,7 @@ Plan:
       viele Pyramiden (1 dauerhafte + kleine abends für morgen); keine Verbindung zu To-dos usw. Details `docs/module/pyramide.md`.
 - [x] 2. Muster `muster/pyramide.html`: A · Stufen gewählt.
 - [x] 3. Datenmodell (23.11.): `026_pyramiden.sql`, Tabelle in `core/tabellen.js`. Zugriff über `core/store.js` (`pyramiden`).
-- [ ] 4. `[Sonnet, mittel]` Modul `src/module/pyramide/` + Symbol + Nav-Eintrag; Pyramiden anlegen/bearbeiten/wechseln.
+- [x] 4. (23.11.) `[Sonnet, mittel]` Modul `src/module/pyramide/` + Symbol + Nav-Eintrag; Pyramiden anlegen/bearbeiten/wechseln.
 - [ ] 5. `[Sonnet, mittel]` Heute: Pyramide als Hauptkarte oben (ersetzt/ergänzt Hero).
 - [ ] 6. `[Opus, mittel]` Funktions-Redesign je Bereich, jeweils erst kurz mit Lukas klären, dann bauen, ein Commit je Bereich.
       Leitfrage: Wie zahlt der Bereich auf die Tages-Prioritäten ein, was ist überflüssig?
