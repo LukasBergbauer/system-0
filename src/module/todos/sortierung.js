@@ -14,10 +14,9 @@ export function istUeberfaellig(todo) {
   return istOffen(todo) && Boolean(todo.faellig_am) && todo.faellig_am < heuteISO();
 }
 
-// Offene: erst Priorität (1 hoch zuerst), dann Fälligkeit (ohne Datum zuletzt), dann älteste zuerst.
+// Offene: nach Fälligkeit (ohne Datum zuletzt), dann älteste zuerst.
 export function sortiereOffene(todos) {
   return todos.filter(istOffen).sort((a, b) => {
-    if (a.prio !== b.prio) return a.prio - b.prio;
     if (a.faellig_am !== b.faellig_am) {
       if (!a.faellig_am) return 1;
       if (!b.faellig_am) return -1;

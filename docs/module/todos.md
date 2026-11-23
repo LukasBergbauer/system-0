@@ -1,12 +1,12 @@
 # Modul: To-dos
 **Phase 1.**
 
-## Funktionen
-- Anlegen, bearbeiten, abhaken, löschen
-- Priorität (hoch/mittel/niedrig) und Fälligkeitsdatum
-- Standardansicht: sortiert nach Priorität und Datum
-- Umschalten auf Ansicht nach Bereichen (z. B. Praxis, Training, Privat, Insta); Bereiche frei anlegbar
-- Schnelleingabe auf dem iPhone
+## Funktionen (Phase 11, 23.11.2026)
+- Anlegen, bearbeiten (Titel, Notiz, Datum), abhaken, löschen; Schnelleingabe mit Heute/Morgen.
+- Gruppen: **Heute (Fokus, höchstens 3)** · Morgen · Irgendwann (ohne Datum, später, überfällig) · Erledigt. Sortiert nach Datum.
+- Heute voll → Hinweis, nichts wird angelegt/verschoben (Schnelleingabe: Pille; Bearbeiten: Text im Fenster).
+- **Entfernt:** Priorität, Bereiche (Filter, Verwalten, Feld), „Nicht erledigt“, Diese Woche/Später, Heute-Feld „Nach Bereich“ (Donut).
+  DB-Spalten `prio`/`bereich_id` und Tabelle `todo_bereiche` bleiben ungenutzt stehen (neue To-dos schreiben `prio: 2`, Pflichtspalte).
 
 ## Plan (mit Lukas abgestimmt)
 Eine Sitzung, Teile a → b, nach jedem Teil kurz prüfen.
@@ -62,19 +62,17 @@ Eine Sitzung, Teile a → b, nach jedem Teil kurz prüfen.
 | Datei | Aufgabe |
 |---|---|
 | `index.js` | meldet das Modul beim Router an |
-| `data.js` | Lesen/Schreiben über `core/store.js` (To-dos und Bereiche) |
-| `sortierung.js` | Sortierung (Priorität → Datum → älteste zuerst), Datums-Texte („Heute“, „Morgen“ …), überfällig |
-| `view.js` | Ansicht: Bereichs-Chips, Schnelleingabe, Gruppen nach Zeit, „Erledigt“; zeichnet bei Ereignis `daten` neu |
-| `zeile.js` | eine Zeile: Checkbox (abhaken) + antippbarer Text (öffnet Bearbeiten) + Prioritäts-Punkt rechts |
-| `gruppen.js` | offene To-dos nach Zeit: Heute · Morgen · Diese Woche (bis 7 Tage) · Später · Ohne Datum · Nicht erledigt (vergangen) |
-| `filter.js` | Bereichs-Chips „Alle · Bereiche · Ohne Bereich“ + Aktions-Chip „Bereiche bearbeiten“; Filter gemerkt |
-| `schnelleingabe.js` | Feld oben, Enter legt an (im gerade gefilterten Bereich), Fokus bleibt; Schnell-Knöpfe Heute/Morgen/Priorität |
-| `wischen.js` | Wischen (Finger) auf Zeilen: abhaken/löschen, „Rückgängig“-Pille |
-| `bearbeiten.js` | Modal: Titel, Notiz, Priorität (Tabs), Fälligkeit, Bereich, Löschen |
+| `data.js` | Lesen/Schreiben über `core/store.js`; `HEUTE_MAX` = 3, `heuteVoll()` |
+| `sortierung.js` | Sortierung (Datum → älteste zuerst), Datums-Texte („Heute“, „Morgen“ …), überfällig |
+| `view.js` | Ansicht: Schnelleingabe, Heute (n/3) + Morgen, Irgendwann, „Erledigt“; zeichnet bei Ereignis `daten` neu |
+| `zeile.js` | eine Zeile: Checkbox (abhaken) + antippbarer Text (öffnet Bearbeiten), darunter Datum |
+| `gruppen.js` | offene To-dos: Heute · Morgen · Irgendwann |
+| `schnelleingabe.js` | Feld oben, Enter legt an, Fokus bleibt; Schnell-Knöpfe Heute/Morgen; Heute-Grenze |
+| `wischen.js` | Wischen (Finger) auf Zeilen: abhaken/löschen, „Rückgängig“-Pille (auch für Hinweise) |
+| `bearbeiten.js` | Modal: Titel, Notiz, Fälligkeit, Löschen; Heute-Grenze |
 | `erledigt.js` | eingeklappter Abschnitt „Erledigt“ |
-| `bereiche-verwalten.js` | Modal: Bereiche anlegen, umbenennen (beim Verlassen des Felds), löschen |
 
-Stile: `src/styles/todos.css`. Gewählter Bereichs-Filter steht nur im Gerät (`localStorage`, Schlüssel `system0-todos-filter`).
+Stile: `src/styles/todos.css`.
 
 Wünsche für später (Funktionen sind nicht festgeschrieben, Lukas ergänzt hier, sobald ihm etwas einfällt):
 - [x] Schnell-Knöpfe unter der Schnelleingabe (Heute/Morgen, Priorität, Bereich antippen = nächster) – `schnelleingabe.js`

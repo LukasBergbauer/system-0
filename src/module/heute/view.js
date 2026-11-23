@@ -17,14 +17,14 @@ import { griffe, plusFeld, bearbeitbar, hinzufuegen } from './bearbeiten.js';
 const GOOGLE = 'kalender:google'; // Zwischenspeicher des Kalenders: { termine: [...] }
 
 async function laden() {
-  const [todos, termine, bereiche, google, routinen, schritte, logs, einheiten, plaene, planEinheiten, ziele, zielSchritte, affirmationen, gewohnheiten, gewLogs, rueckfaelle, quiz, saetze, insta, notizen, buecher, pyramiden] = await Promise.all([
-    getAll('todos'), getAll('termine'), getAll('todo_bereiche'), getMeta(GOOGLE),
+  const [todos, termine, google, routinen, schritte, logs, einheiten, plaene, planEinheiten, ziele, zielSchritte, affirmationen, gewohnheiten, gewLogs, rueckfaelle, quiz, saetze, insta, notizen, buecher, pyramiden] = await Promise.all([
+    getAll('todos'), getAll('termine'), getMeta(GOOGLE),
     getAll('routinen'), getAll('routine_schritte'), getAll('routine_logs'),
     getAll('einheiten'), getAll('trainingsplaene'), getAll('plan_einheiten'), getAll('lebensziele'), getAll('ziel_schritte'), getAll('affirmationen'),
     getAll('gewohnheiten'), getAll('gewohnheit_logs'), getAll('rueckfaelle'), getAll('quiz_ergebnisse'), getAll('saetze'), getAll('insta_posts'),
     getAll('buch_notizen'), getAll('buecher'), getAll('pyramiden'),
   ]);
-  return { todos, bereiche, termine: [...aufklappen(termine), ...(google?.termine || [])], routinen: { routinen, schritte, logs },
+  return { todos, termine: [...aufklappen(termine), ...(google?.termine || [])], routinen: { routinen, schritte, logs },
     training: rechneTraining({ einheiten, saetze, plaene, planEinheiten }), ziele: { ziele, schritte: zielSchritte }, affirmationen: { affirmationen, ziele },
     gewohnheiten: { gewohnheiten, logs: gewLogs, rueckfaelle }, quiz, insta, buecher: { notizen, buecher }, pyramiden };
 }

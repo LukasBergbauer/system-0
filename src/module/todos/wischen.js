@@ -63,12 +63,12 @@ export function wischbar(li, { erledigt, onHaken, onLoeschen }) {
   return li;
 }
 
-// Kleine Glas-Pille unten: „Gelöscht · Rückgängig“, verschwindet nach 4 s.
+// Kleine Glas-Pille unten: „Gelöscht · Rückgängig“ (ohne onUndo nur ein Hinweis), verschwindet nach 4 s.
 export function rueckgaengig(text, onUndo) {
   document.querySelector('.todo-undo')?.remove();
   const pille = el('div', { class: 'todo-undo', attrs: { role: 'status' } }, [
     el('span', { text }),
-    el('button', { class: 'btn btn--ghost', text: 'Rückgängig', attrs: { type: 'button' }, on: { click: () => { onUndo(); pille.remove(); } } }),
+    onUndo && el('button', { class: 'btn btn--ghost', text: 'Rückgängig', attrs: { type: 'button' }, on: { click: () => { onUndo(); pille.remove(); } } }),
   ]);
   document.body.append(pille);
   setTimeout(() => pille.classList.add('todo-undo--weg'), 4000);

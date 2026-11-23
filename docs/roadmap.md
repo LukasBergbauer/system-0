@@ -59,4 +59,5 @@ Plan:
 - [x] 5. (23.11.) Heute: Pyramide als Feld `pyramide` (2×3) ganz oben, Hero daneben (2×2). Tippen → Pyramide.
 - [ ] 6. `[Opus, mittel]` Funktions-Redesign je Bereich, jeweils erst kurz mit Lukas klären, dann bauen, ein Commit je Bereich.
       Leitfrage: Wie zahlt der Bereich auf die Tages-Prioritäten ein, was ist überflüssig?
-      Reihenfolge: To-dos → Kalender → Routinen → Gewohnheiten → Training → Visionen/Affirmationen → Quiz → Bücher → Insta → Physio → Einstellungen.
+      - [x] To-dos (23.11.): Heute max. 3 (Fokus), nur noch Heute · Morgen · Irgendwann · Erledigt; Priorität, Bereiche, „Nicht erledigt“ und Donut weg. `v136`.
+      Reihenfolge: ~~To-dos~~ → Kalender → Routinen → Gewohnheiten → Training → Visionen/Affirmationen → Quiz → Bücher → Insta → Physio → Einstellungen.

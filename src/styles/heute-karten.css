@@ -1,4 +1,4 @@
-/* Heute: Kalender-Karte, Verlauf und Donut (Glas-Grundfläche .heute-karte steht in heute.css). */
+/* Heute: Kalender-Karte, Verlauf (Glas-Grundfläche .heute-karte steht in heute.css). */
 .heute-karte__kopf { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-3); margin-bottom: var(--space-2); }
 .heute-karte__kopf h3 { margin: 0; font-size: 17px; font-weight: 650; letter-spacing: -.02em; }
 .heute-karte__kopf small { color: var(--text-2); font-size: 12px; }
@@ -46,13 +46,6 @@
 @keyframes heute-blende { to { opacity: 1; } }
 
 /* Donut */
-.heute-karte:has(.heute-donut) { cursor: pointer; }
-.heute-donut { position: relative; width: 170px; height: 170px; margin: 10px auto 14px; display: grid; place-items: center; text-align: center; }
-.heute-donut svg { position: absolute; inset: 0; transform: rotate(-90deg); }
-.heute-donut circle { fill: none; stroke-width: 16; transition: stroke-dasharray 1200ms var(--ease); }
-.heute-donut .bahn { stroke: rgba(255,255,255,.45); }
-.heute-donut b { display: block; font-size: var(--fs-large); font-weight: 600; letter-spacing: -.03em; }
-.heute-donut small { font-size: var(--fs-label); color: var(--text-2); }
 .heute-anteile { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 14px; font-size: 12px; }
 .heute-anteile span { display: flex; align-items: center; gap: 6px; min-width: 0; }
 .heute-anteile b { margin-left: auto; font-weight: 600; }
