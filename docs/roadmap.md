@@ -5,6 +5,8 @@ Reihenfolge bewusst klein gehalten: erst ein Kern, den Lukas täglich nutzt, dan
 **Regel (ab 09.11.2026):** Stand und Pläne knapp hier bzw. in der Modul-Doku vermerken **und** immer auch in den Chat. So wenig Zeilen wie möglich, so viel wie nötig.
 **Regel (ab 09.11.2026):** Supabase-Migrationen/SQL immer zusätzlich vollständig als Codeblock in den Chat.
 
+**Regel (ab 23.11.2026):** Jeder offene Schritt trägt eine Modell-Empfehlung `[Modell, Aufwand]`; Claude nennt sie auch im Prompt für die nächste Sitzung.
+
 Erledigte Phasen 0–8: `docs/roadmap-archiv.md` (nur bei Bedarf lesen).
 
 ## Phase 9 – Gewohnheiten-Raster + Overlay-Design (22.11.2026)
@@ -49,13 +51,13 @@ Plan:
 Idee Lukas: Das System richtet sich nach **Tages-Prioritäten** aus. Neues Modul „Pyramide“ + Funktions-Redesign je Bereich.
 Doku: `docs/module/pyramide.md`.
 Plan:
-- [ ] 1. Mit Lukas klären (kurz): Ebenen (Vorschlag 1-3-5: 1 große, 3 mittlere, 5 kleine Aufgaben), wann geplant wird
+- [ ] 1. `[Sonnet, niedrig]` Mit Lukas klären (kurz): Ebenen (Vorschlag 1-3-5: 1 große, 3 mittlere, 5 kleine Aufgaben), wann geplant wird
       (abends für morgen / morgens), was mit Unerledigtem passiert, ob Termine/Routinen/Gewohnheiten mitzählen.
-- [ ] 2. Muster `muster/pyramide.html` (2–3 Varianten, Mac + iPhone), Lukas wählt.
-- [ ] 3. Datenmodell: Tabelle `prioritaeten` (tag, ebene, reihenfolge, text, todo_id optional, erledigt_am) mit RLS;
+- [ ] 2. `[Sonnet, mittel]` Muster `muster/pyramide.html` (2–3 Varianten, Mac + iPhone), Lukas wählt.
+- [ ] 3. `[Opus, hoch]` Datenmodell: Tabelle `prioritaeten` (tag, ebene, reihenfolge, text, todo_id optional, erledigt_am) mit RLS;
       Migration als SQL-Codeblock in den Chat. Local-first über `core/store.js`.
-- [ ] 4. Modul `src/module/pyramide/` + Symbol + Nav-Eintrag; To-dos per Antippen in eine Ebene ziehen.
-- [ ] 5. Heute: Pyramide als Hauptkarte oben (ersetzt/ergänzt Hero).
-- [ ] 6. Funktions-Redesign je Bereich, jeweils erst kurz mit Lukas klären, dann bauen, ein Commit je Bereich.
+- [ ] 4. `[Sonnet, mittel]` Modul `src/module/pyramide/` + Symbol + Nav-Eintrag; To-dos per Antippen in eine Ebene ziehen.
+- [ ] 5. `[Sonnet, mittel]` Heute: Pyramide als Hauptkarte oben (ersetzt/ergänzt Hero).
+- [ ] 6. `[Opus, mittel]` Funktions-Redesign je Bereich, jeweils erst kurz mit Lukas klären, dann bauen, ein Commit je Bereich.
       Leitfrage: Wie zahlt der Bereich auf die Tages-Prioritäten ein, was ist überflüssig?
       Reihenfolge: To-dos → Kalender → Routinen → Gewohnheiten → Training → Visionen/Affirmationen → Quiz → Bücher → Insta → Physio → Einstellungen.

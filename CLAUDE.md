@@ -30,11 +30,12 @@ Läuft auf Mac und iPhone als PWA (Web-App auf dem Homescreen), gleiche Daten, s
   **und** Pläne, Ergebnisse und Infos immer auch in den Chat. So wenig Zeilen wie möglich, so viel wie nötig.
 - **Supabase:** Jede neue Migration bzw. jedes SQL immer zusätzlich vollständig als ```sql-Codeblock in den Chat
   (zum direkten Reinkopieren in den SQL-Editor), nicht nur den Dateinamen nennen.
-- Dann **direkt** committen (kurze deutsche Nachricht), ohne zu fragen. `git push` macht Lukas selbst.
+- Dann **direkt** committen (kurze deutsche Nachricht) und `git push`, ohne zu fragen.
 - Danach kurz sagen, was gemacht wurde (wenige Zeilen).
 - **Übergabe:** Erst wenn eine Aufgabe komplett fertig ist, „Aufgabe fertig, bitte neue Sitzung starten.“ und einen
   kurzen Prompt zum Reinkopieren (konkreter Auftrag + nötige Doku-Abschnitte, z. B. „docs/roadmap.md, Phase 11“;
   CLAUDE.md nicht nennen, wird automatisch geladen).
+  Über dem Prompt: welches Modell + Aufwand Lukas einstellen soll (aus der Roadmap).
   Den Plan für den nächsten Schritt in Roadmap bzw. Modul-Doku und in den Chat. Keine Werkzeug-Checkliste.
 
 ## Tokens sparen

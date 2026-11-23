@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Browser__read_console_messages",
+      "mcp__Claude_Browser__read_network_requests",
+      "mcp__Claude_Browser__find",
+      "mcp__Claude_Browser__get_page_text",
+      "mcp__Claude_Browser__read_page",
+      "mcp__Claude_Browser__tabs_context",
+      "mcp__terminal__read_terminal",
+      "mcp__terminal__list_terminal_tabs",
+      "Bash(deno check *)",
+      "Bash(supabase projects list)",
+      "Bash(supabase migration list *)",
+      "Bash(shasum *)",
+      "Bash(xxd *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push)"
+    ]
+  }
+}
