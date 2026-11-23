@@ -4,7 +4,7 @@ Diese Datei liest Claude Code zu Beginn jeder Sitzung. Sie enthält nur die fest
 Details stehen in `docs/`. Lies immer nur die Doku, die für die aktuelle Aufgabe nötig ist.
 
 ## Was System 0 ist
-Eine persönliche App nur für Lukas: Termine, To-dos, Routinen, Training, Physio,
+Eine persönliche App nur für Lukas: Prioritäts-Pyramide, To-dos, Routinen, Training, Physio,
 Gewohnheiten, Lebensziele, Affirmationen, Wissen-Quiz, Bücher, Insta-Organizer.
 Läuft auf Mac und iPhone als PWA (Web-App auf dem Homescreen), gleiche Daten, synchronisiert.
 
