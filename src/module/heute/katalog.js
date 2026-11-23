@@ -13,7 +13,7 @@ import { affirmationKarte } from './affirmation.js';
 import { gewohnheitenLeiste, gewohnheitStand } from './gewohnheiten-leiste.js';
 import { quizKarte } from './quiz-karte.js';
 import { absatzKarte, absaetze } from './absatz.js';
-import { pyramideKarte } from './pyramide-karte.js';
+import { pyramideKarte, aktuellePyramide } from './pyramide-karte.js';
 import { instaLeiste } from './insta-leiste.js';
 import { einzelGewohnheit, einzelRoutine, einzelZiel, todoListe } from './einzeln.js';
 import { tagISO } from './rechnen.js';
@@ -22,8 +22,10 @@ import { go } from '../../core/router.js';
 const ring = (fertig, n, text, ziel) => (n ? { wert: `${fertig}/${n}`, anteil: fertig / n, text, klick: () => go(ziel) } : null);
 
 export const ARTEN = {
-  pyramide: { titel: 'Pyramide', bereich: 'pyramide', symbol: 'pyramide', std: [2, 3],
-    gross: ({ d }) => pyramideKarte(d.pyramiden) },
+  pyramide: { titel: 'Pyramide', bereich: 'pyramide', symbol: 'pyramide', std: [2, 3], ab: [2, 2],
+    gross: ({ d }) => pyramideKarte(d.pyramiden),
+    klein: ({ d }) => { const p = aktuellePyramide(d.pyramiden); const f = p?.ebenen.find((t) => t?.trim());
+      return { wert: f || '–', text: f ? 'Fundament' : 'Tippen zum Anlegen', klick: () => go('pyramide') }; } },
   woche: { titel: 'Woche', bereich: 'heute', symbol: 'heute', std: [3, 2], ab: [2, 2],
     gross: ({ z, animiert }) => hero(z.woche, animiert),
     klein: ({ z }) => ({ wert: z.woche.quote === null ? '–' : Math.round(z.woche.quote * 100), nach: z.woche.quote === null ? '' : ' %',
