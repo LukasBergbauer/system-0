@@ -6,7 +6,7 @@
 - Ebenen von unten nach oben: unten groß und wichtig (Fundament), oben klein und speziell (der Reihe nach).
 - **Ein Begriff pro Ebene.**
 - **Viele Pyramiden** anlegbar: eine große dauerhafte + kleine, abends für morgen erstellt.
-- Keine Verbindung zu To-dos, Terminen, Routinen, Gewohnheiten.
+- **Keine Verbindung zu anderen Modulen** (bekräftigt 23.11.): kein Bereich zahlt auf die Pyramide ein, sie liest nichts von anderen.
 
 ## Stand
 - [x] Geklärt. Muster `muster/pyramide.html`: **A · Stufen** gewählt (23.11.): Balken nach oben schmaler und heller, unten kräftig in Akzentfarbe.
