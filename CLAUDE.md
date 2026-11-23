@@ -33,7 +33,8 @@ Läuft auf Mac und iPhone als PWA (Web-App auf dem Homescreen), gleiche Daten, s
 - Dann **direkt** committen (kurze deutsche Nachricht), ohne zu fragen. `git push` macht Lukas selbst.
 - Danach kurz sagen, was gemacht wurde (wenige Zeilen).
 - **Übergabe:** Erst wenn eine Aufgabe komplett fertig ist, „Aufgabe fertig, bitte neue Sitzung starten.“ und einen
-  kurzen Prompt zum Reinkopieren (CLAUDE.md, docs/roadmap.md, passende Fach-Doku, konkreter Auftrag).
+  kurzen Prompt zum Reinkopieren (konkreter Auftrag + nötige Doku-Abschnitte, z. B. „docs/roadmap.md, Phase 11“;
+  CLAUDE.md nicht nennen, wird automatisch geladen).
   Den Plan für den nächsten Schritt in Roadmap bzw. Modul-Doku und in den Chat. Keine Werkzeug-Checkliste.
 
 ## Tokens sparen
@@ -41,11 +42,14 @@ Läuft auf Mac und iPhone als PWA (Web-App auf dem Homescreen), gleiche Daten, s
 - Agent Skills nur für Planen und Testen; Deployment-, CI-, Team- und Release-Abläufe nur auf Nachfrage.
 - Nichts selbst installieren; Lukas den Befehl fürs Terminal nennen.
 - Lange Ausgaben kürzen, Dateien nicht mehrfach lesen, keinen Code wiederholen.
+- Erledigte Roadmap-Phasen nach `docs/roadmap-archiv.md` verschieben, `docs/roadmap.md` bleibt kurz.
+- Browser-Vorschau: `localhost:8000`. Läuft dort nichts, per Bash im Hintergrund starten:
+  `python3 -m http.server 8000 --bind 127.0.0.1` (Startbefehl in launch.json scheitert an macOS-Rechten).
 
 ## Wegweiser
 - Aufbau & Ordner: `docs/architektur.md`
 - Datenbank & Sync: `docs/datenmodell.md`
 - Design: `docs/design.md`
-- Reihenfolge & Fortschritt: `docs/roadmap.md`
+- Reihenfolge & Fortschritt: `docs/roadmap.md` (Erledigtes: `docs/roadmap-archiv.md`)
 - Einrichtung (einmalig): `docs/start.md`
 - Module: `docs/module/*.md`
