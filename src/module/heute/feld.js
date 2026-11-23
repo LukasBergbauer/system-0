@@ -5,7 +5,7 @@ import { symbol } from '../../ui/symbol.js';
 import { zahl, ring } from './bewegung.js';
 
 // Modulname je Bereich: steht einheitlich oben in jedem Feld (Symbol + Name)
-const MODUL = { heute: ['To-dos', 'todos'], todos: ['To-dos', 'todos'], pyramide: ['Pyramide', 'pyramide'], training: ['Training', 'training'],
+const MODUL = { heute: ['To-dos', 'todos'], todos: ['To-dos', 'todos'], pyramide: ['Pyramide', 'pyramide'], kalender: ['Kalender', 'kalender'], training: ['Training', 'training'],
   affirmationen: ['Affirmationen', 'affirmation'], quiz: ['Wissen-Quiz', 'quiz'], routinen: ['Routinen', 'routinen'],
   gewohnheiten: ['Gewohnheiten', 'gewohnheiten'], ziele: ['Visionen', 'ziele'], insta: ['Insta', 'insta'], buecher: ['Bücher', 'buecher'] };
 

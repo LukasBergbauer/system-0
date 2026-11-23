@@ -3,7 +3,9 @@
 // ctx = { d (Rohdaten aus view.js), z (Zahlen aus rechnen.js), animiert, bearbeiten }.
 import { hero } from './hero.js';
 import { kennzahl } from './kacheln.js';
+import { kalenderKarte } from './kalender-karte.js';
 import { verlauf } from './verlauf.js';
+import { donut } from './donut.js';
 import { routinenLeiste, routineStand } from './routinen-leiste.js';
 import { trainingLeiste } from './training.js';
 import { zieleLeiste } from './ziele-leiste.js';
@@ -28,8 +30,13 @@ export const ARTEN = {
     gross: ({ z, animiert }) => hero(z.woche, animiert),
     klein: ({ z }) => ({ wert: z.woche.quote === null ? '–' : Math.round(z.woche.quote * 100), nach: z.woche.quote === null ? '' : ' %',
       anteil: z.woche.quote ?? 0, text: 'Woche erledigt', klick: () => go('todos') }) },
+  kalender: { titel: 'Kalender', bereich: 'kalender', symbol: 'kalender', std: [1, 2], ab: [1, 2],
+    gross: ({ d }) => kalenderKarte(d.termine),
+    klein: ({ z }) => ({ wert: z.woche.termineHeute, text: 'Termine heute', klick: () => go('kalender') }) },
   todos: { titel: 'To-dos', bereich: 'todos', symbol: 'todos', std: [1, 1], ab: [2, 2],
     gross: ({ d }) => todoListe(d.todos), klein: ({ z, animiert }) => kennzahl('todos', z, animiert) },
+  termine: { titel: 'Termine', bereich: 'kalender', symbol: 'kalender', std: [1, 1], ab: [2, 2],
+    gross: ({ d }) => kalenderKarte(d.termine), klein: ({ z, animiert }) => kennzahl('termine', z, animiert) },
   serie: { titel: 'Erledigt-Serie', bereich: 'todos', symbol: 'flamme', std: [1, 1],
     klein: ({ z, animiert }) => kennzahl('serie', z, animiert) },
   training: { titel: 'Training', bereich: 'training', symbol: 'training', std: [1, 1], ab: [2, 1],
@@ -62,6 +69,9 @@ export const ARTEN = {
   verlauf: { titel: 'Verlauf', bereich: 'todos', symbol: 'todos', std: [3, 2], ab: [2, 2],
     gross: ({ d, animiert }) => verlauf(d.todos, animiert),
     klein: ({ z }) => ({ wert: z.serie.kurve.reduce((a, b) => a + b, 0), text: 'erledigt in 7 Tagen', klick: () => go('todos') }) },
+  donut: { titel: 'Nach Bereich', bereich: 'todos', symbol: 'todos', std: [1, 2], ab: [1, 2],
+    gross: ({ d, animiert }) => donut(d.todos, d.bereiche, animiert),
+    klein: ({ z }) => ({ wert: z.offen.zahl, text: 'offene To-dos', klick: () => go('todos') }) },
   gewohnheit: { titel: 'Gewohnheit', bereich: 'gewohnheiten', symbol: 'gewohnheiten', std: [1, 1], klein: einzelGewohnheit },
   routine: { titel: 'Routine', bereich: 'routinen', symbol: 'routinen', std: [1, 1], klein: einzelRoutine },
   ziel: { titel: 'Schritt', bereich: 'ziele', symbol: 'ziele', std: [1, 1], klein: einzelZiel },
@@ -71,7 +81,7 @@ export const ARTEN = {
 export function auswahl(d) {
   const art = (typ, w, h, titel, ref) => ({ typ, ref, w: w ?? ARTEN[typ].std[0], h: h ?? ARTEN[typ].std[1], titel: titel || ARTEN[typ].titel });
   return [
-    { titel: 'Übersicht', eintraege: ['pyramide', 'woche', 'todos', 'serie', 'verlauf'].map((t) => art(t)) },
+    { titel: 'Übersicht', eintraege: ['pyramide', 'woche', 'kalender', 'todos', 'termine', 'serie', 'verlauf', 'donut'].map((t) => art(t)) },
     { titel: 'Bereiche', eintraege: ['routinen', 'gewohnheiten', 'training', 'ziele', 'insta', 'affirmation', 'quiz', 'absatz'].map((t) => art(t)) },
     { titel: 'Ringe', eintraege: [art('woche', 1, 1, 'To-dos der Woche'), art('routinen', 1, 1, 'Routinen heute'),
       art('gewohnheiten', 1, 1, 'Gewohnheiten heute')] },

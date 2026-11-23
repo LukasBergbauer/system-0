@@ -37,7 +37,7 @@ export function hero(w, animiert) {
   ]);
   return el('article', { class: 'heute-hero' }, [
     el('div', { class: 'heute-hero__text' }, [
-      el('span', { class: 'heute-status' }, [el('i'), `Woche ${w.kw}`]),
+      el('span', { class: 'heute-status' }, [el('i'), `Woche ${w.kw} · ${mehrzahl(w.termineHeute, 'Termin', 'Termine')} heute`]),
       h2,
       el('p', { text }),
       el('div', { class: 'heute-werte' }, [
@@ -46,7 +46,8 @@ export function hero(w, animiert) {
         wert(w.ueberfaellig, 'überfällig', animiert),
       ]),
       el('div', { class: 'heute-knoepfe' }, [
-        el('button', { class: 'heute-pille heute-pille--weiss', text: '+ To-do', on: { click: () => go('todos/neu') } }),
+        el('button', { class: 'heute-pille heute-pille--weiss', text: 'Woche ansehen ↗', on: { click: () => go('kalender/woche') } }),
+        el('button', { class: 'heute-pille heute-pille--rand', text: '+ To-do', on: { click: () => go('todos/neu') } }),
       ]),
     ]),
     ring(w.quote, mitte, animiert),

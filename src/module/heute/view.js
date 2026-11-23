@@ -3,8 +3,10 @@
 // Bei jedem Ereignis 'daten' neu zeichnen – dann ohne Hochzähl-Bewegung, damit nichts zappelt.
 import { el } from '../../ui/dom.js';
 import { getAll } from '../../core/store.js';
+import { getMeta } from '../../core/sync-local.js';
 import { on } from '../../core/events.js';
 import { rechne } from './rechnen.js';
+import { aufklappen } from '../../core/wiederholung.js';
 import { kopf } from './kopf.js';
 import { rechneTraining } from './training.js';
 import { ARTEN } from './katalog.js';
@@ -12,16 +14,17 @@ import { feld } from './feld.js';
 import { layoutLaden, layoutSpeichern, STANDARD } from './layout.js';
 import { griffe, plusFeld, bearbeitbar, hinzufuegen } from './bearbeiten.js';
 
+const GOOGLE = 'kalender:google'; // Zwischenspeicher des Kalenders: { termine: [...] }
 
 async function laden() {
-  const [todos, routinen, schritte, logs, einheiten, plaene, planEinheiten, ziele, zielSchritte, affirmationen, gewohnheiten, gewLogs, rueckfaelle, quiz, saetze, insta, notizen, buecher, pyramiden] = await Promise.all([
-    getAll('todos'),
+  const [todos, termine, bereiche, google, routinen, schritte, logs, einheiten, plaene, planEinheiten, ziele, zielSchritte, affirmationen, gewohnheiten, gewLogs, rueckfaelle, quiz, saetze, insta, notizen, buecher, pyramiden] = await Promise.all([
+    getAll('todos'), getAll('termine'), getAll('todo_bereiche'), getMeta(GOOGLE),
     getAll('routinen'), getAll('routine_schritte'), getAll('routine_logs'),
     getAll('einheiten'), getAll('trainingsplaene'), getAll('plan_einheiten'), getAll('lebensziele'), getAll('ziel_schritte'), getAll('affirmationen'),
     getAll('gewohnheiten'), getAll('gewohnheit_logs'), getAll('rueckfaelle'), getAll('quiz_ergebnisse'), getAll('saetze'), getAll('insta_posts'),
     getAll('buch_notizen'), getAll('buecher'), getAll('pyramiden'),
   ]);
-  return { todos, routinen: { routinen, schritte, logs },
+  return { todos, bereiche, termine: [...aufklappen(termine), ...(google?.termine || [])], routinen: { routinen, schritte, logs },
     training: rechneTraining({ einheiten, saetze, plaene, planEinheiten }), ziele: { ziele, schritte: zielSchritte }, affirmationen: { affirmationen, ziele },
     gewohnheiten: { gewohnheiten, logs: gewLogs, rueckfaelle }, quiz, insta, buecher: { notizen, buecher }, pyramiden };
 }

@@ -62,8 +62,6 @@ Als Glas-Dashboard gebaut (Plan unten, Schritte a–e alle fertig, 09.11.2026).
       (`ueber`, z. B. „MITTWOCH, 4. NOVEMBER“) und Spruch des Tages. Den Kopf baut `src/app/shell.js` für jeden Bereich.
 
 Phase 11 (23.11.2026): neue Feld-Art `pyramide` (Standard 2×3, ganz oben vor dem Hero); bestehende Layouts bekommen sie einmalig oben eingefügt (Einstellung `heute_pyramide_neu`), danach entfernbar. `sw.js` `v134`.
-To-do-Redesign (23.11.2026): Feld-Art `donut` („Nach Bereich“) entfernt, `todo_bereiche` wird nicht mehr geladen; Verlauf im Standard 4×2.
-Kalender entfernt (23.11.2026): Felder `kalender`/`termine` und Termin-Kennzahlen weg, Hero ohne „Woche ansehen“.
 
 ## Plan: Heute als Glas-Dashboard (abgestimmt mit Lukas, 08.11.2026)
 Layout **genau wie** `muster/glas.html` (Bild von Lukas: `docs/vorlagen/dashboard-glas.png`), aber mit echten Daten.

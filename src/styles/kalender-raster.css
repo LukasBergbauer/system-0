@@ -1,0 +1,127 @@
+/* Kalender: Zeitraster für Tag und Woche (raster.js). Ein Glas-Fenster, das senkrecht (und auf dem iPhone in der
+   Woche waagrecht, 3 Tage sichtbar) scrollt. Stunden links und Tageskopf oben kleben. Nur Werte aus tokens.css. */
+.zr {
+  --zr-stunde: 48px; /* gleich wie STUNDE in raster.js */
+  --zr-links: 52px;
+  --sichtbar: 1;
+  max-height: max(420px, calc(100dvh - 330px));
+  overflow: auto;
+  overscroll-behavior: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: var(--zr-links);
+  background: var(--glas-verlauf);
+  border: var(--glas-kante) solid var(--glas-rand);
+  border-radius: var(--radius-gross);
+  box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  backdrop-filter: blur(var(--blur)) saturate(160%);
+  scrollbar-width: none;
+}
+.zr::-webkit-scrollbar {
+  display: none;
+}
+.zr--woche {
+  --sichtbar: 3;
+}
+@media (min-width: 900px) {
+  .zr--woche {
+    --sichtbar: 7;
+  }
+}
+.zr__innen {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--zr-links) repeat(var(--tage), minmax(0, 1fr));
+  grid-template-rows: auto calc(24 * var(--zr-stunde));
+  width: calc(var(--zr-links) + (100% - var(--zr-links)) * var(--tage) / var(--sichtbar));
+}
+/* Kopf: klebt oben, mattes Glas, damit die Blöcke darunter verschwimmen */
+.zr__ecke,
+.zr__kopf {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  backdrop-filter: blur(var(--blur)) saturate(160%);
+  border-bottom: var(--glas-kante) solid var(--line);
+}
+.zr__ecke {
+  left: 0;
+  z-index: 3;
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+}
+.zr__kopf {
+  min-width: 0;
+  padding: var(--space-2) 3px var(--space-2);
+  scroll-snap-align: start;
+}
+.zr__datum {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--space-1);
+  padding-bottom: var(--space-1);
+}
+.zr--tag .zr__datum {
+  justify-content: flex-start;
+  padding-left: var(--space-2);
+}
+.zr__wt {
+  font-size: var(--fs-label);
+  letter-spacing: var(--sperrung);
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.zr__nr {
+  font-size: var(--fs-title);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.zr__kopf--heute .zr__nr {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.6em;
+  height: 1.6em;
+  padding: 0 var(--space-1);
+  color: var(--accent-ink);
+  background: linear-gradient(140deg, var(--akzent-hell), var(--akzent-tief));
+  border-radius: 999px;
+  box-shadow: 0 4px 12px -4px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+.zr__ganz {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+/* Stunden links: klebt beim waagrechten Wischen */
+.zr__stunden {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: repeat(24, var(--zr-stunde));
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  -webkit-backdrop-filter: blur(var(--blur));
+  backdrop-filter: blur(var(--blur));
+}
+.zr__h {
+  translate: 0 -0.6em;
+  padding-right: var(--space-2);
+  text-align: right;
+  font-size: var(--fs-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-3);
+}
+/* Tagesspalte: Stundenlinien als Hintergrund, Blöcke absolut */
+.zr__spalte {
+  position: relative;
+  min-width: 0;
+  border-left: var(--glas-kante) solid var(--line);
+  background-image: linear-gradient(to bottom, var(--line) var(--glas-kante), transparent var(--glas-kante));
+  background-size: 100% var(--zr-stunde);
+}
+.zr__spalte--heute {
+  background-color: color-mix(in srgb, var(--accent) 5%, transparent);
+}

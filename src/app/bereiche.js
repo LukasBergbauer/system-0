@@ -3,6 +3,7 @@
 import { register } from '../core/router.js';
 import '../module/heute/index.js';
 import '../module/todos/index.js';
+import '../module/kalender/index.js';
 import '../module/routinen/index.js';
 import '../module/physio/index.js';
 import '../module/training/index.js';

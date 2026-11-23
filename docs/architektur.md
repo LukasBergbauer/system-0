@@ -39,7 +39,7 @@ system-0/
     │   ├── base.css
     │   └── components.css
     └── module/
-        ├── heute/  todos/  routinen/  pyramide/
+        ├── heute/  todos/  routinen/  kalender/
         ├── physio/  training/  gewohnheiten/
         ├── ziele/  affirmationen/  gewohnheiten/  wissen/  buecher/  insta/
 ```
@@ -59,7 +59,7 @@ dann enden sie automatisch beim Verlassen der Ansicht.
 
 ## Navigation
 - Adressen: `#/heute`, `#/einstellungen` … (Zurück-Knopf und -Wischen funktionieren). Unbekannt → `#/heute`.
-- iPhone: Tab-Leiste unten. Reihenfolge Heute, To-dos, Pyramide, Training, dann der Rest, Einstellungen ganz hinten.
+- iPhone: Tab-Leiste unten. Reihenfolge Heute, To-dos, Kalender, Training, dann der Rest, Einstellungen ganz hinten.
   Bis 5 Bereiche stehen alle in der Leiste, ab 6 die ersten 4 + „Mehr“ (`#/mehr`, Liste der übrigen).
 - Mac (ab 768 px): Seitenleiste links mit allen Bereichen, Einstellungen unten.
 

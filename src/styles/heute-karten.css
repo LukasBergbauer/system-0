@@ -1,4 +1,4 @@
-/* Heute: Kalender-Karte, Verlauf (Glas-Grundfläche .heute-karte steht in heute.css). */
+/* Heute: Kalender-Karte, Verlauf und Donut (Glas-Grundfläche .heute-karte steht in heute.css). */
 .heute-karte__kopf { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-3); margin-bottom: var(--space-2); }
 .heute-karte__kopf h3 { margin: 0; font-size: 17px; font-weight: 650; letter-spacing: -.02em; }
 .heute-karte__kopf small { color: var(--text-2); font-size: 12px; }
@@ -6,9 +6,28 @@
 .heute-leer { margin: var(--space-3) 0 0; color: var(--text-2); font-size: var(--fs-small); }
 
 /* Kalender-Karte */
+.heute-kal__datum { display: flex; align-items: center; gap: var(--space-3); }
+.heute-kal__datum > b { font-size: 44px; font-weight: 600; letter-spacing: -.04em; color: var(--bereich); line-height: 1; }
+.heute-kal__datum small { display: block; color: var(--text-2); font-size: 12px; }
+.heute-kal__woche { display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--space-1); margin: var(--space-4) 0 6px; }
+.heute-kal__tag { padding: 6px 0; border: 0; border-radius: var(--radius-klein); background: none; font: inherit; font-size: var(--fs-small);
   font-weight: 600; color: var(--text); cursor: pointer; transition: background var(--duration), transform 300ms var(--feder); }
+.heute-kal__tag small { display: block; font-size: 10px; color: var(--text-3); font-weight: 500; }
+.heute-kal__tag:hover { background: rgba(255,255,255,.5); transform: translateY(-2px); }
+.heute-kal__tag--heute { color: var(--bereich); }
+.heute-kal__tag--an { background: var(--bereich-tief); color: #fff; box-shadow: 0 8px 16px -8px var(--bereich); }
+.heute-kal__tag--an:hover { background: var(--bereich); }
+.heute-kal__tag--an small { color: rgba(255,255,255,.8); }
+.heute-termin { display: flex; align-items: center; gap: var(--space-3); width: 100%; padding: 10px var(--space-3); margin-top: var(--space-2);
   border: 0; border-radius: var(--radius-klein); background: rgba(255,255,255,.55); font: inherit; color: var(--text); text-align: left; cursor: pointer;
   transition: transform 300ms var(--feder), background var(--duration); }
+.heute-termin:hover { transform: translateX(3px); background: rgba(255,255,255,.75); }
+.heute-termin time { flex: none; width: 40px; font-size: 12px; font-weight: 600; color: var(--text-2); }
+.heute-termin__strich { width: 3px; align-self: stretch; border-radius: 2px; background: var(--bereich); }
+.heute-termin__text { min-width: 0; }
+.heute-termin b { display: block; font-size: var(--fs-small); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.heute-termin small { font-size: var(--fs-label); color: var(--text-2); }
+.heute-termin em { margin-left: auto; flex: none; font-style: normal; font-size: 10px; font-weight: 600; color: var(--bereich);
   background: color-mix(in oklch, var(--bereich) 14%, white); padding: 3px var(--space-2); border-radius: 999px; }
 .heute-mehr { margin-top: var(--space-2); border: 0; background: none; font: inherit; font-size: 12px; font-weight: 600; color: var(--bereich); cursor: pointer; }
 
@@ -27,6 +46,13 @@
 @keyframes heute-blende { to { opacity: 1; } }
 
 /* Donut */
+.heute-karte:has(.heute-donut) { cursor: pointer; }
+.heute-donut { position: relative; width: 170px; height: 170px; margin: 10px auto 14px; display: grid; place-items: center; text-align: center; }
+.heute-donut svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.heute-donut circle { fill: none; stroke-width: 16; transition: stroke-dasharray 1200ms var(--ease); }
+.heute-donut .bahn { stroke: rgba(255,255,255,.45); }
+.heute-donut b { display: block; font-size: var(--fs-large); font-weight: 600; letter-spacing: -.03em; }
+.heute-donut small { font-size: var(--fs-label); color: var(--text-2); }
 .heute-anteile { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 14px; font-size: 12px; }
 .heute-anteile span { display: flex; align-items: center; gap: 6px; min-width: 0; }
 .heute-anteile b { margin-left: auto; font-weight: 600; }

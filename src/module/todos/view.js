@@ -1,32 +1,36 @@
-// Ansicht „To-dos“: Schnelleingabe, Glas-Boxen „Heute“ (Fokus, höchstens HEUTE_MAX) + „Morgen“, dann „Irgendwann“ und „Erledigt“ (eingeklappt).
-// Zeichnet sich neu, sobald sich To-dos ändern (auch durch das andere Gerät).
+// Ansicht „To-dos“: Bereichs-Filter oben, Schnelleingabe, Glas-Boxen „Heute“ + „Morgen“, dann Diese Woche · Später · Ohne Datum,
+// „Erledigt“ (eingeklappt) und ganz unten „Nicht erledigt“ (vergangene Tage, mit Datum).
+// Zeichnet sich neu, sobald sich To-dos oder Bereiche ändern (auch durch das andere Gerät).
 import { abschnitt } from '../../ui/abschnitt.js';
 import { el } from '../../ui/dom.js';
 import { list } from '../../ui/list.js';
 import { on } from '../../core/events.js';
 import { zusatzNehmen } from '../../core/router.js';
-import { TODOS, HEUTE_MAX, ladeTodos, setzeErledigt, loescheTodo, holeZurueck } from './data.js';
+import { TODOS, BEREICHE, ladeTodos, ladeBereiche, setzeErledigt, loescheTodo, holeZurueck } from './data.js';
 import { wischbar, rueckgaengig } from './wischen.js';
 import { sortiereOffene, sortiereErledigte } from './sortierung.js';
 import { gruppiereNachZeit } from './gruppen.js';
+import { ALLE, OHNE, gemerkterFilter, gueltigerFilter, passt, filterLeiste } from './filter.js';
 import { todoZeile } from './zeile.js';
 import { schnelleingabe } from './schnelleingabe.js';
 import { oeffneBearbeiten } from './bearbeiten.js';
 import { erledigtAbschnitt } from './erledigt.js';
 
-// Heute · Morgen sind hervorgehoben (eigenes Symbol, Akzent-Kopf). Heute zeigt „n/3“.
-const WICHTIG = { Heute: 'heute', Morgen: 'morgen' };
+// Heute · Morgen · Diese Woche sind hervorgehoben (eigenes Symbol, Akzent-Kopf).
+const WICHTIG = { Heute: 'heute', Morgen: 'morgen', 'Diese Woche': 'kalender' };
 
 function gruppe(titel, todos, zeile, leer) {
   const wichtig = WICHTIG[titel];
   return el('section', { class: `todo-gruppe${wichtig ? ' todo-gruppe--wichtig' : ''}` }, [
-    abschnitt({ titel, zahl: titel === 'Heute' ? `${todos.length}/${HEUTE_MAX}` : todos.length, symbol: wichtig || 'todos' }),
+    abschnitt({ titel, zahl: todos.length, symbol: wichtig || 'todos' }),
     todos.length ? list(todos.map(zeile)) : el('p', { class: 'todo-leer', text: leer }),
   ]);
 }
 
 export function todosAnsicht({ signal }) {
+  const leiste = el('div');
   const inhalt = el('div', { class: 'todo-liste' });
+  let filter = gemerkterFilter();
   let erledigtOffen = false;
   let aeltereZeigen = false; // Erledigte älter als 30 Tage
   let stand = 0; // nur das Ergebnis des neuesten Zeichnens zählt
@@ -35,18 +39,25 @@ export function todosAnsicht({ signal }) {
 
   async function zeichne() {
     const nr = ++stand;
-    const sichtbar = await ladeTodos();
+    const [todos, bereiche] = await Promise.all([ladeTodos(), ladeBereiche()]);
     if (nr !== stand || signal.aborted) return;
+
+    filter = gueltigerFilter(filter, bereiche);
+    const bekannt = new Set(bereiche.map((b) => b.id));
+    const namen = new Map(bereiche.map((b) => [b.id, b.name]));
+    const sichtbar = todos.filter((t) => passt(t, filter, bekannt));
     if (zusatz && zusatz !== 'neu') {
-      const gesucht = sichtbar.find((t) => t.id === zusatz);
+      const gesucht = todos.find((t) => t.id === zusatz);
       zusatz = null;
-      if (gesucht) oeffneBearbeiten(gesucht);
+      if (gesucht) oeffneBearbeiten(gesucht, bereiche);
     }
 
     const zeile = (todo) => wischbar(
       todoZeile(todo, {
+        // Bereichsname nur, wenn „Alle“ gewählt ist; sonst steht er schon im Chip.
+        bereichName: filter === ALLE ? namen.get(todo.bereich_id) : null,
         onToggle: (t, an) => setzeErledigt(t.id, an),
-        onOpen: (t) => oeffneBearbeiten(t),
+        onOpen: (t) => oeffneBearbeiten(t, bereiche),
       }),
       {
         erledigt: !!todo.erledigt_am,
@@ -58,6 +69,14 @@ export function todosAnsicht({ signal }) {
       },
     );
 
+    leiste.replaceChildren(filterLeiste({
+      bereiche,
+      aktiv: filter,
+      onChange: (id) => {
+        filter = id;
+        zeichne();
+      },
+    }));
 
     const g = gruppiereNachZeit(sortiereOffene(sichtbar));
     const grenze = Date.now() - 30 * 864e5;
@@ -76,19 +95,22 @@ export function todosAnsicht({ signal }) {
     });
     inhalt.replaceChildren(...[
       el('div', { class: 'todo-oben' }, [gruppe('Heute', g.heute, zeile, 'Nichts für heute.'), gruppe('Morgen', g.morgen, zeile, 'Nichts für morgen.')]),
-      g.irgendwann.length && gruppe('Irgendwann', g.irgendwann, zeile),
+      ...[['Diese Woche', g.woche], ['Später', g.spaeter], ['Ohne Datum', g.ohne]].filter(([, t]) => t.length).map(([titel, t]) => gruppe(titel, t, zeile)),
       erledigt,
+      g.alt.length && gruppe('Nicht erledigt', g.alt, zeile),
     ].filter(Boolean));
   }
 
-  const eingabe = schnelleingabe();
+  // Neues To-do landet im gerade gefilterten Bereich (sonst wäre es nach Enter sofort unsichtbar).
+  const zielBereich = () => (filter === ALLE || filter === OHNE ? null : filter);
+  const eingabe = schnelleingabe({ zielBereich });
   // „Neu → To-do“ (z. B. von Heute): gleich ins Eingabefeld
   if (zusatz === 'neu') requestAnimationFrame(() => eingabe.fokus());
 
   on('daten', ({ table }) => {
-    if (table === TODOS) zeichne();
+    if (table === TODOS || table === BEREICHE) zeichne();
   }, { signal });
   zeichne();
 
-  return el('div', { class: 'app__stack' }, [eingabe, inhalt]);
+  return el('div', { class: 'app__stack' }, [leiste, eingabe, inhalt]);
 }
