@@ -28,4 +28,6 @@ tote Dateien (Musterseiten, pausierte Fotos ~0,9 MB im Offline-Cache, „Kommt b
 - [x] 5. Routinen (eine Kartenreihe, Art als Label) + Gewohnheiten (weiße Karten).
 - [x] 6. Training: Umschalter + „+ Training“ in einer Zeile. Alle Tabs (auch in Fenstern) sehen jetzt aus wie das Segment.
 - [x] 7. Visionen (flache Zeilen), Affirmationen („weil weil“ behoben), Pyramide (lesbar, schon in 2).
-- [ ] 8. Quiz · 9. Bücher · 10. Insta · 11. Physio · 12. Einstellungen + Navigation.
+- [x] 8. Quiz: nur Grund-Design nötig (Karten, Umschalter), Rot/Grün im Ergebnis bleibt.
+- [x] 9. Bücher: Cover ohne Kartenrahmen.
+- [ ] 10. Insta · 11. Physio · 12. Einstellungen + Navigation.

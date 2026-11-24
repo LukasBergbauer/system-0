@@ -6,6 +6,9 @@
 - Zusammenfassungen schreibt Lukas selbst: schöner, ruhiger Editor mit Überschriften, Zitaten, Listen
 - Ästhetische, übersichtliche Leseansicht
 
+## Stand „Klar“ (24.11.2026)
+- Cover-Raster ohne Kartenrahmen: Cover mit Schatten, darunter Titel/Autor; Seiten-Kreis weiß.
+
 ## Stand
 - [x] Erste Fassung (09.11.2026). Migration `015_buecher.sql` (Tabelle `buecher`, Bucket `buch-cover`); `sw.js` `v67`. Router-id `buecher`, Ordner `src/module/buecher/`:
       `data.js` (Laden/Speichern, Cover-Datei `buch-cover/<user>/<id>-<zeit>.jpg`), `cover.js` (verkleinern 600 px, Open-Library-Suche ohne Key),
