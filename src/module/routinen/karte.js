@@ -4,6 +4,7 @@ import { button } from '../../ui/button.js';
 import { logAm, wocheTage, serie } from './data.js';
 
 const TAG = new Intl.DateTimeFormat('de-DE', { weekday: 'narrow' });
+const ART = { morgen: 'Morgen', abend: 'Abend' };
 
 export function routineKarte(r, { onStart, onEdit }) {
   const n = r.schritte.length;
@@ -21,6 +22,7 @@ export function routineKarte(r, { onStart, onEdit }) {
 
   return el('article', { class: `routine${fertig ? ' routine--fertig' : ''}` }, [
     el('button', { class: 'routine__kopf', attrs: { type: 'button', 'aria-label': `${r.name} bearbeiten` }, on: { click: () => onEdit(r) } }, [
+      ART[r.art] && el('span', { class: 'label', text: ART[r.art] }),
       el('h2', { class: 'routine__name', text: r.name }),
     ]),
     el('p', { class: 'routine__stand', text: stand }),

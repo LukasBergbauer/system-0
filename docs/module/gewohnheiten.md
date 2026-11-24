@@ -17,6 +17,9 @@
 - Auslöser-Übersicht aufklappbar auf der Karte (Anzahl je Auslöser)
 - Heute: Leiste wie Routinen, Aufbauen direkt hochzählen, Abbauen zeigt „Tage ohne“
 
+## Stand „Klar“ (24.11.2026)
+- Karten weiß, Pillen ohne Rand. Farbe je Gewohnheit bleibt (Wunsch Lukas 22.11.).
+
 ## Stand
 - [x] Gebaut (09.11.2026). Migration `013_gewohnheiten.sql`: `gewohnheiten` (art auf/ab, messart, ziel, seit),
       `gewohnheit_logs` (tag, wert; höchster Wert je Tag zählt), `rueckfaelle` (tag, ausloeser jsonb, notiz).

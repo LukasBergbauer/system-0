@@ -25,5 +25,6 @@ tote Dateien (Musterseiten, pausierte Fotos ~0,9 MB im Offline-Cache, „Kommt b
 - [x] 2. Heute: doppelte Felder raus, To-dos direkt abhakbar, neues Standard-Layout (einmalig umgestellt), Akzent-Knopf weg, Pyramide lesbar.
 - [x] 3. To-dos: Überfällig ganz oben, leere Gruppen weg, Heute/Morgen-Boxen und Akzent-Köpfe entfernt.
 - [x] 4. Kalender: Segment statt Chips, Google-Adresse als Textknopf unten, ruhige Monats-/Listenansicht.
-- [ ] 5. Routinen + Gewohnheiten · 6. Training · 7. Visionen + Affirmationen + Pyramide
+- [x] 5. Routinen (eine Kartenreihe, Art als Label) + Gewohnheiten (weiße Karten).
+- [ ] 6. Training · 7. Visionen + Affirmationen + Pyramide
       · 8. Quiz · 9. Bücher · 10. Insta · 11. Physio · 12. Einstellungen + Navigation.

@@ -1,8 +1,8 @@
-// Ansicht „Routinen“: Abschnitte Morgen · Abend · Weitere, je ein festes Raster aus Karten; „Neue Routine“ unten. Leer: Morgen- und Abendroutine anlegen.
+// Ansicht „Routinen“: ein Raster aus Karten (Morgen, Abend, dann weitere; Art steht klein in der Karte); „Neue Routine“ unten.
+// Leer: Morgen- und Abendroutine anlegen.
 // Zusatz '#/routinen/<id>' (z. B. von Heute) startet gleich den Durchlauf dieser Routine.
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
-import { abschnitt } from '../../ui/abschnitt.js';
 import { on } from '../../core/events.js';
 import { zusatzNehmen } from '../../core/router.js';
 import { TABELLEN, ladeAlles, neueRoutine } from './data.js';
@@ -14,6 +14,8 @@ async function grundRoutinen() {
   await neueRoutine({ name: 'Morgenroutine', art: 'morgen' });
   await neueRoutine({ name: 'Abendroutine', art: 'abend' });
 }
+
+const RANG = (r) => ({ morgen: 0, abend: 1 }[r.art] ?? 2); // Morgen, Abend, dann weitere (sonst Reihenfolge wie geladen)
 
 export function routinenAnsicht({ signal }) {
   const box = el('div', { class: 'routinen' });
@@ -33,13 +35,8 @@ export function routinenAnsicht({ signal }) {
     }
     box.replaceChildren(...(routinen.length
       ? [
-        ...[['morgen', 'Morgen'], ['abend', 'Abend'], ['frei', 'Weitere']].map(([art, titel]) => {
-          const liste = routinen.filter((r) => (r.art === art) || (art === 'frei' && r.art !== 'morgen' && r.art !== 'abend'));
-          return liste.length && el('section', { class: 'routinen__abschnitt' }, [
-            abschnitt({ titel, zahl: liste.length, symbol: 'routinen' }),
-            el('div', { class: 'routinen__raster' }, liste.map((r) => routineKarte(r, { onStart: start, onEdit: oeffneBearbeiten }))),
-          ]);
-        }).filter(Boolean),
+        el('div', { class: 'routinen__raster' }, [...routinen].sort((a, b) => RANG(a) - RANG(b))
+          .map((r) => routineKarte(r, { onStart: start, onEdit: oeffneBearbeiten }))),
         button({ text: '+ Neue Routine', variant: 'ghost', onClick: () => oeffneBearbeiten() }),
       ]
       : [

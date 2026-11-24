@@ -22,6 +22,9 @@ Für das ganze iPhone wäre die iOS-Funktion „Bildschirmzeit“ zuständig.
   jedem Schritt gespeichert (Weiter später möglich), am Ende „Geschafft“. Kein Timer
 - Heute: Leiste mit allen Routinen und Fortschritt, Antippen → `#/routinen/<id>` startet den Durchlauf
 
+## Stand „Klar“ (24.11.2026)
+- Eine Kartenreihe statt Abschnitte Morgen/Abend/Weitere (halbleere Reihen fielen weg); Art steht klein über dem Namen. Karten weiß.
+
 ## Stand
 - [x] Grundfunktion gebaut (09.11.2026). Migration `006_routinen.sql` (Tabellen in `core/tabellen.js`).
       Dateien `src/module/routinen/`: `data.js` (Laden, Stand je Tag, Serie, letzte 7 Tage), `view.js`, `karte.js`,
