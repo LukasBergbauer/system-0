@@ -31,4 +31,5 @@ tote Dateien (Musterseiten, pausierte Fotos ~0,9 MB im Offline-Cache, „Kommt b
 - [x] 8. Quiz: nur Grund-Design nötig (Karten, Umschalter), Rot/Grün im Ergebnis bleibt.
 - [x] 9. Bücher: Cover ohne Kartenrahmen.
 - [x] 10. Insta: Umschalter + Claude/Hashtags in einer Zeile, Abschnitts-Köpfe einheitlich.
-- [ ] 11. Physio · 12. Einstellungen + Navigation.
+- [x] 11. Physio: Startebene ohne Pfad-Zeile, Lücken neben der Suche, iPhone ohne Überbreite.
+- [ ] 12. Einstellungen + Navigation.

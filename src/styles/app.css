@@ -2,6 +2,7 @@
 
 .shell__main {
   position: relative;
+  overflow-x: clip; /* Deko (z. B. Physio-Staub) darf nie seitlich scrollen lassen */
 }
 
 .app {

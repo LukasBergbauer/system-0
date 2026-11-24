@@ -85,8 +85,8 @@
 }
 
 /* ---------- Oben: Suche + Verlauf ---------- */
-.kos__rahmen { display: grid; gap: var(--space-2); }
-.kos__oben { display: grid; gap: var(--space-2); position: relative; z-index: 4; }
+.kos__rahmen { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); }
+.kos__oben { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); position: relative; z-index: 4; }
 .kos__suche { position: relative; }
 .kos__suche-zeile { display: flex; gap: var(--space-2); align-items: center; }
 .kos__notizen { flex: none; min-height: var(--tap); }
@@ -137,6 +137,8 @@
 .kos__treffer-zeile span,
 .kos__schritt + .kos__schritt::before { font-size: var(--fs-label); color: var(--accent); }
 .kos__zeile { display: flex; align-items: center; gap: var(--space-2); min-height: 34px; }
+.kos__zeile[hidden] { display: none; }
+.kos__suche-zeile .kos__plus { min-height: var(--tap); }
 .kos__plus { flex: none; }
 .kos__plus[hidden] { display: none; }
 .kos__verlauf {
@@ -163,3 +165,7 @@
 }
 .kos__schritt + .kos__schritt::before { content: "›"; margin-right: var(--space-1); }
 .kos__schritt--jetzt { color: var(--text); font-weight: 600; cursor: default; }
+/* Suchzeile: Feld nimmt den Rest, Notizen/Lücken kompakt (passt auch auf das iPhone) */
+.kos__suche-zeile > :first-child { flex: 1; min-width: 0; }
+.kos__suche-zeile .chip { padding: 0 var(--space-3); }
+.kos__feld input { width: 100%; min-width: 0; }

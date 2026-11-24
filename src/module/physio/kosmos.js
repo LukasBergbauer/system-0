@@ -6,7 +6,7 @@
 // und „+ Verknüpfen“ (nur bei echten Einträgen): Glas-Fläche mit verknuepfen.js, danach schwebt der Punkt ein.
 // Nachbar lange drücken / Rechtsklick → Verknüpfung bearbeiten: Notiz oder lösen (verbindung.js, nur zwischen echten Einträgen).
 // „Notizen“ öffnet die Schnell-Notizen; eine davon kann klein über dem Kosmos schweben (schwebend.js).
-// Physio in der Mitte: statt „+ Verknüpfen“ der Knopf „Lücken · N“ (luecken.js).
+// Physio in der Mitte: statt „+ Verknüpfen“ der Knopf „Lücken · N“ neben der Suche (luecken.js).
 import { el } from '../../ui/dom.js';
 import { ARTEN, art } from './arten.js';
 import { suche } from './daten.js';
@@ -98,9 +98,11 @@ export function kosmos({ signal }) {
   const lueckenKnopf = el('button', { class: 'chip kos__plus', attrs: { type: 'button' } });
   lueckenKnopf.addEventListener('click', () => oeffneLuecken({ ausBubble: lueckenKnopf, eintraege: echte, links: echteLinks, hin, signal }));
 
+  // Pfad-Zeile nur unterwegs (auf der Startebene stünde dort nur „Physio“); „Lücken“ steht neben der Suche.
+  const zeile = el('div', { class: 'kos__zeile' }, [spur, plus]);
   const oben = el('div', { class: 'kos__oben' }, [
-    el('div', { class: 'kos__suche' }, [el('div', { class: 'kos__suche-zeile' }, [feld, notizen]), treffer]),
-    el('div', { class: 'kos__zeile' }, [spur, plus, lueckenKnopf]),
+    el('div', { class: 'kos__suche' }, [el('div', { class: 'kos__suche-zeile' }, [feld, notizen, lueckenKnopf]), treffer]),
+    zeile,
   ]);
 
   function tiefe(a, knopf) {
@@ -115,6 +117,7 @@ export function kosmos({ signal }) {
     zeichneVerlauf();
     plus.hidden = !echte.some((e) => e.id === mitte());
     lueckenKnopf.hidden = mitte() !== KERN;
+    zeile.hidden = mitte() === KERN && verlauf.length < 2;
     lueckenKnopf.textContent = `Lücken · ${anzahlLuecken(echte, echteLinks)}`;
   }
 

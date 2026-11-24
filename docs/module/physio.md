@@ -14,6 +14,10 @@ Vorgezogen nach Phase 1 (Datenbank + Mindmap), **Phase 5** (Lernpfade). Notion g
 - **Lernpfade:** in der Mindmap Schritt für Schritt von der Körperregion bis zur passenden Übung
 - ~~Notion~~: gestrichen (Lukas, 09.11.2026), nicht mehr vorschlagen.
 
+## Stand „Klar“ (24.11.2026)
+- Kosmos und Mindmap bleiben (Bedienung von Lukas als „sehr gut“ bestätigt). Pfad-Zeile auf der Startebene ausgeblendet,
+  „Lücken · N“ steht neben Suche und Notizen. iPhone: Suchzeile passt, keine seitliche Überbreite mehr (`.shell__main` `overflow-x: clip`).
+
 ## Stand
 **Erste Fassung fertig (05.11.2026).** Teile a bis e und g (Bilder) gebaut und von Lukas auf iPhone und Mac geprüft;
 Gleiten fühlt sich nach dem Umbau (`gleiten.js`) „sehr gut“ an. Teil f (Feinschliff) wird nicht mehr als eigener Block
