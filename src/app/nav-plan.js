@@ -2,7 +2,7 @@
 // Mac (Seitenleiste): Abschnitte ALLTAG / KÖRPER & KOPF / SYSTEM. Unbekannte Bereiche landen in ALLTAG,
 // „ende“-Bereiche (Einstellungen) in SYSTEM. Neues Modul → seine id unten in den passenden Abschnitt.
 // iPhone (Tab-Leiste): Heute, To-dos, Kalender, Training, dann der Rest, „ende“ ganz hinten.
-// Bis zu 5 passen direkt hinein, sonst die ersten 4 + „Mehr“. „Kommt bald“-Bereiche (bald: true) nur in der Seitenleiste.
+// Bis zu 5 passen direkt hinein, sonst die ersten 4 + „Mehr“.
 const TAB_REIHENFOLGE = ['heute', 'todos', 'kalender', 'training'];
 const TAB_PLAETZE = 5;
 const ABSCHNITTE = [
@@ -23,7 +23,7 @@ function abschnitte(sichtbar) {
 
 export function navPlan(bereiche) {
   const sichtbar = bereiche.filter((b) => b.nav !== false);
-  const fuerTabs = sichtbar.filter((b) => !b.bald);
+  const fuerTabs = sichtbar;
   const vorne = TAB_REIHENFOLGE.map((id) => fuerTabs.find((b) => b.id === id)).filter(Boolean);
   const rest = fuerTabs.filter((b) => !TAB_REIHENFOLGE.includes(b.id));
   const alle = [...vorne, ...rest.filter((b) => !b.ende), ...rest.filter((b) => b.ende)];

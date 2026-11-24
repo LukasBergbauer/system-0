@@ -7,7 +7,6 @@ register({
   id: 'todos',
   titel: 'To-dos',
   symbol: 'todos',
-  bild: [1, 2, 3].map((n) => `assets/bilder/todos-${n}.webp`), // Steinstapel, drei Varianten
   ansicht: todosAnsicht,
   kennzahlen,
 });

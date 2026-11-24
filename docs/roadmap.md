@@ -11,7 +11,16 @@ Erledigte Phasen 0–10 und Phase 11 Schritte 1–5: `docs/roadmap-archiv.md` (n
 
 ## Phase 11 – Prioritätspyramide (ab 22.11.2026)
 Pyramide fertig (Modul + Heute-Feld), Doku `docs/module/pyramide.md`. Schritte 1–5 im Archiv.
-- [ ] 6. `[Opus, mittel]` Funktions-Redesign je Bereich, jeweils erst kurz mit Lukas klären, dann bauen, ein Commit je Bereich.
-      Leitfrage (geändert 23.11., Lukas): **Pyramide bleibt eigenständig, keine Verbindung zu anderen Modulen.** Je Bereich nur: was ist überflüssig, was bleibt?
-      Hinweis: Ein Umbau von To-dos (Heute max. 3, ohne Priorität/Bereiche) und das Entfernen des Kalenders wurden am 23.11. wieder zurückgenommen.
-      Reihenfolge: To-dos → Kalender → Routinen → Gewohnheiten → Training → Visionen/Affirmationen → Quiz → Bücher → Insta → Physio → Einstellungen.
+Schritt 6 (Aufräumen je Bereich) geht in Phase 12 auf.
+
+## Phase 12 – Neugestaltung „Klar“ (ab 24.11.2026, Claude nach eigenem Urteil)
+Zielbild: `docs/design.md` → Richtung „Klar“. Ein Commit je Bereich, jeder im Browser geprüft (Mac + iPhone-Breite).
+Regeln: Pyramide bleibt ohne Verbindung zu anderen Modulen. Keine Daten in Supabase löschen.
+Schwächen (Analyse 24.11.): Farbband-Kopf auf jeder Seite frisst Platz; Glas-Kästen in Glas-Karten; alles rosa getönt;
+Mac nutzt nur 640 px; Heute zeigt To-dos 3× und Kalender 2×; To-dos: Überfälliges ganz unten, leere Gruppen;
+gestaffelte Einblend-Animation (~1 s); Unschärfe auf jeder Karte (iPhone-Last); Pyramide weiße Schrift auf Hellrosa;
+tote Dateien (Musterseiten, pausierte Fotos ~0,9 MB im Offline-Cache, „Kommt bald“, Verlauf-Kachel).
+- [x] 0. Aufräumen: `muster/`, `bausteine*`, `docs/vorlagen/`, `assets/bilder/`, Kopfbilder, Sprüche, „Kommt bald“, Verlauf-Kachel gelöscht.
+- [ ] 1. Grund-Design: Tokens, Hintergrund, Karten, Seitenkopf, Abschnitte, Bewegung.
+- [ ] 2. Heute · 3. To-dos · 4. Kalender · 5. Routinen + Gewohnheiten · 6. Training · 7. Visionen + Affirmationen + Pyramide
+      · 8. Quiz · 9. Bücher · 10. Insta · 11. Physio · 12. Einstellungen + Navigation.

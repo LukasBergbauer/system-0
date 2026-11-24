@@ -3,7 +3,7 @@
 // damit Geräte die neue Fassung laden.
 // Supabase-Anfragen (Daten, Login) werden nie gecacht.
 
-const VERSION = 'v139';
+const VERSION = 'v140';
 const CACHE = `system0-${VERSION}`;
 const LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 // Auf dem eigenen Mac (localhost) immer zuerst das Netz fragen, damit Änderungen sofort sichtbar sind.
@@ -31,7 +31,6 @@ const APP_FILES = [
   './src/app/nav.js',
   './src/app/nav-plan.js',
   './src/app/suche.js',
-  './src/app/bald.js',
   './src/app/bereiche.js',
   './src/app/mehr.js',
   './src/app/einstellungen.js',
@@ -94,8 +93,6 @@ const APP_FILES = [
   './src/app/mitteilungen-kachel.js',
   './src/app/prompts-kachel.js',
   './src/app/prompt-vorlagen.js',
-  './src/app/verlauf-kachel.js',
-  './src/app/verlauf.js',
   './src/module/kalender/google.js',
   './src/module/kalender/google-adresse.js',
   './src/module/routinen/index.js',
@@ -236,7 +233,6 @@ const APP_FILES = [
   './src/styles/physio.css',
   './src/core/router.js',
   './src/app/abgleich-kachel.js',
-  './src/app/kopfbilder.js',
   './src/styles/tokens.css',
   './src/styles/base.css',
   './src/styles/components.css',
@@ -277,19 +273,6 @@ const APP_FILES = [
   './src/ui/abschnitt.js',
   './src/ui/kachel.js',
   './src/ui/chips.js',
-  './src/core/sprueche.js',
-  './assets/bilder/heute-1.webp',
-  './assets/bilder/heute-2.webp',
-  './assets/bilder/heute-3.webp',
-  './assets/bilder/todos-1.webp',
-  './assets/bilder/todos-2.webp',
-  './assets/bilder/todos-3.webp',
-  './assets/bilder/einstellungen-1.webp',
-  './assets/bilder/einstellungen-2.webp',
-  './assets/bilder/einstellungen-3.webp',
-  './bausteine.html',
-  './src/bausteine.js',
-  './src/bausteine-neu.js',
   './assets/icons/icon.svg',
   './assets/icons/avatar-l.svg',
   './assets/icons/icon-180.png',

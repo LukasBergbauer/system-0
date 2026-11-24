@@ -7,9 +7,6 @@ register({
   id: 'kalender',
   titel: 'Kalender',
   symbol: 'kalender',
-  // Kopfbild (steinerne Sonnenuhr): sobald Lukas' drei Fotos da sind (assets/bilder/kalender-1…3.webp),
-  // diese Zeile einschalten und die Fotos in APP_FILES von sw.js eintragen.
-  // bild: [1, 2, 3].map((n) => `assets/bilder/kalender-${n}.webp`),
   ansicht: kalenderAnsicht,
   kennzahlen,
 });

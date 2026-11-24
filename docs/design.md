@@ -1,12 +1,21 @@
 # Design
 
-## Richtung
-„Glas-Dashboard“ (seit 08.11.2026, Vorlage: Reel „Glassy Dashboard“ von Lukas; Musterseite `muster/glas.html`).
-Immer hell. Warmer Hintergrund aus weichen Farbwolken mit feinem Korn, darauf Milchglas-Karten mit weißem Rand,
-großen Rundungen und weichem, farbig getöntem Schatten. Große Zahlen, Systemschrift, Pillen-Knöpfe.
-Alles hängt an **einer** Akzentfarbe (Standard Koralle `#E8664F`), wählbar in Einstellungen → Akzentfarbe.
-Hintergrund, Hero-Flächen, Haken, Fortschritt und Schatten werden per `color-mix` daraus gemischt.
-„Stein & Licht“ (Kopfbilder, Serifenschrift, Elfenbein) ist pausiert; die Fotos liegen noch in `assets/bilder/`.
+## Richtung „Klar“ (seit 24.11.2026, Neugestaltung durch Claude im Auftrag von Lukas)
+Ziel: ruhiger, schneller, mehr Inhalt pro Bildschirm. Ersetzt „Glas-Dashboard“ und „Farbkopf“.
+- **Ruhiger Grund:** warmes, helles Papier (`--bg`), nur eine leise Akzent-Wolke oben, kein Korn.
+- **Karten:** fast deckendes Weiß, Haarlinie, kleiner neutraler Schatten. Unschärfe (`backdrop-filter`) nur für
+  Schwebendes (Navigation, Fenster) – spart Rechenzeit auf dem iPhone.
+- **Eine Ebene:** keine Kästen in Karten. Abschnitts-Überschriften sind eine schlichte Zeile (Label + Zahl).
+- **Akzent sparsam:** nur für Handlung und Zustand (Haken, aktiver Eintrag, Fortschritt, „+“, Haupt-Zahl).
+  Keine großen Farbflächen mehr (kein Farbband im Seitenkopf, keine farbige Hero-Karte).
+- **Seitenkopf:** großer Titel links, Kennzahlen als kleine Zeile darunter. Kein Symbol-Plättchen, kein Abschnitt, kein Muster.
+- **Breite:** Listen-Seiten bis 880 px (Mac), Heute volle Breite; iPhone eine Spalte.
+- **Bewegung:** Seiteninhalt blendet einmal kurz ein (180 ms), ohne Staffel. Antippbares gibt beim Drücken nach.
+- **Funktionen:** Überflüssiges und Doppeltes raus (siehe Roadmap Phase 12), Wichtiges zuerst (z. B. Überfälliges oben).
+
+## Frühere Richtung „Glas-Dashboard“ (08.–23.11.2026, abgelöst)
+Vorlage Reel „Glassy Dashboard“; Musterseiten (`muster/`) und Vorlagen (`docs/vorlagen/`) am 24.11. gelöscht (Git-Verlauf).
+Abschnitte darunter beschreiben den Stand vor der Neugestaltung; sie werden Bereich für Bereich angepasst.
 
 ## Tokens (alles in `src/styles/tokens.css`)
 | Token | Wert | Verwendung |
@@ -63,7 +72,7 @@ Stile: `src/styles/components.css` (Karte, Symbol, Liste, Knopf, Eingabefeld, Ta
 (Klassen `.marke` = „SYSTEM 0“-Zeile, `.label` = kleines Label in Großbuchstaben, `.strich` = kurzer Strich) –
 eigene Dateien, damit keine über 200 Zeilen wächst.
 Glas-Fläche für `.card` und `.kachel` steht gemeinsam in `components.css`.
-Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen: `bausteine.html`.
+Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen: in der App bzw. `tests/vorschau.html`.
 
 | Datei | Funktion | Kurz |
 |---|---|---|

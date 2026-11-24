@@ -90,9 +90,9 @@
 .mitteilung__vorlauf { display: flex; flex-direction: column; gap: var(--space-1); }
 .mitteilung [hidden] { display: none; }
 
-/* Prompts + Verlauf (src/app/prompts-kachel.js, verlauf-kachel.js) */
-.kachel--gross:has(.prompts, .verlauf) { flex-wrap: wrap; }
-.prompts, .verlauf { flex-basis: 100%; min-width: 0; }
+/* Prompts (src/app/prompts-kachel.js) */
+.kachel--gross:has(.prompts) { flex-wrap: wrap; }
+.prompts { flex-basis: 100%; min-width: 0; }
 .prompts { display: flex; flex-direction: column; gap: var(--space-2); }
 .prompts__zeile { border-bottom: 1px solid var(--line); padding-bottom: var(--space-2); }
 .prompts__kopf { display: flex; align-items: center; gap: var(--space-3); min-height: var(--tap); cursor: pointer; list-style: none; }
@@ -103,8 +103,3 @@
 .prompts__voll { margin: var(--space-2) 0 var(--space-3); white-space: pre-wrap; overflow-wrap: anywhere; color: var(--text-2); font-size: var(--fs-small); line-height: 1.5; }
 .prompts > .btn:last-child { align-self: flex-start; }
 .prompts__feld { resize: vertical; font: inherit; line-height: 1.5; min-height: 12em; }
-.verlauf__auf { cursor: pointer; color: var(--text-2); min-height: var(--tap); display: flex; align-items: center; }
-.verlauf__datum { margin: var(--space-4) 0 var(--space-2); }
-.verlauf__liste { margin: 0; padding-left: var(--space-5); display: flex; flex-direction: column; gap: var(--space-1); color: var(--text-2); font-size: var(--fs-small); line-height: 1.45; }
-.verlauf__auf::after { content: 'Aufklappen'; }
-.verlauf[open] .verlauf__auf::after { content: 'Zuklappen'; }
