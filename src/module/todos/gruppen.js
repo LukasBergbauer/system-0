@@ -1,4 +1,4 @@
-// Offene To-dos nach Zeit: Heute · Morgen (oben als Boxen) · Diese Woche · Später · Ohne Datum · Nicht erledigt (vergangene Tage, ganz unten).
+// Offene To-dos nach Zeit: Überfällig (alt) · Heute · Morgen · Diese Woche · Später · Ohne Datum.
 // Morgige rutschen am nächsten Tag von selbst nach „Heute“ (alles hängt am Datum). Reihenfolge je Fach aus sortiereOffene.
 import { heuteISO } from './sortierung.js';
 
@@ -15,6 +15,6 @@ export function gruppiereNachZeit(offene) {
   const fach = { heute: [], morgen: [], woche: [], spaeter: [], ohne: [], alt: [] };
   const [heute, morgen, sieben] = [heuteISO(), heuteISO(1), heuteISO(7)];
   for (const t of offene) fach[fachVon(t.faellig_am, heute, morgen, sieben)].push(t);
-  fach.alt.sort((a, b) => b.faellig_am.localeCompare(a.faellig_am)); // jüngste zuerst
+  fach.alt.sort((a, b) => a.faellig_am.localeCompare(b.faellig_am)); // älteste zuerst
   return fach;
 }

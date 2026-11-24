@@ -23,5 +23,6 @@ tote Dateien (Musterseiten, pausierte Fotos ~0,9 MB im Offline-Cache, „Kommt b
 - [x] 0. Aufräumen: `muster/`, `bausteine*`, `docs/vorlagen/`, `assets/bilder/`, Kopfbilder, Sprüche, „Kommt bald“, Verlauf-Kachel gelöscht.
 - [x] 1. Grund-Design: Papier statt Farbwolken, weiße Karten ohne Unschärfe, Kopf ohne Farbband, Abschnitte ohne Kasten, Navigation aktiv = dunkle Pille, Einblenden 220 ms. Vorschau `tests/vorschau.html` lädt jetzt immer frisch.
 - [x] 2. Heute: doppelte Felder raus, To-dos direkt abhakbar, neues Standard-Layout (einmalig umgestellt), Akzent-Knopf weg, Pyramide lesbar.
-- [ ] 3. To-dos · 4. Kalender · 5. Routinen + Gewohnheiten · 6. Training · 7. Visionen + Affirmationen + Pyramide
+- [x] 3. To-dos: Überfällig ganz oben, leere Gruppen weg, Heute/Morgen-Boxen und Akzent-Köpfe entfernt.
+- [ ] 4. Kalender · 5. Routinen + Gewohnheiten · 6. Training · 7. Visionen + Affirmationen + Pyramide
       · 8. Quiz · 9. Bücher · 10. Insta · 11. Physio · 12. Einstellungen + Navigation.

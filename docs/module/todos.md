@@ -8,6 +8,11 @@
 - Umschalten auf Ansicht nach Bereichen (z. B. Praxis, Training, Privat, Insta); Bereiche frei anlegbar
 - Schnelleingabe auf dem iPhone
 
+## Stand „Klar“ (24.11.2026)
+- Gruppen in fester Reihenfolge: **Überfällig** (oben, rot, älteste zuerst) · Heute · Morgen · Diese Woche · Später · Ohne Datum; leere Gruppen fehlen.
+  Nichts offen → ein kurzer Satz. „Erledigt“ bleibt eingeklappt unten. Gruppe = weiße Karte, Überschrift als schlichte Zeile.
+- Heute-Seite kann To-dos direkt abhaken (`heute/einzeln.js`).
+
 ## Plan (mit Lukas abgestimmt)
 Eine Sitzung, Teile a → b, nach jedem Teil kurz prüfen.
 

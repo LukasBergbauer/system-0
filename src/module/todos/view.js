@@ -1,5 +1,5 @@
-// Ansicht „To-dos“: Bereichs-Filter oben, Schnelleingabe, Glas-Boxen „Heute“ + „Morgen“, dann Diese Woche · Später · Ohne Datum,
-// „Erledigt“ (eingeklappt) und ganz unten „Nicht erledigt“ (vergangene Tage, mit Datum).
+// Ansicht „To-dos“: Bereichs-Filter oben, Schnelleingabe, dann Überfällig · Heute · Morgen · Diese Woche · Später · Ohne Datum
+// (nur Gruppen mit Einträgen) und „Erledigt“ (eingeklappt).
 // Zeichnet sich neu, sobald sich To-dos oder Bereiche ändern (auch durch das andere Gerät).
 import { abschnitt } from '../../ui/abschnitt.js';
 import { el } from '../../ui/dom.js';
@@ -16,15 +16,12 @@ import { schnelleingabe } from './schnelleingabe.js';
 import { oeffneBearbeiten } from './bearbeiten.js';
 import { erledigtAbschnitt } from './erledigt.js';
 
-// Heute · Morgen · Diese Woche sind hervorgehoben (eigenes Symbol, Akzent-Kopf).
-const WICHTIG = { Heute: 'heute', Morgen: 'morgen', 'Diese Woche': 'kalender' };
+// Gruppen in dieser Reihenfolge, je mit Symbol; Überfällig ist rot markiert.
+const GRUPPEN = [['alt', 'Überfällig', 'kalender'], ['heute', 'Heute', 'heute'], ['morgen', 'Morgen', 'morgen'],
+  ['woche', 'Diese Woche', 'kalender'], ['spaeter', 'Später', 'kalender'], ['ohne', 'Ohne Datum', 'todos']];
 
-function gruppe(titel, todos, zeile, leer) {
-  const wichtig = WICHTIG[titel];
-  return el('section', { class: `todo-gruppe${wichtig ? ' todo-gruppe--wichtig' : ''}` }, [
-    abschnitt({ titel, zahl: todos.length, symbol: wichtig || 'todos' }),
-    todos.length ? list(todos.map(zeile)) : el('p', { class: 'todo-leer', text: leer }),
-  ]);
+function gruppe(fach, titel, symbol, todos, zeile) {
+  return el('section', { class: `todo-gruppe todo-gruppe--${fach}` }, [abschnitt({ titel, zahl: todos.length, symbol }), list(todos.map(zeile))]);
 }
 
 export function todosAnsicht({ signal }) {
@@ -93,11 +90,11 @@ export function todosAnsicht({ signal }) {
         zeichne();
       },
     });
+    const gruppen = GRUPPEN.filter(([fach]) => g[fach].length).map(([fach, titel, sym]) => gruppe(fach, titel, sym, g[fach], zeile));
     inhalt.replaceChildren(...[
-      el('div', { class: 'todo-oben' }, [gruppe('Heute', g.heute, zeile, 'Nichts für heute.'), gruppe('Morgen', g.morgen, zeile, 'Nichts für morgen.')]),
-      ...[['Diese Woche', g.woche], ['Später', g.spaeter], ['Ohne Datum', g.ohne]].filter(([, t]) => t.length).map(([titel, t]) => gruppe(titel, t, zeile)),
+      ...gruppen,
+      !gruppen.length && el('p', { class: 'todo-leer', text: alleErledigten.length ? 'Alles erledigt.' : 'Noch keine To-dos. Oben eintippen und Enter.' }),
       erledigt,
-      g.alt.length && gruppe('Nicht erledigt', g.alt, zeile),
     ].filter(Boolean));
   }
 
