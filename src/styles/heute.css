@@ -91,7 +91,6 @@
 /* Kennzahl-Kacheln */
 .heute-kz, .heute-karte { position: relative; padding: 20px; font: inherit; color: var(--text); border-radius: var(--radius-gross);
   background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten);
-  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%);
   transition: transform 380ms var(--feder), box-shadow 380ms var(--ease); }
 .heute-kz { min-height: 158px; display: flex; flex-direction: column; align-items: flex-start; text-align: left; cursor: pointer; }
 @media (hover: hover) { .heute-kz:not(:disabled):hover { transform: translateY(-3px); box-shadow: var(--schatten-hoch); } }

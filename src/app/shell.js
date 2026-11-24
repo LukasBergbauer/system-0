@@ -39,12 +39,11 @@ export function shell() {
     ansicht?.abort();
     ansicht = new AbortController();
     document.title = `${bereich.titel} · System 0`;
-    // Kopf: Glas-Kopfleiste mit Abschnitt und Kennzahlen (bereich.kennzahlen() → [{ zahl, text }], frisch bei Datenänderung).
-    // dashboard: true (Heute) = eigener Kopf und breite Fläche statt der schmalen Spalte
+    // Kopf: Titel und Kennzahlen (bereich.kennzahlen() → [{ zahl, text }], frisch bei Datenänderung).
+    // dashboard: true (Heute) = eigener Kopf und breite Fläche statt der Spalte
     inhalt.classList.toggle('app--breit', Boolean(bereich.dashboard));
-    inhalt.dataset.bereich = bereich.id; // Muster je Bereich im Kopf (kopf-muster.css)
-    const abschnitt = navPlan(alleBereiche()).abschnitte.find((a) => a.bereiche.includes(bereich))?.titel;
-    const kopf = bereich.dashboard ? [] : [kopfbild({ titel: bereich.titel, symbol: bereich.symbol, abschnitt })];
+    inhalt.dataset.bereich = bereich.id;
+    const kopf = bereich.dashboard ? [] : [kopfbild({ titel: bereich.titel })];
     if (kopf[0] && bereich.kennzahlen) {
       const werte = () => kopf[0].werte(bereich.kennzahlen().catch(() => []));
       werte();

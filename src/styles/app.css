@@ -5,7 +5,7 @@
 }
 
 .app {
-  max-width: 760px;
+  max-width: 880px;
   margin: 0 auto;
   padding: var(--space-6) var(--space-4) var(--space-7);
   display: flex;
@@ -16,15 +16,9 @@
 .app--breit {
   max-width: 1480px;
 }
-/* Seitenwechsel: Kopf und Inhalt blenden nacheinander ein */
+/* Seitenwechsel: Inhalt blendet einmal kurz ein */
 .app > * {
-  animation: rein 600ms var(--ease) backwards;
-}
-.app > :nth-child(2) {
-  animation-delay: 70ms;
-}
-.app > :nth-child(n + 3) {
-  animation-delay: 140ms;
+  animation: rein 220ms var(--ease) backwards;
 }
 .app__title {
   font-weight: 600;
@@ -76,8 +70,7 @@
 .wh__raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: var(--space-2); max-height: 46vh; overflow-y: auto; }
 .wh__zelle {
   display: flex; flex-direction: column; gap: 2px; padding: var(--space-3);
-  border-radius: var(--radius-klein); background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand);
-  box-shadow: var(--schatten);
+  border-radius: var(--radius-klein); background: var(--surface);
 }
 .wh__zelle b { font-size: var(--fs-title); font-weight: 600; }
 .wh__zelle span { font-size: var(--fs-label); color: var(--text-2); text-transform: capitalize; }

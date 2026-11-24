@@ -12,9 +12,9 @@
 
 .nav-tabs,
 .nav-side {
-  background: var(--glas-verlauf);
+  background: var(--glass);
   border: var(--glas-kante) solid var(--glas-rand);
-  box-shadow: var(--schatten);
+  box-shadow: var(--schatten-hoch);
   -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
   backdrop-filter: blur(var(--blur)) saturate(160%);
 }
@@ -24,8 +24,7 @@
   top: 0;
   z-index: 0;
   border-radius: var(--radius-klein);
-  background: #fff;
-  box-shadow: 0 6px 18px -8px rgba(70, 25, 10, 0.35);
+  background: var(--dunkel);
   transition: transform 420ms var(--ease), width 420ms var(--ease), height 420ms var(--ease), opacity var(--duration);
 }
 .nav-tabs__link,
@@ -41,7 +40,7 @@
 .nav-side__link:hover,
 .nav-tabs__link[aria-current="page"],
 .nav-side__link[aria-current="page"] {
-  color: var(--text);
+  color: #fff;
 }
 .nav-tabs__link:active,
 .nav-side__link:active {
@@ -121,7 +120,6 @@
      per transform (app/gleiten.js) – kein margin-Übergang, der bei jedem Bild neu rechnet. */
   .shell--leiste-offen .nav-side {
     width: var(--sidebar);
-    box-shadow: var(--schatten-hoch);
   }
   .shell--leiste-offen .shell__main {
     margin-left: calc(var(--sidebar) + var(--space-4));
@@ -191,8 +189,8 @@
   font-size: var(--fs-small);
   text-align: left;
   white-space: nowrap;
-  background: var(--glass);
-  border: var(--glas-kante) solid var(--glas-rand);
+  background: var(--surface-2);
+  border: 0;
   border-radius: 999px;
   cursor: pointer;
 }

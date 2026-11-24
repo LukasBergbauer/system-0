@@ -21,6 +21,6 @@ Mac nutzt nur 640 px; Heute zeigt To-dos 3× und Kalender 2×; To-dos: Überfäl
 gestaffelte Einblend-Animation (~1 s); Unschärfe auf jeder Karte (iPhone-Last); Pyramide weiße Schrift auf Hellrosa;
 tote Dateien (Musterseiten, pausierte Fotos ~0,9 MB im Offline-Cache, „Kommt bald“, Verlauf-Kachel).
 - [x] 0. Aufräumen: `muster/`, `bausteine*`, `docs/vorlagen/`, `assets/bilder/`, Kopfbilder, Sprüche, „Kommt bald“, Verlauf-Kachel gelöscht.
-- [ ] 1. Grund-Design: Tokens, Hintergrund, Karten, Seitenkopf, Abschnitte, Bewegung.
+- [x] 1. Grund-Design: Papier statt Farbwolken, weiße Karten ohne Unschärfe, Kopf ohne Farbband, Abschnitte ohne Kasten, Navigation aktiv = dunkle Pille, Einblenden 220 ms. Vorschau `tests/vorschau.html` lädt jetzt immer frisch.
 - [ ] 2. Heute · 3. To-dos · 4. Kalender · 5. Routinen + Gewohnheiten · 6. Training · 7. Visionen + Affirmationen + Pyramide
       · 8. Quiz · 9. Bücher · 10. Insta · 11. Physio · 12. Einstellungen + Navigation.

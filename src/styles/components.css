@@ -1,15 +1,13 @@
 /* Stile der einfachen UI-Bausteine aus src/ui/. Nur Werte aus tokens.css.
    Checkbox und Modal haben eigene Dateien (checkbox.css, modal.css). */
 
-/* ---------- Glas (Karte, Kachel): heller Verlauf, weißer Rand, weicher Schatten in Akzent-Tönung ---------- */
+/* ---------- Karte, Kachel: fast deckendes Weiß, Haarlinie, kleiner neutraler Schatten (keine Unschärfe) ---------- */
 .card,
 .kachel {
-  background: var(--glas-verlauf);
+  background: var(--karte);
   border: var(--glas-kante) solid var(--glas-rand);
   border-radius: var(--radius-gross);
   box-shadow: var(--schatten);
-  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
-  backdrop-filter: blur(var(--blur)) saturate(160%);
 }
 .card {
   padding: var(--innen);
@@ -19,7 +17,6 @@
   font-weight: 650;
   letter-spacing: -0.02em;
   margin: 0 0 var(--space-3);
-  font-size: var(--fs-title);
 }
 
 /* ---------- Symbol (src/ui/symbol.js) ---------- */
@@ -100,7 +97,7 @@
   gap: var(--space-2);
   color: var(--text);
   background: var(--surface-2);
-  border: var(--glas-kante) solid var(--glas-rand);
+  border: 0;
   border-radius: 999px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -108,8 +105,7 @@
 }
 @media (hover: hover) {
   .btn:not(:disabled):hover {
-    background: #fff;
-    box-shadow: 0 6px 16px -8px rgba(60, 20, 10, 0.4);
+    background: rgba(43, 30, 25, 0.1);
   }
 }
 .btn:active {
@@ -126,7 +122,10 @@
   color: #fff;
   background: var(--dunkel);
   border-color: transparent;
-  box-shadow: 0 8px 18px -8px rgba(30, 10, 5, 0.6);
+  box-shadow: none;
+}
+@media (hover: hover) {
+  .btn--primary:not(:disabled):hover { background: color-mix(in oklch, var(--dunkel) 85%, white); }
 }
 .btn--ghost,
 .btn--ghost:not(:disabled):hover {
@@ -158,7 +157,7 @@
   font-size: var(--fs-normal);
   color: var(--text);
   background: var(--surface-2);
-  border: var(--glas-kante) solid var(--glas-rand);
+  border: 1px solid transparent;
   border-radius: var(--radius-klein);
   outline: none;
   transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease), background var(--duration) var(--ease);
@@ -180,8 +179,7 @@
   gap: 2px;
   padding: 3px;
   border-radius: 999px;
-  background: var(--surface);
-  border: var(--glas-kante) solid var(--glas-rand);
+  background: var(--surface-2);
   overflow-x: auto;
   scrollbar-width: none;
 }

@@ -20,33 +20,23 @@ Abschnitte darunter beschreiben den Stand vor der Neugestaltung; sie werden Bere
 ## Tokens (alles in `src/styles/tokens.css`)
 | Token | Wert | Verwendung |
 |---|---|---|
-| `--accent` | #E8664F (wählbar) | Akzent: aktiv, Haken, gewählter Chip, Hero-Flächen, Logo. Als `@property` angemeldet → Wechsel blendet 700 ms über |
-| `--akzent-hell` / `--akzent-tief` | aus `--accent` gemischt | Verläufe (Hero, Logo) |
-| `--accent-ink` | #FFFFFF | Schrift/Haken auf Akzent |
-| `--bg` | Akzent 16 % + #FBF4EF | Grundton hinter den Farbwolken (`body::before` in `base.css`) |
-| `--text` / `--text-2` / `--text-3` | #2B1E19 / 64 % / 42 % | Text, Nebentext (≈4,5:1 auf Glas), ganz leise |
-| `--dunkel` | #21170F | dunkle Pille: Hauptknopf, gewählter Tab |
-| `--surface` / `--surface-2` | Weiß 42 % / 66 % | Glas-Flächen / Hover, Eingabefelder |
-| `--glass` | Weiß 50 % | Leisten |
-| `--glas-verlauf` | Weiß 58 % → 30 % | Hintergrund von Karte, Kachel, Leisten, Listen-Gruppen |
-| `--glas-rand` / `--glas-kante` | Weiß 86 % / 0,5 px | feiner Lichtrand (Haarlinie) an Glas |
-| `--line` | Text 9 % | Trennlinien in Listen |
-| `--schatten` / `--schatten-hoch` | Innenlicht oben + zarter Innenrand, außen naher + weicher, ruhiger Schatten (Akzent nur leicht) | Glas in Ruhe / beim Anheben |
-| `--blur` | 22px | Unschärfe hinter Glas (mit `saturate(160%)`) |
-| `--radius` / `--radius-gross` / `--radius-klein` | 16 / 22 / 10 px | Felder & Popover / Karten & Leisten / Plättchen & Tage; Pillen 999px. Keine festen px-Radien in Modulen |
-| `--warn` / `--gut` | #D9364F / #3E9B6E | überfällig / Trend nach oben |
-| `--font` | System (SF Pro) | einzige Schrift |
-| `--space-1` … `--space-7` | 4 / 8 / 12 / 16 / 24 / 32 / 48 px | Abstände |
-| `--fs-label` … `--fs-display` | 11 / 13 / 16 / 19 / 26 / 34 px | Schriftgrößen (`--fs-display` = große Zahlen) |
-| `--fs-seite` | 42 px (iPhone 32) | Seitentitel, Gewicht 650, Abstand −0,035em |
-| `--sperrung` | 0.12em | kleine Labels in Großbuchstaben |
-| `--duration` / `--duration-slow` | 200 / 700 ms | Animationen / Akzent-Wechsel |
-| `--ease` / `--feder` | Abbremsen / leichtes Nachfedern | Bewegung |
-| `--tap` | 44px | Tippflächen |
-| `--knopf` | 44 px (Maus: 40 px) | eine Höhe für `.btn` und Heute-Pillen; mehrere Knöpfe nebeneinander (`.knopfreihe`, Fenster-Fuß; iPhone gleich breit) |
-| `--sidebar` / `--sidebar-zu` | 236 / 72 px | Seitenleiste beim Drüberfahren / in Ruhe |
+| `--accent` | #E8664F (wählbar) | Haken, aktiver Chip, Fortschritt, „+“, Haupt-Zahl. `@property` → Wechsel blendet über |
+| `--bg` | Akzent 3 % + #F5F3EF | Papier; `body::before` legt nur eine leise Wolke (Unterton) oben links darüber |
+| `--karte` (= `--glas-verlauf`) | Weiß 92 % | Karten, Kacheln, Gruppen, Eingabeleiste |
+| `--glas-rand` / `--glas-kante` | Text 8 % / 1 px | Haarlinie um Karten |
+| `--surface` / `--surface-2` | Text 4 % / 6 % | Spur von Umschaltern, Zeilen / Knöpfe, Eingabefelder |
+| `--glass` + `--blur` | Weiß 72 % + 20 px | nur Schwebendes: Navigation, Fenster, Popover |
+| `--schatten` / `--schatten-hoch` | neutral, klein / beim Anheben | keine Akzent-Tönung mehr |
+| `--text` / `--text-2` / `--text-3` | #2B1E19 / 64 % / 42 % | Text, Nebentext, ganz leise |
+| `--dunkel` | #21170F | Hauptknopf, gewählter Tab, aktiver Navigations-Eintrag |
+| `--radius` / `--radius-gross` / `--radius-klein` | 16 / 20 / 10 px | Felder / Karten / kleine Flächen; Pillen 999px |
+| `--luft` / `--innen` | 16 / 20 px | Abstand zwischen Karten / Innenabstand |
+| `--fs-label` … `--fs-display`, `--fs-seite` | 11 / 13 / 16 / 19 / 26 / 34, Seite 34 (iPhone 30) | Schriftgrößen |
+| `--duration` | 180 ms | Bewegung; Seite blendet 220 ms ein (`app.css`) |
+| `--warn` / `--gut` | #D9364F / #3E9B6E | überfällig / gut |
+| `--tap` / `--knopf` / `--leiste` | 44 / 44 (Maus 40) / 48 px | Tippflächen, Knöpfe, Eingabeleisten |
 
-`.hell` (Mindmap-Overlay): deckendes Warmweiß statt Glas, gleiche Token-Namen.
+`.hell` (Mindmap-Overlay): deckendes Warmweiß, gleiche Token-Namen.
 
 ## Eine Farbe + Unterton (10.11.2026)
 Alles bleibt in **einer** Farbe (Lukas: einheitlich, edel, nicht überladen). Keine Farben je Bereich.
@@ -84,10 +74,10 @@ Jede Datei liefert eine Funktion, die ein fertiges Element zurückgibt. Ansehen:
 | `input.js` | `input({ label, placeholder, value, type, onInput })` | Eingabefeld mit Beschriftung |
 | `modal.js` | `modal({ title, content, actions })` → `{ open, close }` | iPhone: von unten, Mac: mittig |
 | `tabs.js` | `tabs({ items, active, onChange })` | Pillen-Umschalter, aktiver Tab = dunkle Pille |
-| `kopfbild.js` | `kopfbild({ titel, symbol, abschnitt, werte })` | Seitenkopf als Glas-Kopfleiste mit Kennzahlen; `kopf.werte(neue)` tauscht sie |
+| `kopfbild.js` | `kopfbild({ titel, werte })` | Seitenkopf: Titel + Kennzahlen-Zeile; `kopf.werte(neue)` tauscht sie |
 | `kachel.js` | `kacheln([…])`, `kachel({ symbol, titel, wert, text, gross, onClick, children })` | Glas-Kacheln im 2er-Raster; klein = Symbol oben, `gross` = ganze Breite mit Symbol links; Symbol im weißen Kreis (38 px), `titel` als Label, `wert` groß (26 px, 600), `text` klein; antippbar = hebt sich beim Drüberfahren; Zustände `kachel--laeuft` (Symbol dreht), `kachel--warn` |
 | `chips.js` | `chips({ items, active, onChange, aktionen })` | waagrechte Kapsel-Leiste (wischbar); gewählt = Akzent gefüllt; `aktionen` = gestrichelte Chips, die nur etwas auslösen |
-| `abschnitt.js` | `abschnitt({ titel, zahl, symbol, tag })` | Abschnitts-Überschrift als Glas-Kasten (Symbol, Label, Zahl rechts); in Karten ohne Schatten (`schrift.css`). Ersetzt lose `.label`-Überschriften (To-dos, Kalender, Gewohnheiten, Training, Insta) |
+| `abschnitt.js` | `abschnitt({ titel, zahl, symbol, tag })` | Abschnitts-Überschrift als schlichte Zeile (Symbol, Label, Zahl rechts), kein Kasten (`schrift.css`) |
 | `symbol.js` | `symbol(name)` | dünnes Linien-Symbol (24 px, Textfarbe), z. B. `heute`, `todos`, `einstellungen`, `mehr`, `abgleich`, `export`, `konto`, `physio`, `suche` |
 
 Navigation (`src/app/nav.js`, Stil `nav.css`): iPhone = schwebende Glas-Kapsel unten, nur Symbole.
@@ -95,64 +85,28 @@ Mac = schwebende Glas-Seitenleiste links mit Logo = App-Icon (`assets/icons/icon
 klappt beim Drüberfahren (bzw. Tastatur-Fokus) sofort auf 236 px auf und schiebt den Inhalt in allen Bereichen:
 Rand springt sofort, sichtbar gleiten die Teile per FLIP (`app/gleiten.js`, Felder mit `[data-raster]` einzeln, 420 ms, sanfte Kurve wie die Leiste).
 Zustand als Klasse `shell--leiste-offen` (nav.js `leisteKlappen`), kein `:hover/:has` (Safari). Kein Klapp-Knopf mehr.
-Aktiver Eintrag: weiße Pille (`.nav__zeiger`), gleitet ruhig ohne Nachfedern (nur senkrecht, Breite per CSS).
+Aktiver Eintrag: dunkle Pille (`.nav__zeiger`, `--dunkel`, weißes Symbol), gleitet ruhig (nur senkrecht, Breite per CSS).
 Seitenleiste wie `docs/vorlagen/dashboard-glas.png`: Marke „System 0 / Lukas“, Suchfeld (Glas-Pille), Abschnitte
 ALLTAG / KÖRPER & KOPF / SYSTEM (10 px, gesperrt, `--text-3`), Zahl als Akzent-Pille rechts am Eintrag, unten Stein-Kachel „L“ (`assets/icons/avatar-l.svg`, Stil wie App-Icon) mit
 Status-Punkt + „Lukas · synchronisiert“. Eingeklappt verschwinden Texte, Abschnitts-Namen und Zahlen.
-Seitenkopf (`kopfbild`, Runde 2, Variante A): Glas-Kopfleiste mit Symbol-Plättchen (48 px), Abschnitt (ALLTAG …) über dem Titel
-(`--fs-display`, 650), rechts Kennzahlen (`bereich.kennzahlen()` → `[{ zahl, text }]`, je Modul `kennzahlen.js`, frisch bei `daten`),
-ohne Trennstriche; iPhone: Kennzahlen unter dem Titel. **Charakter je Bereich** (`kopf-muster.css`, eine Farbe):
-To-dos Notizblock-Linien + Haken-Spalte, Kalender Raster, Routinen Zeitstrahl, Training Streifen + kräftige Zahlen, Physio Höhenlinien,
-Visionen Strahlen, Affirmationen mittig + Serife kursiv, Gewohnheiten Punkte, Quiz Punkt-Raster, Bücher Leinen + Buchrücken + Serife,
-Insta Kachelraster, Einstellungen ohne Muster (Monospace). Muster: `muster/runde2.html`.
+Seitenkopf (`ui/kopfbild.js`, `kopfbild.css`, „Klar“): Titel (`--fs-seite`, 700) und darunter Kennzahlen als kleine Zeile
+(`bereich.kennzahlen()` → `[{ zahl, text }]`, je Modul `kennzahlen.js`, frisch bei `daten`). Kein Symbol, Abschnitt oder Muster mehr.
 Karten-/Fenstertitel 650, `--fs-title`, eng;
 Karten auf Heute mit kleinem Bereichs-Symbol im Titel.
 Ein `bild` wird zurzeit nicht übergeben (`shell.js`), die Bereiche behalten ihre Bildlisten für später.
 Listen-Gruppen in To-dos und Kalender (`.todo-gruppe`, `.termin-gruppe`) sind Glaskarten mit `abschnitt`-Kasten als Kopf.
 
-## Farbkopf + System A (22.11.2026, Lukas; Muster `muster/seiten.html` B-Kopf, `muster/system.html` A)
-- Seitenkopf (`ui/kopfbild.js`, `kopfbild.css`) = Farb-Band im Akzent-Verlauf wie die Heute-Hero, Muster je Bereich hell darauf
-  (`kopf-muster.css`, `--mline`/`--makz` weiß), Titel groß (`--fs-seite`) unten links, Kennzahlen rechts. Weiß-Akzent: weißes Band.
-- Bento (Felder lückenlos verbunden) verworfen: zu gedrückt. Karten und Abschnitts-Kästen bleiben einzeln.
-- **Ein System:** `--luft` 24 px zwischen Feldern (`.app`, `.app__stack`, Listen), `--innen` 24 px Innenabstand der Karten,
-  `--leiste` 48 px Höhe für Eingaben/Umschalter, Rundung `--radius`. Schriftrollen: Titel / Label / Text / Nebentext (`--fs-*`).
-- **Knöpfe verschmelzen:** `ui/leiste.js` `leiste(input, onSenden)` (Stil `leiste.css`) = Eingabe mit eingebautem dunklem „+“.
-  Genutzt: To-dos, Kalender (leeres „+“ = Termin-Fenster, ersetzt „+ Termin“), Insta-Idee (ersetzt „+ Post“), Visionen-Teilschritt.
-  Nebenaktionen dezent (ghost) oder als Symbol. Leere Hinweise nur ein kurzer Satz, Erklärtexte weg.
-- Kopf überall gleich aufgebaut (keine Sonderform/Serife mehr bei Affirmationen, Bücher, Training, Einstellungen), nur das Muster wechselt.
-  iPhone-Titel `clamp(26px, 8.5vw, --fs-seite)`, bricht nie ab.
-- Karten (`.card`, `.kachel`, `.routine`, `.gew`, Gruppen, Ziel-Bereich, Quiz-Endlos) innen `--innen`, Abstände zwischen Blöcken `--luft` in allen Modulen.
-
-## Apple-Feinschliff (22.11.2026, Muster `muster/apple.html`)
-Design bleibt (Farbkopf, Glas-Karten, Akzent). Übernommen (To-dos):
+## Apple-Feinschliff (22.11.2026)
+Übernommen:
 - `ui/segment.js` (`segment.css`): graue Spur, weißer Daumen, wischbar bei vielen Teilen; `.textknopf` = Akzent-Text ohne Rahmen.
 - `.leiste` (`leiste.css`): Rundung 12 px, Optionen als kleine graue Kapseln in der Zeile (`.leiste__option`, gewählt = Akzent), „+“ als Akzent-Kreis.
-- Verworfen: iOS-Gruppen (Titel über kleiner Karte) – Lukas: sieht blöd aus, Glas-Karten bleiben.
-
-## Kopfbilder und Sprüche (pausiert)
-- Fotos von Lukas (Bild-KI), je Bereich drei Varianten: `assets/bilder/<bereich>-1…3.webp` (1536 × 1024, je ca. 80–125 KB).
-  Der Bereich gibt sie beim Anmelden als Liste an (`bild: [...]`); `src/app/kopfbilder.js` wählt täglich eine andere
-  (`heutigesBild`) und lädt die Fotos aller Bereiche schon beim Start vor (`kopfbilderVorladen`, mit `decode`).
-  Kein Einblenden beim Seitenwechsel: das Bild steht sofort da (vorher sichtbarer „Klick“).
-- Motiv: Stein im schrägen Lichtstrahl von rechts oben, fast schwarzer Hintergrund, nur Grau/Weiß,
-  Objekt im rechten Drittel, links Platz für den Titel. Heute: Kugel · To-dos: Steinstapel · Einstellungen: Steinquader.
-- Einbau ohne Bildkante: Das Foto ist Hintergrundbild eines `div` mit `background-color: var(--bg)` und
-  `background-blend-mode: lighten` – der fast schwarze Bildgrund wird so genau zur Seitenfarbe. Dazu weiche Maske
-  an allen Rändern (links ganz auf 0). `mix-blend-mode` auf einem `<img>` hat in Lukas' Browser nicht funktioniert
-  (dunkles Rechteck mit Kante), deshalb nicht verwenden.
-- Prompt für neue Bilder (nur das Objekt austauschen, Rest gleich lassen):
-  „Minimalist dark still life photograph, [OBJEKT] on a rough dark stone ledge, placed in the right third of the frame,
-  a soft diagonal beam of cool white light from the upper right, deep near-black background, left two thirds empty and dark,
-  monochrome grey and white tones only, no gold, no orange, no text, subtle film grain, cinematic, high-end, 3:2 landscape“
-- Sprüche: `src/core/sprueche.js`, 20 kurze deutsche Sätze (eigene, keine Zitate).
-  `spruchDesTages(versatz)` wechselt um Mitternacht; jeder Bereich nimmt einen eigenen `versatz`.
 
 ## Regeln
-- Eine Akzentfarbe (+ optional ein Unterton derselben Stimmung), sonst Weiß-Glas, warmes Fast-Schwarz und die Farbwolken. Keine weiteren bunten Farben.
+- Eine Akzentfarbe (+ optional ein Unterton), sonst Weiß, Papier und warmes Fast-Schwarz. Keine weiteren bunten Farben.
 - Systemschrift überall; große Zahlen und Titel mit Gewicht 600 und leicht engem Buchstabenabstand.
-- Glas = `--glas-verlauf` + Rand `var(--glas-kante) solid var(--glas-rand)` + `--schatten` + Unschärfe. Trennlinien nur in Listen.
+- Karte = `--karte` + Rand `var(--glas-kante) solid var(--glas-rand)` + `--schatten`, ohne Unschärfe. Keine Karte in der Karte. Trennlinien nur in Listen.
 - Ecken fein statt „weich-groß“ (Lukas, 10.11.2026): nur die drei Radius-Tokens, innen kleiner als außen.
-- Kleine Animationen nur über `transform`/`opacity` (flüssig auf dem iPhone): Seiteninhalt blendet gestaffelt ein,
+- Kleine Animationen nur über `transform`/`opacity` (flüssig auf dem iPhone): Seiteninhalt blendet einmal kurz ein,
   antippbare Kacheln heben sich beim Drüberfahren (`--feder`), alles Antippbare gibt beim Drücken kurz nach.
 - Respektiert „Bewegung reduzieren“ des Geräts (`base.css`).
 - iPhone: Tippflächen mindestens 44 px, Rand um Notch/Home-Leiste beachten; oben ein dunklerer Streifen, damit die weiße Statusleiste lesbar bleibt.

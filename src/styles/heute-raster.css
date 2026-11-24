@@ -11,7 +11,7 @@
 /* Kleines Feld: Symbol + Titel, Ring oder Zahl, Unterzeile */
 .feld-k { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); padding: 18px; font: inherit; text-align: left;
   color: var(--text); border-radius: var(--radius-gross); background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand);
-  box-shadow: var(--schatten); -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%);
+  box-shadow: var(--schatten);
   transition: transform 380ms var(--feder), box-shadow 380ms var(--ease); }
 button.feld-k { cursor: pointer; }
 @media (hover: hover) { button.feld-k:hover { transform: translateY(-3px); box-shadow: var(--schatten-hoch); } }

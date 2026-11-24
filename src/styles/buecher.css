@@ -4,7 +4,6 @@
 .buecher__raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: var(--luft) var(--space-4); }
 .buch-kachel { display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-3); border-radius: var(--radius-gross); cursor: pointer;
   background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten);
-  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%);
   transition: transform var(--duration) var(--feder), box-shadow var(--duration) var(--ease); }
 .buch-kachel:hover { transform: translateY(-3px); box-shadow: var(--schatten-hoch); }
 .buch-kachel:active { transform: scale(.98); }
@@ -15,7 +14,7 @@
 /* Seiten-Kreis unten rechts am Cover */
 .buch-kreis { position: absolute; right: calc(-1 * var(--space-2)); bottom: calc(-1 * var(--space-2)); display: grid; place-items: center;
   width: var(--tap); height: var(--tap); padding: 0; border: var(--glas-kante) solid var(--glas-rand); border-radius: 999px; cursor: pointer;
-  background: var(--surface-2); box-shadow: var(--schatten); -webkit-backdrop-filter: blur(var(--blur)); backdrop-filter: blur(var(--blur));
+  background: var(--surface-2); box-shadow: var(--schatten);
   font: inherit; font-size: var(--fs-label); font-weight: 650; color: var(--text); transition: transform var(--duration) var(--feder); }
 .buch-kreis:active { transform: scale(.92); }
 .buch-kreis > * { grid-area: 1 / 1; }

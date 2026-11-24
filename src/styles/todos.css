@@ -12,8 +12,6 @@
   border: var(--glas-kante) solid var(--glas-rand);
   border-radius: var(--radius-gross);
   box-shadow: var(--schatten);
-  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
-  backdrop-filter: blur(var(--blur)) saturate(160%);
 }
 .todo-gruppe > .abschnitt {
   margin-bottom: var(--space-1);

@@ -40,29 +40,24 @@
   opacity: 0.8;
 }
 
-/* Abschnitts-Überschrift (ui/abschnitt.js): dezenter Glas-Kasten, volle Breite, Zahl rechts */
+/* Abschnitts-Überschrift (ui/abschnitt.js): schlichte Zeile (Symbol, Label, Zahl rechts), kein Kasten */
 .abschnitt {
   display: flex;
   align-items: center;
   gap: var(--space-2);
   margin: 0;
-  padding: 9px 14px;
-  border-radius: var(--radius);
-  background: var(--glas-verlauf);
-  border: var(--glas-kante) solid var(--glas-rand);
-  box-shadow: var(--schatten);
-  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
-  backdrop-filter: blur(var(--blur)) saturate(160%);
+  padding: 0 var(--space-1);
+  min-height: 24px;
 }
 .abschnitt .symbol {
   flex: none;
-  width: 16px;
-  height: 16px;
-  color: var(--bereich-tief);
+  width: 15px;
+  height: 15px;
+  color: var(--text-2);
 }
 .abschnitt__titel {
   font-size: var(--fs-label);
-  font-weight: 600;
+  font-weight: 650;
   letter-spacing: var(--sperrung);
   text-transform: uppercase;
   color: var(--text-2);
@@ -71,13 +66,5 @@
   margin-left: auto;
   font-size: var(--fs-small);
   font-variant-numeric: tabular-nums;
-  color: var(--text-2);
-}
-/* in einer Glaskarte: innen kleiner, ohne Schatten und Unschärfe */
-:is(.card, .todo-gruppe, .termin-gruppe) .abschnitt {
-  border-radius: var(--radius-klein);
-  background: rgba(255, 255, 255, 0.4);
-  box-shadow: none;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
+  color: var(--text-3);
 }

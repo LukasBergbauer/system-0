@@ -1,85 +1,34 @@
-/* Seitenkopf (src/ui/kopfbild.js) – Variante B „Farbkopf“ (Lukas, 22.11.2026, muster/seiten.html):
-   Farb-Band im Akzent-Verlauf wie die Heute-Hero, Muster je Bereich (kopf-muster.css, hell auf Farbe), Titel groß unten links,
-   Kennzahlen rechts. Abstand zum Inhalt = --luft. */
+/* Seitenkopf (src/ui/kopfbild.js), Stil „Klar“ (24.11.2026): großer Titel links, Kennzahlen als kleine Zeile darunter.
+   Kein Farbband, kein Symbol, kein Muster. Abstand zum Inhalt = --luft. */
 .kopf {
-  --mline: rgba(255,255,255,.3);
-  --makz: rgba(255,255,255,.45);
-  --kopf-text-2: rgba(255,255,255,.78);
-  position: relative;
-  overflow: hidden;
   display: flex;
-  align-items: flex-end;
-  gap: var(--space-4);
-  min-height: 150px;
-  padding: var(--space-5);
-  color: var(--accent-ink);
-  border-radius: var(--radius-gross);
-  border: var(--glas-kante) solid rgba(255,255,255,.35);
-  box-shadow: var(--schatten);
-  background: linear-gradient(135deg, var(--akzent-hell) 0%, var(--accent) 48%, var(--akzent-tief) 130%);
-}
-.kopf::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--muster, none);
-  opacity: 0.7;
-  pointer-events: none;
-  -webkit-mask: linear-gradient(100deg, transparent 25%, #000 85%);
-  mask: linear-gradient(100deg, transparent 25%, #000 85%);
-}
-.kopf > * { position: relative; }
-.kopf__symbol {
-  display: grid;
-  place-items: center;
-  flex: none;
-  align-self: flex-start;
-  width: 40px;
-  height: 40px;
-  order: -1;
-  border-radius: var(--radius-klein);
-  color: currentColor;
-  background: rgba(255,255,255,.18);
-  box-shadow: inset 0 0 0 .5px rgba(255,255,255,.4);
-}
-.kopf__symbol .symbol { width: 22px; height: 22px; stroke-width: 1.6; }
-.kopf__text { display: grid; gap: 6px; min-width: 0; flex: 1; }
-.kopf__abschnitt {
-  font-size: var(--fs-label);
-  font-weight: 600;
-  letter-spacing: var(--sperrung);
-  text-transform: uppercase;
-  color: var(--kopf-text-2);
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--space-2) var(--space-1) var(--space-1);
 }
 .kopf__titel {
   margin: 0;
   font-size: var(--fs-seite);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+.kopf__werte {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px var(--space-4);
+  font-size: var(--fs-small);
+  color: var(--text-2);
+}
+.kopf__werte:empty { display: none; }
+.kopf__wert b {
+  margin-right: 4px;
   font-weight: 650;
-  line-height: 1;
-  letter-spacing: -0.035em;
-}
-.kopf__werte { display: flex; text-align: right; }
-.kopf__wert { display: grid; gap: 4px; padding: 0 0 0 var(--space-6); }
-.kopf__wert b { font-size: var(--fs-display); font-weight: 650; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
-.kopf__wert span { font-size: var(--fs-small); color: var(--kopf-text-2); white-space: nowrap; }
-
-/* Weiß-Akzent: weißes Band mit dunkler Schrift (wie Heute-Hero) */
-[data-akzent="weiss"] .kopf {
-  --mline: rgba(43,30,25,.1);
-  --makz: rgba(43,30,25,.16);
-  --kopf-text-2: var(--text-2);
   color: var(--text);
-  border-color: rgba(255,255,255,.95);
-  background: linear-gradient(140deg, #FFFFFF 0%, #F7F6F3 55%, #E9E7E2 130%);
+  font-variant-numeric: tabular-nums;
 }
-[data-akzent="weiss"] .kopf__symbol { background: rgba(43,30,25,.06); box-shadow: none; }
-
 @media (max-width: 767px) {
-  .kopf { flex-wrap: wrap; min-height: 128px; gap: var(--space-3); padding: var(--space-4); }
-  .kopf__symbol { width: 34px; height: 34px; }
-  .kopf__text { flex-basis: calc(100% - 50px); }
-  .kopf__titel { font-size: clamp(26px, 8.5vw, var(--fs-seite)); overflow-wrap: anywhere; hyphens: auto; }
-  .kopf__werte:not(:empty) { width: 100%; text-align: left; }
-  .kopf__wert { padding: 0 var(--space-5) 0 0; }
-  .kopf__wert b { font-size: var(--fs-large); }
+  .kopf__titel { font-size: clamp(26px, 8vw, 30px); }
 }
