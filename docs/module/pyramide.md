@@ -8,6 +8,9 @@
 - **Viele Pyramiden** anlegbar: eine große dauerhafte + kleine, abends für morgen erstellt.
 - **Keine Verbindung zu anderen Modulen** (bekräftigt 23.11.): kein Bereich zahlt auf die Pyramide ein, sie liest nichts von anderen.
 
+## Stand „Klar“ (24.11.2026)
+- Helle (obere) Stufen mit dunkler Schrift, Stufen nie schmaler als 6 Wörter-Breite (`clamp`), keine Silbentrennung im Heute-Feld.
+
 ## Stand
 - [x] Geklärt. Muster `muster/pyramide.html`: **A · Stufen** gewählt (23.11.): Balken nach oben schmaler und heller, unten kräftig in Akzentfarbe.
 - [x] Datenmodell (23.11.): Tabelle `pyramiden` (`026_pyramiden.sql`): titel, art `dauerhaft`/`tag`, tag (Datum), ebenen text[] (Index 0 = Fundament unten), reihenfolge. Lesen/Schreiben nur über `core/store.js`.

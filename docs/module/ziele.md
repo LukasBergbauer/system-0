@@ -6,6 +6,9 @@
 - Ziele lassen sich anpassen; Änderungen fließen in die Affirmationen ein
 - Grundlage für `affirmationen`
 
+## Stand „Klar“ (24.11.2026)
+- Schritte in der Bereichs-Karte als Zeilen mit Trennlinie statt grauer Kästen; Vision ohne Kursiv.
+
 ## Stand
 **Erste Fassung (09.11.2026).** Migration `011_ziele.sql`; `sw.js` `v53`. Start leer (keine vorbefüllten Bereiche).
 - Daten (`data.js`): `ziel_bereiche` (name, vision, reihenfolge), `lebensziele` (bereich_id, titel, warum, zieldatum,

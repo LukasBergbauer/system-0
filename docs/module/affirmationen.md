@@ -5,6 +5,9 @@
 - Jede Affirmation gehört zu einem Lebensziel
 - Täglich eine zufällige Affirmation passend zu den aktuellen Zielen, auf der Heute-Seite
 
+## Stand „Klar“ (24.11.2026)
+- „Vorschlag aus dem Warum“: beginnt das Warum mit „Weil“, steht es nicht mehr doppelt („weil weil“).
+
 ## Stand
 **Erste Fassung (09.11.2026).** Migration `012_affirmationen.sql`; `sw.js` `v54`.
 - Daten (`data.js`): `affirmationen` (lebensziel_id, text, aktiv, reihenfolge). Liest `lebensziele`/`ziel_bereiche` nur roh.
