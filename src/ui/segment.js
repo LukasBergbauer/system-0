@@ -1,5 +1,5 @@
 // iOS-Segment: graue Spur, gewählter Teil = weißer „Daumen“. Viele Einträge → waagrecht wischbar.
-// segment({ items: [{ id, label }], active, onChange })
+// segment({ items: [{ id, label }], active, onChange }); seg.select(id) schaltet von außen um.
 import { el } from './dom.js';
 
 export function segment({ items = [], active, onChange } = {}) {
@@ -11,6 +11,7 @@ export function segment({ items = [], active, onChange } = {}) {
   function zeige() { items.forEach((it, i) => knoepfe[i].setAttribute('aria-pressed', String(it.id === aktiv))); }
   zeige();
   const box = el('div', { class: 'segment', attrs: { role: 'group' } }, knoepfe);
+  box.select = (id) => { aktiv = id; zeige(); onChange?.(id); }; // von außen umschalten
   requestAnimationFrame(() => { // gewählten Teil sichtbar machen (nur waagrecht, Seite springt nicht)
     const k = knoepfe[items.findIndex((it) => it.id === aktiv)];
     if (k && box.scrollWidth > box.clientWidth) box.scrollLeft = k.offsetLeft - 8;

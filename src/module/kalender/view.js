@@ -1,4 +1,5 @@
-// Ansicht „Kalender“: Chips „Liste · Tag · Woche · Monat“, Schnelleingabe und Knopf „+ Termin“.
+// Ansicht „Kalender“: Umschalter „Liste · Tag · Woche · Monat“, Schnelleingabe (leeres „+“ = Termin-Fenster),
+// ganz unten der Textknopf für die Google-Adresse.
 // Fällige To-dos stehen mit drin (gedämpft, antippen = in To-dos öffnen).
 // Liste = „Nächste Termine“ in Gruppen (Heute · Morgen · Diese Woche · Später), Vergangenes ausgeblendet.
 // Tag/Woche = Zeitraster (tag.js, woche.js, raster.js), Monat = Raster + Tagesliste (monat.js).
@@ -16,7 +17,7 @@ import { tagAnsicht } from './tag.js';
 import { oeffneTermin } from './bearbeiten.js';
 import { schnelleingabe } from './schnelleingabe.js';
 import { wocheAnsicht, montag } from './woche.js';
-import { chips } from '../../ui/chips.js';
+import { segment } from '../../ui/segment.js';
 import { GOOGLE, googleTermine, holeGoogle } from './google.js';
 import { oeffneGoogleAdresse } from './google-adresse.js';
 
@@ -132,16 +133,17 @@ export function kalenderAnsicht({ signal }) {
   signal.addEventListener('abort', () => clearInterval(takt));
   auffrischen();
 
-  const umschalter = chips({
+  const wechsle = (id) => { ansicht = id; merke(id); zeichne(); };
+  const umschalter = segment({
     items: [{ id: 'liste', label: 'Liste' }, { id: 'tag', label: 'Tag' }, { id: 'woche', label: 'Woche' }, { id: 'monat', label: 'Monat' }],
     active: ansicht,
-    onChange: (id) => { ansicht = id; merke(id); zeichne(); },
-    aktionen: [{ label: 'Google', onClick: oeffneGoogleAdresse }],
+    onChange: wechsle,
   });
 
   return el('div', { class: 'app__stack' }, [
     umschalter,
     schnelleingabe({ leer: () => oeffneTermin() }),
     inhalt,
+    el('button', { class: 'textknopf kalender-google', text: 'Google-Kalender verbinden', attrs: { type: 'button' }, on: { click: oeffneGoogleAdresse } }),
   ]);
 }

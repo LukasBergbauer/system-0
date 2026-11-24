@@ -14,6 +14,10 @@
   nicht in Supabase gespeichert; letzter Abruf nur lokal (IndexedDB `meta`), damit offline lesbar.
 - **To-dos:** offene mit Fälligkeit stehen mit drin (○, „To-do“, Überfällige bei heute); antippen öffnet sie in To-dos.
 
+## Stand „Klar“ (24.11.2026)
+- Umschalter Liste · Tag · Woche · Monat als Segment (wie To-dos, `ui/segment.js`, jetzt mit `select(id)`). „Google“ ist kein Chip mehr,
+  sondern leiser Textknopf „Google-Kalender verbinden“ ganz unten. Gruppen = weiße Karten, ganztägig ohne Kursiv.
+
 ## Datenmodell
 Migration `supabase/migrations/005_kalender.sql`: Tabelle `termine`
 (titel, start, ende, ganztaegig, ort, notiz + gemeinsame Spalten); `019_termine_wiederholung.sql`: `wiederholung` (RRULE-Text).
