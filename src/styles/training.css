@@ -1,5 +1,6 @@
 /* Modul „Training“: Liste, Einheit mit Sätzen, Übung mit Verlauf. Nur Werte aus tokens.css. */
-.training__seite { display: flex; flex-direction: column; align-items: stretch; gap: var(--luft); max-width: 720px; }
+.training__seite { display: flex; flex-direction: column; align-items: stretch; gap: var(--luft); }
+.training__leiste { display: flex; align-items: center; gap: var(--space-3); }
 .training__seite > .btn { align-self: flex-start; }
 .training__liste { padding-top: var(--space-2); padding-bottom: var(--space-2); }
 .training__kopf { display: flex; flex-direction: column; gap: var(--space-3); }

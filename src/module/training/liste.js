@@ -1,7 +1,8 @@
-// Startseite Training (Wochenzahlen stehen im Seitenkopf, kennzahlen.js): „Heute“ mit großem Start, „+ Freies Training“, Tabs Einheiten | Pläne | Übungen.
+// Startseite Training (Wochenzahlen stehen im Seitenkopf, kennzahlen.js): „Heute“ mit großem Start,
+// eine Zeile mit Umschalter Einheiten | Pläne | Übungen und „+ Training“ (freie Einheit), darunter die Liste.
 import { el } from '../../ui/dom.js';
 import { button } from '../../ui/button.js';
-import { tabs } from '../../ui/tabs.js';
+import { segment } from '../../ui/segment.js';
 import { list, listRow } from '../../ui/list.js';
 import { ARTEN, gruppen } from './daten.js';
 import { verlauf, bestwert, zuletztText, datumText } from './rechnen.js';
@@ -47,12 +48,14 @@ export function listeSeite(hilfen) {
 
   return el('div', { class: 'training__seite' }, [
     heutePlan(hilfen),
-    button({ text: '+ Freies Training', variant: 'normal', onClick: neu }),
-    tabs({
-      items: [{ id: 'einheiten', label: 'Einheiten' }, { id: 'plaene', label: 'Pläne' }, { id: 'uebungen', label: 'Übungen' }],
-      active: merk.tab,
-      onChange: (id) => { merk.tab = id; zeige(); },
-    }),
+    el('div', { class: 'training__leiste' }, [
+      segment({
+        items: [{ id: 'einheiten', label: 'Einheiten' }, { id: 'plaene', label: 'Pläne' }, { id: 'uebungen', label: 'Übungen' }],
+        active: merk.tab,
+        onChange: (id) => { merk.tab = id; zeige(); },
+      }),
+      button({ text: '+ Training', variant: 'primary', onClick: neu }),
+    ]),
     inhalt,
   ]);
 }

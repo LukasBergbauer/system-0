@@ -7,6 +7,9 @@
 - Übungen direkt aus Physio übernehmen (Verweis, keine Kopie, damit Änderungen überall gelten) und mit eigener Notiz versehen
 - Verlauf und Fortschritt pro Übung
 
+## Stand „Klar“ (24.11.2026)
+- Startseite: eine Zeile mit Umschalter Einheiten | Pläne | Übungen (Segment) und dunklem „+ Training“; Spalte so breit wie die App.
+
 ## Stand
 - Zählregel (09.11.2026): Eine Einheit zählt (Woche, Serie, Heute) nur mit Sätzen oder Dauer/Gefühl/Belastung/Notiz – `zaehlt()` in `rechnen.js`, gleiche Regel in `heute/training.js`.
 **Erste Fassung gebaut (09.11.2026)**, Plan a)–d) mit Lukas abgestimmt. Migration `008_training.sql`; `sw.js` `v47`.
