@@ -32,4 +32,4 @@ tote Dateien (Musterseiten, pausierte Fotos ~0,9 MB im Offline-Cache, „Kommt b
 - [x] 9. Bücher: Cover ohne Kartenrahmen.
 - [x] 10. Insta: Umschalter + Claude/Hashtags in einer Zeile, Abschnitts-Köpfe einheitlich.
 - [x] 11. Physio: Startebene ohne Pfad-Zeile, Lücken neben der Suche, iPhone ohne Überbreite.
-- [ ] 12. Einstellungen + Navigation.
+- [x] 12. Einstellungen (Verlauf-Kachel weg, ruhige Kacheln) + Navigation („Mehr“ am iPhone nach Alltag · Körper & Kopf · System gruppiert, aktiv = dunkle Pille).

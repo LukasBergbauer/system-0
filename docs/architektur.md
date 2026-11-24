@@ -60,7 +60,7 @@ dann enden sie automatisch beim Verlassen der Ansicht.
 ## Navigation
 - Adressen: `#/heute`, `#/einstellungen` … (Zurück-Knopf und -Wischen funktionieren). Unbekannt → `#/heute`.
 - iPhone: Tab-Leiste unten. Reihenfolge Heute, To-dos, Kalender, Training, dann der Rest, Einstellungen ganz hinten.
-  Bis 5 Bereiche stehen alle in der Leiste, ab 6 die ersten 4 + „Mehr“ (`#/mehr`, Liste der übrigen).
+  Bis 5 Bereiche stehen alle in der Leiste, ab 6 die ersten 4 + „Mehr“ (`#/mehr`: Suche + übrige Bereiche, gruppiert wie die Seitenleiste).
 - Mac (ab 768 px): Seitenleiste links mit allen Bereichen, Einstellungen unten.
 
 ## Mac vs. iPhone

@@ -26,11 +26,10 @@
 .kachel--tap {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  transition: transform 380ms var(--feder), box-shadow 380ms var(--ease);
+  transition: transform 200ms var(--ease), box-shadow var(--duration) var(--ease);
 }
 @media (hover: hover) {
   .kachel--tap:not(:disabled):hover {
-    transform: translateY(-3px);
     box-shadow: var(--schatten-hoch);
   }
 }
@@ -42,7 +41,7 @@
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
-/* Symbol im weißen Kreis */
+/* Symbol im leisen Kreis */
 .kachel__symbol {
   display: grid;
   place-items: center;
@@ -50,8 +49,8 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.75);
+  color: var(--text-2);
+  background: var(--surface);
 }
 .kachel__text {
   display: flex;

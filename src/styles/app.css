@@ -97,3 +97,6 @@
 .prompts__voll { margin: var(--space-2) 0 var(--space-3); white-space: pre-wrap; overflow-wrap: anywhere; color: var(--text-2); font-size: var(--fs-small); line-height: 1.5; }
 .prompts > .btn:last-child { align-self: flex-start; }
 .prompts__feld { resize: vertical; font: inherit; line-height: 1.5; min-height: 12em; }
+
+/* Mehr (src/app/mehr.js): Überschrift dicht über ihrer Karte */
+.mehr-gruppe { gap: var(--space-2); }
