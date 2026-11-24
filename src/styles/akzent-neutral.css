@@ -8,17 +8,6 @@
 
 /* ---------- Weiß: helles Papier, weiße Glasflächen, dunkle Schrift ---------- */
 :root[data-akzent="weiss"] { --bg: #F3F2EF; }
-[data-akzent="weiss"] .heute-hero { color: var(--text); border-color: rgba(255,255,255,.95);
-  background: linear-gradient(140deg, #FFFFFF 0%, #F7F6F3 55%, #E9E7E2 130%); }
-[data-akzent="weiss"] .heute-hero::before { background: radial-gradient(60% 70% at 0% 0%, rgba(255,255,255,.9), transparent 60%); }
-[data-akzent="weiss"] .heute-status { background: rgba(43,30,25,.06); }
-[data-akzent="weiss"] .heute-status i { background: var(--gut); }
-[data-akzent="weiss"] .heute-werte div { border-left-color: var(--line); }
-[data-akzent="weiss"] .heute-hero p, [data-akzent="weiss"] .heute-werte small { color: var(--text-2); opacity: 1; }
-[data-akzent="weiss"] .heute-pille--weiss { color: #fff; background: var(--dunkel); }
-[data-akzent="weiss"] .heute-pille--rand { color: var(--text); border-color: rgba(43,30,25,.16); background: rgba(255,255,255,.6); }
-[data-akzent="weiss"] .heute-hero .heute-ring .bahn { stroke: rgba(43,30,25,.08); }
-[data-akzent="weiss"] .heute-hero .heute-ring .wert { stroke: var(--text); filter: none; }
 [data-akzent="weiss"] .nav-side__logo { color: var(--text);
   background: linear-gradient(140deg, #FFFFFF, #ECEAE6); box-shadow: inset 0 0 0 .5px rgba(0,0,0,.08), 0 6px 16px -8px rgba(0,0,0,.3); }
 
@@ -26,7 +15,7 @@
 :root[data-akzent="schwarz"] { --bg: #E4E3E0; }
 
 /* Farbkreise: Weiß braucht einen feinen Rand */
-.heute-farben [data-farbe="weiss"], .farbkreis[data-farbe="weiss"] { box-shadow: inset 0 0 0 1px rgba(43,30,25,.18); }
-.heute-farben [data-farbe="weiss"][aria-pressed="true"], .farbkreis[data-farbe="weiss"][aria-pressed="true"] {
+.farbkreis[data-farbe="weiss"] { box-shadow: inset 0 0 0 1px rgba(43,30,25,.18); }
+.farbkreis[data-farbe="weiss"][aria-pressed="true"] {
   box-shadow: inset 0 0 0 1px rgba(43,30,25,.18), 0 0 0 2px #fff, 0 0 0 4px var(--text-3);
 }

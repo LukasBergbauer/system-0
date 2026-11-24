@@ -1,12 +1,11 @@
-// Heute: Knöpfe rechts im Kopf – „Bearbeiten“ (Raster anpassen; dann „Standard“ + „Fertig“), „Akzent“ (Farbwahl) und „Neu“.
-// Beide Fenster sind HTML-Popover: Tipp daneben oder Esc schließt sie von selbst.
+// Heute: Knöpfe rechts im Kopf – „Bearbeiten“ (Raster anpassen; dann „Standard“ + „Fertig“) und „Neu“.
+// Das Neu-Menü ist ein HTML-Popover: Tipp daneben oder Esc schließt sie von selbst.
 // Lupe (nur iPhone, am Mac gibt es das Suchfeld in der Seitenleiste) meldet emit('suche'); die App-Hülle öffnet die Suche.
 // „Neu“ geht über den Router-Zusatz (#/todos/neu …); der Zielbereich öffnet dann sein Anlegen.
 import { el } from '../../ui/dom.js';
 import { symbol } from '../../ui/symbol.js';
 import { go } from '../../core/router.js';
 import { emit } from '../../core/events.js';
-import { AKZENT_FARBEN, akzentSetzen, aktuellerAkzent, zeigeFarbe, UNTERTOENE, untertonSetzen, aktuellerUnterton } from '../../core/akzent.js';
 
 const NEU = [['todos', 'To-do'], ['kalender', 'Termin'], ['physio', 'Physio-Punkt']];
 
@@ -22,43 +21,6 @@ function popover(knopf, klasse, kinder) {
     box.style.left = `${Math.max(12, Math.min(r.right - b, innerWidth - b - 12))}px`;
   });
   return box;
-}
-
-function farbwahl(knopf) {
-  const kreise = AKZENT_FARBEN.map(([farbe, name]) => el('button', {
-    attrs: { type: 'button', 'aria-label': name, 'data-farbe': farbe, style: `--f:${zeigeFarbe(farbe)}` },
-    on: { click: () => waehlen(farbe) },
-  }));
-  const eigen = el('input', { attrs: { type: 'color', 'aria-label': 'Eigene Farbe' }, on: { change: () => waehlen(eigen.value) } });
-
-  function markieren() {
-    const jetzt = aktuellerAkzent().toLowerCase();
-    AKZENT_FARBEN.forEach(([f], i) => kreise[i].setAttribute('aria-pressed', String(f.toLowerCase() === jetzt)));
-    eigen.value = /^#[0-9a-f]{6}$/.test(jetzt) ? jetzt : AKZENT_FARBEN[0][0].toLowerCase();
-  }
-  function waehlen(farbe) {
-    akzentSetzen(farbe).catch((err) => console.warn(err));
-    markieren();
-  }
-  markieren();
-  return popover(knopf, 'heute-farbwahl', [
-    el('p', { text: 'AKZENTFARBE' }),
-    el('div', { class: 'heute-farben' }, [...kreise, el('label', { attrs: { title: 'Eigene Farbe' } }, [eigen])]),
-    el('p', { class: 'heute-farbwahl__zwei', text: 'UNTERTON' }),
-    untertonWahl('heute-farben heute-farben--klein'),
-  ]);
-}
-
-// Unterton: kleine Kreise, „Kein“ = durchgestrichener Kreis
-export function untertonWahl(klasse) {
-  const kreise = UNTERTOENE.map(([farbe, name]) => el('button', {
-    class: farbe ? '' : 'ohne-ton',
-    attrs: { type: 'button', 'aria-label': `Unterton ${name}`, title: name, style: farbe ? `--f:${farbe}` : '' },
-    on: { click: () => { untertonSetzen(farbe).catch((err) => console.warn(err)); markieren(); } },
-  }));
-  const markieren = () => UNTERTOENE.forEach(([f], i) => kreise[i].setAttribute('aria-pressed', String(f === aktuellerUnterton())));
-  markieren();
-  return el('div', { class: klasse }, kreise);
 }
 
 function neuMenue(knopf) {
@@ -78,9 +40,7 @@ export function kopfKnoepfe({ bearbeiten, umschalten, standard }) {
   }
   const anpassen = el('button', { class: 'heute-pille heute-pille--glas', attrs: { type: 'button', 'aria-label': 'Heute bearbeiten' }, on: { click: umschalten } },
     [symbol('mehr'), el('span', { class: 'heute-pille__text', text: 'Bearbeiten' })]);
-  const akzent = el('button', { class: 'heute-pille heute-pille--glas', attrs: { type: 'button' } },
-    [el('span', { class: 'heute-punkt' }), 'Akzent']);
   const neu = el('button', { class: 'heute-pille heute-pille--dunkel', attrs: { type: 'button' } }, [symbol('plus'), 'Neu']);
   const suche = el('button', { class: 'heute-pille heute-pille--glas heute-pille--suche', attrs: { type: 'button', 'aria-label': 'Suchen' }, on: { click: () => emit('suche') } }, [symbol('suche')]);
-  return el('div', { class: 'heute-kopf__knoepfe' }, [suche, anpassen, akzent, neu, farbwahl(akzent), neuMenue(neu)]);
+  return el('div', { class: 'heute-kopf__knoepfe' }, [suche, anpassen, neu, neuMenue(neu)]);
 }

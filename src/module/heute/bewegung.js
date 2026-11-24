@@ -1,4 +1,4 @@
-// Heute: kleine Bausteine mit Bewegung – Zahl zählt hoch, Ring füllt sich, Mini-Kurve.
+// Heute: kleine Bausteine mit Bewegung – Zahl zählt hoch, Ring füllt sich.
 // animiert = false (z. B. beim Neuzeichnen nach einem Abgleich): Endwert sofort, ohne Bewegung.
 import { el } from '../../ui/dom.js';
 
@@ -34,14 +34,5 @@ export function ring(anteil, mitte, animiert = true) {
   } else {
     requestAnimationFrame(() => requestAnimationFrame(() => (kreis.style.strokeDashoffset = ziel)));
   }
-  return box;
-}
-
-// Mini-Kurve aus Werten (64 × 24), zeichnet sich beim Erscheinen
-export function spur(werte, animiert = true) {
-  const max = Math.max(...werte, 1), n = werte.length;
-  const punkte = werte.map((w, i) => `${2 + (i * 60) / (n - 1)} ${21 - (w / max) * 18}`).join(' ');
-  const box = el('span', { class: `heute-spur${animiert ? '' : ' heute-spur--fertig'}`, attrs: { 'aria-hidden': 'true' } });
-  box.innerHTML = `<svg viewBox="0 0 64 24"><path pathLength="1" d="M${punkte}"/></svg>`;
   return box;
 }

@@ -18,7 +18,7 @@ export function pyramideKarte(liste) {
   return knopf([
     el('div', { class: 'heute-karte__kopf' }, [el('div', {}, [el('h3', { text: 'Pyramide' }), el('small', { text: p.titel || (p.art === 'tag' ? 'Heute' : 'Dauerhaft') })])]),
     el('div', { class: 'pyr-stufen' }, [...ebenen].reverse().map((t, i) => el('div', {
-      class: 'pyr-stufe', text: t, attrs: { style: `--b:${30 + (70 * (i + 1)) / n}%;--k:${20 + (80 * (i + 1)) / n}%` },
+      class: `pyr-stufe${20 + (80 * (i + 1)) / n < 72 ? ' pyr-stufe--hell' : ''}`, text: t, attrs: { style: `--b:${30 + (70 * (i + 1)) / n}%;--k:${20 + (80 * (i + 1)) / n}%` },
     }))),
   ]);
 }

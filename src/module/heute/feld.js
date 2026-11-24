@@ -38,8 +38,7 @@ export function feld(art, e, ctx) {
   inhalt ||= kleinFeld({ symbol: art.symbol, titel: art.titel, wert: '–', text: 'gerade nichts' }, false);
   const [name, sym] = MODUL[art.bereich] || [art.titel, art.symbol];
   for (const t of inhalt.querySelectorAll('.heute-karte__kopf h3, .feld-k__kopf')) if (t.textContent === name) t.remove(); // nicht doppelt
-  const akzent = inhalt.matches('.heute-hero, .heute-kz--akzent');
-  const huelle = el('div', { class: `feld feld--w${e.w} feld--h${e.h}${akzent ? ' feld--akzent' : ''}`, attrs: { 'data-bereich': art.bereich } }, [
+  const huelle = el('div', { class: `feld feld--w${e.w} feld--h${e.h}`, attrs: { 'data-bereich': art.bereich } }, [
     inhalt, el('span', { class: 'feld-modul' }, [el('span', { class: 'feld-symbol' }, [symbol(sym)]), name]),
   ]);
   huelle.style.setProperty('--w', e.w);

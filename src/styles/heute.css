@@ -1,145 +1,60 @@
-/* Heute: Glas-Dashboard (Vorlage muster/glas.html). Breite Fläche über .app--breit (app.css). */
+/* Heute (Stil „Klar“): Kopf, Knöpfe, Popover, Karten-Grundfläche, Ring. Raster und Felder: heute-raster.css,
+   Karten-Inhalte: heute-karten.css. Breite Fläche über .app--breit (app.css). */
 .heute { display: flex; flex-direction: column; gap: var(--space-5); }
 
-/* Kopf: Gruß + Datumszeile */
-.heute-kopf { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); }
-.heute-kopf h1 { margin: 0; font-size: var(--fs-seite); font-weight: 650; letter-spacing: -0.035em; line-height: 1.05; }
+/* Kopf: Gruß + Datumszeile, rechts die Knöpfe */
+.heute-kopf { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); padding: var(--space-2) var(--space-1) 0; }
+.heute-kopf h1 { margin: 0; font-size: var(--fs-seite); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
 .heute-kopf p { margin: 6px 0 0; color: var(--text-2); font-size: var(--fs-small); }
+.heute-kopf__knoepfe { display: flex; gap: var(--space-2); }
 
-/* Raster und Felder: heute-raster.css */
-.heute-raster > * { animation: rein 700ms var(--ease) backwards; }
-.heute-raster > :nth-child(2) { animation-delay: 140ms; }
-.heute-raster > :nth-child(3) { animation-delay: 195ms; }
-.heute-raster > :nth-child(4) { animation-delay: 250ms; }
-.heute-raster > :nth-child(5) { animation-delay: 305ms; }
-.heute-raster > :nth-child(6) { animation-delay: 360ms; }
-.heute-raster > :nth-child(n + 7) { animation-delay: 415ms; }
+/* Felder blenden einmal kurz ein, beim Neuzeichnen gar nicht */
+.heute-raster > * { animation: rein 220ms var(--ease) backwards; }
 .heute--ruhig .heute-raster > * { animation: none; }
 
-/* Pillen-Knöpfe im Hero */
-.heute-pille { height: var(--knopf); padding: 0 var(--space-4); border-radius: 999px; font: inherit; font-size: var(--fs-small); font-weight: 600;
-  cursor: pointer; transition: transform 300ms var(--feder), background var(--duration); }
+/* Pillen-Knöpfe */
+.heute-pille { display: inline-flex; align-items: center; gap: 7px; height: var(--knopf); padding: 0 var(--space-4); border: 0; border-radius: 999px;
+  font: inherit; font-size: var(--fs-small); font-weight: 600; cursor: pointer; transition: transform 200ms var(--ease), background var(--duration); }
 .heute-pille:active { transform: scale(.95); }
-.heute-pille--weiss { background: #fff; color: var(--text); border: 0; box-shadow: 0 6px 16px -8px rgba(60,20,10,.4); }
-.heute-pille--rand { color: var(--accent-ink); border: 1px solid rgba(255,255,255,.6); background: rgba(255,255,255,.12); }
-.heute-pille--rand:hover { background: rgba(255,255,255,.22); }
-.heute-pille { display: inline-flex; align-items: center; gap: 7px; }
-.heute-pille .symbol { width: 15px; height: 15px; transition: transform 300ms var(--feder); }
-.heute-pille:hover .symbol { transform: rotate(90deg); }
-.heute-pille--glas { background: var(--glass); color: var(--text); border: var(--glas-kante) solid var(--glas-rand); }
+.heute-pille .symbol { width: 15px; height: 15px; }
+.heute-pille--glas { background: var(--surface-2); color: var(--text); }
+.heute-pille--glas:hover { background: rgba(43, 30, 25, .1); }
+.heute-pille--dunkel { background: var(--dunkel); color: #fff; }
 .heute-pille--suche { width: var(--knopf); padding: 0; justify-content: center; }
-.heute-pille--suche:hover .symbol { transform: none; }
 @media (min-width: 768px) { .heute-pille--suche { display: none; } }
-.heute-pille--dunkel { background: var(--text); color: #fff; border: 0; box-shadow: 0 8px 18px -8px rgba(30,10,5,.6); }
-.heute-punkt { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(255,255,255,.7); }
 
-/* Kopf-Knöpfe: Farbwahl und Neu-Menü (Popover) */
-.heute-kopf__knoepfe { display: flex; gap: var(--space-2); }
-.heute-pop { position: fixed; inset: auto; margin: 0; padding: 14px; border-radius: var(--radius); color: var(--text);
-  background: var(--glas-verlauf), var(--glass); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten-hoch);
+/* Neu-Menü (Popover) */
+.heute-pop { position: fixed; inset: auto; margin: 0; padding: 6px; border-radius: var(--radius); color: var(--text);
+  background: var(--glass); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten-hoch);
   -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%);
-  opacity: 0; transform: translateY(-6px) scale(.97); transform-origin: top right;
-  transition: opacity 220ms var(--ease), transform 300ms var(--feder), display 300ms allow-discrete, overlay 300ms allow-discrete; }
+  opacity: 0; transform: translateY(-4px); transition: opacity 180ms var(--ease), transform 180ms var(--ease), display 180ms allow-discrete, overlay 180ms allow-discrete; }
 .heute-pop:popover-open { opacity: 1; transform: none; }
-@starting-style { .heute-pop:popover-open { opacity: 0; transform: translateY(-6px) scale(.97); } }
-.heute-farbwahl { width: 260px; }
-.heute-farbwahl p { margin: 0 0 10px; font-size: var(--fs-label); font-weight: 600; color: var(--text-2); }
-.heute-farben { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
-.heute-farben button, .heute-farben label { aspect-ratio: 1; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
-  background: var(--f); box-shadow: inset 0 0 0 2px rgba(255,255,255,.6); transition: transform 300ms var(--feder); }
-.heute-farben button:hover { transform: scale(1.12); }
-.heute-farben button[aria-pressed="true"] { box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--f); }
-.heute-farben label { --f: conic-gradient(red, yellow, lime, cyan, blue, magenta, red); overflow: hidden; }
-.heute-farben input { opacity: 0; width: 100%; height: 100%; cursor: pointer; }
-.heute-neu { padding: 6px; min-width: 190px; }
+@starting-style { .heute-pop:popover-open { opacity: 0; transform: translateY(-4px); } }
+.heute-neu { min-width: 190px; }
 .heute-neu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 12px; border: 0; border-radius: var(--radius-klein);
   background: none; font: inherit; font-size: var(--fs-small); font-weight: 600; color: var(--text); cursor: pointer; text-align: left; }
-.heute-neu button:hover { background: rgba(255,255,255,.6); }
+.heute-neu button:hover { background: var(--surface-2); }
 .heute-neu .symbol { width: 18px; height: 18px; }
 
-/* Hero (Akzent-Karte) */
-.heute-hero { position: relative; overflow: hidden; min-height: 268px; display: flex; gap: var(--space-5); align-items: center;
-  padding: 26px 28px; border-radius: var(--radius-gross); color: var(--accent-ink); border: 1px solid rgba(255,255,255,.35); box-shadow: var(--schatten);
-  background: linear-gradient(135deg, var(--akzent-hell) 0%, var(--accent) 48%, var(--akzent-tief) 130%); }
-.heute-hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(60% 70% at 0% 0%, rgba(255,255,255,.35), transparent 60%), radial-gradient(40% 50% at 100% 100%, rgba(40,10,0,.2), transparent 70%); }
-.heute-hero > * { position: relative; }
-.heute-hero__text { flex: 1; min-width: 0; }
-.heute-status { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px;
-  font-size: var(--fs-label); font-weight: 600; background: rgba(255,255,255,.2); }
-.heute-status i { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: heute-puls 2s ease-in-out infinite; }
-@keyframes heute-puls { 50% { opacity: .35; transform: scale(.7); } }
-.heute-hero h2 { font-size: 30px; line-height: 1.12; font-weight: 600; letter-spacing: -.02em; margin: var(--space-4) 0 var(--space-2); max-width: 16ch; }
-.heute-hero h2 em { font-family: ui-serif, "New York", Georgia, serif; font-weight: 400; }
-.heute-hero p { margin: 0; opacity: .82; font-size: var(--fs-small); max-width: 42ch; }
-.heute-werte { display: flex; gap: 22px; margin: 18px 0 20px; }
-.heute-werte div { padding-left: var(--space-3); border-left: 1px solid rgba(255,255,255,.35); }
-.heute-werte b { display: block; font-size: 22px; font-weight: 600; letter-spacing: -.02em; }
-.heute-werte small { font-size: var(--fs-label); opacity: .75; }
-.heute-knoepfe { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+/* Karten-Grundfläche */
+.heute-karte { position: relative; padding: var(--innen); font: inherit; color: var(--text); border-radius: var(--radius-gross);
+  background: var(--karte); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten); }
+.heute-kz__symbol { display: grid; place-items: center; width: 32px; height: 32px; border-radius: var(--radius-klein); color: var(--text-2); background: var(--surface); }
+.heute-kz__symbol .symbol { width: 16px; height: 16px; }
 
-/* Ring */
+/* Ring (kleine Felder) */
 .heute-ring { position: relative; width: 168px; height: 168px; flex: none; display: grid; place-items: center; text-align: center; }
 .heute-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
 .heute-ring circle { fill: none; stroke-width: 10; stroke-linecap: round; }
-.heute-ring .bahn { stroke: rgba(255,255,255,.22); }
-.heute-ring .wert { stroke: #fff; stroke-dasharray: 440; stroke-dashoffset: 440; transition: stroke-dashoffset 1400ms var(--ease) 300ms;
-  filter: drop-shadow(0 0 6px rgba(255,255,255,.5)); }
+.heute-ring .wert { stroke-dasharray: 440; stroke-dashoffset: 440; transition: stroke-dashoffset 900ms var(--ease) 150ms; }
 .heute-ring b { display: block; font-size: var(--fs-display); font-weight: 600; letter-spacing: -.03em; }
-.heute-ring small { display: block; font-size: var(--fs-label); opacity: .8; }
-
-/* Kennzahl-Kacheln */
-.heute-kz, .heute-karte { position: relative; padding: 20px; font: inherit; color: var(--text); border-radius: var(--radius-gross);
-  background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten);
-  transition: transform 380ms var(--feder), box-shadow 380ms var(--ease); }
-.heute-kz { min-height: 158px; display: flex; flex-direction: column; align-items: flex-start; text-align: left; cursor: pointer; }
-@media (hover: hover) { .heute-kz:not(:disabled):hover { transform: translateY(-3px); box-shadow: var(--schatten-hoch); } }
-.heute-kz:not(:disabled):active { transform: scale(.985); }
-.heute-kz:disabled { cursor: default; }
-.heute-kz__kopf { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: auto; }
-.heute-kz__symbol { width: 38px; height: 38px; border-radius: var(--radius-klein); display: grid; place-items: center; color: var(--bereich-tief);
-  background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.6)); box-shadow: inset 0 0 0 .5px rgba(43,30,25,.08), inset 0 1px 0 #fff; }
-.heute-kz__symbol .symbol { width: 18px; height: 18px; }
-.heute-trend { font-size: var(--fs-label); font-weight: 600; color: var(--text-2); background: rgba(255,255,255,.65); padding: 3px 8px; border-radius: 999px; }
-.heute-trend--gut { color: var(--gut); }
-.heute-kz > b { font-size: 36px; font-weight: 600; letter-spacing: -.035em; line-height: 1; margin-top: 18px; }
-.heute-kz__titel { font-size: var(--fs-small); font-weight: 600; margin-top: var(--space-2); }
-.heute-kz small { color: var(--text-2); font-size: var(--fs-label); }
-.heute-kz--akzent { color: #fff; border-color: rgba(255,255,255,.35);
-  background: linear-gradient(150deg, color-mix(in oklch, var(--bereich) 68%, white), var(--bereich) 60%, color-mix(in oklch, var(--bereich) 72%, #2a0f08)); }
-.heute-kz--akzent small, .heute-kz--akzent .heute-kz__titel { color: rgba(255,255,255,.85); }
-.heute-kz--akzent .heute-kz__symbol, .heute-kz--akzent .heute-trend { background: rgba(255,255,255,.22); color: #fff; }
-
-/* Mini-Kurve: zeichnet sich beim Erscheinen */
-.heute-spur { position: absolute; right: 18px; bottom: 20px; width: 64px; height: 24px; }
-.heute-spur svg { width: 100%; height: 100%; display: block; }
-.heute-spur path { fill: none; stroke: var(--bereich); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
-  stroke-dasharray: 1; stroke-dashoffset: 1; animation: heute-zeichnen 1300ms var(--ease) 500ms forwards; }
-.heute-spur--fertig path { animation: none; stroke-dashoffset: 0; }
-.heute-kz--akzent .heute-spur path { stroke: #fff; }
-@keyframes heute-zeichnen { to { stroke-dashoffset: 0; } }
 
 @media (max-width: 760px) {
   .heute-kopf { flex-direction: column; align-items: flex-start; }
-  .heute-kopf h1 { font-size: 32px; }
-  .heute-hero { flex-direction: column-reverse; align-items: flex-start; padding: 22px; }
-  .heute-ring { width: 128px; height: 128px; align-self: center; }
-  .heute-ring b { font-size: 28px; }
-  .heute-hero h2 { font-size: var(--fs-large); }
-  .heute-werte { gap: 14px; }
-  .heute-kz { min-height: 140px; padding: var(--space-4); }
-  .heute-kz > b { font-size: 30px; }
-  .heute-spur { display: none; }
+  .heute-kopf h1 { font-size: 30px; }
 }
 
-/* Modulname oben in jedem Feld (feld.js), einheitlich: Symbol + Label */
-.feld-modul { position: absolute; z-index: 2; top: 14px; left: 16px; right: 16px; display: flex; align-items: center; gap: var(--space-2);
+/* Modulname oben in jedem Feld (feld.js): kleines Label */
+.feld-modul { position: absolute; z-index: 2; top: 16px; left: var(--innen); right: var(--innen); display: flex; align-items: center; gap: var(--space-2);
   font-size: var(--fs-label); font-weight: 650; letter-spacing: var(--sperrung); text-transform: uppercase; color: var(--text-2); pointer-events: none; }
-.feld-modul .feld-symbol { width: 24px; height: 24px; }
-.feld.feld > :first-child { padding-top: 50px; }
-.feld .heute-kz__symbol { display: none; }
-.feld .heute-kz__kopf { justify-content: flex-end; }
-.feld--akzent .feld-modul { color: rgba(255,255,255,.88); }
-.feld--akzent .feld-symbol { background: rgba(255,255,255,.22); color: #fff; box-shadow: none; }
-[data-akzent="weiss"] .feld--akzent .feld-modul { color: var(--text-2); }
-[data-akzent="weiss"] .feld--akzent .feld-symbol { background: rgba(255,255,255,.8); color: var(--text); }
+.feld.feld > :first-child { padding-top: 44px; }

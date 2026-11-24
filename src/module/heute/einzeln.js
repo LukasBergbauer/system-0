@@ -1,11 +1,13 @@
 // Heute: Einzel-Felder aus den Leisten (eine Gewohnheit, eine Routine, ein Schritt) als Ring-Feld,
-// dazu die To-do-Liste für große To-do-Felder. Gelöschte Einträge → null (Feld verschwindet).
+// dazu die To-do-Liste zum Abhaken. Gelöschte Einträge → null (Feld verschwindet).
 import { el } from '../../ui/dom.js';
 import { go } from '../../core/router.js';
 import { gewohnheitStand } from './gewohnheiten-leiste.js';
 import { routineStand } from './routinen-leiste.js';
 import { zielStand } from './ziele-leiste.js';
 import { tagISO } from './rechnen.js';
+import { checkbox } from '../../ui/checkbox.js';
+import { save } from '../../core/store.js';
 
 export function einzelGewohnheit({ d }, id) {
   const g = d.gewohnheiten.gewohnheiten.find((x) => x.id === id);
@@ -30,17 +32,24 @@ export function einzelZiel({ d }, id) {
     text: s.n && s.erledigt === s.n ? 'alles erledigt' : 'Teilschritte', klick: () => go(`ziele/${z.id}`) };
 }
 
-// Große To-do-Fläche: überfällige und heutige zuerst, dann nach Fälligkeit (höchstens 8)
+// To-do-Feld: Überfälliges und Heutiges zuerst, dann die nächsten nach Datum (höchstens 6), direkt abhakbar.
+// Abhaken speichert über core/store.js (wie das To-do-Modul: erledigt_am = jetzt).
+const KURZ = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'short' });
 export function todoListe(todos) {
   const h = tagISO(new Date());
   const offen = todos.filter((t) => !t.erledigt_am)
-    .sort((a, b) => (a.faellig_am || '9999').localeCompare(b.faellig_am || '9999')).slice(0, 8);
+    .sort((a, b) => (a.faellig_am || '9999').localeCompare(b.faellig_am || '9999') || (a.prio ?? 2) - (b.prio ?? 2));
+  const faellig = offen.filter((t) => t.faellig_am && t.faellig_am <= h).length;
+  const zeilen = offen.slice(0, Math.max(6, faellig));
+  const wann = (f) => !f ? '' : f < h ? 'überfällig' : f === h ? 'heute' : KURZ.format(new Date(`${f}T12:00`));
   return el('article', { class: 'heute-karte heute-liste' }, [
-    el('div', { class: 'heute-karte__kopf' }, [el('div', {}, [el('h3', { text: 'To-dos' }), el('small', { text: `${offen.length ? 'als Nächstes' : 'alles erledigt'}` })])]),
-    ...offen.map((t) => el('button', { class: 'heute-liste__zeile', attrs: { type: 'button' }, on: { click: () => go(`todos/${t.id}`) } }, [
-      el('i', { class: t.faellig_am && t.faellig_am < h ? 'heute-liste__punkt heute-liste__punkt--warn' : 'heute-liste__punkt' }),
-      el('span', { text: t.titel || 'To-do' }),
-      t.faellig_am && el('small', { text: t.faellig_am === h ? 'heute' : t.faellig_am < h ? 'überfällig' : t.faellig_am.slice(8, 10) + '.' + t.faellig_am.slice(5, 7) + '.' }),
+    el('div', { class: 'heute-karte__kopf' }, [el('small', { text: faellig ? `${faellig} fällig` : offen.length ? 'als Nächstes' : 'alles erledigt' })]),
+    ...zeilen.map((t) => el('div', { class: 'heute-liste__zeile' }, [
+      checkbox({ onChange: (an) => save('todos', { id: t.id, erledigt_am: an ? new Date().toISOString() : null }) }),
+      el('button', { class: 'heute-liste__titel', attrs: { type: 'button' }, on: { click: () => go(`todos/${t.id}`) } }, [
+        el('span', { text: t.titel || 'To-do' }),
+        t.faellig_am && el('small', { class: t.faellig_am < h ? 'heute-liste__warn' : '', text: wann(t.faellig_am) }),
+      ]),
     ])),
   ]);
 }
