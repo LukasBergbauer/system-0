@@ -2,6 +2,7 @@
 // Zusatz '#/insta/<id>' (Suche, Heute) öffnet diesen Post.
 import { leiste } from '../../ui/leiste.js';
 import { el } from '../../ui/dom.js';
+import { abschnitt } from '../../ui/abschnitt.js';
 import { button } from '../../ui/button.js';
 import { tabs } from '../../ui/tabs.js';
 import { list, listItem } from '../../ui/list.js';
@@ -41,7 +42,7 @@ function planer(posts) {
     if (s.id === 'gepostet') reihe = reihe.reverse(); // zuletzt gepostet zuerst
     if (!reihe.length) return null;
     return el('section', { class: 'card insta-gruppe' }, [
-      el('h3', { class: 'label', text: `${s.label} · ${reihe.length}` }),
+      abschnitt({ titel: s.label, zahl: reihe.length, tag: 'h3' }),
       list(reihe.map(zeile)),
     ]);
   }).filter(Boolean);
@@ -73,11 +74,13 @@ export function instaAnsicht({ signal }) {
   on('daten', ({ table }) => [POSTS, SETS, ERKENNTNISSE].includes(table) && zeichne(), { signal });
   zeichne();
   return el('div', { class: 'insta' }, [
-    ideeLeiste,
-    el('div', { class: 'insta-knoepfe' }, [
-      button({ text: 'Claude', variant: 'ghost', onClick: oeffneClaude }),
-      button({ text: 'Hashtag-Sets', variant: 'ghost', onClick: () => oeffneSets() }),
+    el('div', { class: 'insta-leiste' }, [
+      umschalter,
+      el('div', { class: 'insta-knoepfe' }, [
+        button({ text: 'Claude', variant: 'ghost', onClick: oeffneClaude }),
+        button({ text: 'Hashtags', variant: 'ghost', onClick: () => oeffneSets() }),
+      ]),
     ]),
-    umschalter, inhalt,
+    ideeLeiste, inhalt,
   ]);
 }

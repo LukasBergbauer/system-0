@@ -1,7 +1,8 @@
 /* Modul „Insta-Organizer“: Planer, Monat, Post-Vollbild, Hashtag-Sets, Erkenntnisse. Nur Werte aus tokens.css. */
 .insta { display: flex; flex-direction: column; gap: var(--luft); }
 .insta__inhalt { display: flex; flex-direction: column; gap: var(--luft); }
-.insta-knoepfe { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.insta-leiste { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.insta-knoepfe { display: flex; flex-wrap: wrap; gap: var(--space-1); }
 .insta-gruppe { display: flex; flex-direction: column; gap: var(--space-2); }
 
 /* Monat */
@@ -10,7 +11,7 @@
 .insta-monat__raster { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: var(--space-1); }
 .insta-monat__wt { text-align: center; color: var(--text-2); font-size: var(--fs-small); }
 .insta-tag { min-height: 72px; display: flex; flex-direction: column; gap: 2px; padding: var(--space-1); border-radius: var(--radius-klein);
-  border: var(--glas-kante) solid var(--glas-rand); background: var(--glas-verlauf); overflow: hidden; }
+  border: var(--glas-kante) solid var(--glas-rand); background: var(--karte); overflow: hidden; }
 .insta-tag > small { color: var(--text-2); font-size: var(--fs-small); }
 .insta-tag.fremd { opacity: .4; }
 .insta-tag.heute > small { color: var(--accent); font-weight: 700; }
@@ -22,7 +23,7 @@
 /* Post-Vollbild */
 .insta-kopf { display: flex; flex-direction: column; gap: var(--space-2); }
 .insta-kopf small { color: var(--text-2); font-size: var(--fs-small); }
-.insta-hook { margin: 0; padding-left: var(--space-5); border-left: 2px solid var(--accent); font-size: var(--fs-title); font-style: italic; line-height: 1.5; }
+.insta-hook { margin: 0; padding-left: var(--space-5); border-left: 2px solid var(--accent); font-size: var(--fs-title); line-height: 1.5; }
 .insta-abschnitt { display: flex; flex-direction: column; gap: var(--space-2); }
 .insta-abschnitt > p { margin: 0; line-height: 1.6; white-space: pre-line; }
 .insta-text { font-size: var(--fs-normal); }

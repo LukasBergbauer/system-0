@@ -30,4 +30,5 @@ tote Dateien (Musterseiten, pausierte Fotos ~0,9 MB im Offline-Cache, „Kommt b
 - [x] 7. Visionen (flache Zeilen), Affirmationen („weil weil“ behoben), Pyramide (lesbar, schon in 2).
 - [x] 8. Quiz: nur Grund-Design nötig (Karten, Umschalter), Rot/Grün im Ergebnis bleibt.
 - [x] 9. Bücher: Cover ohne Kartenrahmen.
-- [ ] 10. Insta · 11. Physio · 12. Einstellungen + Navigation.
+- [x] 10. Insta: Umschalter + Claude/Hashtags in einer Zeile, Abschnitts-Köpfe einheitlich.
+- [ ] 11. Physio · 12. Einstellungen + Navigation.

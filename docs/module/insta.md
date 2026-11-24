@@ -19,6 +19,10 @@ System 0 ersetzt die geplante eigene Mac-App des Insta-Agents. Austausch nur per
 - **CTA** = kurzer Folgen-Hinweis, keine Handlungs-Aufforderung (Insta-Agent STRATEGIE.md, Regel 9).
 - Nur Texte in Supabase (wenige KB pro Post), Videos bleiben lokal. Grenze: 500 MB (Supabase Free).
 
+## Stand „Klar“ (24.11.2026)
+- Eine Zeile oben: Umschalter Planer | Monat | Erkenntnisse links, „Claude“ und „Hashtags“ rechts; darunter Ideen-Leiste und Inhalt.
+  Gruppen-Überschrift wie überall (`ui/abschnitt.js`), Hook ohne Kursiv.
+
 ## Plan (mit Lukas abgestimmt, 09.11.2026)
 Grundsatz: keine Verbindung zu Instagram. Die App ist Lukas' eigene Kopie (offline lesbar). Skripte, Zahlen und Erkenntnisse kommen per Import bzw. Einfügen rein.
 - **Datenmodell `016_insta.sql`:** `insta_posts` (schluessel, titel, art, status, datum, hook, skript, cta, caption, hashtags,
