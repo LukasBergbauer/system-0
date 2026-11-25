@@ -121,13 +121,13 @@
 }
 .btn--primary,
 .btn--primary:not(:disabled):hover {
-  color: #fff;
-  background: var(--dunkel);
+  color: var(--accent-ink);
+  background: var(--akzent-flaeche);
   border-color: transparent;
-  box-shadow: none;
+  box-shadow: 0 8px 18px -10px var(--accent), inset 0 1px 0 rgba(255,255,255,.3);
 }
 @media (hover: hover) {
-  .btn--primary:not(:disabled):hover { background: color-mix(in oklch, var(--dunkel) 85%, white); }
+  .btn--primary:not(:disabled):hover { filter: brightness(1.06); }
 }
 .btn--ghost,
 .btn--ghost:not(:disabled):hover {

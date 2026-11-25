@@ -20,7 +20,7 @@
 .heute-pille .symbol { width: 15px; height: 15px; }
 .heute-pille--glas { background: var(--surface-2); color: var(--text); }
 .heute-pille--glas:hover { background: rgba(43, 30, 25, .1); }
-.heute-pille--dunkel { background: var(--dunkel); color: #fff; }
+.heute-pille--dunkel { background: var(--akzent-flaeche); color: var(--accent-ink); box-shadow: 0 8px 18px -10px var(--accent), inset 0 1px 0 rgba(255,255,255,.3); }
 .heute-pille--suche { width: var(--knopf); padding: 0; justify-content: center; }
 @media (min-width: 768px) { .heute-pille--suche { display: none; } }
 
