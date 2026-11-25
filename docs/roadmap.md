@@ -46,7 +46,8 @@ tote Dateien (Musterseiten, pausierte Fotos ~0,9 MB im Offline-Cache, „Kommt b
 
 ## Phase 13 – Feinschliff & Alltagstauglichkeit (ab 25.11.2026, automatische Kette)
 Läuft über geplante Aufgaben (je Schritt eine Sitzung, ~12 Min Abstand, Stopp bei 90 % des 5-h-Limits). Regeln wie Phase 12.
-- [ ] 1. Kalender: Migration 019 prüfen (SQL als Codeblock in den Chat, Lukas führt aus), Code gegen Doku prüfen. [Sonnet, mittel]
+- [x] 1. Kalender: Migration 019 prüfen (SQL als Codeblock in den Chat, Lukas führt aus), Code gegen Doku prüfen. [Sonnet, mittel]
+      Stand 25.11.: Code passt zur Doku, nur Dateitabelle ergänzt. Lukas: 019 im SQL-Editor ausführen (falls noch nicht).
 - [ ] 2. Heute erweitern: Routine-Status, Training des Tages, Quiz des Tages, Streaks im festen Tagesfeld. [Sonnet, mittel]
 - [ ] 3. Leistung iPhone: Unschärfe/Farbwolken entschärfen, Offline-Cache (`sw.js`) aufräumen, Version hochzählen. [Sonnet, niedrig]
 - [ ] 4. Roadmap kürzen: Phase 12 nach `roadmap-archiv.md`. [Sonnet, niedrig]

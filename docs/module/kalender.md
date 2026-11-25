@@ -62,6 +62,7 @@ Bild-Objekt (Vorschlag): **steinerne Sonnenuhr**. Prompt aus `design.md`, `[OBJE
 | Datei | Aufgabe |
 |---|---|
 | `index.js` | meldet den Bereich beim Router an |
+| `kennzahlen.js` | Kennzahlen für die Übersicht |
 | `daten.js` | Lesen/Schreiben der Tabelle `termine` über `core/store.js` |
 | `zeit.js` | Datum/Uhrzeit umrechnen, Gruppen der Liste, Texte („Heute“, „Do., 13. Nov.“) |
 | `view.js` | Knopf „+ Termin“, Liste „Nächste Termine“ in Gruppen; zeichnet bei Ereignis `daten` neu |
@@ -71,7 +72,7 @@ Bild-Objekt (Vorschlag): **steinerne Sonnenuhr**. Prompt aus `design.md`, `[OBJE
 | `tag.js` | Tagesansicht (Zeitraster, 1 Tag), Pfeile ±1 Tag |
 | `raster.js` | Zeitraster: Stunden, Kopf mit ganztägigen Pillen, Glas-Blöcke in Spuren, Jetzt-Linie |
 | `google.js` | Google-Abruf über die Supabase-Funktion, Zwischenspeicher im Gerät (IndexedDB `meta`, `kalender:google`), höchstens alle 15 Min. |
-| `google-adresse.js` | Modal (Chip „Google“): geheime iCal-Adresse eintragen/entfernen, Stand des letzten Abrufs |
+| `google-adresse.js` | Modal (Textknopf „Google-Kalender verbinden“): geheime iCal-Adresse eintragen/entfernen, Stand des letzten Abrufs |
 | `ical.js` | .ics lesen: Titel, Beginn, Ende, Ort, ausgelassene/verschobene/abgesagte Termine |
 | `monat.js` | Monatsansicht: Raster Mo–So, Pfeile, Tagesliste |
 | `wiederholung-feld.js` | Feld „Wiederholen“ im Modal (Chips + „Endet am“) → RRULE-Text |
@@ -104,6 +105,8 @@ Stile: `src/styles/kalender.css`.
 
 - [x] Extra (09.11.2026): Wiederholungen, Monatsansicht, fällige To-dos im Kalender. Migration `019`; `sw.js` `v82`.
       Tests: Erkennung 20/20, iCal 10/10. Offen: 019 ausführen, auf Geräten prüfen.
+- [x] Phase 13/1 (25.11.2026): Code gegen Doku geprüft – Wiederholung (Feld, `aufklappen` in Kalender, Heute, Erinnerungen),
+      Serie bearbeiten/löschen, Spalte nur bei Nutzung mitgeschickt: passt. Migration 019 ist idempotent (`if not exists`).
 
 ## Phase 7.2 – Tag / Woche / Monat mit Zeitraster (10.11.2026)
 Plan: Chips „Liste · Tag · Woche · Monat“ (Liste, Schnelleingabe, Google bleiben).
