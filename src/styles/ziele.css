@@ -1,8 +1,9 @@
-/* Modul „Ziele“ (Visionen): Bereichs-Karten, Ziel-Zeilen mit Linie (keine Kästen in der Karte), Schritte im Modal. */
+/* Modul „Ziele“ (Visionen): Bereichs-Glaskarten, Ziel-Zeilen mit Linie (keine Kästen in der Karte), Schritte im Modal. */
 .ziele { display: flex; flex-direction: column; align-items: flex-start; gap: var(--luft); }
 .ziele__raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--luft); width: 100%; }
 .ziel-bereich { display: flex; flex-direction: column; align-items: stretch; gap: var(--space-3); padding: var(--innen); border-radius: var(--radius-gross);
-  background: var(--karte); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten); }
+  background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%); }
 .ziel-bereich > .btn { align-self: flex-start; }
 .ziel-bereich__vision { margin: var(--space-1) 0 0; color: var(--text-2); white-space: pre-line; }
 .ziel-bereich__liste { display: flex; flex-direction: column; }
