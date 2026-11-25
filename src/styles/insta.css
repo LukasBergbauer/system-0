@@ -11,7 +11,7 @@
 .insta-monat__raster { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: var(--space-1); }
 .insta-monat__wt { text-align: center; color: var(--text-2); font-size: var(--fs-small); }
 .insta-tag { min-height: 72px; display: flex; flex-direction: column; gap: 2px; padding: var(--space-1); border-radius: var(--radius-klein);
-  border: var(--glas-kante) solid var(--glas-rand); background: var(--karte); overflow: hidden; }
+  border: var(--glas-kante) solid var(--glas-rand); background: var(--glas-verlauf); overflow: hidden; }
 .insta-tag > small { color: var(--text-2); font-size: var(--fs-small); }
 .insta-tag.fremd { opacity: .4; }
 .insta-tag.heute > small { color: var(--accent); font-weight: 700; }
