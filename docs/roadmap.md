@@ -43,3 +43,11 @@ tote Dateien (Musterseiten, pausierte Fotos ~0,9 MB im Offline-Cache, „Kommt b
       d) Danach alle Bereiche im gleichen Sinn nachziehen (Kopf, Karten, Farben), ein Commit je Bereich, Mac + iPhone prüfen.
       Regeln bleiben: Pyramide ohne Verbindung zu anderen Modulen, keine Daten in Supabase löschen. Funktionale Verbesserungen aus 0–12 bleiben.
 - [x] 14. Affirmationen in Visionen eingebettet (je Schritt direkt unter der Zeile + im Schritt-Fenster), Navigationspunkt „Affirmationen" entfernt (25.11.2026). Tabelle `affirmationen` unverändert, nichts in Supabase gelöscht. `sw.js` `v158`.
+
+## Phase 13 – Feinschliff & Alltagstauglichkeit (ab 25.11.2026, automatische Kette)
+Läuft über geplante Aufgaben (je Schritt eine Sitzung, ~12 Min Abstand, Stopp bei 90 % des 5-h-Limits). Regeln wie Phase 12.
+- [ ] 1. Kalender: Migration 019 prüfen (SQL als Codeblock in den Chat, Lukas führt aus), Code gegen Doku prüfen. [Sonnet, mittel]
+- [ ] 2. Heute erweitern: Routine-Status, Training des Tages, Quiz des Tages, Streaks im festen Tagesfeld. [Sonnet, mittel]
+- [ ] 3. Leistung iPhone: Unschärfe/Farbwolken entschärfen, Offline-Cache (`sw.js`) aufräumen, Version hochzählen. [Sonnet, niedrig]
+- [ ] 4. Roadmap kürzen: Phase 12 nach `roadmap-archiv.md`. [Sonnet, niedrig]
+- [ ] 5. Abschluss-Prüfung: im Browser (Mac + iPhone-Breite) alle Module durchklicken, Animationen auf Ruckeln prüfen (Dauer, Einblenden, Übergänge), ALLE Funktionen testen (anlegen, abhaken, bearbeiten, löschen, Sync), Fehler beheben, Ergebnis in Chat + Doku. [Sonnet, mittel]
