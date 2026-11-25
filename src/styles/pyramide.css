@@ -2,12 +2,14 @@
 .pyr { display: flex; flex-direction: column; align-items: flex-start; gap: var(--luft); max-width: 520px; }
 .pyr > .segment { align-self: stretch; }
 .pyr-karte { align-self: stretch; display: flex; flex-direction: column; gap: var(--space-4); padding: var(--innen); border-radius: var(--radius-gross);
-  background: var(--karte); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten); }
+  background: var(--glas-verlauf); border: var(--glas-kante) solid var(--glas-rand); box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%); }
 .pyr-kopf { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-3); }
 .pyr-kopf small { color: var(--text-2); font-size: var(--fs-label); }
 .pyr-stufen { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .pyr-stufe { width: clamp(6em, var(--b), 100%); padding: 10px var(--space-2); text-align: center; border-radius: var(--radius-klein); font-weight: 600;
-  background: color-mix(in oklch, var(--accent) var(--k), white); color: var(--accent-ink); }
+  background: color-mix(in oklch, var(--accent) var(--k), white); color: var(--accent-ink);
+  box-shadow: 0 6px 16px -10px color-mix(in oklch, var(--accent) 60%, black), inset 0 1px 0 rgba(255,255,255,.35); }
 /* helle Stufen (oben) mit dunkler Schrift, damit alles lesbar bleibt */
 .pyr-stufe--hell { color: var(--text); }
 .pyr-text { resize: vertical; min-height: 120px; }
