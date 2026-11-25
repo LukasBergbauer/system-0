@@ -1,4 +1,4 @@
-/* Modul „Kalender“ (Stil „Klar“): Gruppen wie bei den To-dos, links die Uhrzeit. Nur Werte aus tokens.css. */
+/* Modul „Kalender“ (Glas, 25.11.2026): Gruppen wie bei den To-dos, links die Uhrzeit. Nur Werte aus tokens.css. */
 .termin-schnell {
   display: flex;
   flex-direction: column;
@@ -18,13 +18,15 @@
   gap: var(--luft);
   margin-top: var(--space-2);
 }
-/* Gruppe als Karte */
+/* Gruppe als Glaskarte */
 .termin-gruppe {
   padding: var(--space-4) var(--innen) var(--space-2);
   background: var(--glas-verlauf);
   border: var(--glas-kante) solid var(--glas-rand);
   border-radius: var(--radius-gross);
   box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  backdrop-filter: blur(var(--blur)) saturate(160%);
 }
 .termin-gruppe > .abschnitt {
   margin-bottom: var(--space-1);
@@ -113,6 +115,8 @@
   border: var(--glas-kante) solid var(--glas-rand);
   border-radius: var(--radius-gross);
   box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  backdrop-filter: blur(var(--blur)) saturate(160%);
 }
 .monat__wt {
   text-align: center;
@@ -146,8 +150,16 @@
   color: var(--text-3);
 }
 .monat__tag--heute .monat__zahl {
-  color: var(--accent);
-  font-weight: 600;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin: -4px 0;
+  border-radius: 50%;
+  color: var(--accent-ink);
+  background: var(--akzent-flaeche);
+  box-shadow: 0 6px 14px -8px var(--accent);
+  font-weight: 650;
 }
 .monat__tag--an {
   background: var(--surface-2);
