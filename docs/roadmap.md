@@ -23,4 +23,5 @@ Läuft über geplante Aufgaben (je Schritt eine Sitzung, ~12 Min Abstand, Stopp 
       Stand 25.11.: Unschärfe auf Touch-Geräten 22→12 px (auch Routinen-Fenster, vorher 30 px), `gleiten.js` fehlte im Cache, sw v160. Lukas: Scrollen auf dem iPhone ansehen.
 - [x] 4. Roadmap kürzen: Phase 12 nach `roadmap-archiv.md`. [Sonnet, niedrig]
       Stand 25.11.: Phase 12 steht jetzt im Archiv, Roadmap kurz.
-- [ ] 5. Abschluss-Prüfung: im Browser (Mac + iPhone-Breite) alle Module durchklicken, Animationen auf Ruckeln prüfen (Dauer, Einblenden, Übergänge), ALLE Funktionen testen (anlegen, abhaken, bearbeiten, löschen, Sync), Fehler beheben, Ergebnis in Chat + Doku. [Sonnet, mittel]
+- [x] 5. Abschluss-Prüfung: im Browser (Mac + iPhone-Breite) alle Module durchklicken, Animationen auf Ruckeln prüfen (Dauer, Einblenden, Übergänge), ALLE Funktionen testen (anlegen, abhaken, bearbeiten, löschen, Sync), Fehler beheben, Ergebnis in Chat + Doku. [Sonnet, mittel]
+      Stand 25.11.: Vorschau (`tests/vorschau.html`) Mac + iPhone-Breite: alle 13 Seiten laden, kein Überlauf, keine Konsolenfehler; To-do anlegen/abhaken/bearbeiten/löschen ok. Animationen ≤ 420 ms, nur Seitenleiste + Routinen-Balken animieren Breite (bewusst), 2 Unschärfe-Elemente. Lukas: Login/Sync, Scrollen und Routinen/Training/Ziele mit echten Daten auf dem iPhone ansehen; Migration 019 ausführen.
