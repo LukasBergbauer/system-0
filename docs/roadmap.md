@@ -14,7 +14,7 @@ Pyramide fertig (Modul + Heute-Feld), Doku `docs/module/pyramide.md`. Schritte 1
 Schritt 6 (Aufräumen je Bereich) geht in Phase 12 auf.
 
 ## Phase 12 – Neugestaltung „Klar“ (ab 24.11.2026, Claude nach eigenem Urteil)
-Zielbild: `docs/design.md` → Richtung „Klar“. Ein Commit je Bereich, jeder im Browser geprüft (Mac + iPhone-Breite).
+Zielbild: `docs/design.md` → Richtung „Glas, kräftig“ (Schritt 13 ersetzt „Klar“). Ein Commit je Bereich, jeder im Browser geprüft (Mac + iPhone-Breite).
 Regeln: Pyramide bleibt ohne Verbindung zu anderen Modulen. Keine Daten in Supabase löschen.
 Schwächen (Analyse 24.11.): Farbband-Kopf auf jeder Seite frisst Platz; Glas-Kästen in Glas-Karten; alles rosa getönt;
 Mac nutzt nur 640 px; Heute zeigt To-dos 3× und Kalender 2×; To-dos: Überfälliges ganz unten, leere Gruppen;
@@ -33,7 +33,8 @@ tote Dateien (Musterseiten, pausierte Fotos ~0,9 MB im Offline-Cache, „Kommt b
 - [x] 10. Insta: Umschalter + Claude/Hashtags in einer Zeile, Abschnitts-Köpfe einheitlich.
 - [x] 11. Physio: Startebene ohne Pfad-Zeile, Lücken neben der Suche, iPhone ohne Überbreite.
 - [x] 12. Einstellungen (Verlauf-Kachel weg, ruhige Kacheln) + Navigation („Mehr“ am iPhone nach Alltag · Körper & Kopf · System gruppiert, aktiv = dunkle Pille).
-- [ ] 13. `[Opus, hoch]` Überarbeitung nach Feedback Lukas (25.11.2026): „Klar“ wirkt bedrückend, soll **motivierend** aussehen.
+- [x] 13. Überarbeitung nach Feedback Lukas (25.11.2026): „Klar“ wirkt bedrückend, soll **motivierend** aussehen. Erledigt: Glas zurück,
+      Akzent-Flächen (Kopf, Navigation, Hauptknopf), festes Tagesfeld auf Heute (Variante A + Tageslinie), alle Bereiche nachgezogen.
       a) Heute-Kacheln wirken „Windows-mäßig“ (flach, grau, kantig) → zurück zum Stil davor (Glas, weiche Tiefe, farbig getönte
          Schatten, Farbwolken), aber ohne die doppelten Felder.
       b) Mehr Kontrast mit der Akzentfarbe: kräftige Akzent-Flächen und -Zahlen statt nur feiner Linien.
