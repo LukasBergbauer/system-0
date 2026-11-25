@@ -33,5 +33,12 @@ tote Dateien (Musterseiten, pausierte Fotos ~0,9 MB im Offline-Cache, „Kommt b
 - [x] 10. Insta: Umschalter + Claude/Hashtags in einer Zeile, Abschnitts-Köpfe einheitlich.
 - [x] 11. Physio: Startebene ohne Pfad-Zeile, Lücken neben der Suche, iPhone ohne Überbreite.
 - [x] 12. Einstellungen (Verlauf-Kachel weg, ruhige Kacheln) + Navigation („Mehr“ am iPhone nach Alltag · Körper & Kopf · System gruppiert, aktiv = dunkle Pille).
-- [ ] 13. `[Sonnet, mittel]` Lukas prüft „Klar“ auf Mac + iPhone; Feinschliff nach seinem Feedback (je Punkt klein, ein Commit).
+- [ ] 13. `[Opus, hoch]` Überarbeitung nach Feedback Lukas (25.11.2026): „Klar“ wirkt bedrückend, soll **motivierend** aussehen.
+      a) Heute-Kacheln wirken „Windows-mäßig“ (flach, grau, kantig) → zurück zum Stil davor (Glas, weiche Tiefe, farbig getönte
+         Schatten, Farbwolken), aber ohne die doppelten Felder.
+      b) Mehr Kontrast mit der Akzentfarbe: kräftige Akzent-Flächen und -Zahlen statt nur feiner Linien.
+      c) Heute: **ein großes festes Feld ganz oben** (nicht verschieb- oder entfernbar), das den Tag zusammenfasst
+         (fällig/überfällig, Termine, Routinen, Gewohnheiten, Training …), ohne das Wort „Willkommen“. Erst 2–3 Varianten als Muster zeigen.
+      d) Danach alle Bereiche im gleichen Sinn nachziehen (Kopf, Karten, Farben), ein Commit je Bereich, Mac + iPhone prüfen.
+      Regeln bleiben: Pyramide ohne Verbindung zu anderen Modulen, keine Daten in Supabase löschen. Funktionale Verbesserungen aus 0–12 bleiben.
 - [ ] 14. `[Opus, mittel]` Idee: Affirmationen in Visionen einbetten (je Schritt direkt dort), ein Navigationspunkt weniger.
