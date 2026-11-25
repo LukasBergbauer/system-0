@@ -40,7 +40,7 @@
   opacity: 0.8;
 }
 
-/* Abschnitts-Überschrift (ui/abschnitt.js): schlichte Zeile (Symbol, Label, Zahl rechts), kein Kasten */
+/* Abschnitts-Überschrift (ui/abschnitt.js): schlichte Zeile (Symbol in Akzent, Label, Zahl als Akzent-Pille rechts) */
 .abschnitt {
   display: flex;
   align-items: center;
@@ -53,7 +53,7 @@
   flex: none;
   width: 15px;
   height: 15px;
-  color: var(--text-2);
+  color: var(--accent);
 }
 .abschnitt__titel {
   font-size: var(--fs-label);
@@ -64,7 +64,13 @@
 }
 .abschnitt__zahl {
   margin-left: auto;
-  font-size: var(--fs-small);
+  min-width: 22px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-align: center;
+  font-size: var(--fs-label);
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
-  color: var(--text-3);
+  color: var(--accent-ink);
+  background: var(--accent);
 }

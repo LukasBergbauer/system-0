@@ -1,34 +1,65 @@
-/* Seitenkopf (src/ui/kopfbild.js), Stil „Klar“ (24.11.2026): großer Titel links, Kennzahlen als kleine Zeile darunter.
-   Kein Farbband, kein Symbol, kein Muster. Abstand zum Inhalt = --luft. */
+/* Seitenkopf (src/ui/kopfbild.js), Stil „Glas, kräftig“ (25.11.2026): flaches Akzent-Band wie das Tagesfeld auf Heute,
+   Symbol im hellen Plättchen, großer Titel, rechts kräftige Kennzahlen. Abstand zum Inhalt = --luft. */
 .kopf {
+  position: relative;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: var(--space-2) var(--space-1) var(--space-1);
+  align-items: center;
+  gap: var(--space-4);
+  min-height: 104px;
+  padding: var(--space-4) var(--space-5);
+  color: var(--accent-ink);
+  border-radius: var(--radius-gross);
+  border: 1px solid rgba(255, 255, 255, .35);
+  box-shadow: var(--schatten);
+  background: var(--akzent-flaeche);
 }
+.kopf::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(60% 90% at 0% 0%, rgba(255,255,255,.32), transparent 60%),
+    radial-gradient(40% 70% at 100% 100%, rgba(40,10,0,.18), transparent 70%);
+}
+.kopf > * { position: relative; }
+.kopf__symbol {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-klein);
+  background: rgba(255, 255, 255, .2);
+  box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .45);
+}
+.kopf__symbol .symbol { width: 22px; height: 22px; color: currentColor; stroke-width: 1.7; }
 .kopf__titel {
+  flex: 1;
+  min-width: 0;
   margin: 0;
   font-size: var(--fs-seite);
-  font-weight: 700;
+  font-weight: 650;
   line-height: 1.05;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
   overflow-wrap: anywhere;
   hyphens: auto;
 }
-.kopf__werte {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px var(--space-4);
-  font-size: var(--fs-small);
-  color: var(--text-2);
-}
+.kopf__werte { display: flex; gap: var(--space-5); text-align: right; }
 .kopf__werte:empty { display: none; }
-.kopf__wert b {
-  margin-right: 4px;
-  font-weight: 650;
-  color: var(--text);
-  font-variant-numeric: tabular-nums;
-}
+.kopf__wert { display: grid; gap: 4px; }
+.kopf__wert b { font-size: var(--fs-display); font-weight: 650; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.kopf__wert span { font-size: var(--fs-label); font-weight: 600; opacity: .82; white-space: nowrap; }
+
+/* Weiß-Akzent: weißes Glas-Band mit dunkler Schrift */
+[data-akzent="weiss"] .kopf { color: var(--text); border-color: rgba(255, 255, 255, .95);
+  background: linear-gradient(140deg, #FFFFFF 0%, #F7F6F3 55%, #E9E7E2 130%); }
+[data-akzent="weiss"] .kopf__symbol { background: rgba(43, 30, 25, .06); box-shadow: none; }
+
 @media (max-width: 767px) {
-  .kopf__titel { font-size: clamp(26px, 8vw, 30px); }
+  .kopf { flex-wrap: wrap; min-height: 0; gap: var(--space-3); padding: var(--space-4); }
+  .kopf__symbol { width: 36px; height: 36px; }
+  .kopf__titel { font-size: clamp(24px, 7.5vw, 30px); }
+  .kopf__werte:not(:empty) { width: 100%; text-align: left; gap: var(--space-5); }
+  .kopf__wert b { font-size: var(--fs-large); }
 }

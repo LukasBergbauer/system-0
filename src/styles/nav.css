@@ -1,6 +1,6 @@
 /* Rahmen der App: schwebende Glas-Kapsel unten (iPhone) und schwebende Glas-Seitenleiste links (Mac, ab 768 px).
    Seitenleiste ist schmal und klappt beim Drüberfahren auf; der Inhalt weicht in allen Bereichen aus.
-   Aktiver Eintrag: weiße Pille (.nav__zeiger), die per transform ruhig von Eintrag zu Eintrag gleitet (nav.js). */
+   Aktiver Eintrag: Pille in der Akzent-Fläche (.nav__zeiger), die per transform ruhig von Eintrag zu Eintrag gleitet (nav.js). */
 
 .shell {
   min-height: inherit;
@@ -24,7 +24,8 @@
   top: 0;
   z-index: 0;
   border-radius: var(--radius-klein);
-  background: var(--dunkel);
+  background: var(--akzent-flaeche);
+  box-shadow: 0 8px 18px -10px var(--accent), inset 0 1px 0 rgba(255,255,255,.3);
   transition: transform 420ms var(--ease), width 420ms var(--ease), height 420ms var(--ease), opacity var(--duration);
 }
 .nav-tabs__link,

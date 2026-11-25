@@ -41,7 +41,7 @@
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
-/* Symbol im leisen Kreis */
+/* Symbol im weißen Kreis, Strich in Akzent */
 .kachel__symbol {
   display: grid;
   place-items: center;
@@ -49,8 +49,9 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  color: var(--text-2);
-  background: var(--surface);
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 1px 0 #fff, 0 4px 10px -6px color-mix(in oklch, var(--accent) 50%, transparent);
 }
 .kachel__text {
   display: flex;

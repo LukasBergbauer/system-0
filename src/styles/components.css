@@ -1,13 +1,15 @@
 /* Stile der einfachen UI-Bausteine aus src/ui/. Nur Werte aus tokens.css.
    Checkbox und Modal haben eigene Dateien (checkbox.css, modal.css). */
 
-/* ---------- Karte, Kachel: fast deckendes Weiß, Haarlinie, kleiner neutraler Schatten (keine Unschärfe) ---------- */
+/* ---------- Glas (Karte, Kachel): heller Verlauf, weißer Lichtrand, weicher Schatten in Akzent-Tönung ---------- */
 .card,
 .kachel {
-  background: var(--karte);
+  background: var(--glas-verlauf);
   border: var(--glas-kante) solid var(--glas-rand);
   border-radius: var(--radius-gross);
   box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  backdrop-filter: blur(var(--blur)) saturate(160%);
 }
 .card {
   padding: var(--innen);
@@ -105,7 +107,7 @@
 }
 @media (hover: hover) {
   .btn:not(:disabled):hover {
-    background: rgba(43, 30, 25, 0.1);
+    background: #fff;
   }
 }
 .btn:active {

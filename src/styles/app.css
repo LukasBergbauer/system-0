@@ -19,7 +19,7 @@
 }
 /* Seitenwechsel: Inhalt blendet einmal kurz ein */
 .app > * {
-  animation: rein 220ms var(--ease) backwards;
+  animation: rein 360ms var(--ease) backwards;
 }
 .app__title {
   font-weight: 600;
