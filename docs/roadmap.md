@@ -50,6 +50,7 @@ Läuft über geplante Aufgaben (je Schritt eine Sitzung, ~12 Min Abstand, Stopp 
       Stand 25.11.: Code passt zur Doku, nur Dateitabelle ergänzt. Lukas: 019 im SQL-Editor ausführen (falls noch nicht).
 - [x] 2. Heute erweitern: Routine-Status, Training des Tages, Quiz des Tages, Streaks im festen Tagesfeld. [Sonnet, mittel]
       Stand 25.11.: Kästchen Quiz + Serie neu (`serien.js`), Routinen/Training springen zur offenen Einheit; mit Testdaten geprüft. Lukas: mit echten Daten ansehen.
-- [ ] 3. Leistung iPhone: Unschärfe/Farbwolken entschärfen, Offline-Cache (`sw.js`) aufräumen, Version hochzählen. [Sonnet, niedrig]
+- [x] 3. Leistung iPhone: Unschärfe/Farbwolken entschärfen, Offline-Cache (`sw.js`) aufräumen, Version hochzählen. [Sonnet, niedrig]
+      Stand 25.11.: Unschärfe auf Touch-Geräten 22→12 px (auch Routinen-Fenster, vorher 30 px), `gleiten.js` fehlte im Cache, sw v160. Lukas: Scrollen auf dem iPhone ansehen.
 - [ ] 4. Roadmap kürzen: Phase 12 nach `roadmap-archiv.md`. [Sonnet, niedrig]
 - [ ] 5. Abschluss-Prüfung: im Browser (Mac + iPhone-Breite) alle Module durchklicken, Animationen auf Ruckeln prüfen (Dauer, Einblenden, Übergänge), ALLE Funktionen testen (anlegen, abhaken, bearbeiten, löschen, Sync), Fehler beheben, Ergebnis in Chat + Doku. [Sonnet, mittel]

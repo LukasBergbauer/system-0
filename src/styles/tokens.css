@@ -91,6 +91,10 @@
 @media (pointer: fine) {
   :root { --knopf: 40px; }
 }
+/* iPhone/iPad: weniger Unschärfe (Glas bleibt, Scrollen wird flüssiger) */
+@media (pointer: coarse) {
+  :root { --blur: 12px; }
+}
 
 /* Helle Fläche (Mindmap-Overlay in Physio): eigenes, deckendes Weiß. */
 .hell {

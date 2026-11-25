@@ -24,7 +24,7 @@
 
 /* Durchlauf: Vollbild, ein Schritt groß */
 .durchlauf { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; color: var(--text);
-  background: var(--glass); -webkit-backdrop-filter: blur(30px) saturate(160%); backdrop-filter: blur(30px) saturate(160%); }
+  background: var(--glass); -webkit-backdrop-filter: blur(var(--blur)) saturate(160%); backdrop-filter: blur(var(--blur)) saturate(160%); }
 .durchlauf::backdrop { background: transparent; }
 .durchlauf__box { height: 100%; max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--space-5);
   padding: calc(env(safe-area-inset-top) + var(--space-5)) var(--space-5) calc(env(safe-area-inset-bottom) + var(--space-5)); }
