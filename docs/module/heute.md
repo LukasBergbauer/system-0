@@ -4,7 +4,6 @@
 ## Funktionen
 - Termine von heute (eigene + Google-Kalender)
 - To-dos von heute und überfällige zuerst, direkt abhakbar
-- Später ergänzbar: Routine-Status, Affirmation des Tages, Training des Tages, Quiz des Tages, Streaks
 
 ## Hinweise
 Liest nur Daten der anderen Module über `core/`, speichert selbst nichts.
@@ -17,7 +16,8 @@ Liest nur Daten der anderen Module über `core/`, speichert selbst nichts.
 - **Festes Tagesfeld** ganz oben (`tagesfeld.js`, Zahlen `tag-rechnen.js`, Stil `tagesfeld.css`), nicht im Layout, nicht verschiebbar:
   Akzent-Fläche (Variante A) mit KW · Termine, motivierendem Satz je Stand, Ring „geschafft“ (To-dos fällig/überfällig + heute erledigt,
   vorbei-Termine, Routinen, Aufbau-Gewohnheiten, geplantes Training), Tageslinie (Termine mit Uhrzeit, Morgen-/Abendroutine 7/21 Uhr, „jetzt“),
-  Kästchen je Bereich (antippen öffnet ihn). Kein „Willkommen“.
+  Kästchen je Bereich (antippen öffnet ihn): To-dos, nächster Termin, Routinen (nächste offene, öffnet sie), Gewohnheiten, Training (öffnet offene Plan-Einheit),
+  Quiz des Tages (zählt zum Ring), Serie = längste laufende Serie aus Quiz/Gewohnheiten/Routinen (`serien.js`, ab 2 Tagen). Kein „Willkommen“.
 - Felder (`katalog.js`): todos (direkt abhakbar), kalender, pyramide, routinen, gewohnheiten, affirmation, ziele, training, quiz, absatz, insta;
   Einzel-Felder `gewohnheit`/`routine`/`ziel`/`absatz` mit `ref`. `STANDARD` (`layout.js`): To-dos 2×2, Kalender 1×2, Pyramide 1×2, dann der Rest.
 - Stil: Glas-Karten mit Unschärfe, heben sich beim Drüberfahren; Symbole, große Zahlen, Ringe in Akzent; gewählter Tag / fertige Routine = Akzent-Fläche.

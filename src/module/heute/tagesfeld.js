@@ -31,19 +31,23 @@ function kaestchen(wert, titel, text, ziel, fertig) {
 }
 
 function werte(t) {
-  const { todos, termine, routinen, gewohnheiten, training } = t;
+  const { todos, termine, routinen, gewohnheiten, training, quiz, serie } = t;
   const n = termine.naechster;
   return el('div', { class: 'tag-werte' }, [
     kaestchen(String(todos.offen || '✓'), 'To-dos', todos.ueberfaellig ? `${todos.ueberfaellig} überfällig` : todos.offen ? 'heute fällig' : 'alles erledigt',
       'todos', !todos.offen),
     termine.n > 0 && kaestchen(n ? UHR.format(new Date(n.start)) : '✓', n ? n.titel || 'Termin' : 'Termine', n ? 'nächster Termin' : 'alle vorbei',
       'kalender', !n),
-    routinen.n > 0 && kaestchen(`${routinen.fertig}/${routinen.n}`, 'Routinen', routinen.fertig === routinen.n ? 'erledigt' : 'heute', 'routinen',
-      routinen.fertig === routinen.n),
+    routinen.n > 0 && kaestchen(routinen.fertig === routinen.n ? '✓' : `${routinen.fertig}/${routinen.n}`, 'Routinen',
+      routinen.titel ? `als Nächstes: ${routinen.titel}` : 'alle erledigt', routinen.ziel, routinen.fertig === routinen.n),
     gewohnheiten.n > 0 && kaestchen(`${gewohnheiten.fertig}/${gewohnheiten.n}`, 'Gewohnheiten',
       gewohnheiten.fertig === gewohnheiten.n ? 'erledigt' : `${gewohnheiten.n - gewohnheiten.fertig} offen`, 'gewohnheiten', gewohnheiten.fertig === gewohnheiten.n),
     training.n > 0 && kaestchen(training.fertig === training.n ? '✓' : `${training.fertig}/${training.n}`, 'Training',
-      training.fertig === training.n ? 'erledigt' : training.titel || 'laut Plan', 'training', training.fertig === training.n),
+      training.fertig === training.n ? 'erledigt' : training.titel || 'laut Plan', training.ziel, training.fertig === training.n),
+    kaestchen(quiz.fertig ? `${quiz.richtig}/${quiz.von}` : '?', 'Quiz des Tages', quiz.fertig ? 'richtig' : 'noch offen',
+      quiz.fertig ? 'quiz' : 'quiz/daily', quiz.fertig),
+    serie && kaestchen(String(serie.n), 'Serie', `${serie.name} · ${serie.ohne ? 'Tage ohne' : serie.offen ? 'heute halten' : 'Tage in Folge'}`,
+      serie.ziel, !serie.offen),
   ]);
 }
 
