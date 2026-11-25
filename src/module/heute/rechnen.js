@@ -1,5 +1,5 @@
 // Heute: alle Zahlen für das Dashboard aus den Rohdaten (reine Rechnungen, nichts wird gespeichert).
-// rechne({ todos, termine, jetzt }) → { dinge, ueberfaellig, heuteFaellig, termineHeute, offen }. termine = eigene + Google.
+// rechne({ todos, termine, jetzt }) → { ueberfaellig, heuteFaellig, termineHeute, offen }. termine = eigene + Google.
 const zwei = (n) => String(n).padStart(2, '0');
 export const tagISO = (d) => `${d.getFullYear()}-${zwei(d.getMonth() + 1)}-${zwei(d.getDate())}`;
 export const plusTage = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
@@ -20,5 +20,5 @@ export function rechne({ todos, termine, jetzt = new Date() }) {
   const ueberfaellig = zaehle(offen, (t) => t.faellig_am && t.faellig_am < h);
   const heuteFaellig = zaehle(offen, (t) => t.faellig_am === h);
   const termineHeute = zaehle(termine, (t) => amTag(t, heute));
-  return { dinge: ueberfaellig + heuteFaellig + termineHeute, ueberfaellig, heuteFaellig, termineHeute, offen: offen.length };
+  return { ueberfaellig, heuteFaellig, termineHeute, offen: offen.length };
 }

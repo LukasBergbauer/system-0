@@ -1,4 +1,4 @@
-// Ansicht „Heute“: Glas-Dashboard aus Feldern im festen Raster (layout.js, katalog.js); „Bearbeiten“ im Kopf (bearbeiten.js).
+// Ansicht „Heute“: festes Tagesfeld (tagesfeld.js), darunter Glas-Dashboard aus Feldern im festen Raster (layout.js, katalog.js); „Bearbeiten“ im Kopf (bearbeiten.js).
 // Liest nur über core/ (To-dos, Routinen, Training, Ziele, Affirmationen, Gewohnheiten, Quiz-Ergebnisse, Insta-Posts, Buch-Absätze, eigene Termine, Google-Termine aus dem Zwischenspeicher), speichert nur das Abhaken von Gewohnheiten (gewohnheiten-leiste.js).
 // Bei jedem Ereignis 'daten' neu zeichnen – dann ohne Hochzähl-Bewegung, damit nichts zappelt.
 import { el } from '../../ui/dom.js';
@@ -8,6 +8,8 @@ import { on } from '../../core/events.js';
 import { rechne } from './rechnen.js';
 import { aufklappen } from '../../core/wiederholung.js';
 import { kopf } from './kopf.js';
+import { tagesfeld } from './tagesfeld.js';
+import { rechneTag } from './tag-rechnen.js';
 import { rechneTraining } from './training.js';
 import { ARTEN } from './katalog.js';
 import { feld } from './feld.js';
@@ -50,7 +52,8 @@ export function heuteAnsicht({ signal }) {
       return f;
     }).filter(Boolean);
     box.replaceChildren(
-      kopf(z.dinge, { bearbeiten, umschalten, standard }),
+      kopf({ bearbeiten, umschalten, standard }),
+      tagesfeld(rechneTag(d), animiert),
       el('section', { class: 'heute-raster', attrs: { 'data-raster': '' } }, [...felder, bearbeiten && plusFeld(() => hinzufuegen(d, (e) => aendern([...layout, e])))]),
     );
   }

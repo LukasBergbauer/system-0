@@ -1,0 +1,83 @@
+/* Heute: festes Tagesfeld (module/heute/tagesfeld.js), Variante A + Tageslinie aus C (Lukas, 25.11.2026).
+   Akzent-Fläche mit Satz, Ring, Tageslinie und hellen Kästchen je Bereich. */
+.tagesfeld { position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 28px;
+  padding: 26px 28px 24px; border-radius: var(--radius-gross); color: var(--accent-ink); border: 1px solid rgba(255,255,255,.35);
+  box-shadow: var(--schatten); background: var(--akzent-flaeche); }
+.tagesfeld::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(60% 70% at 0% 0%, rgba(255,255,255,.35), transparent 60%), radial-gradient(40% 50% at 100% 100%, rgba(40,10,0,.2), transparent 70%); }
+.tagesfeld > * { position: relative; }
+.tagesfeld__text { min-width: 0; align-self: center; }
+.tagesfeld__status { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 11px; border-radius: 999px;
+  font-size: 12px; font-weight: 600; background: rgba(255,255,255,.2); }
+.tagesfeld__status i { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: tag-puls 2s ease-in-out infinite; }
+@keyframes tag-puls { 50% { opacity: .35; transform: scale(.7); } }
+.tagesfeld h2 { margin: 16px 0 6px; font-size: 32px; line-height: 1.1; font-weight: 600; letter-spacing: -.025em; max-width: 20ch; }
+.tagesfeld h2 em { font-family: ui-serif, "New York", Georgia, serif; font-weight: 400; }
+.tagesfeld p { margin: 0; font-size: 14px; opacity: .88; }
+
+/* Ring rechts */
+.tagesfeld .heute-ring { width: 164px; height: 164px; align-self: center; }
+.tagesfeld .heute-ring .bahn { stroke: rgba(255,255,255,.22); }
+.tagesfeld .heute-ring .wert { stroke: #fff; filter: drop-shadow(0 0 6px rgba(255,255,255,.5)); }
+.tagesfeld .heute-ring b { font-size: 38px; font-weight: 650; line-height: 1; }
+.tagesfeld .heute-ring small { display: block; font-size: 12px; opacity: .85; }
+
+/* Tageslinie */
+.tag-linie { grid-column: 1 / -1; margin: 22px 6px 0; }
+.tag-linie__bahn { position: relative; height: 48px; }
+.tag-linie__spur { position: absolute; left: 0; right: 0; bottom: 10px; height: 6px; border-radius: 999px; background: rgba(255,255,255,.22); }
+.tag-linie__spur i { position: absolute; inset: 0 auto 0 0; border-radius: inherit; background: #fff; box-shadow: 0 0 8px rgba(255,255,255,.5); }
+.tag-punkt { position: absolute; bottom: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 0; border: 0;
+  background: none; font: inherit; color: inherit; transform: translateX(-50%); cursor: pointer; }
+.tag-punkt span { max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; font-weight: 600; opacity: .92; }
+.tag-punkt::after { content: ""; width: 14px; height: 14px; border-radius: 50%; border: 3px solid #fff; background: var(--accent);
+  box-sizing: border-box; margin-bottom: 6px; transition: transform 300ms var(--feder); }
+.tag-punkt--fertig::after { background: #fff; }
+.tag-punkt:hover::after { transform: scale(1.25); }
+.tag-jetzt { position: absolute; bottom: 4px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; pointer-events: none; }
+.tag-jetzt::before { content: ""; order: 2; width: 2px; height: 18px; border-radius: 2px; background: var(--text); }
+.tag-jetzt b { order: 3; margin-top: 2px; padding: 2px 7px; border-radius: 999px; font-size: 10px; font-weight: 700; color: #fff; background: var(--text);
+  transform: translateY(100%); position: absolute; top: 100%; }
+.tag-linie__stunden { position: relative; height: 16px; margin-top: 10px; font-size: 11px; opacity: .7; }
+.tag-linie__stunden span { position: absolute; transform: translateX(-50%); }
+.tag-linie__stunden span:first-child { transform: none; }
+.tag-linie__stunden span:last-child:not(:first-child) { transform: translateX(-100%); }
+
+/* Kästchen je Bereich */
+.tag-werte { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.tag-wert { flex: 1 1 150px; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 10px 14px 10px 10px; border: 0; border-radius: 14px;
+  font: inherit; color: inherit; text-align: left; cursor: pointer; background: rgba(255,255,255,.16); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.35);
+  transition: background var(--duration), transform 300ms var(--feder); }
+.tag-wert:hover { background: rgba(255,255,255,.26); }
+.tag-wert:active { transform: scale(.97); }
+.tag-wert b { flex: none; display: grid; place-items: center; min-width: 36px; height: 36px; padding: 0 7px; border-radius: 10px;
+  background: #fff; color: var(--akzent-tief); font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.tag-wert > span { min-width: 0; font-size: 13px; font-weight: 600; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tag-wert small { display: block; font-size: 11px; font-weight: 500; opacity: .82; overflow: hidden; text-overflow: ellipsis; }
+.tag-wert--fertig { background: rgba(255,255,255,.28); }
+
+/* Weiß-Akzent: weißes Glas mit dunkler Schrift */
+[data-akzent="weiss"] .tagesfeld { color: var(--text); border-color: rgba(255,255,255,.95);
+  background: linear-gradient(140deg, #FFFFFF 0%, #F7F6F3 55%, #E9E7E2 130%); }
+[data-akzent="weiss"] .tagesfeld__status, [data-akzent="weiss"] .tag-wert, [data-akzent="weiss"] .tag-linie__spur { background: rgba(43,30,25,.06); }
+[data-akzent="weiss"] .tagesfeld__status i, [data-akzent="weiss"] .tag-linie__spur i { background: var(--text); }
+[data-akzent="weiss"] .tagesfeld .heute-ring .bahn { stroke: rgba(43,30,25,.08); }
+[data-akzent="weiss"] .tagesfeld .heute-ring .wert { stroke: var(--text); filter: none; }
+[data-akzent="weiss"] .tag-punkt::after { border-color: var(--text); background: #fff; }
+[data-akzent="weiss"] .tag-punkt--fertig::after { background: var(--text); }
+[data-akzent="weiss"] .tag-wert b { background: var(--dunkel); color: #fff; }
+
+@media (max-width: 760px) {
+  .tagesfeld { padding: 20px 18px 18px; column-gap: 12px; }
+  .tagesfeld h2 { font-size: 24px; margin-top: 14px; }
+  .tagesfeld p { font-size: 13px; }
+  .tagesfeld .heute-ring { width: 88px; height: 88px; align-self: start; }
+  .tagesfeld .heute-ring circle { stroke-width: 14; }
+  .tagesfeld .heute-ring b { font-size: 21px; }
+  .tagesfeld .heute-ring small { font-size: 10px; }
+  .tag-linie { margin-top: 16px; }
+  .tag-punkt span { display: none; }
+  .tag-werte { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+  .tag-wert { padding: 8px 10px 8px 8px; }
+  .tag-wert b { min-width: 32px; height: 32px; font-size: 14px; }
+}

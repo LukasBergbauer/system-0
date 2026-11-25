@@ -15,8 +15,8 @@
 .heute-kal__tag small { display: block; font-size: 10px; color: var(--text-3); font-weight: 500; }
 .heute-kal__tag:hover { background: var(--surface); }
 .heute-kal__tag--heute { color: var(--bereich); }
-.heute-kal__tag--an { background: var(--dunkel); color: #fff; }
-.heute-kal__tag--an:hover { background: var(--dunkel); }
+.heute-kal__tag--an { background: var(--akzent-flaeche); color: #fff; box-shadow: 0 6px 14px -8px var(--accent); }
+.heute-kal__tag--an:hover { background: var(--akzent-flaeche); }
 .heute-kal__tag--an small { color: rgba(255,255,255,.8); }
 .heute-termin { display: flex; align-items: center; gap: var(--space-3); width: 100%; padding: 10px var(--space-3); margin-top: var(--space-2);
   border: 0; border-radius: var(--radius-klein); background: var(--surface); font: inherit; color: var(--text); text-align: left; cursor: pointer;
@@ -39,7 +39,7 @@
   background: linear-gradient(90deg, color-mix(in oklch, var(--bereich) 22%, transparent) calc(var(--anteil) * 100%), var(--surface-2) 0); }
 .heute-routine .heute-kz__symbol { width: 32px; height: 32px; flex: none; }
 .heute-routine small { display: block; font-weight: 400; color: var(--text-2); font-size: var(--fs-label); }
-.heute-routine--fertig { color: #fff; background: var(--dunkel); }
+.heute-routine--fertig { color: #fff; background: var(--akzent-flaeche); box-shadow: 0 8px 18px -12px var(--accent); }
 .heute-routine--fertig small { color: rgba(255,255,255,.85); }
 
 /* Lieblingsstelle (Absatz aus Bücher) */

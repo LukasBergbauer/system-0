@@ -9,24 +9,21 @@
 .feld .heute-hero, .feld .heute-kz { min-height: 0; }
 
 /* Kleines Feld: Titel, Ring oder Zahl, Unterzeile */
-.feld-k { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); padding: var(--innen); font: inherit; text-align: left;
-  color: var(--text); border-radius: var(--radius-gross); background: var(--karte); border: var(--glas-kante) solid var(--glas-rand);
-  box-shadow: var(--schatten); transition: box-shadow var(--duration) var(--ease), transform 200ms var(--ease); }
+.feld-k { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); text-align: left; } /* Fläche: heute.css */
 button.feld-k { cursor: pointer; }
-@media (hover: hover) { button.feld-k:hover { box-shadow: var(--schatten-hoch); } }
 button.feld-k:active { transform: scale(.985); }
 .feld-k__kopf { display: flex; align-items: center; gap: var(--space-2); max-width: 100%; font-size: var(--fs-small); font-weight: 600; }
 .feld-k__kopf > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.feld-k__zahl { margin-top: auto; font-size: 36px; font-weight: 600; letter-spacing: -.035em; line-height: 1; }
+.feld-k__zahl { margin-top: auto; font-size: 40px; font-weight: 700; color: var(--accent); letter-spacing: -.035em; line-height: 1; }
 .feld-k__text { color: var(--text-2); font-size: var(--fs-label); }
 .feld-k .heute-ring { width: 76px; height: 76px; margin: auto 0 0; }
 .feld-k .heute-ring .bahn { stroke: color-mix(in oklch, var(--bereich) 14%, transparent); }
-.feld-k .heute-ring .wert { stroke: var(--bereich); }
-.feld-k .heute-ring b { font-size: var(--fs-normal); }
+.feld-k .heute-ring .wert { stroke: var(--bereich); filter: drop-shadow(0 2px 4px color-mix(in oklch, var(--bereich) 40%, transparent)); }
+.feld-k .heute-ring b { font-size: var(--fs-normal); color: var(--bereich-tief); }
 .feld-k--fertig .feld-k__text { color: var(--bereich-tief); font-weight: 600; }
 
 /* Bereichs-Symbol im Feld-Label: nur die Linie */
-.feld-symbol { display: grid; place-items: center; flex: none; color: var(--text-2); }
+.feld-symbol { display: grid; place-items: center; flex: none; color: var(--accent); }
 .feld-symbol .symbol { width: 15px; height: 15px; stroke-width: 1.8; }
 
 /* To-do-Liste (To-do-Feld): Haken + Titel + Fälligkeit */

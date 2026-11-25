@@ -12,14 +12,15 @@ Liest nur Daten der anderen Module über `core/`, speichert selbst nichts.
 ## Grundsatz
 - Heute ist nie fertig: Lukas kann die Startseite jederzeit umbauen lassen (Karten weg, neu, umsortieren), wie er es möchte.
 
-## Stand (Neugestaltung „Klar“, 24.11.2026)
-- Kopf: Gruß + Datum · „N Dinge brauchen dich“; Knöpfe Suche (iPhone), Bearbeiten, Neu. Akzent-Knopf entfernt (steht in Einstellungen).
-- Felder (`katalog.js`): todos (Liste fällig/überfällig zuerst, **direkt abhakbar** über `core/store.js`, klein = Zahl fällig),
-  kalender, pyramide, routinen, gewohnheiten, affirmation, ziele, training, quiz, absatz (Zitat), insta; Einzel-Felder
-  `gewohnheit`/`routine`/`ziel`/`absatz` mit `ref`. Entfernt (doppelt): Woche-Hero, Termine-Kennzahl, Erledigt-Serie, Verlauf, Nach Bereich.
-- `STANDARD` (`layout.js`): To-dos 2×2, Kalender 1×2, Pyramide 1×2, dann Routinen/Gewohnheiten, Affirmation/Visionen je 2×1,
-  Training, Quiz, Zitat, Insta. Einmalige Umstellung (`heute_layout_klar`): gespeichertes Layout → neuer Standard, eigene Einzel-Felder bleiben.
-- Stil: weiße Karten, Label oben (`.feld-modul`), keine Akzent-Flächen, Felder blenden einmal kurz ein. Pyramide: helle Stufen mit dunkler Schrift.
+## Stand (Glas + Tagesfeld, 25.11.2026)
+- Kopf: Gruß + Datum; Knöpfe Suche (iPhone), Bearbeiten, Neu.
+- **Festes Tagesfeld** ganz oben (`tagesfeld.js`, Zahlen `tag-rechnen.js`, Stil `tagesfeld.css`), nicht im Layout, nicht verschiebbar:
+  Akzent-Fläche (Variante A) mit KW · Termine, motivierendem Satz je Stand, Ring „geschafft“ (To-dos fällig/überfällig + heute erledigt,
+  vorbei-Termine, Routinen, Aufbau-Gewohnheiten, geplantes Training), Tageslinie (Termine mit Uhrzeit, Morgen-/Abendroutine 7/21 Uhr, „jetzt“),
+  Kästchen je Bereich (antippen öffnet ihn). Kein „Willkommen“.
+- Felder (`katalog.js`): todos (direkt abhakbar), kalender, pyramide, routinen, gewohnheiten, affirmation, ziele, training, quiz, absatz, insta;
+  Einzel-Felder `gewohnheit`/`routine`/`ziel`/`absatz` mit `ref`. `STANDARD` (`layout.js`): To-dos 2×2, Kalender 1×2, Pyramide 1×2, dann der Rest.
+- Stil: Glas-Karten mit Unschärfe, heben sich beim Drüberfahren; Symbole, große Zahlen, Ringe in Akzent; gewählter Tag / fertige Routine = Akzent-Fläche.
 
 ## Bearbeiten-Modus (seit 10.11.2026)
 - Raster: Mac 4 Spalten, iPhone 2 (breitere Felder dort 2 breit), `grid-auto-flow: dense` (`heute-raster.css`).
