@@ -1,12 +1,13 @@
 // Daten der Lebensziele: nur über core/store.js.
 // ziel_bereiche (name, vision, reihenfolge), lebensziele (bereich_id, titel, warum, zieldatum, status, reihenfolge),
-// ziel_schritte (ziel_id, text, erledigt_am, reihenfolge).
+// ziel_schritte (ziel_id, text, erledigt_am, reihenfolge). Dazu affirmationen (siehe affirmationen.js) je Schritt.
 import { getAll, save, remove } from '../../core/store.js';
+import { AFFIRMATIONEN } from './affirmationen.js';
 
 export const BEREICHE = 'ziel_bereiche';
 export const ZIELE = 'lebensziele';
 export const SCHRITTE = 'ziel_schritte';
-export const TABELLEN = [BEREICHE, ZIELE, SCHRITTE];
+export const TABELLEN = [BEREICHE, ZIELE, SCHRITTE, AFFIRMATIONEN];
 
 export const STATUS = [
   { id: 'aktiv', label: 'Aktiv' },
@@ -16,13 +17,16 @@ export const STATUS = [
 
 const nachReihe = (a, b) => a.reihenfolge - b.reihenfolge;
 
-// Bereiche sortiert, je mit ziele (sortiert, je mit schritte).
+// Bereiche sortiert, je mit ziele (sortiert, je mit schritte, affirmationen und vision des Bereichs).
 export async function ladeAlles() {
-  const [bereiche, ziele, schritte] = await Promise.all([getAll(BEREICHE), getAll(ZIELE), getAll(SCHRITTE)]);
+  const [bereiche, ziele, schritte, affs] = await Promise.all([getAll(BEREICHE), getAll(ZIELE), getAll(SCHRITTE), getAll(AFFIRMATIONEN)]);
   const mitSchritten = ziele.sort(nachReihe).map((z) => ({
     ...z, schritte: schritte.filter((s) => s.ziel_id === z.id).sort(nachReihe),
+    affirmationen: affs.filter((a) => a.lebensziel_id === z.id).sort(nachReihe),
   }));
-  return bereiche.sort(nachReihe).map((b) => ({ ...b, ziele: mitSchritten.filter((z) => z.bereich_id === b.id) }));
+  return bereiche.sort(nachReihe).map((b) => ({
+    ...b, ziele: mitSchritten.filter((z) => z.bereich_id === b.id).map((z) => ({ ...z, vision: b.vision })),
+  }));
 }
 
 export const fortschritt = (z) => (z.schritte.length ? z.schritte.filter((s) => s.erledigt_am).length / z.schritte.length : 0);

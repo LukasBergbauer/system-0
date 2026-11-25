@@ -64,8 +64,8 @@ async function laden() {
       ],
     },
     {
-      titel: 'Affirmationen', bereich: 'affirmationen',
-      eintraege: affs.map((a) => ({ id: a.id, titel: a.text, sub: ziele.find((z) => z.id === a.lebensziel_id)?.titel })),
+      titel: 'Affirmationen', bereich: 'ziele', // öffnet den Schritt, zu dem sie gehört
+      eintraege: affs.map((a) => ({ id: a.lebensziel_id, titel: a.text, sub: ziele.find((z) => z.id === a.lebensziel_id)?.titel })),
     },
     {
       titel: 'Bücher', bereich: 'buecher',

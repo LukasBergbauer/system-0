@@ -8,6 +8,8 @@ import { button } from '../../ui/button.js';
 import { checkbox } from '../../ui/checkbox.js';
 import { STATUS, ladeAlles, speichereZiel, neuerSchritt, hakeSchritt, loescheSchritt, loescheZiel } from './data.js';
 import { leiste } from '../../ui/leiste.js';
+import { symbol } from '../../ui/symbol.js';
+import { oeffneAffirmation } from './affirmation.js';
 
 const finde = async (id) => (await ladeAlles()).flatMap((b) => b.ziele).find((z) => z.id === id);
 
@@ -39,8 +41,14 @@ export async function oeffneZiel(id, { neu = false } = {}) {
     zeigeSchritte();
   }, 'Teilschritt anlegen');
 
+  const affListe = el('div', { class: 'ziel-affs' });
+  const neuAff = button({ text: '+ Affirmation', variant: 'ghost', onClick: () => oeffneAffirmation(ziel, undefined, zeigeSchritte) });
+
   async function zeigeSchritte() {
     ziel = await finde(id);
+    affListe.replaceChildren(...ziel.affirmationen.map((a) => el('button', {
+      class: `ziel-aff${a.aktiv ? '' : ' ziel-aff--aus'}`, attrs: { type: 'button' }, on: { click: () => oeffneAffirmation(ziel, a, zeigeSchritte) },
+    }, [symbol('affirmation'), el('span', { text: a.text })])));
     liste.replaceChildren(...ziel.schritte.map((s) => el('div', { class: 'ziel-schritt' }, [
       checkbox({ label: s.text, checked: !!s.erledigt_am, onChange: (an) => hakeSchritt(s, an) }),
       el('button', { class: 'ziel-schritt__weg', text: '×', attrs: { type: 'button', 'aria-label': `${s.text} löschen` },
@@ -56,6 +64,7 @@ export async function oeffneZiel(id, { neu = false } = {}) {
       datumFeld,
       el('div', { class: 'field', attrs: { role: 'group', 'aria-label': 'Status' } }, [el('span', { class: 'field__label', text: 'Status' }), status]),
       el('div', { class: 'field' }, [el('span', { class: 'field__label', text: 'Teilschritte' }), liste, neuLeiste]),
+      el('div', { class: 'field' }, [el('span', { class: 'field__label', text: 'Affirmationen' }), affListe, neuAff]),
     ],
     actions: [
       button({ text: 'Löschen', variant: 'ghost', onClick: loeschen }),

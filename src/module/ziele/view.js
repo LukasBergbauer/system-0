@@ -8,6 +8,7 @@ import { TABELLEN, ladeAlles, neuesZiel } from './data.js';
 import { bereichKarte } from './karte.js';
 import { oeffneBereich } from './bereich.js';
 import { oeffneZiel } from './ziel.js';
+import { oeffneAffirmation } from './affirmation.js';
 
 export function zieleAnsicht({ signal }) {
   const box = el('div', { class: 'ziele' });
@@ -28,7 +29,7 @@ export function zieleAnsicht({ signal }) {
     }
     box.replaceChildren(...(bereiche.length
       ? [
-        el('div', { class: 'ziele__raster' }, bereiche.map((b) => bereichKarte(b, { onBereich: oeffneBereich, onZiel: (z) => oeffneZiel(z.id), onNeu: neu }))),
+        el('div', { class: 'ziele__raster' }, bereiche.map((b) => bereichKarte(b, { onBereich: oeffneBereich, onZiel: (z) => oeffneZiel(z.id), onAff: (z, a) => oeffneAffirmation(z, a), onNeu: neu }))),
         button({ text: '+ Bereich', variant: 'ghost', onClick: () => oeffneBereich() }),
       ]
       : [

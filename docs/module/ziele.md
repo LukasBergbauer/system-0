@@ -6,6 +6,13 @@
 - Ziele lassen sich anpassen; Änderungen fließen in die Affirmationen ein
 - Grundlage für `affirmationen`
 
+## Affirmationen eingebettet (25.11.2026)
+- Affirmationen gehören zum Schritt: in der Bereichs-Karte stehen sie als Zeilen mit Funkeln unter dem Schritt (antippen → bearbeiten,
+  nicht aktive blass). Im Schritt-Fenster Abschnitt „Affirmationen“ mit „+ Affirmation“.
+- Code: `affirmationen.js` (Daten, Vorschlag), `affirmation.js` (Fenster). `ladeAlles()` liefert je Schritt `affirmationen` und `vision`.
+- Suche: Gruppe „Affirmationen“ öffnet den zugehörigen Schritt. Alte Adresse `#/affirmationen` leitet zum Start um.
+- Beim Löschen eines Schritts bleiben seine Affirmationen in der Tabelle (unsichtbar, nicht auf Heute).
+
 ## Stand „Klar“ (24.11.2026)
 - Schritte in der Bereichs-Karte als Zeilen mit Trennlinie statt grauer Kästen; Vision ohne Kursiv.
 

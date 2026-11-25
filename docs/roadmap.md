@@ -42,4 +42,4 @@ tote Dateien (Musterseiten, pausierte Fotos ~0,9 MB im Offline-Cache, „Kommt b
          (fällig/überfällig, Termine, Routinen, Gewohnheiten, Training …), ohne das Wort „Willkommen“. Erst 2–3 Varianten als Muster zeigen.
       d) Danach alle Bereiche im gleichen Sinn nachziehen (Kopf, Karten, Farben), ein Commit je Bereich, Mac + iPhone prüfen.
       Regeln bleiben: Pyramide ohne Verbindung zu anderen Modulen, keine Daten in Supabase löschen. Funktionale Verbesserungen aus 0–12 bleiben.
-- [ ] 14. `[Opus, mittel]` Idee: Affirmationen in Visionen einbetten (je Schritt direkt dort), ein Navigationspunkt weniger.
+- [x] 14. Affirmationen in Visionen eingebettet (je Schritt direkt unter der Zeile + im Schritt-Fenster), Navigationspunkt „Affirmationen" entfernt (25.11.2026). Tabelle `affirmationen` unverändert, nichts in Supabase gelöscht. `sw.js` `v158`.

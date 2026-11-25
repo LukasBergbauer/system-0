@@ -1,4 +1,7 @@
-# Modul: Affirmationen
+# Affirmationen (kein eigenes Modul mehr)
+**Seit 25.11.2026 in Visionen eingebettet** → `module/ziele.md`. Ordner `src/module/affirmationen/` und Navigationspunkt entfernt;
+Tabelle `affirmationen` und Migration 012 unverändert. Heute-Karte „Affirmation des Tages“ (`heute/affirmation.js`) bleibt.
+
 **Phase 3.**
 
 ## Funktionen

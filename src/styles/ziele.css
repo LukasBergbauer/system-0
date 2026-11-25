@@ -9,19 +9,25 @@
 .ziel-bereich__liste { display: flex; flex-direction: column; }
 .ziel-bereich__erreicht summary { cursor: pointer; color: var(--text-2); font-size: var(--fs-small); }
 .ziel-bereich__erreicht .ziel-bereich__liste { margin-top: var(--space-2); }
+.ziel-block { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.ziel-block .ziel-zeile { border-top: 0; }
+.ziel-block--pausiert, .ziel-block--erreicht { opacity: .6; }
+.ziel-aff { display: flex; align-items: flex-start; gap: var(--space-2); padding: 0 0 var(--space-3); font: inherit; font-size: var(--fs-small); color: var(--text-2); text-align: left; border: 0; background: none; cursor: pointer; }
+.ziel-aff .symbol { flex: none; width: 16px; height: 16px; margin-top: 2px; color: var(--accent); }
+.ziel-aff--aus { opacity: .55; }
+.ziel-affs { display: flex; flex-direction: column; gap: var(--space-1); }
+.ziel-affs .ziel-aff { padding: var(--space-2) 0 0; }
 .ziel-zeile { display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-3) 0; font: inherit; color: inherit; text-align: left;
   border: 0; border-top: 1px solid var(--line); background: none; cursor: pointer; }
 .ziel-zeile .routine__balken { margin-top: var(--space-1); }
 .ziel-zeile__titel { font-weight: 600; }
 .ziel-zeile small { color: var(--text-2); font-size: var(--fs-label); }
-.ziel-zeile--pausiert, .ziel-zeile--erreicht { opacity: .6; }
 .ziele-text { resize: vertical; min-height: 80px; }
 .ziel-schritte { display: flex; flex-direction: column; }
 .ziel-schritt { display: flex; align-items: center; gap: var(--space-2); }
 .ziel-schritt .check { flex: 1; }
 .ziel-schritt__weg { width: var(--tap); height: var(--tap); flex: none; font-size: 20px; color: var(--text-3); background: none; border: 0; cursor: pointer; }
-/* Affirmationen (nutzt die Ziele-Karten) */
-.aff-bereich { color: var(--text-3); font-size: var(--fs-label); font-weight: 600; text-transform: uppercase; letter-spacing: var(--sperrung); }
+/* Affirmationen (im Schritt eingebettet) */
 .aff-ziel { margin: 0; font-weight: 600; }
 .aff-hilfe { margin: 0; color: var(--text-2); font-size: var(--fs-small); white-space: pre-line; }
 .heute-aff { grid-column: 1 / -1; display: flex; flex-direction: column; gap: var(--space-2); text-align: left; font: inherit; color: inherit; cursor: pointer; }
